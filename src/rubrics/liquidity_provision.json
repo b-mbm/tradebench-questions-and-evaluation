@@ -1,0 +1,38 @@
+{
+  "id": "liquidity_provision",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "venue_name",
+    "risk_controls",
+    "follow_up",
+    "reasoning"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "size", "venue"],
+  "field_weights": {
+    "intent": 0.18,
+    "order_type": 0.18,
+    "asset": 0.16,
+    "size": 0.16,
+    "venue": 0.12,
+    "venue_name": 0.08,
+    "risk_controls": 0.06,
+    "follow_up": 0.03,
+    "reasoning": 0.03
+  },
+  "synonyms": {
+    "intent": ["action", "provide_liquidity", "add_liquidity", "lp", "deposit", "supply", "execute", "perform", "do", "stake", "liquid_staking", "liquid_stake"],
+    "order_type": ["position_type", "liquidity_type", "add_liquidity", "provide_liquidity", "lp", "stake", "liquid_staking"],
+    "asset": ["pair", "eth", "steth"],
+    "venue": ["platform", "dex", "amm", "liquidity_pool", "automated_market_maker", "protocol", "network", "blockchain", "staking", "staking_protocol", "liquid_staking", "liquid_staking_protocol", "lido", "defi", "defi_protocol"],
+    "venue_name": ["pool", "protocol", "lido"],
+    "risk_controls": ["risk_measures", "protections", "risk", "controls", "limits", "parameters"],
+    "follow_up": ["monitoring", "maintenance", "next_steps", "additional_steps", "further_actions"],
+    "reasoning": ["justification", "rationale", "explanation", "why"]
+  },
+  "pass_threshold": 0.72
+}
+

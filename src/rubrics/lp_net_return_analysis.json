@@ -1,0 +1,175 @@
+{
+  "id": "lp_net_return_analysis",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "il_percentage",
+    "il_loss_usd",
+    "net_gain_usd",
+    "net_return_pct",
+    "hold_value",
+    "lp_value",
+    "reasoning"
+  ],
+  "required_fields": [
+    "intent",
+    "il_percentage",
+    "net_gain_usd",
+    "net_return_pct"
+  ],
+  "field_weights": {
+    "intent": 0.08,
+    "order_type": 0.05,
+    "asset": 0.05,
+    "size": 0.04,
+    "venue": 0.04,
+    "il_percentage": 0.25,
+    "il_loss_usd": 0.20,
+    "net_gain_usd": 0.22,
+    "net_return_pct": 0.15,
+    "hold_value": 0.03,
+    "lp_value": 0.03,
+    "reasoning": 0.03
+  },
+  "synonyms": {
+    "intent": [
+      "action",
+      "goal",
+      "objective",
+      "calculation_intent",
+      "impermanent_loss_analysis",
+      "calculate_lp_net_return",
+      "lp_return_analysis"
+    ],
+    "order_type": [
+      "analysis_type",
+      "calculation_type",
+      "strategy",
+      "return_analysis"
+    ],
+    "asset": [
+      "pair",
+      "pool",
+      "trading_pair",
+      "token_pair",
+      "eth_usdc"
+    ],
+    "venue": [
+      "platform",
+      "dex",
+      "protocol",
+      "amm",
+      "liquidity_pool"
+    ],
+    "il_percentage": [
+      "impermanent_loss_pct",
+      "il_pct",
+      "impermanent_loss_percentage",
+      "il_percent"
+    ],
+    "il_loss_usd": [
+      "il_loss",
+      "impermanent_loss_usd",
+      "il_cost",
+      "impermanent_loss_dollars"
+    ],
+    "net_gain_usd": [
+      "net_gain",
+      "net_profit",
+      "profit",
+      "net_return_usd",
+      "gain"
+    ],
+    "net_return_pct": [
+      "net_return",
+      "return_pct",
+      "net_return_percentage",
+      "return_percentage",
+      "roi"
+    ],
+    "hold_value": [
+      "hold_portfolio_value",
+      "hodl_value",
+      "holding_value"
+    ],
+    "lp_value": [
+      "lp_portfolio_value",
+      "pool_value",
+      "liquidity_value"
+    ],
+    "reasoning": [
+      "explanation",
+      "rationale",
+      "calculation_note",
+      "analysis"
+    ]
+  },
+  "pass_threshold": 0.70,
+  "numeric_fields": [
+    "size",
+    "il_percentage",
+    "il_loss_usd",
+    "net_gain_usd",
+    "net_return_pct",
+    "hold_value",
+    "lp_value"
+  ],
+  "range_fields": {
+    "il_percentage": {
+      "min": 3.0,
+      "max": 3.4,
+      "tolerance": 0.02,
+      "strict": true,
+      "description": "Impermanent loss percentage must reflect ETH price move from $3k to $5k"
+    },
+    "il_loss_usd": {
+      "min": 400,
+      "max": 450,
+      "tolerance": 0.05,
+      "description": "Dollar loss from impermanent loss should align with IL percentage against hold value"
+    },
+    "net_gain_usd": {
+      "min": 400,
+      "max": 450,
+      "tolerance": 0.05,
+      "description": "Net gain is fee earnings minus impermanent loss"
+    },
+    "net_return_pct": {
+      "min": 4.0,
+      "max": 4.5,
+      "tolerance": 0.02,
+      "strict": true,
+      "description": "Net return percentage relative to $10k initial capital"
+    },
+    "hold_value": {
+      "min": 13300,
+      "max": 13360,
+      "tolerance": 0.02,
+      "description": "Value of simply holding initial assets after price move"
+    },
+    "lp_value": {
+      "min": 12850,
+      "max": 12970,
+      "tolerance": 0.02,
+      "description": "LP position value before fees given the price move"
+    }
+  },
+  "exact_match_fields": [
+    "asset",
+    "order_type",
+    "venue"
+  ],
+  "allowed_intents": [
+    "calculate_lp_return",
+    "calculate_lp_net_return",
+    "impermanent_loss_analysis"
+  ],
+  "allowed_order_types": [
+    "analysis",
+    "return_analysis",
+    "calculation"
+  ]
+}

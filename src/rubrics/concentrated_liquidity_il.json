@@ -1,0 +1,202 @@
+{
+  "id": "concentrated_liquidity_il",
+  "description": "Concentrated liquidity provision with IL calculation and range optimization",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "size_denomination",
+    "venue",
+    "price_range_lower",
+    "price_range_upper",
+    "current_price",
+    "eth_amount",
+    "usdc_amount",
+    "il_at_stress_pct",
+    "il_verification_passed",
+    "requires_follow_up",
+    "follow_up_description",
+    "reasoning"
+  ],
+  "required_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "price_range_lower",
+    "price_range_upper",
+    "il_verification_passed"
+  ],
+  "field_weights": {
+    "intent": 0.10,
+    "order_type": 0.10,
+    "asset": 0.05,
+    "size": 0.06,
+    "venue": 0.05,
+    "price_range_lower": 0.18,
+    "price_range_upper": 0.18,
+    "current_price": 0.02,
+    "eth_amount": 0.08,
+    "usdc_amount": 0.08,
+    "il_at_stress_pct": 0.10,
+    "il_verification_passed": 0.07,
+    "requires_follow_up": 0,
+    "follow_up_description": 0,
+    "reasoning": 0
+  },
+  "synonyms": {
+    "intent": [
+      "action",
+      "add_liquidity",
+      "liquidity_provision",
+      "provide_liquidity"
+    ],
+    "order_type": [
+      "position_type",
+      "liquidity_type",
+      "concentrated_liquidity",
+      "concentrated_lp",
+      "range_liquidity"
+    ],
+    "asset": [
+      "pair",
+      "token_pair"
+    ],
+    "venue": [
+      "platform",
+      "dex",
+      "concentrated_lp_dex",
+      "uniswap_v3",
+      "amm",
+      "decentralized_exchange"
+    ],
+    "size_denomination": [
+      "capital_denomination",
+      "currency"
+    ],
+    "il_verification_passed": [
+      "il_verified",
+      "il_check_passed",
+      "constraint_satisfied"
+    ]
+  },
+  "pass_threshold": 0.70,
+  "numeric_fields": [
+    "size",
+    "current_price",
+    "eth_amount",
+    "usdc_amount",
+    "il_at_stress_pct"
+  ],
+  "range_fields": {
+    "price_range_lower": {
+      "min": 2100,
+      "max": 2500,
+      "tolerance": 0.05,
+      "ballpark_buffer": 100,
+      "ballpark_partial_credit": 0.5,
+      "description": "Lower bound must provide downside protection while staying within IL constraint"
+    },
+    "price_range_upper": {
+      "min": 3200,
+      "max": 3400,
+      "tolerance": 0.02,
+      "ballpark_buffer": 100,
+      "ballpark_partial_credit": 0.5,
+      "description": "Upper bound must be at or above stress price to verify IL at constraint"
+    },
+    "eth_amount": {
+      "min": 15.5,
+      "max": 21.0,
+      "tolerance": 0.15,
+      "ballpark_buffer": 3.0,
+      "ballpark_partial_credit": 0.6,
+      "description": "ETH amount for $100k position with reasonable range selection"
+    },
+    "usdc_amount": {
+      "min": 44000,
+      "max": 56000,
+      "tolerance": 0.12,
+      "ballpark_buffer": 8000,
+      "ballpark_partial_credit": 0.6,
+      "description": "USDC amount reflecting roughly balanced position at current price"
+    },
+    "il_at_stress_pct": {
+      "min": 5.0,
+      "max": 8.0,
+      "tolerance": 0.1,
+      "strict": true,
+      "description": "IL at stress price must be ≤8% to satisfy constraint, automatic fail if > 8%"
+    }
+  },
+  "exact_match_fields": [
+    "asset",
+    "size",
+    "current_price",
+    "il_verification_passed"
+  ],
+  "boolean_fields": [
+    "il_verification_passed"
+  ],
+  "allowed_intents": [
+    "provide_liquidity",
+    "add_liquidity",
+    "liquidity_provision",
+    "concentrated_liquidity",
+    "range_lp"
+  ],
+  "allowed_order_types": [
+    "range_lp",
+    "concentrated_liquidity",
+    "concentrated_lp",
+    "range_liquidity",
+    "add_liquidity",
+    "provide_liquidity"
+  ],
+  "forbidden_order_types": [
+    "limit",
+    "market"
+  ],
+  "validation_rules": {
+    "il_hard_constraint": {
+      "field": "il_at_stress_pct",
+      "condition": "<=",
+      "value": 8.0,
+      "fail_on_violation": true,
+      "description": "If IL at stress price exceeds 8%, automatic fail regardless of other fields"
+    },
+    "range_sanity": {
+      "condition": "price_range_lower < current_price < price_range_upper",
+      "description": "Current price must be within the specified range"
+    },
+    "capital_allocation": {
+      "condition": "eth_amount * current_price + usdc_amount ≈ size",
+      "tolerance": 0.15,
+      "description": "Token amounts should sum to approximately total capital at current price"
+    }
+  },
+  "grading_notes": {
+    "critical_validation_points": [
+      "Range Calculation (36% of grade): price_range_lower [2100-2500], price_range_upper [3200-3400]",
+      "IL Verification (17% of grade): il_at_stress_pct [5.0-8.0], il_verification_passed must be true",
+      "Position Composition (16% of grade): eth_amount [15.5-21.0], usdc_amount [44000-56000]",
+      "Structural Correctness (31% of grade): All required fields present with correct intent/asset/size"
+    ],
+    "common_failure_modes": [
+      "Range too tight: Lower=$2,700, Upper=$2,900 → IL will exceed 8%",
+      "Range too wide: Lower=$1,500, Upper=$4,500 → Inefficient capital use",
+      "IL not verified: Model doesn't calculate or verify IL at stress price",
+      "Wrong IL formula: Using simple LP formula instead of concentrated LP",
+      "Missing fields: Doesn't include ranges or IL verification"
+    ],
+    "pass_requirements": [
+      "Model must score ≥70% weighted total to pass",
+      "Correct intent and order type",
+      "Range bounds that satisfy IL constraint (il_at_stress_pct ≤ 8%)",
+      "IL verification showing constraint is met (il_verification_passed = true)",
+      "Reasonable position sizing (eth_amount and usdc_amount within expected ranges)"
+    ]
+  }
+}

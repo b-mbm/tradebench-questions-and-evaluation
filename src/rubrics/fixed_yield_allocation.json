@@ -1,0 +1,93 @@
+{
+  "id": "fixed_yield_allocation",
+  "expected_fields": [
+    "intent",
+    "strategy",
+    "asset",
+    "allocation",
+    "venue",
+    "maturity",
+    "expected_apy",
+    "selected_strategy",
+    "reasoning",
+    "risk_assessment",
+    "meets_constraints",
+    "alternatives_rejected"
+  ],
+  "required_fields": [
+    "intent",
+    "strategy",
+    "asset",
+    "allocation",
+    "venue",
+    "expected_apy",
+    "selected_strategy",
+    "reasoning",
+    "risk_assessment",
+    "meets_constraints"
+  ],
+  "field_weights": {
+    "intent": 0.08,
+    "strategy": 0.06,
+    "asset": 0.05,
+    "allocation": 0.08,
+    "venue": 0.05,
+    "maturity": 0.04,
+    "expected_apy": 0.25,
+    "selected_strategy": 0.20,
+    "reasoning": 0.12,
+    "risk_assessment": 0.04,
+    "meets_constraints": 0.03
+  },
+  "synonyms": {
+    "strategy": [
+      "strategy_type",
+      "allocation_strategy",
+      "selected_strategy_type"
+    ],
+    "venue": [
+      "protocol",
+      "platform"
+    ],
+    "maturity": [
+      "tenor",
+      "lockup",
+      "duration"
+    ],
+    "expected_apy": [
+      "apy",
+      "yield",
+      "expected_return",
+      "annualized_yield"
+    ],
+    "risk_assessment": [
+      "risk_level",
+      "risk_rating"
+    ],
+    "alternatives_rejected": [
+      "rejected_strategies",
+      "alternatives"
+    ]
+  },
+  "metadata": {
+    "primary_strategy": "C",
+    "apy_range_primary": {
+      "min": 12.2,
+      "max": 12.4
+    },
+    "allocation_range_primary": {
+      "min": 99000,
+      "max": 100000
+    },
+    "risk_levels_primary": ["low", "low-medium"],
+    "secondary_strategies": {
+      "D_tilted": {
+        "pt_allocation_min": 80000,
+        "expected_apy_min": 11.8,
+        "expected_apy_max": 12.0,
+        "score_penalty": 0.15
+      }
+    }
+  },
+  "pass_threshold": 0.7
+}

@@ -1,0 +1,50 @@
+{
+  "id": "risk_parity_execution",
+  "expected_fields": [
+    "intent",
+    "strategy",
+    "execution_plan",
+    "fee_summary",
+    "rationale",
+    "constraints_met"
+  ],
+  "required_fields": [
+    "intent",
+    "strategy",
+    "execution_plan",
+    "fee_summary",
+    "rationale",
+    "constraints_met"
+  ],
+  "field_weights": {
+    "strategy": 0.4,
+    "execution_plan": 0.3,
+    "fee_summary": 0.15,
+    "constraints_met": 0.1,
+    "rationale": 0.05
+  },
+  "synonyms": {
+    "intent": [
+      "execution_strategy",
+      "execution_plan",
+      "venue_selection",
+      "order_routing"
+    ],
+    "strategy": [
+      "interactive_brokers_only",
+      "ib_only",
+      "ib_only_strategy"
+    ],
+    "constraints_met": [
+      "constraints",
+      "checks",
+      "validation"
+    ]
+  },
+  "pass_threshold": 0.7,
+  "metadata": {
+    "category": "risk_management",
+    "subcategory": "execution_strategy",
+    "notes": "Evaluates optimal venue selection and fee minimization for a multi-asset risk-parity rebalance."
+  }
+}

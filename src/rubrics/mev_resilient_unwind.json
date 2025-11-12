@@ -1,0 +1,71 @@
+{
+  "id": "mev_resilient_unwind",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "venue_name",
+    "expected_value",
+    "unit",
+    "reasoning",
+    "constraint_awareness"
+  ],
+  "required_fields": [
+    "intent",
+    "venue_name",
+    "expected_value",
+    "unit"
+  ],
+  "field_weights": {
+    "intent": 0.05,
+    "order_type": 0.05,
+    "asset": 0.05,
+    "size": 0.05,
+    "venue": 0.05,
+    "venue_name": 0.50,
+    "expected_value": 0.30,
+    "unit": 0.02,
+    "reasoning": 0.02,
+    "constraint_awareness": 0.16
+  },
+  "synonyms": {
+    "venue_name": [
+      "1inch",
+      "1inch fusion",
+      "fusion",
+      "oneinch",
+      "oneinch fusion"
+    ],
+    "order_type": [
+      "protected_swap",
+      "swap",
+      "market",
+      "dex",
+      "dex_swap"
+    ],
+    "constraint_awareness": [
+      "constraints",
+      "checks"
+    ]
+  },
+  "numeric_fields": [
+    "expected_value"
+  ],
+  "range_fields": {
+    "expected_value": {
+      "min": -70000,
+      "max": -65000,
+      "tolerance": 0,
+      "strict": true,
+      "description": "Total execution cost (negative cost) via 1inch Fusion"
+    }
+  },
+  "pass_threshold": 0.7,
+  "metadata": {
+    "category": "conditional_reasoning",
+    "subcategory": "MEV_protection_venue_optimization",
+    "notes": "Rewards selecting 1inch Fusion with correct cost and constraint reasoning"
+  }
+}

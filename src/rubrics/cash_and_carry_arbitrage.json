@@ -1,0 +1,107 @@
+{
+  "id": "cash_and_carry_arbitrage",
+  "expected_fields": [
+    "decision",
+    "reasoning",
+    "execution"
+  ],
+  "required_fields": [
+    "decision",
+    "reasoning",
+    "execution"
+  ],
+  "field_weights": {
+    "decision": 0.25,
+    "reasoning": 0.55,
+    "execution": 0.20
+  },
+  "synonyms": {
+    "decision": ["outcome", "action"],
+    "reasoning": ["justification", "analysis", "rationale"],
+    "execution": ["steps", "plan", "procedure"]
+  },
+  "metadata": {
+    "acceptable_ranges": {
+      "decision": { "exact": "execute" },
+      "capital_allocation": {
+        "spot_usd": { "min": 40000, "max": 60000 },
+        "margin_usd": { "min": 40000, "max": 60000 },
+        "total": 100000,
+        "margin_must_cover_notional": true
+      },
+      "position_size_eth": {
+        "min": 16.0,
+        "max": 25.0,
+        "ideal": 20.41,
+        "tolerance_pct": 10
+      },
+      "perp_notional_usd": {
+        "min": 40000,
+        "max": 60000,
+        "must_match_position": true
+      },
+      "funding_revenue_daily": {
+        "min": 95,
+        "max": 145,
+        "ideal": 120
+      },
+      "costs_entry": {
+        "min": 15,
+        "max": 35,
+        "ideal": 22
+      },
+      "break_even_periods": {
+        "min": 0,
+        "max": 2,
+        "ideal": 1
+      },
+      "annualized_funding_rate_pct": {
+        "min": 80,
+        "max": 95,
+        "ideal": 87.6
+      },
+      "annual_roi_on_total_capital_pct": {
+        "min": 38,
+        "max": 50,
+        "ideal": 43.8
+      },
+      "execution_order": {
+        "step_1_must_include": ["transfer", "usdt", "margin"],
+        "step_2_contains": ["buy", "spot", "eth"],
+        "step_3_contains": ["short", "perp", "eth"],
+        "allow_swap_steps": true
+      },
+      "delta_neutral": {
+        "required": true,
+        "aliases": ["hedged", "neutral", "balanced"]
+      }
+    },
+    "scoring_tiers": {
+      "decision": {
+        "points": 25,
+        "criteria": "decision === 'execute'"
+      },
+      "capital_allocation": {
+        "perfect": { "points": 30, "condition": "spot_usd === 50000 && margin_usd === 50000" },
+        "reasonable": { "points": 25, "condition": "spot_usd >= 40000 && margin_usd >= 40000 && (spot_usd + margin_usd) === 100000 && margin_usd >= perp_notional_usd" },
+        "recognized": { "points": 15, "condition": "capital allocation present with both fields" }
+      },
+      "funding_math": {
+        "accurate": { "points": 20, "condition": "funding_revenue_daily between 115 and 125" },
+        "reasonable": { "points": 15, "condition": "funding_revenue_daily between 95 and 145" },
+        "positive": { "points": 10, "condition": "funding_revenue_daily > 0" }
+      },
+      "roi_metrics": {
+        "separated": { "points": 15, "condition": "annualized_funding_rate_pct and annual_roi_on_total_capital_pct present" },
+        "roi_present": { "points": 12, "condition": "annual_roi_on_total_capital_pct within acceptable range" },
+        "positive": { "points": 8, "condition": "annual_roi_on_total_capital_pct > 0" }
+      },
+      "execution": {
+        "sequence": { "points": 10, "condition": "steps include margin transfer then spot buy and perp short" },
+        "steps_present": { "points": 6, "condition": "at least 3 steps provided" },
+        "delta_neutral": { "points": 4, "condition": "delta_neutral true or equivalent" }
+      }
+    }
+  },
+  "pass_threshold": 0.7
+}

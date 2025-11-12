@@ -1,0 +1,59 @@
+name: Evaluate 60Q
+
+on:
+  workflow_dispatch:
+    inputs:
+      model_id:
+        description: "Model ID (e.g., claude-sonnet-4-5-20250929)"
+        required: true
+      label:
+        description: "Label prefix for output files"
+        required: false
+        default: "60q-run"
+      call_spacing_ms:
+        description: "Per-question spacing (ms)"
+        required: false
+        default: "600"
+      model_spacing_ms:
+        description: "Per-model spacing (ms)"
+        required: false
+        default: "0"
+      retry_attempts:
+        description: "Retry attempts"
+        required: false
+        default: "3"
+      retry_base_delay_ms:
+        description: "Retry base delay (ms)"
+        required: false
+        default: "700"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Run 60Q
+        env:
+          NODE_OPTIONS: -r dotenv/config
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          MODEL_IDS: ${{ github.event.inputs.model_id }}
+          CALL_SPACING_MS: ${{ github.event.inputs.call_spacing_ms }}
+          MODEL_SPACING_MS: ${{ github.event.inputs.model_spacing_ms }}
+          RETRY_ATTEMPTS: ${{ github.event.inputs.retry_attempts }}
+          RETRY_BASE_DELAY_MS: ${{ github.event.inputs.retry_base_delay_ms }}
+        run: |
+          mkdir -p results
+          npx tsx scripts/run-60q.ts --label "${{ github.event.inputs.label }}" --file-prefix "${{ github.event.inputs.label }}"
+      - name: Upload results artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-${{ github.event.inputs.label }}
+          path: results/*.json

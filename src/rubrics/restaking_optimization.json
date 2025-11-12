@@ -1,0 +1,116 @@
+{
+  "id": "restaking_optimization",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "venue_name",
+    "rationale",
+    "decision_factors",
+    "total_staking_apr",
+    "borrow_rate",
+    "effective_borrow_cost_on_portfolio",
+    "net_apr_after_borrow",
+    "meets_net_apr_target",
+    "slashing_risk_pct",
+    "within_risk_tolerance",
+    "liquidity_days",
+    "meets_collateral_timing",
+    "option_c_net_apr_comparison",
+    "option_a_outperformance"
+  ],
+  "required_fields": [
+    "intent",
+    "venue_name",
+    "asset",
+    "size",
+    "total_staking_apr",
+    "borrow_rate",
+    "effective_borrow_cost_on_portfolio",
+    "net_apr_after_borrow",
+    "meets_net_apr_target",
+    "slashing_risk_pct",
+    "within_risk_tolerance",
+    "liquidity_days",
+    "meets_collateral_timing"
+  ],
+  "field_weights": {
+    "intent": 0.04,
+    "venue_name": 0.16,
+    "asset": 0.04,
+    "size": 0.04,
+    "total_staking_apr": 0.064,
+    "borrow_rate": 0.04,
+    "effective_borrow_cost_on_portfolio": 0.096,
+    "net_apr_after_borrow": 0.16,
+    "meets_net_apr_target": 0.08,
+    "slashing_risk_pct": 0.064,
+    "within_risk_tolerance": 0.08,
+    "liquidity_days": 0.04,
+    "meets_collateral_timing": 0.096
+  },
+  "synonyms": {
+    "intent": ["restake_and_borrow", "re-stake_and_borrow", "restaking"],
+    "order_type": ["restake", "restaking", "strategy_selection", "analysis", "restaking_plan"],
+    "venue_name": ["eigen_layer", "eigen", "avs", "eigenlayer avs"],
+    "net_apr_after_borrow": ["portfolio_net_apr", "net_portfolio_apr"],
+    "effective_borrow_cost_on_portfolio": ["borrow_cost_pct", "portfolio_borrow_cost"],
+    "within_risk_tolerance": ["risk_within_limits", "risk_ok"],
+    "meets_collateral_timing": ["collateral_ready", "meets_timing"]
+  },
+  "numeric_fields": [
+    "total_staking_apr",
+    "borrow_rate",
+    "effective_borrow_cost_on_portfolio",
+    "net_apr_after_borrow",
+    "slashing_risk_pct",
+    "liquidity_days",
+    "option_c_net_apr_comparison",
+    "option_a_outperformance"
+  ],
+  "boolean_fields": [
+    "meets_net_apr_target",
+    "within_risk_tolerance",
+    "meets_collateral_timing"
+  ],
+  "range_fields": {
+    "total_staking_apr": {
+      "min": 6.9,
+      "max": 7.1,
+      "tolerance": 0.1,
+      "description": "Base 4.2% + EigenLayer 2.8%"
+    },
+    "effective_borrow_cost_on_portfolio": {
+      "min": 2.7,
+      "max": 2.8,
+      "tolerance": 0.05,
+      "description": "50% of portfolio × 5.5%"
+    },
+    "net_apr_after_borrow": {
+      "min": 4.15,
+      "max": 4.35,
+      "tolerance": 0.1,
+      "description": "Total APR 7.0% minus borrow cost 2.75%"
+    },
+    "slashing_risk_pct": {
+      "min": 3.0,
+      "max": 3.0,
+      "tolerance": 0,
+      "description": "EigenLayer slashing risk"
+    },
+    "liquidity_days": {
+      "min": 7,
+      "max": 7,
+      "tolerance": 0,
+      "description": "Minimum lock period for EigenLayer"
+    }
+  },
+  "pass_threshold": 0.7,
+  "metadata": {
+    "category": "defi_strategy",
+    "subcategory": "restaking_optimization",
+    "notes": "Penalize selections that violate collateral timing or risk constraints"
+  }
+}

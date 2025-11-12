@@ -1,0 +1,83 @@
+{
+  "id": "portfolio_rebalance",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "requires_follow_up",
+    "follow_up_description"
+  ],
+  "required_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "venue",
+    "requires_follow_up"
+  ],
+  "field_weights": {
+    "intent": 0.1,
+    "order_type": 0.05,
+    "asset": 0.05,
+    "size": 0.05,
+    "venue": 0.05,
+    "requires_follow_up": 0.4,
+    "follow_up_description": 0.3
+  },
+  "synonyms": {
+    "order_type": [
+      "execution_plan",
+      "multi_leg",
+      "multi leg",
+      "strategy",
+      "plan",
+      "rebalance",
+      "rebalance_order",
+      "rebalance order",
+      "exact_amount",
+      "exact amount",
+      "market",
+      "market_order",
+      "market order"
+    ],
+    "intent": [
+      "rebalance",
+      "rebalance_portfolio",
+      "portfolio_rebalance",
+      "portfolio_management"
+    ],
+    "asset": [
+      "portfolio",
+      "multi",
+      "btc",
+      "eth",
+      "usdc"
+    ],
+    "venue": [
+      "exchange",
+      "platform",
+      "cex",
+      "mainnet",
+      "dex",
+      "portfolio",
+      "risk_modeling"
+    ]
+  },
+  "pass_threshold": 0.7,
+  "numeric_fields": [],
+  "intent_aliases": {
+    "rebalance_portfolio": [
+      "rebalance",
+      "portfolio_rebalance",
+      "portfolio_management",
+      "portfolio management",
+      "rebalance_portfolio"
+    ]
+  },
+  "allowed_intents": [
+    "rebalance_portfolio",
+    "rebalance",
+    "portfolio_management"
+  ]
+}

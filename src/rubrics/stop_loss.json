@@ -1,0 +1,37 @@
+{
+  "id": "stop_loss",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "price",
+    "venue",
+    "risk_controls",
+    "follow_up",
+    "reasoning"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "price", "venue"],
+  "field_weights": {
+    "intent": 0.2,
+    "order_type": 0.18,
+    "asset": 0.15,
+    "price": 0.17,
+    "venue": 0.1,
+    "size": 0.1,
+    "risk_controls": 0.05,
+    "follow_up": 0.025,
+    "reasoning": 0.025
+  },
+  "synonyms": {
+    "intent": ["action", "execute", "perform", "do"],
+    "order_type": ["execution_type", "order_style", "stop_loss"],
+    "price": ["stop_price", "trigger_price"],
+    "venue": ["exchange", "platform", "protocol", "network", "blockchain"],
+    "risk_controls": ["safety_measures", "risk", "controls", "limits", "parameters"],
+    "follow_up": ["next_steps", "additional_steps", "further_actions"],
+    "reasoning": ["justification", "explanation", "why", "rationale"]
+  },
+  "pass_threshold": 0.7
+}
+

@@ -1,0 +1,38 @@
+{
+  "id": "options_hedge",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "price",
+    "venue",
+    "risk_controls",
+    "follow_up",
+    "reasoning"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "size", "venue"],
+  "field_weights": {
+    "intent": 0.18,
+    "order_type": 0.18,
+    "asset": 0.16,
+    "size": 0.14,
+    "price": 0.1,
+    "venue": 0.1,
+    "risk_controls": 0.08,
+    "follow_up": 0.03,
+    "reasoning": 0.03
+  },
+  "synonyms": {
+    "intent": ["action", "hedge", "protect", "insurance", "execute", "perform", "do", "buy_call", "buy_option", "buy_options"],
+    "order_type": ["option_type", "strategy", "option", "options", "call_option", "call_options", "call"],
+    "price": ["strike", "premium", "strike_price"],
+    "venue": ["exchange", "platform", "protocol", "network", "blockchain", "options", "option", "deribit", "derivatives_exchange", "derivative_exchange", "option_exchange", "lyra", "ledgerx", "options_platform"],
+    "venue_name": ["deribit", "lyra", "ledgerx", "hegic", "opyn"],
+    "risk_controls": ["hedge_parameters", "risk", "controls", "limits", "parameters"],
+    "follow_up": ["next_steps", "additional_steps", "further_actions"],
+    "reasoning": ["justification", "explanation", "why", "rationale"]
+  },
+  "pass_threshold": 0.72
+}
+

@@ -1,0 +1,22 @@
+{
+  "name": "tradebench-questions-and-evaluation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "run:60q": "tsx scripts/run-60q.ts",
+    "combine": "tsx scripts/combine-results.ts results/60q-*.json --label combined-all --out results/combined-60q-all.json",
+    "report": "tsx scripts/report-combined.ts results/combined-60q-all.json"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.70.0",
+    "@anthropic-ai/sdk": "^0.23.0",
+    "@google/generative-ai": "^0.21.0",
+    "groq-sdk": "^0.6.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3"
+  }
+}

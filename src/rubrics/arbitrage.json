@@ -1,0 +1,82 @@
+{
+  "id": "arbitrage",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "venue_name",
+    "risk_controls",
+    "follow_up",
+    "reasoning"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "venue"],
+  "field_weights": {
+    "intent": 0.18,
+    "order_type": 0.16,
+    "asset": 0.12,
+    "size": 0.1,
+    "venue": 0.12,
+    "venue_name": 0.1,
+    "risk_controls": 0.1,
+    "follow_up": 0.06,
+    "reasoning": 0.06
+  },
+  "synonyms": {
+    "intent": ["action"],
+    "order_type": ["strategy", "trade_type"],
+    "venue": ["platform", "exchange"],
+    "venue_name": ["pool", "protocol"],
+    "risk_controls": ["risk_management"],
+    "follow_up": ["next_steps"],
+    "reasoning": ["analysis"]
+  },
+  "pass_threshold": 0.68,
+  "l7_001_rules": {
+    "description": "Strict validation for L7-001: Flash loan arbitrage meta-question",
+    "auto_fail_conditions": [
+      {
+        "field": "asset",
+        "rule": "must_be_multi_or_generic",
+        "reasoning": "This is a meta-question about flash loan arbitrage as a strategy class, not a specific asset trade. Concrete asset names (USDC, ETH, DAI, BTC, etc.) indicate the model misunderstood the abstract nature of the question.",
+        "acceptable_values": ["multi", "multiple", "various", "flash_loan", "arbitrage_asset"],
+        "unacceptable_examples": ["USDC", "ETH", "DAI", "BTC", "WETH", "stablecoin"]
+      },
+      {
+        "field": "size",
+        "rule": "must_be_flash_loan_or_generic",
+        "reasoning": "Size should indicate flash loan scale or be generic. Numeric amounts suggest the model is trying to execute a specific trade rather than analyze a strategy class.",
+        "acceptable_values": ["flash-loan", "flash_loan", "variable", "opportunity", "analysis", 0],
+        "unacceptable_examples": [10000, 100000, 1000000, 5000000, "numeric amounts > 0"]
+      },
+      {
+        "field": "intent",
+        "rule": "reject_overly_generic",
+        "reasoning": "Intent must show understanding of arbitrage analysis. Generic risk modeling is too vague.",
+        "acceptable_values": ["analyze_arbitrage", "flash_loan_arbitrage", "arbitrage_analysis", "flash_loan_arbitrage_analysis", "analyze_flash_loan_arbitrage"],
+        "unacceptable_examples": ["risk_modeling", "analyze", "check"]
+      }
+    ],
+    "flexible_synonyms": {
+      "intent": [
+        "analyze_arbitrage",
+        "arbitrage_analysis",
+        "flash_loan_arbitrage",
+        "flash_loan_arbitrage_analysis",
+        "analyze_flash_loan_arbitrage",
+        "analyze_flash_loan",
+        "flash_loan_analysis"
+      ],
+      "order_type": [
+        "analysis",
+        "flash_loan",
+        "flash_loan_arbitrage",
+        "arbitrage",
+        "arbitrage_analysis",
+        "flash_loan_analysis"
+      ]
+    }
+  }
+}
+

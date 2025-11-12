@@ -1,0 +1,119 @@
+{
+  "id": "portfolio_efficiency_analysis",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "blended_apy",
+    "weighted_risk_score",
+    "excess_return",
+    "risk_adjusted_ratio",
+    "total_annual_yield_usd",
+    "allocation",
+    "reasoning"
+  ],
+  "required_fields": [
+    "intent",
+    "blended_apy",
+    "weighted_risk_score",
+    "excess_return",
+    "risk_adjusted_ratio"
+  ],
+  "field_weights": {
+    "intent": 0.06,
+    "order_type": 0.03,
+    "asset": 0.02,
+    "size": 0.02,
+    "venue": 0.02,
+    "blended_apy": 0.18,
+    "weighted_risk_score": 0.15,
+    "excess_return": 0.20,
+    "risk_adjusted_ratio": 0.24,
+    "total_annual_yield_usd": 0.08,
+    "reasoning": 0.02
+  },
+  "synonyms": {
+    "intent": ["action", "goal", "objective", "calculation_intent"],
+    "order_type": ["analysis_type", "calculation_type", "task_type"],
+    "asset": ["token", "currency", "stablecoin"],
+    "venue": ["platform", "protocols", "defi", "multi_protocol"],
+    "blended_apy": [
+      "portfolio_apy",
+      "weighted_apy",
+      "combined_apy",
+      "average_apy",
+      "blended_yield"
+    ],
+    "weighted_risk_score": [
+      "portfolio_risk",
+      "weighted_risk",
+      "combined_risk",
+      "average_risk",
+      "blended_risk"
+    ],
+    "excess_return": [
+      "excess_yield",
+      "return_above_risk_free",
+      "risk_premium",
+      "alpha"
+    ],
+    "risk_adjusted_ratio": [
+      "sharpe_ratio",
+      "sharpe_like_ratio",
+      "risk_adjusted_return",
+      "efficiency_ratio",
+      "return_per_risk"
+    ],
+    "total_annual_yield_usd": [
+      "total_yield",
+      "annual_yield",
+      "yearly_yield",
+      "expected_yield"
+    ],
+    "allocation": ["allocations", "distribution", "portfolio"],
+    "reasoning": ["explanation", "rationale", "calculation_note"]
+  },
+  "pass_threshold": 0.70,
+  "numeric_fields": [
+    "size",
+    "blended_apy",
+    "weighted_risk_score",
+    "excess_return",
+    "risk_adjusted_ratio",
+    "total_annual_yield_usd"
+  ],
+  "range_fields": {
+    "blended_apy": {
+      "min": 5.7,
+      "max": 5.9,
+      "tolerance": 0.02,
+      "description": "Weighted average APY across allocations"
+    },
+    "weighted_risk_score": {
+      "min": 1.65,
+      "max": 1.75,
+      "tolerance": 0.02,
+      "description": "Weighted average risk score"
+    },
+    "excess_return": {
+      "min": 0.7,
+      "max": 0.9,
+      "tolerance": 0.02,
+      "description": "Blended APY minus risk-free rate"
+    },
+    "risk_adjusted_ratio": {
+      "min": 0.42,
+      "max": 0.52,
+      "tolerance": 0.02,
+      "description": "Excess return divided by weighted risk score"
+    },
+    "total_annual_yield_usd": {
+      "min": 5700,
+      "max": 5900,
+      "tolerance": 50,
+      "description": "Expected USD yield based on blended APY"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "collar_min_cost",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "call_strike",
+    "put_strike",
+    "net_cost_per_btc",
+    "venue",
+    "venue_name",
+    "expiry_days"
+  ],
+  "required_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "call_strike",
+    "put_strike",
+    "net_cost_per_btc",
+    "venue",
+    "venue_name",
+    "expiry_days"
+  ],
+  "field_weights": {
+    "intent": 0.15,
+    "order_type": 0.10,
+    "asset": 0.10,
+    "size": 0.10,
+    "call_strike": 0.20,
+    "put_strike": 0.20,
+    "net_cost_per_btc": 0.10,
+    "venue": 0.03,
+    "venue_name": 0.02,
+    "expiry_days": 0.00
+  },
+  "synonyms": {
+    "intent": [
+      "protective_collar",
+      "collar_strategy",
+      "options_collar"
+    ],
+    "order_type": [
+      "options_strategy",
+      "derivatives",
+      "structured_options"
+    ],
+    "asset": [
+      "btcusd",
+      "btc-usd",
+      "spot_btc"
+    ],
+    "venue": [
+      "options",
+      "derivatives_exchange",
+      "derivative_exchange"
+    ],
+    "venue_name": [
+      "deribit",
+      "Deribit",
+      "DERIBIT"
+    ]
+  },
+  "numeric_fields": [
+    "size",
+    "call_strike",
+    "put_strike",
+    "net_cost_per_btc",
+    "expiry_days"
+  ],
+  "range_fields": {
+    "net_cost_per_btc": {
+      "min": -80,
+      "max": -40,
+      "tolerance": 0,
+      "strict": false,
+      "description": "Acceptable collar net premium (USD per BTC). Values outside this band receive zero credit but still must respect automatic fail limits."
+    }
+  },
+  "automatic_fail_conditions": [
+    {
+      "condition": "call_strike != 49500",
+      "reason": "Selecting a lower strike caps upside too aggressively relative to historical distribution."
+    },
+    {
+      "condition": "put_strike != 40500",
+      "reason": "Higher put strikes overspend on skewed volatility and violate the cost constraint."
+    },
+    {
+      "condition": "net_cost_per_btc > 0",
+      "reason": "Net credit indicates over-reliance on upside cap and conflicts with minimizing total economic cost."
+    },
+    {
+      "condition": "net_cost_per_btc < -100",
+      "reason": "Net debit beyond $100/BTC overpays for protection given skew constraints."
+    }
+  ],
+  "pass_threshold": 0.7,
+  "metadata": {
+    "category": "conditional_reasoning",
+    "subcategory": "options_strategy",
+    "description": "Assess whether the response selects the 10% OTM call and 10% OTM put collar that balances cost, skew, and upside capture."
+  }
+}

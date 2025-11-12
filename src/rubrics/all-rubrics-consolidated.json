@@ -1,0 +1,3067 @@
+{
+  "rubrics": [
+    {
+      "id": "arbitrage",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "venue_name",
+        "risk_controls",
+        "follow_up",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.18,
+        "order_type": 0.16,
+        "asset": 0.12,
+        "size": 0.1,
+        "venue": 0.12,
+        "venue_name": 0.1,
+        "risk_controls": 0.1,
+        "follow_up": 0.06,
+        "reasoning": 0.06
+      },
+      "synonyms": {
+        "intent": [
+          "action"
+        ],
+        "order_type": [
+          "strategy",
+          "trade_type"
+        ],
+        "venue": [
+          "platform",
+          "exchange"
+        ],
+        "venue_name": [
+          "pool",
+          "protocol"
+        ],
+        "risk_controls": [
+          "risk_management"
+        ],
+        "follow_up": [
+          "next_steps"
+        ],
+        "reasoning": [
+          "analysis"
+        ]
+      },
+      "pass_threshold": 0.68,
+      "l7_001_rules": {
+        "description": "Strict validation for L7-001: Flash loan arbitrage meta-question",
+        "auto_fail_conditions": [
+          {
+            "field": "asset",
+            "rule": "must_be_multi_or_generic",
+            "reasoning": "This is a meta-question about flash loan arbitrage as a strategy class, not a specific asset trade. Concrete asset names (USDC, ETH, DAI, BTC, etc.) indicate the model misunderstood the abstract nature of the question.",
+            "acceptable_values": [
+              "multi",
+              "multiple",
+              "various",
+              "flash_loan",
+              "arbitrage_asset"
+            ],
+            "unacceptable_examples": [
+              "USDC",
+              "ETH",
+              "DAI",
+              "BTC",
+              "WETH",
+              "stablecoin"
+            ]
+          },
+          {
+            "field": "size",
+            "rule": "must_be_flash_loan_or_generic",
+            "reasoning": "Size should indicate flash loan scale or be generic. Numeric amounts suggest the model is trying to execute a specific trade rather than analyze a strategy class.",
+            "acceptable_values": [
+              "flash-loan",
+              "flash_loan",
+              "variable",
+              "opportunity",
+              "analysis",
+              0
+            ],
+            "unacceptable_examples": [
+              10000,
+              100000,
+              1000000,
+              5000000,
+              "numeric amounts > 0"
+            ]
+          },
+          {
+            "field": "intent",
+            "rule": "reject_overly_generic",
+            "reasoning": "Intent must show understanding of arbitrage analysis. Generic risk modeling is too vague.",
+            "acceptable_values": [
+              "analyze_arbitrage",
+              "flash_loan_arbitrage",
+              "arbitrage_analysis",
+              "flash_loan_arbitrage_analysis",
+              "analyze_flash_loan_arbitrage"
+            ],
+            "unacceptable_examples": [
+              "risk_modeling",
+              "analyze",
+              "check"
+            ]
+          }
+        ],
+        "flexible_synonyms": {
+          "intent": [
+            "analyze_arbitrage",
+            "arbitrage_analysis",
+            "flash_loan_arbitrage",
+            "flash_loan_arbitrage_analysis",
+            "analyze_flash_loan_arbitrage",
+            "analyze_flash_loan",
+            "flash_loan_analysis"
+          ],
+          "order_type": [
+            "analysis",
+            "flash_loan",
+            "flash_loan_arbitrage",
+            "arbitrage",
+            "arbitrage_analysis",
+            "flash_loan_analysis"
+          ]
+        }
+      }
+    },
+    {
+      "id": "cash_and_carry_arbitrage",
+      "expected_fields": [
+        "decision",
+        "reasoning",
+        "execution"
+      ],
+      "required_fields": [
+        "decision",
+        "reasoning",
+        "execution"
+      ],
+      "field_weights": {
+        "decision": 0.25,
+        "reasoning": 0.55,
+        "execution": 0.2
+      },
+      "synonyms": {
+        "decision": [
+          "outcome",
+          "action"
+        ],
+        "reasoning": [
+          "justification",
+          "analysis",
+          "rationale"
+        ],
+        "execution": [
+          "steps",
+          "plan",
+          "procedure"
+        ]
+      },
+      "metadata": {
+        "acceptable_ranges": {
+          "decision": {
+            "exact": "execute"
+          },
+          "capital_allocation": {
+            "spot_usd": {
+              "min": 40000,
+              "max": 60000
+            },
+            "margin_usd": {
+              "min": 40000,
+              "max": 60000
+            },
+            "total": 100000,
+            "margin_must_cover_notional": true
+          },
+          "position_size_eth": {
+            "min": 16.0,
+            "max": 25.0,
+            "ideal": 20.41,
+            "tolerance_pct": 10
+          },
+          "perp_notional_usd": {
+            "min": 40000,
+            "max": 60000,
+            "must_match_position": true
+          },
+          "funding_revenue_daily": {
+            "min": 95,
+            "max": 145,
+            "ideal": 120
+          },
+          "costs_entry": {
+            "min": 15,
+            "max": 35,
+            "ideal": 22
+          },
+          "break_even_periods": {
+            "min": 0,
+            "max": 2,
+            "ideal": 1
+          },
+          "annualized_funding_rate_pct": {
+            "min": 80,
+            "max": 95,
+            "ideal": 87.6
+          },
+          "annual_roi_on_total_capital_pct": {
+            "min": 38,
+            "max": 50,
+            "ideal": 43.8
+          },
+          "execution_order": {
+            "step_1_must_include": [
+              "transfer",
+              "usdt",
+              "margin"
+            ],
+            "step_2_contains": [
+              "buy",
+              "spot",
+              "eth"
+            ],
+            "step_3_contains": [
+              "short",
+              "perp",
+              "eth"
+            ],
+            "allow_swap_steps": true
+          },
+          "delta_neutral": {
+            "required": true,
+            "aliases": [
+              "hedged",
+              "neutral",
+              "balanced"
+            ]
+          }
+        },
+        "scoring_tiers": {
+          "decision": {
+            "points": 25,
+            "criteria": "decision === 'execute'"
+          },
+          "capital_allocation": {
+            "perfect": {
+              "points": 30,
+              "condition": "spot_usd === 50000 && margin_usd === 50000"
+            },
+            "reasonable": {
+              "points": 25,
+              "condition": "spot_usd >= 40000 && margin_usd >= 40000 && (spot_usd + margin_usd) === 100000 && margin_usd >= perp_notional_usd"
+            },
+            "recognized": {
+              "points": 15,
+              "condition": "capital allocation present with both fields"
+            }
+          },
+          "funding_math": {
+            "accurate": {
+              "points": 20,
+              "condition": "funding_revenue_daily between 115 and 125"
+            },
+            "reasonable": {
+              "points": 15,
+              "condition": "funding_revenue_daily between 95 and 145"
+            },
+            "positive": {
+              "points": 10,
+              "condition": "funding_revenue_daily > 0"
+            }
+          },
+          "roi_metrics": {
+            "separated": {
+              "points": 15,
+              "condition": "annualized_funding_rate_pct and annual_roi_on_total_capital_pct present"
+            },
+            "roi_present": {
+              "points": 12,
+              "condition": "annual_roi_on_total_capital_pct within acceptable range"
+            },
+            "positive": {
+              "points": 8,
+              "condition": "annual_roi_on_total_capital_pct > 0"
+            }
+          },
+          "execution": {
+            "sequence": {
+              "points": 10,
+              "condition": "steps include margin transfer then spot buy and perp short"
+            },
+            "steps_present": {
+              "points": 6,
+              "condition": "at least 3 steps provided"
+            },
+            "delta_neutral": {
+              "points": 4,
+              "condition": "delta_neutral true or equivalent"
+            }
+          }
+        }
+      },
+      "pass_threshold": 0.7
+    },
+    {
+      "id": "concentrated_liquidity_il",
+      "description": "Concentrated liquidity provision with IL calculation and range optimization",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "size_denomination",
+        "venue",
+        "price_range_lower",
+        "price_range_upper",
+        "current_price",
+        "eth_amount",
+        "usdc_amount",
+        "il_at_stress_pct",
+        "il_verification_passed",
+        "requires_follow_up",
+        "follow_up_description",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "price_range_lower",
+        "price_range_upper",
+        "il_verification_passed"
+      ],
+      "field_weights": {
+        "intent": 0.1,
+        "order_type": 0.1,
+        "asset": 0.05,
+        "size": 0.06,
+        "venue": 0.05,
+        "price_range_lower": 0.18,
+        "price_range_upper": 0.18,
+        "current_price": 0.02,
+        "eth_amount": 0.08,
+        "usdc_amount": 0.08,
+        "il_at_stress_pct": 0.1,
+        "il_verification_passed": 0.07,
+        "requires_follow_up": 0,
+        "follow_up_description": 0,
+        "reasoning": 0
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "add_liquidity",
+          "liquidity_provision",
+          "provide_liquidity"
+        ],
+        "order_type": [
+          "position_type",
+          "liquidity_type",
+          "concentrated_liquidity",
+          "concentrated_lp",
+          "range_liquidity"
+        ],
+        "asset": [
+          "pair",
+          "token_pair"
+        ],
+        "venue": [
+          "platform",
+          "dex",
+          "concentrated_lp_dex",
+          "uniswap_v3",
+          "amm",
+          "decentralized_exchange"
+        ],
+        "size_denomination": [
+          "capital_denomination",
+          "currency"
+        ],
+        "il_verification_passed": [
+          "il_verified",
+          "il_check_passed",
+          "constraint_satisfied"
+        ]
+      },
+      "pass_threshold": 0.7,
+      "numeric_fields": [
+        "size",
+        "current_price",
+        "eth_amount",
+        "usdc_amount",
+        "il_at_stress_pct"
+      ],
+      "range_fields": {
+        "price_range_lower": {
+          "min": 2100,
+          "max": 2500,
+          "tolerance": 0.05,
+          "ballpark_buffer": 100,
+          "ballpark_partial_credit": 0.5,
+          "description": "Lower bound must provide downside protection while staying within IL constraint"
+        },
+        "price_range_upper": {
+          "min": 3200,
+          "max": 3400,
+          "tolerance": 0.02,
+          "ballpark_buffer": 100,
+          "ballpark_partial_credit": 0.5,
+          "description": "Upper bound must be at or above stress price to verify IL at constraint"
+        },
+        "eth_amount": {
+          "min": 15.5,
+          "max": 21.0,
+          "tolerance": 0.15,
+          "ballpark_buffer": 3.0,
+          "ballpark_partial_credit": 0.6,
+          "description": "ETH amount for $100k position with reasonable range selection"
+        },
+        "usdc_amount": {
+          "min": 44000,
+          "max": 56000,
+          "tolerance": 0.12,
+          "ballpark_buffer": 8000,
+          "ballpark_partial_credit": 0.6,
+          "description": "USDC amount reflecting roughly balanced position at current price"
+        },
+        "il_at_stress_pct": {
+          "min": 5.0,
+          "max": 8.0,
+          "tolerance": 0.1,
+          "strict": true,
+          "description": "IL at stress price must be \u22648% to satisfy constraint, automatic fail if > 8%"
+        }
+      },
+      "exact_match_fields": [
+        "asset",
+        "size",
+        "current_price",
+        "il_verification_passed"
+      ],
+      "boolean_fields": [
+        "il_verification_passed"
+      ],
+      "allowed_intents": [
+        "provide_liquidity",
+        "add_liquidity",
+        "liquidity_provision",
+        "concentrated_liquidity",
+        "range_lp"
+      ],
+      "allowed_order_types": [
+        "range_lp",
+        "concentrated_liquidity",
+        "concentrated_lp",
+        "range_liquidity",
+        "add_liquidity",
+        "provide_liquidity"
+      ],
+      "forbidden_order_types": [
+        "limit",
+        "market"
+      ],
+      "validation_rules": {
+        "il_hard_constraint": {
+          "field": "il_at_stress_pct",
+          "condition": "<=",
+          "value": 8.0,
+          "fail_on_violation": true,
+          "description": "If IL at stress price exceeds 8%, automatic fail regardless of other fields"
+        },
+        "range_sanity": {
+          "condition": "price_range_lower < current_price < price_range_upper",
+          "description": "Current price must be within the specified range"
+        },
+        "capital_allocation": {
+          "condition": "eth_amount * current_price + usdc_amount \u2248 size",
+          "tolerance": 0.15,
+          "description": "Token amounts should sum to approximately total capital at current price"
+        }
+      },
+      "grading_notes": {
+        "critical_validation_points": [
+          "Range Calculation (36% of grade): price_range_lower [2100-2500], price_range_upper [3200-3400]",
+          "IL Verification (17% of grade): il_at_stress_pct [5.0-8.0], il_verification_passed must be true",
+          "Position Composition (16% of grade): eth_amount [15.5-21.0], usdc_amount [44000-56000]",
+          "Structural Correctness (31% of grade): All required fields present with correct intent/asset/size"
+        ],
+        "common_failure_modes": [
+          "Range too tight: Lower=$2,700, Upper=$2,900 \u2192 IL will exceed 8%",
+          "Range too wide: Lower=$1,500, Upper=$4,500 \u2192 Inefficient capital use",
+          "IL not verified: Model doesn't calculate or verify IL at stress price",
+          "Wrong IL formula: Using simple LP formula instead of concentrated LP",
+          "Missing fields: Doesn't include ranges or IL verification"
+        ],
+        "pass_requirements": [
+          "Model must score \u226570% weighted total to pass",
+          "Correct intent and order type",
+          "Range bounds that satisfy IL constraint (il_at_stress_pct \u2264 8%)",
+          "IL verification showing constraint is met (il_verification_passed = true)",
+          "Reasonable position sizing (eth_amount and usdc_amount within expected ranges)"
+        ]
+      }
+    },
+    {
+      "id": "cross_chain_bridge",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "venue_name",
+        "risk_controls",
+        "follow_up",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.18,
+        "order_type": 0.16,
+        "asset": 0.14,
+        "size": 0.14,
+        "venue": 0.12,
+        "venue_name": 0.08,
+        "risk_controls": 0.1,
+        "follow_up": 0.04,
+        "reasoning": 0.04
+      },
+      "synonyms": {
+        "intent": [
+          "action"
+        ],
+        "order_type": [
+          "bridge_type"
+        ],
+        "venue": [
+          "bridge",
+          "platform",
+          "protocol"
+        ],
+        "venue_name": [
+          "bridge_name"
+        ],
+        "risk_controls": [
+          "safety_measures",
+          "risk_management"
+        ],
+        "follow_up": [
+          "next_steps"
+        ],
+        "reasoning": [
+          "justification"
+        ]
+      },
+      "pass_threshold": 0.7
+    },
+    {
+      "id": "dex_swap",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "venue_name",
+        "risk_controls",
+        "follow_up",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.2,
+        "order_type": 0.18,
+        "asset": 0.16,
+        "size": 0.16,
+        "venue": 0.14,
+        "venue_name": 0.08,
+        "risk_controls": 0.04,
+        "follow_up": 0.02,
+        "reasoning": 0.02
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "swap",
+          "exchange",
+          "trade",
+          "convert",
+          "execute",
+          "perform",
+          "do"
+        ],
+        "order_type": [
+          "execution_type",
+          "swap_type",
+          "market",
+          "instant",
+          "exact_input",
+          "exact_output",
+          "trade"
+        ],
+        "asset": [
+          "token",
+          "coin",
+          "crypto"
+        ],
+        "venue": [
+          "platform",
+          "exchange",
+          "dex",
+          "decentralized_exchange",
+          "uniswap",
+          "sushiswap",
+          "curve",
+          "balancer",
+          "defi",
+          "protocol",
+          "network",
+          "blockchain"
+        ],
+        "venue_name": [
+          "protocol"
+        ],
+        "risk_controls": [
+          "safety_measures",
+          "protections",
+          "risk",
+          "controls",
+          "limits",
+          "parameters"
+        ],
+        "follow_up": [
+          "next_steps",
+          "post_trade",
+          "additional_steps",
+          "further_actions"
+        ],
+        "reasoning": [
+          "justification",
+          "rationale",
+          "explanation",
+          "why"
+        ]
+      },
+      "pass_threshold": 0.72
+    },
+    {
+      "id": "execute_mev_defense",
+      "expected_fields": [
+        "intent",
+        "strategy",
+        "expected_total_cost",
+        "cost_breakdown",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "strategy",
+        "expected_total_cost",
+        "cost_breakdown",
+        "reasoning"
+      ],
+      "field_weights": {
+        "intent": 0.0,
+        "strategy": 0.6,
+        "expected_total_cost": 0.4,
+        "cost_breakdown": 0.0,
+        "reasoning": 0.0
+      },
+      "synonyms": {
+        "intent": [
+          "execute_mev_defense",
+          "mev_defense_execution",
+          "mev_defense_analysis"
+        ]
+      },
+      "pass_threshold": 0.7
+    },
+    {
+      "id": "fixed_yield_allocation",
+      "expected_fields": [
+        "intent",
+        "strategy",
+        "asset",
+        "allocation",
+        "venue",
+        "maturity",
+        "expected_apy",
+        "selected_strategy",
+        "reasoning",
+        "risk_assessment",
+        "meets_constraints",
+        "alternatives_rejected"
+      ],
+      "required_fields": [
+        "intent",
+        "strategy",
+        "asset",
+        "allocation",
+        "venue",
+        "expected_apy",
+        "selected_strategy",
+        "reasoning",
+        "risk_assessment",
+        "meets_constraints"
+      ],
+      "field_weights": {
+        "intent": 0.08,
+        "strategy": 0.06,
+        "asset": 0.05,
+        "allocation": 0.08,
+        "venue": 0.05,
+        "maturity": 0.04,
+        "expected_apy": 0.25,
+        "selected_strategy": 0.2,
+        "reasoning": 0.12,
+        "risk_assessment": 0.04,
+        "meets_constraints": 0.03
+      },
+      "synonyms": {
+        "strategy": [
+          "strategy_type",
+          "allocation_strategy",
+          "selected_strategy_type"
+        ],
+        "venue": [
+          "protocol",
+          "platform"
+        ],
+        "maturity": [
+          "tenor",
+          "lockup",
+          "duration"
+        ],
+        "expected_apy": [
+          "apy",
+          "yield",
+          "expected_return",
+          "annualized_yield"
+        ],
+        "risk_assessment": [
+          "risk_level",
+          "risk_rating"
+        ],
+        "alternatives_rejected": [
+          "rejected_strategies",
+          "alternatives"
+        ]
+      },
+      "metadata": {
+        "primary_strategy": "C",
+        "apy_range_primary": {
+          "min": 12.2,
+          "max": 12.4
+        },
+        "allocation_range_primary": {
+          "min": 99000,
+          "max": 100000
+        },
+        "risk_levels_primary": [
+          "low",
+          "low-medium"
+        ],
+        "secondary_strategies": {
+          "D_tilted": {
+            "pt_allocation_min": 80000,
+            "expected_apy_min": 11.8,
+            "expected_apy_max": 12.0,
+            "score_penalty": 0.15
+          }
+        }
+      },
+      "pass_threshold": 0.7
+    },
+    {
+      "id": "futures_trade",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "unit",
+        "venue",
+        "risk_controls",
+        "follow_up",
+        "reasoning",
+        "requires_follow_up",
+        "follow_up_description"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.18,
+        "order_type": 0.16,
+        "asset": 0.14,
+        "size": 0.12,
+        "unit": 0.08,
+        "venue": 0.12,
+        "risk_controls": 0.08,
+        "follow_up": 0,
+        "reasoning": 0,
+        "requires_follow_up": 0,
+        "follow_up_description": 0.12
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "execute",
+          "perform",
+          "do",
+          "buy",
+          "dca_setup",
+          "dollar_cost_average",
+          "setup_dca",
+          "set_up_dca",
+          "schedule_dca",
+          "dca"
+        ],
+        "order_type": [
+          "position_type",
+          "contract_type",
+          "perpetual",
+          "perp",
+          "future",
+          "futures_contract",
+          "dca",
+          "recurring_buy",
+          "recurring",
+          "scheduled_buy",
+          "buy",
+          "market",
+          "ladder",
+          "ladder_limit",
+          "limit_ladder",
+          "ladder limit",
+          "limit-ladder"
+        ],
+        "asset": [
+          "contract",
+          "pair",
+          "instrument"
+        ],
+        "unit": [
+          "usd",
+          "dollars",
+          "dollar",
+          "usdc",
+          "currency",
+          "denomination"
+        ],
+        "venue": [
+          "exchange",
+          "platform",
+          "derivatives_exchange",
+          "perp_dex",
+          "futures_platform",
+          "protocol",
+          "network",
+          "blockchain",
+          "cex",
+          "centralized_exchange",
+          "spot_market",
+          "mainnet"
+        ],
+        "risk_controls": [
+          "risk_measures",
+          "risk_management",
+          "risk",
+          "controls",
+          "limits",
+          "parameters"
+        ],
+        "follow_up": [
+          "next_steps",
+          "additional_steps",
+          "further_actions"
+        ],
+        "reasoning": [
+          "justification",
+          "explanation",
+          "why",
+          "rationale"
+        ]
+      },
+      "pass_threshold": 0.7
+    },
+    {
+      "id": "lending_borrow",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "risk_controls",
+        "follow_up",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.2,
+        "order_type": 0.17,
+        "asset": 0.15,
+        "size": 0.14,
+        "venue": 0.12,
+        "risk_controls": 0.12,
+        "follow_up": 0.05,
+        "reasoning": 0.05
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "leverage",
+          "leverage_long",
+          "leveraged_long",
+          "create_leveraged_position",
+          "open_position",
+          "execute",
+          "perform",
+          "do",
+          "deleverage",
+          "unwind_position",
+          "unwind",
+          "repay",
+          "repay_debt",
+          "close_position",
+          "liquidate_position"
+        ],
+        "order_type": [
+          "loan_type",
+          "borrow",
+          "collateralized_borrow",
+          "collateralized_loan",
+          "recursive_borrow",
+          "deposit_collateral",
+          "supply_collateral",
+          "leveraged_borrow",
+          "loan",
+          "margin_borrow",
+          "margin_debt",
+          "borrow_against_collateral",
+          "secured_loan",
+          "repay",
+          "repayment",
+          "repay_and_withdraw",
+          "close_position"
+        ],
+        "venue": [
+          "platform",
+          "protocol",
+          "defi",
+          "lending",
+          "lending_protocol",
+          "lending_platform",
+          "aave",
+          "aave_v2",
+          "aave_v3",
+          "aave_mainnet",
+          "compound",
+          "network",
+          "blockchain"
+        ],
+        "venue_name": [
+          "aave",
+          "aave_v2",
+          "aave_v3",
+          "aave_mainnet",
+          "compound"
+        ],
+        "risk_controls": [
+          "safety_measures",
+          "risk_parameters",
+          "risk",
+          "controls",
+          "limits",
+          "parameters"
+        ],
+        "follow_up": [
+          "next_steps",
+          "additional_steps",
+          "further_actions"
+        ],
+        "reasoning": [
+          "justification",
+          "explanation",
+          "why",
+          "rationale"
+        ],
+        "size": [
+          "3x",
+          "3",
+          "1"
+        ]
+      },
+      "pass_threshold": 0.72
+    },
+    {
+      "id": "limit_buy",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "price",
+        "venue",
+        "risk_controls",
+        "follow_up",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "price",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.18,
+        "order_type": 0.18,
+        "asset": 0.16,
+        "size": 0.14,
+        "price": 0.14,
+        "venue": 0.12,
+        "risk_controls": 0.04,
+        "follow_up": 0.02,
+        "reasoning": 0.02
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "purchase",
+          "acquire",
+          "buy_limit",
+          "execute",
+          "perform",
+          "do"
+        ],
+        "order_type": [
+          "execution_type",
+          "order_style",
+          "limit",
+          "limit_order",
+          "pending_order"
+        ],
+        "venue": [
+          "exchange",
+          "platform",
+          "protocol",
+          "network",
+          "blockchain"
+        ],
+        "price": [
+          "limit_price",
+          "target_price"
+        ],
+        "risk_controls": [
+          "safety_measures",
+          "risk",
+          "controls",
+          "limits",
+          "parameters"
+        ],
+        "follow_up": [
+          "next_steps",
+          "additional_steps",
+          "further_actions"
+        ],
+        "reasoning": [
+          "justification",
+          "explanation",
+          "why",
+          "rationale"
+        ]
+      },
+      "pass_threshold": 0.72
+    },
+    {
+      "id": "liquidity_provision",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "venue_name",
+        "risk_controls",
+        "follow_up",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.18,
+        "order_type": 0.18,
+        "asset": 0.16,
+        "size": 0.16,
+        "venue": 0.12,
+        "venue_name": 0.08,
+        "risk_controls": 0.06,
+        "follow_up": 0.03,
+        "reasoning": 0.03
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "provide_liquidity",
+          "add_liquidity",
+          "lp",
+          "deposit",
+          "supply",
+          "execute",
+          "perform",
+          "do",
+          "stake",
+          "liquid_staking",
+          "liquid_stake"
+        ],
+        "order_type": [
+          "position_type",
+          "liquidity_type",
+          "add_liquidity",
+          "provide_liquidity",
+          "lp",
+          "stake",
+          "liquid_staking"
+        ],
+        "asset": [
+          "pair",
+          "eth",
+          "steth"
+        ],
+        "venue": [
+          "platform",
+          "dex",
+          "amm",
+          "liquidity_pool",
+          "automated_market_maker",
+          "protocol",
+          "network",
+          "blockchain",
+          "staking",
+          "staking_protocol",
+          "liquid_staking",
+          "liquid_staking_protocol",
+          "lido",
+          "defi",
+          "defi_protocol"
+        ],
+        "venue_name": [
+          "pool",
+          "protocol",
+          "lido"
+        ],
+        "risk_controls": [
+          "risk_measures",
+          "protections",
+          "risk",
+          "controls",
+          "limits",
+          "parameters"
+        ],
+        "follow_up": [
+          "monitoring",
+          "maintenance",
+          "next_steps",
+          "additional_steps",
+          "further_actions"
+        ],
+        "reasoning": [
+          "justification",
+          "rationale",
+          "explanation",
+          "why"
+        ]
+      },
+      "pass_threshold": 0.72
+    },
+    {
+      "id": "lp_net_return_analysis",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "il_percentage",
+        "il_loss_usd",
+        "net_gain_usd",
+        "net_return_pct",
+        "hold_value",
+        "lp_value",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "il_percentage",
+        "net_gain_usd",
+        "net_return_pct"
+      ],
+      "field_weights": {
+        "intent": 0.08,
+        "order_type": 0.05,
+        "asset": 0.05,
+        "size": 0.04,
+        "venue": 0.04,
+        "il_percentage": 0.25,
+        "il_loss_usd": 0.2,
+        "net_gain_usd": 0.22,
+        "net_return_pct": 0.15,
+        "hold_value": 0.03,
+        "lp_value": 0.03,
+        "reasoning": 0.03
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "goal",
+          "objective",
+          "calculation_intent",
+          "impermanent_loss_analysis",
+          "calculate_lp_net_return",
+          "lp_return_analysis"
+        ],
+        "order_type": [
+          "analysis_type",
+          "calculation_type",
+          "strategy",
+          "return_analysis"
+        ],
+        "asset": [
+          "pair",
+          "pool",
+          "trading_pair",
+          "token_pair",
+          "eth_usdc"
+        ],
+        "venue": [
+          "platform",
+          "dex",
+          "protocol",
+          "amm",
+          "liquidity_pool"
+        ],
+        "il_percentage": [
+          "impermanent_loss_pct",
+          "il_pct",
+          "impermanent_loss_percentage",
+          "il_percent"
+        ],
+        "il_loss_usd": [
+          "il_loss",
+          "impermanent_loss_usd",
+          "il_cost",
+          "impermanent_loss_dollars"
+        ],
+        "net_gain_usd": [
+          "net_gain",
+          "net_profit",
+          "profit",
+          "net_return_usd",
+          "gain"
+        ],
+        "net_return_pct": [
+          "net_return",
+          "return_pct",
+          "net_return_percentage",
+          "return_percentage",
+          "roi"
+        ],
+        "hold_value": [
+          "hold_portfolio_value",
+          "hodl_value",
+          "holding_value"
+        ],
+        "lp_value": [
+          "lp_portfolio_value",
+          "pool_value",
+          "liquidity_value"
+        ],
+        "reasoning": [
+          "explanation",
+          "rationale",
+          "calculation_note",
+          "analysis"
+        ]
+      },
+      "pass_threshold": 0.7,
+      "numeric_fields": [
+        "size",
+        "il_percentage",
+        "il_loss_usd",
+        "net_gain_usd",
+        "net_return_pct",
+        "hold_value",
+        "lp_value"
+      ],
+      "range_fields": {
+        "il_percentage": {
+          "min": 3.0,
+          "max": 3.4,
+          "tolerance": 0.02,
+          "strict": true,
+          "description": "Impermanent loss percentage must reflect ETH price move from $3k to $5k"
+        },
+        "il_loss_usd": {
+          "min": 400,
+          "max": 450,
+          "tolerance": 0.05,
+          "description": "Dollar loss from impermanent loss should align with IL percentage against hold value"
+        },
+        "net_gain_usd": {
+          "min": 400,
+          "max": 450,
+          "tolerance": 0.05,
+          "description": "Net gain is fee earnings minus impermanent loss"
+        },
+        "net_return_pct": {
+          "min": 4.0,
+          "max": 4.5,
+          "tolerance": 0.02,
+          "strict": true,
+          "description": "Net return percentage relative to $10k initial capital"
+        },
+        "hold_value": {
+          "min": 13300,
+          "max": 13360,
+          "tolerance": 0.02,
+          "description": "Value of simply holding initial assets after price move"
+        },
+        "lp_value": {
+          "min": 12850,
+          "max": 12970,
+          "tolerance": 0.02,
+          "description": "LP position value before fees given the price move"
+        }
+      },
+      "exact_match_fields": [
+        "asset",
+        "order_type",
+        "venue"
+      ],
+      "allowed_intents": [
+        "calculate_lp_return",
+        "calculate_lp_net_return",
+        "impermanent_loss_analysis"
+      ],
+      "allowed_order_types": [
+        "analysis",
+        "return_analysis",
+        "calculation"
+      ]
+    },
+    {
+      "id": "market_buy",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "risk_controls",
+        "follow_up",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.2,
+        "order_type": 0.2,
+        "asset": 0.2,
+        "size": 0.15,
+        "venue": 0.15,
+        "risk_controls": 0.05,
+        "follow_up": 0.025,
+        "reasoning": 0.025
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "purchase",
+          "acquire",
+          "execute",
+          "perform",
+          "do"
+        ],
+        "order_type": [
+          "execution_type",
+          "market",
+          "market_order",
+          "instant",
+          "immediate"
+        ],
+        "asset": [
+          "token",
+          "coin",
+          "crypto"
+        ],
+        "venue": [
+          "exchange",
+          "platform",
+          "protocol",
+          "network",
+          "blockchain"
+        ],
+        "risk_controls": [
+          "safety_measures",
+          "protections",
+          "risk",
+          "controls",
+          "limits",
+          "parameters"
+        ],
+        "follow_up": [
+          "next_steps",
+          "post_trade",
+          "additional_steps",
+          "further_actions"
+        ],
+        "reasoning": [
+          "justification",
+          "rationale",
+          "explanation",
+          "why"
+        ]
+      },
+      "pass_threshold": 0.78
+    },
+    {
+      "id": "mev_protection_cost_benefit",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "eth_price",
+        "gross_value",
+        "uniswap_slippage_cost",
+        "uniswap_gas_cost",
+        "uniswap_mev_cost",
+        "uniswap_total_cost",
+        "uniswap_total_cost_pct",
+        "uniswap_net_proceeds",
+        "cowswap_slippage_cost",
+        "cowswap_gas_cost",
+        "cowswap_mev_cost",
+        "cowswap_total_cost",
+        "cowswap_total_cost_pct",
+        "cowswap_net_proceeds",
+        "oneinch_slippage_cost",
+        "oneinch_gas_cost",
+        "oneinch_mev_cost",
+        "oneinch_total_cost",
+        "oneinch_total_cost_pct",
+        "oneinch_net_proceeds",
+        "best_option",
+        "worst_option",
+        "savings_vs_worst",
+        "venue",
+        "venue_name",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "uniswap_total_cost_pct",
+        "cowswap_total_cost_pct",
+        "oneinch_total_cost_pct",
+        "uniswap_net_proceeds",
+        "cowswap_net_proceeds",
+        "oneinch_net_proceeds",
+        "best_option"
+      ],
+      "field_weights": {
+        "intent": 0.01,
+        "order_type": 0.01,
+        "asset": 0.01,
+        "size": 0.01,
+        "eth_price": 0.01,
+        "gross_value": 0.01,
+        "uniswap_total_cost_pct": 0.13,
+        "cowswap_total_cost_pct": 0.13,
+        "oneinch_total_cost_pct": 0.13,
+        "uniswap_net_proceeds": 0.13,
+        "cowswap_net_proceeds": 0.13,
+        "oneinch_net_proceeds": 0.13,
+        "best_option": 0.09,
+        "savings_vs_worst": 0.06,
+        "uniswap_slippage_cost": 0.001,
+        "uniswap_gas_cost": 0.001,
+        "uniswap_mev_cost": 0.001,
+        "uniswap_total_cost": 0.001,
+        "cowswap_slippage_cost": 0.001,
+        "cowswap_gas_cost": 0.001,
+        "cowswap_mev_cost": 0.001,
+        "cowswap_total_cost": 0.001,
+        "oneinch_slippage_cost": 0.001,
+        "oneinch_gas_cost": 0.001,
+        "oneinch_mev_cost": 0.001,
+        "oneinch_total_cost": 0.001,
+        "venue": 0.001,
+        "venue_name": 0.001,
+        "reasoning": 0.001,
+        "worst_option": 0.01
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "goal",
+          "objective",
+          "strategy"
+        ],
+        "order_type": [
+          "analysis_type",
+          "execution_type",
+          "calculation_type"
+        ],
+        "asset": [
+          "token",
+          "cryptocurrency"
+        ],
+        "venue": [
+          "platform",
+          "protocol",
+          "exchange_type"
+        ],
+        "venue_name": [
+          "protocol_name",
+          "dex_name",
+          "platform_name"
+        ],
+        "uniswap_total_cost_pct": [
+          "uniswap_cost_pct",
+          "uniswap_total_cost_percentage",
+          "uniswap_cost_percentage"
+        ],
+        "cowswap_total_cost_pct": [
+          "cowswap_cost_pct",
+          "cowswap_total_cost_percentage",
+          "cowswap_cost_percentage"
+        ],
+        "oneinch_total_cost_pct": [
+          "oneinch_cost_pct",
+          "oneinch_total_cost_percentage",
+          "oneinch_cost_percentage",
+          "1inch_total_cost_pct"
+        ],
+        "uniswap_net_proceeds": [
+          "uniswap_proceeds",
+          "uniswap_net",
+          "uniswap_received"
+        ],
+        "cowswap_net_proceeds": [
+          "cowswap_proceeds",
+          "cowswap_net",
+          "cowswap_received"
+        ],
+        "oneinch_net_proceeds": [
+          "oneinch_proceeds",
+          "oneinch_net",
+          "oneinch_received",
+          "1inch_net_proceeds"
+        ],
+        "best_option": [
+          "optimal_option",
+          "recommended_option",
+          "best_venue",
+          "optimal_venue"
+        ],
+        "worst_option": [
+          "least_optimal_option",
+          "worst_venue"
+        ],
+        "savings_vs_worst": [
+          "max_savings",
+          "savings",
+          "benefit",
+          "advantage"
+        ],
+        "reasoning": [
+          "explanation",
+          "rationale",
+          "analysis"
+        ]
+      },
+      "pass_threshold": 0.7,
+      "numeric_fields": [
+        "size",
+        "eth_price",
+        "gross_value",
+        "uniswap_slippage_cost",
+        "uniswap_gas_cost",
+        "uniswap_mev_cost",
+        "uniswap_total_cost",
+        "uniswap_total_cost_pct",
+        "uniswap_net_proceeds",
+        "cowswap_slippage_cost",
+        "cowswap_gas_cost",
+        "cowswap_mev_cost",
+        "cowswap_total_cost",
+        "cowswap_total_cost_pct",
+        "cowswap_net_proceeds",
+        "oneinch_slippage_cost",
+        "oneinch_gas_cost",
+        "oneinch_mev_cost",
+        "oneinch_total_cost",
+        "oneinch_total_cost_pct",
+        "oneinch_net_proceeds",
+        "savings_vs_worst"
+      ],
+      "range_fields": {
+        "uniswap_total_cost_pct": {
+          "min": 1.5,
+          "max": 1.55,
+          "tolerance": 0.01,
+          "description": "Total cost percentage (slippage + gas + MEV) for Uniswap execution"
+        },
+        "cowswap_total_cost_pct": {
+          "min": 0.38,
+          "max": 0.42,
+          "tolerance": 0.01,
+          "description": "Total cost percentage for CowSwap execution"
+        },
+        "oneinch_total_cost_pct": {
+          "min": 0.75,
+          "max": 0.78,
+          "tolerance": 0.01,
+          "description": "Total cost percentage for 1inch Fusion execution"
+        },
+        "uniswap_net_proceeds": {
+          "min": 295400,
+          "max": 295500,
+          "tolerance": 50,
+          "description": "Expected USDC received after Uniswap costs"
+        },
+        "cowswap_net_proceeds": {
+          "min": 298750,
+          "max": 298850,
+          "tolerance": 50,
+          "description": "Expected USDC received after CowSwap costs"
+        },
+        "oneinch_net_proceeds": {
+          "min": 297700,
+          "max": 297750,
+          "tolerance": 25,
+          "description": "Expected USDC received after 1inch Fusion costs"
+        },
+        "savings_vs_worst": {
+          "min": 3300,
+          "max": 3400,
+          "tolerance": 50,
+          "description": "Dollar savings from choosing the best option instead of the worst"
+        }
+      }
+    },
+    {
+      "id": "mev_resilient_unwind",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "venue_name",
+        "expected_value",
+        "unit",
+        "reasoning",
+        "constraint_awareness"
+      ],
+      "required_fields": [
+        "intent",
+        "venue_name",
+        "expected_value",
+        "unit"
+      ],
+      "field_weights": {
+        "intent": 0.05,
+        "order_type": 0.05,
+        "asset": 0.05,
+        "size": 0.05,
+        "venue": 0.05,
+        "venue_name": 0.5,
+        "expected_value": 0.3,
+        "unit": 0.02,
+        "reasoning": 0.02,
+        "constraint_awareness": 0.16
+      },
+      "synonyms": {
+        "venue_name": [
+          "1inch",
+          "1inch fusion",
+          "fusion",
+          "oneinch",
+          "oneinch fusion"
+        ],
+        "order_type": [
+          "protected_swap",
+          "swap",
+          "market",
+          "dex",
+          "dex_swap"
+        ],
+        "constraint_awareness": [
+          "constraints",
+          "checks"
+        ]
+      },
+      "numeric_fields": [
+        "expected_value"
+      ],
+      "range_fields": {
+        "expected_value": {
+          "min": -70000,
+          "max": -65000,
+          "tolerance": 0,
+          "strict": true,
+          "description": "Total execution cost (negative cost) via 1inch Fusion"
+        }
+      },
+      "pass_threshold": 0.7,
+      "metadata": {
+        "category": "conditional_reasoning",
+        "subcategory": "MEV_protection_venue_optimization",
+        "notes": "Rewards selecting 1inch Fusion with correct cost and constraint reasoning"
+      }
+    },
+    {
+      "id": "multi_protocol_yield_optimization",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "venue_name",
+        "expected_value",
+        "unit",
+        "allocation"
+      ],
+      "required_fields": [
+        "intent",
+        "expected_value",
+        "allocation"
+      ],
+      "field_weights": {
+        "intent": 0.08,
+        "order_type": 0.05,
+        "asset": 0.03,
+        "size": 0.03,
+        "venue": 0.03,
+        "venue_name": 0.03,
+        "expected_value": 0.4,
+        "unit": 0.02,
+        "allocation": 0.33
+      },
+      "synonyms": {
+        "intent": [
+          "multi_protocol_yield_stack",
+          "yield_optimization",
+          "portfolio_allocation",
+          "defi_yield_strategy",
+          "cross_protocol_staking",
+          "yield_maximization"
+        ],
+        "order_type": [
+          "pendle_pt_convex_boost",
+          "pendle_convex_strategy",
+          "pt_lp_optimization",
+          "yield_stack",
+          "multi_protocol_deployment",
+          "defi_allocation"
+        ],
+        "asset": [
+          "USDC",
+          "usdc",
+          "stablecoin",
+          "USD"
+        ],
+        "venue": [
+          "defi_multi",
+          "defi",
+          "multi_protocol",
+          "pendle_and_convex",
+          "multiple_venues"
+        ],
+        "venue_name": [
+          "pendle+convex",
+          "pendle_convex",
+          "pendle and convex",
+          "convex+pendle"
+        ],
+        "unit": [
+          "annualized_net_yield_percentage",
+          "apr",
+          "apy",
+          "net_yield_pct",
+          "percentage",
+          "percent"
+        ]
+      },
+      "validation_rules": {
+        "expected_value": {
+          "type": "range",
+          "min": 11.3,
+          "max": 12.0,
+          "unit": "percentage",
+          "weight": 0.4,
+          "description": "Net annualized portfolio yield after all costs"
+        },
+        "allocation.pendle_pt_steth": {
+          "type": "range",
+          "min": 3100000,
+          "max": 3400000,
+          "description": "Pendle PT allocation (62-68%)",
+          "weight": 0.165,
+          "synonyms": [
+            "pendle_pt",
+            "pt_steth",
+            "pendle",
+            "pendle_allocation",
+            "pt_allocation"
+          ]
+        },
+        "allocation.convex_curve_3pool": {
+          "type": "range",
+          "min": 1600000,
+          "max": 1900000,
+          "description": "Convex Curve 3pool allocation (32-38%)",
+          "weight": 0.165,
+          "synonyms": [
+            "convex",
+            "curve_3pool",
+            "convex_curve",
+            "curve",
+            "convex_allocation",
+            "curve_allocation"
+          ]
+        }
+      },
+      "constraint_checks": [
+        {
+          "name": "liquidity_minimum",
+          "rule": "convex_allocation >= 1750000",
+          "points": -0.2,
+          "description": "Must maintain \u226535% in 24h-liquid Curve pool"
+        },
+        {
+          "name": "protocol_maximum",
+          "rule": "pendle_allocation <= 3500000",
+          "points": -0.2,
+          "description": "No single protocol >70%"
+        },
+        {
+          "name": "total_allocation",
+          "rule": "sum(allocations) = 5000000 \u00b175000",
+          "points": -0.15,
+          "description": "Allocations must sum to total capital"
+        }
+      ],
+      "grading_notes": {
+        "expected_calculation": {
+          "pt_component": {
+            "allocation": 3250000,
+            "discount": "0.970 stETH per PT",
+            "redemption": "1.000 stETH per PT",
+            "90day_return": "3.09%",
+            "annualized_gross": "12.54%",
+            "slippage": "0.08%",
+            "gas_proportional": "~$98",
+            "net_apr": "12.40-12.50%"
+          },
+          "convex_component": {
+            "allocation": 1750000,
+            "base_apr": "4.2%",
+            "boost_multiplier": "2.5x",
+            "vlcvx_cost": "~$2,888",
+            "opportunity_cost": "~$27",
+            "slippage": "0.05%",
+            "gas_proportional": "~$52",
+            "total_costs": "~$2,967",
+            "net_apr": "9.50-9.70%"
+          },
+          "blended_calculation": "0.65 \u00d7 12.45% + 0.35 \u00d7 9.60% \u2248 11.55%",
+          "acceptable_range": "11.30-12.00%"
+        },
+        "key_mechanics": [
+          "PT is zero-coupon: buy at discount (0.970), redeem at par (1.000)",
+          "Convex boost requires vlCVX lock (opportunity cost matters)",
+          "Costs must be annualized for the 90-day horizon",
+          "Respect Curve liquidity minimum and Pendle exposure maximum"
+        ],
+        "common_errors": [
+          "Forgetting to annualize 90-day return",
+          "Ignoring vlCVX lock opportunity cost",
+          "Violating minimum Curve allocation",
+          "Missing gas/slippage adjustments"
+        ]
+      },
+      "pass_threshold": 0.7
+    },
+    {
+      "id": "options_hedge",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "price",
+        "venue",
+        "risk_controls",
+        "follow_up",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.18,
+        "order_type": 0.18,
+        "asset": 0.16,
+        "size": 0.14,
+        "price": 0.1,
+        "venue": 0.1,
+        "risk_controls": 0.08,
+        "follow_up": 0.03,
+        "reasoning": 0.03
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "hedge",
+          "protect",
+          "insurance",
+          "execute",
+          "perform",
+          "do",
+          "buy_call",
+          "buy_option",
+          "buy_options"
+        ],
+        "order_type": [
+          "option_type",
+          "strategy",
+          "option",
+          "options",
+          "call_option",
+          "call_options",
+          "call"
+        ],
+        "price": [
+          "strike",
+          "premium",
+          "strike_price"
+        ],
+        "venue": [
+          "exchange",
+          "platform",
+          "protocol",
+          "network",
+          "blockchain",
+          "options",
+          "option",
+          "deribit",
+          "derivatives_exchange",
+          "derivative_exchange",
+          "option_exchange",
+          "lyra",
+          "ledgerx",
+          "options_platform"
+        ],
+        "venue_name": [
+          "deribit",
+          "lyra",
+          "ledgerx",
+          "hegic",
+          "opyn"
+        ],
+        "risk_controls": [
+          "hedge_parameters",
+          "risk",
+          "controls",
+          "limits",
+          "parameters"
+        ],
+        "follow_up": [
+          "next_steps",
+          "additional_steps",
+          "further_actions"
+        ],
+        "reasoning": [
+          "justification",
+          "explanation",
+          "why",
+          "rationale"
+        ]
+      },
+      "pass_threshold": 0.72
+    },
+    {
+      "id": "collar_min_cost",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "call_strike",
+        "put_strike",
+        "net_cost_per_btc",
+        "venue",
+        "venue_name",
+        "expiry_days"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "call_strike",
+        "put_strike",
+        "net_cost_per_btc",
+        "venue",
+        "venue_name",
+        "expiry_days"
+      ],
+      "field_weights": {
+        "intent": 0.15,
+        "order_type": 0.1,
+        "asset": 0.1,
+        "size": 0.1,
+        "call_strike": 0.2,
+        "put_strike": 0.2,
+        "net_cost_per_btc": 0.1,
+        "venue": 0.03,
+        "venue_name": 0.02,
+        "expiry_days": 0
+      },
+      "synonyms": {
+        "intent": [
+          "protective_collar",
+          "collar_strategy",
+          "options_collar"
+        ],
+        "order_type": [
+          "options_strategy",
+          "derivatives",
+          "structured_options"
+        ],
+        "asset": [
+          "btcusd",
+          "btc-usd",
+          "spot_btc"
+        ],
+        "venue": [
+          "options",
+          "derivatives_exchange",
+          "derivative_exchange"
+        ],
+        "venue_name": [
+          "deribit",
+          "Deribit",
+          "DERIBIT"
+        ]
+      },
+      "numeric_fields": [
+        "size",
+        "call_strike",
+        "put_strike",
+        "net_cost_per_btc",
+        "expiry_days"
+      ],
+      "range_fields": {
+        "net_cost_per_btc": {
+          "min": -80,
+          "max": -40,
+          "tolerance": 0,
+          "strict": false,
+          "description": "Acceptable collar net premium (USD per BTC). Values outside this band receive zero credit but must still satisfy automatic fail limits."
+        }
+      },
+      "automatic_fail_conditions": [
+        {
+          "condition": "call_strike != 49500",
+          "reason": "Selecting a lower strike caps upside too aggressively relative to historical distribution."
+        },
+        {
+          "condition": "put_strike != 40500",
+          "reason": "Higher put strikes overpay for skewed volatility and violate the cost constraint."
+        },
+        {
+          "condition": "net_cost_per_btc > 0",
+          "reason": "Net credit indicates over-reliance on upside cap and conflicts with minimising total economic cost."
+        },
+        {
+          "condition": "net_cost_per_btc < -100",
+          "reason": "Net debit beyond $100/BTC overpays for protection given skew constraints."
+        }
+      ],
+      "pass_threshold": 0.7,
+      "metadata": {
+        "category": "conditional_reasoning",
+        "subcategory": "options_strategy",
+        "description": "Rewards choosing the 10% OTM call / 10% OTM put collar that balances premium spend and upside participation."
+      }
+    },
+    {
+      "id": "portfolio_efficiency_analysis",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "blended_apy",
+        "weighted_risk_score",
+        "excess_return",
+        "risk_adjusted_ratio",
+        "total_annual_yield_usd",
+        "allocation",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "blended_apy",
+        "weighted_risk_score",
+        "excess_return",
+        "risk_adjusted_ratio"
+      ],
+      "field_weights": {
+        "intent": 0.06,
+        "order_type": 0.03,
+        "asset": 0.02,
+        "size": 0.02,
+        "venue": 0.02,
+        "blended_apy": 0.18,
+        "weighted_risk_score": 0.15,
+        "excess_return": 0.2,
+        "risk_adjusted_ratio": 0.24,
+        "total_annual_yield_usd": 0.08,
+        "reasoning": 0.02
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "goal",
+          "objective",
+          "calculation_intent"
+        ],
+        "order_type": [
+          "analysis_type",
+          "calculation_type",
+          "task_type"
+        ],
+        "asset": [
+          "token",
+          "currency",
+          "stablecoin"
+        ],
+        "venue": [
+          "platform",
+          "protocols",
+          "defi",
+          "multi_protocol"
+        ],
+        "blended_apy": [
+          "portfolio_apy",
+          "weighted_apy",
+          "combined_apy",
+          "average_apy",
+          "blended_yield"
+        ],
+        "weighted_risk_score": [
+          "portfolio_risk",
+          "weighted_risk",
+          "combined_risk",
+          "average_risk",
+          "blended_risk"
+        ],
+        "excess_return": [
+          "excess_yield",
+          "return_above_risk_free",
+          "risk_premium",
+          "alpha"
+        ],
+        "risk_adjusted_ratio": [
+          "sharpe_ratio",
+          "sharpe_like_ratio",
+          "risk_adjusted_return",
+          "efficiency_ratio",
+          "return_per_risk"
+        ],
+        "total_annual_yield_usd": [
+          "total_yield",
+          "annual_yield",
+          "yearly_yield",
+          "expected_yield"
+        ],
+        "allocation": [
+          "allocations",
+          "distribution",
+          "portfolio"
+        ],
+        "reasoning": [
+          "explanation",
+          "rationale",
+          "calculation_note"
+        ]
+      },
+      "pass_threshold": 0.7,
+      "numeric_fields": [
+        "size",
+        "blended_apy",
+        "weighted_risk_score",
+        "excess_return",
+        "risk_adjusted_ratio",
+        "total_annual_yield_usd"
+      ],
+      "range_fields": {
+        "blended_apy": {
+          "min": 5.7,
+          "max": 5.9,
+          "tolerance": 0.02,
+          "description": "Weighted average APY across allocations"
+        },
+        "weighted_risk_score": {
+          "min": 1.65,
+          "max": 1.75,
+          "tolerance": 0.02,
+          "description": "Weighted average risk score"
+        },
+        "excess_return": {
+          "min": 0.7,
+          "max": 0.9,
+          "tolerance": 0.02,
+          "description": "Blended APY minus risk-free rate"
+        },
+        "risk_adjusted_ratio": {
+          "min": 0.42,
+          "max": 0.52,
+          "tolerance": 0.02,
+          "description": "Excess return divided by weighted risk score"
+        },
+        "total_annual_yield_usd": {
+          "min": 5700,
+          "max": 5900,
+          "tolerance": 50,
+          "description": "Expected USD yield based on blended APY"
+        }
+      }
+    },
+    {
+      "id": "portfolio_rebalance",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "requires_follow_up",
+        "follow_up_description"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "venue",
+        "requires_follow_up"
+      ],
+      "field_weights": {
+        "intent": 0.1,
+        "order_type": 0.05,
+        "asset": 0.05,
+        "size": 0.05,
+        "venue": 0.05,
+        "requires_follow_up": 0.4,
+        "follow_up_description": 0.3
+      },
+      "synonyms": {
+        "order_type": [
+          "execution_plan",
+          "multi_leg",
+          "multi leg",
+          "strategy",
+          "plan",
+          "rebalance",
+          "rebalance_order",
+          "rebalance order",
+          "exact_amount",
+          "exact amount",
+          "market",
+          "market_order",
+          "market order"
+        ],
+        "intent": [
+          "rebalance",
+          "rebalance_portfolio",
+          "portfolio_rebalance",
+          "portfolio_management"
+        ],
+        "asset": [
+          "portfolio",
+          "multi",
+          "btc",
+          "eth",
+          "usdc"
+        ],
+        "venue": [
+          "exchange",
+          "platform",
+          "cex",
+          "mainnet",
+          "dex",
+          "portfolio",
+          "risk_modeling"
+        ]
+      },
+      "pass_threshold": 0.7,
+      "numeric_fields": [],
+      "intent_aliases": {
+        "rebalance_portfolio": [
+          "rebalance",
+          "portfolio_rebalance",
+          "portfolio_management",
+          "portfolio management",
+          "rebalance_portfolio"
+        ]
+      },
+      "allowed_intents": [
+        "rebalance_portfolio",
+        "rebalance",
+        "portfolio_management"
+      ]
+    },
+    {
+      "id": "restaking_optimization",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "venue_name",
+        "rationale",
+        "decision_factors",
+        "total_staking_apr",
+        "borrow_rate",
+        "effective_borrow_cost_on_portfolio",
+        "net_apr_after_borrow",
+        "meets_net_apr_target",
+        "slashing_risk_pct",
+        "within_risk_tolerance",
+        "liquidity_days",
+        "meets_collateral_timing",
+        "option_c_net_apr_comparison",
+        "option_a_outperformance"
+      ],
+      "required_fields": [
+        "intent",
+        "venue_name",
+        "asset",
+        "size",
+        "total_staking_apr",
+        "borrow_rate",
+        "effective_borrow_cost_on_portfolio",
+        "net_apr_after_borrow",
+        "meets_net_apr_target",
+        "slashing_risk_pct",
+        "within_risk_tolerance",
+        "liquidity_days",
+        "meets_collateral_timing"
+      ],
+      "field_weights": {
+        "intent": 0.04,
+        "venue_name": 0.16,
+        "asset": 0.04,
+        "size": 0.04,
+        "total_staking_apr": 0.064,
+        "borrow_rate": 0.04,
+        "effective_borrow_cost_on_portfolio": 0.096,
+        "net_apr_after_borrow": 0.16,
+        "meets_net_apr_target": 0.08,
+        "slashing_risk_pct": 0.064,
+        "within_risk_tolerance": 0.08,
+        "liquidity_days": 0.04,
+        "meets_collateral_timing": 0.096
+      },
+      "synonyms": {
+        "intent": [
+          "restake_and_borrow",
+          "re-stake_and_borrow",
+          "restaking"
+        ],
+        "order_type": [
+          "restake",
+          "restaking",
+          "strategy_selection",
+          "analysis",
+          "restaking_plan"
+        ],
+        "venue_name": [
+          "eigen_layer",
+          "eigen",
+          "avs",
+          "eigenlayer avs"
+        ],
+        "net_apr_after_borrow": [
+          "portfolio_net_apr",
+          "net_portfolio_apr"
+        ],
+        "effective_borrow_cost_on_portfolio": [
+          "borrow_cost_pct",
+          "portfolio_borrow_cost"
+        ],
+        "within_risk_tolerance": [
+          "risk_within_limits",
+          "risk_ok"
+        ],
+        "meets_collateral_timing": [
+          "collateral_ready",
+          "meets_timing"
+        ]
+      },
+      "numeric_fields": [
+        "total_staking_apr",
+        "borrow_rate",
+        "effective_borrow_cost_on_portfolio",
+        "net_apr_after_borrow",
+        "slashing_risk_pct",
+        "liquidity_days",
+        "option_c_net_apr_comparison",
+        "option_a_outperformance"
+      ],
+      "boolean_fields": [
+        "meets_net_apr_target",
+        "within_risk_tolerance",
+        "meets_collateral_timing"
+      ],
+      "range_fields": {
+        "total_staking_apr": {
+          "min": 6.9,
+          "max": 7.1,
+          "tolerance": 0.1,
+          "description": "Base 4.2% + EigenLayer 2.8%"
+        },
+        "effective_borrow_cost_on_portfolio": {
+          "min": 2.7,
+          "max": 2.8,
+          "tolerance": 0.05,
+          "description": "50% of portfolio \u00d7 5.5%"
+        },
+        "net_apr_after_borrow": {
+          "min": 4.15,
+          "max": 4.35,
+          "tolerance": 0.1,
+          "description": "Total APR 7.0% minus borrow cost 2.75%"
+        },
+        "slashing_risk_pct": {
+          "min": 3.0,
+          "max": 3.0,
+          "tolerance": 0,
+          "description": "EigenLayer slashing risk"
+        },
+        "liquidity_days": {
+          "min": 7,
+          "max": 7,
+          "tolerance": 0,
+          "description": "Minimum lock period for EigenLayer"
+        }
+      },
+      "pass_threshold": 0.7,
+      "metadata": {
+        "category": "defi_strategy",
+        "subcategory": "restaking_optimization",
+        "notes": "Penalize selections that violate collateral timing or risk constraints"
+      }
+    },
+    {
+      "id": "risk_adjusted_leverage",
+      "expected_fields": [
+        "action",
+        "action_name",
+        "liquidation_probabilities",
+        "expected_values",
+        "reasoning",
+        "calculation_method"
+      ],
+      "required_fields": [
+        "action",
+        "liquidation_probabilities",
+        "expected_values",
+        "reasoning"
+      ],
+      "field_weights": {
+        "action": 0.4,
+        "liquidation_probabilities": 0.3,
+        "expected_values": 0.2,
+        "reasoning": 0.1,
+        "action_name": 0,
+        "calculation_method": 0
+      },
+      "synonyms": {
+        "action": [
+          "selected_action",
+          "decision",
+          "choice"
+        ],
+        "action_name": [
+          "decision_name",
+          "action_label",
+          "choice_name"
+        ],
+        "liquidation_probabilities": [
+          "liquidation_probs",
+          "liq_probabilities",
+          "liquidation_risk"
+        ],
+        "expected_values": [
+          "expected_returns",
+          "ev",
+          "expected_payouts"
+        ],
+        "reasoning": [
+          "rationale",
+          "explanation",
+          "analysis"
+        ],
+        "calculation_method": [
+          "probability_method",
+          "methodology",
+          "model_type"
+        ]
+      },
+      "metadata": {
+        "action_partial_credit": {
+          "A": 0.6
+        },
+        "probability_ranges": {
+          "maintain_3x": {
+            "barrier": {
+              "min": 0.0075,
+              "max": 0.0085,
+              "exact": 0.00809
+            },
+            "endpoint": {
+              "min": 0.003,
+              "max": 0.004,
+              "exact": 0.00339
+            }
+          },
+          "deleverage_2x": {
+            "barrier": {
+              "min": 0.00012,
+              "max": 0.00016,
+              "exact": 0.000136
+            },
+            "endpoint": {
+              "min": 4e-05,
+              "max": 7e-05,
+              "exact": 5.28e-05
+            }
+          },
+          "deleverage_1_5x": {
+            "barrier": {
+              "min": 1e-07,
+              "max": 3e-07,
+              "exact": 2.02e-07
+            },
+            "endpoint": {
+              "min": 5e-09,
+              "max": 1e-08,
+              "exact": 7.15e-09
+            }
+          }
+        },
+        "expected_value_ranges": {
+          "maintain_3x": {
+            "min": 44.0,
+            "max": 48.0,
+            "exact": 45.76
+          },
+          "deleverage_2x": {
+            "min": 40.0,
+            "max": 44.0,
+            "exact": 42.17
+          },
+          "deleverage_1_5x": {
+            "min": 35.0,
+            "max": 38.0,
+            "exact": 36.54
+          },
+          "close": {
+            "min": -0.01,
+            "max": 0.01,
+            "exact": 0
+          }
+        },
+        "weekly_carry": {
+          "maintain_3x": {
+            "min": 52.0,
+            "max": 56.0,
+            "exact": 53.85
+          },
+          "deleverage_2x": {
+            "min": 40.0,
+            "max": 44.0,
+            "exact": 42.31
+          },
+          "deleverage_1_5x": {
+            "min": 35.0,
+            "max": 38.0,
+            "exact": 36.54
+          }
+        },
+        "institutional_threshold": 0.005
+      },
+      "pass_threshold": 0.7
+    },
+    {
+      "id": "risk_parity_execution",
+      "expected_fields": [
+        "intent",
+        "strategy",
+        "execution_plan",
+        "fee_summary",
+        "rationale",
+        "constraints_met"
+      ],
+      "required_fields": [
+        "intent",
+        "strategy",
+        "execution_plan",
+        "fee_summary",
+        "rationale",
+        "constraints_met"
+      ],
+      "field_weights": {
+        "strategy": 0.4,
+        "execution_plan": 0.3,
+        "fee_summary": 0.15,
+        "constraints_met": 0.1,
+        "rationale": 0.05
+      },
+      "synonyms": {
+        "intent": [
+          "execution_strategy",
+          "execution_plan",
+          "venue_selection",
+          "order_routing"
+        ],
+        "strategy": [
+          "interactive_brokers_only",
+          "ib_only",
+          "ib_only_strategy"
+        ],
+        "constraints_met": [
+          "constraints",
+          "checks",
+          "validation"
+        ]
+      },
+      "pass_threshold": 0.7,
+      "metadata": {
+        "category": "risk_management",
+        "subcategory": "execution_strategy",
+        "notes": "Evaluates optimal venue selection and fee minimization for a multi-asset risk-parity rebalance."
+      }
+    },
+    {
+      "id": "risk_parity_rebalance",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "portfolio_volatility",
+        "risk_contributions",
+        "btc_contribution_pct",
+        "eth_contribution_pct",
+        "bonds_contribution_pct",
+        "rebalancing_required",
+        "target_allocations_usd",
+        "target_btc_usd",
+        "target_eth_usd",
+        "target_bonds_usd",
+        "transactions",
+        "btc_sell_amount",
+        "eth_sell_amount",
+        "bonds_buy_amount",
+        "btc_post_slippage",
+        "eth_post_slippage",
+        "bonds_post_slippage",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "venue",
+        "portfolio_volatility",
+        "btc_contribution_pct",
+        "eth_contribution_pct",
+        "bonds_contribution_pct",
+        "rebalancing_required",
+        "target_btc_usd",
+        "target_eth_usd",
+        "target_bonds_usd",
+        "btc_sell_amount",
+        "eth_sell_amount",
+        "bonds_buy_amount",
+        "btc_post_slippage",
+        "eth_post_slippage",
+        "bonds_post_slippage",
+        "transactions",
+        "reasoning"
+      ],
+      "field_weights": {
+        "portfolio_volatility": 0.08,
+        "btc_contribution_pct": 0.09,
+        "eth_contribution_pct": 0.09,
+        "bonds_contribution_pct": 0.09,
+        "rebalancing_required": 0.1,
+        "reasoning": 0.25,
+        "target_btc_usd": 0.0334,
+        "target_eth_usd": 0.0333,
+        "target_bonds_usd": 0.0333,
+        "btc_sell_amount": 0.0167,
+        "eth_sell_amount": 0.0167,
+        "bonds_buy_amount": 0.0166,
+        "btc_post_slippage": 0.01,
+        "eth_post_slippage": 0.01,
+        "bonds_post_slippage": 0.01
+      },
+      "synonyms": {
+        "intent": [
+          "risk_parity",
+          "risk parity",
+          "equal risk"
+        ]
+      },
+      "pass_threshold": 0.7,
+      "numeric_fields": [
+        "portfolio_volatility",
+        "btc_contribution_pct",
+        "eth_contribution_pct",
+        "bonds_contribution_pct",
+        "target_btc_usd",
+        "target_eth_usd",
+        "target_bonds_usd",
+        "btc_sell_amount",
+        "eth_sell_amount",
+        "bonds_buy_amount",
+        "btc_post_slippage",
+        "eth_post_slippage",
+        "bonds_post_slippage"
+      ],
+      "range_fields": {
+        "portfolio_volatility": {
+          "min": 49.5,
+          "max": 51.0,
+          "tolerance": 0.7,
+          "description": "Total portfolio vol (%)"
+        },
+        "btc_contribution_pct": {
+          "min": 44.5,
+          "max": 46.8,
+          "tolerance": 1.2,
+          "description": "BTC risk contribution (%)"
+        },
+        "eth_contribution_pct": {
+          "min": 52.7,
+          "max": 55.1,
+          "tolerance": 1.2,
+          "description": "ETH risk contribution (%)"
+        },
+        "bonds_contribution_pct": {
+          "min": 0.35,
+          "max": 0.6,
+          "tolerance": 0.15,
+          "description": "Bonds risk contribution (%)"
+        },
+        "target_btc_usd": {
+          "min": 98000,
+          "max": 105000,
+          "tolerance": 4000,
+          "description": "Target BTC USD"
+        },
+        "target_eth_usd": {
+          "min": 74000,
+          "max": 81000,
+          "tolerance": 4000,
+          "description": "Target ETH USD"
+        },
+        "target_bonds_usd": {
+          "min": 815000,
+          "max": 830000,
+          "tolerance": 8000,
+          "description": "Target Bonds USD"
+        },
+        "btc_sell_amount": {
+          "min": 295000,
+          "max": 305000,
+          "tolerance": 6000,
+          "description": "BTC sell USD"
+        },
+        "eth_sell_amount": {
+          "min": 268000,
+          "max": 278000,
+          "tolerance": 5000,
+          "description": "ETH sell USD"
+        },
+        "bonds_buy_amount": {
+          "min": 563000,
+          "max": 583000,
+          "tolerance": 10000,
+          "description": "Bonds buy USD"
+        },
+        "btc_post_slippage": {
+          "min": 293525,
+          "max": 303475,
+          "tolerance": 3000,
+          "description": "BTC post-slippage USD"
+        },
+        "eth_post_slippage": {
+          "min": 266660,
+          "max": 276610,
+          "tolerance": 2500,
+          "description": "ETH post-slippage USD"
+        },
+        "bonds_post_slippage": {
+          "min": 563563,
+          "max": 583583,
+          "tolerance": 10000,
+          "description": "Bonds post-slippage USD"
+        }
+      }
+    },
+    {
+      "id": "stop_loss",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "price",
+        "venue",
+        "risk_controls",
+        "follow_up",
+        "reasoning"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "price",
+        "venue"
+      ],
+      "field_weights": {
+        "intent": 0.2,
+        "order_type": 0.18,
+        "asset": 0.15,
+        "price": 0.17,
+        "venue": 0.1,
+        "size": 0.1,
+        "risk_controls": 0.05,
+        "follow_up": 0.025,
+        "reasoning": 0.025
+      },
+      "synonyms": {
+        "intent": [
+          "action",
+          "execute",
+          "perform",
+          "do"
+        ],
+        "order_type": [
+          "execution_type",
+          "order_style",
+          "stop_loss"
+        ],
+        "price": [
+          "stop_price",
+          "trigger_price"
+        ],
+        "venue": [
+          "exchange",
+          "platform",
+          "protocol",
+          "network",
+          "blockchain"
+        ],
+        "risk_controls": [
+          "safety_measures",
+          "risk",
+          "controls",
+          "limits",
+          "parameters"
+        ],
+        "follow_up": [
+          "next_steps",
+          "additional_steps",
+          "further_actions"
+        ],
+        "reasoning": [
+          "justification",
+          "explanation",
+          "why",
+          "rationale"
+        ]
+      },
+      "pass_threshold": 0.7
+    },
+    {
+      "id": "twap_order",
+      "expected_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "duration",
+        "risk_controls",
+        "follow_up_description"
+      ],
+      "required_fields": [
+        "intent",
+        "order_type",
+        "asset",
+        "size",
+        "venue",
+        "duration"
+      ],
+      "field_weights": {
+        "intent": 0.15,
+        "order_type": 0.15,
+        "asset": 0.15,
+        "size": 0.12,
+        "venue": 0.1,
+        "duration": 0.2,
+        "risk_controls": 0.08,
+        "follow_up_description": 0.05
+      },
+      "synonyms": {
+        "intent": [
+          "sell",
+          "execute",
+          "trade"
+        ],
+        "order_type": [
+          "twap",
+          "time_weighted_average_price",
+          "time_weighted",
+          "twa"
+        ],
+        "asset": [
+          "eth",
+          "ethereum"
+        ],
+        "venue": [
+          "exchange",
+          "dex",
+          "cex",
+          "mainnet",
+          "onchain",
+          "on_chain",
+          "spot_market",
+          "dex_aggregator"
+        ],
+        "duration": [
+          "time",
+          "timeframe",
+          "window",
+          "period",
+          "interval",
+          "execution_time"
+        ]
+      },
+      "pass_threshold": 0.75
+    }
+  ],
+  "metadata": {
+    "total_rubrics": 26,
+    "rubric_ids": [
+      "arbitrage",
+      "cash_and_carry_arbitrage",
+      "concentrated_liquidity_il",
+      "cross_chain_bridge",
+      "dex_swap",
+      "execute_mev_defense",
+      "fixed_yield_allocation",
+      "futures_trade",
+      "lending_borrow",
+      "limit_buy",
+      "liquidity_provision",
+      "lp_net_return_analysis",
+      "market_buy",
+      "mev_protection_cost_benefit",
+      "mev_resilient_unwind",
+      "multi_protocol_yield_optimization",
+      "options_hedge",
+      "collar_min_cost",
+      "portfolio_efficiency_analysis",
+      "portfolio_rebalance",
+      "restaking_optimization",
+      "risk_adjusted_leverage",
+      "risk_parity_execution",
+      "risk_parity_rebalance",
+      "stop_loss",
+      "twap_order"
+    ],
+    "description": "Consolidated grading rubrics for schema benchmark - each rubric defines expected fields, weights, synonyms, and pass thresholds for scoring model responses",
+    "grading_approach": "score = weighted field sum, pass = score \u2265 pass_threshold, confidence from parse/coverage"
+  }
+}

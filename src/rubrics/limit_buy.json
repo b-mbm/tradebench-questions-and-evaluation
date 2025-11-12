@@ -1,0 +1,37 @@
+{
+  "id": "limit_buy",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "price",
+    "venue",
+    "risk_controls",
+    "follow_up",
+    "reasoning"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "size", "price", "venue"],
+  "field_weights": {
+    "intent": 0.18,
+    "order_type": 0.18,
+    "asset": 0.16,
+    "size": 0.14,
+    "price": 0.14,
+    "venue": 0.12,
+    "risk_controls": 0.04,
+    "follow_up": 0.02,
+    "reasoning": 0.02
+  },
+  "synonyms": {
+    "intent": ["action", "purchase", "acquire", "buy_limit", "execute", "perform", "do"],
+    "order_type": ["execution_type", "order_style", "limit", "limit_order", "pending_order"],
+    "venue": ["exchange", "platform", "protocol", "network", "blockchain"],
+    "price": ["limit_price", "target_price"],
+    "risk_controls": ["safety_measures", "risk", "controls", "limits", "parameters"],
+    "follow_up": ["next_steps", "additional_steps", "further_actions"],
+    "reasoning": ["justification", "explanation", "why", "rationale"]
+  },
+  "pass_threshold": 0.72
+}
+
