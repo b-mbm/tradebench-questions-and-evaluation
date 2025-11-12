@@ -18,10 +18,6 @@ on:
         description: "Result channel: community or official"
         required: false
         default: "community"
-      notify_email:
-        description: "Optional email to notify on completion"
-        required: false
-        default: ""
 
 jobs:
   smoke:
@@ -57,11 +53,3 @@ jobs:
           path: |
             results/${{ github.event.inputs.channel }}/*.json
             results/*.json
-      - name: Optional email notification
-        if: ${{ github.event.inputs.notify_email != '' }}
-        env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          RESEND_FROM: ${{ secrets.RESEND_FROM }}
-        run: |
-          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          npx tsx scripts/send-email.ts --to "${{ github.event.inputs.notify_email }}" --subject "Tradebench smoke completed: ${{ github.event.inputs.model_id }}" --text "Your smoke run has finished. View logs/artifact: ${RUN_URL}"
