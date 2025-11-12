@@ -59,7 +59,13 @@ npx tsx scripts/report-combined.ts results/combined-60q-all.json
 - `src/grading/schema-grader.ts` – normalized grading
 - `src/models/` – provider adapters + model roster
 - `src/utils/` – response sanitizer, pricing, etc.
+- `src/config/model-roster.json` – allowed model IDs (edit this to lock the set)
 - `results/` – output artifacts (git‑ignored)
+
+### Model roster (locking the list)
+- Default roster file: `src/config/model-roster.json` (preferred).
+- Override via env: set `MODEL_ROSTER=path/to/your-roster.json` (absolute or relative) in Actions inputs or locally.
+- Legacy path is still supported for back‑compat: `src/Trading Reasoning Round 4/Round-4-Extension-4/benchmark.json`.
 
 ## Notes
 - Keep this repo private; do not commit `.env` or results containing provider responses.

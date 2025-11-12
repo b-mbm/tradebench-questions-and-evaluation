@@ -35,15 +35,31 @@ export interface ExecuteOnePrompts {
 const DEFAULT_TEMPERATURE = 0.1;
 const DEFAULT_MAX_TOKENS = 2200;
 
-const BENCHMARK_PATH = path.join(
+// Roster resolution order (first existing wins):
+// 1) MODEL_ROSTER env (absolute or relative to cwd)
+// 2) repo-local default: src/config/model-roster.json
+// 3) legacy path kept for back-compat: Trading Reasoning Round 4/.../benchmark.json
+const DEFAULT_LOCAL_ROSTER = path.join(__dirname, '..', 'config', 'model-roster.json');
+const LEGACY_ROSTER = path.join(
   __dirname,
-  '..',
   '..',
   '..',
   'Trading Reasoning Round 4',
   'Round-4-Extension-4',
-  'benchmark.json'
+  'benchmark.json',
 );
+
+function resolveRosterPath(): string | null {
+  const fromEnv = (process.env.MODEL_ROSTER || '').trim();
+  const candidates = [fromEnv || null, DEFAULT_LOCAL_ROSTER, LEGACY_ROSTER].filter(Boolean) as string[];
+  for (const p of candidates) {
+    try {
+      const abs = path.isAbsolute(p) ? p : path.join(process.cwd(), p);
+      if (fs.existsSync(abs)) return abs;
+    } catch {}
+  }
+  return null;
+}
 
 const PROVIDER_ENV: Record<Provider, string> = {
   openai: 'OPENAI_API_KEY',
@@ -54,17 +70,23 @@ const PROVIDER_ENV: Record<Provider, string> = {
 };
 
 function readBenchmarkModels(): string[] {
+  const rosterPath = resolveRosterPath();
+  if (!rosterPath) {
+    console.warn('⚠️ No model roster found. Set MODEL_ROSTER or create src/config/model-roster.json.');
+    return [];
+  }
   try {
-    const payload = JSON.parse(fs.readFileSync(BENCHMARK_PATH, 'utf8'));
+    const payload = JSON.parse(fs.readFileSync(rosterPath, 'utf8'));
     if (!Array.isArray(payload.models)) {
-      console.warn('⚠️ No model list found in benchmark payload.');
+      console.warn(`⚠️ No model list found in roster file ${rosterPath}.`);
       return [];
+    }
+    if (rosterPath === LEGACY_ROSTER) {
+      console.warn(`ℹ️ Using legacy roster path (${rosterPath}); consider moving to src/config/model-roster.json or MODEL_ROSTER env.`);
     }
     return payload.models;
   } catch (error) {
-    console.warn(
-      `⚠️ Unable to load model roster from ${BENCHMARK_PATH}: ${error instanceof Error ? error.message : String(error)}`
-    );
+    console.warn(`⚠️ Unable to load model roster from ${rosterPath}: ${error instanceof Error ? error.message : String(error)}`);
     return [];
   }
 }
