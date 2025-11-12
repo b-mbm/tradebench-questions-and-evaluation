@@ -29,6 +29,9 @@ on:
 
 jobs:
   run:
+    concurrency:
+      group: eval-${{ github.event.inputs.model_id }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
