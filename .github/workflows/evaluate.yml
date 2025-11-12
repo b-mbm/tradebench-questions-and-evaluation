@@ -30,6 +30,10 @@ on:
         description: "Retry base delay (ms)"
         required: false
         default: "700"
+      notify_email:
+        description: "Optional email to notify on completion"
+        required: false
+        default: ""
 
 jobs:
   run:
@@ -67,3 +71,12 @@ jobs:
           path: |
             results/${{ github.event.inputs.channel }}/*.json
             results/*.json
+      - name: Optional email notification
+        if: ${{ github.event.inputs.notify_email != '' }}
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+        run: |
+          node --version
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          npx tsx scripts/send-email.ts --to "${{ github.event.inputs.notify_email }}" --subject "Tradebench run completed: ${{ github.event.inputs.model_id }}" --text "Your run has finished. View logs and download the artifact here: ${RUN_URL}"
