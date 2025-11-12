@@ -1,0 +1,35 @@
+name: Combine and Report (Official)
+
+on:
+  workflow_dispatch:
+    inputs:
+      out:
+        description: "Output JSON path"
+        required: false
+        default: "results/official-combined.json"
+      label:
+        description: "Combined label"
+        required: false
+        default: "official"
+
+jobs:
+  combine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Combine from manifest
+        run: |
+          npx tsx scripts/combine-from-manifest.ts results/official-manifest.json --out "${{ github.event.inputs.out }}" --label "${{ github.event.inputs.label }}"
+      - name: Report
+        run: |
+          npx tsx scripts/report-combined.ts "${{ github.event.inputs.out }}"
+      - name: Upload official summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-combined
+          path: |
+            ${{ github.event.inputs.out }}

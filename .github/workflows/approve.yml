@@ -1,0 +1,41 @@
+name: Approve Run (Promote to Official)
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_path:
+        description: "Path to community JSON to approve (e.g., results/community/60q-gpt4o-....json)"
+        required: true
+      dest_name:
+        description: "Optional filename under results/official/"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Promote file
+        run: |
+          DEST_ARG=""
+          if [ -n "${{ github.event.inputs.dest_name }}" ]; then DEST_ARG="--dest-name ${{ github.event.inputs.dest_name }}"; fi
+          npx tsx scripts/approve-run.ts --source "${{ github.event.inputs.source_path }}" $DEST_ARG
+      - name: Commit and push
+        run: |
+          if git status --porcelain | grep .; then
+            git config user.name "tradebench-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add results/official results/official-manifest.json
+            git commit -m "chore: approve ${{ github.event.inputs.source_path }}"
+            git push
+          else
+            echo "No changes to commit."
+          fi

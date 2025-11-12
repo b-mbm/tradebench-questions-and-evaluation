@@ -23,6 +23,7 @@ type CliArgs = {
   label?: string;
   filePrefix?: string;
   noCall?: boolean;
+  dryRun?: boolean;
   out?: string;
 };
 
@@ -39,6 +40,8 @@ function parseArgs(argv: string[]): CliArgs {
       args.filePrefix = argv[++i];
     } else if (token === "--no-call") {
       args.noCall = true;
+    } else if (token === "--dry-run") {
+      args.dryRun = true;
     } else if (token === "--out") {
       args.out = argv[++i];
     }
@@ -222,6 +225,16 @@ async function run(): Promise<void> {
 
   console.log(`✨ Running ${questions.length} questions across ${models.length} model(s)`);
   console.log(`Label: ${label}`);
+
+  if (args.dryRun) {
+    console.log("Dry run requested (--dry-run). No API calls will be made.");
+    console.log("Models:");
+    models.forEach(m => console.log(` - ${m.id}`));
+    console.log("Questions:");
+    questions.forEach(q => console.log(` - ${q.id}`));
+    console.log("Use --no-call for a scaffolding pass that exercises grading without hitting providers.");
+    return;
+  }
 
   for (const [mi, model] of models.entries()) {
     if (mi > 0 && modelSpacingMs > 0) {

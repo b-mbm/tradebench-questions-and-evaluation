@@ -26,7 +26,11 @@ Knobs (env):
 - `RETRY_ATTEMPTS` retries for transient errors (429/503/timeout/blank)
 - `RETRY_BASE_DELAY_MS` base backoff for retries
 
-Outputs land in `results/`.
+Outputs land in `results/<channel>/` (defaults to `community`; set `OUTPUT_SUBDIR=official` for maintainer runs).
+
+### Dry runs vs no-call
+- `--dry-run`: prints the plan (models + questions) and exits. No files written, zero API calls.
+- `--no-call`: executes the harness, graders, and file writing but deliberately does not contact providers (scaffolding sanity check).
 
 ## Repair Passes (runtime failures only)
 Re‑run specific question IDs for a model and merge back:
@@ -48,9 +52,19 @@ npx tsx scripts/combine-results.ts results/60q-*.json --label combined-all --out
 npx tsx scripts/report-combined.ts results/combined-60q-all.json
 ```
 
+### Official combine (via manifest)
+After approving runs, use the manifest-aware helper:
+
+```bash
+npx tsx scripts/combine-from-manifest.ts results/official-manifest.json --out results/official-combined.json --label official
+npx tsx scripts/report-combined.ts results/official-combined.json
+```
+
 ## GitHub Actions (workflow_dispatch)
 - Configure Actions secrets for the providers you plan to use.
 - Trigger the `Evaluate 60Q` workflow manually with a `model_id`.
+- Use `Evaluate Smoke (subset)` for 2–3 question probes or scaffolding (`no_call=true`).
+- Promote a reviewed community run via `Approve Run`, then refresh the leaderboard with `Combine and Report (Official)`.
 
 ## Layout
 - `scripts/` – runner/repair/combine/report utilities
@@ -60,6 +74,8 @@ npx tsx scripts/report-combined.ts results/combined-60q-all.json
 - `src/models/` – provider adapters + model roster
 - `src/utils/` – response sanitizer, pricing, etc.
 - `src/config/model-roster.json` – allowed model IDs (edit this to lock the set)
+- `results/official/` – approved artifacts that back the public leaderboard
+- `results/official-manifest.json` – mapping of model IDs → approved files
 - `results/` – output artifacts (git‑ignored)
 
 ### Model roster (locking the list)
