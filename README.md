@@ -11,6 +11,7 @@ A minimal, self‑contained runner to execute the private 60‑question schema s
    - `GOOGLE_API_KEY=...`
    - `GROQ_API_KEY=...`
    - `OPENROUTER_API_KEY=...`
+   - Optional (for email notifications): `RESEND_API_KEY`, `RESEND_FROM`
 3. Install deps: `npm install`
 4. Run a single model (example):
 
@@ -86,3 +87,18 @@ npx tsx scripts/report-combined.ts results/official-combined.json
 ## Notes
 - Keep this repo private; do not commit `.env` or results containing provider responses.
 - Use `--no-call` only for scaffolding checks; it does not exercise rate limits.
+
+## Approvals & Publishing Workflow
+
+1. **Community run** – every `/submit` dispatch hits `Evaluate Smoke` (optional) and/or `Evaluate 60Q` with `channel=community`.
+2. **Review + Approve** – once you trust a run:
+   - Use `Approve Run (Promote to Official)` if the JSON already exists locally/committed.
+   - Use `Approve From Run (Auto-download)` to pull the artifact by `run_id`, copy it into `results/official/`, and update the manifest.
+3. **Publish official data** – `Publish Official Leaderboard` workflow clones the website repo, drops `results/official-combined.json`, commits, and (optionally) pings your Vercel deploy hook. This workflow also runs automatically at the end of `Approve From Run`.
+
+### Required secrets (GitHub Actions)
+- Provider keys: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, `GROQ_API_KEY`, `OPENROUTER_API_KEY`
+- Email notifications (optional): `RESEND_API_KEY`, `RESEND_FROM`
+- Website publishing:
+  - `WEBSITE_REPO_PAT` – PAT with write access to the website repo (used by `publish-official.yml`)
+  - `VERCEL_DEPLOY_HOOK` – optional hook URL to trigger a redeploy when official data updates

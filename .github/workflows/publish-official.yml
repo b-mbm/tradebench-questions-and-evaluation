@@ -1,0 +1,97 @@
+name: Publish Official Leaderboard
+
+on:
+  workflow_call:
+    inputs:
+      website_repo:
+        description: "owner/repo of the website"
+        required: false
+        type: string
+        default: "b-mbm/Tradebench-lite-full-test"
+      website_branch:
+        description: "Branch to update"
+        required: false
+        type: string
+        default: "main"
+      website_path:
+        description: "Path inside website repo for the JSON"
+        required: false
+        type: string
+        default: "results/official-combined.json"
+      deploy_hook_url:
+        description: "Optional Vercel deploy hook URL"
+        required: false
+        type: string
+        default: ""
+    secrets:
+      WEBSITE_REPO_PAT:
+        required: true
+      VERCEL_DEPLOY_HOOK:
+        required: false
+  workflow_dispatch:
+    inputs:
+      website_repo:
+        description: "owner/repo of the website"
+        required: false
+        default: "b-mbm/Tradebench-lite-full-test"
+      website_branch:
+        description: "Branch to update"
+        required: false
+        default: "main"
+      website_path:
+        description: "Path inside website repo for the JSON"
+        required: false
+        default: "results/official-combined.json"
+      deploy_hook_url:
+        description: "Optional Vercel deploy hook URL"
+        required: false
+        default: ""
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      WEBSITE_REPO: ${{ inputs.website_repo }}
+      WEBSITE_BRANCH: ${{ inputs.website_branch }}
+      WEBSITE_PATH: ${{ inputs.website_path }}
+      DEPLOY_HOOK_INPUT: ${{ inputs.deploy_hook_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Build official combined file
+        run: |
+          npx tsx scripts/combine-from-manifest.ts results/official-manifest.json --out results/official-combined.json --label official
+      - name: Clone website repo
+        env:
+          PAT: ${{ secrets.WEBSITE_REPO_PAT || secrets.WEBSITE_REPO_PAT }}
+        run: |
+          set -euo pipefail
+          rm -rf website
+          git clone --depth 1 --branch "$WEBSITE_BRANCH" "https://x-access-token:${PAT}@github.com/${WEBSITE_REPO}.git" website
+      - name: Copy JSON into website repo
+        run: |
+          set -euo pipefail
+          mkdir -p "website/$(dirname "$WEBSITE_PATH")"
+          cp results/official-combined.json "website/$WEBSITE_PATH"
+      - name: Commit and push website update
+        working-directory: website
+        run: |
+          set -euo pipefail
+          if git status --porcelain; then
+            git config user.name "tradebench-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add "$WEBSITE_PATH"
+            git commit -m "chore: update official leaderboard" && git push origin "$WEBSITE_BRANCH"
+          else
+            echo "No changes to push."
+          fi
+      - name: Trigger Vercel deploy (optional)
+        if: ${{ env.DEPLOY_HOOK_INPUT != '' || secrets.VERCEL_DEPLOY_HOOK != '' }}
+        env:
+          HOOK: ${{ env.DEPLOY_HOOK_INPUT != '' && env.DEPLOY_HOOK_INPUT || secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          set -euo pipefail
+          curl -fsSL -X POST "$HOOK"
