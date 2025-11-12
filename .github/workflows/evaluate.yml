@@ -6,6 +6,10 @@ on:
       model_id:
         description: "Model ID (e.g., claude-sonnet-4-5-20250929)"
         required: true
+      channel:
+        description: "Result channel: community or official"
+        required: false
+        default: "community"
       label:
         description: "Label prefix for output files"
         required: false
@@ -48,6 +52,7 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           MODEL_IDS: ${{ github.event.inputs.model_id }}
+          OUTPUT_SUBDIR: ${{ github.event.inputs.channel }}
           CALL_SPACING_MS: ${{ github.event.inputs.call_spacing_ms }}
           MODEL_SPACING_MS: ${{ github.event.inputs.model_spacing_ms }}
           RETRY_ATTEMPTS: ${{ github.event.inputs.retry_attempts }}
@@ -58,5 +63,7 @@ jobs:
       - name: Upload results artifact
         uses: actions/upload-artifact@v4
         with:
-          name: results-${{ github.event.inputs.label }}
-          path: results/*.json
+          name: results-${{ github.event.inputs.channel }}-${{ github.event.inputs.label }}
+          path: |
+            results/${{ github.event.inputs.channel }}/*.json
+            results/*.json

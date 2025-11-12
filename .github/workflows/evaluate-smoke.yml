@@ -1,0 +1,56 @@
+name: Evaluate Smoke (subset)
+
+on:
+  workflow_dispatch:
+    inputs:
+      model_id:
+        description: "Model ID (from roster)"
+        required: true
+      ids:
+        description: "Comma-separated QIDs (e.g., L1-001,L1-002)"
+        required: false
+        default: "L1-001,L1-002"
+      no_call:
+        description: "Dry run (no provider calls)"
+        required: false
+        default: "false"
+      channel:
+        description: "Result channel: community or official"
+        required: false
+        default: "community"
+
+jobs:
+  smoke:
+    concurrency:
+      group: smoke-${{ github.event.inputs.model_id }}
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Run smoke subset
+        env:
+          NODE_OPTIONS: -r dotenv/config
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          MODEL_IDS: ${{ github.event.inputs.model_id }}
+          OUTPUT_SUBDIR: ${{ github.event.inputs.channel }}
+        run: |
+          mkdir -p results
+          EXTRA=""
+          if [ "${{ github.event.inputs.no_call }}" = "true" ]; then EXTRA="--no-call"; fi
+          npx tsx scripts/run-60q.ts --ids "${{ github.event.inputs.ids }}" --label "smoke-${{ github.event.inputs.model_id }}" --file-prefix "smoke-${{ github.event.inputs.model_id }}" $EXTRA
+      - name: Upload smoke artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-${{ github.event.inputs.channel }}-${{ github.event.inputs.model_id }}
+          path: |
+            results/${{ github.event.inputs.channel }}/*.json
+            results/*.json
+

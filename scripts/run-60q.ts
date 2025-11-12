@@ -46,8 +46,11 @@ function parseArgs(argv: string[]): CliArgs {
   return args;
 }
 
-// In this repo, results are written to ./results
-const OUTPUT_DIR = path.join(process.cwd(), "results");
+// In this repo, results are written to ./results or a subfolder
+const OUTPUT_SUBDIR = (process.env.OUTPUT_SUBDIR || "").trim();
+const OUTPUT_DIR = OUTPUT_SUBDIR
+  ? path.join(process.cwd(), "results", OUTPUT_SUBDIR)
+  : path.join(process.cwd(), "results");
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 const delay = (ms: number): Promise<void> => new Promise(res => setTimeout(res, ms));
