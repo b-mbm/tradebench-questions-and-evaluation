@@ -54,11 +54,19 @@ npx tsx scripts/report-combined.ts results/combined-60q-all.json
 ```
 
 ### Official combine (via manifest)
-After approving runs, use the manifest-aware helper:
+After approving runs, use the manifest-aware helper (private):
 
 ```bash
 npx tsx scripts/combine-from-manifest.ts results/official-manifest.json --out results/official-combined.json --label official
 npx tsx scripts/report-combined.ts results/official-combined.json
+
+### Publish sanitized website data
+Build a public summary and push to your website repo:
+
+```bash
+npx tsx scripts/make-public-summary.ts --in results/official-combined.json --out results/site-current.json --suite r5e1-60q
+```
+Then run the `Publish Official Leaderboard` workflow to copy that sanitized JSON to the website repo at `public/data/current.json` (or the path you configure) and optionally trigger a Vercel deploy.
 ```
 
 ## GitHub Actions (workflow_dispatch)

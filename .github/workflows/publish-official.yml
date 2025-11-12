@@ -64,6 +64,7 @@ jobs:
       - name: Build official combined file
         run: |
           npx tsx scripts/combine-from-manifest.ts results/official-manifest.json --out results/official-combined.json --label official
+          npx tsx scripts/make-public-summary.ts --in results/official-combined.json --out results/site-current.json --suite r5e1-60q
       - name: Clone website repo
         env:
           PAT: ${{ secrets.WEBSITE_REPO_PAT || secrets.WEBSITE_REPO_PAT }}
@@ -75,7 +76,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "website/$(dirname "$WEBSITE_PATH")"
-          cp results/official-combined.json "website/$WEBSITE_PATH"
+          cp results/site-current.json "website/$WEBSITE_PATH"
       - name: Commit and push website update
         working-directory: website
         run: |
