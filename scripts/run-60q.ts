@@ -12,17 +12,18 @@ import {
   type ExecuteOneCallOptions,
   type ModelConfig,
   type Provider,
-} from "../../src/models/model-runner";
-import { SCHEMA_QUESTIONS } from "../../src/questions/schema-questions";
-import { loadRubric } from "../../src/rubrics/loader";
-import { gradeSchemaResponse } from "../../src/grading/schema-grader";
-import type { GradeResult } from "../../src/types/schema";
+} from "../src/models/model-runner";
+import { SCHEMA_QUESTIONS } from "../src/questions/schema-questions";
+import { loadRubric } from "../src/rubrics/loader";
+import { gradeSchemaResponse } from "../src/grading/schema-grader";
+import type { GradeResult } from "../src/types/schema";
 
 type CliArgs = {
   ids?: string[];
   label?: string;
   filePrefix?: string;
   noCall?: boolean;
+  out?: string;
 };
 
 function parseArgs(argv: string[]): CliArgs {
@@ -38,12 +39,15 @@ function parseArgs(argv: string[]): CliArgs {
       args.filePrefix = argv[++i];
     } else if (token === "--no-call") {
       args.noCall = true;
+    } else if (token === "--out") {
+      args.out = argv[++i];
     }
   }
   return args;
 }
 
-const OUTPUT_DIR = path.join(process.cwd(), "Tradebench-lite-full-test", "results");
+// In this repo, results are written to ./results
+const OUTPUT_DIR = path.join(process.cwd(), "results");
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 const delay = (ms: number): Promise<void> => new Promise(res => setTimeout(res, ms));
@@ -251,9 +255,37 @@ async function run(): Promise<void> {
   };
 
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-  const outPath = path.join(OUTPUT_DIR, `${filePrefix}-${timestamp}.json`);
+  const outPath = args.out
+    ? path.isAbsolute(args.out) ? args.out : path.join(process.cwd(), args.out)
+    : path.join(OUTPUT_DIR, `${filePrefix}-${timestamp}.json`);
   fs.writeFileSync(outPath, JSON.stringify(payload, null, 2));
   console.log(`\n✅ Results written to ${outPath}`);
+  console.log(`RESULT_FILE=${outPath}`);
+
+  // Optional: auto-merge repair results back into a base file in-place
+  // Enable by setting MERGE_INTO_BASE=/path/to/base.json (only recommended for --ids runs)
+  const mergeTarget = (process.env.MERGE_INTO_BASE || "").trim();
+  if (mergeTarget) {
+    try {
+      if (!fs.existsSync(mergeTarget)) {
+        console.warn(`⚠️ MERGE_INTO_BASE not found: ${mergeTarget}`);
+      } else {
+        const base = JSON.parse(fs.readFileSync(mergeTarget, "utf8"));
+        const repairs = JSON.parse(fs.readFileSync(outPath, "utf8"));
+        const key = (r: any) => `${r.modelId}::${r.questionId}`;
+        const map = new Map<string, any>();
+        for (const r of base.evaluations || []) map.set(key(r), r);
+        for (const r of repairs.evaluations || []) map.set(key(r), r);
+        const merged = { ...base, evaluations: Array.from(map.values()) };
+        const bak = mergeTarget.replace(/\.json$/i, `.bak-${timestamp}.json`);
+        fs.copyFileSync(mergeTarget, bak);
+        fs.writeFileSync(mergeTarget, JSON.stringify(merged, null, 2));
+        console.log(`🧩 Auto-merged repairs into ${mergeTarget} (backup: ${bak})`);
+      }
+    } catch (e) {
+      console.warn(`⚠️ Auto-merge failed: ${e instanceof Error ? e.message : String(e)}`);
+    }
+  }
 }
 
 run().catch(err => {

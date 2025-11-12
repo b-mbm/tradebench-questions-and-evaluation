@@ -12,7 +12,7 @@ function parseArgs(argv: string[]) {
     else inputs.push(t);
   }
   if (!inputs.length || !args.out) {
-    console.error("Usage: npx tsx Tradebench-lite-full-test/scripts/combine-results.ts <file1.json> [file2.json..] --label <label> --out <out.json>");
+    console.error("Usage: npx tsx scripts/combine-results.ts <file1.json> [file2.json..] --label <label> --out <out.json>");
     process.exit(1);
   }
   return { inputs, label: args.label || "combined", out: args.out };
@@ -48,4 +48,3 @@ run().catch(err => {
   console.error("❌ combine-results failed:", err);
   process.exit(1);
 });
-

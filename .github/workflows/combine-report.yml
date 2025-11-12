@@ -1,0 +1,40 @@
+name: Combine and Report
+
+on:
+  workflow_dispatch:
+    inputs:
+      glob:
+        description: "Glob of result files to combine (default: results/60q-*.json)"
+        required: false
+        default: "results/60q-*.json"
+      out:
+        description: "Output combined JSON path"
+        required: false
+        default: "results/combined-60q-all.json"
+
+jobs:
+  combine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Combine
+        run: |
+          mkdir -p results
+          FILES=$(ls ${{ github.event.inputs.glob }})
+          echo "Combining: $FILES"
+          npx tsx scripts/combine-results.ts $FILES --label combined-all --out "${{ github.event.inputs.out }}"
+      - name: Report
+        run: |
+          npx tsx scripts/report-combined.ts "${{ github.event.inputs.out }}"
+      - name: Upload combined artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: combined-60q
+          path: |
+            ${{ github.event.inputs.out }}
+            results/*.csv
+

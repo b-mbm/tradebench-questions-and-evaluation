@@ -5,7 +5,7 @@ import fs from "fs";
 type EvalRow = { modelId: string; questionId: string; grade?: { pass: boolean; score: number; confidence: number } };
 
 function usage() {
-  console.error("Usage: npx tsx Tradebench-lite-full-test/scripts/report-combined.ts <combined.json>");
+  console.error("Usage: npx tsx scripts/report-combined.ts <combined.json>");
 }
 
 function loadJson(p: string): any {
@@ -47,4 +47,3 @@ run().catch(err => {
   console.error("❌ report-combined failed:", err);
   process.exit(1);
 });
-
