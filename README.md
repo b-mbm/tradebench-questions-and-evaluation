@@ -11,6 +11,7 @@ A minimal, self‑contained runner to execute the private 60‑question schema s
    - `GOOGLE_API_KEY=...`
    - `GROQ_API_KEY=...`
    - `OPENROUTER_API_KEY=...`
+   - Optional (for email notifications the runner sends on your behalf): `RESEND_API_KEY`, `RESEND_FROM`
 3. Install deps: `npm install`
 4. Run a single model (example):
 
@@ -97,6 +98,7 @@ npx tsx scripts/report-combined.ts results/official-combined.json
 
 ### Required secrets (GitHub Actions)
 - Provider keys: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, `GROQ_API_KEY`, `OPENROUTER_API_KEY`
+- Optional email notifications (still using your key, never the user's): `RESEND_API_KEY`, `RESEND_FROM`
 - Website publishing:
   - `WEBSITE_REPO_PAT` – PAT with write access to the website repo (used by `publish-official.yml`)
   - `VERCEL_DEPLOY_HOOK` – optional hook URL to trigger a redeploy when official data updates
