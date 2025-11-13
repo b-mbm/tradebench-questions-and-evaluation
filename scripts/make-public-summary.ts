@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 
 type Grade = { pass?: boolean; score?: number };
-type EvalRow = { modelId: string; questionId: string; grade?: Grade };
+type EvalRow = { modelId: string; questionId: string; grade?: Grade; durationMs?: number };
 
 function usage() {
   console.error(
@@ -40,15 +40,28 @@ async function main() {
   const rows: EvalRow[] = combined.evaluations || [];
 
   // Aggregate per model
-  const models = new Map<string, { total: number; passed: number; scoreSum: number; byLevel: Record<string, { total: number; passed: number }> }>();
+const models = new Map<string, {
+  total: number;
+  passed: number;
+  scoreSum: number;
+  durationSum: number;
+  samples: number;
+  byLevel: Record<string, { total: number; passed: number }>;
+}>();
   for (const r of rows) {
     if (!r || !r.modelId || !r.questionId) continue;
     const level = levelFromQid(r.questionId);
     const g = r.grade || { pass: false, score: 0 };
-    const m = models.get(r.modelId) || { total: 0, passed: 0, scoreSum: 0, byLevel: {} };
+    const m =
+      models.get(r.modelId) ||
+      { total: 0, passed: 0, scoreSum: 0, durationSum: 0, samples: 0, byLevel: {} };
     m.total += 1;
     if (g.pass) m.passed += 1;
     m.scoreSum += Number(g.score || 0);
+    if (typeof r.durationMs === "number") {
+      m.durationSum += r.durationMs;
+      m.samples += 1;
+    }
     const bl = m.byLevel[level] || { total: 0, passed: 0 };
     bl.total += 1;
     if (g.pass) bl.passed += 1;
@@ -66,6 +79,7 @@ async function main() {
       passed: m.passed,
       passRate: m.total ? m.passed / m.total : 0,
       avgScore: m.total ? m.scoreSum / m.total : 0,
+      avgTimeMs: m.samples ? m.durationSum / m.samples : null,
       byLevel: m.byLevel,
     })),
   };
@@ -79,4 +93,3 @@ main().catch(err => {
   console.error("❌ make-public-summary failed:", err);
   process.exit(1);
 });
-
