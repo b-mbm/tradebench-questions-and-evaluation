@@ -63,10 +63,24 @@ async function main() {
   zip.extractAllTo(tmpDir, true);
 
   // Find a JSON file inside
-  const files = fs.readdirSync(tmpDir).filter(f => f.endsWith(".json"));
-  if (!files.length) throw new Error("No JSON found inside artifact");
-  const chosen = files[0];
-  const srcPath = path.join(tmpDir, chosen);
+  function findJsonFiles(dir: string): string[] {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    const found: string[] = [];
+    for (const entry of entries) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        found.push(...findJsonFiles(full));
+      } else if (entry.isFile() && entry.name.endsWith(".json")) {
+        found.push(full);
+      }
+    }
+    return found;
+  }
+
+  const jsonFiles = findJsonFiles(tmpDir);
+  if (!jsonFiles.length) throw new Error("No JSON found inside artifact");
+  const preferred = jsonFiles.find(p => p.includes("community")) || jsonFiles[0];
+  const srcPath = preferred;
 
   // Place it under results/community for traceability
   const communityDir = path.join(process.cwd(), "results", "community");
@@ -88,4 +102,3 @@ main().catch(err => {
   console.error("❌ approve-from-run failed:", err);
   process.exit(1);
 });
-
