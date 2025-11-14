@@ -100,26 +100,3 @@ jobs:
           else
             echo "No deploy hook configured; skipping."
           fi
-      - name: Deploy via Vercel CLI (fallback if token provided)
-        working-directory: website
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-        run: |
-          set -euo pipefail
-          if [ -n "${VERCEL_TOKEN:-}" ] && [ -n "${VERCEL_PROJECT_ID:-}" ] && [ -n "${VERCEL_ORG_ID:-}" ]; then
-            echo "Deploying with Vercel CLI"
-            npm i -g vercel
-            set +e
-            vercel pull --yes --environment=production --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
-            PULL_STATUS=$?
-            vercel deploy --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
-            DEPLOY_STATUS=$?
-            set -e
-            if [ "$PULL_STATUS" -ne 0 ] || [ "$DEPLOY_STATUS" -ne 0 ]; then
-              echo "::warning::Vercel CLI deploy failed (pull=$PULL_STATUS deploy=$DEPLOY_STATUS). Site may still update via deploy hook."
-            fi
-          else
-            echo "CLI secrets not set; skipping CLI deploy."
-          fi
