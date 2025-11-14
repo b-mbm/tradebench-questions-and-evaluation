@@ -85,7 +85,8 @@ async function main() {
   // Place it under results/community for traceability
   const communityDir = path.join(process.cwd(), "results", "community");
   fs.mkdirSync(communityDir, { recursive: true });
-  const destCommunity = path.join(communityDir, args.destName || chosen);
+  const baseName = args.destName || path.basename(srcPath);
+  const destCommunity = path.join(communityDir, baseName);
   fs.copyFileSync(srcPath, destCommunity);
 
   // Call approve-run to copy to official and update manifest
