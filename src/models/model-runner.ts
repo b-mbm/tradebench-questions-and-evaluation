@@ -99,6 +99,9 @@ function inferProvider(modelId: string): Provider {
   if (modelId === 'moonshotai/kimi-k2-thinking') {
     return 'openrouter';
   }
+  if (modelId.startsWith('x-ai/')) {
+    return 'openrouter';
+  }
   if (modelId.startsWith('gpt-5') || modelId.startsWith('gpt-4') || modelId.startsWith('gpt-4o') || modelId.startsWith('o')) {
     return 'openai';
   }
