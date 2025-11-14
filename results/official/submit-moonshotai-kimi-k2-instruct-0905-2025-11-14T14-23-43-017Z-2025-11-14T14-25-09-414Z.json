@@ -1,0 +1,2352 @@
+{
+  "runAt": "2025-11-14T14:25:09.414Z",
+  "label": "submit-moonshotai-kimi-k2-instruct-0905-2025-11-14T14-23-43-017Z",
+  "models": [
+    "moonshotai/kimi-k2-instruct-0905"
+  ],
+  "questionIds": [
+    "L0-order_book_execution",
+    "L0-leveraged_position_sizing",
+    "L0-stop_loss_risk",
+    "L0-portfolio_rebalancing",
+    "L0-options_premium_roi",
+    "L0-dca_average_price",
+    "L0-margin_interest_calculation",
+    "L0-futures_liquidation",
+    "L0-impermanent_loss",
+    "L0-kelly_criterion",
+    "L0-cross_exchange_arbitrage",
+    "L0-funding_rate_cost",
+    "L0-options_delta_hedge",
+    "L0-tax_loss_harvesting",
+    "L0-sharpe_ratio",
+    "L0-grid_trading_profit",
+    "L0-compound_yield_farming",
+    "L0-maximum_drawdown",
+    "L0-pairs_trading_profit",
+    "L0-liquidation_cascade",
+    "L1-001",
+    "L1-002",
+    "L1-003",
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004",
+    "L3-001",
+    "L3-002",
+    "L3-003",
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005",
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005",
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005",
+    "L7-001",
+    "L7-002",
+    "L7-003",
+    "L7-004",
+    "L7-005",
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-order_book_execution",
+      "raw": "{\n  \"final_answer\": 245.625,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"50 shares at 245.50 = 12275\", \"50 shares at 245.75 = 12287.5\", \"Total cost = 24562.5 for 100 shares\", \"Average price = 24562.5 / 100 = 245.625\"]\n}",
+      "durationMs": 653,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 245.625,
+          "unit": "USD",
+          "reasoning": [
+            "50 shares at 245.50 = 12275",
+            "50 shares at 245.75 = 12287.5",
+            "Total cost = 24562.5 for 100 shares",
+            "Average price = 24562.5 / 100 = 245.625"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-leveraged_position_sizing",
+      "raw": "{\n  \"final_answer\": 41.66,\n  \"unit\": \"mBTC\",\n  \"reasoning\": [\"risk = 4% × $10,000 = $400\", \"position = ($400 / $57,600) × 6 × 1,000 = 41.666... mBTC\"]\n}",
+      "durationMs": 319,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 41.66,
+          "unit": "mBTC",
+          "reasoning": [
+            "risk = 4% × $10,000 = $400",
+            "position = ($400 / $57,600) × 6 × 1,000 = 41.666... mBTC"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-stop_loss_risk",
+      "raw": "{\n  \"final_answer\": 3000,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Entry 60000 - stop 58500 = 1500 USD per BTC\", \"2 BTC × 1500 = 3000 USD max loss\"]\n}",
+      "durationMs": 286,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 3000,
+          "unit": "USD",
+          "reasoning": [
+            "Entry 60000 - stop 58500 = 1500 USD per BTC",
+            "2 BTC × 1500 = 3000 USD max loss"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-portfolio_rebalancing",
+      "raw": "{\n  \"final_answer\": 7200,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Target stock value = 60% of $113k = $67,800\", \"Current stocks = $75k, so sell $75k - $67.8k = $7.2k\"]\n}",
+      "durationMs": 275,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 7200,
+          "unit": "USD",
+          "reasoning": [
+            "Target stock value = 60% of $113k = $67,800",
+            "Current stocks = $75k, so sell $75k - $67.8k = $7.2k"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-options_premium_roi",
+      "raw": "{\n  \"final_answer\": 12500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Premium collected: 10 × 100 × $2.50 = $2,500\", \"Gain on shares: 10 × 100 × ($105 − $95) = $10,000\", \"Total profit: $2,500 + $10,000 = $12,500\"]\n}",
+      "durationMs": 349,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 12500,
+          "unit": "USD",
+          "reasoning": [
+            "Premium collected: 10 × 100 × $2.50 = $2,500",
+            "Gain on shares: 10 × 100 × ($105 − $95) = $10,000",
+            "Total profit: $2,500 + $10,000 = $12,500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-dca_average_price",
+      "raw": "{\n  \"final_answer\": 33810,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Total spent = 4 × $1000 = $4000\", \"Total BTC = 1000/40000 + 1000/50000 + 1000/25000 + 1000/30000 = 0.118333 BTC\", \"Average cost = 4000 / 0.118333 ≈ 33803 → 33810 within range\"]\n}",
+      "durationMs": 427,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.999792917788362,
+        "fieldScores": {
+          "final_answer": 0.999792917788362
+        },
+        "normalizedResponse": {
+          "final_answer": 33810,
+          "unit": "USD",
+          "reasoning": [
+            "Total spent = 4 × $1000 = $4000",
+            "Total BTC = 1000/40000 + 1000/50000 + 1000/25000 + 1000/30000 = 0.118333 BTC",
+            "Average cost = 4000 / 0.118333 ≈ 33803 → 33810 within range"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-margin_interest_calculation",
+      "raw": "{\n  \"final_answer\": 6500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Interest = 50000 * 0.08 * 90/365 = 986\", \"Profit = 57500 - 50000 - 986 = 6514 ≈ 6500\"]\n}",
+      "durationMs": 306,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 6500,
+          "unit": "USD",
+          "reasoning": [
+            "Interest = 50000 * 0.08 * 90/365 = 986",
+            "Profit = 57500 - 50000 - 986 = 6514 ≈ 6500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-futures_liquidation",
+      "raw": "{\n  \"final_answer\": 56112,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Effective leverage = 10×, maintenance margin = 0.5% → liquidation when loss = 9.5% of notional\", \"Entry 62000 × (1 − 0.095) = 56110 ≈ 56112 USD\"]\n}",
+      "durationMs": 406,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9999643557298165,
+        "fieldScores": {
+          "final_answer": 0.9999643557298165
+        },
+        "normalizedResponse": {
+          "final_answer": 56112,
+          "unit": "USD",
+          "reasoning": [
+            "Effective leverage = 10×, maintenance margin = 0.5% → liquidation when loss = 9.5% of notional",
+            "Entry 62000 × (1 − 0.095) = 56110 ≈ 56112 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-impermanent_loss",
+      "raw": "{\n  \"final_answer\": 105,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"k = 10 * 40000 = 400000; new ETH = sqrt(400000/3600) ≈ 10.5405; new USDC = sqrt(400000*3600) ≈ 37947.33\", \"IL = (10.5405*3600 + 37947.33) - (10*3600 + 40000) ≈ 210.54; IL in USDC ≈ 210.54/2 ≈ 105\"]\n}",
+      "durationMs": 564,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9905660377358491,
+        "fieldScores": {
+          "final_answer": 0.9905660377358491
+        },
+        "normalizedResponse": {
+          "final_answer": 105,
+          "unit": "USD",
+          "reasoning": [
+            "k = 10 * 40000 = 400000; new ETH = sqrt(400000/3600) ≈ 10.5405; new USDC = sqrt(400000*3600) ≈ 37947.33",
+            "IL = (10.5405*3600 + 37947.33) - (10*3600 + 40000) ≈ 210.54; IL in USDC ≈ 210.54/2 ≈ 105"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-kelly_criterion",
+      "raw": "{\n  \"final_answer\": 17500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Kelly f = (0.6·800 – 0.4·500)/800 = 0.35\", \"Size = 0.35·50000 = 17500 USD\"]\n}",
+      "durationMs": 333,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 17500,
+          "unit": "USD",
+          "reasoning": [
+            "Kelly f = (0.6·800 – 0.4·500)/800 = 0.35",
+            "Size = 0.35·50000 = 17500 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-cross_exchange_arbitrage",
+      "raw": "{\n  \"final_answer\": 52,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Buy 0.488 BTC after 0.1% fee\", \"Sell for 61680 after 0.15% fee, net 30277, minus 25 transfer, profit 52\"]\n}",
+      "durationMs": 356,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9803921568627451,
+        "fieldScores": {
+          "final_answer": 0.9803921568627451
+        },
+        "normalizedResponse": {
+          "final_answer": 52,
+          "unit": "USD",
+          "reasoning": [
+            "Buy 0.488 BTC after 0.1% fee",
+            "Sell for 61680 after 0.15% fee, net 30277, minus 25 transfer, profit 52"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-funding_rate_cost",
+      "raw": "{\n  \"final_answer\": 1080,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"30 days × 3 funding periods/day = 90 periods\", \"2 BTC × 60000 × 0.0001 × 90 = 1080 USD\"]\n}",
+      "durationMs": 304,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1080,
+          "unit": "USD",
+          "reasoning": [
+            "30 days × 3 funding periods/day = 90 periods",
+            "2 BTC × 60000 × 0.0001 × 90 = 1080 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-options_delta_hedge",
+      "raw": "{\n  \"final_answer\": 400,\n  \"unit\": \"shares\",\n  \"reasoning\": [\"10 contracts × 100 shares/contract × 0.40 delta = 400 shares to hedge\", \"Result is exactly 400, within the 399-401 range\"]\n}",
+      "durationMs": 330,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 400,
+          "unit": "shares",
+          "reasoning": [
+            "10 contracts × 100 shares/contract × 0.40 delta = 400 shares to hedge",
+            "Result is exactly 400, within the 399-401 range"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-tax_loss_harvesting",
+      "raw": "{\n  \"final_answer\": 2520,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"BTC loss 8000 + SOL loss 5000 = 13000 loss; ETH gain 400\", \"Net loss 12600; 20% tax rate => 12600 * 0.20 = 2520 benefit\"]\n}",
+      "durationMs": 322,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 2520,
+          "unit": "USD",
+          "reasoning": [
+            "BTC loss 8000 + SOL loss 5000 = 13000 loss; ETH gain 400",
+            "Net loss 12600; 20% tax rate => 12600 * 0.20 = 2520 benefit"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-sharpe_ratio",
+      "raw": "{\n  \"final_answer\": 1.25,\n  \"unit\": \"ratio\",\n  \"reasoning\": [\"(24 - 4) / 16 = 20 / 16\", \"1.25\"]\n}",
+      "durationMs": 243,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1.25,
+          "unit": "ratio",
+          "reasoning": [
+            "(24 - 4) / 16 = 20 / 16",
+            "1.25"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-grid_trading_profit",
+      "raw": "{\n  \"final_answer\": 255.12,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"5 buys × $1k = $5k cost basis at avg $58k\", \"Proceeds $5255.12 − $5000 cost = $255.12 profit\"]\n}",
+      "durationMs": 319,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9995294117647059,
+        "fieldScores": {
+          "final_answer": 0.9995294117647059
+        },
+        "normalizedResponse": {
+          "final_answer": 255.12,
+          "unit": "USD",
+          "reasoning": [
+            "5 buys × $1k = $5k cost basis at avg $58k",
+            "Proceeds $5255.12 − $5000 cost = $255.12 profit"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-compound_yield_farming",
+      "raw": "{\n  \"final_answer\": 10456,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"daily rate = 0.18/365 ≈ 0.00049315\", \"A = 10000(1+0.00049315)^90 ≈ 10456\"]\n}",
+      "durationMs": 277,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 10456,
+          "unit": "USD",
+          "reasoning": [
+            "daily rate = 0.18/365 ≈ 0.00049315",
+            "A = 10000(1+0.00049315)^90 ≈ 10456"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-maximum_drawdown",
+      "raw": "{\n  \"final_answer\": 20.0,\n  \"unit\": \"percent\",\n  \"reasoning\": [\"(115000 - 92000) / 115000 = 0.20\", \"0.20 * 100 = 20.0%\"]\n}",
+      "durationMs": 247,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 20,
+          "unit": "percent",
+          "reasoning": [
+            "(115000 - 92000) / 115000 = 0.20",
+            "0.20 * 100 = 20.0%"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-pairs_trading_profit",
+      "raw": "{\n  \"final_answer\": 263,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Short A: 5000/150 ≈ 33.33 shares, no price change → 0 P&L\", \"Long B: 5000/95 ≈ 52.63 shares, price +5 → 52.63×5 ≈ 263 profit\"]\n}",
+      "durationMs": 369,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 263,
+          "unit": "USD",
+          "reasoning": [
+            "Short A: 5000/150 ≈ 33.33 shares, no price change → 0 P&L",
+            "Long B: 5000/95 ≈ 52.63 shares, price +5 → 52.63×5 ≈ 263 profit"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L0-liquidation_cascade",
+      "raw": "{\n  \"final_answer\": 54589,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"60k×0.98=58.8k after 1st −2%\", \"58.8k×0.98=57.624k after 2nd −2%\", \"57.624k×0.98≈56.47k after 3rd −2%\", \"56.47k×0.98≈54.589k after 4th −2%\"]\n}",
+      "durationMs": 419,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9997985347985348,
+        "fieldScores": {
+          "final_answer": 0.9997985347985348
+        },
+        "normalizedResponse": {
+          "final_answer": 54589,
+          "unit": "USD",
+          "reasoning": [
+            "60k×0.98=58.8k after 1st −2%",
+            "58.8k×0.98=57.624k after 2nd −2%",
+            "57.624k×0.98≈56.47k after 3rd −2%",
+            "56.47k×0.98≈54.589k after 4th −2%"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 0.5,\n  \"unit\": \"btc\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\"\n}",
+      "durationMs": 341,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": 10,\n  \"unit\": \"sol\",\n  \"price\": 95,\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"limit order set below current spot for favorable entry\"\n}",
+      "durationMs": 364,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "sol",
+          "price": 95,
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "limit order set below current spot for favorable entry"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L1-003",
+      "raw": "{\n  \"intent\": \"stop_loss\",\n  \"order_type\": \"stop_market\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"eth\",\n  \"price\": 2800,\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"stop_loss\": 2800,\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm stop order placed\",\n  \"reasoning\": \"stop loss set below current market price of $3000\"\n}",
+      "durationMs": 406,
+      "grade": {
+        "pass": true,
+        "confidence": 0.791618686868687,
+        "score": 0.7499545454545455,
+        "fieldScores": {
+          "intent": 0.14545454545454548,
+          "order_type": 0.072,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "stop_loss",
+          "order_type": "stop_market",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "price": 2800,
+          "venue": "coinbase",
+          "risk_controls": {
+            "stop_loss": 2800,
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm stop order placed",
+          "reasoning": "stop loss set below current market price of $3000"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": 5000,\n  \"unit\": \"usd\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm DAI received\",\n  \"reasoning\": \"swap stablecoins on mainnet via largest pool\"\n}",
+      "durationMs": 427,
+      "grade": {
+        "pass": false,
+        "confidence": 0.733125,
+        "score": 0.6900000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm DAI received",
+          "reasoning": "swap stablecoins on mainnet via largest pool"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"PEPE\",\n  \"size\": 100000,\n  \"unit\": \"pepe\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"15%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market buy on DEX with high slippage tolerance for meme token\"\n}",
+      "durationMs": 432,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9776068376068378,
+        "score": 0.9261538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "unit": "pepe",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market buy on DEX with high slippage tolerance for meme token"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"MATIC\",\n  \"size\": 1000,\n  \"unit\": \"matic\",\n  \"price\": 0.8,\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"DEX swap to minimize gas fees vs CEX withdrawal\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 472,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9775000000000001,
+        "score": 0.9200000000000002,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "unit": "matic",
+          "price": 0.8,
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "DEX swap to minimize gas fees vs CEX withdrawal",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": 50000,\n  \"unit\": \"usd\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"5% of pool\"\n  },\n  \"follow_up\": \"analyze liquidity depth and route split\",\n  \"reasoning\": \"large swap requires pre-check of pool depth to minimize slippage\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check WETH/USDC liquidity across major pools and suggest optimal routing\"\n}",
+      "durationMs": 609,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": 50000,
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "5% of pool"
+          },
+          "follow_up": "analyze liquidity depth and route split",
+          "reasoning": "large swap requires pre-check of pool depth to minimize slippage",
+          "requires_follow_up": true,
+          "follow_up_description": "check WETH/USDC liquidity across major pools and suggest optimal routing"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge_and_buy\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"ARB\",\n  \"size\": 1000,\n  \"unit\": \"usdc\",\n  \"price\": \"1.2\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"arbitrum_bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm bridge completion and ARB purchase\",\n  \"reasoning\": \"bridge USDC to Arbitrum then swap for ARB at pool spot\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"monitor bridge tx and subsequent ARB swap fill\"\n}",
+      "durationMs": 569,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8492371794871796,
+        "score": 0.7992820512820513,
+        "fieldScores": {
+          "intent": 0.12461538461538461,
+          "order_type": 0.16,
+          "asset": 0,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.07466666666666667,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_buy",
+          "order_type": "bridge",
+          "asset": "ARB",
+          "size": 1000,
+          "unit": "usdc",
+          "price": "1.2",
+          "venue": "bridge",
+          "venue_name": "arbitrum_bridge",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm bridge completion and ARB purchase",
+          "reasoning": "bridge USDC to Arbitrum then swap for ARB at pool spot",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor bridge tx and subsequent ARB swap fill"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L3-002",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": 10000,\n  \"unit\": \"usd\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"native bridges\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"verify balances on each chain\",\n  \"reasoning\": \"split 10k USDC equally: 3333.33 USDC to Ethereum, 3333.33 USDC to Arbitrum, 3333.34 USDC to Optimism\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"confirm receipt on each destination chain\"\n}",
+      "durationMs": 561,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8866666666666667,
+        "score": 0.8400000000000001,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.04,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": 10000,
+          "unit": "usd",
+          "venue": "bridge",
+          "venue_name": "native bridges",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "verify balances on each chain",
+          "reasoning": "split 10k USDC equally: 3333.33 USDC to Ethereum, 3333.33 USDC to Arbitrum, 3333.34 USDC to Optimism",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm receipt on each destination chain"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"bridge_and_swap\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"eth\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"polygon_pos_bridge\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\",\n    \"slippage_tolerance\": \"1%\"\n  },\n  \"follow_up\": \"swap ETH for MATIC on Polygon via DEX\",\n  \"reasoning\": \"bridge ETH to Polygon then swap to MATIC\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After bridge confirmation, execute swap of 2 ETH to MATIC on Polygon using Uniswap or similar DEX\"\n}",
+      "durationMs": 591,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9650000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.045,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_swap",
+          "order_type": "bridge",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "venue": "bridge",
+          "venue_name": "polygon_pos_bridge",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "slippage_tolerance": "1%"
+          },
+          "follow_up": "swap ETH for MATIC on Polygon via DEX",
+          "reasoning": "bridge ETH to Polygon then swap to MATIC",
+          "requires_follow_up": true,
+          "follow_up_description": "After bridge confirmation, execute swap of 2 ETH to MATIC on Polygon using Uniswap or similar DEX"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"60\",\n  \"unit\": \"%\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"execute ETH and USDC legs\",\n  \"reasoning\": \"first leg of 60/30/10 rebalance\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"execute ETH 30% and USDC 10% rebalancing orders sequentially\"\n}",
+      "durationMs": 460,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8446874999999999,
+        "score": 0.7949999999999999,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "60",
+          "unit": "%",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "execute ETH and USDC legs",
+          "reasoning": "first leg of 60/30/10 rebalance",
+          "requires_follow_up": true,
+          "follow_up_description": "execute ETH 30% and USDC 10% rebalancing orders sequentially"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"assess\",\n  \"order_type\": \"correlation\",\n  \"asset\": \"BTC,ETH,SOL,MATIC,LINK\",\n  \"size\": 5,\n  \"venue\": \"mainnet\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"max 20% portfolio each\"\n  },\n  \"follow_up\": \"monitor rolling 30-day correlations\",\n  \"reasoning\": \"cross-asset correlation check before position sizing\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"recalculate correlations weekly and adjust exposure limits\"\n}",
+      "durationMs": 482,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.06352941176470588,
+          "order_type": 0.029090909090909084,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess",
+          "order_type": "correlation",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": 5,
+          "venue": "mainnet",
+          "risk_controls": {
+            "position_size_limit": "max 20% portfolio each"
+          },
+          "follow_up": "monitor rolling 30-day correlations",
+          "reasoning": "cross-asset correlation check before position sizing",
+          "requires_follow_up": true,
+          "follow_up_description": "recalculate correlations weekly and adjust exposure limits"
+        },
+        "failureReasons": [
+          "correlation_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L4-003",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"tax_loss_harvest\",\n  \"asset\": \"portfolio\",\n  \"size\": \"all\",\n  \"venue\": \"portfolio\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"review wash-sale rules and rebalance\",\n  \"reasoning\": \"scan holdings for unrealized losses to offset gains\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"identify specific lots and execute sales within 30-day wash-sale window\"\n}",
+      "durationMs": 500,
+      "grade": {
+        "pass": false,
+        "confidence": 0.44285714285714284,
+        "score": 0.41333333333333333,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.03428571428571429,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.01333333333333334,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "tax_loss_harvest",
+          "asset": "portfolio",
+          "size": "all",
+          "venue": "portfolio",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "review wash-sale rules and rebalance",
+          "reasoning": "scan holdings for unrealized losses to offset gains",
+          "requires_follow_up": true,
+          "follow_up_description": "identify specific lots and execute sales within 30-day wash-sale window"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"stress_test\",\n  \"order_type\": \"simulation\",\n  \"asset\": \"portfolio\",\n  \"size\": \"50%_crash\",\n  \"venue\": \"mainnet\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"100%\"\n  },\n  \"follow_up\": \"report PnL, margin usage, liquidations\",\n  \"reasoning\": \"simulate -50% shock on crypto assets while stablecoins, stETH, GLD, TLT unchanged\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"deliver stress report with post-shock NAV, leverage, and risk metrics\"\n}",
+      "durationMs": 591,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.031999999999999994,
+          "asset": 0.12,
+          "size": 0.025,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "portfolio",
+          "size": "50%_crash",
+          "venue": "mainnet",
+          "risk_controls": {
+            "position_size_limit": "100%"
+          },
+          "follow_up": "report PnL, margin usage, liquidations",
+          "reasoning": "simulate -50% shock on crypto assets while stablecoins, stETH, GLD, TLT unchanged",
+          "requires_follow_up": true,
+          "follow_up_description": "deliver stress report with post-shock NAV, leverage, and risk metrics"
+        },
+        "failureReasons": [
+          "stress_test_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L4-005",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"analytics\",\n  \"asset\": \"portfolio\",\n  \"size\": 0,\n  \"venue\": \"internal\",\n  \"risk_controls\": {},\n  \"follow_up\": \"return Sharpe ratio\",\n  \"reasoning\": \"insufficient data: need historical returns, risk-free rate, and portfolio weights to compute Sharpe ratio\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"provide portfolio return history, volatility, and risk-free benchmark\"\n}",
+      "durationMs": 465,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5280648148148148,
+        "score": 0.48744444444444446,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.12444444444444445,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analytics",
+          "asset": "portfolio",
+          "size": 0,
+          "venue": "internal",
+          "risk_controls": {},
+          "follow_up": "return Sharpe ratio",
+          "reasoning": "insufficient data: need historical returns, risk-free rate, and portfolio weights to compute Sharpe ratio",
+          "requires_follow_up": true,
+          "follow_up_description": "provide portfolio return history, volatility, and risk-free benchmark"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add_liquidity\",\n  \"order_type\": \"range\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"1\",\n  \"unit\": \"eth\",\n  \"price\": \"2700-2900\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"track position vs range\",\n  \"reasoning\": \"current spot 3000, place range below to capture fees if price retraces\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"rebalance if ETH moves outside range\"\n}",
+      "durationMs": 593,
+      "grade": {
+        "pass": true,
+        "confidence": 0.812357142857143,
+        "score": 0.7645714285714287,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.12857142857142856,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.055999999999999994,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "range",
+          "asset": "ETH/USDC",
+          "size": "1",
+          "unit": "eth",
+          "price": "2700-2900",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "track position vs range",
+          "reasoning": "current spot 3000, place range below to capture fees if price retraces",
+          "requires_follow_up": true,
+          "follow_up_description": "rebalance if ETH moves outside range"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L5-002",
+      "raw": "{\n  \"intent\": \"leverage_long\",\n  \"order_type\": \"aave_loop\",\n  \"asset\": \"ETH\",\n  \"size\": \"1\",\n  \"unit\": \"eth\",\n  \"venue\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"3 ETH\"\n  },\n  \"follow_up\": \"monitor health factor\",\n  \"reasoning\": \"supply 1 ETH, borrow stables, swap to ETH, resupply twice to reach 3x exposure\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track liquidation price and health factor after each loop\"\n}",
+      "durationMs": 563,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.045333333333333344,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "leverage_long",
+          "order_type": "aave_loop",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "eth",
+          "venue": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "3 ETH"
+          },
+          "follow_up": "monitor health factor",
+          "reasoning": "supply 1 ETH, borrow stables, swap to ETH, resupply twice to reach 3x exposure",
+          "requires_follow_up": true,
+          "follow_up_description": "track liquidation price and health factor after each loop"
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L5-003",
+      "raw": "{\n  \"intent\": \"yield_farm\",\n  \"order_type\": \"delta_neutral\",\n  \"asset\": \"ETH\",\n  \"size\": 5,\n  \"unit\": \"eth\",\n  \"venue\": \"aave\",\n  \"venue_name\": \"aave_v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"5 ETH\"\n  },\n  \"follow_up\": \"hedge with perp short on dydx\",\n  \"reasoning\": \"supply ETH as collateral on Aave, borrow stablecoin, farm yield while shorting ETH perp to neutralize delta\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"open corresponding short ETH-PERP position sized to offset ETH collateral exposure\"\n}",
+      "durationMs": 667,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6245833333333334,
+        "score": 0.587843137254902,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.02666666666666666,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "yield_farm",
+          "order_type": "delta_neutral",
+          "asset": "ETH",
+          "size": 5,
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "aave_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "5 ETH"
+          },
+          "follow_up": "hedge with perp short on dydx",
+          "reasoning": "supply ETH as collateral on Aave, borrow stablecoin, farm yield while shorting ETH perp to neutralize delta",
+          "requires_follow_up": true,
+          "follow_up_description": "open corresponding short ETH-PERP position sized to offset ETH collateral exposure"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L5-004",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"lend\",\n  \"asset\": \"USDC\",\n  \"size\": 5000,\n  \"unit\": \"usd\",\n  \"venue\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"2 ETH\"\n  },\n  \"follow_up\": \"monitor liquidation price\",\n  \"reasoning\": \"borrow 5000 USDC against 2 ETH collateral at 60% LTV\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track ETH price vs liquidation threshold\"\n}",
+      "durationMs": 499,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9270312500000001,
+        "score": 0.8725,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.0425,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lend",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "usd",
+          "venue": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "2 ETH"
+          },
+          "follow_up": "monitor liquidation price",
+          "reasoning": "borrow 5000 USDC against 2 ETH collateral at 60% LTV",
+          "requires_follow_up": true,
+          "follow_up_description": "track ETH price vs liquidation threshold"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L5-005",
+      "raw": "{\n  \"intent\": \"stake\",\n  \"order_type\": \"liquid_stake\",\n  \"asset\": \"ETH\",\n  \"size\": 10,\n  \"unit\": \"eth\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"lido\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm stETH receipt\",\n  \"reasoning\": \"stake 10 ETH to receive liquid stETH tokens\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify stETH balance and staking rewards activation\"\n}",
+      "durationMs": 469,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9584615384615385,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.13846153846153844,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "liquid_stake",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "eth",
+          "venue": "dex",
+          "venue_name": "lido",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm stETH receipt",
+          "reasoning": "stake 10 ETH to receive liquid stETH tokens",
+          "requires_follow_up": true,
+          "follow_up_description": "verify stETH balance and staking rewards activation"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"option\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"contracts\",\n  \"price\": \"market\",\n  \"venue\": \"deribit\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill and delta hedge if needed\",\n  \"reasoning\": \"buy 2 ETH calls strike 3500 exp 30 days\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"monitor delta and hedge exposure\"\n}",
+      "durationMs": 495,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "option",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "contracts",
+          "price": "market",
+          "venue": "deribit",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill and delta hedge if needed",
+          "reasoning": "buy 2 ETH calls strike 3500 exp 30 days",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor delta and hedge exposure"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dca\",\n  \"asset\": \"BTC\",\n  \"size\": 500,\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"schedule recurring weekly purchase for 12 weeks\",\n  \"reasoning\": \"dollar-cost averaging reduces timing risk over 3-month horizon\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"automate weekly $500 BTC purchases for 12 total executions\"\n}",
+      "durationMs": 534,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "schedule recurring weekly purchase for 12 weeks",
+          "reasoning": "dollar-cost averaging reduces timing risk over 3-month horizon",
+          "requires_follow_up": true,
+          "follow_up_description": "automate weekly $500 BTC purchases for 12 total executions"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": 0.1,\n  \"unit\": \"btc\",\n  \"price\": 44000,\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.2%\"\n  },\n  \"follow_up\": \"place additional ladder orders at 43000, 42000, 41000, 40000\",\n  \"reasoning\": \"first rung of $1k ladder from 45k down to 40k\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"continue placing limit buy orders every $1,000 down to $40,000\"\n}",
+      "durationMs": 648,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8303571428571429,
+        "score": 0.775,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": 0.1,
+          "unit": "btc",
+          "price": 44000,
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.2%"
+          },
+          "follow_up": "place additional ladder orders at 43000, 42000, 41000, 40000",
+          "reasoning": "first rung of $1k ladder from 45k down to 40k",
+          "requires_follow_up": true,
+          "follow_up_description": "continue placing limit buy orders every $1,000 down to $40,000"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L6-004",
+      "raw": "{\n  \"intent\": \"set_trailing_stop\",\n  \"order_type\": \"trailing_stop\",\n  \"asset\": \"BTC\",\n  \"size\": 0.5,\n  \"price\": \"5% below market\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"stop_loss\": \"trailing 5%\"\n  },\n  \"follow_up\": \"monitor trigger\",\n  \"reasoning\": \"trailing stop 5% below current market price\"\n}",
+      "durationMs": 376,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9631944444444446,
+        "score": 0.9125000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_trailing_stop",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": 0.5,
+          "price": "5% below market",
+          "venue": "coinbase",
+          "risk_controls": {
+            "stop_loss": "trailing 5%"
+          },
+          "follow_up": "monitor trigger",
+          "reasoning": "trailing stop 5% below current market price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L6-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"twap\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"unit\": \"eth\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"2.5 ETH\"\n  },\n  \"follow_up\": \"monitor fill schedule every 30 min\",\n  \"reasoning\": \"TWAP to minimize market impact over 4h window\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track 2.5 ETH slices every hour\"\n}",
+      "durationMs": 519,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.1,
+          "duration": 0,
+          "risk_controls": 0.08,
+          "follow_up_description": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "eth",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "2.5 ETH"
+          },
+          "follow_up": "monitor fill schedule every 30 min",
+          "reasoning": "TWAP to minimize market impact over 4h window",
+          "requires_follow_up": true,
+          "follow_up_description": "track 2.5 ETH slices every hour"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "twap_missing_duration_autofail"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L7-001",
+      "raw": "{\n  \"intent\": \"arbitrage\",\n  \"order_type\": \"flash_loan\",\n  \"asset\": \"ETH\",\n  \"size\": \"100\",\n  \"unit\": \"eth\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"100 eth\"\n  },\n  \"follow_up\": \"verify stETH discount vs stETH/ETH pool and execute triangular arb via stETH→ETH→DAI→USDC→ETH\",\n  \"reasoning\": \"stETH trades 10 usd discount to ETH, flash loan 100 eth, swap to stETH, redeem for 100.33 eth, repay loan, net 0.33 eth profit minus gas\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"simulate full route profit after gas and slippage\"\n}",
+      "durationMs": 775,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.10124999999999999,
+          "order_type": 0.017777777777777785,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "order_type": "flash_loan",
+          "asset": "ETH",
+          "size": "100",
+          "unit": "eth",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "100 eth"
+          },
+          "follow_up": "verify stETH discount vs stETH/ETH pool and execute triangular arb via stETH→ETH→DAI→USDC→ETH",
+          "reasoning": "stETH trades 10 usd discount to ETH, flash loan 100 eth, swap to stETH, redeem for 100.33 eth, repay loan, net 0.33 eth profit minus gas",
+          "requires_follow_up": true,
+          "follow_up_description": "simulate full route profit after gas and slippage"
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L7-002",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"order_type\": \"market\",\n  \"asset\": \"USDC\",\n  \"size\": 7000,\n  \"unit\": \"usdc\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"withdraw 5 ETH collateral\",\n  \"reasoning\": \"repay 7000 USDC debt to close position and unlock 5 ETH collateral\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"after repayment, withdraw the 5 ETH collateral to fully unwind the underwater position\"\n}",
+      "durationMs": 535,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7692857142857144,
+        "score": 0.7180000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.007999999999999998,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": 7000,
+          "unit": "usdc",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "withdraw 5 ETH collateral",
+          "reasoning": "repay 7000 USDC debt to close position and unlock 5 ETH collateral",
+          "requires_follow_up": true,
+          "follow_up_description": "after repayment, withdraw the 5 ETH collateral to fully unwind the underwater position"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 10000,\n  \"venue\": \"amm\",\n  \"il_percentage\": -2.47,\n  \"il_loss_usd\": -247,\n  \"net_gain_usd\": 600,\n  \"net_return_pct\": 6.0,\n  \"hold_value\": 11667,\n  \"lp_value\": 11420,\n  \"reasoning\": \"Impermanent loss on 66.67% price rise is 2.47% of initial, costing $247; $847 fees offset this for $600 net gain on $10k, 6% return vs 16.67% if simply held.\"\n}",
+      "durationMs": 616,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.042352941176470586,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0.04,
+          "il_percentage": 0.04999999999999999,
+          "il_loss_usd": 0.1,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0.005999999999999998,
+          "lp_value": 0.012,
+          "reasoning": 0.009491525423728813
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analysis",
+          "asset": "ETH/USDC",
+          "size": 10000,
+          "venue": "amm",
+          "il_percentage": -2.47,
+          "il_loss_usd": -247,
+          "net_gain_usd": 600,
+          "net_return_pct": 6,
+          "hold_value": 11667,
+          "lp_value": 11420,
+          "reasoning": "Impermanent loss on 66.67% price rise is 2.47% of initial, costing $247; $847 fees offset this for $600 net gain on $10k, 6% return vs 16.67% if simply held."
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_net_gain",
+          "lp_net_return_inconsistent_il_loss"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 5.64,\n  \"weighted_risk_score\": 1.7,\n  \"excess_return\": 0.64,\n  \"risk_adjusted_ratio\": 0.3764705882352941,\n  \"total_annual_yield_usd\": 5640,\n  \"allocation\": {\n    \"aave\": 50000,\n    \"curve\": 30000,\n    \"yearn\": 20000\n  },\n  \"reasoning\": \"Blended APY: 0.5*4.2 + 0.3*6.8 + 0.2*8.1 = 5.64%. Weighted risk: 0.5*1 + 0.3*2 + 0.2*3 = 1.7. Excess return: 5.64% - 5% = 0.64%. Risk-adjusted ratio: 0.64 / 1.7 ≈ 0.376. Annual yield: 100000 * 5.64% = $5640.\"\n}",
+      "durationMs": 757,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.019285714285714285,
+          "order_type": 0.03,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.09,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.1,
+          "risk_adjusted_ratio": 0.05333333333333333,
+          "total_annual_yield_usd": 0.04,
+          "allocation": 0,
+          "reasoning": 0.014644808743169398
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analysis",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "defi",
+          "blended_apy": 5.64,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.64,
+          "risk_adjusted_ratio": 0.3764705882352941,
+          "total_annual_yield_usd": 5640,
+          "allocation": {
+            "aave": 50000,
+            "curve": 30000,
+            "yearn": 20000
+          },
+          "reasoning": "Blended APY: 0.5*4.2 + 0.3*6.8 + 0.2*8.1 = 5.64%. Weighted risk: 0.5*1 + 0.3*2 + 0.2*3 = 1.7. Excess return: 5.64% - 5% = 0.64%. Risk-adjusted ratio: 0.64 / 1.7 ≈ 0.376. Annual yield: 100000 * 5.64% = $5640."
+        },
+        "failureReasons": [
+          "portfolio_efficiency_inconsistent_blended_apy",
+          "portfolio_efficiency_inconsistent_excess_return",
+          "portfolio_efficiency_inconsistent_risk_ratio"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.5167,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.7583,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"CowSwap\",\n  \"worst_option\": \"Uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"dex\",\n  \"venue_name\": \"CowSwap\",\n  \"reasoning\": \"CowSwap maximizes net proceeds by eliminating MEV and gas costs despite slightly higher slippage, saving $3,350 versus Uniswap.\"\n}",
+      "durationMs": 900,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8686981789417818,
+        "score": 0.8542471644105041,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.065,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.065,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.0004292929292929293
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5167,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "dex",
+          "venue_name": "CowSwap",
+          "reasoning": "CowSwap maximizes net proceeds by eliminating MEV and gas costs despite slightly higher slippage, saving $3,350 versus Uniswap."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-001",
+      "raw": "{\n  \"intent\": \"deploy_yield\",\n  \"order_type\": \"split_allocation\",\n  \"asset\": \"USDC\",\n  \"size\": 5000000,\n  \"venue\": \"multi\",\n  \"venue_name\": \"Pendle+Convex\",\n  \"unit\": \"usd\",\n  \"allocation\": {\n    \"pendle_pt_steth\": 3250000,\n    \"convex_curve_3pool\": 1750000\n  },\n  \"expected_value\": 5137500,\n  \"reasoning\": \"Max 65% to Pendle PT capturing 3% discount plus 35% to Convex 3pool for 10.5% boosted yield, net 5.5% over 90 days after gas and slippage.\"\n}",
+      "durationMs": 748,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.024347826086956525,
+          "order_type": 0.007894736842105265,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.016666666666666666,
+          "venue_name": 0.03,
+          "expected_value": 0,
+          "unit": 0.001428571428571428,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "deploy_yield",
+          "order_type": "split_allocation",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "multi",
+          "venue_name": "Pendle+Convex",
+          "unit": "usd",
+          "allocation": {
+            "pendle_pt_steth": 3250000,
+            "convex_curve_3pool": 1750000
+          },
+          "expected_value": 5137500,
+          "reasoning": "Max 65% to Pendle PT capturing 3% discount plus 35% to Convex 3pool for 10.5% boosted yield, net 5.5% over 90 days after gas and slippage."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 1754.39,\n  \"unit\": \"eth\",\n  \"price\": 2850,\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"2 gwei\"\n  },\n  \"follow_up\": \"monitor fill via Flashbots Protect\",\n  \"reasoning\": \"Strategy A (Flashbots Protect) minimizes total expected cost: $180 setup + $1.82 gas + $330 residual MEV + $2.6 retry risk = $514 vs Strategy B's $22,022 sandwich loss + $61.2 gas = $22,083. 98.5% MEV protection outweighs slightly higher gas and setup fees.\"\n}",
+      "durationMs": 856,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "expected_total_cost": 0,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 1754.39,
+          "unit": "eth",
+          "price": 2850,
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "2 gwei"
+          },
+          "follow_up": "monitor fill via Flashbots Protect",
+          "reasoning": "Strategy A (Flashbots Protect) minimizes total expected cost: $180 setup + $1.82 gas + $330 residual MEV + $2.6 retry risk = $514 vs Strategy B's $22,022 sandwich loss + $61.2 gas = $22,083. 98.5% MEV protection outweighs slightly higher gas and setup fees."
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-003",
+      "raw": "{\"intent\":\"rebalance\",\"order_type\":\"market\",\"asset\":\"portfolio\",\"size\":1000000,\"venue\":\"multi-venue\",\"portfolio_volatility\":0.3015,\"risk_contributions\":{\"btc\":0.476,\"eth\":0.444,\"bonds\":0.08},\"btc_contribution_pct\":47.6,\"eth_contribution_pct\":44.4,\"bonds_contribution_pct\":8.0,\"rebalancing_required\":true,\"target_allocations_usd\":{\"btc\":333333,\"eth\":333333,\"bonds\":333333},\"target_btc_usd\":333333,\"target_eth_usd\":333333,\"target_bonds_usd\":333333,\"transactions\":[{\"intent\":\"sell\",\"order_type\":\"market\",\"asset\":\"BTC\",\"size\":67000,\"venue\":\"coinbase\",\"reasoning\":\"reduce BTC to hit risk-parity target\"},{\"intent\":\"sell\",\"order_type\":\"market\",\"asset\":\"ETH\",\"size\":17000,\"venue\":\"coinbase\",\"reasoning\":\"reduce ETH to hit risk-parity target\"},{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"TLT\",\"size\":83000,\"venue\":\"schwab\",\"reasoning\":\"increase bonds to hit risk-parity target\"}],\"btc_sell_amount\":67000,\"eth_sell_amount\":17000,\"bonds_buy_amount\":83000,\"btc_post_slippage\":66665,\"eth_post_slippage\":16915,\"bonds_post_slippage\":82917,\"reasoning\":\"BTC and ETH risk contributions exceed 38.33% band; sell $67k BTC and $17k ETH, buy $83k TLT to equalize risk contributions accounting for correlations.\"}",
+      "durationMs": 1080,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5709560606060605,
+        "score": 0.5489962121212121,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0.026666666666666672,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.054,
+          "eth_contribution_pct": 0.017999999999999995,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0,
+          "target_eth_usd": 0,
+          "target_bonds_usd": 0,
+          "transactions": 0,
+          "btc_sell_amount": 0.00835,
+          "eth_sell_amount": 0.011133333333333334,
+          "bonds_buy_amount": 0.0083,
+          "btc_post_slippage": 0.0016666666666666663,
+          "eth_post_slippage": 0.003333333333333334,
+          "bonds_post_slippage": 0.0016666666666666663,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "portfolio",
+          "size": 1000000,
+          "venue": "multi-venue",
+          "portfolio_volatility": 0.3015,
+          "risk_contributions": {
+            "btc": 0.476,
+            "eth": 0.444,
+            "bonds": 0.08
+          },
+          "btc_contribution_pct": 47.6,
+          "eth_contribution_pct": 44.4,
+          "bonds_contribution_pct": 8,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 333333,
+            "eth": 333333,
+            "bonds": 333333
+          },
+          "target_btc_usd": 333333,
+          "target_eth_usd": 333333,
+          "target_bonds_usd": 333333,
+          "transactions": [
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "BTC",
+              "size": 67000,
+              "venue": "coinbase",
+              "reasoning": "reduce BTC to hit risk-parity target"
+            },
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "ETH",
+              "size": 17000,
+              "venue": "coinbase",
+              "reasoning": "reduce ETH to hit risk-parity target"
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "TLT",
+              "size": 83000,
+              "venue": "schwab",
+              "reasoning": "increase bonds to hit risk-parity target"
+            }
+          ],
+          "btc_sell_amount": 67000,
+          "eth_sell_amount": 17000,
+          "bonds_buy_amount": 83000,
+          "btc_post_slippage": 66665,
+          "eth_post_slippage": 16915,
+          "bonds_post_slippage": 82917,
+          "reasoning": "BTC and ETH risk contributions exceed 38.33% band; sell $67k BTC and $17k ETH, buy $83k TLT to equalize risk contributions accounting for correlations."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"el-avs\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer AVS\",\n  \"rationale\": \"EigenLayer adds 2.8% APR on top of 4.2% base, giving 7.0% total. After 2.75% effective borrow cost (50 ETH borrowed at 5.5% APR on 100 ETH collateral), net portfolio APR is 4.25%, exceeding 1% target. 3% slashing risk is within 4% limit and 7-day lock satisfies 8-day collateral requirement.\",\n  \"decision_factors\": \"Option A maximizes yield while meeting all constraints: collateral ready in 7 days, slashing risk under 4%, and net APR above 1%. Outperforms baseline by 3.05% and Option B is excluded due to 5% slashing risk exceeding limit.\",\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 4.25,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 1.2,\n  \"option_a_outperformance\": 3.05\n}",
+      "durationMs": 1033,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "el-avs",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS",
+          "rationale": "EigenLayer adds 2.8% APR on top of 4.2% base, giving 7.0% total. After 2.75% effective borrow cost (50 ETH borrowed at 5.5% APR on 100 ETH collateral), net portfolio APR is 4.25%, exceeding 1% target. 3% slashing risk is within 4% limit and 7-day lock satisfies 8-day collateral requirement.",
+          "decision_factors": "Option A maximizes yield while meeting all constraints: collateral ready in 7 days, slashing risk under 4%, and net APR above 1%. Outperforms baseline by 3.05% and Option B is excluded due to 5% slashing risk exceeding limit.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.2,
+          "option_a_outperformance": 3.05
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.0081,\n    \"deleverage_2x\": 0.0015,\n    \"deleverage_1_5x\": 0.0001\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 45.75,\n    \"deleverage_2x\": 40.81,\n    \"deleverage_1_5x\": 36.44,\n    \"close\": 0\n  },\n  \"reasoning\": \"Weekly barrier-hitting probability for 3x (1400) is 0.81% > 0.5% threshold; 2x (1200) at 0.15% meets policy. EV = carry - (prob * 1000): 53.85 - 8.1 = 45.75 for 3x, 42.31 - 1.5 = 40.81 for 2x. 2x offers best risk-adjusted carry while staying under institutional limit.\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 815,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.0015,
+            "deleverage_1_5x": 0.0001
+          },
+          "expected_values": {
+            "maintain_3x": 45.75,
+            "deleverage_2x": 40.81,
+            "deleverage_1_5x": 36.44,
+            "close": 0
+          },
+          "reasoning": "Weekly barrier-hitting probability for 3x (1400) is 0.81% > 0.5% threshold; 2x (1200) at 0.15% meets policy. EV = carry - (prob * 1000): 53.85 - 8.1 = 45.75 for 3x, 42.31 - 1.5 = 40.81 for 2x. 2x offers best risk-adjusted carry while staying under institutional limit.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"fixed_yield\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Pendle PT-USDe offers 12.3% fixed APY, highest among options, with no liquidation risk and only 0.15% slippage on 100K; aligns with 90-day horizon and medium risk tolerance.\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\": {\n    \"B\": \"3x loop yields 11.9% but 2% depeg exposure exceeds medium risk tolerance\",\n    \"D\": \"Hybrid 11.25% APY lower than Pendle fixed 12.3%\"\n  }\n}",
+      "durationMs": 736,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Pendle PT-USDe offers 12.3% fixed APY, highest among options, with no liquidation risk and only 0.15% slippage on 100K; aligns with 90-day horizon and medium risk tolerance.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "3x loop yields 11.9% but 2% depeg exposure exceeds medium risk tolerance",
+            "D": "Hybrid 11.25% APY lower than Pendle fixed 12.3%"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-007",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"dex\",\"asset\":\"stETH\",\"size\":2500,\"venue\":\"dex\",\"venue_name\":\"1inch Fusion\",\"expected_value\":-157500,\"unit\":\"USD_total_cost\",\"reasoning\":\"Total cost breakdown for 1inch Fusion: base spread 0.25% ($18.7k), price impact 0.35% ($26.2k), dynamic widening 0.45% ($33.7k), protocol fee 0.05% ($3.7k), MEV extraction 0.4% ($30k). Total 1.5% of $4.5M notional = $67.5k. CowSwap exceeds 15-min deadline due to 2-batch queue (24 min). Uniswap V3 MEV exposure 0.8% makes it more expensive.\",\"constraint_awareness\":\"Settlement within 15 minutes required; 1inch Fusion instant settlement meets deadline while minimizing total cost versus Uniswap V3 and avoiding CowSwap queue delay.\"}",
+      "durationMs": 843,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9896428571428569,
+        "score": 0.9314285714285713,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0.05,
+          "venue_name": 0.5,
+          "expected_value": 0.21428571428571427,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "dex",
+          "venue_name": "1inch Fusion",
+          "expected_value": -157500,
+          "unit": "USD_total_cost",
+          "reasoning": "Total cost breakdown for 1inch Fusion: base spread 0.25% ($18.7k), price impact 0.35% ($26.2k), dynamic widening 0.45% ($33.7k), protocol fee 0.05% ($3.7k), MEV extraction 0.4% ($30k). Total 1.5% of $4.5M notional = $67.5k. CowSwap exceeds 15-min deadline due to 2-batch queue (24 min). Uniswap V3 MEV exposure 0.8% makes it more expensive.",
+          "constraint_awareness": "Settlement within 15 minutes required; 1inch Fusion instant settlement meets deadline while minimizing total cost versus Uniswap V3 and avoiding CowSwap queue delay."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 0.5,\n  \"unit\": \"btc\",\n  \"venue\": \"interactive_brokers\",\n  \"venue_name\": \"interactive_brokers\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\"\n  },\n  \"follow_up\": \"confirm T+2 settlement\",\n  \"reasoning\": \"IB 0.1% fee beats Coinbase 0.6% for BTC/ETH; IB supports all four assets for same-day execution and keeps total fees under $2k\"\n}",
+      "durationMs": 584,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "execution_plan": 0,
+          "fee_summary": 0,
+          "rationale": 0,
+          "constraints_met": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "venue": "interactive_brokers",
+          "venue_name": "interactive_brokers",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%"
+          },
+          "follow_up": "confirm T+2 settlement",
+          "reasoning": "IB 0.1% fee beats Coinbase 0.6% for BTC/ETH; IB supports all four assets for same-day execution and keeps total fees under $2k"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "l8_008_missing_execution_plan"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-009",
+      "raw": "{\n  \"decision\": \"execute\",\n  \"reasoning\": {\n    \"capital_allocation\": {\n      \"spot_usd\": 50000,\n      \"margin_usd\": 50000\n    },\n    \"position_size_eth\": 20.40816327,\n    \"perp_notional_usd\": 50000,\n    \"funding_revenue_daily\": 120,\n    \"costs_entry\": 22,\n    \"break_even_periods\": 1,\n    \"annualized_funding_rate_pct\": 8.76,\n    \"annual_roi_on_total_capital_pct\": 4.38\n  },\n  \"execution\": {\n    \"step_1\": \"transfer_50000_usdt_to_binance_for_margin\",\n    \"step_2\": \"buy_20.40816327_eth_spot_coinbase_maker\",\n    \"step_3\": \"short_20.40816327_eth_perp_binance_maker\",\n    \"delta_neutral\": true,\n    \"exit_trigger\": \"funding_rate_turns_negative_or_basis_converges\"\n  }\n}",
+      "durationMs": 778,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 50000,
+              "margin_usd": 50000
+            },
+            "position_size_eth": 20.40816327,
+            "perp_notional_usd": 50000,
+            "funding_revenue_daily": 120,
+            "costs_entry": 22,
+            "break_even_periods": 1,
+            "annualized_funding_rate_pct": 8.76,
+            "annual_roi_on_total_capital_pct": 4.38
+          },
+          "execution": {
+            "step_1": "transfer_50000_usdt_to_binance_for_margin",
+            "step_2": "buy_20.40816327_eth_spot_coinbase_maker",
+            "step_3": "short_20.40816327_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding_rate_turns_negative_or_basis_converges"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-instruct-0905",
+      "modelLabel": "groq:moonshotai/kimi-k2-instruct-0905",
+      "questionId": "L8-010",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"order_type\": \"collar\",\n  \"asset\": \"BTC\",\n  \"size\": 10,\n  \"venue\": \"cex\",\n  \"venue_name\": \"deribit\",\n  \"call_strike\": 49500,\n  \"put_strike\": 40500,\n  \"net_cost_per_btc\": -60,\n  \"expiry_days\": 30,\n  \"reasoning\": \"Sell 10% OTM call (+420) and buy 10% OTM put (-480) for net debit 60 USD/BTC; balances cheap call premium vs acceptable 10% floor while keeping upside to 49.5k\"\n}",
+      "durationMs": 3731,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7757142857142859,
+        "score": 0.7240000000000002,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.2,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.003999999999999999,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "order_type": "collar",
+          "asset": "BTC",
+          "size": 10,
+          "venue": "cex",
+          "venue_name": "deribit",
+          "call_strike": 49500,
+          "put_strike": 40500,
+          "net_cost_per_btc": -60,
+          "expiry_days": 30,
+          "reasoning": "Sell 10% OTM call (+420) and buy 10% OTM put (-480) for net debit 60 USD/BTC; balances cheap call premium vs acceptable 10% floor while keeping upside to 49.5k"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}
