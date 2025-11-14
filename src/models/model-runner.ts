@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import { callOpenAI } from './providers/openai';
 import { callAnthropic } from './providers/anthropic';
@@ -39,6 +40,7 @@ const DEFAULT_MAX_TOKENS = 2200;
 // 1) MODEL_ROSTER env (absolute or relative to cwd)
 // 2) repo-local default: src/config/model-roster.json
 // 3) legacy path kept for back-compat: Trading Reasoning Round 4/.../benchmark.json
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_LOCAL_ROSTER = path.join(__dirname, '..', 'config', 'model-roster.json');
 const LEGACY_ROSTER = path.join(
   __dirname,
