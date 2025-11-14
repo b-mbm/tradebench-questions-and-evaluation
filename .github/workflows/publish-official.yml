@@ -90,9 +90,13 @@ jobs:
             echo "No changes to push."
           fi
       - name: Trigger Vercel deploy (optional)
-        if: ${{ env.DEPLOY_HOOK_INPUT != '' || secrets.VERCEL_DEPLOY_HOOK != '' }}
         env:
-          HOOK: ${{ env.DEPLOY_HOOK_INPUT != '' && env.DEPLOY_HOOK_INPUT || secrets.VERCEL_DEPLOY_HOOK }}
+          HOOK: ${{ inputs.deploy_hook_url != '' && inputs.deploy_hook_url || secrets.VERCEL_DEPLOY_HOOK }}
         run: |
           set -euo pipefail
-          curl -fsSL -X POST "$HOOK"
+          if [ -n "$HOOK" ]; then
+            echo "Triggering Vercel deploy"
+            curl -fsSL -X POST "$HOOK"
+          else
+            echo "No deploy hook configured; skipping."
+          fi
