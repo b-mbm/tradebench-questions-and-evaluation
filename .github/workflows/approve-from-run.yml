@@ -40,6 +40,12 @@ jobs:
           else
             echo "No changes to commit."
           fi
+      - name: Sanity check manifest
+        run: |
+          set -euo pipefail
+          echo "Manifest contents:"
+          cat results/official-manifest.json
+          jq '.entries | keys' results/official-manifest.json
   publish:
     needs: promote
     uses: ./.github/workflows/publish-official.yml
