@@ -2,12 +2,14 @@
 
 import { mkdir, writeFile } from "fs/promises";
 import path from "path";
+import { fileURLToPath } from "url";
 
 import { loadAllQuestions } from "../questions";
 import type { FullTestQuestion } from "../types";
 import type { SchemaQuestion, SchemaRubric } from "../../Round-5-Extension-1-schema/src/types/schema";
 import { loadRubric } from "../../Round-5-Extension-1-schema/src/rubrics/loader";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RESULTS_DIR = path.resolve(__dirname, "..", "results");
 const OUT_DIR = path.join(RESULTS_DIR, "l8-templates");
 

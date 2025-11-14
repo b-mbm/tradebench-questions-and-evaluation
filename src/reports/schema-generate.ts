@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import { SCHEMA_QUESTIONS } from '../questions/schema-questions';
 
@@ -35,6 +36,8 @@ interface ResultFile {
   sampleSize: number;
   evaluations: EvaluationRow[];
 }
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function getResultsDir(): string {
   return path.join(__dirname, '..', '..', 'results');
@@ -223,4 +226,3 @@ main().catch(error => {
   console.error('Failed to generate schema analysis files:', error);
   process.exit(1);
 });
-

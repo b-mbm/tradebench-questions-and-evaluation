@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import type { SchemaRubric } from '../types/schema';
 
-const RUBRIC_DIR = path.join(__dirname);
+const RUBRIC_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 const cache = new Map<string, SchemaRubric>();
 
@@ -45,4 +46,3 @@ export function loadRubric(id: string): SchemaRubric {
 export function clearRubricCache(): void {
   cache.clear();
 }
-

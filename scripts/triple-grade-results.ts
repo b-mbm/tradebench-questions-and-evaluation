@@ -2,6 +2,7 @@
 
 import { readdir, readFile, writeFile } from "fs/promises";
 import path from "path";
+import { fileURLToPath } from "url";
 
 import type { EvaluationRow, FullTestQuestion, SuiteResultFile } from "../types";
 import { loadAllQuestions } from "../questions";
@@ -12,6 +13,7 @@ import type { SchemaQuestion, SchemaRubric } from "../../Round-5-Extension-1-sch
 import { loadRubric } from "../../Round-5-Extension-1-schema/src/rubrics/loader";
 import { gradeSchemaResponse } from "../../Round-5-Extension-1-schema/src/grading/schema-grader";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RESULTS_DIR = path.resolve(__dirname, "..", "results");
 const RUNS = 3;
 const VARIANCE_WARNING_THRESHOLD = 0.02; // flag if variance > 0.02
@@ -220,4 +222,3 @@ main().catch(err => {
   console.error("❌ triple-grade-results failed:", err);
   process.exit(1);
 });
-
