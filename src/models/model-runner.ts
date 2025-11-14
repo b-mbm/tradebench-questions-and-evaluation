@@ -161,14 +161,15 @@ const MODEL_MAP = new Map(MODELS.map(model => [model.id, model]));
 export async function callExecuteOneModel(
   modelId: string,
   question: Record<string, any>,
-  options: ExecuteOneCallOptions = {}
+  options: ExecuteOneCallOptions = {},
+  prompts?: ExecuteOnePrompts
 ): Promise<ExecuteOneCallResult> {
   const config = MODEL_MAP.get(modelId);
   if (!config) {
     throw new Error(`Model ${modelId} not present in benchmark roster.`);
   }
 
-  const { system, user } = buildExecuteOnePrompts(question);
+  const { system, user } = prompts ?? buildExecuteOnePrompts(question);
   const temperature = options.temperature ?? DEFAULT_TEMPERATURE;
   const maxTokens = options.maxTokens ?? DEFAULT_MAX_TOKENS;
 

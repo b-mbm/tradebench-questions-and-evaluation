@@ -1,0 +1,399 @@
+{
+  "benchmark_name": "Tradebench-L0-20Q-23M",
+  "created_at": "2025-10-10T01:48:53Z",
+  "description": "20-question quantitative trading benchmark for evaluating AI numerical reasoning.",
+  "checksum_sha256": "7e3cf1f892f75755a948d3b3874162b8ea3dfd9aeee958e7f7d492a2acc0f588",
+  "models": [
+    "gpt-5",
+    "gpt-5-mini",
+    "gpt-5-nano",
+    "gpt-4.1",
+    "gpt-4.1-mini",
+    "gpt-4o",
+    "o4-mini",
+    "o3",
+    "claude-sonnet-4-5-20250929",
+    "claude-opus-4-1-20250805",
+    "claude-opus-4-20250514",
+    "claude-sonnet-4-20250514",
+    "gemini-2.5-pro",
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+    "gemini-2.5-flash-lite-preview-09-2025",
+    "llama-3.3-70b-versatile",
+    "llama-3.1-8b-instant",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "mistralai/mixtral-8x7b-instruct",
+    "meta-llama/llama-3.1-405b-instruct",
+    "qwen/qwen3-235b-a22b-2507"
+  ],
+  "questions": [
+    {
+      "question_id": "order_book_execution",
+      "difficulty": 3,
+      "prompt": "Buy 100 shares from order book with asks at $245.50 (50 shares) and $245.75 (100 shares). Average execution price?",
+      "expected": 245.625,
+      "range": [
+        245.6,
+        245.7
+      ],
+      "unit": "USD",
+      "validation_formula": "(50×245.50 + 50×245.75)/100",
+      "grading_notes": "Weighted average, not simple mean."
+    },
+    {
+      "question_id": "leveraged_position_sizing",
+      "difficulty": 4,
+      "prompt": "$10,000 capital, risk 4% per trade, 6x leverage, Bitcoin at $57,600. Position size in mBTC?",
+      "expected": 41.66,
+      "range": [
+        41.65,
+        41.67
+      ],
+      "unit": "mBTC",
+      "validation_formula": "(10000×0.04×6)/57600×1000",
+      "grading_notes": "Include ×1000 conversion to mBTC."
+    },
+    {
+      "question_id": "stop_loss_risk",
+      "difficulty": 3,
+      "prompt": "Long 2 BTC at $60,000, stop $58,500. Maximum loss?",
+      "expected": 3000,
+      "range": [
+        2999,
+        3001
+      ],
+      "unit": "USD",
+      "validation_formula": "(60000-58500)×2",
+      "grading_notes": "Loss per BTC × 2."
+    },
+    {
+      "question_id": "portfolio_rebalancing",
+      "difficulty": 4,
+      "prompt": "Portfolio $113 000 ($75k stocks, $28k bonds, $10k cash). To reach 60 % stocks, sell how much?",
+      "expected": 7200,
+      "range": [
+        7190,
+        7210
+      ],
+      "unit": "USD",
+      "validation_formula": "75000-(113000×0.60)",
+      "grading_notes": "Compute difference from target weight."
+    },
+    {
+      "question_id": "options_premium_roi",
+      "difficulty": 5,
+      "prompt": "Sold 10 covered calls @ $105 strike, $2.50 premium, cost basis $95. Total profit?",
+      "expected": 12500,
+      "range": [
+        12490,
+        12510
+      ],
+      "unit": "USD",
+      "validation_formula": "(105-95)×1000 + 2.5×10×100",
+      "grading_notes": "Include premium + intrinsic value."
+    },
+    {
+      "question_id": "dca_average_price",
+      "difficulty": 4,
+      "prompt": "Bought BTC $1000 each at $40k, $50k, $25k, $30k. Average cost per BTC?",
+      "expected": 33803,
+      "range": [
+        33790,
+        33820
+      ],
+      "unit": "USD",
+      "validation_formula": "4000/(0.025+0.020+0.040+0.0333)",
+      "grading_notes": "Use total BTC acquired method."
+    },
+    {
+      "question_id": "margin_interest_calculation",
+      "difficulty": 4,
+      "prompt": "Borrow $50 000, position worth $57 500 (+15 %), 8 % annual interest for 90 days. Net profit?",
+      "expected": 6500,
+      "range": [
+        6490,
+        6510
+      ],
+      "unit": "USD",
+      "validation_formula": "7500-1000",
+      "grading_notes": "Subtract accrued interest cost."
+    },
+    {
+      "question_id": "futures_liquidation",
+      "difficulty": 6,
+      "prompt": "Long BTC @ $62 000 (0.5 BTC, 10× leverage, $3100 margin, 0.5 % maintenance). Liquidation price?",
+      "expected": 56110,
+      "range": [
+        56090,
+        56130
+      ],
+      "unit": "USD",
+      "validation_formula": "62000-((3100-155)/0.5)",
+      "grading_notes": "Maintenance on entry notional."
+    },
+    {
+      "question_id": "impermanent_loss",
+      "difficulty": 7,
+      "prompt": "Provide liquidity to ETH/USDC: 10 ETH + $40 000 USDC (ETH $4000 → $3600). Impermanent loss in USDC?",
+      "expected": 106,
+      "range": [
+        100,
+        112
+      ],
+      "unit": "USD",
+      "validation_formula": "AMM constant product",
+      "grading_notes": "Report absolute USDC loss."
+    },
+    {
+      "question_id": "kelly_criterion",
+      "difficulty": 7,
+      "prompt": "Win rate 60 %, avg win $800, avg loss $500, account $50 000. Optimal position size?",
+      "expected": 17500,
+      "range": [
+        17400,
+        17600
+      ],
+      "unit": "USD",
+      "validation_formula": "50000×((0.6×1.6-0.4)/1.6)",
+      "grading_notes": "Kelly fraction × account size."
+    },
+    {
+      "question_id": "cross_exchange_arbitrage",
+      "difficulty": 6,
+      "prompt": "Buy BTC $61 500 (0.1 % fee), sell $61 800 (0.15 % fee), transfer $25, capital $30 000. Profit?",
+      "expected": 51,
+      "range": [
+        45,
+        57
+      ],
+      "unit": "USD",
+      "validation_formula": "Fee-adjusted BTC flow",
+      "grading_notes": "Apply buy/sell fees + transfer."
+    },
+    {
+      "question_id": "funding_rate_cost",
+      "difficulty": 6,
+      "prompt": "Short 2 BTC @ $60 000, funding 0.01 % every 8 h for 30 days. Total cost?",
+      "expected": 1080,
+      "range": [
+        1070,
+        1090
+      ],
+      "unit": "USD",
+      "validation_formula": "120000×0.0001×90",
+      "grading_notes": "90 periods × funding rate × notional."
+    },
+    {
+      "question_id": "options_delta_hedge",
+      "difficulty": 7,
+      "prompt": "Sold 10 SPY calls (delta 0.40, 100 shares/contract). Shares to hedge?",
+      "expected": 400,
+      "range": [
+        399,
+        401
+      ],
+      "unit": "shares",
+      "validation_formula": "10×100×0.4",
+      "grading_notes": "Hedge requires buying shares = total delta."
+    },
+    {
+      "question_id": "tax_loss_harvesting",
+      "difficulty": 5,
+      "prompt": "BTC −$8 000, ETH +$400, SOL −$5 000 (100 SOL). 20 % tax rate. Tax benefit?",
+      "expected": 2520,
+      "range": [
+        2510,
+        2530
+      ],
+      "unit": "USD",
+      "validation_formula": "12600×0.20",
+      "grading_notes": "Net loss × tax rate."
+    },
+    {
+      "question_id": "sharpe_ratio",
+      "difficulty": 5,
+      "prompt": "Return 24 %, risk-free 4 %, σ 16 %. Sharpe ratio?",
+      "expected": 1.25,
+      "range": [
+        1.24,
+        1.26
+      ],
+      "unit": "ratio",
+      "validation_formula": "(0.24-0.04)/0.16",
+      "grading_notes": "Return ratio not percent."
+    },
+    {
+      "question_id": "grid_trading_profit",
+      "difficulty": 6,
+      "prompt": "Grid $58–60k (5 × $1 k buys), sold @ $62 k for $5255.12. Profit?",
+      "expected": 255,
+      "range": [
+        250,
+        260
+      ],
+      "unit": "USD",
+      "validation_formula": "5255.12-5000",
+      "grading_notes": "Profit = revenue − cost."
+    },
+    {
+      "question_id": "compound_yield_farming",
+      "difficulty": 7,
+      "prompt": "Deposit $10 000 USDC, APR 18 % (daily compound) 90 days. Final value?",
+      "expected": 10456,
+      "range": [
+        10450,
+        10462
+      ],
+      "unit": "USD",
+      "validation_formula": "10000×(1+0.18/365)^90",
+      "grading_notes": "Daily compounding formula."
+    },
+    {
+      "question_id": "maximum_drawdown",
+      "difficulty": 6,
+      "prompt": "Portfolio peak $115 k, trough $92 k. Drawdown percent?",
+      "expected": 20,
+      "range": [
+        19.9,
+        20.1
+      ],
+      "unit": "percent",
+      "validation_formula": "(115000-92000)/115000",
+      "grading_notes": "Return absolute percent."
+    },
+    {
+      "question_id": "pairs_trading_profit",
+      "difficulty": 7,
+      "prompt": "$5 k short A @ $150, $5 k long B @ $95; B → $100, A unchanged. Profit?",
+      "expected": 263,
+      "range": [
+        255,
+        270
+      ],
+      "unit": "USD",
+      "validation_formula": "52.63×(100-95)",
+      "grading_notes": "Compute gain on long B only."
+    },
+    {
+      "question_id": "liquidation_cascade",
+      "difficulty": 7,
+      "prompt": "BTC $60 k; liquidations at $58 k/$57 k/$56 k each cause −2 % drop. Final price?",
+      "expected": 54600,
+      "range": [
+        54500,
+        54700
+      ],
+      "unit": "USD",
+      "validation_formula": "58000×0.98→56840×0.98→55703×0.98",
+      "grading_notes": "Sequential 2 % drops compound."
+    }
+  ],
+  "grading_policy": {
+    "tolerance_percent": 0.25,
+    "criteria": "Correct only if final_answer ∈ [range_low, range_high]; no overrides.",
+    "unit_validation": true,
+    "json_enforced_output": true,
+    "auditable_logs": true,
+    "retry_logic": {
+      "max_attempts": 3,
+      "condition": "If JSON parsing fails or required keys missing.",
+      "action": "Re-prompt the model with identical question + strict JSON reminder."
+    }
+  },
+  "example_outputs": {
+    "order_book_execution": {
+      "final_answer": 245.625,
+      "unit": "USD"
+    },
+    "leveraged_position_sizing": {
+      "final_answer": 41.66,
+      "unit": "mBTC"
+    },
+    "stop_loss_risk": {
+      "final_answer": 3000,
+      "unit": "USD"
+    },
+    "portfolio_rebalancing": {
+      "final_answer": 7200,
+      "unit": "USD"
+    },
+    "options_premium_roi": {
+      "final_answer": 12500,
+      "unit": "USD"
+    },
+    "dca_average_price": {
+      "final_answer": 33803,
+      "unit": "USD"
+    },
+    "margin_interest_calculation": {
+      "final_answer": 6500,
+      "unit": "USD"
+    },
+    "futures_liquidation": {
+      "final_answer": 56110,
+      "unit": "USD"
+    },
+    "impermanent_loss": {
+      "final_answer": 106,
+      "unit": "USD"
+    },
+    "kelly_criterion": {
+      "final_answer": 17500,
+      "unit": "USD"
+    },
+    "cross_exchange_arbitrage": {
+      "final_answer": 51,
+      "unit": "USD"
+    },
+    "funding_rate_cost": {
+      "final_answer": 1080,
+      "unit": "USD"
+    },
+    "options_delta_hedge": {
+      "final_answer": 400,
+      "unit": "shares"
+    },
+    "tax_loss_harvesting": {
+      "final_answer": 2520,
+      "unit": "USD"
+    },
+    "sharpe_ratio": {
+      "final_answer": 1.25,
+      "unit": "ratio"
+    },
+    "grid_trading_profit": {
+      "final_answer": 255,
+      "unit": "USD"
+    },
+    "compound_yield_farming": {
+      "final_answer": 10456,
+      "unit": "USD"
+    },
+    "maximum_drawdown": {
+      "final_answer": 20,
+      "unit": "percent"
+    },
+    "pairs_trading_profit": {
+      "final_answer": 263,
+      "unit": "USD"
+    },
+    "liquidation_cascade": {
+      "final_answer": 54600,
+      "unit": "USD"
+    }
+  },
+  "parsing_retries": {
+    "description": "Auto-retry up to 3 times if JSON parsing fails.",
+    "pseudo_code": [
+      "attempt=1",
+      "while attempt<=3:",
+      "  try parse(response)",
+      "  if success: break",
+      "  else: re-prompt('Return valid JSON only, same format.')",
+      "  attempt+=1",
+      "if still fails: mark INCORRECT & log failure"
+    ]
+  }
+}

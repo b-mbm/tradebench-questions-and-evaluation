@@ -36,6 +36,19 @@ export interface SchemaQuestion {
   rubric_id: string;
   expected_values: Record<string, unknown>;
   context?: Record<string, unknown>;
+  type?: 'schema';
+}
+
+export interface L0Question {
+  id: string;
+  level: 0;
+  prompt: string;
+  expected: number;
+  range: [number, number];
+  unit: string;
+  difficulty: number;
+  sourceQuestion?: Record<string, unknown>;
+  type?: 'l0';
 }
 
 export interface SchemaRubric {
@@ -52,8 +65,9 @@ export interface GradeResult {
   confidence: number;
   score: number;
   fieldScores: Record<string, number>;
-  normalizedResponse: ExecuteOneResponse | null;
+  normalizedResponse: Record<string, unknown> | null;
   failureReasons: FailureReason[];
   parsingMethod: ParsingMethod;
 }
 
+export type BenchmarkQuestion = SchemaQuestion | L0Question;

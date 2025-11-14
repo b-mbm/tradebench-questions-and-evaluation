@@ -14,9 +14,13 @@ import {
   type Provider,
 } from "../src/models/model-runner";
 import { SCHEMA_QUESTIONS } from "../src/questions/schema-questions";
+import { L0_QUESTIONS } from "../src/questions/l0-questions";
 import { loadRubric } from "../src/rubrics/loader";
 import { gradeSchemaResponse } from "../src/grading/schema-grader";
-import type { GradeResult } from "../src/types/schema";
+import { gradeL0Response } from "../src/grading/l0-grader";
+import { buildL0Prompt } from "../src/prompts/l0-prompts";
+import { buildExecuteOnePrompts } from "../src/prompts/schema-prompts";
+import type { BenchmarkQuestion, GradeResult, L0Question, SchemaQuestion } from "../src/types/schema";
 
 type CliArgs = {
   ids?: string[];
@@ -58,6 +62,11 @@ fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 const delay = (ms: number): Promise<void> => new Promise(res => setTimeout(res, ms));
 
+const ALL_QUESTIONS: BenchmarkQuestion[] = [
+  ...L0_QUESTIONS,
+  ...SCHEMA_QUESTIONS.map(question => ({ ...question, type: 'schema' as const })),
+];
+
 type EvaluationRow = {
   modelId: string;
   modelLabel: string;
@@ -78,6 +87,14 @@ type ResultFile = {
 
 type RetryCategory = "timeout" | "429" | "503" | "blank" | "parse" | "other";
 
+function isL0Question(question: BenchmarkQuestion): question is L0Question {
+  return question.type === "l0" || question.level === 0;
+}
+
+function isSchemaQuestion(question: BenchmarkQuestion): question is SchemaQuestion {
+  return !isL0Question(question);
+}
+
 function classifyError(err: unknown): RetryCategory {
   const msg = (err instanceof Error ? err.message : String(err)).toLowerCase();
   if (/timeout/.test(msg)) return "timeout";
@@ -89,13 +106,13 @@ function classifyError(err: unknown): RetryCategory {
 
 async function runModelOnQuestion(
   model: ModelConfig,
-  question: (typeof SCHEMA_QUESTIONS)[number],
+  question: BenchmarkQuestion,
   overrides: ExecuteOneCallOptions | undefined,
   maxAttempts: number,
   baseDelayMs: number,
   noCall: boolean
 ): Promise<EvaluationRow> {
-  const rubric = loadRubric(question.rubric_id);
+  const rubric = isSchemaQuestion(question) ? loadRubric(question.rubric_id) : null;
   let attempt = 0;
   let lastErr: any = null;
   let started = Date.now();
@@ -108,10 +125,13 @@ async function runModelOnQuestion(
       if (noCall) {
         throw new Error("--no-call scaffolding mode enabled");
       }
-      const result = await callExecuteOneModel(model.id, question, { ...DEFAULT_MODEL_OPTIONS, ...overrides });
+      const prompts = isL0Question(question) ? buildL0Prompt(question) : buildExecuteOnePrompts(question);
+      const result = await callExecuteOneModel(model.id, question, { ...DEFAULT_MODEL_OPTIONS, ...overrides }, prompts);
       raw = result.text ?? "";
 
-      const grade = gradeSchemaResponse(raw, question, rubric);
+      const grade = isL0Question(question)
+        ? gradeL0Response(raw, question)
+        : gradeSchemaResponse(raw, question, rubric!);
 
       const parseFailed = !grade.normalizedResponse;
       if (parseFailed && attempt < maxAttempts) {
@@ -193,9 +213,9 @@ function selectModels(): ModelConfig[] {
 }
 
 function selectQuestions(ids?: string[]) {
-  if (!ids || !ids.length) return SCHEMA_QUESTIONS;
+  if (!ids || !ids.length) return ALL_QUESTIONS;
   const set = new Set(ids);
-  const selected = SCHEMA_QUESTIONS.filter(q => set.has(q.id));
+  const selected = ALL_QUESTIONS.filter(q => set.has(q.id));
   const missing = Array.from(set).filter(id => !selected.some(q => q.id === id));
   if (missing.length) {
     console.warn(`⚠️ Question IDs not found: ${missing.join(", ")}`);
