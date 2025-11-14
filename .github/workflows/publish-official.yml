@@ -76,7 +76,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "website/$(dirname "$WEBSITE_PATH")"
-          cp results/site-current.json "website/$WEBSITE_PATH"
+          npx tsx scripts/merge-site-json.ts --source results/site-current.json --dest "website/$WEBSITE_PATH" --seed data/legacy-leaderboard.json
       - name: Commit and push website update
         working-directory: website
         run: |
@@ -111,8 +111,15 @@ jobs:
           if [ -n "${VERCEL_TOKEN:-}" ] && [ -n "${VERCEL_PROJECT_ID:-}" ] && [ -n "${VERCEL_ORG_ID:-}" ]; then
             echo "Deploying with Vercel CLI"
             npm i -g vercel
-            vercel pull --yes --environment=production --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"
-            vercel deploy --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"
+            set +e
+            vercel pull --yes --environment=production --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
+            PULL_STATUS=$?
+            vercel deploy --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
+            DEPLOY_STATUS=$?
+            set -e
+            if [ "$PULL_STATUS" -ne 0 ] || [ "$DEPLOY_STATUS" -ne 0 ]; then
+              echo "::warning::Vercel CLI deploy failed (pull=$PULL_STATUS deploy=$DEPLOY_STATUS). Site may still update via deploy hook."
+            fi
           else
             echo "CLI secrets not set; skipping CLI deploy."
           fi

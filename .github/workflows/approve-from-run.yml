@@ -24,11 +24,45 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - name: Snapshot current manifest
+        run: |
+          set -euo pipefail
+          mkdir -p results
+          if [ -f results/official-manifest.json ]; then
+            cp results/official-manifest.json results/official-manifest.prev.json
+            echo "Backed up existing manifest."
+          else
+            echo "No existing manifest to back up."
+          fi
       - name: Download artifact and approve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npx tsx scripts/approve-from-run.ts --run-id "${{ github.event.inputs.run_id }}" --artifact-contains "${{ github.event.inputs.artifact_contains }}"
+      - name: Merge manifest entries
+        run: |
+          set -euo pipefail
+          OUT="results/official-manifest.json"
+          PREV="results/official-manifest.prev.json"
+          if [ ! -f "$OUT" ]; then
+            echo "ERROR: $OUT missing after approve step."
+            exit 1
+          fi
+          if [ -f "$PREV" ]; then
+            jq -n \
+              --argjson prev "$(cat "$PREV")" \
+              --argjson curr "$(cat "$OUT")" \
+              '{updatedAt: (now | todate), entries: ($prev.entries // {}) + ($curr.entries // {})}' \
+              > "${OUT}.tmp"
+            mv "${OUT}.tmp" "$OUT"
+            rm -f "$PREV"
+            echo "Merged previous manifest entries."
+          else
+            jq '.updatedAt = (now | todate)' "$OUT" > "${OUT}.tmp"
+            mv "${OUT}.tmp" "$OUT"
+            echo "No previous manifest; refreshed timestamp."
+          fi
+          jq '.entries | length as $n | "✅ manifest entries: \($n)"' "$OUT"
       - name: Commit and push
         run: |
           if git status --porcelain | grep .; then
