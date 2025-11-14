@@ -97,6 +97,8 @@ async function main() {
   if (res.status !== 0) throw new Error("approve-run failed");
 
   console.log(`✅ Approved from run ${args.runId}: ${destCommunity}`);
+
+  fs.rmSync(tmpDir, { recursive: true, force: true });
 }
 
 main().catch(err => {

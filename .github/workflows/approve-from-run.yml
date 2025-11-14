@@ -34,7 +34,7 @@ jobs:
           if git status --porcelain | grep .; then
             git config user.name "tradebench-bot"
             git config user.email "actions@users.noreply.github.com"
-            git add results/official results/official-manifest.json
+            git add -f results/official results/official-manifest.json
             git commit -m "chore: approve from run ${{ github.event.inputs.run_id }}"
             git push
           else
