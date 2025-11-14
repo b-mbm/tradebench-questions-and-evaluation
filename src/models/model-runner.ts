@@ -92,6 +92,13 @@ function readBenchmarkModels(): string[] {
 }
 
 function inferProvider(modelId: string): Provider {
+  // Explicit overrides for models that exist on multiple platforms
+  if (modelId === 'moonshotai/kimi-k2-instruct-0905') {
+    return 'groq';
+  }
+  if (modelId === 'moonshotai/kimi-k2-thinking') {
+    return 'openrouter';
+  }
   if (modelId.startsWith('gpt-5') || modelId.startsWith('gpt-4') || modelId.startsWith('gpt-4o') || modelId.startsWith('o')) {
     return 'openai';
   }
