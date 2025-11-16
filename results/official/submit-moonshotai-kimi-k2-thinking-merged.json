@@ -1,0 +1,2369 @@
+{
+  "runAt": "2025-11-16T00:37:32.160Z",
+  "label": "submit-moonshotai-kimi-k2-thinking-2025-11-15T21-55-34-383Z",
+  "models": [
+    "moonshotai/kimi-k2-thinking"
+  ],
+  "questionIds": [
+    "L0-order_book_execution",
+    "L0-leveraged_position_sizing",
+    "L0-stop_loss_risk",
+    "L0-portfolio_rebalancing",
+    "L0-options_premium_roi",
+    "L0-dca_average_price",
+    "L0-margin_interest_calculation",
+    "L0-futures_liquidation",
+    "L0-impermanent_loss",
+    "L0-kelly_criterion",
+    "L0-cross_exchange_arbitrage",
+    "L0-funding_rate_cost",
+    "L0-options_delta_hedge",
+    "L0-tax_loss_harvesting",
+    "L0-sharpe_ratio",
+    "L0-grid_trading_profit",
+    "L0-compound_yield_farming",
+    "L0-maximum_drawdown",
+    "L0-pairs_trading_profit",
+    "L0-liquidation_cascade",
+    "L1-001",
+    "L1-002",
+    "L1-003",
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004",
+    "L3-001",
+    "L3-002",
+    "L3-003",
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005",
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005",
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005",
+    "L7-001",
+    "L7-002",
+    "L7-003",
+    "L7-004",
+    "L7-005",
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-order_book_execution",
+      "raw": "{\n  \"final_answer\": 245.625,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Take 50 shares at $245.50\",\n    \"Take remaining 50 shares at $245.75\",\n    \"Compute weighted average: (50*245.50 + 50*245.75) / 100 = 245.625\"\n  ]\n}",
+      "durationMs": 3965,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 245.625,
+          "unit": "USD",
+          "reasoning": [
+            "Take 50 shares at $245.50",
+            "Take remaining 50 shares at $245.75",
+            "Compute weighted average: (50*245.50 + 50*245.75) / 100 = 245.625"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-leveraged_position_sizing",
+      "raw": " {\n  \"final_answer\": 41.67,\n  \"unit\": \"mBTC\",\n  \"reasoning\": [\n    \"Calculate risk amount: 4% of $10,000 = $400\",\n    \"Calculate leveraged position value: $400 × 6 = $2,400\",\n    \"Convert to BTC: $2,400 ÷ $57,600 = 0.041666... BTC\",\n    \"Convert to mBTC: 0.041666... × 1000 = 41.666... mBTC\"\n  ]\n}",
+      "durationMs": 20662,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9997599615938549,
+        "fieldScores": {
+          "final_answer": 0.9997599615938549
+        },
+        "normalizedResponse": {
+          "final_answer": 41.67,
+          "unit": "mBTC",
+          "reasoning": [
+            "Calculate risk amount: 4% of $10,000 = $400",
+            "Calculate leveraged position value: $400 × 6 = $2,400",
+            "Convert to BTC: $2,400 ÷ $57,600 = 0.041666... BTC",
+            "Convert to mBTC: 0.041666... × 1000 = 41.666... mBTC"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-stop_loss_risk",
+      "raw": " {\n  \"final_answer\": 3000,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Loss per BTC: $60,000 - $58,500 = $1,500\", \"Total loss: $1,500 × 2 BTC = $3,000\"]\n}",
+      "durationMs": 3172,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 3000,
+          "unit": "USD",
+          "reasoning": [
+            "Loss per BTC: $60,000 - $58,500 = $1,500",
+            "Total loss: $1,500 × 2 BTC = $3,000"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-portfolio_rebalancing",
+      "raw": " {\n  \"final_answer\": 7200,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate target stock value: 60% of $113,000 = $67,800.\",\n    \"Current stock value $75,000 exceeds target by $7,200; sell this amount to reach 60% allocation.\"\n  ]\n}",
+      "durationMs": 6927,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 7200,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate target stock value: 60% of $113,000 = $67,800.",
+            "Current stock value $75,000 exceeds target by $7,200; sell this amount to reach 60% allocation."
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-options_premium_roi",
+      "raw": " {\n  \"final_answer\": 12500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Premium: 10 contracts × 100 shares × $2.50 = $2,500\", \"Total profit: 1,000 × ($105-$95) + $2,500 = $12,500\"]\n}",
+      "durationMs": 18622,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 12500,
+          "unit": "USD",
+          "reasoning": [
+            "Premium: 10 contracts × 100 shares × $2.50 = $2,500",
+            "Total profit: 1,000 × ($105-$95) + $2,500 = $12,500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-dca_average_price",
+      "raw": " {\n  \"final_answer\": 33802.82,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Calculated 0.025, 0.02, 0.04, 0.0333 BTC per $1000 purchase\", \"Total $4000 ÷ 0.11833 BTC = $33802.82 average cost\"]\n}",
+      "durationMs": 34387,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9999946750288435,
+        "fieldScores": {
+          "final_answer": 0.9999946750288435
+        },
+        "normalizedResponse": {
+          "final_answer": 33802.82,
+          "unit": "USD",
+          "reasoning": [
+            "Calculated 0.025, 0.02, 0.04, 0.0333 BTC per $1000 purchase",
+            "Total $4000 ÷ 0.11833 BTC = $33802.82 average cost"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-margin_interest_calculation",
+      "raw": " {\n  \"final_answer\": 6500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Gross profit = 57500 - 50000 = 7500\", \"Interest cost = 50000 * 0.08 * (90/360) = 1000\", \"Net profit = 7500 - 1000 = 6500\"]\n}",
+      "durationMs": 7877,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 6500,
+          "unit": "USD",
+          "reasoning": [
+            "Gross profit = 57500 - 50000 = 7500",
+            "Interest cost = 50000 * 0.08 * (90/360) = 1000",
+            "Net profit = 7500 - 1000 = 6500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-futures_liquidation",
+      "raw": "{\n  \"final_answer\": 56110,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Initial margin ratio = 1/leverage = 0.1\", \"Liquidation price = 62000×(1-(0.1-0.005)) = 56110\"]\n}",
+      "durationMs": 76115,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 56110,
+          "unit": "USD",
+          "reasoning": [
+            "Initial margin ratio = 1/leverage = 0.1",
+            "Liquidation price = 62000×(1-(0.1-0.005)) = 56110"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-impermanent_loss",
+      "raw": "{\n  \"final_answer\": 112,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Initial pool: 10 ETH & 40,000 USDC (k=400,000)\",\n    \"Price falls to $3600; new reserves: x₁=√(k/P₁)=10.540 ETH, y₁=P₁·x₁=37,944 USDC\",\n    \"LP value after change: 2·y₁ = $75,888\",\n    \"Hodl value: 10 ETH·$3600 + 40,000 USDC = $76,000\",\n    \"Impermanent loss = $76,000 - $75,888 = $112\"\n  ]\n}",
+      "durationMs": 10042,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9433962264150944,
+        "fieldScores": {
+          "final_answer": 0.9433962264150944
+        },
+        "normalizedResponse": {
+          "final_answer": 112,
+          "unit": "USD",
+          "reasoning": [
+            "Initial pool: 10 ETH & 40,000 USDC (k=400,000)",
+            "Price falls to $3600; new reserves: x₁=√(k/P₁)=10.540 ETH, y₁=P₁·x₁=37,944 USDC",
+            "LP value after change: 2·y₁ = $75,888",
+            "Hodl value: 10 ETH·$3600 + 40,000 USDC = $76,000",
+            "Impermanent loss = $76,000 - $75,888 = $112"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-kelly_criterion",
+      "raw": "{\"final_answer\":17500,\"unit\":\"USD\",\"reasoning\":[\"Calculate expectancy: (0.6 * 800) - (0.4 * 500) = 480 - 200 = 280\",\"Calculate optimal f: (0.6 * 800 - 0.4 * 500) / (800 * 500) = 280 / 400000 = 0.0007\",\"Calculate position size: 0.0007 * 50000 = 35\",\"Multiply by 500: 35 * 500 = 17500\"]}",
+      "durationMs": 5919,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 17500,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate expectancy: (0.6 * 800) - (0.4 * 500) = 480 - 200 = 280",
+            "Calculate optimal f: (0.6 * 800 - 0.4 * 500) / (800 * 500) = 280 / 400000 = 0.0007",
+            "Calculate position size: 0.0007 * 50000 = 35",
+            "Multiply by 500: 35 * 500 = 17500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-cross_exchange_arbitrage",
+      "raw": "{\"final_answer\":46.5,\"unit\":\"USD\",\"reasoning\":[\"Buy cost: 61500 * 0.001 = 61.5 USD fee, so net buy price = 61500 + 61.5 = 61561.5 USD per BTC\",\"Sell revenue: 61800 * (1 - 0.0015) = 61800 * 0.9985 = 61672.23 USD per BTC after fee; Profit per BTC = 61672.23 - 61561.5 = 110.73 USD; For 30000 USD capital, BTC amount = 30000 / 61561.5 = 0.4873 BTC; Profit = 110.73 * 0.4873 = 53.96 USD; After transfer fee of 25 USD, net profit = 53.96 - 25 = 28.96 USD; Wait, need to recalculate: Actually the transfer fee is separate from trading fees. Let's compute properly: Capital = 30000 USD. Buy fee = 0.1% of 30000 = 30 USD. So buying power = 30000 - 30 = 29970 USD. BTC bought = 29970 / 61500 = 0.487317 BTC. Sell value before fee = 0.487317 * 61800 = 30116.19 USD. Sell fee = 0.15% of 30116.19 = 45.17 USD. Sell proceeds = 30116.19 - 45.17 = 30071.02 USD. Transfer fee = 25 USD. Net profit = 30071.02 - 30000 - 25 = 46.02 USD. Rounding to 46.5 USD.\"]}",
+      "durationMs": 13132,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9117647058823529,
+        "fieldScores": {
+          "final_answer": 0.9117647058823529
+        },
+        "normalizedResponse": {
+          "final_answer": 46.5,
+          "unit": "USD",
+          "reasoning": [
+            "Buy cost: 61500 * 0.001 = 61.5 USD fee, so net buy price = 61500 + 61.5 = 61561.5 USD per BTC",
+            "Sell revenue: 61800 * (1 - 0.0015) = 61800 * 0.9985 = 61672.23 USD per BTC after fee; Profit per BTC = 61672.23 - 61561.5 = 110.73 USD; For 30000 USD capital, BTC amount = 30000 / 61561.5 = 0.4873 BTC; Profit = 110.73 * 0.4873 = 53.96 USD; After transfer fee of 25 USD, net profit = 53.96 - 25 = 28.96 USD; Wait, need to recalculate: Actually the transfer fee is separate from trading fees. Let's compute properly: Capital = 30000 USD. Buy fee = 0.1% of 30000 = 30 USD. So buying power = 30000 - 30 = 29970 USD. BTC bought = 29970 / 61500 = 0.487317 BTC. Sell value before fee = 0.487317 * 61800 = 30116.19 USD. Sell fee = 0.15% of 30116.19 = 45.17 USD. Sell proceeds = 30116.19 - 45.17 = 30071.02 USD. Transfer fee = 25 USD. Net profit = 30071.02 - 30000 - 25 = 46.02 USD. Rounding to 46.5 USD."
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-funding_rate_cost",
+      "raw": "{\n  \"final_answer\": 1080,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Position value: 2×60,000=120,000 USD\", \"Funding periods: 30 days×3=90 (24h/8h)\", \"Total cost: 120,000×0.01%×90=1,080 USD\"]\n}",
+      "durationMs": 111483,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1080,
+          "unit": "USD",
+          "reasoning": [
+            "Position value: 2×60,000=120,000 USD",
+            "Funding periods: 30 days×3=90 (24h/8h)",
+            "Total cost: 120,000×0.01%×90=1,080 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-options_delta_hedge",
+      "raw": " {\n  \"final_answer\": 400,\n  \"unit\": \"shares\",\n  \"reasoning\": [\"10 contracts × 100 shares × 0.40 delta = 400\", \"Short calls need long shares to hedge\"]\n}",
+      "durationMs": 31964,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 400,
+          "unit": "shares",
+          "reasoning": [
+            "10 contracts × 100 shares × 0.40 delta = 400",
+            "Short calls need long shares to hedge"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-tax_loss_harvesting",
+      "raw": " {\n  \"final_answer\": 2520,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Net capital loss = BTC loss $8000 + SOL loss $5000 - ETH gain $400 = $12,600\",\n    \"Tax benefit = net loss × tax rate = $12,600 × 20% = $2,520\"\n  ]\n}",
+      "durationMs": 38795,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 2520,
+          "unit": "USD",
+          "reasoning": [
+            "Net capital loss = BTC loss $8000 + SOL loss $5000 - ETH gain $400 = $12,600",
+            "Tax benefit = net loss × tax rate = $12,600 × 20% = $2,520"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-sharpe_ratio",
+      "raw": " {\n  \"final_answer\": 1.25,\n  \"unit\": \"ratio\",\n  \"reasoning\": [\"Calculate excess return: 24% - 4% = 20%\", \"Divide by volatility: 20% / 16% = 1.25\"]\n}",
+      "durationMs": 6901,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1.25,
+          "unit": "ratio",
+          "reasoning": [
+            "Calculate excess return: 24% - 4% = 20%",
+            "Divide by volatility: 20% / 16% = 1.25"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-grid_trading_profit",
+      "raw": " {\n  \"final_answer\": 255.12,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Total buy cost = 5 × $1,000 = $5,000\",\n    \"Sell proceeds = $5,255.12\",\n    \"Profit = $5,255.12 - $5,000 = $255.12\"\n  ]\n}",
+      "durationMs": 17228,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9995294117647059,
+        "fieldScores": {
+          "final_answer": 0.9995294117647059
+        },
+        "normalizedResponse": {
+          "final_answer": 255.12,
+          "unit": "USD",
+          "reasoning": [
+            "Total buy cost = 5 × $1,000 = $5,000",
+            "Sell proceeds = $5,255.12",
+            "Profit = $5,255.12 - $5,000 = $255.12"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-compound_yield_farming",
+      "raw": "{\n  \"final_answer\": 10453.57,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Calculate daily rate: 18%/365 = 0.000493\", \"Compound 90 days: 10000*(1+daily_rate)^90\"]\n}",
+      "durationMs": 30028,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.999767597551645,
+        "fieldScores": {
+          "final_answer": 0.999767597551645
+        },
+        "normalizedResponse": {
+          "final_answer": 10453.57,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate daily rate: 18%/365 = 0.000493",
+            "Compound 90 days: 10000*(1+daily_rate)^90"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-maximum_drawdown",
+      "raw": " {\n  \"final_answer\": 20,\n  \"unit\": \"percent\",\n  \"reasoning\": [\"115k - 92k = 23k\", \"23k / 115k * 100 = 20%\"]\n}",
+      "durationMs": 36202,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 20,
+          "unit": "percent",
+          "reasoning": [
+            "115k - 92k = 23k",
+            "23k / 115k * 100 = 20%"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-pairs_trading_profit",
+      "raw": " {\n  \"final_answer\": 263.16,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Compute shares: $5k short A @ $150 → 5000/150 = 33.33 shares; $5k long B @ $95 → 5000/95 = 52.63 shares.\",\n    \"B rises from $95 to $100: profit = (100‑95) × 52.63 = $263.16.\",\n    \"A price unchanged → no profit/loss on short position.\",\n    \"Total profit = $263.16.\"\n  ]\n}",
+      "durationMs": 31547,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9993916349809885,
+        "fieldScores": {
+          "final_answer": 0.9993916349809885
+        },
+        "normalizedResponse": {
+          "final_answer": 263.16,
+          "unit": "USD",
+          "reasoning": [
+            "Compute shares: $5k short A @ $150 → 5000/150 = 33.33 shares; $5k long B @ $95 → 5000/95 = 52.63 shares.",
+            "B rises from $95 to $100: profit = (100‑95) × 52.63 = $263.16.",
+            "A price unchanged → no profit/loss on short position.",
+            "Total profit = $263.16."
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L0-liquidation_cascade",
+      "raw": "{\n  \"final_answer\": 54589,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Start $60,000; liquidation at $58,000 triggers 2% drop → $58,000 * 0.98 = $56,840.\",\n    \"Next liquidation at $57,000 triggers 2% drop → $56,840 * 0.98 = $55,703.20.\",\n    \"Final liquidation at $56,000 triggers 2% drop → $55,703.20 * 0.98 = $54,589.14 ≈ $54,589.\"\n  ]\n}",
+      "durationMs": 76066,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9997985347985348,
+        "fieldScores": {
+          "final_answer": 0.9997985347985348
+        },
+        "normalizedResponse": {
+          "final_answer": 54589,
+          "unit": "USD",
+          "reasoning": [
+            "Start $60,000; liquidation at $58,000 triggers 2% drop → $58,000 * 0.98 = $56,840.",
+            "Next liquidation at $57,000 triggers 2% drop → $56,840 * 0.98 = $55,703.20.",
+            "Final liquidation at $56,000 triggers 2% drop → $55,703.20 * 0.98 = $54,589.14 ≈ $54,589."
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L1-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"BTC\",\"size\":\"0.5\",\"unit\":\"btc\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"market order for immediate execution\",\"requires_follow_up\":true,\"follow_up_description\":\"verify order execution and final fill price\"}",
+      "durationMs": 50838,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution",
+          "requires_follow_up": true,
+          "follow_up_description": "verify order execution and final fill price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L1-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"SOL\",\"size\":\"10\",\"unit\":\"sol\",\"price\":\"95\",\"venue\":\"coinbase\",\"venue_name\":\"Coinbase\",\"risk_controls\":{\"stop_loss\":\"85\",\"take_profit\":\"110\",\"slippage_tolerance\":\"0%\"},\"follow_up\":\"monitor fill\",\"reasoning\":\"Limit order to buy 10 SOL at $95, below current market price of $100\",\"requires_follow_up\":true,\"follow_up_description\":\"Order will be placed but may not fill immediately. Monitor for execution when SOL price reaches $95.\"}",
+      "durationMs": 115711,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "unit": "sol",
+          "price": "95",
+          "venue": "coinbase",
+          "venue_name": "Coinbase",
+          "risk_controls": {
+            "stop_loss": "85",
+            "take_profit": "110",
+            "slippage_tolerance": "0%"
+          },
+          "follow_up": "monitor fill",
+          "reasoning": "Limit order to buy 10 SOL at $95, below current market price of $100",
+          "requires_follow_up": true,
+          "follow_up_description": "Order will be placed but may not fill immediately. Monitor for execution when SOL price reaches $95."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L1-003",
+      "raw": "{\"intent\": \"stop_loss\", \"order_type\": \"stop_loss\", \"asset\": \"ETH\", \"size\": 2, \"unit\": \"eth\", \"price\": 2800, \"venue\": \"coinbase\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\"}, \"follow_up\": \"confirm placement\", \"reasoning\": \"Setting stop loss 6.7% below current ETH price of $3000 to limit downside risk on 2 ETH position\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify stop loss order is active and will trigger at $2800\"}",
+      "durationMs": 68619,
+      "grade": {
+        "pass": true,
+        "confidence": 0.905618686868687,
+        "score": 0.8579545454545455,
+        "fieldScores": {
+          "intent": 0.14545454545454548,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "stop_loss",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "price": 2800,
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm placement",
+          "reasoning": "Setting stop loss 6.7% below current ETH price of $3000 to limit downside risk on 2 ETH position",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify stop loss order is active and will trigger at $2800"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L2-001",
+      "raw": "{\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"DAI\",\"size\":\"5000\",\"unit\":\"usdc\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"monitor pool depth\",\"reasoning\":\"route via largest stablecoin pool on mainnet\"}",
+      "durationMs": 53891,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest stablecoin pool on mainnet"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L2-002",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"dex\", \"asset\": \"PEPE\", \"size\": \"100000\", \"unit\": \"PEPE\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"15%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"confirm receipt\", \"reasoning\": \"High slippage DEX swap for PEPE token on Ethereum mainnet\"}",
+      "durationMs": 62897,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8192735042735044,
+        "score": 0.7761538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "PEPE",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm receipt",
+          "reasoning": "High slippage DEX swap for PEPE token on Ethereum mainnet"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L2-003",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"MATIC\", \"size\": 1000, \"venue\": \"coinbase\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\"}, \"follow_up\": \"confirm fill\", \"reasoning\": \"CEX market order avoids on-chain gas fees entirely, minimizing costs\"}",
+      "durationMs": 87380,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8357142857142859,
+        "score": 0.7800000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "CEX market order avoids on-chain gas fees entirely, minimizing costs"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L2-004",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"WETH\", \"size\": \"50000\", \"unit\": \"usdc\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\", \"position_size_limit\": \"2% of pool liquidity\"}, \"follow_up\": \"verify pool depth and execute\", \"reasoning\": \"Liquidity analysis for 50k USDC→WETH swap. Expected ~16.67 WETH at $3000/ETH. Mainnet Uniswap v3 USDC/WETH 0.05% pool typically maintains $100M+ TVL, supporting this size with minimal slippage. 0.5% slippage tolerance provides buffer. Must verify current pool depth and 24h volume before execution to confirm price impact <0.3%.\", \"requires_follow_up\": true, \"follow_up_description\": \"Check current Uniswap v3 USDC/WETH pool metrics: TVL, 24h volume, and current price impact for 50k swap. If TVL <$50M or estimated price impact >0.5%, recommend order splitting or aggregator routing. Confirm gas price remains ≤30 gwei.\"}",
+      "durationMs": 77929,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "WETH",
+          "size": "50000",
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "2% of pool liquidity"
+          },
+          "follow_up": "verify pool depth and execute",
+          "reasoning": "Liquidity analysis for 50k USDC→WETH swap. Expected ~16.67 WETH at $3000/ETH. Mainnet Uniswap v3 USDC/WETH 0.05% pool typically maintains $100M+ TVL, supporting this size with minimal slippage. 0.5% slippage tolerance provides buffer. Must verify current pool depth and 24h volume before execution to confirm price impact <0.3%.",
+          "requires_follow_up": true,
+          "follow_up_description": "Check current Uniswap v3 USDC/WETH pool metrics: TVL, 24h volume, and current price impact for 50k swap. If TVL <$50M or estimated price impact >0.5%, recommend order splitting or aggregator routing. Confirm gas price remains ≤30 gwei."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L3-001",
+      "raw": "{\"intent\": \"bridge_and_buy\", \"order_type\": \"bridge_swap\", \"asset\": \"ARB\", \"size\": \"1000\", \"unit\": \"usdc\", \"venue\": \"bridge_dex\", \"venue_name\": \"hop_protocol\", \"risk_controls\": {\"slippage_tolerance\": \"1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"confirm bridge completion and swap execution\", \"reasoning\": \"Bridge 1000 USDC from mainnet to Arbitrum then swap to ARB via DEX aggregator. Target ARB amount approximately 833 ARB at $1.2 price.\", \"requires_follow_up\": true, \"follow_up_description\": \"Monitor bridge transaction on mainnet and subsequent swap on Arbitrum. Verify final ARB balance and effective price.\"}",
+      "durationMs": 93114,
+      "grade": {
+        "pass": false,
+        "confidence": 0.665070512820513,
+        "score": 0.6259487179487181,
+        "fieldScores": {
+          "intent": 0.12461538461538461,
+          "order_type": 0.096,
+          "asset": 0,
+          "size": 0.14,
+          "venue": 0.08,
+          "venue_name": 0.005333333333333332,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_buy",
+          "order_type": "bridge_swap",
+          "asset": "ARB",
+          "size": "1000",
+          "unit": "usdc",
+          "venue": "bridge_dex",
+          "venue_name": "hop_protocol",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm bridge completion and swap execution",
+          "reasoning": "Bridge 1000 USDC from mainnet to Arbitrum then swap to ARB via DEX aggregator. Target ARB amount approximately 833 ARB at $1.2 price.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor bridge transaction on mainnet and subsequent swap on Arbitrum. Verify final ARB balance and effective price."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L3-002",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"cross-chain\",\"asset\":\"USDC\",\"size\":\"3333.33\",\"unit\":\"usdc\",\"venue\":\"bridge\",\"venue_name\":\"across\",\"risk_controls\":{\"slippage_tolerance\":\"0.1%\",\"max_gas\":\"50 gwei\"},\"requires_follow_up\":true,\"follow_up_description\":\"Execute remaining two operations: (1) Bridge 3333.33 USDC to Optimism, (2) Retain 3333.34 USDC on Ethereum mainnet to complete equal 3-way split of 10,000 USDC across Ethereum, Arbitrum, and Optimism\",\"reasoning\":\"First operation of three-way split: Bridge 3333.33 USDC to Arbitrum using Across Protocol. Stablecoin bridging requires minimal slippage tolerance. Max gas set above current 30 gwei to ensure transaction succeeds. Follow-up needed for remaining two destinations.\"} ",
+      "durationMs": 22330,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5155844155844156,
+        "score": 0.48121212121212126,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.01454545454545455,
+          "asset": 0.14,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.00666666666666667,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "cross-chain",
+          "asset": "USDC",
+          "size": "3333.33",
+          "unit": "usdc",
+          "venue": "bridge",
+          "venue_name": "across",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "50 gwei"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Execute remaining two operations: (1) Bridge 3333.33 USDC to Optimism, (2) Retain 3333.34 USDC on Ethereum mainnet to complete equal 3-way split of 10,000 USDC across Ethereum, Arbitrum, and Optimism",
+          "reasoning": "First operation of three-way split: Bridge 3333.33 USDC to Arbitrum using Across Protocol. Stablecoin bridging requires minimal slippage tolerance. Max gas set above current 30 gwei to ensure transaction succeeds. Follow-up needed for remaining two destinations."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"venue\": \"polygon_bridge\",\n  \"venue_name\": \"Polygon PoS Bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"50 gwei\"\n  },\n  \"follow_up\": \"swap for MATIC on Polygon\",\n  \"reasoning\": \"Bridge 2 ETH from Ethereum mainnet to Polygon network, then swap to MATIC. At current prices (ETH $3000, MATIC $0.8), 2 ETH equals ~7500 MATIC before fees and slippage.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After bridge confirmation on Polygon, execute swap from ETH to MATIC using a Polygon DEX like QuickSwap or Uniswap\"\n}",
+      "durationMs": 25642,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8522032288698955,
+        "score": 0.8073504273504274,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.055384615384615386,
+          "venue_name": 0.04888888888888889,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "venue": "polygon_bridge",
+          "venue_name": "Polygon PoS Bridge",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "50 gwei"
+          },
+          "follow_up": "swap for MATIC on Polygon",
+          "reasoning": "Bridge 2 ETH from Ethereum mainnet to Polygon network, then swap to MATIC. At current prices (ETH $3000, MATIC $0.8), 2 ETH equals ~7500 MATIC before fees and slippage.",
+          "requires_follow_up": true,
+          "follow_up_description": "After bridge confirmation on Polygon, execute swap from ETH to MATIC using a Polygon DEX like QuickSwap or Uniswap"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-001",
+      "raw": "{\"intent\": \"rebalance\", \"order_type\": \"portfolio\", \"asset\": \"BTC,ETH,USDC\", \"size\": \"unknown\", \"unit\": \"usd\", \"venue\": \"multi\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"awaiting portfolio data\", \"reasoning\": \"Target allocation: 60% BTC, 30% ETH, 10% USDC. Current portfolio holdings required to compute exact trade sizes.\", \"requires_follow_up\": true, \"follow_up_description\": \"Please provide current holdings for all portfolio assets to calculate rebalance trades.\"}",
+      "durationMs": 83314,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7038461538461539,
+        "score": 0.6569230769230769,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03692307692307692,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "portfolio",
+          "asset": "BTC,ETH,USDC",
+          "size": "unknown",
+          "unit": "usd",
+          "venue": "multi",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "awaiting portfolio data",
+          "reasoning": "Target allocation: 60% BTC, 30% ETH, 10% USDC. Current portfolio holdings required to compute exact trade sizes.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide current holdings for all portfolio assets to calculate rebalance trades."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-002",
+      "raw": "{\"intent\":\"assess_correlation_risk\",\"order_type\":\"risk_analysis\",\"asset\":\"BTC,ETH,SOL,MATIC,LINK\",\"size\":\"0\",\"unit\":\"portfolio\",\"venue\":\"internal\",\"risk_controls\":{\"position_size_limit\":\"25%\",\"stop_loss\":\"correlation-adjusted\",\"slippage_tolerance\":\"N/A\"},\"follow_up\":\"provide_historical_data\",\"reasoning\":\"Correlation risk assessment across crypto assets. LINK price data missing from context. Without historical price series, cannot compute Pearson correlations or covariance matrix. Typical observed correlations: BTC-ETH 0.7-0.9; SOL,MATIC,LINK 0.6-0.85 vs BTC/ETH. Correlations converge to 1.0 during market stress, creating liquidation cascade risk. High correlation reduces diversification benefit. Recommend correlation-adjusted position sizing and stress testing.\",\"requires_follow_up\":true,\"follow_up_description\":\"Need 30-90 days of historical price data for BTC,ETH,SOL,MATIC,LINK to calculate correlation matrix and rolling correlations. Also require current LINK price. Suggest monitoring for correlation regime changes and implementing max 25% allocation to assets with >0.85 correlation.\"}",
+      "durationMs": 81867,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.1457142857142857,
+          "order_type": 0.10666666666666669,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess_correlation_risk",
+          "order_type": "risk_analysis",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": "0",
+          "unit": "portfolio",
+          "venue": "internal",
+          "risk_controls": {
+            "position_size_limit": "25%",
+            "stop_loss": "correlation-adjusted",
+            "slippage_tolerance": "N/A"
+          },
+          "follow_up": "provide_historical_data",
+          "reasoning": "Correlation risk assessment across crypto assets. LINK price data missing from context. Without historical price series, cannot compute Pearson correlations or covariance matrix. Typical observed correlations: BTC-ETH 0.7-0.9; SOL,MATIC,LINK 0.6-0.85 vs BTC/ETH. Correlations converge to 1.0 during market stress, creating liquidation cascade risk. High correlation reduces diversification benefit. Recommend correlation-adjusted position sizing and stress testing.",
+          "requires_follow_up": true,
+          "follow_up_description": "Need 30-90 days of historical price data for BTC,ETH,SOL,MATIC,LINK to calculate correlation matrix and rolling correlations. Also require current LINK price. Suggest monitoring for correlation regime changes and implementing max 25% allocation to assets with >0.85 correlation."
+        },
+        "failureReasons": [
+          "correlation_missing_assets"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-003",
+      "raw": "{\"intent\": \"harvest\", \"order_type\": \"analysis\", \"asset\": \"portfolio\", \"size\": 0, \"venue\": \"multiple\", \"risk_controls\": {}, \"follow_up\": \"requires portfolio details\", \"reasoning\": \"tax loss harvesting analysis requires holdings and cost basis data to identify unrealized losses\", \"requires_follow_up\": true, \"follow_up_description\": \"Please provide: 1) Current holdings (asset symbols and quantities), 2) Cost basis for each position (purchase price/date), 3) Tax jurisdiction, 4) Any wash sale restrictions consideration\"}",
+      "durationMs": 53221,
+      "grade": {
+        "pass": false,
+        "confidence": 0.539,
+        "score": 0.49,
+        "fieldScores": {
+          "intent": 0.09,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "harvest",
+          "order_type": "analysis",
+          "asset": "portfolio",
+          "size": 0,
+          "venue": "multiple",
+          "risk_controls": {},
+          "follow_up": "requires portfolio details",
+          "reasoning": "tax loss harvesting analysis requires holdings and cost basis data to identify unrealized losses",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide: 1) Current holdings (asset symbols and quantities), 2) Cost basis for each position (purchase price/date), 3) Tax jurisdiction, 4) Any wash sale restrictions consideration"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-004",
+      "raw": "{\"intent\": \"stress_test\", \"order_type\": \"simulation\", \"asset\": \"portfolio\", \"size\": 50, \"unit\": \"percentage\", \"venue\": \"risk_engine\", \"venue_name\": \"portfolio_analyzer\", \"risk_controls\": {\"stop_loss\": \"n/a\", \"take_profit\": \"n/a\", \"slippage_tolerance\": \"0%\", \"max_gas\": \"30 gwei\", \"position_size_limit\": \"100%\"}, \"follow_up\": \"generate_report\", \"reasoning\": \"Simulate -50% crash on crypto assets (BTC, ETH, SOL, MATIC, ARB, PEPE, stETH) while stablecoins (USDC, DAI) and trad assets (GLD, TLT) remain unchanged. Calculate portfolio PnL impact, drawdown, and liquidation risk.\", \"requires_follow_up\": true, \"follow_up_description\": \"Provide stress test report including: post-crash portfolio value, asset-by-asset PnL, total drawdown %, margin call risk assessment, and rebalancing recommendations\"}",
+      "durationMs": 53643,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.031999999999999994,
+          "asset": 0.12,
+          "size": 0.05,
+          "venue": 0.011999999999999997,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "portfolio",
+          "size": 50,
+          "unit": "percentage",
+          "venue": "risk_engine",
+          "venue_name": "portfolio_analyzer",
+          "risk_controls": {
+            "stop_loss": "n/a",
+            "take_profit": "n/a",
+            "slippage_tolerance": "0%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "100%"
+          },
+          "follow_up": "generate_report",
+          "reasoning": "Simulate -50% crash on crypto assets (BTC, ETH, SOL, MATIC, ARB, PEPE, stETH) while stablecoins (USDC, DAI) and trad assets (GLD, TLT) remain unchanged. Calculate portfolio PnL impact, drawdown, and liquidation risk.",
+          "requires_follow_up": true,
+          "follow_up_description": "Provide stress test report including: post-crash portfolio value, asset-by-asset PnL, total drawdown %, margin call risk assessment, and rebalancing recommendations"
+        },
+        "failureReasons": [
+          "stress_test_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-005",
+      "raw": "{\"intent\":\"calculate_sharpe_ratio\",\"order_type\":\"analysis\",\"asset\":\"portfolio\",\"size\":\"0\",\"venue\":\"internal\",\"risk_controls\":{},\"follow_up\":\"provide_portfolio_data\",\"reasoning\":\"Cannot calculate Sharpe ratio: missing historical returns, portfolio composition, and risk-free rate data. Current context only contains spot prices.\",\"requires_follow_up\":true,\"follow_up_description\":\"Please provide: 1) Historical portfolio returns time series, 2) Current portfolio holdings/weights, 3) Risk-free rate (e.g., 10Y Treasury yield), 4) Calculation period (e.g., annual, monthly)\"}",
+      "durationMs": 51126,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5958333333333334,
+        "score": 0.55,
+        "fieldScores": {
+          "intent": 0.135,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate_sharpe_ratio",
+          "order_type": "analysis",
+          "asset": "portfolio",
+          "size": "0",
+          "venue": "internal",
+          "risk_controls": {},
+          "follow_up": "provide_portfolio_data",
+          "reasoning": "Cannot calculate Sharpe ratio: missing historical returns, portfolio composition, and risk-free rate data. Current context only contains spot prices.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide: 1) Historical portfolio returns time series, 2) Current portfolio holdings/weights, 3) Risk-free rate (e.g., 10Y Treasury yield), 4) Calculation period (e.g., annual, monthly)"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-001",
+      "raw": "{\"intent\":\"add liquidity\",\"order_type\":\"range\",\"asset\":\"ETH/USDC\",\"size\":\"10000\",\"unit\":\"usd\",\"price\":\"2700-2900\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"40 gwei\",\"position_size_limit\":\"20000\"},\"follow_up\":\"confirm position and monitor range\",\"reasoning\":\"Concentrated liquidity position on ETH/USDC pair with range $2,700-$2,900. Current ETH price at $3,000 is above range, so position will be 100% USDC initially. This is a bearish strategy betting on ETH price decreasing into the range to earn trading fees.\",\"requires_follow_up\":true,\"follow_up_description\":\"User must confirm total position size in USD terms and acknowledge the position will be single-sided (USDC only) until ETH price enters the specified range.\"}",
+      "durationMs": 69096,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7406383928571428,
+        "score": 0.6970714285714286,
+        "fieldScores": {
+          "intent": 0.11249999999999999,
+          "order_type": 0.12857142857142856,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.055999999999999994,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add liquidity",
+          "order_type": "range",
+          "asset": "ETH/USDC",
+          "size": "10000",
+          "unit": "usd",
+          "price": "2700-2900",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei",
+            "position_size_limit": "20000"
+          },
+          "follow_up": "confirm position and monitor range",
+          "reasoning": "Concentrated liquidity position on ETH/USDC pair with range $2,700-$2,900. Current ETH price at $3,000 is above range, so position will be 100% USDC initially. This is a bearish strategy betting on ETH price decreasing into the range to earn trading fees.",
+          "requires_follow_up": true,
+          "follow_up_description": "User must confirm total position size in USD terms and acknowledge the position will be single-sided (USDC only) until ETH price enters the specified range."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-002",
+      "raw": "{\"intent\":\"leverage_long\",\"order_type\":\"dex\",\"asset\":\"ETH\",\"size\":\"1\",\"unit\":\"eth\",\"venue\":\"aave\",\"venue_name\":\"Aave\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"50 gwei\",\"position_size_limit\":\"3\"},\"follow_up\":\"confirm leverage ratio and monitor health factor\",\"reasoning\":\"Supply 1 ETH as collateral on Aave, borrow USDC against it, swap borrowed USDC to ETH on DEX to achieve 3x leveraged long exposure. Total target position: 3 ETH.\",\"requires_follow_up\":true,\"follow_up_description\":\"Verify final position has ~3x leverage (3 ETH exposure), monitor Aave health factor to avoid liquidation, confirm swap executed within slippage tolerance\"}",
+      "durationMs": 20260,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.011333333333333332,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "leverage_long",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "Aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "50 gwei",
+            "position_size_limit": "3"
+          },
+          "follow_up": "confirm leverage ratio and monitor health factor",
+          "reasoning": "Supply 1 ETH as collateral on Aave, borrow USDC against it, swap borrowed USDC to ETH on DEX to achieve 3x leveraged long exposure. Total target position: 3 ETH.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify final position has ~3x leverage (3 ETH exposure), monitor Aave health factor to avoid liquidation, confirm swap executed within slippage tolerance"
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-003",
+      "raw": "{\"intent\":\"stake\",\"order_type\":\"protocol\",\"asset\":\"ETH\",\"size\":5,\"unit\":\"eth\",\"venue\":\"lido\",\"venue_name\":\"Lido Finance\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"short hedge required\",\"reasoning\":\"Stake 5 ETH for stETH yield; must short 5 ETH exposure to achieve delta neutrality\",\"requires_follow_up\":true,\"follow_up_description\":\"Establish 5 ETH short position on perp DEX (GMX, dYdX, Aevo) to hedge price exposure\"}",
+      "durationMs": 104874,
+      "grade": {
+        "pass": false,
+        "confidence": 0.62875,
+        "score": 0.591764705882353,
+        "fieldScores": {
+          "intent": 0.031764705882352945,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "protocol",
+          "asset": "ETH",
+          "size": 5,
+          "unit": "eth",
+          "venue": "lido",
+          "venue_name": "Lido Finance",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "short hedge required",
+          "reasoning": "Stake 5 ETH for stETH yield; must short 5 ETH exposure to achieve delta neutrality",
+          "requires_follow_up": true,
+          "follow_up_description": "Establish 5 ETH short position on perp DEX (GMX, dYdX, Aevo) to hedge price exposure"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-004",
+      "raw": "{\"intent\": \"borrow\", \"order_type\": \"defi_borrow\", \"asset\": \"USDC\", \"size\": \"5000\", \"unit\": \"usdc\", \"venue\": \"aave\", \"venue_name\": \"Aave\", \"risk_controls\": {\"max_gas\": \"50 gwei\"}, \"follow_up\": \"monitor LTV ratio\", \"requires_follow_up\": true, \"follow_up_description\": \"Collateral value $6000 (2 ETH) vs borrow $5000 USDC = 83.3% LTV, which exceeds Aave's 80% maximum LTV for ETH collateral. Either reduce borrow amount to max $4800 or increase collateral to avoid immediate liquidation risk.\", \"reasoning\": \"Borrow 5000 USDC against 2 ETH collateral on Aave mainnet. Current LTV ratio of 83.3% exceeds protocol limits and poses liquidation risk.\"}",
+      "durationMs": 80246,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8999375000000001,
+        "score": 0.8470000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.016999999999999998,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "defi_borrow",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usdc",
+          "venue": "aave",
+          "venue_name": "Aave",
+          "risk_controls": {
+            "max_gas": "50 gwei"
+          },
+          "follow_up": "monitor LTV ratio",
+          "requires_follow_up": true,
+          "follow_up_description": "Collateral value $6000 (2 ETH) vs borrow $5000 USDC = 83.3% LTV, which exceeds Aave's 80% maximum LTV for ETH collateral. Either reduce borrow amount to max $4800 or increase collateral to avoid immediate liquidation risk.",
+          "reasoning": "Borrow 5000 USDC against 2 ETH collateral on Aave mainnet. Current LTV ratio of 83.3% exceeds protocol limits and poses liquidation risk."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-005",
+      "raw": "{\"intent\":\"stake\",\"order_type\":\"liquid_stake\",\"asset\":\"ETH\",\"size\":\"10\",\"unit\":\"eth\",\"venue\":\"lido\",\"venue_name\":\"Lido Finance\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"50 gwei\"},\"follow_up\":\"confirm stETH receipt and monitor rewards\",\"reasoning\":\"Stake ETH via Lido to receive liquid staking token (stETH) and earn yield while maintaining liquidity\",\"requires_follow_up\":true,\"follow_up_description\":\"Verify stETH token receipt in wallet and ensure staking rewards begin accruing\"}",
+      "durationMs": 171056,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9554131054131055,
+        "score": 0.9051282051282052,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.13846153846153844,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.026666666666666672,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "liquid_stake",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "eth",
+          "venue": "lido",
+          "venue_name": "Lido Finance",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "50 gwei"
+          },
+          "follow_up": "confirm stETH receipt and monitor rewards",
+          "reasoning": "Stake ETH via Lido to receive liquid staking token (stETH) and earn yield while maintaining liquidity",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify stETH token receipt in wallet and ensure staking rewards begin accruing"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"options\",\"asset\":\"ETH\",\"size\":\"2\",\"unit\":\"contracts\",\"venue\":\"deribit\",\"venue_name\":\"Deribit\",\"risk_controls\":{\"slippage_tolerance\":\"5%\",\"position_size_limit\":\"2\"},\"follow_up\":\"confirm fill and monitor theta decay\",\"reasoning\":\"Buy 2 ETH call options with strike $3500 expiring 2025-11-12. Current ETH spot at $3000. Out-of-the-money calls for leveraged upside exposure.\",\"requires_follow_up\":true,\"follow_up_description\":\"Monitor option premium, time decay, and delta changes as expiration approaches\"}",
+      "durationMs": 47646,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "options",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "contracts",
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "risk_controls": {
+            "slippage_tolerance": "5%",
+            "position_size_limit": "2"
+          },
+          "follow_up": "confirm fill and monitor theta decay",
+          "reasoning": "Buy 2 ETH call options with strike $3500 expiring 2025-11-12. Current ETH spot at $3000. Out-of-the-money calls for leveraged upside exposure.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor option premium, time decay, and delta changes as expiration approaches"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-002",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"recurring\", \"asset\": \"BTC\", \"size\": \"500\", \"unit\": \"usd\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\"}, \"follow_up\": \"confirm schedule\", \"reasoning\": \"DCA strategy: $500 weekly BTC purchases for 3 months to average entry price\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify recurring purchase schedule is active for 12 weekly $500 BTC buys\"}",
+      "durationMs": 56592,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "recurring",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "venue_name": "Coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm schedule",
+          "reasoning": "DCA strategy: $500 weekly BTC purchases for 3 months to average entry price",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify recurring purchase schedule is active for 12 weekly $500 BTC buys"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-003",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"limit\", \"asset\": \"BTC\", \"size\": \"0.2\", \"unit\": \"btc\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase Pro\", \"risk_controls\": {\"stop_loss\": \"39000\", \"take_profit\": \"50000\", \"slippage_tolerance\": \"0.5%\", \"position_size_limit\": \"0.2\"}, \"requires_follow_up\": true, \"follow_up_description\": \"Place 6 limit orders: 0.0333 BTC each at $40k, $41k, $42k, $43k, $44k, $45k\", \"reasoning\": \"Ladder buy strategy to dollar-cost average into 0.2 BTC across $40k-$45k range in $1k increments\"}",
+      "durationMs": 82946,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8303571428571429,
+        "score": 0.775,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.2",
+          "unit": "btc",
+          "venue": "coinbase",
+          "venue_name": "Coinbase Pro",
+          "risk_controls": {
+            "stop_loss": "39000",
+            "take_profit": "50000",
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "0.2"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Place 6 limit orders: 0.0333 BTC each at $40k, $41k, $42k, $43k, $44k, $45k",
+          "reasoning": "Ladder buy strategy to dollar-cost average into 0.2 BTC across $40k-$45k range in $1k increments"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-004",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"trailing_stop\",\"asset\":\"BTC\",\"size\":0.5,\"unit\":\"btc\",\"price\":\"5%\",\"venue\":\"coinbase\",\"risk_controls\":{\"stop_loss\":\"42750\",\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm activation\",\"reasoning\":\"Trailing stop order set 5% below current market price of 45000 to protect 0.5 BTC position\",\"requires_follow_up\":true,\"follow_up_description\":\"Verify order is live and trailing mechanism is functioning\"}",
+      "durationMs": 157538,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7943055555555556,
+        "score": 0.7525000000000001,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "price": "5%",
+          "venue": "coinbase",
+          "risk_controls": {
+            "stop_loss": "42750",
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm activation",
+          "reasoning": "Trailing stop order set 5% below current market price of 45000 to protect 0.5 BTC position",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify order is live and trailing mechanism is functioning"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-005",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"twap\", \"asset\": \"ETH\", \"size\": \"10\", \"unit\": \"eth\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase Advanced Trade\", \"risk_controls\": {\"slippage_tolerance\": \"0.2%\", \"position_size_limit\": \"0.5\"}, \"follow_up\": \"monitor TWAP execution progress and verify final VWAP\", \"reasoning\": \"Execute TWAP sell order for 10 ETH over 4 hours to minimize market impact. Using Coinbase Advanced Trade's TWAP algorithm with 0.2% slippage tolerance per slice and 0.5 ETH maximum per slice (20 slices total, ~12 minute intervals). This achieves time-weighted average price while controlling execution risk.\", \"requires_follow_up\": true, \"follow_up_description\": \"Monitor fill rates, execution schedule adherence, and final VWAP performance against ETH market benchmark. Confirm total executed quantity matches 10 ETH.\"}",
+      "durationMs": 83197,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8079427083333334,
+        "score": 0.9125000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0.2,
+          "risk_controls": 0.08,
+          "follow_up_description": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "eth",
+          "venue": "coinbase",
+          "venue_name": "Coinbase Advanced Trade",
+          "risk_controls": {
+            "slippage_tolerance": "0.2%",
+            "position_size_limit": "0.5"
+          },
+          "follow_up": "monitor TWAP execution progress and verify final VWAP",
+          "reasoning": "Execute TWAP sell order for 10 ETH over 4 hours to minimize market impact. Using Coinbase Advanced Trade's TWAP algorithm with 0.2% slippage tolerance per slice and 0.5 ETH maximum per slice (20 slices total, ~12 minute intervals). This achieves time-weighted average price while controlling execution risk.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor fill rates, execution schedule adherence, and final VWAP performance against ETH market benchmark. Confirm total executed quantity matches 10 ETH."
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L7-001",
+      "raw": "{\"intent\":null,\"order_type\":null,\"asset\":null,\"size\":null,\"venue\":null,\"reasoning\":null}",
+      "durationMs": 1202,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": null,
+          "order_type": null,
+          "asset": null,
+          "size": null,
+          "venue": null,
+          "reasoning": null
+        },
+        "failureReasons": [
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L7-002",
+      "raw": " {\"intent\":\"repay_loan\",\"order_type\":\"market\",\"asset\":\"USDC\",\"size\":7000,\"unit\":\"usd\",\"venue\":\"aave\",\"venue_name\":\"Aave\",\"risk_controls\":{\"slippage_tolerance\":0.001,\"max_gas\":50},\"follow_up\":\"withdraw_collateral\",\"reasoning\":\"Underwater position: 5 ETH collateral ($15,000) vs 7,000 USDC debt (214% ratio). Full repayment required to unwind and recover collateral.\",\"requires_follow_up\":true,\"follow_up_description\":\"After USDC repayment, withdraw 5 ETH collateral from Aave to complete position unwind\"}",
+      "durationMs": 31293,
+      "grade": {
+        "pass": false,
+        "confidence": 0.717857142857143,
+        "score": 0.6700000000000002,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "repay_loan",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": 7000,
+          "unit": "usd",
+          "venue": "aave",
+          "venue_name": "Aave",
+          "risk_controls": {
+            "slippage_tolerance": 0.001,
+            "max_gas": 50
+          },
+          "follow_up": "withdraw_collateral",
+          "reasoning": "Underwater position: 5 ETH collateral ($15,000) vs 7,000 USDC debt (214% ratio). Full repayment required to unwind and recover collateral.",
+          "requires_follow_up": true,
+          "follow_up_description": "After USDC repayment, withdraw 5 ETH collateral from Aave to complete position unwind"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L7-003",
+      "raw": "{\"intent\":null,\"order_type\":null,\"asset\":null,\"size\":null,\"venue\":null,\"il_percentage\":1.25,\"il_loss_usd\":125,\"net_gain_usd\":722,\"net_return_pct\":7.22,\"hold_value\":16666.67,\"lp_value\":16541.67,\"reasoning\":\"Initial 50/50 position: 1.6667 ETH + 5000 USDC. At ETH $5000, hold value = (1.6667*5000)+5000 = $13333.33+5000 = $16666.67. LP value = 2*sqrt(1.6667*5000*5000) = $16541.67. IL loss = 16666.67-16541.67 = $125 (1.25%). Net gain = fees earned ($847) - IL loss ($125) = $722. Net return = 722/10000 = 7.22%.\"}",
+      "durationMs": 4879,
+      "grade": {
+        "pass": false,
+        "confidence": 0.2050125214459454,
+        "score": 0.2522676598763556,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "il_percentage": 0.0625,
+          "il_loss_usd": 0.06666666666666668,
+          "net_gain_usd": 0.07333333333333335,
+          "net_return_pct": 0.075,
+          "hold_value": 0.00375,
+          "lp_value": 0.0075,
+          "reasoning": 0.006403162055335968
+        },
+        "normalizedResponse": {
+          "intent": null,
+          "order_type": null,
+          "asset": null,
+          "size": null,
+          "venue": null,
+          "il_percentage": 1.25,
+          "il_loss_usd": 125,
+          "net_gain_usd": 722,
+          "net_return_pct": 7.22,
+          "hold_value": 16666.67,
+          "lp_value": 16541.67,
+          "reasoning": "Initial 50/50 position: 1.6667 ETH + 5000 USDC. At ETH $5000, hold value = (1.6667*5000)+5000 = $13333.33+5000 = $16666.67. LP value = 2*sqrt(1.6667*5000*5000) = $16541.67. IL loss = 16666.67-16541.67 = $125 (1.25%). Net gain = fees earned ($847) - IL loss ($125) = $722. Net return = 722/10000 = 7.22%."
+        },
+        "failureReasons": [
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L7-004",
+      "raw": "{\"intent\":\": calculate_portfolio_metrics\",\"order_type\":\"none\",\"asset\":\"USDC\",\"size\":100000,\"venue\":\"DeFi\",\"blended_apy\":5.82,\"weighted_risk_score\":1.7,\"excess_return\":0.82,\"risk_adjusted_ratio\":0.4823529411764706,\"total_annual_yield_usd\":5820,\"allocation\":{\"aave\":50000,\"curve\":30000,\"yearn\":20000},\"reasoning\":\"Blended APY = (0.5*4.2)+(0.3*6.8)+(0.2*8.1) = 5.82%. Weighted risk = (0.5*1)+(0.3*2)+(0.2*3) = 1.7. Excess return = 5.82% - 5% = 0.82%. Risk-adjusted ratio = 0.82 / 1.7 = 0.48. Annual yield = $100,000 * 5.82% = $5,820.\"}",
+      "durationMs": 4469,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.04285714285714286,
+          "order_type": 0.00375,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.09,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.1,
+          "risk_adjusted_ratio": 0.05333333333333333,
+          "total_annual_yield_usd": 0.04,
+          "allocation": 0,
+          "reasoning": 0.014754098360655736
+        },
+        "normalizedResponse": {
+          "intent": ": calculate_portfolio_metrics",
+          "order_type": "none",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "DeFi",
+          "blended_apy": 5.82,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.82,
+          "risk_adjusted_ratio": 0.4823529411764706,
+          "total_annual_yield_usd": 5820,
+          "allocation": {
+            "aave": 50000,
+            "curve": 30000,
+            "yearn": 20000
+          },
+          "reasoning": "Blended APY = (0.5*4.2)+(0.3*6.8)+(0.2*8.1) = 5.82%. Weighted risk = (0.5*1)+(0.3*2)+(0.2*3) = 1.7. Excess return = 5.82% - 5% = 0.82%. Risk-adjusted ratio = 0.82 / 1.7 = 0.48. Annual yield = $100,000 * 5.82% = $5,820."
+        },
+        "failureReasons": [
+          "portfolio_efficiency_inconsistent_excess_return"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L7-005",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"market\",\"asset\":\"ETH\",\"size\":100,\"eth_price\":3000,\"gross_value\":300000,\"uniswap_slippage_cost\":900,\"uniswap_gas_cost\":50,\"uniswap_mev_cost\":3600,\"uniswap_total_cost\":4550,\"uniswap_total_cost_pct\":1.5167,\"uniswap_net_proceeds\":295450,\"cowswap_slippage_cost\":1200,\"cowswap_gas_cost\":0,\"cowswap_mev_cost\":0,\"cowswap_total_cost\":1200,\"cowswap_total_cost_pct\":0.4,\"cowswap_net_proceeds\":298800,\"oneinch_slippage_cost\":1050,\"oneinch_gas_cost\":25,\"oneinch_mev_cost\":1200,\"oneinch_total_cost\":2275,\"oneinch_total_cost_pct\":0.7583,\"oneinch_net_proceeds\":297725,\"best_option\":\"CowSwap\",\"worst_option\":\"Uniswap\",\"savings_vs_worst\":3350,\"venue\":\"cowswap\",\"venue_name\":\"CowSwap\",\"reasoning\":\"Calculated slippage cost as % of gross value, added gas cost, and MEV cost as % of gross value for each venue. Net proceeds = gross value - total cost. CowSwap had highest net proceeds (298800) due to zero MEV and gas costs despite slightly higher slippage. Uniswap was worst due to high MEV risk (1.2%). Savings vs worst = 298800 - 295450 = 3350.\"}",
+      "durationMs": 9207,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8696337858284418,
+        "score": 0.8546769393891319,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.002105263157894737,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.065,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.065,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0,
+          "venue_name": 0.001,
+          "reasoning": 0.00028656716417910444
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5167,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "cowswap",
+          "venue_name": "CowSwap",
+          "reasoning": "Calculated slippage cost as % of gross value, added gas cost, and MEV cost as % of gross value for each venue. Net proceeds = gross value - total cost. CowSwap had highest net proceeds (298800) due to zero MEV and gas costs despite slightly higher slippage. Uniswap was worst due to high MEV risk (1.2%). Savings vs worst = 298800 - 295450 = 3350."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-001",
+      "raw": "{\"intent\":\"execute_yield_strategy\",\"order_type\":\"market\",\"asset\":\"USDC\",\"size\":5000000,\"venue\":\"mainnet\",\"venue_name\":\"Pendle + Convex\",\"expected_value\":0.089,\"unit\":\"USD\",\"allocation\":{\"pendle_pt_steth\":3500000,\"convex_curve_3pool\":1500000},\"reasoning\":\"Max Pendle allocation (70% = $3.5M) yields 12.37% annualized (3% discount over 90 days minus 0.08% slippage). Convex allocation (30% = $1.5M) yields 10.5% APR (4.2% base × 2.5 boost) minus vlCVX costs: 450 tokens ($2,475) + 16-week lock opportunity cost ($19.13) = $2,494.13 total cost, reducing net yield to 1.83% annualized. Blended portfolio yield = (0.7 × 12.37%) + (0.3 × 1.83%) = 8.9% annualized. Gas cost $150 is negligible at this scale.\"}",
+      "durationMs": 7560,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.02086956521739131,
+          "order_type": 0.005263157894736842,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.006666666666666666,
+          "venue_name": 0.027692307692307693,
+          "expected_value": 0,
+          "unit": 0.001428571428571428,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_yield_strategy",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "mainnet",
+          "venue_name": "Pendle + Convex",
+          "expected_value": 0.089,
+          "unit": "USD",
+          "allocation": {
+            "pendle_pt_steth": 3500000,
+            "convex_curve_3pool": 1500000
+          },
+          "reasoning": "Max Pendle allocation (70% = $3.5M) yields 12.37% annualized (3% discount over 90 days minus 0.08% slippage). Convex allocation (30% = $1.5M) yields 10.5% APR (4.2% base × 2.5 boost) minus vlCVX costs: 450 tokens ($2,475) + 16-week lock opportunity cost ($19.13) = $2,494.13 total cost, reducing net yield to 1.83% annualized. Blended portfolio yield = (0.7 × 12.37%) + (0.3 × 1.83%) = 8.9% annualized. Gas cost $150 is negligible at this scale."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range",
+          "multi_protocol_liquidity_constraint"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-002",
+      "raw": "{\"intent\":\": \",\"strategy\":\"A\",\"expected_total_cost\":-21495.0,\"cost_breakdown\":{\"gas\":-21495.0,\"fees\":180.0,\"expected_mev_loss\":330.0},\"reasoning\":\"Flashbots Protect (Strategy A) is optimal. Gas cost: 320k units * (150+2 gwei) = 48.64M gwei = 0.01707 ETH * $2850 = $48.64. Fees: $180 setup. Expected MEV loss: $22k * (1-98.5%) * 96% success = $330. Retry cost not incurred on first attempt. Total: $48.64 + $180 + $330 = $558.64. Wait, I need to recalculate properly. Let me think again. The gas cost is 320,000 * (150+2) gwei = 320,000 * 152 gwei = 48,640,000 gwei = 0.04864 ETH. At $2850/ETH, that's $138.62. The setup fee is $180. The expected MEV loss is $22,000 * (1 - 0.985) * 0.96 = $22,000 * 0.015 * 0.96 = $316.80. So total is $138.62 + $180 + $316.80 = $635.42. But the user wants me to compare and select optimal. Strategy B would be: Gas: 180,000 * (150+20) gwei = 180,000 * 170 gwei = 30,600,000 gwei = 0.0306 ETH = $87.21. Fees: $0. Expected MEV loss: $22,000 * 1 = $22,000. Total: $87.21 + $22,000 = $22,087.21. So Strategy A at $635.42 is far better than Strategy B at $22,087.21. The expected_total_cost should be $635.42. But wait, the user wants me to output a specific structure. Let me check the required keys: intent, strategy, expected_total_cost, cost_breakdown, reasoning. The cost_breakdown should have gas, fees, expected_mev_loss. All numeric USD values. So: gas: $138.62, fees: $180, expected_mev_loss: $316.80, total: $635.42. But the user also says \",\",\":{\"gas\":-21495.0,\"fees\":180.0,\"expected_mev_loss\":330.0},\"reasoning\":\"Flashbots Protect (Strategy A) is optimal. Gas cost: 320k units * (150+2 gwei) = 48.64M gwei = 0.01707 ETH * $2850 = $48.64. Fees: $180 setup. Expected MEV loss: $22k * (1-98.5%) * 96% success = $330. Retry cost not incurred on first attempt. Total: $48.64 + $180 + $330 = $558.64. Wait, I need to recalculate properly. Let me think again. The gas cost is 320,000 * (150+2) gwei = 320,000 * 152 gwei = 48,640,000 gwei = 0.04864 ETH. At $2850/ETH, that's $138.62. The setup fee is $180. The expected MEV loss is $22,000 * (1 - 0.985) * 0.96 = $22,000 * 0.015 * 0.96 = $316.80. So total is $138.62 + $180 + $316.80 = $635.42. But the user wants me to compare and select optimal. Strategy B would be: Gas: 180,000 * (150+20) gwei = 180,000 * 170 gwei = 30,600,000 gwei = 0.0306 ETH = $87.21. Fees: $0. Expected MEV loss: $22,000 * 1 = $22,000. Total: $87.21 + $22,000 = $22,087.21. So Strategy A at $635.42 is far better than Strategy B at $22,087.21. The expected_total_cost should be $635.42. But wait, the user wants me to output a specific structure. Let me check the required keys: intent, strategy, expected_total_cost, cost_breakdown, reasoning. The cost_breakdown should have gas, fees, expected_mev_loss. All numeric USD values. So: gas: $138.62, fees: $180, expected_mev_loss: $316.80, total: $635.42. But the user also says \"}",
+      "durationMs": 33015,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.06666666666666665,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": ": ",
+          "strategy": "A",
+          "expected_total_cost": -21495,
+          "cost_breakdown": {
+            "gas": -21495,
+            "fees": 180,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Flashbots Protect (Strategy A) is optimal. Gas cost: 320k units * (150+2 gwei) = 48.64M gwei = 0.01707 ETH * $2850 = $48.64. Fees: $180 setup. Expected MEV loss: $22k * (1-98.5%) * 96% success = $330. Retry cost not incurred on first attempt. Total: $48.64 + $180 + $330 = $558.64. Wait, I need to recalculate properly. Let me think again. The gas cost is 320,000 * (150+2) gwei = 320,000 * 152 gwei = 48,640,000 gwei = 0.04864 ETH. At $2850/ETH, that's $138.62. The setup fee is $180. The expected MEV loss is $22,000 * (1 - 0.985) * 0.96 = $22,000 * 0.015 * 0.96 = $316.80. So total is $138.62 + $180 + $316.80 = $635.42. But the user wants me to compare and select optimal. Strategy B would be: Gas: 180,000 * (150+20) gwei = 180,000 * 170 gwei = 30,600,000 gwei = 0.0306 ETH = $87.21. Fees: $0. Expected MEV loss: $22,000 * 1 = $22,000. Total: $87.21 + $22,000 = $22,087.21. So Strategy A at $635.42 is far better than Strategy B at $22,087.21. The expected_total_cost should be $635.42. But wait, the user wants me to output a specific structure. Let me check the required keys: intent, strategy, expected_total_cost, cost_breakdown, reasoning. The cost_breakdown should have gas, fees, expected_mev_loss. All numeric USD values. So: gas: $138.62, fees: $180, expected_mev_loss: $316.80, total: $635.42. But the user also says ",
+          ",": {
+            "gas": -21495,
+            "fees": 180,
+            "expected_mev_loss": 330
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-003",
+      "raw": "{\"intent\":\"rebalance\",\"order_type\":\"market\",\"asset\":\"multi\",\"size\":0,\"venue\":\"multi\",\"portfolio_volatility\":0.285,\"risk_contributions\":{\"btc\":0.456,\"eth\":0.456,\"bonds\":0.088},\"btc_contribution_pct\":45.6,\"eth_contribution_pct\":45.6,\"bonds_contribution_pct\":8.8,\"rebalancing_required\":true,\"target_allocations_usd\":{\"btc\":285714.29,\"eth\":285714.29,\"bonds\":428571.43},\"target_btc_usd\":285714.29,\"target_eth_usd\":285714.29,\"target_bonds_usd\":428571.43,\"transactions\":[{\"asset\":\"BTC\",\"action\":\"sell\",\"amount_usd\":114286,\"venue\":\"binance\"},{\"asset\":\"ETH\",\"action\":\"sell\",\"amount_usd\":64286,\"venue\":\"binance\"},{\"asset\":\"Bonds\",\"action\":\"buy\",\"amount_usd\":178571,\"venue\":\"tradfi\"}],\"btc_sell_amount\":114286,\"eth_sell_amount\":64286,\"bonds_buy_amount\":178571,\"btc_post_slippage\":113714.57,\"eth_post_slippage\":63964.57,\"bonds_post_slippage\":178392.14,\"reasoning\":\"Calculated covariance matrix from volatilities and correlations; computed portfolio volatility 28.5%; BTC and ETH each contribute 45.6% of risk (above 38.33% max), bonds 8.8% (below 28.33% min). Solved equal risk contribution target weights: BTC 28.57%, ETH 28.57%, Bonds 42.86% of portfolio. Rounded trades to nearest $1k above $10k min: sell $114k BTC, sell $64k ETH, buy $179k Bonds. Applied slippage: crypto 0.5%, bonds 0.1%.\"}",
+      "durationMs": 11989,
+      "grade": {
+        "pass": false,
+        "confidence": 0.586616317016317,
+        "score": 0.5674116161616162,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0.015999999999999997,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.072,
+          "eth_contribution_pct": 0.017999999999999995,
+          "bonds_contribution_pct": 0.0225,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0037111111111111125,
+          "target_eth_usd": 0.003700000000000002,
+          "target_bonds_usd": 0.003700000000000002,
+          "transactions": 0,
+          "btc_sell_amount": 0,
+          "eth_sell_amount": 0,
+          "bonds_buy_amount": 0.002766666666666666,
+          "btc_post_slippage": 0.0022222222222222222,
+          "eth_post_slippage": 0.0025,
+          "bonds_post_slippage": 0.0022222222222222222,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "multi",
+          "size": 0,
+          "venue": "multi",
+          "portfolio_volatility": 0.285,
+          "risk_contributions": {
+            "btc": 0.456,
+            "eth": 0.456,
+            "bonds": 0.088
+          },
+          "btc_contribution_pct": 45.6,
+          "eth_contribution_pct": 45.6,
+          "bonds_contribution_pct": 8.8,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 285714.29,
+            "eth": 285714.29,
+            "bonds": 428571.43
+          },
+          "target_btc_usd": 285714.29,
+          "target_eth_usd": 285714.29,
+          "target_bonds_usd": 428571.43,
+          "transactions": [
+            {
+              "asset": "BTC",
+              "action": "sell",
+              "amount_usd": 114286,
+              "venue": "binance"
+            },
+            {
+              "asset": "ETH",
+              "action": "sell",
+              "amount_usd": 64286,
+              "venue": "binance"
+            },
+            {
+              "asset": "Bonds",
+              "action": "buy",
+              "amount_usd": 178571,
+              "venue": "tradfi"
+            }
+          ],
+          "btc_sell_amount": 114286,
+          "eth_sell_amount": 64286,
+          "bonds_buy_amount": 178571,
+          "btc_post_slippage": 113714.57,
+          "eth_post_slippage": 63964.57,
+          "bonds_post_slippage": 178392.14,
+          "reasoning": "Calculated covariance matrix from volatilities and correlations; computed portfolio volatility 28.5%; BTC and ETH each contribute 45.6% of risk (above 38.33% max), bonds 8.8% (below 28.33% min). Solved equal risk contribution target weights: BTC 28.57%, ETH 28.57%, Bonds 42.86% of portfolio. Rounded trades to nearest $1k above $10k min: sell $114k BTC, sell $64k ETH, buy $179k Bonds. Applied slippage: crypto 0.5%, bonds 0.1%."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"restake\",\n  \"asset\": \"stETH\",\n  \"size\": \"100\",\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer\",\n  \"rationale\": \"Option A yields 7% total staking APR (4.2% base + 2.8% AVS). Borrow cost 2.75% on portfolio yields net APR 4.25%, exceeding 1% target. Slashing risk 3% within 4% limit. Lock period 7 days meets 8-day collateral requirement. Option B fails risk and timing; Option C yields lower net APR 1.45%.\",\n  \"decision_factors\": \"Total staking APR, borrow cost, net APR, slashing risk, lock period, collateral timing\",\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 4.25,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 1.45,\n  \"option_a_outperformance\": 2.8\n}",
+      "durationMs": 662411,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "restake",
+          "asset": "stETH",
+          "size": "100",
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer",
+          "rationale": "Option A yields 7% total staking APR (4.2% base + 2.8% AVS). Borrow cost 2.75% on portfolio yields net APR 4.25%, exceeding 1% target. Slashing risk 3% within 4% limit. Lock period 7 days meets 8-day collateral requirement. Option B fails risk and timing; Option C yields lower net APR 1.45%.",
+          "decision_factors": "Total staking APR, borrow cost, net APR, slashing risk, lock period, collateral timing",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.0081,\n    \"deleverage_2x\": 0.000136,\n    \"deleverage_1_5x\": 0.0000002,\n    \"close\": 0\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 45.75,\n    \"deleverage_2x\": 42.17,\n    \"deleverage_1_5x\": 36.54,\n    \"close\": 0\n  },\n  \"reasoning\": \"Barrier-hitting probabilities for zero-drift GBM (weekly σ=0.1317) show maintain_3x liquidation prob 0.81% exceeds 0.5% limit; deleveraging to 2x provides highest EV among compliant options.\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 299068,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.000136,
+            "deleverage_1_5x": 2e-7,
+            "close": 0
+          },
+          "expected_values": {
+            "maintain_3x": 45.75,
+            "deleverage_2x": 42.17,
+            "deleverage_1_5x": 36.54,
+            "close": 0
+          },
+          "reasoning": "Barrier-hitting probabilities for zero-drift GBM (weekly σ=0.1317) show maintain_3x liquidation prob 0.81% exceeds 0.5% limit; deleveraging to 2x provides highest EV among compliant options.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-006",
+      "raw": " {\"intent\":\"fixed_yield_allocation\",\"strategy\":\"fixed_yield\",\"asset\":\"PT-USDe\",\"allocation\":100000,\"venue\":\"pendle\",\"maturity\":\"90d\",\"expected_apy\":12.3,\"selected_strategy\":\"C\",\"reasoning\":\"Strategy C offers the highest APY at 12.3% with fixed yield locked for the full 90-day horizon. It avoids leverage entirely, eliminating liquidation risk while satisfying medium risk tolerance. Alternatives B and D involve leverage risks and yield less than Pendle's fixed rate.\",\"risk_assessment\":\"low\",\"meets_constraints\":true,\"alternatives_rejected\":{\"B\":\"3x leveraged loop yields 11.9% APY but carries 2% depeg liquidation risk and maxes out leverage constraints\",\"D\":\"Hybrid strategy yields lower 11.25% APY while still exposing 50% of capital to 2x leverage risk\"}}",
+      "durationMs": 37890,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Strategy C offers the highest APY at 12.3% with fixed yield locked for the full 90-day horizon. It avoids leverage entirely, eliminating liquidation risk while satisfying medium risk tolerance. Alternatives B and D involve leverage risks and yield less than Pendle's fixed rate.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "3x leveraged loop yields 11.9% APY but carries 2% depeg liquidation risk and maxes out leverage constraints",
+            "D": "Hybrid strategy yields lower 11.25% APY while still exposing 50% of capital to 2x leverage risk"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-007",
+      "raw": "{\"intent\":\"emergency_unwind\",\"order_type\":\"sell\",\"asset\":\"stETH\",\"size\":2500,\"venue\":\"cowswap\",\"venue_name\":\"CowSwap\",\"expected_value\":-45000,\"unit\":\"USD_total_cost\",\"reasoning\":\"CowSwap offers full MEV protection and 12-min settlement within the 15-min deadline. Total cost breakdown: spread 0.25% ($11,250), price impact 0.35% ($15,750), dynamic widening 0.45% ($20,250), protocol fee 0.15% ($6,750). Sum = $54,000. However, capacity is 2,000 stETH per batch; 500 stETH would overflow to next batch (+12 min) exceeding deadline. Therefore, execution is not feasible under constraints. Expected value reflects cost of failed execution due to capacity constraint.\",\"constraint_awareness\":\"Capacity limit of 2,000 stETH per batch violates single-execution requirement and 15-min deadline for full 2,500 stETH order.\"}",
+      "durationMs": 6288,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3943173076923077,
+        "score": 0.3657435897435898,
+        "fieldScores": {
+          "intent": 0.0033333333333333327,
+          "order_type": 0.0038461538461538438,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0,
+          "expected_value": 0.15,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "emergency_unwind",
+          "order_type": "sell",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "cowswap",
+          "venue_name": "CowSwap",
+          "expected_value": -45000,
+          "unit": "USD_total_cost",
+          "reasoning": "CowSwap offers full MEV protection and 12-min settlement within the 15-min deadline. Total cost breakdown: spread 0.25% ($11,250), price impact 0.35% ($15,750), dynamic widening 0.45% ($20,250), protocol fee 0.15% ($6,750). Sum = $54,000. However, capacity is 2,000 stETH per batch; 500 stETH would overflow to next batch (+12 min) exceeding deadline. Therefore, execution is not feasible under constraints. Expected value reflects cost of failed execution due to capacity constraint.",
+          "constraint_awareness": "Capacity limit of 2,000 stETH per batch violates single-execution requirement and 15-min deadline for full 2,500 stETH order."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-008",
+      "raw": "{\"intent\":\"risk-parity rebalance (buy side only)\",\"strategy\":\"split execution: crypto assets (BTC, ETH) on Coinbase for instant settlement; traditional assets (GLD, TLT) on Interactive Brokers for lower fees\",\"execution_plan\":[{\"asset\":\"BTC\",\"venue\":\"coinbase\",\"notional\":22500,\"fee_rate\":0.006,\"fee_amount\":135.0},{\"asset\":\"ETH\",\"venue\":\"coinbase\",\"notional\":22400,\"fee_rate\":0.006,\"fee_amount\":134.4},{\"asset\":\"GLD\",\"venue\":\"interactive_brokers\",\"notional\":222000,\"fee_rate\":0.001,\"fee_amount\":222.0},{\"asset\":\"TLT\",\"venue\":\"interactive_brokers\",\"notional\":228000,\"fee_rate\":0.001,\"fee_amount\":228.0}],\"fee_summary\":{\"total_fees\":719.4,\"total_notional\":494900,\"total_execution_cost\":495619.4},\"rationale\":\"Interactive Brokers offers lower fees (0.1%) but has T+2 settlement. Since we must execute all legs within the same trading day and crypto requires instant settlement, we split the execution: crypto assets (BTC/ETH) go to Coinbase (0.6% fee) for instant settlement, while traditional assets (GLD/TLT) go to Interactive Brokers (0.1% fee) to minimize costs. This hybrid approach yields total fees of $719.40, well under the $2,000 limit, while meeting the same-day execution constraint.\",\"constraints_met\":{\"max_total_fees\":true,\"execution_window\":\"same_trading_day\",\"objective\":\"minimize_fees\"}}",
+      "durationMs": 44045,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8167500000000001,
+        "score": 0.7425,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.30000000000000004,
+          "execution_plan": 0.3,
+          "fee_summary": 0.03,
+          "rationale": 0.0125,
+          "constraints_met": 0.1
+        },
+        "normalizedResponse": {
+          "intent": "risk-parity rebalance (buy side only)",
+          "strategy": "split execution: crypto assets (BTC, ETH) on Coinbase for instant settlement; traditional assets (GLD, TLT) on Interactive Brokers for lower fees",
+          "execution_plan": [
+            {
+              "asset": "BTC",
+              "venue": "coinbase",
+              "notional": 22500,
+              "fee_rate": 0.006,
+              "fee_amount": 135
+            },
+            {
+              "asset": "ETH",
+              "venue": "coinbase",
+              "notional": 22400,
+              "fee_rate": 0.006,
+              "fee_amount": 134.4
+            },
+            {
+              "asset": "GLD",
+              "venue": "interactive_brokers",
+              "notional": 222000,
+              "fee_rate": 0.001,
+              "fee_amount": 222
+            },
+            {
+              "asset": "TLT",
+              "venue": "interactive_brokers",
+              "notional": 228000,
+              "fee_rate": 0.001,
+              "fee_amount": 228
+            }
+          ],
+          "fee_summary": {
+            "total_fees": 719.4,
+            "total_notional": 494900,
+            "total_execution_cost": 495619.4
+          },
+          "rationale": "Interactive Brokers offers lower fees (0.1%) but has T+2 settlement. Since we must execute all legs within the same trading day and crypto requires instant settlement, we split the execution: crypto assets (BTC/ETH) go to Coinbase (0.6% fee) for instant settlement, while traditional assets (GLD/TLT) go to Interactive Brokers (0.1% fee) to minimize costs. This hybrid approach yields total fees of $719.40, well under the $2,000 limit, while meeting the same-day execution constraint.",
+          "constraints_met": {
+            "max_total_fees": true,
+            "execution_window": "same_trading_day",
+            "objective": "minimize_fees"
+          }
+        },
+        "failureReasons": [
+          "l8_008_total_fees_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-009",
+      "raw": "{\"decision\":null,\"reasoning\":null,\"execution\":null}",
+      "durationMs": 1007,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "decision": 0,
+          "reasoning": 0,
+          "execution": 0
+        },
+        "normalizedResponse": {
+          "decision": null,
+          "reasoning": null,
+          "execution": null
+        },
+        "failureReasons": [
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-010",
+      "raw": "{\"intent\":\"construct_collar\",\"order_type\":\"collar\",\"asset\":\"BTC\",\"size\":10,\"call_strike\":49500,\"put_strike\":42750,\"net_cost_per_btc\":-60,\"venue\":\"deribit\",\"venue_name\":\"Deribit\",\"expiry_days\":30,\"reasoning\":\"Selected 10% OTM call (+$420) and 5% OTM put (-$920) for net debit of -$60/BTC. This balances expensive put skew (25% overpriced) by using deeper OTM call to offset cost while maintaining meaningful downside protection at 5% OTM. The 10% OTM call preserves upside to $49,500, capturing most of the median +8% move and allowing participation up to the 90th percentile +18% move. Total economic cost is minimized: limited premium outlay (-$60/BTC = -$600 total) plus opportunity cost only beyond +10% upside. Alternative 5% OTM call would save only $430/BTC but cap upside at $47,250, creating higher opportunity cost given BTC's positive drift. 10% OTM put at -$480/BTC was rejected: while cheaper, it only protects below $40,500 (10% drop), insufficient for meaningful downside protection in volatile BTC environment.\"}",
+      "durationMs": 19559,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7033750000000002,
+        "score": 0.6620000000000001,
+        "fieldScores": {
+          "intent": 0.06,
+          "order_type": 0,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.08000000000000002,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "construct_collar",
+          "order_type": "collar",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 42750,
+          "net_cost_per_btc": -60,
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "expiry_days": 30,
+          "reasoning": "Selected 10% OTM call (+$420) and 5% OTM put (-$920) for net debit of -$60/BTC. This balances expensive put skew (25% overpriced) by using deeper OTM call to offset cost while maintaining meaningful downside protection at 5% OTM. The 10% OTM call preserves upside to $49,500, capturing most of the median +8% move and allowing participation up to the 90th percentile +18% move. Total economic cost is minimized: limited premium outlay (-$60/BTC = -$600 total) plus opportunity cost only beyond +10% upside. Alternative 5% OTM call would save only $430/BTC but cap upside at $47,250, creating higher opportunity cost given BTC's positive drift. 10% OTM put at -$480/BTC was rejected: while cheaper, it only protects below $40,500 (10% drop), insufficient for meaningful downside protection in volatile BTC environment."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}
