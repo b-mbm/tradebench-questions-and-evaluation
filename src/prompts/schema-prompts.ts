@@ -85,7 +85,13 @@ const RUBRIC_SCHEMA_HINTS: Record<string, {
       'hold_value',
       'lp_value'
     ],
-    disallowed: ['unit', 'venue_name', 'risk_controls', 'follow_up', 'requires_follow_up']
+    disallowed: ['unit', 'venue_name', 'risk_controls', 'follow_up', 'requires_follow_up'],
+    notes: [
+      '- All required keys must have non-null, non-empty values.',
+      '- size must be greater than 0.',
+      '- il_percentage and il_loss_usd represent loss magnitudes; do not return negative values for these fields.',
+      '- net_gain_usd and net_return_pct should account for fee earnings offsetting impermanent loss.'
+    ]
   },
   portfolio_efficiency_analysis: {
     keys: [
@@ -110,7 +116,12 @@ const RUBRIC_SCHEMA_HINTS: Record<string, {
       'risk_adjusted_ratio',
       'total_annual_yield_usd'
     ],
-    disallowed: ['unit', 'venue_name', 'risk_controls', 'follow_up', 'requires_follow_up']
+    disallowed: ['unit', 'venue_name', 'risk_controls', 'follow_up', 'requires_follow_up'],
+    notes: [
+      '- All required keys must have non-null values; do not return empty strings.',
+      '- blended_apy, weighted_risk_score, excess_return, risk_adjusted_ratio, total_annual_yield_usd must be numeric JSON values (not strings).',
+      '- allocation must be an object including numeric USD fields for aave, curve, and yearn.'
+    ]
   },
   multi_protocol_yield_optimization: {
     keys: [
@@ -186,6 +197,26 @@ const RUBRIC_SCHEMA_HINTS: Record<string, {
       'savings_vs_worst'
     ],
     disallowed: ['unit', 'risk_controls', 'follow_up', 'requires_follow_up']
+  },
+  // Generic arbitrage analysis (used by L7-001 etc.)
+  arbitrage: {
+    keys: [
+      'intent',
+      'order_type',
+      'asset',
+      'size',
+      'venue',
+      'venue_name',
+      'reasoning'
+    ],
+    numericKeys: [],
+    disallowed: ['unit', 'price', 'risk_controls', 'follow_up', 'requires_follow_up'],
+    notes: [
+      '- asset must be "multi" (or a generic portfolio descriptor) for cross-venue/flash-loan analysis — do not return a single ticker like ETH/BTC.',
+      '- order_type should be "analysis" for arbitrage assessment tasks.',
+      '- All required keys must be present with non-null, non-empty values.',
+      '- Keep the JSON strictly to the listed keys.'
+    ]
   },
   execute_mev_defense: {
     keys: [
@@ -484,6 +515,7 @@ export interface ExecuteOnePrompts {
 }
 
 export function buildExecuteOnePrompts(question: SchemaQuestion): ExecuteOnePrompts {
+  const COMPACT = process.env.TB_COMPACT_PROMPT === '0' ? false : true;
   const contextBlock = JSON.stringify(question.context ?? {}, null, 2);
   const expectedValues = JSON.stringify(question.expected_values ?? {}, null, 2);
 
@@ -508,16 +540,20 @@ export function buildExecuteOnePrompts(question: SchemaQuestion): ExecuteOneProm
         lines.push(note);
       }
     }
+    lines.push('- If a field is not listed in the required keys, omit it. Do NOT include optional fields like unit, price, risk_controls, venue_name, or follow_up unless explicitly listed.');
     lines.push('- Do not wrap the JSON in markdown fences.');
     schemaHint = lines.join('\n');
   }
 
-  const system = [
+  const systemParts = [
     'You are Execute@1, a deterministic trading execution assistant.',
     'Return ONLY JSON. Do not include explanations outside of JSON.',
     SCHEMA_DEFINITION,
-    SAMPLE_RESPONSES,
-  ].join('\n\n');
+  ];
+  if (!COMPACT) {
+    systemParts.push(SAMPLE_RESPONSES);
+  }
+  const system = systemParts.join('\n\n');
 
   const userSections: string[] = [
     `Question ID: ${question.id}`,

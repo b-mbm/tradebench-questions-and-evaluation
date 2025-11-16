@@ -171,7 +171,8 @@ export async function callExecuteOneModel(
 
   const { system, user } = prompts ?? buildExecuteOnePrompts(question);
   const temperature = options.temperature ?? DEFAULT_TEMPERATURE;
-  const maxTokens = options.maxTokens ?? DEFAULT_MAX_TOKENS;
+  // Allow larger generations for specific long-form models (e.g., thinking)
+  const maxTokens = options.maxTokens ?? (modelId === 'moonshotai/kimi-k2-thinking' ? 6000 : DEFAULT_MAX_TOKENS);
 
   switch (config.provider) {
     case 'openai':

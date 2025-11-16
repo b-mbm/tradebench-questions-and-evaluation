@@ -25,6 +25,8 @@ export async function callOpenRouter(
     model: modelId,
     temperature: options.temperature ?? 0,
     max_tokens: options.maxTokens,
+    // Prefer structured JSON to reduce parsing failures
+    response_format: { type: "json_object" as const },
     messages: [
       { role: "system", content: system },
       { role: "user", content: user },
