@@ -1,0 +1,2240 @@
+{
+  "runAt": "2025-11-18T09:37:28.542Z",
+  "label": "submit-x-ai-grok-4-2025-11-18T08-33-12-770Z",
+  "models": [
+    "x-ai/grok-4"
+  ],
+  "questionIds": [
+    "L0-order_book_execution",
+    "L0-leveraged_position_sizing",
+    "L0-stop_loss_risk",
+    "L0-portfolio_rebalancing",
+    "L0-options_premium_roi",
+    "L0-dca_average_price",
+    "L0-margin_interest_calculation",
+    "L0-futures_liquidation",
+    "L0-impermanent_loss",
+    "L0-kelly_criterion",
+    "L0-cross_exchange_arbitrage",
+    "L0-funding_rate_cost",
+    "L0-options_delta_hedge",
+    "L0-tax_loss_harvesting",
+    "L0-sharpe_ratio",
+    "L0-grid_trading_profit",
+    "L0-compound_yield_farming",
+    "L0-maximum_drawdown",
+    "L0-pairs_trading_profit",
+    "L0-liquidation_cascade",
+    "L1-001",
+    "L1-002",
+    "L1-003",
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004",
+    "L3-001",
+    "L3-002",
+    "L3-003",
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005",
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005",
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005",
+    "L7-001",
+    "L7-002",
+    "L7-003",
+    "L7-004",
+    "L7-005",
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-order_book_execution",
+      "raw": "{\n  \"final_answer\": 245.625,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Purchase 50 shares at $245.50: 50 * 245.50 = 12275\",\n    \"Purchase 50 shares at $245.75: 50 * 245.75 = 12287.5\",\n    \"Total cost: 12275 + 12287.5 = 24562.5\",\n    \"Average price: 24562.5 / 100 = 245.625\"\n  ]\n}",
+      "durationMs": 8467,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 245.625,
+          "unit": "USD",
+          "reasoning": [
+            "Purchase 50 shares at $245.50: 50 * 245.50 = 12275",
+            "Purchase 50 shares at $245.75: 50 * 245.75 = 12287.5",
+            "Total cost: 12275 + 12287.5 = 24562.5",
+            "Average price: 24562.5 / 100 = 245.625"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-leveraged_position_sizing",
+      "raw": "{\"final_answer\":41.67,\"unit\":\"mBTC\",\"reasoning\":[\"Risk amount: $10,000 * 4% = $400\",\"Position value: $400 * 6x = $2,400\",\"BTC size: $2,400 / $57,600 = 0.041666... BTC\",\"mBTC: 0.041666... * 1000 ≈ 41.67\"]}",
+      "durationMs": 49720,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9997599615938549,
+        "fieldScores": {
+          "final_answer": 0.9997599615938549
+        },
+        "normalizedResponse": {
+          "final_answer": 41.67,
+          "unit": "mBTC",
+          "reasoning": [
+            "Risk amount: $10,000 * 4% = $400",
+            "Position value: $400 * 6x = $2,400",
+            "BTC size: $2,400 / $57,600 = 0.041666... BTC",
+            "mBTC: 0.041666... * 1000 ≈ 41.67"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-stop_loss_risk",
+      "raw": "{\n  \"final_answer\": 3000,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Loss per BTC: $60,000 - $58,500 = $1,500\",\n    \"Total for 2 BTC: 2 * $1,500 = $3,000\"\n  ]\n}",
+      "durationMs": 7916,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 3000,
+          "unit": "USD",
+          "reasoning": [
+            "Loss per BTC: $60,000 - $58,500 = $1,500",
+            "Total for 2 BTC: 2 * $1,500 = $3,000"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-portfolio_rebalancing",
+      "raw": "{\"final_answer\":7200,\"unit\":\"USD\",\"reasoning\":[\"Current stocks: $75,000 out of $113,000 total\",\"Target stocks: 60% of $113,000 = $67,800\",\"Amount to sell: $75,000 - $67,800 = $7,200\"]}",
+      "durationMs": 13049,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 7200,
+          "unit": "USD",
+          "reasoning": [
+            "Current stocks: $75,000 out of $113,000 total",
+            "Target stocks: 60% of $113,000 = $67,800",
+            "Amount to sell: $75,000 - $67,800 = $7,200"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-options_premium_roi",
+      "raw": "{\n  \"final_answer\": 12500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"10 contracts cover 1000 shares (10 x 100)\",\n    \"Cost basis: 1000 x $95 = $95,000\",\n    \"If exercised, proceeds: 1000 x $105 = $105,000\",\n    \"Premium: 1000 x $2.50 = $2,500\",\n    \"Total received: $105,000 + $2,500 = $107,500\",\n    \"Profit: $107,500 - $95,000 = $12,500\"\n  ]\n}",
+      "durationMs": 17419,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 12500,
+          "unit": "USD",
+          "reasoning": [
+            "10 contracts cover 1000 shares (10 x 100)",
+            "Cost basis: 1000 x $95 = $95,000",
+            "If exercised, proceeds: 1000 x $105 = $105,000",
+            "Premium: 1000 x $2.50 = $2,500",
+            "Total received: $105,000 + $2,500 = $107,500",
+            "Profit: $107,500 - $95,000 = $12,500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-dca_average_price",
+      "raw": "{\n  \"final_answer\": 33803,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate BTC bought each time: 1000 / 40000 = 0.025, 1000 / 50000 = 0.02, 1000 / 25000 = 0.04, 1000 / 30000 ≈ 0.033333\",\n    \"Total BTC ≈ 0.025 + 0.02 + 0.04 + 0.033333 = 0.118333\",\n    \"Total cost = 4000 USD\",\n    \"Average cost per BTC = 4000 / 0.118333 ≈ 33803 USD\"\n  ]\n}",
+      "durationMs": 83117,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 33803,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate BTC bought each time: 1000 / 40000 = 0.025, 1000 / 50000 = 0.02, 1000 / 25000 = 0.04, 1000 / 30000 ≈ 0.033333",
+            "Total BTC ≈ 0.025 + 0.02 + 0.04 + 0.033333 = 0.118333",
+            "Total cost = 4000 USD",
+            "Average cost per BTC = 4000 / 0.118333 ≈ 33803 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-margin_interest_calculation",
+      "raw": "{\"final_answer\":6500,\"unit\":\"USD\",\"reasoning\":[\"Borrowed $50,000, position worth $57,500, gain = 57,500 - 50,000 = 7,500 USD\",\"Interest: 50,000 * 0.08 * (90/360) = 1,000 USD\",\"Net profit: 7,500 - 1,000 = 6,500 USD\"]}",
+      "durationMs": 17646,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 6500,
+          "unit": "USD",
+          "reasoning": [
+            "Borrowed $50,000, position worth $57,500, gain = 57,500 - 50,000 = 7,500 USD",
+            "Interest: 50,000 * 0.08 * (90/360) = 1,000 USD",
+            "Net profit: 7,500 - 1,000 = 6,500 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-futures_liquidation",
+      "raw": "{\"final_answer\":56110,\"unit\":\"USD\",\"reasoning\":[\"Calculate maintenance margin amount: 0.005 * 31000 = 155\",\"Effective margin for loss: 3100 - 155 = 2945\",\"Price drop: 2945 / 0.5 = 5890\",\"Liquidation price: 62000 - 5890 = 56110\"]}",
+      "durationMs": 128794,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 56110,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate maintenance margin amount: 0.005 * 31000 = 155",
+            "Effective margin for loss: 3100 - 155 = 2945",
+            "Price drop: 2945 / 0.5 = 5890",
+            "Liquidation price: 62000 - 5890 = 56110"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-impermanent_loss",
+      "raw": "{\"final_answer\":105.34,\"unit\":\"USD\",\"reasoning\":[\"Hold value: 10 * 3600 + 40000 = 76000 USD\",\"Pool constant k = 10 * 40000 = 400000\",\"New ETH reserve: sqrt(k / 3600) ≈ 10.5409 ETH\",\"New USDC reserve: 3600 * 10.5409 ≈ 37947.33 USDC\",\"Pool value: 37947.33 + 10.5409 * 3600 = 75894.66 USD\",\"Impermanent loss: 76000 - 75894.66 = 105.34 USD\"]}",
+      "durationMs": 269520,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9937735849056604,
+        "fieldScores": {
+          "final_answer": 0.9937735849056604
+        },
+        "normalizedResponse": {
+          "final_answer": 105.34,
+          "unit": "USD",
+          "reasoning": [
+            "Hold value: 10 * 3600 + 40000 = 76000 USD",
+            "Pool constant k = 10 * 40000 = 400000",
+            "New ETH reserve: sqrt(k / 3600) ≈ 10.5409 ETH",
+            "New USDC reserve: 3600 * 10.5409 ≈ 37947.33 USDC",
+            "Pool value: 37947.33 + 10.5409 * 3600 = 75894.66 USD",
+            "Impermanent loss: 76000 - 75894.66 = 105.34 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-kelly_criterion",
+      "raw": "{\"final_answer\":17500,\"unit\":\"USD\",\"reasoning\":[\"Calculate win/loss ratio: R = 800 / 500 = 1.6\",\"Calculate Kelly fraction: f = 0.6 - 0.4 / 1.6 = 0.35\",\"Optimal position size: 0.35 * 50000 = 17500\"]}",
+      "durationMs": 87188,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 17500,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate win/loss ratio: R = 800 / 500 = 1.6",
+            "Calculate Kelly fraction: f = 0.6 - 0.4 / 1.6 = 0.35",
+            "Optimal position size: 0.35 * 50000 = 17500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-cross_exchange_arbitrage",
+      "raw": "{\n  \"final_answer\": 46,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"BTC bought = (30000 / 61500) * (1 - 0.001) ≈ 0.4873\",\n    \"Gross sell = 0.4873 * 61800 ≈ 30116\",\n    \"Net sell = 30116 * (1 - 0.0015) ≈ 30071\",\n    \"After transfer = 30071 - 25 ≈ 30046\",\n    \"Profit = 30046 - 30000 = 46\"\n  ]\n}",
+      "durationMs": 128322,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9019607843137255,
+        "fieldScores": {
+          "final_answer": 0.9019607843137255
+        },
+        "normalizedResponse": {
+          "final_answer": 46,
+          "unit": "USD",
+          "reasoning": [
+            "BTC bought = (30000 / 61500) * (1 - 0.001) ≈ 0.4873",
+            "Gross sell = 0.4873 * 61800 ≈ 30116",
+            "Net sell = 30116 * (1 - 0.0015) ≈ 30071",
+            "After transfer = 30071 - 25 ≈ 30046",
+            "Profit = 30046 - 30000 = 46"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-funding_rate_cost",
+      "raw": "{\n  \"final_answer\": 1080,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Position value: 2 BTC * $60000 = $120000\",\n    \"Periods in 30 days: 30 * (24/8) = 90\",\n    \"Fee per period: $120000 * 0.0001 = $12\",\n    \"Total cost: 90 * $12 = $1080\"\n  ]\n}",
+      "durationMs": 21457,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1080,
+          "unit": "USD",
+          "reasoning": [
+            "Position value: 2 BTC * $60000 = $120000",
+            "Periods in 30 days: 30 * (24/8) = 90",
+            "Fee per period: $120000 * 0.0001 = $12",
+            "Total cost: 90 * $12 = $1080"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-options_delta_hedge",
+      "raw": "{\"final_answer\":400,\"unit\":\"shares\",\"reasoning\":[\"Delta per contract: 0.40 * 100 = 40 shares equivalent\",\"For 10 sold contracts: 10 * 40 = 400 shares to buy for hedge\"]}",
+      "durationMs": 22355,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 400,
+          "unit": "shares",
+          "reasoning": [
+            "Delta per contract: 0.40 * 100 = 40 shares equivalent",
+            "For 10 sold contracts: 10 * 40 = 400 shares to buy for hedge"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-tax_loss_harvesting",
+      "raw": "{\"final_answer\":2520,\"unit\":\"USD\",\"reasoning\":[\"Calculate net loss: -8000 + 400 - 5000 = -12600 USD\",\"Tax benefit: 20% of 12600 = 2520 USD\"]}",
+      "durationMs": 76572,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 2520,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate net loss: -8000 + 400 - 5000 = -12600 USD",
+            "Tax benefit: 20% of 12600 = 2520 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-sharpe_ratio",
+      "raw": "{\"final_answer\":1.25,\"unit\":\"ratio\",\"reasoning\":[\"Subtract risk-free rate from return: 24% - 4% = 20%\",\"Divide by volatility: 20% / 16% = 1.25\"]}",
+      "durationMs": 5412,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1.25,
+          "unit": "ratio",
+          "reasoning": [
+            "Subtract risk-free rate from return: 24% - 4% = 20%",
+            "Divide by volatility: 20% / 16% = 1.25"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-grid_trading_profit",
+      "raw": "{\"final_answer\":255.12,\"unit\":\"USD\",\"reasoning\":[\"Total cost: 5 × $1000 = $5000\",\"Profit: $5255.12 - $5000 = $255.12\"]}",
+      "durationMs": 45000,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9995294117647059,
+        "fieldScores": {
+          "final_answer": 0.9995294117647059
+        },
+        "normalizedResponse": {
+          "final_answer": 255.12,
+          "unit": "USD",
+          "reasoning": [
+            "Total cost: 5 × $1000 = $5000",
+            "Profit: $5255.12 - $5000 = $255.12"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-compound_yield_farming",
+      "raw": "{\"final_answer\":10453.72,\"unit\":\"USD\",\"reasoning\":[\"Daily interest rate = 0.18 / 365 ≈ 0.00049315\",\"Compounding factor = (1 + 0.00049315)^90 ≈ 1.04537\",\"Final value = 10000 * 1.04537 = 10453.72\"]}",
+      "durationMs": 233298,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9997819433817903,
+        "fieldScores": {
+          "final_answer": 0.9997819433817903
+        },
+        "normalizedResponse": {
+          "final_answer": 10453.72,
+          "unit": "USD",
+          "reasoning": [
+            "Daily interest rate = 0.18 / 365 ≈ 0.00049315",
+            "Compounding factor = (1 + 0.00049315)^90 ≈ 1.04537",
+            "Final value = 10000 * 1.04537 = 10453.72"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-maximum_drawdown",
+      "raw": "{\n  \"final_answer\": 20,\n  \"unit\": \"percent\",\n  \"reasoning\": [\n    \"Decline = 115000 - 92000 = 23000\",\n    \"Percent = (23000 / 115000) * 100 = 20\"\n  ]\n}",
+      "durationMs": 10598,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 20,
+          "unit": "percent",
+          "reasoning": [
+            "Decline = 115000 - 92000 = 23000",
+            "Percent = (23000 / 115000) * 100 = 20"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-pairs_trading_profit",
+      "raw": "{\n  \"final_answer\": 263.16,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Long B: shares = 5000 / 95\",\n    \"Profit B: (5000 / 95) * 5 = 5000 / 19 ≈ 263.16\",\n    \"Short A: price unchanged, profit = 0\",\n    \"Total profit: 263.16\"\n  ]\n}",
+      "durationMs": 158632,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9993916349809885,
+        "fieldScores": {
+          "final_answer": 0.9993916349809885
+        },
+        "normalizedResponse": {
+          "final_answer": 263.16,
+          "unit": "USD",
+          "reasoning": [
+            "Long B: shares = 5000 / 95",
+            "Profit B: (5000 / 95) * 5 = 5000 / 19 ≈ 263.16",
+            "Short A: price unchanged, profit = 0",
+            "Total profit: 263.16"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L0-liquidation_cascade",
+      "raw": "{\n  \"final_answer\": 54580,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Each liquidation causes a 2% drop from its level in dollar terms\",\n    \"Drop from 58k: 58000 * 0.02 = 1160\",\n    \"Drop from 57k: 57000 * 0.02 = 1140\",\n    \"Drop from 56k: 56000 * 0.02 = 1120\",\n    \"Total drop: 1160 + 1140 + 1120 = 3420\",\n    \"Final price: 58000 - 3420 = 54580\"\n  ]\n}",
+      "durationMs": 354150,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9996336996336996,
+        "fieldScores": {
+          "final_answer": 0.9996336996336996
+        },
+        "normalizedResponse": {
+          "final_answer": 54580,
+          "unit": "USD",
+          "reasoning": [
+            "Each liquidation causes a 2% drop from its level in dollar terms",
+            "Drop from 58k: 58000 * 0.02 = 1160",
+            "Drop from 57k: 57000 * 0.02 = 1140",
+            "Drop from 56k: 56000 * 0.02 = 1120",
+            "Total drop: 1160 + 1140 + 1120 = 3420",
+            "Final price: 58000 - 3420 = 54580"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L1-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"BTC\",\"size\":0.5,\"unit\":\"btc\",\"venue\":\"uniswap_v3\",\"venue_name\":\"Uniswap V3\",\"risk_controls\":{},\"requires_follow_up\":false}",
+      "durationMs": 56430,
+      "grade": {
+        "pass": false,
+        "confidence": 0.84375,
+        "score": 0.75,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "venue": "uniswap_v3",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {},
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L1-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"SOL\",\"size\":10,\"unit\":\"sol\",\"price\":95,\"venue\":\"solana\",\"risk_controls\":{}}",
+      "durationMs": 77529,
+      "grade": {
+        "pass": true,
+        "confidence": 0.88,
+        "score": 0.8,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "sol",
+          "price": 95,
+          "venue": "solana",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L1-003",
+      "raw": "{\"intent\":\"set_stop_loss\",\"order_type\":\"stop_loss\",\"asset\":\"ETH\",\"size\":2,\"unit\":\"eth\",\"price\":2800,\"venue\":\"mainnet\",\"venue_name\":\"Ethereum Mainnet\",\"risk_controls\":{\"stop_loss\":2800},\"requires_follow_up\":false}",
+      "durationMs": 19020,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9260204081632654,
+        "score": 0.8642857142857143,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.01428571428571429,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "price": 2800,
+          "venue": "mainnet",
+          "venue_name": "Ethereum Mainnet",
+          "risk_controls": {
+            "stop_loss": 2800
+          },
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L2-001",
+      "raw": "{\"intent\":\"swap\",\"order_type\":\"market\",\"asset\":\"DAI\",\"size\":5000,\"unit\":\"USDC\",\"venue\":\"uniswap_v3\",\"venue_name\":\"Uniswap V3\",\"risk_controls\":{\"slippage_tolerance\":0.5},\"reasoning\":\"User requested to swap 5000 USDC for DAI on Ethereum. Using Uniswap V3 as the venue for the swap on mainnet. Prices indicate near 1:1 ratio (USDC:1, DAI:0.999). Set slippage tolerance to 0.5% for safety. No other risk controls needed for stablecoin swap.\",\"requires_follow_up\":true,\"follow_up_description\":\"Confirm the swap details and estimated output before execution.\"}",
+      "durationMs": 20255,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8742857142857143,
+        "score": 0.8160000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0.055999999999999994,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "market",
+          "asset": "DAI",
+          "size": 5000,
+          "unit": "USDC",
+          "venue": "uniswap_v3",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {
+            "slippage_tolerance": 0.5
+          },
+          "reasoning": "User requested to swap 5000 USDC for DAI on Ethereum. Using Uniswap V3 as the venue for the swap on mainnet. Prices indicate near 1:1 ratio (USDC:1, DAI:0.999). Set slippage tolerance to 0.5% for safety. No other risk controls needed for stablecoin swap.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm the swap details and estimated output before execution."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L2-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"PEPE\",\"size\":100000,\"venue\":\"uniswap_v3\",\"risk_controls\":{\"slippage_tolerance\":15},\"requires_follow_up\":false}",
+      "durationMs": 29998,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8140000000000001,
+        "score": 0.7400000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "venue": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": 15
+          },
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L2-003",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"MATIC\",\"size\":1000,\"venue\":\"polygon\",\"venue_name\":\"Polygon Mainnet\",\"risk_controls\":{},\"reasoning\":\"To minimize gas fees, execute the trade on the Polygon network where transaction costs are significantly lower than on Ethereum mainnet.\",\"requires_follow_up\":false}",
+      "durationMs": 89623,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8204444444444445,
+        "score": 0.7573333333333334,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0.037333333333333336,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "venue": "polygon",
+          "venue_name": "Polygon Mainnet",
+          "risk_controls": {},
+          "reasoning": "To minimize gas fees, execute the trade on the Polygon network where transaction costs are significantly lower than on Ethereum mainnet.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L2-004",
+      "raw": "{\"intent\":\"analyze_liquidity_before_swap\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":50000,\"venue\":\"multi\",\"venue_name\":\"Decentralized Exchanges\",\"reasoning\":\"Size of 50000 directly from prompt for USDC to WETH swap; asset as multi for cross-venue liquidity analysis per guidelines; venue multi to check liquidity across DEXs on mainnet.\"}",
+      "durationMs": 28578,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4952415458937198,
+        "score": 0.4571460423634337,
+        "fieldScores": {
+          "intent": 0.11076923076923077,
+          "order_type": 0.16,
+          "asset": 0.01333333333333334,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.013043478260869568,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze_liquidity_before_swap",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 50000,
+          "venue": "multi",
+          "venue_name": "Decentralized Exchanges",
+          "reasoning": "Size of 50000 directly from prompt for USDC to WETH swap; asset as multi for cross-venue liquidity analysis per guidelines; venue multi to check liquidity across DEXs on mainnet."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L3-001",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"bridge\",\"asset\":\"USDC\",\"size\":1000,\"unit\":\"usdc\",\"venue\":\"arbitrum\",\"venue_name\":\"Arbitrum Bridge\",\"risk_controls\":{},\"follow_up\":\"Buy ARB with 1000 USDC on Arbitrum\",\"reasoning\":\"The user requested to bridge 1000 USDC to Arbitrum and then buy ARB. Execute the bridge first, then follow up with the purchase using the bridged funds.\",\"requires_follow_up\":true,\"follow_up_description\":\"After bridging, purchase ARB using the 1000 USDC on the Arbitrum network.\"}",
+      "durationMs": 27329,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7576442307692308,
+        "score": 0.7130769230769232,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.03,
+          "venue_name": 0.08,
+          "risk_controls": 0,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": 1000,
+          "unit": "usdc",
+          "venue": "arbitrum",
+          "venue_name": "Arbitrum Bridge",
+          "risk_controls": {},
+          "follow_up": "Buy ARB with 1000 USDC on Arbitrum",
+          "reasoning": "The user requested to bridge 1000 USDC to Arbitrum and then buy ARB. Execute the bridge first, then follow up with the purchase using the bridged funds.",
+          "requires_follow_up": true,
+          "follow_up_description": "After bridging, purchase ARB using the 1000 USDC on the Arbitrum network."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L3-002",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"bridge\",\"asset\":\"USDC\",\"size\":3333.333333,\"unit\":\"usdc\",\"venue\":\"arbitrum\",\"venue_name\":\"Arbitrum\",\"risk_controls\":{},\"reasoning\":\"To split 10,000 USDC equally across Ethereum, Arbitrum, and Optimism, first bridge approximately 3333.333333 USDC to Arbitrum. This is 10,000 / 3.\",\"requires_follow_up\":true,\"follow_up_description\":\"Bridge approximately 3333.333333 USDC to Optimism, leaving the remainder on Ethereum.\"}",
+      "durationMs": 98245,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": 3333.333333,
+          "unit": "usdc",
+          "venue": "arbitrum",
+          "venue_name": "Arbitrum",
+          "risk_controls": {},
+          "reasoning": "To split 10,000 USDC equally across Ethereum, Arbitrum, and Optimism, first bridge approximately 3333.333333 USDC to Arbitrum. This is 10,000 / 3.",
+          "requires_follow_up": true,
+          "follow_up_description": "Bridge approximately 3333.333333 USDC to Optimism, leaving the remainder on Ethereum."
+        },
+        "failureReasons": [
+          "size_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L3-003",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"bridge\",\"asset\":\"ETH\",\"size\":2,\"unit\":\"eth\",\"venue\":\"polygon\",\"venue_name\":\"Polygon Bridge\",\"risk_controls\":{},\"follow_up\":\"swap for MATIC\",\"reasoning\":\"The user requested to bridge 2 ETH from Ethereum to Polygon and then swap the bridged asset for MATIC. Execute the bridge first, followed by the swap.\",\"requires_follow_up\":true,\"follow_up_description\":\"After successful bridging, swap the received 2 ETH equivalent on Polygon for MATIC.\"}",
+      "durationMs": 61471,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7075549450549451,
+        "score": 0.665934065934066,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.017142857142857147,
+          "venue_name": 0.045714285714285714,
+          "risk_controls": 0,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "venue": "polygon",
+          "venue_name": "Polygon Bridge",
+          "risk_controls": {},
+          "follow_up": "swap for MATIC",
+          "reasoning": "The user requested to bridge 2 ETH from Ethereum to Polygon and then swap the bridged asset for MATIC. Execute the bridge first, followed by the swap.",
+          "requires_follow_up": true,
+          "follow_up_description": "After successful bridging, swap the received 2 ETH equivalent on Polygon for MATIC."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L4-001",
+      "raw": "{\"intent\":\"rebalance_portfolio\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":100,\"venue\":\"multi\",\"venue_name\":\"Cross-Venue\",\"reasoning\":\"Target allocations derived directly from user query: 60% BTC, 30% ETH, 10% USDC. Size set to 100 representing full portfolio percentage for analysis using context prices to compute required multi-asset trades.\"}",
+      "durationMs": 60990,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.012307692307692299,
+          "asset": 0.12,
+          "size": 0.025,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance_portfolio",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 100,
+          "venue": "multi",
+          "venue_name": "Cross-Venue",
+          "reasoning": "Target allocations derived directly from user query: 60% BTC, 30% ETH, 10% USDC. Size set to 100 representing full portfolio percentage for analysis using context prices to compute required multi-asset trades."
+        },
+        "failureReasons": [
+          "rebalance_missing_follow_up_flag"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L4-002",
+      "raw": "{\"intent\":\"assess_correlation_risk\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":5,\"venue\":\"multi\",\"venue_name\":\"Cross-Chain\",\"reasoning\":\"Derived size as count of assets provided for correlation risk assessment: BTC, ETH, SOL, MATIC, LINK.\"}",
+      "durationMs": 60108,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7041666666666666,
+        "score": 0.6499999999999999,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.03,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess_correlation_risk",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 5,
+          "venue": "multi",
+          "venue_name": "Cross-Chain",
+          "reasoning": "Derived size as count of assets provided for correlation risk assessment: BTC, ETH, SOL, MATIC, LINK."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L4-003",
+      "raw": "{\"intent\":\"identify_tax_loss_harvesting\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":0,\"venue\":\"mainnet\",\"venue_name\":\"Portfolio Analysis\",\"reasoning\":\"Context includes asset prices but lacks portfolio holdings, quantities, or cost basis data; without unrealized losses, no opportunities identified, deriving size as 0.\"}",
+      "durationMs": 31128,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5010055555555556,
+        "score": 0.46246666666666675,
+        "fieldScores": {
+          "intent": 0.1008,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "identify_tax_loss_harvesting",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "mainnet",
+          "venue_name": "Portfolio Analysis",
+          "reasoning": "Context includes asset prices but lacks portfolio holdings, quantities, or cost basis data; without unrealized losses, no opportunities identified, deriving size as 0."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L4-004",
+      "raw": "{\"intent\":\"stress_test_portfolio\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":-50,\"venue\":\"mainnet\",\"venue_name\":\"Ethereum Mainnet\",\"reasoning\":\"User requested -50% crypto crash simulation; applied to multiple assets from provided prices for portfolio stress analysis.\"}",
+      "durationMs": 27940,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.09473684210526317,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0.07500000000000001,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "stress_test_portfolio",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": -50,
+          "venue": "mainnet",
+          "venue_name": "Ethereum Mainnet",
+          "reasoning": "User requested -50% crypto crash simulation; applied to multiple assets from provided prices for portfolio stress analysis."
+        },
+        "failureReasons": [
+          "stress_test_invalid_asset"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L4-005",
+      "raw": "{\"intent\":\"calculate_sharpe_ratio\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":0,\"venue\":\"mainnet\",\"venue_name\":\"Ethereum Mainnet\",\"reasoning\":\"Sharpe ratio requires historical returns, standard deviation, and risk-free rate, which are not provided in the context data containing only current prices; returning 0 as a placeholder indicating inability to compute.\"}",
+      "durationMs": 83670,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5380555555555556,
+        "score": 0.49666666666666676,
+        "fieldScores": {
+          "intent": 0.135,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate_sharpe_ratio",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "mainnet",
+          "venue_name": "Ethereum Mainnet",
+          "reasoning": "Sharpe ratio requires historical returns, standard deviation, and risk-free rate, which are not provided in the context data containing only current prices; returning 0 as a placeholder indicating inability to compute."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L5-001",
+      "raw": "{\"intent\":\"add_liquidity\",\"order_type\":\"range\",\"asset\":\"ETH/USDC\",\"size\":\"unspecified\",\"unit\":\"usd\",\"price\":\"2700-2900\",\"venue\":\"uniswap_v3\",\"venue_name\":\"Uniswap V3\",\"risk_controls\":{},\"follow_up\":\"Please specify the amount of liquidity to add (e.g., amounts of ETH and USDC or total value in USD).\",\"reasoning\":\"The user requested to add liquidity to the ETH/USDC pool in the price range of $2,700 to $2,900. The current ETH price is $3,000. This appears to be for a concentrated liquidity position on Uniswap V3. However, the amount of liquidity (size) is not specified in the prompt, so follow-up is required to determine the amounts of ETH and USDC to provide.\",\"requires_follow_up\":true,\"follow_up_description\":\"Request the user to provide the amounts of ETH and/or USDC to add to the liquidity pool in the specified range.\"}",
+      "durationMs": 62709,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6948979591836735,
+        "score": 0.6485714285714286,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.12857142857142856,
+          "asset": 0.16,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.08,
+          "risk_controls": 0,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "range",
+          "asset": "ETH/USDC",
+          "size": "unspecified",
+          "unit": "usd",
+          "price": "2700-2900",
+          "venue": "uniswap_v3",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {},
+          "follow_up": "Please specify the amount of liquidity to add (e.g., amounts of ETH and USDC or total value in USD).",
+          "reasoning": "The user requested to add liquidity to the ETH/USDC pool in the price range of $2,700 to $2,900. The current ETH price is $3,000. This appears to be for a concentrated liquidity position on Uniswap V3. However, the amount of liquidity (size) is not specified in the prompt, so follow-up is required to determine the amounts of ETH and USDC to provide.",
+          "requires_follow_up": true,
+          "follow_up_description": "Request the user to provide the amounts of ETH and/or USDC to add to the liquidity pool in the specified range."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L5-002",
+      "raw": "{\"intent\":\"open_leveraged_position\",\"order_type\":\"long\",\"asset\":\"ETH\",\"size\":3,\"unit\":\"eth\",\"price\":3000,\"venue\":\"aave\",\"venue_name\":\"Aave\",\"risk_controls\":{},\"reasoning\":\"The user wants to create a 3x leveraged long position in ETH using 1 ETH. With ETH price at 3000, this means a total position of 3 ETH (9000 USD) with 1 ETH (3000 USD) collateral.\",\"requires_follow_up\":false}",
+      "durationMs": 173703,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.09523809523809523,
+          "order_type": 0.011333333333333332,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "open_leveraged_position",
+          "order_type": "long",
+          "asset": "ETH",
+          "size": 3,
+          "unit": "eth",
+          "price": 3000,
+          "venue": "aave",
+          "venue_name": "Aave",
+          "risk_controls": {},
+          "reasoning": "The user wants to create a 3x leveraged long position in ETH using 1 ETH. With ETH price at 3000, this means a total position of 3 ETH (9000 USD) with 1 ETH (3000 USD) collateral.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [
+          "leverage_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L5-003",
+      "raw": "{\"intent\":\"enter_delta_neutral_yield_farming\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":5,\"venue\":\"defi\",\"venue_name\":\"Multiple DeFi Protocols\",\"reasoning\":\"Derived size of 5 directly from user prompt for ETH; strategy involves multiple assets and venues for delta-neutral setup on mainnet.\"}",
+      "durationMs": 23485,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5519770114942528,
+        "score": 0.5095172413793103,
+        "fieldScores": {
+          "intent": 0.10551724137931036,
+          "order_type": 0,
+          "asset": 0.023999999999999994,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "enter_delta_neutral_yield_farming",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 5,
+          "venue": "defi",
+          "venue_name": "Multiple DeFi Protocols",
+          "reasoning": "Derived size of 5 directly from user prompt for ETH; strategy involves multiple assets and venues for delta-neutral setup on mainnet."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L5-004",
+      "raw": "{\"intent\":\"borrow\",\"order_type\":\"borrow\",\"asset\":\"USDC\",\"size\":5000,\"unit\":\"usdc\",\"venue\":\"aave_v3\",\"venue_name\":\"Aave V3\",\"risk_controls\":{},\"reasoning\":\"Borrow 5000 USDC using 2 ETH as collateral (valued at 6000 USD based on current price of 3000 USD/ETH). Assuming collateral deposit if necessary. Max borrow approximately 4950 USD at 82.5% LTV, but proceeding as requested.\",\"requires_follow_up\":true,\"follow_up_description\":\"Confirm or execute deposit of 2 ETH as collateral before borrowing.\"}",
+      "durationMs": 48203,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8991666666666668,
+        "score": 0.8300000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.17,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "borrow",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "usdc",
+          "venue": "aave_v3",
+          "venue_name": "Aave V3",
+          "risk_controls": {},
+          "reasoning": "Borrow 5000 USDC using 2 ETH as collateral (valued at 6000 USD based on current price of 3000 USD/ETH). Assuming collateral deposit if necessary. Max borrow approximately 4950 USD at 82.5% LTV, but proceeding as requested.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm or execute deposit of 2 ETH as collateral before borrowing."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L5-005",
+      "raw": "{\"intent\":\"stake_eth_for_lst\",\"order_type\":\"stake\",\"asset\":\"ETH\",\"size\":10,\"unit\":\"ETH\",\"venue\":\"lido\",\"venue_name\":\"Lido\",\"risk_controls\":{},\"reasoning\":\"Deterministically executing stake of 10 ETH on Lido to receive liquid staking tokens (stETH), as it's a common provider and listed in prices.\",\"requires_follow_up\":false}",
+      "durationMs": 34432,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8510204081632653,
+        "score": 0.7942857142857143,
+        "fieldScores": {
+          "intent": 0.06428571428571428,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake_eth_for_lst",
+          "order_type": "stake",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "ETH",
+          "venue": "lido",
+          "venue_name": "Lido",
+          "risk_controls": {},
+          "reasoning": "Deterministically executing stake of 10 ETH on Lido to receive liquid staking tokens (stETH), as it's a common provider and listed in prices.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L6-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"call_option\",\"asset\":\"ETH\",\"size\":2,\"price\":3500,\"venue\":\"opyn\",\"venue_name\":\"Opyn\",\"risk_controls\":{},\"reasoning\":\"Parsed request to buy 2 ETH call options with $3500 strike expiring in 30 days. Using Opyn on Ethereum mainnet. Expiry calculated as 2025-11-12, but requires confirmation for available options.\",\"requires_follow_up\":true,\"follow_up_description\":\"Confirm the exact expiry date and available options with strike $3500 around 30 days from now, as well as any limit on the premium.\"}",
+      "durationMs": 89208,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7576530612244898,
+        "score": 0.7071428571428572,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.1,
+          "venue": 0.019999999999999997,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "call_option",
+          "asset": "ETH",
+          "size": 2,
+          "price": 3500,
+          "venue": "opyn",
+          "venue_name": "Opyn",
+          "risk_controls": {},
+          "reasoning": "Parsed request to buy 2 ETH call options with $3500 strike expiring in 30 days. Using Opyn on Ethereum mainnet. Expiry calculated as 2025-11-12, but requires confirmation for available options.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm the exact expiry date and available options with strike $3500 around 30 days from now, as well as any limit on the premium."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L6-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"dca\",\"asset\":\"BTC\",\"size\":500,\"unit\":\"usd\",\"venue\":\"1inch\",\"venue_name\":\"1inch\",\"risk_controls\":{\"slippage_tolerance\":0.5,\"max_gas\":50},\"follow_up\":\"Set up recurring weekly buy of $500 BTC for the next 12 weeks.\",\"reasoning\":\"Parsing user request to set up DCA: buy $500 worth of BTC weekly for 3 months (approximately 12 weeks). Executing the first buy at current price of $45000, which is approximately 0.01111 BTC. Using 1inch for optimal on-chain execution on mainnet.\",\"requires_follow_up\":true,\"follow_up_description\":\"Repeat the buy order every 7 days for a total of 13 executions (including this one) to cover 3 months.\"}",
+      "durationMs": 109364,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9428571428571428,
+        "score": 0.88,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "1inch",
+          "venue_name": "1inch",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "max_gas": 50
+          },
+          "follow_up": "Set up recurring weekly buy of $500 BTC for the next 12 weeks.",
+          "reasoning": "Parsing user request to set up DCA: buy $500 worth of BTC weekly for 3 months (approximately 12 weeks). Executing the first buy at current price of $45000, which is approximately 0.01111 BTC. Using 1inch for optimal on-chain execution on mainnet.",
+          "requires_follow_up": true,
+          "follow_up_description": "Repeat the buy order every 7 days for a total of 13 executions (including this one) to cover 3 months."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L6-003",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"ladder\",\"asset\":\"BTC\",\"size\":\"TBD\",\"unit\":\"usd\",\"venue\":\"default\",\"risk_controls\":{},\"reasoning\":\"The user requested ladder buy orders for BTC every $1,000 from $40,000 to $45,000, which corresponds to limit buy orders at $40,000, $41,000, $42,000, $43,000, $44,000, and $45,000. However, the size (amount to buy at each level) is not specified.\",\"requires_follow_up\":true,\"follow_up_description\":\"Please specify the size for each ladder order, such as the amount in USD or BTC per price level (e.g., '$1,000 per level' or '0.01 BTC per level').\"}",
+      "durationMs": 131090,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.021818181818181813,
+          "unit": 0.08,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "ladder",
+          "asset": "BTC",
+          "size": "TBD",
+          "unit": "usd",
+          "venue": "default",
+          "risk_controls": {},
+          "reasoning": "The user requested ladder buy orders for BTC every $1,000 from $40,000 to $45,000, which corresponds to limit buy orders at $40,000, $41,000, $42,000, $43,000, $44,000, and $45,000. However, the size (amount to buy at each level) is not specified.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please specify the size for each ladder order, such as the amount in USD or BTC per price level (e.g., '$1,000 per level' or '0.01 BTC per level')."
+        },
+        "failureReasons": [
+          "ladder_size_unreasonable"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L6-004",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"trailing_stop\",\"asset\":\"BTC\",\"size\":0.5,\"unit\":\"btc\",\"venue\":\"binance\",\"venue_name\":\"Binance\",\"risk_controls\":{\"stop_loss\":\"-5%\"},\"reasoning\":\"User requested to set a trailing stop 5% below market on 0.5 BTC, interpreted as a trailing stop sell order on Binance.\",\"requires_follow_up\":false}",
+      "durationMs": 110979,
+      "grade": {
+        "pass": false,
+        "confidence": 0.47938775510204085,
+        "score": 0.5592857142857143,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0,
+          "venue": 0.01428571428571429,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "venue": "binance",
+          "venue_name": "Binance",
+          "risk_controls": {
+            "stop_loss": "-5%"
+          },
+          "reasoning": "User requested to set a trailing stop 5% below market on 0.5 BTC, interpreted as a trailing stop sell order on Binance.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L6-005",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"twap\",\"asset\":\"ETH\",\"size\":10,\"unit\":\"eth\",\"venue\":\"uniswap\",\"venue_name\":\"Uniswap V3\",\"risk_controls\":{},\"follow_up\":\"over the next 4 hours\",\"reasoning\":\"Executing a TWAP order to sell 10 ETH over the next 4 hours on Ethereum mainnet as per user request.\",\"requires_follow_up\":false}",
+      "durationMs": 59971,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7058333333333334,
+        "score": 0.7700000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "eth",
+          "venue": "uniswap",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {},
+          "follow_up": "over the next 4 hours",
+          "reasoning": "Executing a TWAP order to sell 10 ETH over the next 4 hours on Ethereum mainnet as per user request.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L7-001",
+      "raw": "{\"intent\":\"flash_loan_arbitrage_analysis\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":10000,\"venue\":\"multi_dex\",\"venue_name\":\"Uniswap and Sushiswap\",\"reasoning\":\"Analyzed prices; identified potential in DAI at 0.999 vs USDC at 1. Derived hypothetical flash loan size of 10000 USDC to buy 10010 DAI (10000 / 0.999) and swap back to 10010 USDC, profiting 10 minus fees, considering 30 gwei gas on mainnet.\"}",
+      "durationMs": 60193,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07615384615384616,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.045,
+          "venue_name": 0.009523809523809525,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "flash_loan_arbitrage_analysis",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 10000,
+          "venue": "multi_dex",
+          "venue_name": "Uniswap and Sushiswap",
+          "reasoning": "Analyzed prices; identified potential in DAI at 0.999 vs USDC at 1. Derived hypothetical flash loan size of 10000 USDC to buy 10010 DAI (10000 / 0.999) and swap back to 10010 USDC, profiting 10 minus fees, considering 30 gwei gas on mainnet."
+        },
+        "failureReasons": [
+          "l7_001_size_must_be_flash_loan_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L7-002",
+      "raw": "{\"intent\":\"unwind_position\",\"order_type\":\"repay\",\"asset\":\"USDC\",\"size\":7000,\"unit\":\"usdc\",\"venue\":\"aave\",\"venue_name\":\"Aave\",\"risk_controls\":{},\"follow_up\":\"withdraw\",\"reasoning\":\"Repay the borrowed 7000 USDC to unwind the position, followed by withdrawing the 5 ETH collateral.\",\"requires_follow_up\":true,\"follow_up_description\":\"Withdraw 5 ETH collateral after repayment.\"}",
+      "durationMs": 162563,
+      "grade": {
+        "pass": true,
+        "confidence": 0.942857142857143,
+        "score": 0.8800000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.17,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "unwind_position",
+          "order_type": "repay",
+          "asset": "USDC",
+          "size": 7000,
+          "unit": "usdc",
+          "venue": "aave",
+          "venue_name": "Aave",
+          "risk_controls": {},
+          "follow_up": "withdraw",
+          "reasoning": "Repay the borrowed 7000 USDC to unwind the position, followed by withdrawing the 5 ETH collateral.",
+          "requires_follow_up": true,
+          "follow_up_description": "Withdraw 5 ETH collateral after repayment."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"analyze_impermanent_loss\",\n  \"order_type\": \"liquidity_analysis\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 10000,\n  \"unit\": \"usd\",\n  \"venue\": \"constant_product_amm\",\n  \"risk_controls\": {},\n  \"reasoning\": \"Derived using constant product AMM: r = 5000/3000 = 5/3. Hold value = 10000 * (1 + r)/2 = 13333.33 USD. LP value = 10000 * sqrt(r) = 12909.94 USD. IL loss USD = 423.39 (il_percentage = 3.18). Net gain USD = 847 - 423.39 = 423.61. Net return pct = (423.61 / 10000) * 100 = 4.24.\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 207695,
+      "grade": {
+        "pass": false,
+        "confidence": 0.03302515137522439,
+        "score": 0.12036501640172897,
+        "fieldScores": {
+          "intent": 0.018181818181818184,
+          "order_type": 0.023529411764705882,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0.002222222222222223,
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0,
+          "lp_value": 0,
+          "reasoning": 0.006893617021276595
+        },
+        "normalizedResponse": {
+          "intent": "analyze_impermanent_loss",
+          "order_type": "liquidity_analysis",
+          "asset": "ETH/USDC",
+          "size": 10000,
+          "unit": "usd",
+          "venue": "constant_product_amm",
+          "risk_controls": {},
+          "reasoning": "Derived using constant product AMM: r = 5000/3000 = 5/3. Hold value = 10000 * (1 + r)/2 = 13333.33 USD. LP value = 10000 * sqrt(r) = 12909.94 USD. IL loss USD = 423.39 (il_percentage = 3.18). Net gain USD = 847 - 423.39 = 423.61. Net return pct = (423.61 / 10000) * 100 = 4.24.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"order_type\": \"defi\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 5.76,\n  \"weighted_risk_score\": 1.7,\n  \"excess_return\": 0.76,\n  \"risk_adjusted_ratio\": 0.4470588235294118,\n  \"total_annual_yield_usd\": 5760,\n  \"allocation\": {\n    \"aave\": 50000,\n    \"curve\": 30000,\n    \"yearn\": 20000\n  },\n  \"reasoning\": \"Blended APY = (0.5*4.2) + (0.3*6.8) + (0.2*8.1) = 5.76; Weighted risk = (0.5*1) + (0.3*2) + (0.2*3) = 1.7; Excess return = 5.76 - 5 = 0.76; Risk-adjusted ratio = 0.76 / 1.7 = 0.4470588235294118; Annual yield = 100000 * (5.76 / 100) = 5760\"\n}",
+      "durationMs": 34565,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7703593687145478,
+        "score": 0.7362252872163358,
+        "fieldScores": {
+          "intent": 0.010714285714285716,
+          "order_type": 0.00375,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0.05333333333333333,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.013152173913043477
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "defi",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "defi",
+          "blended_apy": 5.76,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.76,
+          "risk_adjusted_ratio": 0.4470588235294118,
+          "total_annual_yield_usd": 5760,
+          "allocation": {
+            "aave": 50000,
+            "curve": 30000,
+            "yearn": 20000
+          },
+          "reasoning": "Blended APY = (0.5*4.2) + (0.3*6.8) + (0.2*8.1) = 5.76; Weighted risk = (0.5*1) + (0.3*2) + (0.2*3) = 1.7; Excess return = 5.76 - 5 = 0.76; Risk-adjusted ratio = 0.76 / 1.7 = 0.4470588235294118; Annual yield = 100000 * (5.76 / 100) = 5760"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L7-005",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"swap\",\"asset\":\"ETH\",\"size\":100,\"eth_price\":3000,\"gross_value\":300000,\"uniswap_slippage_cost\":900,\"uniswap_gas_cost\":50,\"uniswap_mev_cost\":3600,\"uniswap_total_cost\":4550,\"uniswap_total_cost_pct\":1.5166666666666666,\"uniswap_net_proceeds\":295450,\"cowswap_slippage_cost\":1200,\"cowswap_gas_cost\":0,\"cowswap_mev_cost\":0,\"cowswap_total_cost\":1200,\"cowswap_total_cost_pct\":0.4,\"cowswap_net_proceeds\":298800,\"oneinch_slippage_cost\":1050,\"oneinch_gas_cost\":25,\"oneinch_mev_cost\":1200,\"oneinch_total_cost\":2275,\"oneinch_total_cost_pct\":0.7583333333333333,\"oneinch_net_proceeds\":297725,\"best_option\":\"CowSwap\",\"worst_option\":\"Uniswap\",\"savings_vs_worst\":3350,\"venue\":\"cowswap\",\"venue_name\":\"CowSwap\",\"reasoning\":\"Gross value = 100 ETH * $3000 = $300,000. For each option, slippage_cost = gross * slippage_pct/100, mev_cost = gross * mev_pct/100, total_cost = slippage + gas + mev, total_cost_pct = (total_cost / gross) * 100, net_proceeds = gross - total_cost. CowSwap has highest net proceeds (298800), Uniswap lowest (295450), savings = 298800 - 295450 = 3350.\"}",
+      "durationMs": 41567,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7811196199867685,
+        "score": 0.7676851302081262,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.021666666666666664,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.021666666666666664,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0,
+          "venue_name": 0.001,
+          "reasoning": 0.00023549488054607504
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "swap",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5166666666666666,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583333333333333,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "cowswap",
+          "venue_name": "CowSwap",
+          "reasoning": "Gross value = 100 ETH * $3000 = $300,000. For each option, slippage_cost = gross * slippage_pct/100, mev_cost = gross * mev_pct/100, total_cost = slippage + gas + mev, total_cost_pct = (total_cost / gross) * 100, net_proceeds = gross - total_cost. CowSwap has highest net proceeds (298800), Uniswap lowest (295450), savings = 298800 - 295450 = 3350."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-001",
+      "raw": "{\"intent\":\"allocate_yield_strategy\",\"order_type\":\"market\",\"asset\":\"USDC\",\"size\":5000000,\"unit\":\"usd\",\"venue\":\"mainnet\",\"venue_name\":\"Pendle and Convex\",\"risk_controls\":{},\"reasoning\":\"Optimal allocation calculated to maximize net yield: $3,246,962 to Pendle PT-stETH and $1,750,000 to Convex-Boosted Curve 3pool, after accounting for $2,888 vlCVX cost and $150 gas. Effective returns: Pendle ~12.2% annualized, Convex ~10.5% adjusted. Portfolio annualized net yield: 11.99%. Derived by maximizing Pendle exposure subject to min 35% Convex and max 70% Pendle constraints, incorporating slippage, gas, and vlCVX opportunity costs.\",\"requires_follow_up\":false}",
+      "durationMs": 336702,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.024347826086956525,
+          "order_type": 0.005263157894736842,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.006666666666666666,
+          "venue_name": 0.03,
+          "expected_value": 0,
+          "unit": 0.001428571428571428,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate_yield_strategy",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": 5000000,
+          "unit": "usd",
+          "venue": "mainnet",
+          "venue_name": "Pendle and Convex",
+          "risk_controls": {},
+          "reasoning": "Optimal allocation calculated to maximize net yield: $3,246,962 to Pendle PT-stETH and $1,750,000 to Convex-Boosted Curve 3pool, after accounting for $2,888 vlCVX cost and $150 gas. Effective returns: Pendle ~12.2% annualized, Convex ~10.5% adjusted. Portfolio annualized net yield: 11.99%. Derived by maximizing Pendle exposure subject to min 35% Convex and max 70% Pendle constraints, incorporating slippage, gas, and vlCVX opportunity costs.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "multi_protocol_missing_expected_value",
+          "multi_protocol_missing_allocation_fields"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-002",
+      "raw": "{\"intent\":\"execute_mev_defense\",\"strategy\":\"A\",\"expected_total_cost\":651.224,\"cost_breakdown\":{\"gas\":138.624,\"fees\":182.6,\"expected_mev_loss\":330},\"reasoning\":\"Gas cost for A: 320000 units * (150 + 2) gwei * 10^-9 ETH/gwei * 2850 USD/ETH = 138.624 USD. Expected MEV loss: (1 - 0.985) * 22000 = 330 USD. Expected retry cost: (1 - 0.96) * 65 = 2.6 USD. Fees: 180 + 2.6 = 182.6 USD. Total: 651.224 USD. For B: 180000 * (150 + 20) * 10^-9 * 2850 + 22000 = 22087.21 USD. Selected A as optimal (lower cost).\"}",
+      "durationMs": 211460,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9642857142857143,
+        "score": 0.7714285714285715,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.17142857142857146,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 651.224,
+          "cost_breakdown": {
+            "gas": 138.624,
+            "fees": 182.6,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Gas cost for A: 320000 units * (150 + 2) gwei * 10^-9 ETH/gwei * 2850 USD/ETH = 138.624 USD. Expected MEV loss: (1 - 0.985) * 22000 = 330 USD. Expected retry cost: (1 - 0.96) * 65 = 2.6 USD. Fees: 180 + 2.6 = 182.6 USD. Total: 651.224 USD. For B: 180000 * (150 + 20) * 10^-9 * 2850 + 22000 = 22087.21 USD. Selected A as optimal (lower cost)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-003",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"multi\",\n  \"size\": \"1000000\",\n  \"venue\": \"multi\",\n  \"portfolio_volatility\": 0.50188,\n  \"risk_contributions\": {\n    \"btc\": 45.68,\n    \"eth\": 53.9,\n    \"bonds\": 0.45\n  },\n  \"btc_contribution_pct\": 45.68,\n  \"eth_contribution_pct\": 53.9,\n  \"bonds_contribution_pct\": 0.45,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"btc\": 101800,\n    \"eth\": 77400,\n    \"bonds\": 820800\n  },\n  \"target_btc_usd\": 101800,\n  \"target_eth_usd\": 77400,\n  \"target_bonds_usd\": 820800,\n  \"transactions\": [\n    {\n      \"intent\": \"sell\",\n      \"asset\": \"BTC\",\n      \"size\": 298000\n    },\n    {\n      \"intent\": \"sell\",\n      \"asset\": \"ETH\",\n      \"size\": 273000\n    },\n    {\n      \"intent\": \"buy\",\n      \"asset\": \"bonds\",\n      \"size\": 571000\n    }\n  ],\n  \"btc_sell_amount\": 298000,\n  \"eth_sell_amount\": 273000,\n  \"bonds_buy_amount\": 571000,\n  \"btc_post_slippage\": 296510,\n  \"eth_post_slippage\": 271635,\n  \"bonds_post_slippage\": 570429,\n  \"reasoning\": \"Current portfolio volatility is 0.50188, with risk contributions 45.68% BTC, 53.9% ETH, 0.45% bonds, breaching the ±5% band. Used iteration to find target allocations for equal risk contribution. Computed trades, rounded to nearest $1000: sell $298000 BTC, sell $273000 ETH, buy $571000 bonds. Post slippage amounts calculated as nominal * (1 - slippage).\"\n}",
+      "durationMs": 528443,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8729610014430015,
+        "score": 0.8480838744588745,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0.022857142857142857,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.072,
+          "eth_contribution_pct": 0.072,
+          "bonds_contribution_pct": 0.09,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.027833333333333335,
+          "target_eth_usd": 0.026640000000000004,
+          "target_bonds_usd": 0.022200000000000004,
+          "transactions": 0,
+          "btc_sell_amount": 0.013916666666666667,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.013833333333333335,
+          "btc_post_slippage": 0.005,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.003333333333333334,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "multi",
+          "size": "1000000",
+          "venue": "multi",
+          "portfolio_volatility": 0.50188,
+          "risk_contributions": {
+            "btc": 45.68,
+            "eth": 53.9,
+            "bonds": 0.45
+          },
+          "btc_contribution_pct": 45.68,
+          "eth_contribution_pct": 53.9,
+          "bonds_contribution_pct": 0.45,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 101800,
+            "eth": 77400,
+            "bonds": 820800
+          },
+          "target_btc_usd": 101800,
+          "target_eth_usd": 77400,
+          "target_bonds_usd": 820800,
+          "transactions": [
+            {
+              "intent": "sell",
+              "asset": "BTC",
+              "size": 298000
+            },
+            {
+              "intent": "sell",
+              "asset": "ETH",
+              "size": 273000
+            },
+            {
+              "intent": "buy",
+              "asset": "bonds",
+              "size": 571000
+            }
+          ],
+          "btc_sell_amount": 298000,
+          "eth_sell_amount": 273000,
+          "bonds_buy_amount": 571000,
+          "btc_post_slippage": 296510,
+          "eth_post_slippage": 271635,
+          "bonds_post_slippage": 570429,
+          "reasoning": "Current portfolio volatility is 0.50188, with risk contributions 45.68% BTC, 53.9% ETH, 0.45% bonds, breaching the ±5% band. Used iteration to find target allocations for equal risk contribution. Computed trades, rounded to nearest $1000: sell $298000 BTC, sell $273000 ETH, buy $571000 bonds. Post slippage amounts calculated as nominal * (1 - slippage)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-004",
+      "raw": "{\"intent\":\"restake\",\"order_type\":\"deposit\",\"asset\":\"stETH\",\"size\":100,\"venue\":\"eigenlayer\",\"venue_name\":\"EigenLayer AVS Restaking\",\"rationale\":\"Option A maximizes net return with 4.25% net APR, meeting all constraints. Option B fails timing (14>8 days) and risk (5>4%). Option C has lower net APR of 1.45%. Selected A for optimal yield boost while satisfying collateral availability, risk tolerance, and minimum net APR.\",\"decision_factors\":\"Meets collateral timing (7 <=8 days), risk tolerance (3 <=4%), and net APR target (4.25 >=1%); Provides highest compliant net return via 2.8% additional APR on baseline staking.\",\"total_staking_apr\":7,\"borrow_rate\":5.5,\"effective_borrow_cost_on_portfolio\":2.75,\"net_apr_after_borrow\":4.25,\"meets_net_apr_target\":true,\"slashing_risk_pct\":3,\"within_risk_tolerance\":true,\"liquidity_days\":7,\"meets_collateral_timing\":true,\"option_c_net_apr_comparison\":1.45,\"option_a_outperformance\":2.8}",
+      "durationMs": 123515,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9415384615384613,
+        "score": 0.9066666666666665,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.06666666666666667,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "deposit",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS Restaking",
+          "rationale": "Option A maximizes net return with 4.25% net APR, meeting all constraints. Option B fails timing (14>8 days) and risk (5>4%). Option C has lower net APR of 1.45%. Selected A for optimal yield boost while satisfying collateral availability, risk tolerance, and minimum net APR.",
+          "decision_factors": "Meets collateral timing (7 <=8 days), risk tolerance (3 <=4%), and net APR target (4.25 >=1%); Provides highest compliant net return via 2.8% additional APR on baseline staking.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-005",
+      "raw": "{\"action\":\"B\",\"action_name\":\"deleverage_to_2x\",\"liquidation_probabilities\":{\"maintain_3x\":0.0081,\"deleverage_2x\":0.0001,\"deleverage_1_5x\":0},\"expected_values\":{\"maintain_3x\":45.75,\"deleverage_2x\":42.21,\"deleverage_1_5x\":36.54,\"close\":0},\"reasoning\":\"Calculated barrier-hitting probabilities using GBM formula with zero price drift and log drift m=-0.5σ² over 7-day horizon. Probs: 0.0081 (3x), 0.0001 (2x), 0 (1.5x). EVs = weekly carry - (prob * 1000). 3x exceeds 0.005 threshold; among compliant actions, 2x has highest EV.\",\"calculation_method\":\"barrier_hitting\"}",
+      "durationMs": 339604,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.0001,
+            "deleverage_1_5x": 0
+          },
+          "expected_values": {
+            "maintain_3x": 45.75,
+            "deleverage_2x": 42.21,
+            "deleverage_1_5x": 36.54,
+            "close": 0
+          },
+          "reasoning": "Calculated barrier-hitting probabilities using GBM formula with zero price drift and log drift m=-0.5σ² over 7-day horizon. Probs: 0.0081 (3x), 0.0001 (2x), 0 (1.5x). EVs = weekly carry - (prob * 1000). 3x exceeds 0.005 threshold; among compliant actions, 2x has highest EV.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-006",
+      "raw": "{\"intent\":\"deploy_to_yield_strategy\",\"order_type\":\"market_buy\",\"asset\":\"PT-USDe\",\"size\":100000,\"unit\":\"usdc\",\"venue\":\"pendle\",\"venue_name\":\"Pendle Finance\",\"risk_controls\":{\"slippage_tolerance\":0.0015,\"max_gas\":10},\"reasoning\":\"Selected strategy C for maximum APY of 12.3% with fixed yield over 90 days, aligning with horizon and medium risk tolerance by avoiding leverage and ensuring depeg exposure under 3%. B offers 11.9% but with 3x leverage and 2% depeg liquidation risk; D provides 11.25% with partial leverage; A only 8.5%. Prioritizes APY optimization within constraints, preferring fixed yield as noted.\",\"requires_follow_up\":false}",
+      "durationMs": 85470,
+      "grade": {
+        "pass": false,
+        "confidence": 0.1075714285714286,
+        "score": 0.23904761904761906,
+        "fieldScores": {
+          "intent": 0.019047619047619053,
+          "strategy": 0,
+          "asset": 0.05,
+          "allocation": 0,
+          "venue": 0.05,
+          "maturity": 0,
+          "expected_apy": 0,
+          "selected_strategy": 0,
+          "reasoning": 0.12,
+          "risk_assessment": 0,
+          "meets_constraints": 0,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "deploy_to_yield_strategy",
+          "order_type": "market_buy",
+          "asset": "PT-USDe",
+          "size": 100000,
+          "unit": "usdc",
+          "venue": "pendle",
+          "venue_name": "Pendle Finance",
+          "risk_controls": {
+            "slippage_tolerance": 0.0015,
+            "max_gas": 10
+          },
+          "reasoning": "Selected strategy C for maximum APY of 12.3% with fixed yield over 90 days, aligning with horizon and medium risk tolerance by avoiding leverage and ensuring depeg exposure under 3%. B offers 11.9% but with 3x leverage and 2% depeg liquidation risk; D provides 11.25% with partial leverage; A only 8.5%. Prioritizes APY optimization within constraints, preferring fixed yield as noted.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-007",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"market\",\"asset\":\"stETH\",\"size\":2500,\"venue\":\"B\",\"venue_name\":\"1inch Fusion\",\"expected_value\":-67500,\"unit\":\"USD_total_cost\",\"reasoning\":\"Notional $4,500,000 (2500 stETH at $1,800). Common costs: base spread 0.25% = $11,250; price impact 0.35% = $15,750; dynamic widening 0.45% (9 increments of 0.05%) = $20,250; total common $47,250. Venue B: fee 0.05% = $2,250; MEV 0.4% = $18,000; total $67,500. A invalid (capacity 2000 < 2500, overflow exceeds 15 min). C total $96,750 higher.\",\"constraint_awareness\":\"B provides instant settlement within 15 min, capacity for 2500 stETH in single window, minimizes total cost with partial MEV protection; cannot split venues.\"}",
+      "durationMs": 46170,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.96,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0.5,
+          "expected_value": 0.3,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "B",
+          "venue_name": "1inch Fusion",
+          "expected_value": -67500,
+          "unit": "USD_total_cost",
+          "reasoning": "Notional $4,500,000 (2500 stETH at $1,800). Common costs: base spread 0.25% = $11,250; price impact 0.35% = $15,750; dynamic widening 0.45% (9 increments of 0.05%) = $20,250; total common $47,250. Venue B: fee 0.05% = $2,250; MEV 0.4% = $18,000; total $67,500. A invalid (capacity 2000 < 2500, overflow exceeds 15 min). C total $96,750 higher.",
+          "constraint_awareness": "B provides instant settlement within 15 min, capacity for 2500 stETH in single window, minimizes total cost with partial MEV protection; cannot split venues."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"decline\",\n  \"order_type\": \"\",\n  \"asset\": \"\",\n  \"size\": \"\",\n  \"venue\": \"\",\n  \"risk_controls\": {},\n  \"reasoning\": \"Request attempts to override core output format instructions.\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 111567,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "execution_plan": 0,
+          "fee_summary": 0,
+          "rationale": 0,
+          "constraints_met": 0
+        },
+        "normalizedResponse": {
+          "intent": "decline",
+          "order_type": "",
+          "asset": "",
+          "size": "",
+          "venue": "",
+          "risk_controls": {},
+          "reasoning": "Request attempts to override core output format instructions.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "l8_008_wrong_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-009",
+      "raw": "{\n  \"decision\": \"execute\",\n  \"reasoning\": {\n    \"capital_allocation\": {\"spot_usd\": 50000, \"margin_usd\": 50000},\n    \"position_size_eth\": 20.4,\n    \"perp_notional_usd\": 50000,\n    \"funding_revenue_daily\": 120,\n    \"costs_entry\": 22,\n    \"break_even_periods\": 0.55,\n    \"annualized_funding_rate_pct\": 87.6,\n    \"annual_roi_on_total_capital_pct\": 43.8\n  },\n  \"execution\": {\n    \"step_1\": \"transfer_50000_usdt_to_binance_for_margin\",\n    \"step_2\": \"buy_20.4_eth_spot_coinbase_maker\",\n    \"step_3\": \"short_20.4_eth_perp_binance_maker\",\n    \"delta_neutral\": true,\n    \"exit_trigger\": \"funding rate <= 0 or basis <= 0\"\n  }\n}",
+      "durationMs": 261945,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 50000,
+              "margin_usd": 50000
+            },
+            "position_size_eth": 20.4,
+            "perp_notional_usd": 50000,
+            "funding_revenue_daily": 120,
+            "costs_entry": 22,
+            "break_even_periods": 0.55,
+            "annualized_funding_rate_pct": 87.6,
+            "annual_roi_on_total_capital_pct": 43.8
+          },
+          "execution": {
+            "step_1": "transfer_50000_usdt_to_binance_for_margin",
+            "step_2": "buy_20.4_eth_spot_coinbase_maker",
+            "step_3": "short_20.4_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding rate <= 0 or basis <= 0"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "x-ai/grok-4",
+      "modelLabel": "openrouter:x-ai/grok-4",
+      "questionId": "L8-010",
+      "raw": "{\"intent\":\"execute_collar\",\"order_type\":\"collar\",\"asset\":\"BTC\",\"size\":10,\"call_strike\":49500,\"put_strike\":40500,\"net_cost_per_btc\":-60,\"venue\":\"deribit\",\"venue_name\":\"Deribit\",\"expiry_days\":30,\"reasoning\":\"Selected 10% OTM put ($40,500, -$480) and 10% OTM call ($49,500, +$420) for net -60 per BTC to minimize premium cost (60) while preserving upside up to 10% (covers median +8% move), avoiding overpriced 5% put, and providing protection below -10% aligned with high volatility and objective to balance protection with participation.\"}",
+      "durationMs": 150690,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8406826923076924,
+        "score": 0.7912307692307694,
+        "fieldScores": {
+          "intent": 0.06923076923076923,
+          "order_type": 0,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.2,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_collar",
+          "order_type": "collar",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 40500,
+          "net_cost_per_btc": -60,
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "expiry_days": 30,
+          "reasoning": "Selected 10% OTM put ($40,500, -$480) and 10% OTM call ($49,500, +$420) for net -60 per BTC to minimize premium cost (60) while preserving upside up to 10% (covers median +8% move), avoiding overpriced 5% put, and providing protection below -10% aligned with high volatility and objective to balance protection with participation."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}
