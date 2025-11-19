@@ -60,6 +60,7 @@ export const RUBRIC_SCHEMA_HINTS: Record<string, {
   numericKeys: string[];
   disallowed?: string[];
   notes?: string[];
+  skeleton?: Record<string, any>;
 }> = {
   lp_net_return_analysis: {
     keys: [
@@ -399,7 +400,32 @@ export const RUBRIC_SCHEMA_HINTS: Record<string, {
       'eth_post_slippage',
       'bonds_post_slippage'
     ],
-    disallowed: ['follow_up', 'requires_follow_up', 'risk_controls']
+    disallowed: ['follow_up', 'requires_follow_up', 'risk_controls'],
+    skeleton: {
+      intent: 'risk_parity',
+      order_type: 'analysis',
+      asset: 'btc/eth/bonds',
+      size: 'risk-weighted',
+      venue: 'analysis',
+      portfolio_volatility: 0,
+      risk_contributions: {},
+      btc_contribution_pct: 0,
+      eth_contribution_pct: 0,
+      bonds_contribution_pct: 0,
+      rebalancing_required: false,
+      target_allocations_usd: {},
+      target_btc_usd: 0,
+      target_eth_usd: 0,
+      target_bonds_usd: 0,
+      transactions: [],
+      btc_sell_amount: 0,
+      eth_sell_amount: 0,
+      bonds_buy_amount: 0,
+      btc_post_slippage: 0,
+      eth_post_slippage: 0,
+      bonds_post_slippage: 0,
+      reasoning: 'synthetic rescue'
+    }
   }
   ,
   restaking_optimization: {

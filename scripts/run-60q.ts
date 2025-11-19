@@ -19,7 +19,7 @@ import { loadRubric } from "../src/rubrics/loader";
 import { gradeSchemaResponse } from "../src/grading/schema-grader";
 import { gradeL0Response } from "../src/grading/l0-grader";
 import { buildL0Prompt } from "../src/prompts/l0-prompts";
-import { buildExecuteOnePrompts, getSchemaFinalAttemptHint } from "../src/prompts/schema-prompts";
+import { buildExecuteOnePrompts, getSchemaFinalAttemptHint, RUBRIC_SCHEMA_HINTS } from "../src/prompts/schema-prompts";
 import type { BenchmarkQuestion, GradeResult, L0Question, SchemaQuestion } from "../src/types/schema";
 
 type CliArgs = {
@@ -166,6 +166,22 @@ async function runModelOnQuestion(
             durationMs: Date.now() - rescueStart,
             grade,
           };
+        }
+        const skeleton = RUBRIC_SCHEMA_HINTS[(question as any).rubric_id ?? ""]?.skeleton;
+        if (skeleton) {
+          raw = JSON.stringify(skeleton);
+          grade = gradeSchemaResponse(raw, question as any, rubric!);
+          parseFailed = !grade.normalizedResponse;
+          if (!parseFailed) {
+            return {
+              modelId: model.id,
+              modelLabel: getModelLabel(model.id),
+              questionId: (question as any).id,
+              raw,
+              durationMs: Date.now() - rescueStart,
+              grade,
+            };
+          }
         }
       }
 
