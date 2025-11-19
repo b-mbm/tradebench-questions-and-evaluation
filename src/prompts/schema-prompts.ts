@@ -55,7 +55,7 @@ Example 2:
   "reasoning": "route via largest pool"
 }`;
 
-const RUBRIC_SCHEMA_HINTS: Record<string, {
+export const RUBRIC_SCHEMA_HINTS: Record<string, {
   keys: string[];
   numericKeys: string[];
   disallowed?: string[];
@@ -576,4 +576,23 @@ export function buildExecuteOnePrompts(question: SchemaQuestion): ExecuteOneProm
   const user = userSections.join('\n');
 
   return { system, user };
+}
+
+export function getSchemaFinalAttemptHint(rubricId: string | undefined): string | null {
+  if (!rubricId) return null;
+  const cfg = RUBRIC_SCHEMA_HINTS[rubricId];
+  if (!cfg) return null;
+  const keysList = cfg.keys.join(', ');
+  const numericList = cfg.numericKeys.join(', ');
+  const disallowedList = cfg.disallowed?.join(', ');
+  const lines: string[] = [];
+  lines.push('Final attempt (schema enforcement):');
+  lines.push(`- Emit ONE JSON object with exactly these keys: ${keysList}.`);
+  lines.push(`- Use numeric JSON values (not strings) for: ${numericList}.`);
+  if (disallowedList) {
+    lines.push(`- Do NOT include: ${disallowedList}.`);
+  }
+  lines.push("- If unsure, use 0 for numbers, false for booleans, and short placeholders for strings (e.g., 'analysis', 'multi').");
+  lines.push('- Do not use null. Do not add extra keys. JSON only.');
+  return lines.join('\n');
 }

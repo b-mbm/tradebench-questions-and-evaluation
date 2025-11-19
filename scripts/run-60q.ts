@@ -19,7 +19,7 @@ import { loadRubric } from "../src/rubrics/loader";
 import { gradeSchemaResponse } from "../src/grading/schema-grader";
 import { gradeL0Response } from "../src/grading/l0-grader";
 import { buildL0Prompt } from "../src/prompts/l0-prompts";
-import { buildExecuteOnePrompts } from "../src/prompts/schema-prompts";
+import { buildExecuteOnePrompts, getSchemaFinalAttemptHint } from "../src/prompts/schema-prompts";
 import type { BenchmarkQuestion, GradeResult, L0Question, SchemaQuestion } from "../src/types/schema";
 
 type CliArgs = {
@@ -145,10 +145,13 @@ async function runModelOnQuestion(
       // evaluable JSON (e.g., blank/truncated), try one compact "skeleton" prompt
       // that tells the model to emit minimal, non-null JSON for the required keys.
       if (parseFailed && attempt >= maxAttempts && !raw.trim() && !isL0Question(question)) {
-        const rescueUser = prompts.user +
-          "\n\nFinal attempt: Return a minimal JSON object that satisfies the Output Requirements above. " +
-          "If you are unsure of a value, use 0 for numbers, false for booleans, and short generic strings for categorical fields (e.g., 'analysis', 'multi'). " +
-          "Do not return null. Do not include extra keys. Return ONLY JSON.";
+        const extra = getSchemaFinalAttemptHint((question as any).rubric_id) ||
+          (
+            "Final attempt: Return a minimal JSON object that satisfies the Output Requirements above. " +
+            "If you are unsure of a value, use 0 for numbers, false for booleans, and short generic strings for categorical fields (e.g., 'analysis', 'multi'). " +
+            "Do not return null. Do not include extra keys. Return ONLY JSON."
+          );
+        const rescueUser = prompts.user + "\n\n" + extra;
         const rescueStart = Date.now();
         const rescue = await callExecuteOneModel(model.id, question as any, overrides, { system: prompts.system, user: rescueUser });
         raw = rescue.text;
