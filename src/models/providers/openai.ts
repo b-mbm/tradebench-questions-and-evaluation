@@ -18,13 +18,7 @@ export async function callOpenAI(
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const start = Date.now();
 
-  const isResponsesModel =
-    modelId.startsWith("gpt-5") ||
-    modelId.startsWith("gpt-4o") ||
-    modelId.startsWith("o3") ||
-    modelId.startsWith("o4");
-
-  if (isResponsesModel) {
+  const runResponses = async (fallbackToChat = true) => {
     const payload: Record<string, any> = {
       model: modelId,
       input: [
@@ -45,6 +39,7 @@ export async function callOpenAI(
       }
       return { text, durationMs: Date.now() - start };
     } catch (error: any) {
+      if (!fallbackToChat) throw error;
       const requestConfig: any = {
         model: modelId,
         messages: [
@@ -66,6 +61,19 @@ export async function callOpenAI(
         throw error ?? fallbackError;
       }
     }
+  };
+
+  const forceChat = String(process.env.OPENAI_FORCE_CHAT || "").toLowerCase() === "1";
+  const isResponsesModel =
+    !forceChat && (
+      modelId.startsWith("gpt-5") ||
+      modelId.startsWith("gpt-4o") ||
+      modelId.startsWith("o3") ||
+      modelId.startsWith("o4")
+    );
+
+  if (isResponsesModel) {
+    return runResponses();
   }
 
   const useJsonFormat = system.toLowerCase().includes("json") || user.toLowerCase().includes("json");
@@ -88,6 +96,9 @@ export async function callOpenAI(
     }
     return { text, durationMs: Date.now() - start };
   } catch (error: any) {
+    if (forceChat && error?.status === 404) {
+      return runResponses(false);
+    }
     if (error?.status === 404) {
       throw new Error(`Model ${modelId} not found. This model may not be available in your OpenAI account yet.`);
     }

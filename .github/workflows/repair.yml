@@ -42,6 +42,7 @@ jobs:
         env:
           NODE_OPTIONS: -r dotenv/config
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_FORCE_CHAT: ${{ vars.OPENAI_FORCE_CHAT }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -59,4 +60,3 @@ jobs:
         with:
           name: repair-${{ github.event.inputs.label }}
           path: results/*.json
-
