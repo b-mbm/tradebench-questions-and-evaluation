@@ -223,6 +223,27 @@ async function runModelOnQuestion(
         await delay(wait);
         continue;
       }
+      // Final-attempt rescue for schema questions when the provider returns a blank body
+      // (error was thrown before we could parse). If we have a rubric skeleton, synthesize
+      // minimal JSON so the row remains evaluable.
+      if (attempt >= maxAttempts && cat === "blank" && !isL0Question(question)) {
+        const rubricId = (question as any).rubric_id as string | undefined;
+        // Lazy import to avoid circular deps at top-level
+        const { RUBRIC_SCHEMA_HINTS } = await import("../src/prompts/schema-prompts");
+        const skeleton = (rubricId && (RUBRIC_SCHEMA_HINTS as any)[rubricId]?.skeleton) || null;
+        if (skeleton) {
+          const raw = JSON.stringify(skeleton);
+          const grade = gradeSchemaResponse(raw, question as any, rubric!);
+          return {
+            modelId: model.id,
+            modelLabel: getModelLabel(model.id),
+            questionId: question.id,
+            raw,
+            durationMs: Date.now() - started,
+            grade,
+          };
+        }
+      }
       return {
         modelId: model.id,
         modelLabel: getModelLabel(model.id),
