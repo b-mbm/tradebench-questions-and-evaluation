@@ -661,6 +661,7 @@ export const SCHEMA_QUESTIONS: SchemaQuestion[] = [
       '- Execution slippage: 0.5% for crypto, 0.1% for bonds\n\n' +
       '**Task:**\n' +
       'Determine the current risk contribution of each asset and construct executable rebalancing transactions if the trigger threshold is breached. Your solution must use true risk-parity optimization that accounts for asset correlations.\n\n' +
+      '**Formatting rule:** If any calculation is uncertain, output approximate values but do not omit required fields. Use numeric zeros or short strings instead of leaving entries blank.\n\n' +
       'Schema hint: Return JSON including base fields (intent, order_type, asset, size, venue, reasoning) and analysis fields (portfolio_volatility, risk_contributions, rebalancing_required, target_allocations_usd, transactions). Also include top-level numeric mirrors for grading: btc_contribution_pct, eth_contribution_pct, bonds_contribution_pct, target_btc_usd, target_eth_usd, target_bonds_usd, btc_sell_amount, eth_sell_amount, bonds_buy_amount, btc_post_slippage, eth_post_slippage, bonds_post_slippage.',
     rubric_id: 'risk_parity_rebalance',
     expected_values: {
