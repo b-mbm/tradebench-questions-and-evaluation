@@ -1,0 +1,2218 @@
+{
+  "runAt": "2025-11-18T19:08:11.391Z",
+  "label": "submit-gpt-5-codex-2025-11-18T18-47-24-684Z",
+  "models": [
+    "gpt-5-codex"
+  ],
+  "questionIds": [
+    "L0-order_book_execution",
+    "L0-leveraged_position_sizing",
+    "L0-stop_loss_risk",
+    "L0-portfolio_rebalancing",
+    "L0-options_premium_roi",
+    "L0-dca_average_price",
+    "L0-margin_interest_calculation",
+    "L0-futures_liquidation",
+    "L0-impermanent_loss",
+    "L0-kelly_criterion",
+    "L0-cross_exchange_arbitrage",
+    "L0-funding_rate_cost",
+    "L0-options_delta_hedge",
+    "L0-tax_loss_harvesting",
+    "L0-sharpe_ratio",
+    "L0-grid_trading_profit",
+    "L0-compound_yield_farming",
+    "L0-maximum_drawdown",
+    "L0-pairs_trading_profit",
+    "L0-liquidation_cascade",
+    "L1-001",
+    "L1-002",
+    "L1-003",
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004",
+    "L3-001",
+    "L3-002",
+    "L3-003",
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005",
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005",
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005",
+    "L7-001",
+    "L7-002",
+    "L7-003",
+    "L7-004",
+    "L7-005",
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-order_book_execution",
+      "raw": "{\"final_answer\":245.625,\"unit\":\"USD\",\"reasoning\":[\"Buy 50 shares at 245.50 and 50 shares at 245.75\",\"Compute weighted average: (50*245.50 + 50*245.75)/100 = 245.625\"]}",
+      "durationMs": 4414,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 245.625,
+          "unit": "USD",
+          "reasoning": [
+            "Buy 50 shares at 245.50 and 50 shares at 245.75",
+            "Compute weighted average: (50*245.50 + 50*245.75)/100 = 245.625"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-leveraged_position_sizing",
+      "raw": "{\"final_answer\":41.66,\"unit\":\"mBTC\",\"reasoning\":[\"Risk capital = $10,000 × 4% = $400 and with 6× leverage buying power = $400 × 6 = $2,400\",\"Position size in BTC = $2,400 ÷ $57,600 = 0.04166 BTC = 41.66 mBTC\"]}",
+      "durationMs": 11483,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 41.66,
+          "unit": "mBTC",
+          "reasoning": [
+            "Risk capital = $10,000 × 4% = $400 and with 6× leverage buying power = $400 × 6 = $2,400",
+            "Position size in BTC = $2,400 ÷ $57,600 = 0.04166 BTC = 41.66 mBTC"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-stop_loss_risk",
+      "raw": "{\n  \"final_answer\": 3000,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Difference per BTC: 60000 - 58500 = 1500\", \"Total loss: 1500 × 2 BTC = 3000\"]\n}",
+      "durationMs": 4206,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 3000,
+          "unit": "USD",
+          "reasoning": [
+            "Difference per BTC: 60000 - 58500 = 1500",
+            "Total loss: 1500 × 2 BTC = 3000"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-portfolio_rebalancing",
+      "raw": "{\n  \"final_answer\": 7200,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Target stock allocation: 113000 * 0.60 = 67800\", \"Excess stock to sell: 75000 - 67800 = 7200\"]\n}",
+      "durationMs": 3536,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 7200,
+          "unit": "USD",
+          "reasoning": [
+            "Target stock allocation: 113000 * 0.60 = 67800",
+            "Excess stock to sell: 75000 - 67800 = 7200"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-options_premium_roi",
+      "raw": "{\n  \"final_answer\": 12500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Premium collected: $2.50 × 1000 shares = $2,500\",\n    \"Total profit: ($105 − $95 + $2.50) × 1000 shares = $12.50 × 1000 = $12,500\"\n  ]\n}",
+      "durationMs": 3798,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 12500,
+          "unit": "USD",
+          "reasoning": [
+            "Premium collected: $2.50 × 1000 shares = $2,500",
+            "Total profit: ($105 − $95 + $2.50) × 1000 shares = $12.50 × 1000 = $12,500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-dca_average_price",
+      "raw": "{\n  \"final_answer\": 33802.81690140845,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Total BTC purchased equals 1/40 + 1/50 + 1/25 + 1/30 = 71/600\",\n    \"Average cost per BTC equals 4000 divided by 71/600 = 33802.81690140845 USD\"\n  ]\n}",
+      "durationMs": 15449,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9999945833626734,
+        "fieldScores": {
+          "final_answer": 0.9999945833626734
+        },
+        "normalizedResponse": {
+          "final_answer": 33802.81690140845,
+          "unit": "USD",
+          "reasoning": [
+            "Total BTC purchased equals 1/40 + 1/50 + 1/25 + 1/30 = 71/600",
+            "Average cost per BTC equals 4000 divided by 71/600 = 33802.81690140845 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-margin_interest_calculation",
+      "raw": "{\n  \"final_answer\": 6500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Gross gain: 57,500 - 50,000 = 7,500\",\n    \"Interest cost: 50,000 * 0.08 * (90/360) = 1,000; net profit = 7,500 - 1,000 = 6,500\"\n  ]\n}",
+      "durationMs": 5870,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 6500,
+          "unit": "USD",
+          "reasoning": [
+            "Gross gain: 57,500 - 50,000 = 7,500",
+            "Interest cost: 50,000 * 0.08 * (90/360) = 1,000; net profit = 7,500 - 1,000 = 6,500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-futures_liquidation",
+      "raw": "{\n  \"final_answer\": 56110,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"maintenance equity 3100 + 0.5×(P−62000) equals 0.5%×31000 = 155\",\n    \"solve 3100 + 0.5×(P−62000) = 155 ⇒ P = 56110\"\n  ]\n}",
+      "durationMs": 6445,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 56110,
+          "unit": "USD",
+          "reasoning": [
+            "maintenance equity 3100 + 0.5×(P−62000) equals 0.5%×31000 = 155",
+            "solve 3100 + 0.5×(P−62000) = 155 ⇒ P = 56110"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-impermanent_loss",
+      "raw": "{\n  \"final_answer\": 105.34,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"price ratio r = 0.9 gives impermanent-loss factor 0.998613, implying 0.1387% loss on HODL value\", \"0.1387% of 76,000 USD HODL result is about 105.34 USD liquidity-provider shortfall\"]\n}",
+      "durationMs": 15186,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9937735849056604,
+        "fieldScores": {
+          "final_answer": 0.9937735849056604
+        },
+        "normalizedResponse": {
+          "final_answer": 105.34,
+          "unit": "USD",
+          "reasoning": [
+            "price ratio r = 0.9 gives impermanent-loss factor 0.998613, implying 0.1387% loss on HODL value",
+            "0.1387% of 76,000 USD HODL result is about 105.34 USD liquidity-provider shortfall"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-kelly_criterion",
+      "raw": "{\"final_answer\":17500,\"unit\":\"USD\",\"reasoning\":[\"Compute Kelly fraction f=(bp-q)/b with p=0.6,q=0.4,b=1.6 yielding f=0.35\",\"Multiply f by account size: 0.35×50,000=17,500 USD\"]}",
+      "durationMs": 6030,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 17500,
+          "unit": "USD",
+          "reasoning": [
+            "Compute Kelly fraction f=(bp-q)/b with p=0.6,q=0.4,b=1.6 yielding f=0.35",
+            "Multiply f by account size: 0.35×50,000=17,500 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-cross_exchange_arbitrage",
+      "raw": "{\"final_answer\":48.95,\"unit\":\"USD\",\"reasoning\":[\"Calculate BTC bought and net sale proceeds after fees\",\"Subtract initial capital and transfer cost from proceeds to get profit\"]}",
+      "durationMs": 29514,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9598039215686275,
+        "fieldScores": {
+          "final_answer": 0.9598039215686275
+        },
+        "normalizedResponse": {
+          "final_answer": 48.95,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate BTC bought and net sale proceeds after fees",
+            "Subtract initial capital and transfer cost from proceeds to get profit"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-funding_rate_cost",
+      "raw": "{\"final_answer\":1080,\"unit\":\"USD\",\"reasoning\":[\"Notional 2 BTC × 60000 USD = 120000 USD; funding per period 0.0001 × 120000 = 12 USD\",\"90 funding intervals over 30 days gives 12 × 90 = 1080 USD total cost\"]}",
+      "durationMs": 4542,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1080,
+          "unit": "USD",
+          "reasoning": [
+            "Notional 2 BTC × 60000 USD = 120000 USD; funding per period 0.0001 × 120000 = 12 USD",
+            "90 funding intervals over 30 days gives 12 × 90 = 1080 USD total cost"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-options_delta_hedge",
+      "raw": "{\n  \"final_answer\": 400,\n  \"unit\": \"shares\",\n  \"reasoning\": [\"Total option delta = 10 contracts × 100 shares/contract × 0.40 delta = 400\", \"Buy 400 shares to offset short call delta and hedge position\"]\n}",
+      "durationMs": 3685,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 400,
+          "unit": "shares",
+          "reasoning": [
+            "Total option delta = 10 contracts × 100 shares/contract × 0.40 delta = 400",
+            "Buy 400 shares to offset short call delta and hedge position"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-tax_loss_harvesting",
+      "raw": "{\n  \"final_answer\": 2520,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Net loss = (BTC -8000 + SOL -5000 + ETH +400) = -12600\",\n    \"Tax benefit = 20% of 12600 = 2520\"\n  ]\n}",
+      "durationMs": 8783,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 2520,
+          "unit": "USD",
+          "reasoning": [
+            "Net loss = (BTC -8000 + SOL -5000 + ETH +400) = -12600",
+            "Tax benefit = 20% of 12600 = 2520"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-sharpe_ratio",
+      "raw": "{\"final_answer\":1.25,\"unit\":\"ratio\",\"reasoning\":[\"compute excess return: 0.24 - 0.04 = 0.20\",\"Sharpe ratio: 0.20 / 0.16 = 1.25\"]}",
+      "durationMs": 2171,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1.25,
+          "unit": "ratio",
+          "reasoning": [
+            "compute excess return: 0.24 - 0.04 = 0.20",
+            "Sharpe ratio: 0.20 / 0.16 = 1.25"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-grid_trading_profit",
+      "raw": "{\n  \"final_answer\": 255.12,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Total cost of five 1k buys equals 5000 USD\",\n    \"Sale proceeds 5255.12 minus cost 5000 equals 255.12 USD profit\"\n  ]\n}",
+      "durationMs": 3311,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9995294117647059,
+        "fieldScores": {
+          "final_answer": 0.9995294117647059
+        },
+        "normalizedResponse": {
+          "final_answer": 255.12,
+          "unit": "USD",
+          "reasoning": [
+            "Total cost of five 1k buys equals 5000 USD",
+            "Sale proceeds 5255.12 minus cost 5000 equals 255.12 USD profit"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-compound_yield_farming",
+      "raw": "{\n  \"final_answer\": 10453.72,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Applied daily compounding formula with APR 18% over 90 days\", \"Calculated final balance as initial deposit multiplied by growth factor\"]\n}",
+      "durationMs": 13149,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9997819433817903,
+        "fieldScores": {
+          "final_answer": 0.9997819433817903
+        },
+        "normalizedResponse": {
+          "final_answer": 10453.72,
+          "unit": "USD",
+          "reasoning": [
+            "Applied daily compounding formula with APR 18% over 90 days",
+            "Calculated final balance as initial deposit multiplied by growth factor"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-maximum_drawdown",
+      "raw": "{\"final_answer\": 20.0, \"unit\": \"percent\", \"reasoning\": [\"Compute drawdown ratio: (115-92)/115 = 0.2\", \"Convert to percentage: 0.2 × 100 = 20.0\"]}",
+      "durationMs": 3639,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 20,
+          "unit": "percent",
+          "reasoning": [
+            "Compute drawdown ratio: (115-92)/115 = 0.2",
+            "Convert to percentage: 0.2 × 100 = 20.0"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-pairs_trading_profit",
+      "raw": "{\"final_answer\": 263.16, \"unit\": \"USD\", \"reasoning\": [\"Only asset B moved; calculate shares purchased with $5k at $95\", \"Multiply shares by $5 price increase to obtain profit\"]}",
+      "durationMs": 2294,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9993916349809885,
+        "fieldScores": {
+          "final_answer": 0.9993916349809885
+        },
+        "normalizedResponse": {
+          "final_answer": 263.16,
+          "unit": "USD",
+          "reasoning": [
+            "Only asset B moved; calculate shares purchased with $5k at $95",
+            "Multiply shares by $5 price increase to obtain profit"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L0-liquidation_cascade",
+      "raw": "{\n  \"final_answer\": 54589.1,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"apply 2% drop at each liquidation level sequentially: 58000×0.98=56840, 56840×0.98=55703.2, 55703.2×0.98≈54589.1\",\n    \"result falls within required USD range\"\n  ]\n}",
+      "durationMs": 19040,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9998003663003663,
+        "fieldScores": {
+          "final_answer": 0.9998003663003663
+        },
+        "normalizedResponse": {
+          "final_answer": 54589.1,
+          "unit": "USD",
+          "reasoning": [
+            "apply 2% drop at each liquidation level sequentially: 58000×0.98=56840, 56840×0.98=55703.2, 55703.2×0.98≈54589.1",
+            "result falls within required USD range"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L1-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"BTC\",\"size\":0.5,\"unit\":\"btc\",\"venue\":\"mainnet\",\"risk_controls\":{},\"requires_follow_up\":false}",
+      "durationMs": 3616,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8485714285714285,
+        "score": 0.7714285714285714,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.021428571428571436,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "venue": "mainnet",
+          "risk_controls": {},
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L1-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"SOL\",\"size\":10,\"unit\":\"sol\",\"price\":95,\"venue\":\"serum\",\"risk_controls\":{},\"reasoning\":\"Placing a limit buy for 10 SOL at $95 on mainnet as requested.\",\"requires_follow_up\":false}",
+      "durationMs": 6449,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9042857142857144,
+        "score": 0.8440000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.023999999999999994,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "sol",
+          "price": 95,
+          "venue": "serum",
+          "risk_controls": {},
+          "reasoning": "Placing a limit buy for 10 SOL at $95 on mainnet as requested.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L1-003",
+      "raw": "{\"intent\":\"set_stop_loss\",\"order_type\":\"stop_loss\",\"asset\":\"ETH\",\"size\":2,\"unit\":\"eth\",\"price\":2800,\"venue\":\"binance\",\"risk_controls\":{},\"requires_follow_up\":false}",
+      "durationMs": 6101,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8821428571428571,
+        "score": 0.8142857142857143,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.01428571428571429,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "price": 2800,
+          "venue": "binance",
+          "risk_controls": {},
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"market\",\n  \"asset\": \"DAI\",\n  \"size\": 5000,\n  \"unit\": \"usdc\",\n  \"venue\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"reasoning\": \"Execute market swap of 5000 USDC for DAI on Ethereum mainnet via Uniswap v3 with 0.5% slippage guard.\"\n}",
+      "durationMs": 5192,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8233333333333335,
+        "score": 0.7600000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "market",
+          "asset": "DAI",
+          "size": 5000,
+          "unit": "usdc",
+          "venue": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "reasoning": "Execute market swap of 5000 USDC for DAI on Ethereum mainnet via Uniswap v3 with 0.5% slippage guard."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L2-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"PEPE\",\"size\":100000,\"venue\":\"uniswap_v3\",\"risk_controls\":{\"slippage_tolerance\":0.15},\"price\":0.000001,\"requires_follow_up\":false}",
+      "durationMs": 7339,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8140000000000001,
+        "score": 0.7400000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "venue": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": 0.15
+          },
+          "price": 0.000001,
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L2-003",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"MATIC\",\"size\":1000,\"unit\":\"MATIC\",\"venue\":\"cowswap\",\"venue_name\":\"CowSwap\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"reasoning\":\"Submit a CowSwap market order for 1000 MATIC with tight slippage to benefit from their gasless settlement and minimize gas fees.\",\"requires_follow_up\":false}",
+      "durationMs": 8642,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8265306122448981,
+        "score": 0.7714285714285716,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0.011428571428571432,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "unit": "MATIC",
+          "venue": "cowswap",
+          "venue_name": "CowSwap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "reasoning": "Submit a CowSwap market order for 1000 MATIC with tight slippage to benefit from their gasless settlement and minimize gas fees.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L2-004",
+      "raw": "{\"intent\":\"liquidity_analysis\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":50000,\"venue\":\"ethereum_mainnet_dex\",\"venue_name\":\"Ethereum Mainnet DEX Aggregators\",\"reasoning\":\"Checked mainnet USDC-WETH pools and aggregator depth to confirm 50k USDC swap maintains tight slippage.\"}",
+      "durationMs": 5916,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4113051470588236,
+        "score": 0.3838848039215687,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.16,
+          "asset": 0.01333333333333334,
+          "size": 0.1,
+          "venue": 0.019999999999999993,
+          "venue_name": 0.009375000000000001,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "liquidity_analysis",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 50000,
+          "venue": "ethereum_mainnet_dex",
+          "venue_name": "Ethereum Mainnet DEX Aggregators",
+          "reasoning": "Checked mainnet USDC-WETH pools and aggregator depth to confirm 50k USDC swap maintains tight slippage."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L3-001",
+      "raw": "{\"intent\":\"bridge_and_buy\",\"order_type\":\"market\",\"asset\":\"ARB\",\"size\":833.33,\"unit\":\"arb\",\"price\":1.2,\"venue\":\"arbitrum_uniswap_v3\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"Confirm 1000 USDC bridging to Arbitrum completed before executing the ARB market buy.\",\"reasoning\":\"Bridge 1000 USDC from Ethereum mainnet to Arbitrum, then use the bridged funds to market buy approximately 833.33 ARB at the current price of $1.20 with 0.5% slippage tolerance.\",\"requires_follow_up\":true,\"follow_up_description\":\"Verify the bridged 1000 USDC balance is available on Arbitrum prior to executing the ARB purchase.\"}",
+      "durationMs": 12230,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.12461538461538461,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_buy",
+          "order_type": "market",
+          "asset": "ARB",
+          "size": 833.33,
+          "unit": "arb",
+          "price": 1.2,
+          "venue": "arbitrum_uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "Confirm 1000 USDC bridging to Arbitrum completed before executing the ARB market buy.",
+          "reasoning": "Bridge 1000 USDC from Ethereum mainnet to Arbitrum, then use the bridged funds to market buy approximately 833.33 ARB at the current price of $1.20 with 0.5% slippage tolerance.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify the bridged 1000 USDC balance is available on Arbitrum prior to executing the ARB purchase."
+        },
+        "failureReasons": [
+          "size_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L3-002",
+      "raw": "{\"intent\":\"bridge_funds\",\"order_type\":\"transfer\",\"asset\":\"USDC\",\"size\":3333.33,\"unit\":\"usdc\",\"venue\":\"across-v2\",\"venue_name\":\"Across Bridge\",\"risk_controls\":{\"slippage_tolerance\":\"0.001\"},\"follow_up\":\"Once this transfer settles, initiate a second bridge of 3,333.33 USDC from Ethereum to Optimism and confirm that 3,333.34 USDC remains on Ethereum mainnet.\",\"reasoning\":\"Executing the first of two required bridges to achieve an equal split of 10,000 USDC across Ethereum, Arbitrum, and Optimism.\",\"requires_follow_up\":true,\"follow_up_description\":\"Bridge 3,333.33 USDC to Optimism after this transfer completes and verify the remaining balance on Ethereum.\"}",
+      "durationMs": 21906,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.06999999999999999,
+          "order_type": 0.04,
+          "asset": 0.14,
+          "size": 0
+        },
+        "normalizedResponse": {
+          "intent": "bridge_funds",
+          "order_type": "transfer",
+          "asset": "USDC",
+          "size": 3333.33,
+          "unit": "usdc",
+          "venue": "across-v2",
+          "venue_name": "Across Bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.001"
+          },
+          "follow_up": "Once this transfer settles, initiate a second bridge of 3,333.33 USDC from Ethereum to Optimism and confirm that 3,333.34 USDC remains on Ethereum mainnet.",
+          "reasoning": "Executing the first of two required bridges to achieve an equal split of 10,000 USDC across Ethereum, Arbitrum, and Optimism.",
+          "requires_follow_up": true,
+          "follow_up_description": "Bridge 3,333.33 USDC to Optimism after this transfer completes and verify the remaining balance on Ethereum."
+        },
+        "failureReasons": [
+          "size_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L3-003",
+      "raw": "{\"intent\":\"bridge_eth\",\"order_type\":\"bridge\",\"asset\":\"ETH\",\"size\":2,\"unit\":\"eth\",\"venue\":\"across\",\"risk_controls\":{\"max_gas\":\"30 gwei\"},\"follow_up\":\"Once the 2 ETH arrives on Polygon, swap the bridged ETH for MATIC via a DEX like Quickswap.\",\"requires_follow_up\":true,\"follow_up_description\":\"Swap the bridged ETH on Polygon to MATIC once funds are confirmed.\"}",
+      "durationMs": 5236,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7183333333333334,
+        "score": 0.6630769230769231,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "bridge_eth",
+          "order_type": "bridge",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "venue": "across",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "Once the 2 ETH arrives on Polygon, swap the bridged ETH for MATIC via a DEX like Quickswap.",
+          "requires_follow_up": true,
+          "follow_up_description": "Swap the bridged ETH on Polygon to MATIC once funds are confirmed."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L4-001",
+      "raw": "{\"intent\":\"rebalance_portfolio\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":0,\"venue\":\"unspecified\",\"venue_name\":\"analysis\",\"reasoning\":\"No current portfolio composition provided; unable to compute trades needed to reach 60% BTC, 30% ETH, 10% USDC allocation.\"}",
+      "durationMs": 4837,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.012307692307692299,
+          "asset": 0.12,
+          "size": 0.0125,
+          "venue": 0.021818181818181813,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance_portfolio",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "unspecified",
+          "venue_name": "analysis",
+          "reasoning": "No current portfolio composition provided; unable to compute trades needed to reach 60% BTC, 30% ETH, 10% USDC allocation."
+        },
+        "failureReasons": [
+          "rebalance_missing_follow_up_flag"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L4-002",
+      "raw": "{\"intent\":\"correlation_risk_assessment\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":0,\"venue\":\"offchain\",\"venue_name\":\"risk_desk\",\"reasoning\":\"Evaluated historical correlations showing BTC-ETH high, SOL-MATIC moderate, LINK lower diversity, indicating elevated portfolio contagion risk\"}",
+      "durationMs": 5330,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.03599999999999999,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "correlation_risk_assessment",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "offchain",
+          "venue_name": "risk_desk",
+          "reasoning": "Evaluated historical correlations showing BTC-ETH high, SOL-MATIC moderate, LINK lower diversity, indicating elevated portfolio contagion risk"
+        },
+        "failureReasons": [
+          "correlation_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L4-003",
+      "raw": "{\"intent\":\"tax_loss_harvest_analysis\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":0,\"venue\":\"offchain\",\"venue_name\":\"portfolio\",\"reasoning\":\"No position cost bases provided, so no specific tax loss harvesting trades can be derived from current prices alone.\"}",
+      "durationMs": 6884,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5158964646464647,
+        "score": 0.47621212121212125,
+        "fieldScores": {
+          "intent": 0.11454545454545453,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest_analysis",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "offchain",
+          "venue_name": "portfolio",
+          "reasoning": "No position cost bases provided, so no specific tax loss harvesting trades can be derived from current prices alone."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L4-004",
+      "raw": "{\"intent\":\"stress_test\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":0,\"venue\":\"offchain\",\"venue_name\":\"portfolio_sim\",\"reasoning\":\"Calculated 50% drawdown across all crypto holdings using provided spot prices to evaluate portfolio impact.\"}",
+      "durationMs": 3178,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0.025,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "offchain",
+          "venue_name": "portfolio_sim",
+          "reasoning": "Calculated 50% drawdown across all crypto holdings using provided spot prices to evaluate portfolio impact."
+        },
+        "failureReasons": [
+          "stress_test_invalid_asset"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L4-005",
+      "raw": "{\"intent\":\"calculate_sharpe_ratio\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":0,\"venue\":\"offchain\",\"venue_name\":\"offchain_analytics\",\"reasoning\":\"Unable to compute Sharpe ratio because return series and risk-free rate were not provided in context data.\"}",
+      "durationMs": 8750,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5380555555555556,
+        "score": 0.49666666666666676,
+        "fieldScores": {
+          "intent": 0.135,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate_sharpe_ratio",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "offchain",
+          "venue_name": "offchain_analytics",
+          "reasoning": "Unable to compute Sharpe ratio because return series and risk-free rate were not provided in context data."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L5-001",
+      "raw": "{\"intent\":\"add_liquidity\",\"order_type\":\"limit_range\",\"asset\":\"ETH/USDC LP\",\"size\":\"unspecified\",\"venue\":\"uniswap_v3\",\"risk_controls\":{},\"requires_follow_up\":true,\"follow_up_description\":\"Please provide the notional amount or token quantities to deposit for the ETH/USDC position between $2,700 and $2,900.\"}",
+      "durationMs": 5587,
+      "grade": {
+        "pass": false,
+        "confidence": 0.43915909090909083,
+        "score": 0.3903636363636363,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.054000000000000006,
+          "asset": 0.11636363636363636,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "limit_range",
+          "asset": "ETH/USDC LP",
+          "size": "unspecified",
+          "venue": "uniswap_v3",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide the notional amount or token quantities to deposit for the ETH/USDC position between $2,700 and $2,900."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L5-002",
+      "raw": "{\"intent\":\"open_leveraged_position\",\"order_type\":\"multi_step\",\"asset\":\"ETH\",\"size\":3,\"unit\":\"eth\",\"price\":3000,\"venue\":\"aave_v3\",\"risk_controls\":{\"slippage_tolerance\":\"50 bps\",\"position_size_limit\":\"3 eth\"},\"follow_up\":\"Step 1: Supply 1 ETH collateral on Aave v3 mainnet. Step 2: Borrow 6,000 USDC against the ETH collateral. Step 3: Swap borrowed USDC for approximately 2 ETH and optionally loop by supplying back to reach target leverage.\",\"reasoning\":\"Target 3x ETH exposure by supplying 1 ETH, borrowing 6,000 USDC (2 ETH notional at $3k), swapping to ETH, and redepositing to maintain leverage on Aave.\",\"requires_follow_up\":true,\"follow_up_description\":\"Confirm supply transaction executed, then initiate borrow of 6,000 USDC, followed by USDC-to-ETH swap and redeposit to lock in 3x leverage.\"}",
+      "durationMs": 22946,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.09523809523809523,
+          "order_type": 0.022666666666666665,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "open_leveraged_position",
+          "order_type": "multi_step",
+          "asset": "ETH",
+          "size": 3,
+          "unit": "eth",
+          "price": 3000,
+          "venue": "aave_v3",
+          "risk_controls": {
+            "slippage_tolerance": "50 bps",
+            "position_size_limit": "3 eth"
+          },
+          "follow_up": "Step 1: Supply 1 ETH collateral on Aave v3 mainnet. Step 2: Borrow 6,000 USDC against the ETH collateral. Step 3: Swap borrowed USDC for approximately 2 ETH and optionally loop by supplying back to reach target leverage.",
+          "reasoning": "Target 3x ETH exposure by supplying 1 ETH, borrowing 6,000 USDC (2 ETH notional at $3k), swapping to ETH, and redepositing to maintain leverage on Aave.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm supply transaction executed, then initiate borrow of 6,000 USDC, followed by USDC-to-ETH swap and redeposit to lock in 3x leverage."
+        },
+        "failureReasons": [
+          "leverage_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L5-003",
+      "raw": "{\"intent\":\"analyze_delta_neutral_yield\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":5,\"venue\":\"analysis_engine\",\"venue_name\":\"StrategyPlanner\",\"reasoning\":\"Assessed allocating 5 ETH across hedged long liquidity and short perpetual positions to maintain delta neutrality while capturing yield.\"}",
+      "durationMs": 6912,
+      "grade": {
+        "pass": false,
+        "confidence": 0.46436309523809516,
+        "score": 0.42864285714285705,
+        "fieldScores": {
+          "intent": 0.12749999999999997,
+          "order_type": 0,
+          "asset": 0.023999999999999994,
+          "size": 0.1,
+          "venue": 0.017142857142857147,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze_delta_neutral_yield",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 5,
+          "venue": "analysis_engine",
+          "venue_name": "StrategyPlanner",
+          "reasoning": "Assessed allocating 5 ETH across hedged long liquidity and short perpetual positions to maintain delta neutrality while capturing yield."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L5-004",
+      "raw": "{\"intent\":\"borrow\",\"order_type\":\"borrow\",\"asset\":\"USDC\",\"size\":5000,\"unit\":\"usd\",\"venue\":\"AaveV3\",\"venue_name\":\"Aave V3 Ethereum\",\"risk_controls\":{\"position_size_limit\":5000},\"reasoning\":\"Borrowing 5000 USDC against 2 ETH collateral on Aave V3 mainnet.\",\"requires_follow_up\":false}",
+      "durationMs": 3844,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.17,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "borrow",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "usd",
+          "venue": "AaveV3",
+          "venue_name": "Aave V3 Ethereum",
+          "risk_controls": {
+            "position_size_limit": 5000
+          },
+          "reasoning": "Borrowing 5000 USDC against 2 ETH collateral on Aave V3 mainnet.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L5-005",
+      "raw": "{\"intent\":\"stake_liquid_staking_tokens\",\"order_type\":\"stake\",\"asset\":\"ETH\",\"size\":10,\"unit\":\"eth\",\"venue\":\"lido\",\"venue_name\":\"Lido\",\"risk_controls\":{\"slippage_tolerance\":\"0.50%\",\"max_gas\":\"40 gwei\"},\"reasoning\":\"Stake 10 ETH on Lido to receive liquid staking tokens (stETH) with conservative slippage and gas limits.\",\"requires_follow_up\":false}",
+      "durationMs": 7943,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8792187499999999,
+        "score": 0.8274999999999999,
+        "fieldScores": {
+          "intent": 0.037500000000000006,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake_liquid_staking_tokens",
+          "order_type": "stake",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "eth",
+          "venue": "lido",
+          "venue_name": "Lido",
+          "risk_controls": {
+            "slippage_tolerance": "0.50%",
+            "max_gas": "40 gwei"
+          },
+          "reasoning": "Stake 10 ETH on Lido to receive liquid staking tokens (stETH) with conservative slippage and gas limits.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L6-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"ETH $3,500 call option\",\"size\":2,\"unit\":\"contracts\",\"venue\":\"deribit\",\"risk_controls\":{\"slippage_tolerance\":\"tbd\",\"position_size_limit\":\"tbd\"},\"requires_follow_up\":true,\"follow_up_description\":\"Need specific option premium or quote for the 30-day $3,500 ETH calls to place the order.\",\"reasoning\":\"Price for the desired option contract is not provided; a quote is required to proceed.\"}",
+      "durationMs": 4728,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6566326530612245,
+        "score": 0.6128571428571429,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "ETH $3,500 call option",
+          "size": 2,
+          "unit": "contracts",
+          "venue": "deribit",
+          "risk_controls": {
+            "slippage_tolerance": "tbd",
+            "position_size_limit": "tbd"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Need specific option premium or quote for the 30-day $3,500 ETH calls to place the order.",
+          "reasoning": "Price for the desired option contract is not provided; a quote is required to proceed."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L6-002",
+      "raw": "{\"intent\":\"setup_dca\",\"order_type\":\"recurring_market\",\"asset\":\"BTC\",\"size\":500,\"unit\":\"usd\",\"venue\":\"mainnet\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"position_size_limit\":\"$500 per execution\"},\"follow_up\":\"Schedule 12 weekly purchases of $500 BTC over the next 3 months.\",\"reasoning\":\"Establishing a weekly $500 BTC DCA plan for 12 weeks to cover the requested 3-month period.\",\"requires_follow_up\":false}",
+      "durationMs": 5406,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7942857142857144,
+        "score": 0.7413333333333334,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02133333333333333,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.12,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "setup_dca",
+          "order_type": "recurring_market",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "mainnet",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "$500 per execution"
+          },
+          "follow_up": "Schedule 12 weekly purchases of $500 BTC over the next 3 months.",
+          "reasoning": "Establishing a weekly $500 BTC DCA plan for 12 weeks to cover the requested 3-month period.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L6-003",
+      "raw": "{\"intent\":\"clarify_order\",\"order_type\":\"limit\",\"asset\":\"BTC\",\"size\":\"\",\"venue\":\"mainnet\",\"risk_controls\":{},\"requires_follow_up\":true,\"follow_up_description\":\"Please provide the order size for each ladder level from $40,000 to $45,000 (or specify if different sizes per level).\"}",
+      "durationMs": 5198,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.015000000000000006,
+          "order_type": 0.07272727272727274,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0,
+          "venue": 0.12,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "clarify_order",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "",
+          "venue": "mainnet",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide the order size for each ladder level from $40,000 to $45,000 (or specify if different sizes per level)."
+        },
+        "failureReasons": [
+          "missing_field",
+          "ladder_size_unreasonable"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L6-004",
+      "raw": "{\"intent\":\"place_trailing_stop\",\"order_type\":\"trailing_stop\",\"asset\":\"BTC\",\"size\":0.5,\"unit\":\"btc\",\"price\":\"5%\",\"venue\":\"default_exchange\",\"risk_controls\":{\"stop_loss\":42750,\"slippage_tolerance\":\"0.5%\"},\"requires_follow_up\":false}",
+      "durationMs": 5725,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8619747899159664,
+        "score": 0.8045098039215687,
+        "fieldScores": {
+          "intent": 0.1411764705882353,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.01333333333333333,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "place_trailing_stop",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "price": "5%",
+          "venue": "default_exchange",
+          "risk_controls": {
+            "stop_loss": 42750,
+            "slippage_tolerance": "0.5%"
+          },
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L6-005",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"twap\",\"asset\":\"ETH\",\"size\":10,\"unit\":\"eth\",\"venue\":\"mainnet\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"monitor_execution_progress_hourly\",\"reasoning\":\"Sell 10 ETH evenly over 4 hours using TWAP on mainnet.\",\"requires_follow_up\":true,\"follow_up_description\":\"Check TWAP execution fills and adjust schedule if slippage exceeds tolerance.\"}",
+      "durationMs": 6542,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8333333333333334,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.1,
+          "duration": 0.2,
+          "risk_controls": 0.08,
+          "follow_up_description": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "eth",
+          "venue": "mainnet",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor_execution_progress_hourly",
+          "reasoning": "Sell 10 ETH evenly over 4 hours using TWAP on mainnet.",
+          "requires_follow_up": true,
+          "follow_up_description": "Check TWAP execution fills and adjust schedule if slippage exceeds tolerance."
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L7-001",
+      "raw": "{\"intent\":\"arbitrage_analysis\",\"order_type\":\"analysis\",\"asset\":\"multi\",\"size\":0,\"venue\":\"multi-dex\",\"venue_name\":\"cross-venue review\",\"reasoning\":\"No specific DEX price differentials provided, so only high-level flash-loan arbitrage feasibility review performed without executable sizing.\"}",
+      "durationMs": 4416,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.04,
+          "venue_name": 0.011111111111111117,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage_analysis",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "multi-dex",
+          "venue_name": "cross-venue review",
+          "reasoning": "No specific DEX price differentials provided, so only high-level flash-loan arbitrage feasibility review performed without executable sizing."
+        },
+        "failureReasons": [
+          "l7_001_intent_too_generic_or_wrong"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L7-002",
+      "raw": "{\"intent\":\"swap_collateral_for_repayment\",\"order_type\":\"market\",\"asset\":\"ETH\",\"size\":2.334,\"price\":3000,\"venue\":\"1inch\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"Repay 7,000 USDC debt and withdraw remaining ETH collateral.\",\"requires_follow_up\":true,\"follow_up_description\":\"Use the received USDC to repay the borrowed 7,000 USDC, then release the remaining ETH collateral.\"}",
+      "durationMs": 11590,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.038461538461538464,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap_collateral_for_repayment",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 2.334,
+          "price": 3000,
+          "venue": "1inch",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "Repay 7,000 USDC debt and withdraw remaining ETH collateral.",
+          "requires_follow_up": true,
+          "follow_up_description": "Use the received USDC to repay the borrowed 7,000 USDC, then release the remaining ETH collateral."
+        },
+        "failureReasons": [
+          "size_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L7-003",
+      "raw": "{\"intent\":\"analysis\",\"order_type\":\"calculation\",\"asset\":\"ETH/USDC LP\",\"size\":10000,\"venue\":\"dex\",\"il_percentage\":3.12,\"il_loss_usd\":416.25,\"net_gain_usd\":3764.25,\"net_return_pct\":37.64,\"hold_value\":13333.5,\"lp_value\":12917.25,\"reasoning\":\"Calculated AMM portfolio rebalance after ETH rose to $5,000, compared LP value to HODL baseline for impermanent loss, then added $847 fees to derive net profit and return on initial $10,000.\"}",
+      "durationMs": 21952,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.014117647058823533,
+          "order_type": 0.013636363636363636,
+          "asset": 0.03636363636363637,
+          "size": 0.04,
+          "venue": 0.04,
+          "il_percentage": 0.1875,
+          "il_loss_usd": 0.06666666666666668,
+          "net_gain_usd": 0.06285714285714285,
+          "net_return_pct": 0.029999999999999992,
+          "hold_value": 0.01714285714285714,
+          "lp_value": 0.015,
+          "reasoning": 0.006229508196721312
+        },
+        "normalizedResponse": {
+          "intent": "analysis",
+          "order_type": "calculation",
+          "asset": "ETH/USDC LP",
+          "size": 10000,
+          "venue": "dex",
+          "il_percentage": 3.12,
+          "il_loss_usd": 416.25,
+          "net_gain_usd": 3764.25,
+          "net_return_pct": 37.64,
+          "hold_value": 13333.5,
+          "lp_value": 12917.25,
+          "reasoning": "Calculated AMM portfolio rebalance after ETH rose to $5,000, compared LP value to HODL baseline for impermanent loss, then added $847 fees to derive net profit and return on initial $10,000."
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_net_gain"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L7-004",
+      "raw": "{\"intent\":\"analyze\",\"order_type\":\"none\",\"asset\":\"portfolio\",\"size\":100000,\"venue\":\"offchain\",\"blended_apy\":5.76,\"weighted_risk_score\":1.7,\"excess_return\":0.76,\"risk_adjusted_ratio\":0.4471,\"total_annual_yield_usd\":5760,\"allocation\":{\"aave\":50000,\"curve\":30000,\"yearn\":20000},\"reasoning\":\"Computed weighted APY, risk, excess over risk-free rate, ratio, and dollar yield using given allocations and rates.\"}",
+      "durationMs": 9070,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7939142182373863,
+        "score": 0.7513383768808072,
+        "fieldScores": {
+          "intent": 0.008571428571428574,
+          "order_type": 0.00375,
+          "asset": 0,
+          "size": 0.02,
+          "venue": 0,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0.12,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.004043715846994536
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "none",
+          "asset": "portfolio",
+          "size": 100000,
+          "venue": "offchain",
+          "blended_apy": 5.76,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.76,
+          "risk_adjusted_ratio": 0.4471,
+          "total_annual_yield_usd": 5760,
+          "allocation": {
+            "aave": 50000,
+            "curve": 30000,
+            "yearn": 20000
+          },
+          "reasoning": "Computed weighted APY, risk, excess over risk-free rate, ratio, and dollar yield using given allocations and rates."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L7-005",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"market\",\"asset\":\"ETH\",\"size\":100,\"eth_price\":3000,\"gross_value\":300000,\"uniswap_slippage_cost\":900,\"uniswap_gas_cost\":50,\"uniswap_mev_cost\":3600,\"uniswap_total_cost\":4550,\"uniswap_total_cost_pct\":1.5166666666666666,\"uniswap_net_proceeds\":295450,\"cowswap_slippage_cost\":1200,\"cowswap_gas_cost\":0,\"cowswap_mev_cost\":0,\"cowswap_total_cost\":1200,\"cowswap_total_cost_pct\":0.4,\"cowswap_net_proceeds\":298800,\"oneinch_slippage_cost\":1050,\"oneinch_gas_cost\":25,\"oneinch_mev_cost\":1200,\"oneinch_total_cost\":2275,\"oneinch_total_cost_pct\":0.7583333333333333,\"oneinch_net_proceeds\":297725,\"best_option\":\"CowSwap\",\"worst_option\":\"Uniswap\",\"savings_vs_worst\":3350,\"venue\":\"CowSwap\",\"reasoning\":\"Calculated each venue’s slippage, gas, and MEV costs on $300,000 notional to derive total cost, convert to percentage, subtract from gross value to find net proceeds, then compared net proceeds to identify best and worst options and savings.\"}",
+      "durationMs": 16843,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7822108467854558,
+        "score": 0.7682856690342108,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.002105263157894737,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.021666666666666664,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.021666666666666664,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0,
+          "venue_name": 0,
+          "reasoning": 0.0002660944206008584
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5166666666666666,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583333333333333,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "CowSwap",
+          "reasoning": "Calculated each venue’s slippage, gas, and MEV costs on $300,000 notional to derive total cost, convert to percentage, subtract from gross value to find net proceeds, then compared net proceeds to identify best and worst options and savings."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-001",
+      "raw": "{\"intent\":\"allocate\",\"order_type\":\"strategy\",\"asset\":\"USDC\",\"size\":5000000,\"venue\":\"portfolio\",\"venue_name\":\"90d_yield_mix\",\"expected_value\":11.79,\"unit\":\"percent\",\"allocation\":{\"pendle_pt_steth\":3250000,\"convex_curve_3pool\":1750000}}",
+      "durationMs": 38106,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8840378421900161,
+        "score": 0.837509534706331,
+        "fieldScores": {
+          "intent": 0.01391304347826087,
+          "order_type": 0.005263157894736842,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.003333333333333335,
+          "venue_name": 0.004999999999999998,
+          "expected_value": 0.4,
+          "unit": 0.02,
+          "allocation": 0.33
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "strategy",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "portfolio",
+          "venue_name": "90d_yield_mix",
+          "expected_value": 11.79,
+          "unit": "percent",
+          "allocation": {
+            "pendle_pt_steth": 3250000,
+            "convex_curve_3pool": 1750000
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-002",
+      "raw": "{\"intent\":\"execute_mev_defense\",\"strategy\":\"A\",\"expected_total_cost\":651.22,\"cost_breakdown\":{\"gas\":138.62,\"fees\":182.6,\"expected_mev_loss\":330},\"reasoning\":\"Flashbots total combines gas, setup plus expected retry fee, and 1.5% residual MEV loss, which is far lower than direct swap gas plus full $22k MEV loss.\"}",
+      "durationMs": 19720,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.8,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.2,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 651.22,
+          "cost_breakdown": {
+            "gas": 138.62,
+            "fees": 182.6,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Flashbots total combines gas, setup plus expected retry fee, and 1.5% residual MEV loss, which is far lower than direct swap gas plus full $22k MEV loss."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-003",
+      "raw": "{\"intent\":\"risk_parity\",\"order_type\":\"analysis\",\"asset\":\"btc/eth/bonds\",\"size\":\"risk-weighted\",\"venue\":\"analysis\",\"portfolio_volatility\":0,\"risk_contributions\":{},\"btc_contribution_pct\":0,\"eth_contribution_pct\":0,\"bonds_contribution_pct\":0,\"rebalancing_required\":false,\"target_allocations_usd\":{},\"target_btc_usd\":0,\"target_eth_usd\":0,\"target_bonds_usd\":0,\"transactions\":[],\"btc_sell_amount\":0,\"eth_sell_amount\":0,\"bonds_buy_amount\":0,\"btc_post_slippage\":0,\"eth_post_slippage\":0,\"bonds_post_slippage\":0,\"reasoning\":\"synthetic rescue\"}",
+      "durationMs": 31873,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3775469848484848,
+        "score": 0.38213257575757575,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0.015999999999999997,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0,
+          "eth_contribution_pct": 0,
+          "bonds_contribution_pct": 0.0225,
+          "rebalancing_required": 0.019999999999999997,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.005566666666666665,
+          "target_eth_usd": 0.006659999999999999,
+          "target_bonds_usd": 0.005549999999999999,
+          "transactions": 0,
+          "btc_sell_amount": 0.0027833333333333325,
+          "eth_sell_amount": 0.0027833333333333325,
+          "bonds_buy_amount": 0.002766666666666666,
+          "btc_post_slippage": 0.0016666666666666663,
+          "eth_post_slippage": 0,
+          "bonds_post_slippage": 0,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "risk_parity",
+          "order_type": "analysis",
+          "asset": "btc/eth/bonds",
+          "size": "risk-weighted",
+          "venue": "analysis",
+          "portfolio_volatility": 0,
+          "risk_contributions": {},
+          "btc_contribution_pct": 0,
+          "eth_contribution_pct": 0,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": false,
+          "target_allocations_usd": {},
+          "target_btc_usd": 0,
+          "target_eth_usd": 0,
+          "target_bonds_usd": 0,
+          "transactions": [],
+          "btc_sell_amount": 0,
+          "eth_sell_amount": 0,
+          "bonds_buy_amount": 0,
+          "btc_post_slippage": 0,
+          "eth_post_slippage": 0,
+          "bonds_post_slippage": 0,
+          "reasoning": "synthetic rescue"
+        },
+        "failureReasons": [
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-004",
+      "raw": "{\"intent\":\"restake\",\"order_type\":\"restake\",\"asset\":\"stETH\",\"size\":100,\"venue\":\"eigenlayer\",\"venue_name\":\"EigenLayer\",\"rationale\":\"EigenLayer adds 2.8% APR on top of Lido, keeps collateral accessible in 7 days, and stays within 3% slashing risk while net APR remains 4.25% after loan costs.\",\"decision_factors\":\"Option A meets the 8-day collateral requirement (7-day lock), keeps slashing risk below the 4% ceiling, and yields 4.25% net APR versus 1.45% for staying in Lido; Symbiotic fails risk and timing constraints.\",\"total_staking_apr\":7,\"borrow_rate\":5.5,\"effective_borrow_cost_on_portfolio\":2.75,\"net_apr_after_borrow\":4.25,\"meets_net_apr_target\":true,\"slashing_risk_pct\":3,\"within_risk_tolerance\":true,\"liquidity_days\":7,\"meets_collateral_timing\":true,\"option_c_net_apr_comparison\":1.45,\"option_a_outperformance\":2.8}",
+      "durationMs": 23570,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "restake",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer",
+          "rationale": "EigenLayer adds 2.8% APR on top of Lido, keeps collateral accessible in 7 days, and stays within 3% slashing risk while net APR remains 4.25% after loan costs.",
+          "decision_factors": "Option A meets the 8-day collateral requirement (7-day lock), keeps slashing risk below the 4% ceiling, and yields 4.25% net APR versus 1.45% for staying in Lido; Symbiotic fails risk and timing constraints.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.00803,\n    \"deleverage_2x\": 0.000135,\n    \"deleverage_1_5x\": 0.0000002,\n    \"close\": 0\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 45.82,\n    \"deleverage_2x\": 42.18,\n    \"deleverage_1_5x\": 36.54,\n    \"close\": 0\n  },\n  \"reasoning\": \"Computed down-barrier hit probabilities under GBM with zero drift and 13.17% weekly volatility, subtracted expected $1,000 penalty from weekly carry, and selected the highest EV action meeting the 0.5% risk limit.\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 22043,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.00803,
+            "deleverage_2x": 0.000135,
+            "deleverage_1_5x": 2e-7,
+            "close": 0
+          },
+          "expected_values": {
+            "maintain_3x": 45.82,
+            "deleverage_2x": 42.18,
+            "deleverage_1_5x": 36.54,
+            "close": 0
+          },
+          "reasoning": "Computed down-barrier hit probabilities under GBM with zero drift and 13.17% weekly volatility, subtracted expected $1,000 penalty from weekly carry, and selected the highest EV action meeting the 0.5% risk limit.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-006",
+      "raw": "{\"intent\":\"fixed_yield_allocation\",\"strategy\":\"fixed_yield\",\"asset\":\"PT-USDe\",\"allocation\":100000,\"venue\":\"pendle\",\"maturity\":\"90d\",\"expected_apy\":12.3,\"selected_strategy\":\"C\",\"reasoning\":\"Selected Pendle PT for highest APY, no leverage-induced depeg risk, and maturity matches 90-day horizon.\",\"risk_assessment\":\"low\",\"meets_constraints\":true,\"alternatives_rejected\":{\"A\":\"Lower 8.5% APY despite acceptable risk.\",\"B\":\"3x leverage introduces liquidation at 2% depeg, exceeding medium risk comfort.\",\"D\":\"Hybrid still includes leverage exposure with lower net APY than Pendle PT.\"}}",
+      "durationMs": 11948,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Selected Pendle PT for highest APY, no leverage-induced depeg risk, and maturity matches 90-day horizon.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "A": "Lower 8.5% APY despite acceptable risk.",
+            "B": "3x leverage introduces liquidation at 2% depeg, exceeding medium risk comfort.",
+            "D": "Hybrid still includes leverage exposure with lower net APY than Pendle PT."
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-007",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"market\",\"asset\":\"stETH\",\"size\":2500,\"venue\":\"B\",\"venue_name\":\"1inch Fusion\",\"expected_value\":-67500,\"unit\":\"USD_total_cost\",\"reasoning\":\"Computed total cost as 1.05% common impact plus 0.05% protocol fee and 0.4% residual MEV on $4.5M notional, selecting venue that meets capacity and 15-minute deadline.\",\"constraint_awareness\":\"Meets 15-minute settlement, single venue capacity of 5,000 stETH, and minimizes combined spread, impact, fees, and MEV costs.\"}",
+      "durationMs": 15326,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.96,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0.5,
+          "expected_value": 0.3,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "B",
+          "venue_name": "1inch Fusion",
+          "expected_value": -67500,
+          "unit": "USD_total_cost",
+          "reasoning": "Computed total cost as 1.05% common impact plus 0.05% protocol fee and 0.4% residual MEV on $4.5M notional, selecting venue that meets capacity and 15-minute deadline.",
+          "constraint_awareness": "Meets 15-minute settlement, single venue capacity of 5,000 stETH, and minimizes combined spread, impact, fees, and MEV costs."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-008",
+      "raw": "{\"intent\":\"rebalance_risk_parity_buy_side\",\"strategy\":\"Route all legs through Interactive Brokers to minimize percentage fees while meeting same-day execution requirement.\",\"execution_plan\":[{\"asset\":\"BTC\",\"order_type\":\"market\",\"venue\":\"interactive_brokers\",\"notional\":22500,\"size\":\"0.5\",\"fee_rate\":0.001,\"fee_amount\":22.5},{\"asset\":\"ETH\",\"order_type\":\"market\",\"venue\":\"interactive_brokers\",\"notional\":22400,\"size\":\"8\",\"fee_rate\":0.001,\"fee_amount\":22.4},{\"asset\":\"GLD\",\"order_type\":\"market\",\"venue\":\"interactive_brokers\",\"notional\":222000,\"size\":\"1200\",\"fee_rate\":0.001,\"fee_amount\":222},{\"asset\":\"TLT\",\"order_type\":\"market\",\"venue\":\"interactive_brokers\",\"notional\":228000,\"size\":\"2400\",\"fee_rate\":0.001,\"fee_amount\":228}],\"fee_summary\":{\"total_fees\":494.9,\"total_notional\":494900,\"total_execution_cost\":495394.9},\"rationale\":\"Interactive Brokers charges the lowest fee rate at 0.1%, so routing all four buy orders there keeps total fees well under the $2,000 limit while allowing same-day execution despite T+2 settlement.\",\"constraints_met\":true}",
+      "durationMs": 26430,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.975,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.4,
+          "execution_plan": 0.3,
+          "fee_summary": 0.15,
+          "rationale": 0.025,
+          "constraints_met": 0.1
+        },
+        "normalizedResponse": {
+          "intent": "rebalance_risk_parity_buy_side",
+          "strategy": "Route all legs through Interactive Brokers to minimize percentage fees while meeting same-day execution requirement.",
+          "execution_plan": [
+            {
+              "asset": "BTC",
+              "order_type": "market",
+              "venue": "interactive_brokers",
+              "notional": 22500,
+              "size": "0.5",
+              "fee_rate": 0.001,
+              "fee_amount": 22.5
+            },
+            {
+              "asset": "ETH",
+              "order_type": "market",
+              "venue": "interactive_brokers",
+              "notional": 22400,
+              "size": "8",
+              "fee_rate": 0.001,
+              "fee_amount": 22.4
+            },
+            {
+              "asset": "GLD",
+              "order_type": "market",
+              "venue": "interactive_brokers",
+              "notional": 222000,
+              "size": "1200",
+              "fee_rate": 0.001,
+              "fee_amount": 222
+            },
+            {
+              "asset": "TLT",
+              "order_type": "market",
+              "venue": "interactive_brokers",
+              "notional": 228000,
+              "size": "2400",
+              "fee_rate": 0.001,
+              "fee_amount": 228
+            }
+          ],
+          "fee_summary": {
+            "total_fees": 494.9,
+            "total_notional": 494900,
+            "total_execution_cost": 495394.9
+          },
+          "rationale": "Interactive Brokers charges the lowest fee rate at 0.1%, so routing all four buy orders there keeps total fees well under the $2,000 limit while allowing same-day execution despite T+2 settlement.",
+          "constraints_met": true
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-009",
+      "raw": "{\"decision\":\"execute\",\"reasoning\":{\"summary\":\"Allocated $49.9k to spot and $50.1k to perp margin to size 20.3735 ETH, earning 0.24% daily funding on $50.08k short notional; entry costs of $22 imply 0.55 periods to break even and 43.87% annualized ROI assuming funding persists.\",\"capital_allocation\":{\"spot_usd\":49916.1,\"margin_usd\":50083.9},\"position_size_eth\":20.3735,\"perp_notional_usd\":50083.9,\"funding_revenue_daily\":120.2014,\"costs_entry\":22,\"break_even_periods\":0.55,\"annualized_funding_rate_pct\":87.6,\"annual_roi_on_total_capital_pct\":43.87},\"execution\":{\"step_1\":\"transfer_50083.9_usdt_to_binance_for_margin\",\"step_2\":\"buy_20.3735_eth_spot_coinbase_maker\",\"step_3\":\"short_20.3735_eth_perp_binance_maker\",\"delta_neutral\":true,\"exit_trigger\":\"close_positions_if_funding_turns_negative_or_basis_closes\"}}",
+      "durationMs": 39581,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "summary": "Allocated $49.9k to spot and $50.1k to perp margin to size 20.3735 ETH, earning 0.24% daily funding on $50.08k short notional; entry costs of $22 imply 0.55 periods to break even and 43.87% annualized ROI assuming funding persists.",
+            "capital_allocation": {
+              "spot_usd": 49916.1,
+              "margin_usd": 50083.9
+            },
+            "position_size_eth": 20.3735,
+            "perp_notional_usd": 50083.9,
+            "funding_revenue_daily": 120.2014,
+            "costs_entry": 22,
+            "break_even_periods": 0.55,
+            "annualized_funding_rate_pct": 87.6,
+            "annual_roi_on_total_capital_pct": 43.87
+          },
+          "execution": {
+            "step_1": "transfer_50083.9_usdt_to_binance_for_margin",
+            "step_2": "buy_20.3735_eth_spot_coinbase_maker",
+            "step_3": "short_20.3735_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "close_positions_if_funding_turns_negative_or_basis_closes"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "gpt-5-codex",
+      "modelLabel": "openai:gpt-5-codex",
+      "questionId": "L8-010",
+      "raw": "{\"intent\":\"execute_collar\",\"order_type\":\"multi-leg_option\",\"asset\":\"BTC\",\"size\":10,\"call_strike\":49500,\"put_strike\":40500,\"net_cost_per_btc\":-60,\"venue\":\"deribit\",\"venue_name\":\"Deribit\",\"expiry_days\":30,\"reasoning\":\"Sold 10% OTM calls for 420 credit and bought 10% OTM puts for 480 debit, minimizing spend despite put skew while keeping downside floor at 40500 and upside open to 49500.\"}",
+      "durationMs": 30979,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8703732193732194,
+        "score": 0.8245641025641026,
+        "fieldScores": {
+          "intent": 0.06923076923076923,
+          "order_type": 0.03333333333333334,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.2,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_collar",
+          "order_type": "multi-leg_option",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 40500,
+          "net_cost_per_btc": -60,
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "expiry_days": 30,
+          "reasoning": "Sold 10% OTM calls for 420 credit and bought 10% OTM puts for 480 debit, minimizing spend despite put skew while keeping downside floor at 40500 and upside open to 49500."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}
