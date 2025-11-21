@@ -8,9 +8,10 @@ import { callAnthropic } from './providers/anthropic';
 import { callGemini } from './providers/gemini';
 import { callGroq } from './providers/groq';
 import { callOpenRouter } from './providers/openrouter';
+import { callHuggingFace } from './providers/huggingface';
 import { buildExecuteOnePrompts } from '../prompts/schema-prompts';
 
-export type Provider = 'openai' | 'anthropic' | 'google' | 'groq' | 'openrouter';
+export type Provider = 'openai' | 'anthropic' | 'google' | 'groq' | 'openrouter' | 'huggingface';
 
 export interface ModelConfig {
   id: string;
@@ -69,6 +70,7 @@ const PROVIDER_ENV: Record<Provider, string> = {
   google: 'GOOGLE_API_KEY',
   groq: 'GROQ_API_KEY',
   openrouter: 'OPENROUTER_API_KEY',
+  huggingface: 'HUGGINGFACE_API_KEY',
 };
 
 function readBenchmarkModels(): string[] {
@@ -94,6 +96,9 @@ function readBenchmarkModels(): string[] {
 }
 
 function inferProvider(modelId: string): Provider {
+  if (modelId === 'allenai/Olmo-3-32B-Think') {
+    return 'huggingface';
+  }
   // Explicit overrides for models that exist on multiple platforms
   if (modelId === 'moonshotai/kimi-k2-instruct-0905') {
     return 'groq';
@@ -185,6 +190,8 @@ export async function callExecuteOneModel(
       return await callGroq(modelId, system, user, { temperature, maxTokens });
     case 'openrouter':
       return await callOpenRouter(modelId, system, user, { temperature, maxTokens });
+    case 'huggingface':
+      return await callHuggingFace(modelId, system, user, { temperature, maxTokens });
     default:
       throw new Error(`Unsupported provider ${config.provider} for model ${modelId}`);
   }
