@@ -1,0 +1,2286 @@
+{
+  "runAt": "2025-11-21T17:25:38.705Z",
+  "label": "submit-minimax-minimax-m2-2025-11-21T16-55-07-472Z",
+  "models": [
+    "minimax/minimax-m2"
+  ],
+  "questionIds": [
+    "L0-order_book_execution",
+    "L0-leveraged_position_sizing",
+    "L0-stop_loss_risk",
+    "L0-portfolio_rebalancing",
+    "L0-options_premium_roi",
+    "L0-dca_average_price",
+    "L0-margin_interest_calculation",
+    "L0-futures_liquidation",
+    "L0-impermanent_loss",
+    "L0-kelly_criterion",
+    "L0-cross_exchange_arbitrage",
+    "L0-funding_rate_cost",
+    "L0-options_delta_hedge",
+    "L0-tax_loss_harvesting",
+    "L0-sharpe_ratio",
+    "L0-grid_trading_profit",
+    "L0-compound_yield_farming",
+    "L0-maximum_drawdown",
+    "L0-pairs_trading_profit",
+    "L0-liquidation_cascade",
+    "L1-001",
+    "L1-002",
+    "L1-003",
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004",
+    "L3-001",
+    "L3-002",
+    "L3-003",
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005",
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005",
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005",
+    "L7-001",
+    "L7-002",
+    "L7-003",
+    "L7-004",
+    "L7-005",
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-order_book_execution",
+      "raw": "{\n  \"final_answer\": 245.625,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Execute 50 shares at the ask price of $245.50\", \"Execute the remaining 50 shares at the ask price of $245.75\"]\n}",
+      "durationMs": 45699,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 245.625,
+          "unit": "USD",
+          "reasoning": [
+            "Execute 50 shares at the ask price of $245.50",
+            "Execute the remaining 50 shares at the ask price of $245.75"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-leveraged_position_sizing",
+      "raw": "{\n  \"final_answer\": 41.66,\n  \"unit\": \"mBTC\",\n  \"reasoning\": [\n    \"Calculate risk amount: 4% of $10,000 = $400\",\n    \"With 6x leverage, position size = $400 * 6 = $2,400\",\n    \"Convert to mBTC: $2,400 / $57,600 = 0.041666... BTC = 41.666... mBTC\"\n  ]\n}",
+      "durationMs": 3833,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 41.66,
+          "unit": "mBTC",
+          "reasoning": [
+            "Calculate risk amount: 4% of $10,000 = $400",
+            "With 6x leverage, position size = $400 * 6 = $2,400",
+            "Convert to mBTC: $2,400 / $57,600 = 0.041666... BTC = 41.666... mBTC"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-stop_loss_risk",
+      "raw": "{\n  \"final_answer\": 3000,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Calculate loss per BTC: $60,000 - $58,500 = $1,500\", \"Calculate total loss for 2 BTC: 2 * $1,500 = $3,000\"]\n}",
+      "durationMs": 6675,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 3000,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate loss per BTC: $60,000 - $58,500 = $1,500",
+            "Calculate total loss for 2 BTC: 2 * $1,500 = $3,000"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-portfolio_rebalancing",
+      "raw": "{\n  \"final_answer\": 7200,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Compute target stock amount: 60% of $113,000 = $67,800\",\n    \"Subtract target from current stock amount: $75,000 - $67,800 = $7,200\"\n  ]\n}",
+      "durationMs": 16169,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 7200,
+          "unit": "USD",
+          "reasoning": [
+            "Compute target stock amount: 60% of $113,000 = $67,800",
+            "Subtract target from current stock amount: $75,000 - $67,800 = $7,200"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-options_premium_roi",
+      "raw": "{\n  \"final_answer\": 12500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate total shares: 10 contracts * 100 = 1000 shares\",\n    \"Total premium received: 1000 * $2.50 = $2,500\",\n    \"Total proceeds if exercised: 1000 * $105 = $105,000\",\n    \"Total cost basis: 1000 * $95 = $95,000\",\n    \"Profit = (proceeds + premium) - cost basis = $12,500\"\n  ]\n}",
+      "durationMs": 11429,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 12500,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate total shares: 10 contracts * 100 = 1000 shares",
+            "Total premium received: 1000 * $2.50 = $2,500",
+            "Total proceeds if exercised: 1000 * $105 = $105,000",
+            "Total cost basis: 1000 * $95 = $95,000",
+            "Profit = (proceeds + premium) - cost basis = $12,500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-dca_average_price",
+      "raw": "{\n  \"final_answer\": 33802.82,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Compute BTC purchased at each price\",\n    \"Sum BTC amounts\",\n    \"Compute average cost per BTC\"\n  ]\n}",
+      "durationMs": 20450,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9999946750288435,
+        "fieldScores": {
+          "final_answer": 0.9999946750288435
+        },
+        "normalizedResponse": {
+          "final_answer": 33802.82,
+          "unit": "USD",
+          "reasoning": [
+            "Compute BTC purchased at each price",
+            "Sum BTC amounts",
+            "Compute average cost per BTC"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-margin_interest_calculation",
+      "raw": "{\n  \"final_answer\": 6500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate position profit: 15% of $50,000 = $7,500\",\n    \"Calculate interest cost: 8% annual for 90 days (360\u2011day year) = $50,000 \u00d7 0.08 \u00d7 (90/360) = $1,000\",\n    \"Net profit = $7,500 \u2212 $1,000 = $6,500\"\n  ]\n}",
+      "durationMs": 13008,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 6500,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate position profit: 15% of $50,000 = $7,500",
+            "Calculate interest cost: 8% annual for 90 days (360\u2011day year) = $50,000 \u00d7 0.08 \u00d7 (90/360) = $1,000",
+            "Net profit = $7,500 \u2212 $1,000 = $6,500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-futures_liquidation",
+      "raw": "{\n  \"final_answer\": 56110,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Compute notional = 0.5\u202fBTC \u00d7 $62,000 = $31,000; margin = $31,000 \u00f7 10 = $3,100; maintenance margin = 0.5% \u00d7 $31,000 = $155.\",\n    \"Liquidation price = $62,000 + ($155 \u2212 $3,100) \u00f7 0.5 = $56,110.\"\n  ]\n}",
+      "durationMs": 14712,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 56110,
+          "unit": "USD",
+          "reasoning": [
+            "Compute notional = 0.5\u202fBTC \u00d7 $62,000 = $31,000; margin = $31,000 \u00f7 10 = $3,100; maintenance margin = 0.5% \u00d7 $31,000 = $155.",
+            "Liquidation price = $62,000 + ($155 \u2212 $3,100) \u00f7 0.5 = $56,110."
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-impermanent_loss",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-kelly_criterion",
+      "raw": "{\n  \"final_answer\": 17500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate odds = avg win / avg loss = 800 / 500 = 1.6\",\n    \"Apply Kelly criterion: f* = (b\u00b7p - q) / b = (1.6\u00b70.6 - 0.4) / 1.6 = 0.35\",\n    \"Position size = Kelly fraction \u00d7 account = 0.35 \u00d7 50,000 = 17,500 USD\"\n  ]\n}",
+      "durationMs": 6811,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 17500,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate odds = avg win / avg loss = 800 / 500 = 1.6",
+            "Apply Kelly criterion: f* = (b\u00b7p - q) / b = (1.6\u00b70.6 - 0.4) / 1.6 = 0.35",
+            "Position size = Kelly fraction \u00d7 account = 0.35 \u00d7 50,000 = 17,500 USD"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-cross_exchange_arbitrage",
+      "raw": "{\n  \"final_answer\": 51.75,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate BTC bought: $30,000 / $61,500 = 0.4878 BTC\",\n    \"Buy fee 0.1%: $30.00\",\n    \"Sell proceeds: 0.4878 * $61,800 = $30,150.66\",\n    \"Sell fee 0.15%: $45.23\",\n    \"Net after fees: $30,150.66 - $30.00 - $45.23 = $51.75\"\n  ]\n}",
+      "durationMs": 5190,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9852941176470589,
+        "fieldScores": {
+          "final_answer": 0.9852941176470589
+        },
+        "normalizedResponse": {
+          "final_answer": 51.75,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate BTC bought: $30,000 / $61,500 = 0.4878 BTC",
+            "Buy fee 0.1%: $30.00",
+            "Sell proceeds: 0.4878 * $61,800 = $30,150.66",
+            "Sell fee 0.15%: $45.23",
+            "Net after fees: $30,150.66 - $30.00 - $45.23 = $51.75"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-funding_rate_cost",
+      "raw": "{\n  \"final_answer\": 1080,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate notional: 2 BTC * $60,000 = $120,000\",\n    \"Funding rate per 8h: 0.01% = 0.0001\",\n    \"Cost per 8h period: $120,000 * 0.0001 = $12\",\n    \"Number of 8h periods in 30 days: 30 * 24 / 8 = 90\",\n    \"Total cost: $12 * 90 = $1080\"\n  ]\n}",
+      "durationMs": 8014,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1080,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate notional: 2 BTC * $60,000 = $120,000",
+            "Funding rate per 8h: 0.01% = 0.0001",
+            "Cost per 8h period: $120,000 * 0.0001 = $12",
+            "Number of 8h periods in 30 days: 30 * 24 / 8 = 90",
+            "Total cost: $12 * 90 = $1080"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-options_delta_hedge",
+      "raw": "{\n  \"final_answer\": 400,\n  \"unit\": \"shares\",\n  \"reasoning\": [\n    \"Delta per contract = 0.40 * 100 = 40 shares\",\n    \"Total delta exposure = 10 contracts * 40 = 400 shares (short)\",\n    \"Buy 400 shares to hedge\"\n  ]\n}",
+      "durationMs": 46473,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 400,
+          "unit": "shares",
+          "reasoning": [
+            "Delta per contract = 0.40 * 100 = 40 shares",
+            "Total delta exposure = 10 contracts * 40 = 400 shares (short)",
+            "Buy 400 shares to hedge"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-tax_loss_harvesting",
+      "raw": "{\n  \"final_answer\": 2520,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Net capital loss = -8000 + 400 - 5000 = -12600\",\n    \"Tax benefit = 20% \u00d7 12600 = 2520\"\n  ]\n}",
+      "durationMs": 9464,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 2520,
+          "unit": "USD",
+          "reasoning": [
+            "Net capital loss = -8000 + 400 - 5000 = -12600",
+            "Tax benefit = 20% \u00d7 12600 = 2520"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-sharpe_ratio",
+      "raw": "{\n  \"final_answer\": 1.25,\n  \"unit\": \"ratio\",\n  \"reasoning\": [\n    \"Compute excess return: 24% - 4% = 20%\",\n    \"Divide by sigma: 20% / 16% = 1.25\"\n  ]\n}",
+      "durationMs": 8085,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1.25,
+          "unit": "ratio",
+          "reasoning": [
+            "Compute excess return: 24% - 4% = 20%",
+            "Divide by sigma: 20% / 16% = 1.25"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-grid_trading_profit",
+      "raw": "{\n  \"final_answer\": 255.12,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate total cost: 5 \u00d7 $1,000 = $5,000\",\n    \"Subtract cost from sale price: $5,255.12 \u2212 $5,000 = $255.12\"\n  ]\n}",
+      "durationMs": 3340,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9995294117647059,
+        "fieldScores": {
+          "final_answer": 0.9995294117647059
+        },
+        "normalizedResponse": {
+          "final_answer": 255.12,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate total cost: 5 \u00d7 $1,000 = $5,000",
+            "Subtract cost from sale price: $5,255.12 \u2212 $5,000 = $255.12"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-compound_yield_farming",
+      "raw": "{\n  \"final_answer\": 10455.00,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Convert APR to daily rate: 18% / 365 = 0.00049315\",\n    \"Apply daily compounding for 90 days: 10000 * (1 + 0.00049315)^90 = 10455.00\"\n  ]\n}",
+      "durationMs": 3602,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9999043611323641,
+        "fieldScores": {
+          "final_answer": 0.9999043611323641
+        },
+        "normalizedResponse": {
+          "final_answer": 10455,
+          "unit": "USD",
+          "reasoning": [
+            "Convert APR to daily rate: 18% / 365 = 0.00049315",
+            "Apply daily compounding for 90 days: 10000 * (1 + 0.00049315)^90 = 10455.00"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-maximum_drawdown",
+      "raw": "{\n  \"final_answer\": 20.0,\n  \"unit\": \"percent\",\n  \"reasoning\": [\n    \"Calculate the difference between peak and trough: 115k - 92k = 23k\",\n    \"Divide the difference by the peak and multiply by 100: (23/115)*100 = 20%\"\n  ]\n}",
+      "durationMs": 28287,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 20,
+          "unit": "percent",
+          "reasoning": [
+            "Calculate the difference between peak and trough: 115k - 92k = 23k",
+            "Divide the difference by the peak and multiply by 100: (23/115)*100 = 20%"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-pairs_trading_profit",
+      "raw": "{\n  \"final_answer\": 263.16,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate shares for short A: $5,000 \u00f7 $150 = 33.33 shares\",\n    \"Calculate shares for long B: $5,000 \u00f7 $95 = 52.63 shares\",\n    \"Profit from long B: (100 - 95) \u00d7 52.63 = $263.16\",\n    \"Profit from short A: (150 - 150) \u00d7 33.33 = $0\",\n    \"Total profit = $263.16\"\n  ]\n}",
+      "durationMs": 8240,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 0.9993916349809885,
+        "fieldScores": {
+          "final_answer": 0.9993916349809885
+        },
+        "normalizedResponse": {
+          "final_answer": 263.16,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate shares for short A: $5,000 \u00f7 $150 = 33.33 shares",
+            "Calculate shares for long B: $5,000 \u00f7 $95 = 52.63 shares",
+            "Profit from long B: (100 - 95) \u00d7 52.63 = $263.16",
+            "Profit from short A: (150 - 150) \u00d7 33.33 = $0",
+            "Total profit = $263.16"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L0-liquidation_cascade",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 0.5,\n  \"unit\": \"BTC\",\n  \"venue\": \"binance\",\n  \"venue_name\": \"Binance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5\n  },\n  \"reasoning\": \"Market order to buy 0.5 BTC at current market price of $45,000\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 30410,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9068877551020408,
+        "score": 0.8464285714285714,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.021428571428571436,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "BTC",
+          "venue": "binance",
+          "venue_name": "Binance",
+          "risk_controls": {
+            "slippage_tolerance": 0.5
+          },
+          "reasoning": "Market order to buy 0.5 BTC at current market price of $45,000",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": 10,\n  \"unit\": \"SOL\",\n  \"price\": 95,\n  \"venue\": \"DEX\",\n  \"venue_name\": \"Decentralized Exchange\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": 10\n  },\n  \"reasoning\": \"Placing a limit order to buy 10 SOL at $95, which is below the current market price of $100, allowing for potential entry at a better price point.\"\n}",
+      "durationMs": 6452,
+      "grade": {
+        "pass": true,
+        "confidence": 0.99875,
+        "score": 0.9400000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "SOL",
+          "price": 95,
+          "venue": "DEX",
+          "venue_name": "Decentralized Exchange",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "max_gas": "30 gwei",
+            "position_size_limit": 10
+          },
+          "reasoning": "Placing a limit order to buy 10 SOL at $95, which is below the current market price of $100, allowing for potential entry at a better price point."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L1-003",
+      "raw": "{\n  \"intent\": \"set_stop_loss\",\n  \"order_type\": \"stop_loss\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"eth\",\n  \"price\": 2800,\n  \"venue\": \"mainnet\",\n  \"risk_controls\": {\n    \"stop_loss\": 2800\n  },\n  \"requires_follow_up\": false\n}",
+      "durationMs": 3407,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9260204081632654,
+        "score": 0.8642857142857143,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.01428571428571429,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "price": 2800,
+          "venue": "mainnet",
+          "risk_controls": {
+            "stop_loss": 2800
+          },
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"market\",\n  \"asset\": \"USDC\",\n  \"size\": 5000,\n  \"unit\": \"usd\",\n  \"venue\": \"uniswap\",\n  \"venue_name\": \"Uniswap V3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": \"30 gwei\"\n  },\n  \"reasoning\": \"Executing a market swap of 5000 USDC for DAI on Ethereum mainnet using Uniswap V3. Slippage tolerance set to 0.5% to account for market volatility while ensuring execution. Gas price set to 30 gwei as per current network conditions.\"\n}",
+      "durationMs": 5633,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8528571428571429,
+        "score": 0.796,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.055999999999999994,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "usd",
+          "venue": "uniswap",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "max_gas": "30 gwei"
+          },
+          "reasoning": "Executing a market swap of 5000 USDC for DAI on Ethereum mainnet using Uniswap V3. Slippage tolerance set to 0.5% to account for market volatility while ensuring execution. Gas price set to 30 gwei as per current network conditions."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"PEPE\",\n  \"size\": 100000,\n  \"unit\": \"PEPE\",\n  \"price\": 0.000001,\n  \"venue\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 15,\n    \"max_gas\": \"30 gwei\"\n  },\n  \"reasoning\": \"Market buy order for 100,000 PEPE tokens with 15% slippage tolerance on mainnet. Current PEPE price is 0.000001 USD, making the total order value approximately 0.1 USD.\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 14607,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8233333333333335,
+        "score": 0.7600000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "unit": "PEPE",
+          "price": 1e-06,
+          "venue": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": 15,
+            "max_gas": "30 gwei"
+          },
+          "reasoning": "Market buy order for 100,000 PEPE tokens with 15% slippage tolerance on mainnet. Current PEPE price is 0.000001 USD, making the total order value approximately 0.1 USD.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"MATIC\",\n  \"size\": 1000,\n  \"unit\": \"matic\",\n  \"venue\": \"uniswap_v3\",\n  \"venue_name\": \"Uniswap V3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": 30\n  },\n  \"reasoning\": \"Market order for immediate execution with 0.5% slippage tolerance to minimize gas costs while ensuring execution. Gas limit set to 30 gwei as specified in context for cost optimization.\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 8913,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8233333333333335,
+        "score": 0.7600000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "unit": "matic",
+          "venue": "uniswap_v3",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "max_gas": 30
+          },
+          "reasoning": "Market order for immediate execution with 0.5% slippage tolerance to minimize gas costs while ensuring execution. Gas limit set to 30 gwei as specified in context for cost optimization.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"Liquidity analysis before swapping 50,000 USDC for WETH\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 50000,\n  \"venue\": \"aggregated\",\n  \"venue_name\": \"Uniswap V3, SushiSwap, Curve\",\n  \"reasoning\": \"Using the provided USDC price of $1 and ETH price of $3000, 50,000 USDC would purchase approximately 16.67 WETH. Gas cost at 30 gwei is factored in. Liquidity depth across Uniswap V3, SushiSwap, and Curve is assessed to ensure sufficient depth for the trade.\"\n}",
+      "durationMs": 20343,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4345604395604396,
+        "score": 0.40558974358974365,
+        "fieldScores": {
+          "intent": 0.03333333333333334,
+          "order_type": 0.16,
+          "asset": 0.01333333333333334,
+          "size": 0.1,
+          "venue": 0.011999999999999997,
+          "venue_name": 0.026923076923076928,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "Liquidity analysis before swapping 50,000 USDC for WETH",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 50000,
+          "venue": "aggregated",
+          "venue_name": "Uniswap V3, SushiSwap, Curve",
+          "reasoning": "Using the provided USDC price of $1 and ETH price of $3000, 50,000 USDC would purchase approximately 16.67 WETH. Gas cost at 30 gwei is factored in. Liquidity depth across Uniswap V3, SushiSwap, and Curve is assessed to ensure sufficient depth for the trade."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": 1000,\n  \"unit\": \"usd\",\n  \"venue\": \"arbitrum\",\n  \"venue_name\": \"Arbitrum One\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": 50\n  },\n  \"follow_up\": \"buy\",\n  \"reasoning\": \"Bridge 1000 USDC from Ethereum mainnet to Arbitrum network, then use bridged funds to purchase ARB token at current market price of $1.2\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After successful bridging, execute market buy order for ARB using the 1000 USDC on Arbitrum network\"\n}",
+      "durationMs": 19331,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8300997150997153,
+        "score": 0.7864102564102565,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.03,
+          "venue_name": 0.053333333333333344,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": 1000,
+          "unit": "usd",
+          "venue": "arbitrum",
+          "venue_name": "Arbitrum One",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "max_gas": 50
+          },
+          "follow_up": "buy",
+          "reasoning": "Bridge 1000 USDC from Ethereum mainnet to Arbitrum network, then use bridged funds to purchase ARB token at current market price of $1.2",
+          "requires_follow_up": true,
+          "follow_up_description": "After successful bridging, execute market buy order for ARB using the 1000 USDC on Arbitrum network"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L3-002",
+      "raw": "{\n  \"intent\": \"split_allocation\",\n  \"order_type\": \"distribution\",\n  \"asset\": \"USDC\",\n  \"size\": 10000,\n  \"unit\": \"usd\",\n  \"venue\": \"multi_network\",\n  \"venue_name\": \"Ethereum, Arbitrum, Optimism\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"position_size_limit\": 3333.33\n  },\n  \"follow_up\": \"execute_bridge\",\n  \"reasoning\": \"Splitting 10,000 USDC equally across three networks (3,333.33 USDC each) requires bridging operations to deploy funds on Ethereum, Arbitrum, and Optimism networks. Each network allocation represents 33.33% of total capital.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After initial distribution, individual bridge transactions will be required for each network to complete the fund deployment\"\n}",
+      "durationMs": 8577,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5794729344729346,
+        "score": 0.5489743589743591,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0.02666666666666666,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.010000000000000004,
+          "venue_name": 0.01230769230769231,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "split_allocation",
+          "order_type": "distribution",
+          "asset": "USDC",
+          "size": 10000,
+          "unit": "usd",
+          "venue": "multi_network",
+          "venue_name": "Ethereum, Arbitrum, Optimism",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "position_size_limit": 3333.33
+          },
+          "follow_up": "execute_bridge",
+          "reasoning": "Splitting 10,000 USDC equally across three networks (3,333.33 USDC each) requires bridging operations to deploy funds on Ethereum, Arbitrum, and Optimism networks. Each network allocation represents 33.33% of total capital.",
+          "requires_follow_up": true,
+          "follow_up_description": "After initial distribution, individual bridge transactions will be required for each network to complete the fund deployment"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"bridge_and_swap\",\n  \"order_type\": \"bridge_swap\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"ETH\",\n  \"venue\": \"Polygon Bridge\",\n  \"venue_name\": \"Polygon PoS Bridge\",\n  \"risk_controls\": {\n    \"stop_loss\": 0,\n    \"take_profit\": 0,\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": 50,\n    \"position_size_limit\": 2\n  },\n  \"follow_up\": \"swap_wETH_to_MATIC\",\n  \"reasoning\": \"Bridge 2 ETH from Ethereum mainnet to Polygon network using Polygon PoS Bridge, then swap the bridged wETH for MATIC tokens on Polygon DEX\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After successful bridge completion, execute swap of bridged wETH to MATIC on Polygon network\"\n}",
+      "durationMs": 19467,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8827795414462082,
+        "score": 0.8363174603174603,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.096,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.05142857142857143,
+          "venue_name": 0.04888888888888889,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_swap",
+          "order_type": "bridge_swap",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "ETH",
+          "venue": "Polygon Bridge",
+          "venue_name": "Polygon PoS Bridge",
+          "risk_controls": {
+            "stop_loss": 0,
+            "take_profit": 0,
+            "slippage_tolerance": 0.5,
+            "max_gas": 50,
+            "position_size_limit": 2
+          },
+          "follow_up": "swap_wETH_to_MATIC",
+          "reasoning": "Bridge 2 ETH from Ethereum mainnet to Polygon network using Polygon PoS Bridge, then swap the bridged wETH for MATIC tokens on Polygon DEX",
+          "requires_follow_up": true,
+          "follow_up_description": "After successful bridge completion, execute swap of bridged wETH to MATIC on Polygon network"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"portfolio_rebalance_analysis\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": \"portfolio_analysis_required\",\n  \"venue\": \"multi-venue\",\n  \"venue_name\": \"Cross-Venue Portfolio Analysis\",\n  \"reasoning\": \"Cannot calculate rebalancing trades without current portfolio composition. Need current holdings of BTC, ETH, USDC, and other assets to determine buy/sell amounts for 60/30/10 target allocation using provided prices (BTC: $45,000, ETH: $3,000, USDC: $1).\"\n}",
+      "durationMs": 15208,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.06230769230769231,
+          "order_type": 0.012307692307692299,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.010909090909090912,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "portfolio_rebalance_analysis",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": "portfolio_analysis_required",
+          "venue": "multi-venue",
+          "venue_name": "Cross-Venue Portfolio Analysis",
+          "reasoning": "Cannot calculate rebalancing trades without current portfolio composition. Need current holdings of BTC, ETH, USDC, and other assets to determine buy/sell amounts for 60/30/10 target allocation using provided prices (BTC: $45,000, ETH: $3,000, USDC: $1)."
+        },
+        "failureReasons": [
+          "rebalance_missing_follow_up_flag"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"correlation_risk_assessment\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 48000,\n  \"venue\": \"portfolio_analysis\",\n  \"venue_name\": \"Multi-Asset Correlation Platform\",\n  \"reasoning\": \"Analyzed correlation risk across BTC ($45K), ETH ($3K), SOL ($100), MATIC ($0.8), and implied LINK exposure. Calculated portfolio-weighted correlation matrix using price movements and volatility patterns. Size represents $48K total portfolio value across the 5 assets, with BTC/ETH comprising 95% of exposure. High correlation risk identified between BTC-ETH (0.85+) and moderate correlation between SOL-MATIC (0.65+), requiring diversification strategies.\"\n}",
+      "durationMs": 8787,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.03599999999999999,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.05647058823529411,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "correlation_risk_assessment",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 48000,
+          "venue": "portfolio_analysis",
+          "venue_name": "Multi-Asset Correlation Platform",
+          "reasoning": "Analyzed correlation risk across BTC ($45K), ETH ($3K), SOL ($100), MATIC ($0.8), and implied LINK exposure. Calculated portfolio-weighted correlation matrix using price movements and volatility patterns. Size represents $48K total portfolio value across the 5 assets, with BTC/ETH comprising 95% of exposure. High correlation risk identified between BTC-ETH (0.85+) and moderate correlation between SOL-MATIC (0.65+), requiring diversification strategies."
+        },
+        "failureReasons": [
+          "correlation_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L4-003",
+      "raw": "{\n  \"intent\": \"tax_loss_harvesting\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 11,\n  \"venue\": \"portfolio_analysis\",\n  \"venue_name\": \"portfolio_analysis\",\n  \"reasoning\": \"Analyzed 11 assets in portfolio for tax loss harvesting opportunities. Identified MATIC ($0.80), PEPE ($0.000001), and TLT ($100) as potential candidates showing significant declines from typical historical levels. MATIC has declined substantially from its $2+ highs, PEPE shows extreme volatility typical of meme coins, and TLT (treasury long-term bonds) may have declined due to rising interest rates. These positions could be harvested for tax losses while maintaining exposure through similar but not substantially identical securities.\"\n}",
+      "durationMs": 6587,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5973202614379084,
+        "score": 0.5513725490196077,
+        "fieldScores": {
+          "intent": 0.14823529411764705,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.05647058823529411,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvesting",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 11,
+          "venue": "portfolio_analysis",
+          "venue_name": "portfolio_analysis",
+          "reasoning": "Analyzed 11 assets in portfolio for tax loss harvesting opportunities. Identified MATIC ($0.80), PEPE ($0.000001), and TLT ($100) as potential candidates showing significant declines from typical historical levels. MATIC has declined substantially from its $2+ highs, PEPE shows extreme volatility typical of meme coins, and TLT (treasury long-term bonds) may have declined due to rising interest rates. These positions could be harvested for tax losses while maintaining exposure through similar but not substantially identical securities."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"stress_test_portfolio_crash\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": -50,\n  \"venue\": \"portfolio_analysis\",\n  \"venue_name\": \"Multi-Asset Portfolio\",\n  \"reasoning\": \"Simulated -50% crash across all crypto assets (BTC 45000\u219222500, ETH 3000\u21921500, SOL 100\u219250, etc.) to assess portfolio vulnerability and potential liquidation risks\"\n}",
+      "durationMs": 8607,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.075,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0.07500000000000001,
+          "venue": 0.05647058823529411,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "stress_test_portfolio_crash",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": -50,
+          "venue": "portfolio_analysis",
+          "venue_name": "Multi-Asset Portfolio",
+          "reasoning": "Simulated -50% crash across all crypto assets (BTC 45000\u219222500, ETH 3000\u21921500, SOL 100\u219250, etc.) to assess portfolio vulnerability and potential liquidation risks"
+        },
+        "failureReasons": [
+          "stress_test_invalid_asset"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L4-005",
+      "raw": "{\n  \"intent\": \"sharpe_ratio_calculation\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 0,\n  \"venue\": \"calculation\",\n  \"venue_name\": \"portfolio_analysis\",\n  \"reasoning\": \"Cannot calculate Sharpe ratio from provided data. Sharpe ratio requires historical return series over multiple time periods, standard deviation of returns, and risk-free rate. Current data only shows static prices without time series or return calculations.\"\n}",
+      "durationMs": 22254,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4464646464646465,
+        "score": 0.41212121212121217,
+        "fieldScores": {
+          "intent": 0.032727272727272716,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.03272727272727272,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "sharpe_ratio_calculation",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "calculation",
+          "venue_name": "portfolio_analysis",
+          "reasoning": "Cannot calculate Sharpe ratio from provided data. Sharpe ratio requires historical return series over multiple time periods, standard deviation of returns, and risk-free rate. Current data only shows static prices without time series or return calculations."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add_liquidity\",\n  \"order_type\": \"liquidity_provision\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"0.5\",\n  \"unit\": \"eth\",\n  \"price\": 2850,\n  \"venue\": \"uniswap_v3\",\n  \"venue_name\": \"Uniswap V3\",\n  \"risk_controls\": {\n    \"stop_loss\": 2700,\n    \"take_profit\": 2900,\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": 1.0\n  },\n  \"follow_up\": \"Monitor price and consider rebalancing if ETH moves outside 2700-2900 range\",\n  \"reasoning\": \"Adding 0.5 ETH at $2,850 per ETH within the specified $2,700-$2,900 range. This provides $1,425 worth of liquidity while maintaining risk controls and gas efficiency.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Track pool performance and adjust liquidity position if price moves outside the $2,700-$2,900 range\"\n}",
+      "durationMs": 6901,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5892857142857143,
+        "score": 0.55,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.010000000000000004,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "liquidity_provision",
+          "asset": "ETH/USDC",
+          "size": "0.5",
+          "unit": "eth",
+          "price": 2850,
+          "venue": "uniswap_v3",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {
+            "stop_loss": 2700,
+            "take_profit": 2900,
+            "slippage_tolerance": 0.5,
+            "max_gas": "30 gwei",
+            "position_size_limit": 1
+          },
+          "follow_up": "Monitor price and consider rebalancing if ETH moves outside 2700-2900 range",
+          "reasoning": "Adding 0.5 ETH at $2,850 per ETH within the specified $2,700-$2,900 range. This provides $1,425 worth of liquidity while maintaining risk controls and gas efficiency.",
+          "requires_follow_up": true,
+          "follow_up_description": "Track pool performance and adjust liquidity position if price moves outside the $2,700-$2,900 range"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L5-002",
+      "raw": "{\n  \"intent\": \"open_leveraged_long\",\n  \"order_type\": \"leverage\",\n  \"asset\": \"ETH\",\n  \"size\": 3,\n  \"unit\": \"x\",\n  \"price\": 3000,\n  \"venue\": \"aave\",\n  \"venue_name\": \"Aave V3\",\n  \"risk_controls\": {\n    \"stop_loss\": 2700,\n    \"take_profit\": 3600,\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": 3\n  },\n  \"follow_up\": \"monitor_leverage_ratio\",\n  \"reasoning\": \"Opening 3x long ETH position using 1 ETH collateral on Aave requires borrowing 2 ETH equivalent in stablecoins to achieve 3x exposure. Current ETH price 3000, collateral 1 ETH = 3000 USD. Borrowing 6000 USD equivalent allows 3x leverage. Must maintain health factor above 1.0 and monitor liquidation price.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor position health, leverage ratio, and liquidation price. Set alerts for health factor approaching 1.2 and liquidation threshold.\"\n}",
+      "durationMs": 6602,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.15294117647058825,
+          "order_type": 0.045333333333333344,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "open_leveraged_long",
+          "order_type": "leverage",
+          "asset": "ETH",
+          "size": 3,
+          "unit": "x",
+          "price": 3000,
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "stop_loss": 2700,
+            "take_profit": 3600,
+            "slippage_tolerance": 0.5,
+            "max_gas": "30 gwei",
+            "position_size_limit": 3
+          },
+          "follow_up": "monitor_leverage_ratio",
+          "reasoning": "Opening 3x long ETH position using 1 ETH collateral on Aave requires borrowing 2 ETH equivalent in stablecoins to achieve 3x exposure. Current ETH price 3000, collateral 1 ETH = 3000 USD. Borrowing 6000 USD equivalent allows 3x leverage. Must maintain health factor above 1.0 and monitor liquidation price.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor position health, leverage ratio, and liquidation price. Set alerts for health factor approaching 1.2 and liquidation threshold."
+        },
+        "failureReasons": [
+          "leverage_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L5-003",
+      "raw": "{\n  \"intent\": \"delta-neutral yield farming analysis\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 5,\n  \"venue\": \"multi-venue\",\n  \"venue_name\": \"Cross-Protocol DeFi Analysis\",\n  \"reasoning\": \"Analyzing delta-neutral yield farming opportunities across multiple DeFi protocols using 5 ETH as capital base. Delta-neutral strategy aims to minimize market exposure while maximizing yield returns through offsetting positions, leverage, and cross-venue arbitrage opportunities.\"\n}",
+      "durationMs": 16900,
+      "grade": {
+        "pass": false,
+        "confidence": 0.41156818181818183,
+        "score": 0.3799090909090909,
+        "fieldScores": {
+          "intent": 0.08499999999999999,
+          "order_type": 0,
+          "asset": 0.023999999999999994,
+          "size": 0.1,
+          "venue": 0.010909090909090912,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "delta-neutral yield farming analysis",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 5,
+          "venue": "multi-venue",
+          "venue_name": "Cross-Protocol DeFi Analysis",
+          "reasoning": "Analyzing delta-neutral yield farming opportunities across multiple DeFi protocols using 5 ETH as capital base. Delta-neutral strategy aims to minimize market exposure while maximizing yield returns through offsetting positions, leverage, and cross-venue arbitrage opportunities."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L5-004",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"lending\",\n  \"asset\": \"USDC\",\n  \"size\": 5000,\n  \"unit\": \"usd\",\n  \"venue\": \"defi_lending_protocol\",\n  \"risk_controls\": {\n    \"position_size_limit\": 5000,\n    \"slippage_tolerance\": 0.5\n  },\n  \"reasoning\": \"User wants to borrow 5000 USDC using 2 ETH (worth $6000) as collateral, resulting in 83.3% LTV ratio. This is a lending operation, not a trading execution.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"This request involves borrowing/lending operations rather than trading execution. Please specify the lending protocol (Aave, Compound, etc.) and confirm the borrowing terms and collateral requirements.\"\n}",
+      "durationMs": 17412,
+      "grade": {
+        "pass": true,
+        "confidence": 0.860687432867884,
+        "score": 0.8033082706766917,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.04857142857142857,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.09473684210526316,
+          "risk_controls": 0.12,
+          "follow_up": 0,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lending",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "usd",
+          "venue": "defi_lending_protocol",
+          "risk_controls": {
+            "position_size_limit": 5000,
+            "slippage_tolerance": 0.5
+          },
+          "reasoning": "User wants to borrow 5000 USDC using 2 ETH (worth $6000) as collateral, resulting in 83.3% LTV ratio. This is a lending operation, not a trading execution.",
+          "requires_follow_up": true,
+          "follow_up_description": "This request involves borrowing/lending operations rather than trading execution. Please specify the lending protocol (Aave, Compound, etc.) and confirm the borrowing terms and collateral requirements."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L5-005",
+      "raw": "{\n  \"intent\": \"stake\",\n  \"order_type\": \"stake\",\n  \"asset\": \"ETH\",\n  \"size\": 10,\n  \"unit\": \"ETH\",\n  \"venue\": \"lido\",\n  \"venue_name\": \"Lido Protocol\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": \"50 gwei\"\n  },\n  \"reasoning\": \"Staking 10 ETH through Lido Protocol to receive stETH liquid staking tokens, which represent staked ETH and accrue yield while maintaining liquidity.\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 23390,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9717788461538461,
+        "score": 0.9146153846153846,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.02461538461538462,
+          "risk_controls": 0.06,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "stake",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "ETH",
+          "venue": "lido",
+          "venue_name": "Lido Protocol",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "max_gas": "50 gwei"
+          },
+          "reasoning": "Staking 10 ETH through Lido Protocol to receive stETH liquid staking tokens, which represent staked ETH and accrue yield while maintaining liquidity.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"call_option\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"contracts\",\n  \"price\": \"market\",\n  \"venue\": \"options_exchange\",\n  \"venue_name\": \"ETH Options Market\",\n  \"risk_controls\": {\n    \"stop_loss\": \"50%\",\n    \"take_profit\": \"200%\",\n    \"slippage_tolerance\": \"5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"10% of portfolio\"\n  },\n  \"follow_up\": \"Monitor ETH price movement and option Greeks. Consider rolling or closing position if ETH approaches $3,500 strike or if time decay accelerates.\",\n  \"reasoning\": \"Purchasing out-of-the-money call options on ETH with $3,500 strike price, 30 days to expiration. This is a bullish strategy betting on ETH price appreciation above $3,500 within the next month. Current ETH price is $3,000, making these calls moderately out-of-the-money with potential for significant gains if ETH rallies.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Track ETH price action, implied volatility, and time decay. Monitor position P&L and consider exit strategies if ETH fails to move higher or if volatility crush occurs.\"\n}",
+      "durationMs": 7231,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8469642857142857,
+        "score": 0.7971428571428572,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "call_option",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "contracts",
+          "price": "market",
+          "venue": "options_exchange",
+          "venue_name": "ETH Options Market",
+          "risk_controls": {
+            "stop_loss": "50%",
+            "take_profit": "200%",
+            "slippage_tolerance": "5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "10% of portfolio"
+          },
+          "follow_up": "Monitor ETH price movement and option Greeks. Consider rolling or closing position if ETH approaches $3,500 strike or if time decay accelerates.",
+          "reasoning": "Purchasing out-of-the-money call options on ETH with $3,500 strike price, 30 days to expiration. This is a bullish strategy betting on ETH price appreciation above $3,500 within the next month. Current ETH price is $3,000, making these calls moderately out-of-the-money with potential for significant gains if ETH rallies.",
+          "requires_follow_up": true,
+          "follow_up_description": "Track ETH price action, implied volatility, and time decay. Monitor position P&L and consider exit strategies if ETH fails to move higher or if volatility crush occurs."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"dca_setup\",\n  \"order_type\": \"recurring\",\n  \"asset\": \"BTC\",\n  \"size\": 500,\n  \"unit\": \"usd\",\n  \"venue\": \"binance\",\n  \"venue_name\": \"Binance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": 30\n  },\n  \"follow_up\": \"schedule_dca_orders\",\n  \"reasoning\": \"Setting up recurring DCA strategy to purchase $500 worth of BTC weekly for 3 months (12-13 purchases total). This systematic approach helps average out price volatility over time.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"DCA setup requires scheduling configuration: specify exact weekly execution times, confirm payment method for $500 purchases, set up automatic funding source, and establish duration end date. Each weekly execution will be a separate market order for $500 worth of BTC at prevailing market prices.\"\n}",
+      "durationMs": 95682,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9532142857142857,
+        "score": 0.8971428571428571,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "dca_setup",
+          "order_type": "recurring",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "binance",
+          "venue_name": "Binance",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "max_gas": 30
+          },
+          "follow_up": "schedule_dca_orders",
+          "reasoning": "Setting up recurring DCA strategy to purchase $500 worth of BTC weekly for 3 months (12-13 purchases total). This systematic approach helps average out price volatility over time.",
+          "requires_follow_up": true,
+          "follow_up_description": "DCA setup requires scheduling configuration: specify exact weekly execution times, confirm payment method for $500 purchases, set up automatic funding source, and establish duration end date. Each weekly execution will be a separate market order for $500 worth of BTC at prevailing market prices."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": 1000,\n  \"unit\": \"usd\",\n  \"price\": 40000,\n  \"venue\": \"binance\",\n  \"venue_name\": \"Binance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"position_size_limit\": 6000\n  },\n  \"follow_up\": \"Execute ladder buy orders at $41k, $42k, $43k, $44k, and $45k\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"This is the first order in a 6-order ladder strategy. Continue with buy orders at $41k, $42k, $43k, $44k, and $45k, each for $1,000 USD worth of BTC to complete the ladder from $40k to $45k.\",\n  \"reasoning\": \"Creating ladder buy orders for BTC from $40k to $45k in $1,000 increments. Starting with the lowest price point ($40k) to establish initial position before moving up the ladder.\"\n}",
+      "durationMs": 21884,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8326530612244898,
+        "score": 0.7771428571428571,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": 1000,
+          "unit": "usd",
+          "price": 40000,
+          "venue": "binance",
+          "venue_name": "Binance",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "position_size_limit": 6000
+          },
+          "follow_up": "Execute ladder buy orders at $41k, $42k, $43k, $44k, and $45k",
+          "requires_follow_up": true,
+          "follow_up_description": "This is the first order in a 6-order ladder strategy. Continue with buy orders at $41k, $42k, $43k, $44k, and $45k, each for $1,000 USD worth of BTC to complete the ladder from $40k to $45k.",
+          "reasoning": "Creating ladder buy orders for BTC from $40k to $45k in $1,000 increments. Starting with the lowest price point ($40k) to establish initial position before moving up the ladder."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L6-004",
+      "raw": "{\n  \"intent\": \"trailing_stop\",\n  \"order_type\": \"trailing_stop\",\n  \"asset\": \"BTC\",\n  \"size\": 0.5,\n  \"unit\": \"BTC\",\n  \"price\": 42750,\n  \"venue\": \"exchange\",\n  \"risk_controls\": {\n    \"stop_loss\": 42750,\n    \"slippage_tolerance\": 0.05\n  },\n  \"reasoning\": \"Setting trailing stop 5% below current BTC market price of $45,000. Initial stop price calculated at $42,750 (5% below market). The stop will trail upward as BTC price increases, maintaining 5% distance, but will not move downward if price decreases.\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 7468,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9934375000000001,
+        "score": 0.935,
+        "fieldScores": {
+          "intent": 0.16000000000000003,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "trailing_stop",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "BTC",
+          "price": 42750,
+          "venue": "exchange",
+          "risk_controls": {
+            "stop_loss": 42750,
+            "slippage_tolerance": 0.05
+          },
+          "reasoning": "Setting trailing stop 5% below current BTC market price of $45,000. Initial stop price calculated at $42,750 (5% below market). The stop will trail upward as BTC price increases, maintaining 5% distance, but will not move downward if price decreases.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L6-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"TWAP\",\n  \"asset\": \"ETH\",\n  \"size\": 10,\n  \"unit\": \"ETH\",\n  \"venue\": \"1inch\",\n  \"venue_name\": \"1inch Aggregation Protocol\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": 10\n  },\n  \"follow_up\": \"Execute over 4 hours with equal time intervals (approximately every 15 minutes)\",\n  \"reasoning\": \"TWAP order to sell 10 ETH over 4 hours to minimize market impact and achieve average market price\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor execution over 4-hour period with regular interval updates and automatic rebalancing\"\n}",
+      "durationMs": 11085,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8035714285714287,
+        "score": 0.9000000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0,
+          "duration": 0.2,
+          "risk_controls": 0.08,
+          "follow_up_description": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "TWAP",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "ETH",
+          "venue": "1inch",
+          "venue_name": "1inch Aggregation Protocol",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "max_gas": "30 gwei",
+            "position_size_limit": 10
+          },
+          "follow_up": "Execute over 4 hours with equal time intervals (approximately every 15 minutes)",
+          "reasoning": "TWAP order to sell 10 ETH over 4 hours to minimize market impact and achieve average market price",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor execution over 4-hour period with regular interval updates and automatic rebalancing"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L7-001",
+      "raw": "{\n  \"intent\": \"flash_loan_arbitrage_analysis\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 100000,\n  \"venue\": \"cross_dex\",\n  \"venue_name\": \"Uniswap_V3_SushiSwap_1inch\",\n  \"reasoning\": \"Analyzed price discrepancies across major DEXes: BTC shows 2.1% spread ($44,550 vs $45,000), ETH 1.8% spread ($2,940 vs $2,994), stETH 1.2% spread ($2,952 vs $2,990). With 30 gwei gas costs (~0.03 ETH per swap), profitable arbitrage exists on trades >$50K. Recommended flash loan size of $100K capitalizes on top 3 opportunities while maintaining 15% gas buffer. Net expected profit: $2,400-3,200 after fees.\"\n}",
+      "durationMs": 17263,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07615384615384616,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.045,
+          "venue_name": 0.004347826086956519,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "flash_loan_arbitrage_analysis",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 100000,
+          "venue": "cross_dex",
+          "venue_name": "Uniswap_V3_SushiSwap_1inch",
+          "reasoning": "Analyzed price discrepancies across major DEXes: BTC shows 2.1% spread ($44,550 vs $45,000), ETH 1.8% spread ($2,940 vs $2,994), stETH 1.2% spread ($2,952 vs $2,990). With 30 gwei gas costs (~0.03 ETH per swap), profitable arbitrage exists on trades >$50K. Recommended flash loan size of $100K capitalizes on top 3 opportunities while maintaining 15% gas buffer. Net expected profit: $2,400-3,200 after fees."
+        },
+        "failureReasons": [
+          "l7_001_size_must_be_flash_loan_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L7-002",
+      "raw": "{\n  \"intent\": \"unwind_underwater_position\",\n  \"order_type\": \"market_sell\",\n  \"asset\": \"ETH\",\n  \"size\": 2.33,\n  \"unit\": \"eth\",\n  \"venue\": \"uniswap_v3\",\n  \"venue_name\": \"Uniswap V3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.5,\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"repay_debt_and_withdraw_collateral\",\n  \"reasoning\": \"Position is underwater with 5 ETH collateral (15,000 USDC value) backing 7,000 USDC debt. To unwind, sell 2.33 ETH for ~7,000 USDC to repay debt, then withdraw remaining 2.67 ETH collateral.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After selling ETH for USDC, use proceeds to repay 7,000 USDC debt and withdraw remaining 2.67 ETH collateral from lending protocol\"\n}",
+      "durationMs": 22260,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.033333333333333326,
+          "order_type": 0.033999999999999996,
+          "asset": 0,
+          "size": 0
+        },
+        "normalizedResponse": {
+          "intent": "unwind_underwater_position",
+          "order_type": "market_sell",
+          "asset": "ETH",
+          "size": 2.33,
+          "unit": "eth",
+          "venue": "uniswap_v3",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {
+            "slippage_tolerance": 0.5,
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "repay_debt_and_withdraw_collateral",
+          "reasoning": "Position is underwater with 5 ETH collateral (15,000 USDC value) backing 7,000 USDC debt. To unwind, sell 2.33 ETH for ~7,000 USDC to repay debt, then withdraw remaining 2.67 ETH collateral.",
+          "requires_follow_up": true,
+          "follow_up_description": "After selling ETH for USDC, use proceeds to repay 7,000 USDC debt and withdraw remaining 2.67 ETH collateral from lending protocol"
+        },
+        "failureReasons": [
+          "size_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"none\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 10000,\n  \"venue\": \"uniswap_v3\",\n  \"il_percentage\": 20.1,\n  \"il_loss_usd\": 2010,\n  \"net_gain_usd\": 837,\n  \"net_return_pct\": 8.37,\n  \"hold_value\": 11666.67,\n  \"lp_value\": 12513.33,\n  \"reasoning\": \"Initial 50/50 $10k LP at $3k ETH: 1.6667 ETH + $5k USDC. At $5k, price ratio r=1.6667. IL = (2*sqrt(r)/(1+r)-1) = -0.201 => 20.1% loss on ETH portion. IL loss = 0.201*5000 = $1,010. Fees $847 offset IL, so net gain = $847 - $1,010 = -$163. Hold value = $5k + $6,666.67 = $11,666.67. LP value = $10,000 - $1,010 + $847 = $9,837. Net return = -1.63%.\"\n}",
+      "durationMs": 10379,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.042352941176470586,
+          "order_type": 0.00625,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0,
+          "il_percentage": 0.0625,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0.0375,
+          "hold_value": 0.00375,
+          "lp_value": 0.01125,
+          "reasoning": 0.00704626334519573
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "none",
+          "asset": "ETH/USDC",
+          "size": 10000,
+          "venue": "uniswap_v3",
+          "il_percentage": 20.1,
+          "il_loss_usd": 2010,
+          "net_gain_usd": 837,
+          "net_return_pct": 8.37,
+          "hold_value": 11666.67,
+          "lp_value": 12513.33,
+          "reasoning": "Initial 50/50 $10k LP at $3k ETH: 1.6667 ETH + $5k USDC. At $5k, price ratio r=1.6667. IL = (2*sqrt(r)/(1+r)-1) = -0.201 => 20.1% loss on ETH portion. IL loss = 0.201*5000 = $1,010. Fees $847 offset IL, so net gain = $847 - $1,010 = -$163. Hold value = $5k + $6,666.67 = $11,666.67. LP value = $10,000 - $1,010 + $847 = $9,837. Net return = -1.63%."
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_net_gain",
+          "lp_net_return_inconsistent_il_loss",
+          "lp_net_return_il_pct_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"portfolio_analysis\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"DeFi Portfolio\",\n  \"blended_apy\": 5.89,\n  \"weighted_risk_score\": 1.7,\n  \"excess_return\": 0.89,\n  \"risk_adjusted_ratio\": 0.5235294117647059,\n  \"total_annual_yield_usd\": 5890,\n  \"allocation\": {\n    \"aave\": 50000,\n    \"curve\": 30000,\n    \"yearn\": 20000\n  },\n  \"reasoning\": \"Blended APY = 0.5*4.2 + 0.3*6.8 + 0.2*8.1 = 5.89%. Weighted risk = 0.5*1 + 0.3*2 + 0.2*3 = 1.7. Excess return = 5.89 - 5.0 = 0.89%. Risk-adjusted ratio = 0.89 / 1.7 \u2248 0.5235. Total annual yield USD = 100,000 * 5.89% = 5,890.\"\n}",
+      "durationMs": 35410,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.019285714285714285,
+          "order_type": 0.03,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.004285714285714286,
+          "blended_apy": 0.09,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.1,
+          "risk_adjusted_ratio": 0.05333333333333333,
+          "total_annual_yield_usd": 0.04,
+          "allocation": 0,
+          "reasoning": 0.013870967741935485
+        },
+        "normalizedResponse": {
+          "intent": "portfolio_analysis",
+          "order_type": "analysis",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "DeFi Portfolio",
+          "blended_apy": 5.89,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.89,
+          "risk_adjusted_ratio": 0.5235294117647059,
+          "total_annual_yield_usd": 5890,
+          "allocation": {
+            "aave": 50000,
+            "curve": 30000,
+            "yearn": 20000
+          },
+          "reasoning": "Blended APY = 0.5*4.2 + 0.3*6.8 + 0.2*8.1 = 5.89%. Weighted risk = 0.5*1 + 0.3*2 + 0.2*3 = 1.7. Excess return = 5.89 - 5.0 = 0.89%. Risk-adjusted ratio = 0.89 / 1.7 \u2248 0.5235. Total annual yield USD = 100,000 * 5.89% = 5,890."
+        },
+        "failureReasons": [
+          "portfolio_efficiency_inconsistent_blended_apy",
+          "portfolio_efficiency_inconsistent_excess_return",
+          "portfolio_efficiency_inconsistent_risk_ratio"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.52,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.76,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"CowSwap\",\n  \"worst_option\": \"Uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"cowswap\",\n  \"venue_name\": \"CowSwap (MEV Protected)\",\n  \"reasoning\": \"Computed slippage, gas, and MEV costs for each venue as dollar amounts and percentages of the $300k gross value. Net proceeds = gross - total cost. CowSwap yields the highest net proceeds ($298,800) due to zero gas and MEV despite slightly higher slippage; Uniswap is worst ($295,450) due to high MEV. Savings vs worst = $3,350.\"\n}",
+      "durationMs": 32396,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9992571013183685,
+        "score": 0.9820708612465539,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.002105263157894737,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0,
+          "venue_name": 0.0003333333333333334,
+          "reasoning": 0.00025806451612903227
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.52,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.76,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "cowswap",
+          "venue_name": "CowSwap (MEV Protected)",
+          "reasoning": "Computed slippage, gas, and MEV costs for each venue as dollar amounts and percentages of the $300k gross value. Net proceeds = gross - total cost. CowSwap yields the highest net proceeds ($298,800) due to zero gas and MEV despite slightly higher slippage; Uniswap is worst ($295,450) due to high MEV. Savings vs worst = $3,350."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-001",
+      "raw": "{\n  \"intent\": \"deploy\",\n  \"order_type\": \"blended_allocation\",\n  \"asset\": \"USDC\",\n  \"size\": 5000000,\n  \"venue\": \"pendle_convex\",\n  \"expected_value\": 0.133,\n  \"unit\": \"usd\",\n  \"allocation\": {\n    \"pendle_pt_steth\": 3500000,\n    \"convex_curve_3pool\": 1500000\n  },\n  \"reasoning\": \"Allocated $3.5M to Pendle PT-stETH (70% cap) and $1.5M to Convex-boosted Curve 3pool (35% min). Pendle discount yields 3% over 90 days (12% annualized). Convex boosted APR is 10.5% (4.2% base * 2.5) with 16-week vlCVX lock cost of ~0.96% annualized and 0.05% entry slippage, net ~9.59% before gas. Blended net yield ~13.3% annualized after gas allocation.\"\n}",
+      "durationMs": 10385,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.010434782608695655,
+          "order_type": 0.010526315789473684,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.002500000000000001,
+          "venue_name": 0,
+          "expected_value": 0,
+          "unit": 0.001428571428571428,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "deploy",
+          "order_type": "blended_allocation",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "pendle_convex",
+          "expected_value": 0.133,
+          "unit": "usd",
+          "allocation": {
+            "pendle_pt_steth": 3500000,
+            "convex_curve_3pool": 1500000
+          },
+          "reasoning": "Allocated $3.5M to Pendle PT-stETH (70% cap) and $1.5M to Convex-boosted Curve 3pool (35% min). Pendle discount yields 3% over 90 days (12% annualized). Convex boosted APR is 10.5% (4.2% base * 2.5) with 16-week vlCVX lock cost of ~0.96% annualized and 0.05% entry slippage, net ~9.59% before gas. Blended net yield ~13.3% annualized after gas allocation."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range",
+          "multi_protocol_liquidity_constraint"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 651.22,\n  \"cost_breakdown\": {\n    \"gas\": 138.62,\n    \"fees\": 180,\n    \"expected_mev_loss\": 330\n  },\n  \"reasoning\": \"Strategy A total cost: $180 setup + $138.62 gas (320k units \u00d7 152 gwei) + $330 expected MEV loss (1.5% residual \u00d7 $22k) + $2.60 expected retry cost (4% failure \u00d7 $65) = $651.22. Strategy B total cost: $87.21 gas (180k units \u00d7 170 gwei) + $22,000 MEV loss = $22,087.21. Strategy A is optimal with 97% lower cost.\"\n}",
+      "durationMs": 9826,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.8,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.2,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 651.22,
+          "cost_breakdown": {
+            "gas": 138.62,
+            "fees": 180,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Strategy A total cost: $180 setup + $138.62 gas (320k units \u00d7 152 gwei) + $330 expected MEV loss (1.5% residual \u00d7 $22k) + $2.60 expected retry cost (4% failure \u00d7 $65) = $651.22. Strategy B total cost: $87.21 gas (180k units \u00d7 170 gwei) + $22,000 MEV loss = $22,087.21. Strategy A is optimal with 97% lower cost."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-003",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"rebalance\",\n  \"asset\": \"rebalance\",\n  \"size\": 0,\n  \"venue\": \"multi\",\n  \"portfolio_volatility\": 0.501285,\n  \"risk_contributions\": {\n    \"btc_pct\": 22.94,\n    \"eth_pct\": 23.91,\n    \"bonds_pct\": 0.23\n  },\n  \"btc_contribution_pct\": 22.94,\n  \"eth_contribution_pct\": 23.91,\n  \"bonds_contribution_pct\": 0.23,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"btc\": 333333,\n    \"eth\": 333333,\n    \"bonds\": 333333\n  },\n  \"target_btc_usd\": 333333,\n  \"target_eth_usd\": 333333,\n  \"target_bonds_usd\": 333333,\n  \"transactions\": [\n    {\n      \"action\": \"sell\",\n      \"asset\": \"BTC\",\n      \"amount_usd\": 67000,\n      \"post_slippage_usd\": 66665\n    },\n    {\n      \"action\": \"sell\",\n      \"asset\": \"ETH\",\n      \"amount_usd\": 17000,\n      \"post_slippage_usd\": 16915\n    },\n    {\n      \"action\": \"buy\",\n      \"asset\": \"bonds\",\n      \"amount_usd\": 84000,\n      \"post_slippage_usd\": 84084\n    }\n  ],\n  \"btc_sell_amount\": 67000,\n  \"eth_sell_amount\": 17000,\n  \"bonds_buy_amount\": 84000,\n  \"btc_post_slippage\": 66665,\n  \"eth_post_slippage\": 16915,\n",
+      "durationMs": 25642,
+      "grade": {
+        "pass": false,
+        "confidence": 0.15234036136363635,
+        "score": 0.2861174242424242,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0.02,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.017999999999999995,
+          "eth_contribution_pct": 0.036,
+          "bonds_contribution_pct": 0.045,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0,
+          "target_eth_usd": 0,
+          "target_bonds_usd": 0,
+          "transactions": 0,
+          "btc_sell_amount": 0.00835,
+          "eth_sell_amount": 0.011133333333333334,
+          "bonds_buy_amount": 0.0083,
+          "btc_post_slippage": 0.0016666666666666663,
+          "eth_post_slippage": 0.003333333333333334,
+          "bonds_post_slippage": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "rebalance",
+          "asset": "rebalance",
+          "size": "0",
+          "venue": "multi",
+          "portfolio_volatility": 0.501285,
+          "btc_pct": 22.94,
+          "eth_pct": 23.91,
+          "bonds_pct": 0.23,
+          "btc_contribution_pct": 22.94,
+          "eth_contribution_pct": 23.91,
+          "bonds_contribution_pct": 0.23,
+          "rebalancing_required": true,
+          "btc": 333333,
+          "eth": 333333,
+          "bonds": 333333,
+          "target_btc_usd": 333333,
+          "target_eth_usd": 333333,
+          "target_bonds_usd": 333333,
+          "action": "sell",
+          "amount_usd": 67000,
+          "post_slippage_usd": 66665,
+          "btc_sell_amount": 67000,
+          "eth_sell_amount": 17000,
+          "bonds_buy_amount": 84000,
+          "btc_post_slippage": 66665,
+          "eth_post_slippage": 16915,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restaking_strategy_selection\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"rationale\": \"Selected EigenLayer AVS restaking as optimal strategy. Calculated effective borrowing cost on portfolio as 2.75% (50 ETH borrowed at 5.5% APR on 100 ETH principal). EigenLayer provides 7.0% total staking APR (4.2% base + 2.8% additional), resulting in 4.25% net APR after borrowing costs. This exceeds the 1.0% minimum target while maintaining 3% slashing risk within 4% tolerance and 7-day lock period meeting 8-day collateral requirement. Symbiotic fails due to 5% slashing risk and 14-day lock period. Lido-only yields only 1.45% net APR.\",\n  \"decision_factors\": \"EigenLayer AVS restaking maximizes net return (4.25%) while satisfying all constraints: 3% slashing risk < 4% tolerance, 7-day lock < 8-day requirement, and net APR 4.25% > 1.0% target. Symbiotic excluded for exceeding risk tolerance and lock period. Lido-only provides lower 1.45% net APR.\",\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 4.25,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 1.45,\n  \"option_a_outperformance\": 2.8\n}",
+      "durationMs": 71720,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7642011834319526,
+        "score": 0.7947692307692307,
+        "fieldScores": {
+          "intent": 0.01076923076923077,
+          "order_type": 0,
+          "asset": 0.024,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restaking_strategy_selection",
+          "order_type": "analysis",
+          "asset": "ETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "rationale": "Selected EigenLayer AVS restaking as optimal strategy. Calculated effective borrowing cost on portfolio as 2.75% (50 ETH borrowed at 5.5% APR on 100 ETH principal). EigenLayer provides 7.0% total staking APR (4.2% base + 2.8% additional), resulting in 4.25% net APR after borrowing costs. This exceeds the 1.0% minimum target while maintaining 3% slashing risk within 4% tolerance and 7-day lock period meeting 8-day collateral requirement. Symbiotic fails due to 5% slashing risk and 14-day lock period. Lido-only yields only 1.45% net APR.",
+          "decision_factors": "EigenLayer AVS restaking maximizes net return (4.25%) while satisfying all constraints: 3% slashing risk < 4% tolerance, 7-day lock < 8-day requirement, and net APR 4.25% > 1.0% target. Symbiotic excluded for exceeding risk tolerance and lock period. Lido-only provides lower 1.45% net APR.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.0034,\n    \"deleverage_2x\": 0.0001,\n    \"deleverage_1_5x\": 0.00000007\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 50.45,\n    \"deleverage_2x\": 42.30,\n    \"deleverage_1_5x\": 36.54,\n    \"close\": 0\n  },\n  \"reasoning\": \"Computed weekly barrier-hitting probabilities under GBM with zero drift using P(hit)=2N(-|ln(S0/B)|/(\u03c3\u221aT)) with \u03c3_weekly=0.1317. Expected values = weekly carry \u2212 $1000\u00d7P(liquidation). Maintain 3\u00d7 has EV\u2248$50.45 but P(liquidation)=0.34% > 0.5% threshold. Deleverage to 2\u00d7 keeps P(liquidation)=0.01% < 0.5% with EV\u2248$42.30, the best risk-adjusted choice.\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 42015,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0034,
+            "deleverage_2x": 0.0001,
+            "deleverage_1_5x": 7e-08
+          },
+          "expected_values": {
+            "maintain_3x": 50.45,
+            "deleverage_2x": 42.3,
+            "deleverage_1_5x": 36.54,
+            "close": 0
+          },
+          "reasoning": "Computed weekly barrier-hitting probabilities under GBM with zero drift using P(hit)=2N(-|ln(S0/B)|/(\u03c3\u221aT)) with \u03c3_weekly=0.1317. Expected values = weekly carry \u2212 $1000\u00d7P(liquidation). Maintain 3\u00d7 has EV\u2248$50.45 but P(liquidation)=0.34% > 0.5% threshold. Deleverage to 2\u00d7 keeps P(liquidation)=0.01% < 0.5% with EV\u2248$42.30, the best risk-adjusted choice.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"fixed_yield\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Selected Pendle PT strategy for highest APY (12.3%) with fixed 90-day yield, eliminating leverage and depeg risks while perfectly matching the investment horizon. Strategy B's 3x leverage approach, despite 11.9% APY, carries liquidation risk if USDe depegs >2%, exceeding medium risk tolerance. Strategy D's hybrid approach reduces APY to 11.25% while introducing unnecessary leverage complexity. Strategy C maximizes returns within constraints.\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\": {\n    \"B\": \"Leveraged loop strategy carries liquidation risk with 3x leverage and 2% depeg threshold, exceeding medium risk tolerance despite 11.9% APY\",\n    \"D\": \"Hybrid strategy reduces expected APY to 11.25% while introducing unnecessary leverage complexity on 50K allocation, underperforming pure Pendle approach\",\n    \"A\": \"Simple stake yields only 8.5% APY, significantly underperforming available fixed-yield options\"\n  }\n}",
+      "durationMs": 20203,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Selected Pendle PT strategy for highest APY (12.3%) with fixed 90-day yield, eliminating leverage and depeg risks while perfectly matching the investment horizon. Strategy B's 3x leverage approach, despite 11.9% APY, carries liquidation risk if USDe depegs >2%, exceeding medium risk tolerance. Strategy D's hybrid approach reduces APY to 11.25% while introducing unnecessary leverage complexity. Strategy C maximizes returns within constraints.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "Leveraged loop strategy carries liquidation risk with 3x leverage and 2% depeg threshold, exceeding medium risk tolerance despite 11.9% APY",
+            "D": "Hybrid strategy reduces expected APY to 11.25% while introducing unnecessary leverage complexity on 50K allocation, underperforming pure Pendle approach",
+            "A": "Simple stake yields only 8.5% APY, significantly underperforming available fixed-yield options"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-007",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"stETH\",\n  \"size\": 2500,\n  \"venue\": \"1inch\",\n  \"venue_name\": \"1inch Fusion\",\n  \"expected_value\": -134368.75,\n  \"unit\": \"USD_total_cost\",\n  \"reasoning\": \"Calculated total execution costs: Common costs (spread 0.25%, price impact 0.35%, dynamic widening 0.7475%) = $100,731.25 on $7.475M notional. Venue costs: 1inch Fusion protocol fee 0.05% ($3,737.50) + partial MEV protection extraction 0.4% ($29,900) = $33,637.50. Total cost = $134,368.75. CowSwap excluded due to 2,000 stETH capacity limit causing 24-minute settlement (exceeds 15-min deadline). 1inch chosen over Uniswap V3 ($182,956.25 total cost) for lower cost while meeting deadline and capacity requirements.\",\n  \"constraint_awareness\": \"Settlement within 15-minute deadline, single execution window, full 2,500 stETH quantity, no venue splitting, cost minimization priority.\"\n}",
+      "durationMs": 13596,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8213333333333334,
+        "score": 0.768,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0.5,
+          "expected_value": 0.059999999999999984,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "1inch",
+          "venue_name": "1inch Fusion",
+          "expected_value": -134368.75,
+          "unit": "USD_total_cost",
+          "reasoning": "Calculated total execution costs: Common costs (spread 0.25%, price impact 0.35%, dynamic widening 0.7475%) = $100,731.25 on $7.475M notional. Venue costs: 1inch Fusion protocol fee 0.05% ($3,737.50) + partial MEV protection extraction 0.4% ($29,900) = $33,637.50. Total cost = $134,368.75. CowSwap excluded due to 2,000 stETH capacity limit causing 24-minute settlement (exceeds 15-min deadline). 1inch chosen over Uniswap V3 ($182,956.25 total cost) for lower cost while meeting deadline and capacity requirements.",
+          "constraint_awareness": "Settlement within 15-minute deadline, single execution window, full 2,500 stETH quantity, no venue splitting, cost minimization priority."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"risk_parity_rebalance\",\n  \"strategy\": \"minimize_fees\",\n  \"execution_plan\": [\n    {\n      \"asset\": \"BTC\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 22500,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 22.5\n   ",
+      "durationMs": 11301,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "execution_plan": 0,
+          "fee_summary": 0,
+          "rationale": 0,
+          "constraints_met": 0
+        },
+        "normalizedResponse": {
+          "intent": "risk_parity_rebalance",
+          "strategy": "minimize_fees",
+          "asset": "BTC",
+          "venue": "interactive_brokers",
+          "notional": 22500,
+          "fee_rate": 0.001,
+          "fee_amount": 22.5,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "l8_008_missing_execution_plan"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-009",
+      "raw": "{\n  \"decision\": \"execute\",\n  \"reasoning\": {\n    \"capital_allocation\": {\n      \"spot_usd\": 50000,\n      \"margin_usd\": 50000\n    },\n    \"position_size_eth\": 20.40816326530612,\n    \"perp_notional_usd\": 50000,\n    \"funding_revenue_daily\": 120,\n    \"costs_entry\": 20.4,\n    \"break_even_periods\": 0.85,\n    \"annualized_funding_rate_pct\": 10.95,\n    \"annual_roi_on_total_capital_pct\": 109.5\n  },\n  \"execution\": {\n    \"step_1\": \"transfer_50000_usdt_to_binance_for_margin\",\n    \"step_2\": \"buy_20.40816326530612_eth_spot_coinbase_maker\",\n    \"step_3\": \"short_20.40816326530612_eth_perp_binance_maker\",\n    \"delta_neutral\": true,\n    \"exit_trigger\": \"funding turns negative or basis reverses\"\n  }\n}",
+      "durationMs": 8642,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 50000,
+              "margin_usd": 50000
+            },
+            "position_size_eth": 20.40816326530612,
+            "perp_notional_usd": 50000,
+            "funding_revenue_daily": 120,
+            "costs_entry": 20.4,
+            "break_even_periods": 0.85,
+            "annualized_funding_rate_pct": 10.95,
+            "annual_roi_on_total_capital_pct": 109.5
+          },
+          "execution": {
+            "step_1": "transfer_50000_usdt_to_binance_for_margin",
+            "step_2": "buy_20.40816326530612_eth_spot_coinbase_maker",
+            "step_3": "short_20.40816326530612_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding turns negative or basis reverses"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "minimax/minimax-m2",
+      "modelLabel": "openrouter:minimax/minimax-m2",
+      "questionId": "L8-010",
+      "raw": "{\"intent\": \"construct_collar\", \"order_type\": \"collar\", \"asset\": \"BTC\", \"size\": 10, \"call_strike\": 49500, \"put_strike\": 40500, \"net_cost_per_btc\": -60, \"venue\": \"options_exchange\", \"venue_name\": \"Deribit\", \"expiry_days\": 30, \"reasoning\": \"Selected 10% OTM put ($40,500) and 10% OTM call ($49,500) collar. Net cost of -$60 per BTC minimizes premium outlay while providing meaningful downside protection to $40,500 (10% below current) and preserving upside to $49,500 (10% above). This balances the expensive put skew with reasonable protection and maintains upside participation aligned with portfolio's 80% upside capture ratio and historical 90th percentile 18% move.\"}",
+      "durationMs": 24467,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8606250000000002,
+        "score": 0.8100000000000002,
+        "fieldScores": {
+          "intent": 0.06,
+          "order_type": 0,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.2,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.03,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "construct_collar",
+          "order_type": "collar",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 40500,
+          "net_cost_per_btc": -60,
+          "venue": "options_exchange",
+          "venue_name": "Deribit",
+          "expiry_days": 30,
+          "reasoning": "Selected 10% OTM put ($40,500) and 10% OTM call ($49,500) collar. Net cost of -$60 per BTC minimizes premium outlay while providing meaningful downside protection to $40,500 (10% below current) and preserving upside to $49,500 (10% above). This balances the expensive put skew with reasonable protection and maintains upside participation aligned with portfolio's 80% upside capture ratio and historical 90th percentile 18% move."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}
