@@ -106,6 +106,9 @@ function inferProvider(modelId: string): Provider {
   if (modelId === 'moonshotai/kimi-k2-thinking') {
     return 'openrouter';
   }
+  if (modelId.startsWith('minimax/')) {
+    return 'openrouter';
+  }
   if (modelId.startsWith('x-ai/')) {
     return 'openrouter';
   }
