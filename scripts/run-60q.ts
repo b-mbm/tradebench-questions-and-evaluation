@@ -67,6 +67,31 @@ const ALL_QUESTIONS: BenchmarkQuestion[] = [
   ...SCHEMA_QUESTIONS.map(question => ({ ...question, type: 'schema' as const })),
 ];
 
+function buildL7_003FinalPrompts(): ExecuteOnePrompts {
+  const system = [
+    "You are a trading assistant.",
+    "Return ONLY a single JSON object. Do not include explanations or extra text.",
+    "If unsure, use 0 for numbers and short placeholders for strings. Do not use null.",
+  ].join("\n");
+
+  const user = [
+    "Final attempt for question L7-003.",
+    "",
+    "Task: Compute impermanent loss and fee impact for an ETH/USDC LP and return net results on the initial $10,000 position.",
+    "",
+    "Return ONE JSON object with exactly these keys:",
+    "intent, order_type, asset, size, venue,",
+    "il_percentage, il_loss_usd, net_gain_usd, net_return_pct,",
+    "hold_value, lp_value, reasoning.",
+    "",
+    "Use numeric JSON values for size, il_percentage, il_loss_usd, net_gain_usd, net_return_pct, hold_value, lp_value.",
+    "Use a short string for reasoning.",
+    "JSON only.",
+  ].join("\n");
+
+  return { system, user };
+}
+
 type EvaluationRow = {
   modelId: string;
   modelLabel: string;
@@ -148,7 +173,15 @@ async function runModelOnQuestion(
       if (noCall) {
         throw new Error("--no-call scaffolding mode enabled");
       }
-      let prompts = isL0Question(question) ? buildL0Prompt(question) : buildExecuteOnePrompts(question);
+      let prompts: ExecuteOnePrompts;
+      if (isL0Question(question)) {
+        prompts = buildL0Prompt(question);
+      } else if (question.id === "L7-003" && attempt === thisMaxAttempts) {
+        // Use a compact, JSON-only prompt for the final attempt of L7-003 to reduce the chance of empty MAX_TOKENS responses.
+        prompts = buildL7_003FinalPrompts();
+      } else {
+        prompts = buildExecuteOnePrompts(question as SchemaQuestion);
+      }
       const result = await callExecuteOneModel(model.id, question, callOverrides, prompts);
       raw = result.text ?? "";
 
