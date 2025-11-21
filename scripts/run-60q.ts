@@ -87,6 +87,15 @@ type ResultFile = {
 
 type RetryCategory = "timeout" | "429" | "503" | "blank" | "parse" | "other";
 
+// Hard questions that tended to return truncated/transport errors for Gemini 3 Pro
+const HARD_SCHEMA_IDS = new Set([
+  "L7-003",
+  "L8-001",
+  "L8-005",
+  "L8-008",
+  "L8-009",
+]);
+
 function isL0Question(question: BenchmarkQuestion): question is L0Question {
   return question.type === "l0" || question.level === 0;
 }
@@ -117,7 +126,21 @@ async function runModelOnQuestion(
   let lastErr: any = null;
   let started = Date.now();
 
-  while (attempt < Math.max(1, maxAttempts)) {
+  const isHardSchema = HARD_SCHEMA_IDS.has(question.id);
+  const thisMaxAttempts = isHardSchema ? Math.max(maxAttempts, 4) : maxAttempts;
+  const thisBaseDelay = isHardSchema ? baseDelayMs * 2 : baseDelayMs;
+  const callOverrides: ExecuteOneCallOptions = {
+    ...DEFAULT_MODEL_OPTIONS,
+    ...overrides,
+  };
+  if (isHardSchema) {
+    // Keep generations concise to reduce transport/truncation risk
+    callOverrides.maxTokens = Math.min(callOverrides.maxTokens ?? DEFAULT_MODEL_OPTIONS.maxTokens ?? 2200, 512);
+    callOverrides.temperature = callOverrides.temperature ?? 0.1;
+  }
+
+  const maxLoops = Math.max(1, thisMaxAttempts);
+  while (attempt < maxLoops) {
     attempt += 1;
     started = Date.now();
     let raw = "";
@@ -126,7 +149,7 @@ async function runModelOnQuestion(
         throw new Error("--no-call scaffolding mode enabled");
       }
       let prompts = isL0Question(question) ? buildL0Prompt(question) : buildExecuteOnePrompts(question);
-      const result = await callExecuteOneModel(model.id, question, { ...DEFAULT_MODEL_OPTIONS, ...overrides }, prompts);
+      const result = await callExecuteOneModel(model.id, question, callOverrides, prompts);
       raw = result.text ?? "";
 
       let grade = isL0Question(question)
@@ -134,8 +157,8 @@ async function runModelOnQuestion(
         : gradeSchemaResponse(raw, question, rubric!);
 
       let parseFailed = !grade.normalizedResponse;
-      if (parseFailed && attempt < maxAttempts) {
-        const wait = Math.min(baseDelayMs * attempt, 8000);
+      if (parseFailed && attempt < thisMaxAttempts) {
+        const wait = Math.min(thisBaseDelay * attempt, 8000);
         await delay(wait);
         lastErr = new Error("parse failure");
         continue;
@@ -144,7 +167,7 @@ async function runModelOnQuestion(
       // Last-resort rescue for schema questions: if this is the final attempt and we still have no
       // evaluable JSON (e.g., blank/truncated), try one compact "skeleton" prompt
       // that tells the model to emit minimal, non-null JSON for the required keys.
-      if (parseFailed && attempt >= maxAttempts && !raw.trim() && !isL0Question(question)) {
+      if (parseFailed && attempt >= thisMaxAttempts && !raw.trim() && !isL0Question(question)) {
         const extra = getSchemaFinalAttemptHint((question as any).rubric_id) ||
           (
             "Final attempt: Return a minimal JSON object that satisfies the Output Requirements above. " +
@@ -187,7 +210,7 @@ async function runModelOnQuestion(
 
       // Last-resort rescue for L0 numeric questions: if blank on the final attempt,
       // synthesize a minimal JSON object so the grader can evaluate (may be wrong but evaluable).
-      if (parseFailed && attempt >= maxAttempts && !raw.trim() && isL0Question(question)) {
+      if (parseFailed && attempt >= thisMaxAttempts && !raw.trim() && isL0Question(question)) {
         const minimal = {
           final_answer: 0,
           unit: (question as any).unit || "units",
@@ -218,15 +241,15 @@ async function runModelOnQuestion(
     } catch (error) {
       lastErr = error;
       const cat = classifyError(error);
-      if (attempt < maxAttempts && ["timeout", "429", "503", "blank"].includes(cat)) {
-        const wait = Math.min(baseDelayMs * attempt, 12000);
+      if (attempt < thisMaxAttempts && ["timeout", "429", "503", "blank"].includes(cat)) {
+        const wait = Math.min(thisBaseDelay * attempt, 12000);
         await delay(wait);
         continue;
       }
       // Final-attempt rescue for schema questions when the provider returns a blank body
       // (error was thrown before we could parse). If we have a rubric skeleton, synthesize
       // minimal JSON so the row remains evaluable.
-      if (attempt >= maxAttempts && cat === "blank" && !isL0Question(question)) {
+      if (attempt >= thisMaxAttempts && cat === "blank" && !isL0Question(question)) {
         const rubricId = (question as any).rubric_id as string | undefined;
         // Lazy import to avoid circular deps at top-level
         const { RUBRIC_SCHEMA_HINTS } = await import("../src/prompts/schema-prompts");
