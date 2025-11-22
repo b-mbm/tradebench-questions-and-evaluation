@@ -1,0 +1,1901 @@
+{
+  "runAt": "2025-11-22T03:53:33.638Z",
+  "label": "submit-allenai-olmo-3-32b-think-2025-11-22T02-28-25-228Z",
+  "models": [
+    "allenai/olmo-3-32b-think"
+  ],
+  "questionIds": [
+    "L0-order_book_execution",
+    "L0-leveraged_position_sizing",
+    "L0-stop_loss_risk",
+    "L0-portfolio_rebalancing",
+    "L0-options_premium_roi",
+    "L0-dca_average_price",
+    "L0-margin_interest_calculation",
+    "L0-futures_liquidation",
+    "L0-impermanent_loss",
+    "L0-kelly_criterion",
+    "L0-cross_exchange_arbitrage",
+    "L0-funding_rate_cost",
+    "L0-options_delta_hedge",
+    "L0-tax_loss_harvesting",
+    "L0-sharpe_ratio",
+    "L0-grid_trading_profit",
+    "L0-compound_yield_farming",
+    "L0-maximum_drawdown",
+    "L0-pairs_trading_profit",
+    "L0-liquidation_cascade",
+    "L1-001",
+    "L1-002",
+    "L1-003",
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004",
+    "L3-001",
+    "L3-002",
+    "L3-003",
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005",
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005",
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005",
+    "L7-001",
+    "L7-002",
+    "L7-003",
+    "L7-004",
+    "L7-005",
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-order_book_execution",
+      "raw": "\n\n{\n  \"final_answer\": 245.625,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Fill 50 shares at $245.50\", \"Fill remaining 50 shares at $245.75\", \"Calculate weighted average: (50*245.50 + 50*245.75)/100\"]\n}",
+      "durationMs": 14741,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 245.625,
+          "unit": "USD",
+          "reasoning": [
+            "Fill 50 shares at $245.50",
+            "Fill remaining 50 shares at $245.75",
+            "Calculate weighted average: (50*245.50 + 50*245.75)/100"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-leveraged_position_sizing",
+      "raw": "{\"final_answer\":0,\"unit\":\"mBTC\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "mBTC",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-stop_loss_risk",
+      "raw": "\n\n{\n  \"final_answer\": 3000,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Calculate loss per BTC: $60,000 - $58,500 = $1,500\", \"Multiply by 2 BTC: $1,500 * 2 = $3,000\"]\n}",
+      "durationMs": 24087,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 3000,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate loss per BTC: $60,000 - $58,500 = $1,500",
+            "Multiply by 2 BTC: $1,500 * 2 = $3,000"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-portfolio_rebalancing",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-options_premium_roi",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-dca_average_price",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-margin_interest_calculation",
+      "raw": "\n\n{\n  \"final_answer\": 6500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Calculate interest: $50,000 * 8% * (90/360) = $1,000\", \"Net profit: ($57,500 - $50,000) - $1,000 = $6,500\"]\n}",
+      "durationMs": 30779,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 6500,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate interest: $50,000 * 8% * (90/360) = $1,000",
+            "Net profit: ($57,500 - $50,000) - $1,000 = $6,500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-futures_liquidation",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-impermanent_loss",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-kelly_criterion",
+      "raw": "\n\n{\n  \"final_answer\": 17500,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Calculate win/loss ratio: 800/500 = 1.6\", \"Apply Kelly formula: (0.6*1.6 - 0.4)/1.6 = 0.35\", \"Optimal position size: 0.35 * 50000 = 17500\"]\n}",
+      "durationMs": 37200,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 17500,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate win/loss ratio: 800/500 = 1.6",
+            "Apply Kelly formula: (0.6*1.6 - 0.4)/1.6 = 0.35",
+            "Optimal position size: 0.35 * 50000 = 17500"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-cross_exchange_arbitrage",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 1,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-funding_rate_cost",
+      "raw": "\n\n{\n  \"final_answer\": 1080,\n  \"unit\": \"USD\",\n  \"reasoning\": [\n    \"Calculate total hours in 30 days: 30 * 24 = 720 hours\",\n    \"Number of 8-hour periods: 720 / 8 = 90\",\n    \"Funding per period: 0.01% of (2 BTC * $60,000) = 0.0001 * 120,000 = $12\",\n    \"Total cost: 90 * $12 = $1,080\"\n  ]\n}",
+      "durationMs": 14527,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1080,
+          "unit": "USD",
+          "reasoning": [
+            "Calculate total hours in 30 days: 30 * 24 = 720 hours",
+            "Number of 8-hour periods: 720 / 8 = 90",
+            "Funding per period: 0.01% of (2 BTC * $60,000) = 0.0001 * 120,000 = $12",
+            "Total cost: 90 * $12 = $1,080"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-options_delta_hedge",
+      "raw": "\n\n{\n  \"final_answer\": 400,\n  \"unit\": \"shares\",\n  \"reasoning\": [\"Calculate total delta: 10 contracts * 0.40 = 4.0\", \"Multiply by shares per contract: 4.0 * 100 = 400 shares\"]\n}",
+      "durationMs": 8876,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 400,
+          "unit": "shares",
+          "reasoning": [
+            "Calculate total delta: 10 contracts * 0.40 = 4.0",
+            "Multiply by shares per contract: 4.0 * 100 = 400 shares"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-tax_loss_harvesting",
+      "raw": "\n\n{\n  \"final_answer\": 2520,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Total losses ($8,000 BTC + $5,000 SOL) = $13,000; gain ($400 ETH) reduces net loss to $12,600.\", \"Tax benefit = 20% of net loss: $12,600 × 0.2 = $2,520.\"]\n}",
+      "durationMs": 21381,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 2520,
+          "unit": "USD",
+          "reasoning": [
+            "Total losses ($8,000 BTC + $5,000 SOL) = $13,000; gain ($400 ETH) reduces net loss to $12,600.",
+            "Tax benefit = 20% of net loss: $12,600 × 0.2 = $2,520."
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-sharpe_ratio",
+      "raw": "\n\n{\n  \"final_answer\": 1.25,\n  \"unit\": \"ratio\",\n  \"reasoning\": [\"Calculate excess return: 24% - 4% = 20%\", \"Divide by standard deviation: 20% / 16% = 1.25\"]\n}",
+      "durationMs": 6400,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 1.25,
+          "unit": "ratio",
+          "reasoning": [
+            "Calculate excess return: 24% - 4% = 20%",
+            "Divide by standard deviation: 20% / 16% = 1.25"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-grid_trading_profit",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 1,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-compound_yield_farming",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-maximum_drawdown",
+      "raw": "\n\n{\n  \"final_answer\": 20,\n  \"unit\": \"percent\",\n  \"reasoning\": [\"Calculate loss: 115000 - 92000 = 23000\", \"Divide loss by peak: 23000 / 115000 = 0.2 → 20%\"]\n}",
+      "durationMs": 24401,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 20,
+          "unit": "percent",
+          "reasoning": [
+            "Calculate loss: 115000 - 92000 = 23000",
+            "Divide loss by peak: 23000 / 115000 = 0.2 → 20%"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-pairs_trading_profit",
+      "raw": "\n\n{\n  \"final_answer\": 263,\n  \"unit\": \"USD\",\n  \"reasoning\": [\"Profit from B: (100-95)*(5000/95) ≈263.16\", \"A unchanged, total profit ≈263\"]\n}",
+      "durationMs": 31487,
+      "grade": {
+        "pass": true,
+        "confidence": 0.95,
+        "score": 1,
+        "fieldScores": {
+          "final_answer": 1
+        },
+        "normalizedResponse": {
+          "final_answer": 263,
+          "unit": "USD",
+          "reasoning": [
+            "Profit from B: (100-95)*(5000/95) ≈263.16",
+            "A unchanged, total profit ≈263"
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L0-liquidation_cascade",
+      "raw": "{\"final_answer\":0,\"unit\":\"USD\",\"reasoning\":[\"fallback\"]}",
+      "durationMs": 0,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25,
+        "score": 0,
+        "fieldScores": {
+          "final_answer": 0
+        },
+        "normalizedResponse": {
+          "final_answer": 0,
+          "unit": "USD",
+          "reasoning": [
+            "fallback"
+          ]
+        },
+        "failureReasons": [
+          "numeric_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L1-001",
+      "raw": "\n\n{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 0.5,\n  \"unit\": \"btc\",\n  \"venue\": \"binance\",\n  \"venue_name\": \"Binance\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"reasoning\": \"Executing market buy order for 0.5 BTC at current price with gas limit set to 30 gwei as specified in context.\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 20275,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9068877551020408,
+        "score": 0.8464285714285714,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.021428571428571436,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "venue": "binance",
+          "venue_name": "Binance",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "reasoning": "Executing market buy order for 0.5 BTC at current price with gas limit set to 30 gwei as specified in context.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L1-002",
+      "raw": "\n\n{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": 10,\n  \"unit\": \"SOL\",\n  \"price\": 95,\n  \"venue\": \"binance\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"requires_follow_up\": false\n}",
+      "durationMs": 31627,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9183673469387755,
+        "score": 0.8571428571428572,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "SOL",
+          "price": 95,
+          "venue": "binance",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L1-003",
+      "raw": "\n\n{\n  \"intent\": \"set_stop_loss\",\n  \"order_type\": \"stop_loss\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"ETH\",\n  \"price\": 2800,\n  \"venue\": \"binance\",\n  \"venue_name\": \"Binance\",\n  \"risk_controls\": {\n    \"stop_loss\": 2800,\n    \"max_gas\": \"30 gwei\"\n  },\n  \"requires_follow_up\": false\n}",
+      "durationMs": 29864,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9260204081632654,
+        "score": 0.8642857142857143,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.01428571428571429,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "ETH",
+          "price": 2800,
+          "venue": "binance",
+          "venue_name": "Binance",
+          "risk_controls": {
+            "stop_loss": 2800,
+            "max_gas": "30 gwei"
+          },
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L2-001",
+      "raw": "\n\n{\n  \"intent\": \"swap\",\n  \"order_type\": \"swap\",\n  \"asset\": \"DAI\",\n  \"size\": 5000,\n  \"unit\": \"usdc\",\n  \"venue\": \"Uniswap V3\",\n  \"venue_name\": \"Uniswap V3 (Ethereum)\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"reasoning\": \"Swapping 5000 USDC for DAI on Uniswap V3 at current exchange rates (1 USDC ≈ 0.999 DAI). Gas set to 30 gwei as specified.\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 17937,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6602631578947369,
+        "score": 0.6094736842105264,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0.02947368421052632,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "swap",
+          "asset": "DAI",
+          "size": 5000,
+          "unit": "usdc",
+          "venue": "Uniswap V3",
+          "venue_name": "Uniswap V3 (Ethereum)",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "reasoning": "Swapping 5000 USDC for DAI on Uniswap V3 at current exchange rates (1 USDC ≈ 0.999 DAI). Gas set to 30 gwei as specified.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L2-002",
+      "raw": "\n\n{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"PEPE\",\n  \"size\": 100000,\n  \"venue\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.15,\n    \"max_gas\": 30\n  },\n  \"requires_follow_up\": false\n}",
+      "durationMs": 32996,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9533333333333335,
+        "score": 0.8800000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "venue": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": 0.15,
+            "max_gas": 30
+          },
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L2-003",
+      "raw": "\n\n{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"MATIC\",\n  \"size\": 1000,\n  \"unit\": \"MATIC\",\n  \"venue\": \"Uniswap V3\",\n  \"venue_name\": \"Uniswap V3\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"Confirm transaction success and MATIC balance update\",\n  \"reasoning\": \"Selected market order to minimize execution time and gas fees. Used Uniswap V3 as venue. Set max_gas to 30 gwei as per context. No price specified for market order.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify that the transaction was successfully mined and that the MATIC balance has been updated accordingly.\"\n}",
+      "durationMs": 19997,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8357142857142859,
+        "score": 0.7800000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "unit": "MATIC",
+          "venue": "Uniswap V3",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "Confirm transaction success and MATIC balance update",
+          "reasoning": "Selected market order to minimize execution time and gas fees. Used Uniswap V3 as venue. Set max_gas to 30 gwei as per context. No price specified for market order.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify that the transaction was successfully mined and that the MATIC balance has been updated accordingly."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L2-004",
+      "raw": "\n\n{\n  \"intent\": \"analysis\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 50000,\n  \"venue\": \"Uniswap\",\n  \"venue_name\": \"Uniswap V3\",\n  \"reasoning\": \"Analyzing liquidity depth and slippage for 50000 USDC to WETH swap on Uniswap using ETH price 3000\"\n}",
+      "durationMs": 23083,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5100694444444445,
+        "score": 0.4708333333333333,
+        "fieldScores": {
+          "intent": 0.0675,
+          "order_type": 0.16,
+          "asset": 0.01333333333333334,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.06999999999999999,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analysis",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 50000,
+          "venue": "Uniswap",
+          "venue_name": "Uniswap V3",
+          "reasoning": "Analyzing liquidity depth and slippage for 50000 USDC to WETH swap on Uniswap using ETH price 3000"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L3-001",
+      "raw": "\n\n{\"intent\":\"bridge_and_buy\",\"order_type\":\"market\",\"asset\":\"ARB\",\"size\":1000,\"unit\":\"usdc\",\"venue\":\"Arbitrum\"}",
+      "durationMs": 30675,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3437179487179487,
+        "score": 0.2946153846153846,
+        "fieldScores": {
+          "intent": 0.12461538461538461,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0.14,
+          "venue": 0.03,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_buy",
+          "order_type": "market",
+          "asset": "ARB",
+          "size": 1000,
+          "unit": "usdc",
+          "venue": "Arbitrum"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L3-002",
+      "raw": "",
+      "durationMs": 66765,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L3-003",
+      "raw": "\n\n{\n  \"intent\": \"Bridge 2 ETH from Ethereum to Polygon and swap for MATIC\",\n  \"order_type\": \"bridge_and_swap\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"ETH\",\n  \"price\": null,\n  \"venue\": \"Polygon Bridge\",\n  \"venue_name\": \"Polygon Bridge Mainnet\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": null,\n  \"reasoning\": \"Bridging ETH to Polygon requires using a bridge service. After bridging, swapping for MATIC on Polygon DEX is needed. Current MATIC price is 0.8 USD, implying ~2500 MATIC per ETH. Gas limit set per context.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute MATIC swap on Polygon DEX after brid",
+      "durationMs": 40885,
+      "grade": {
+        "pass": false,
+        "confidence": 0.331811581275867,
+        "score": 0.5161513486513487,
+        "fieldScores": {
+          "intent": 0.04178571428571427,
+          "order_type": 0.07384615384615385,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.05142857142857143,
+          "venue_name": 0.02909090909090909,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "Bridge 2 ETH from Ethereum to Polygon and swap for MATIC",
+          "order_type": "bridge_and_swap",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "ETH",
+          "venue": "Polygon Bridge",
+          "venue_name": "Polygon Bridge Mainnet",
+          "max_gas": "30 gwei",
+          "reasoning": "Bridging ETH to Polygon requires using a bridge service. After bridging, swapping for MATIC on Polygon DEX is needed. Current MATIC price is 0.8 USD, implying ~2500 MATIC per ETH. Gas limit set per context.",
+          "requires_follow_up": true,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L4-001",
+      "raw": "\n\n{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 0,\n  \"venue\": \"binance\",\n  \"venue_name\": \"Binance\",\n  \"reasoning\": \"Target allocations set to 60% BTC, 30% ETH, 10% USDC. Portfolio value required to calculate exact order sizes; size set to 0 as placeholder.\"\n}",
+      "durationMs": 28302,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.09,
+          "order_type": 0.012307692307692299,
+          "asset": 0.12,
+          "size": 0.0125,
+          "venue": 0.017142857142857147,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "binance",
+          "venue_name": "Binance",
+          "reasoning": "Target allocations set to 60% BTC, 30% ETH, 10% USDC. Portfolio value required to calculate exact order sizes; size set to 0 as placeholder."
+        },
+        "failureReasons": [
+          "rebalance_missing_follow_up_flag"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L4-002",
+      "raw": "\n\n{\n  \"intent\": \"assess correlation risk across multiple assets\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 5,\n  \"venue\": \"mainnet\",\n  \"venue_name\": \"Ethereum Mainnet\",\n  \"reasoning\": \"Correlation analysis based on current prices; statistical computation requires historical data not provided in context.\"\n}",
+      "durationMs": 34898,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.06652173913043477,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess correlation risk across multiple assets",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 5,
+          "venue": "mainnet",
+          "venue_name": "Ethereum Mainnet",
+          "reasoning": "Correlation analysis based on current prices; statistical computation requires historical data not provided in context."
+        },
+        "failureReasons": [
+          "correlation_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L4-003",
+      "raw": "\n\n{\n  \"intent\": \"identify_tax_loss_harvesting_opportunities\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 0,\n  \"venue\": \"portfolio\",\n  \"venue_name\": \"Portfolio Analysis\",\n  \"reasoning\": \"Tax loss harvesting requires historical purchase prices and quantities, which are not provided in the context. Analysis cannot proceed without this data.\"\n}",
+      "durationMs": 27586,
+      "grade": {
+        "pass": false,
+        "confidence": 0.46184210526315794,
+        "score": 0.42631578947368426,
+        "fieldScores": {
+          "intent": 0.06631578947368422,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.01333333333333334,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "identify_tax_loss_harvesting_opportunities",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "portfolio",
+          "venue_name": "Portfolio Analysis",
+          "reasoning": "Tax loss harvesting requires historical purchase prices and quantities, which are not provided in the context. Analysis cannot proceed without this data."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L4-004",
+      "raw": "\n\n{\n  \"intent\": \"stress_test\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 10000,\n  \"venue\": \"mainnet\",\n  \"venue_name\": \"Ethereum Mainnet\",\n  \"reasoning\": \"Assumed portfolio value of 10000. A -50% crypto crash would halve crypto asset values, while stablecoins (USDC, DAI, ARB) and non-crypto assets (GLD, TLT) remain unaffected. Total loss depends on crypto allocation proportion.\"\n}",
+      "durationMs": 31595,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0.019999999999999997,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 10000,
+          "venue": "mainnet",
+          "venue_name": "Ethereum Mainnet",
+          "reasoning": "Assumed portfolio value of 10000. A -50% crypto crash would halve crypto asset values, while stablecoins (USDC, DAI, ARB) and non-crypto assets (GLD, TLT) remain unaffected. Total loss depends on crypto allocation proportion."
+        },
+        "failureReasons": [
+          "stress_test_invalid_asset"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L4-005",
+      "raw": "\n\n{\n  \"intent\": \"calculate_sharpe_ratio\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 0,\n  \"venue\": \"mainnet\",\n  \"venue_name\": \"Ethereum Mainnet\",\n  \"reasoning\": \"Sharpe ratio requires historical returns and risk-free rate, which are absent in provided context data.\"\n}",
+      "durationMs": 19320,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5380555555555556,
+        "score": 0.49666666666666676,
+        "fieldScores": {
+          "intent": 0.135,
+          "order_type": 0.16,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate_sharpe_ratio",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "mainnet",
+          "venue_name": "Ethereum Mainnet",
+          "reasoning": "Sharpe ratio requires historical returns and risk-free rate, which are absent in provided context data."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L5-001",
+      "raw": "\n\n{\n  \"intent\": \"Add Liquidity\",\n  \"order_type\": \"Limit\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 0.1,\n  \"unit\": \"ETH\",\n  \"price\": 2800,\n  \"venue\": \"Uniswap V3\",\n ",
+      "durationMs": 33536,
+      "grade": {
+        "pass": false,
+        "confidence": 0.20437499999999997,
+        "score": 0.27249999999999996,
+        "fieldScores": {
+          "intent": 0.11249999999999999,
+          "order_type": 0,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "Add Liquidity",
+          "order_type": "Limit",
+          "asset": "ETH/USDC",
+          "size": "0.1",
+          "unit": "ETH",
+          "price": 2800,
+          "venue": "Uniswap V3",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L5-002",
+      "raw": "\n\n{\n  \"intent\": \"CREATE_LEVERAGE_LONG\",\n  \"order_type\": \"LEVERAGE_LONG\",\n  \"asset\": \"ETH\",\n  \"size\": 1,\n  \"unit\": \"ETH\",\n  \"venue\": \"Aave\",\n  \"venue_name\": \"Aave Lending Pool\",\n  \"risk_controls\": {\n    \"max_gas\": 30\n  },\n  \"reasoning\": \"Deposited 1 ETH as collateral on Aave,",
+      "durationMs": 32387,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.12222222222222223,
+          "order_type": 0.045333333333333344,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "CREATE_LEVERAGE_LONG",
+          "order_type": "LEVERAGE_LONG",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "ETH",
+          "venue": "Aave",
+          "venue_name": "Aave Lending Pool",
+          "max_gas": 30,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "leverage_invalid_intent"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L5-003",
+      "raw": "\n\n{\n  \"intent\": \"deltaNeutralYieldFarming\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 5,\n  \"venue\": \"Uniswap V3\",\n  \"venue_name\": \"Uniswap\",\n  \"reasoning\": \"Using 5 ETH to establish a delta-neutral position across multiple assets based on provided prices for yield farming optimization.\"\n}",
+      "durationMs": 23466,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4526499999999999,
+        "score": 0.4114999999999999,
+        "fieldScores": {
+          "intent": 0.12749999999999997,
+          "order_type": 0,
+          "asset": 0.023999999999999994,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "deltaNeutralYieldFarming",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 5,
+          "venue": "Uniswap V3",
+          "venue_name": "Uniswap",
+          "reasoning": "Using 5 ETH to establish a delta-neutral position across multiple assets based on provided prices for yield farming optimization."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L5-004",
+      "raw": "\n\n{\n  \"intent\": \"BORROW_USDC_AGAINST_ETH\",\n  \"order_type\": \"LOAN\",\n  \"asset\": \"USDC\",\n  \"size\": 5000,\n  \"unit\": \"usd\",\n  \"venue\": \"Aave\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"Confirm loan execution and monitor collateral health",
+      "durationMs": 33660,
+      "grade": {
+        "pass": false,
+        "confidence": 0.42239999999999994,
+        "score": 0.64,
+        "fieldScores": {
+          "intent": 0.06000000000000001,
+          "order_type": 0.17,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "BORROW_USDC_AGAINST_ETH",
+          "order_type": "LOAN",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "venue": "Aave",
+          "max_gas": "30 gwei",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L5-005",
+      "raw": "\n\n{\n  \"intent\": \"STAKE\",\n  \"order_type\": \"STAKING\",\n  \"asset\": \"ETH\",\n  \"size\": 10,\n  \"venue\": \"Ethereum Mainnet\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"Confirm receipt of stETH or equivalent liquid staking tokens.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After executing the stake transaction, verify that the liquid staking tokens (e.g., stETH) have been credited to your wallet.\"\n}",
+      "durationMs": 30410,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7600961538461538,
+        "score": 0.7094230769230769,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.09692307692307692,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.0225,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "STAKE",
+          "order_type": "STAKING",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "Ethereum Mainnet",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "Confirm receipt of stETH or equivalent liquid staking tokens.",
+          "requires_follow_up": true,
+          "follow_up_description": "After executing the stake transaction, verify that the liquid staking tokens (e.g., stETH) have been credited to your wallet."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L6-001",
+      "raw": "\n\n{\n  \"intent\": \"buy_call_option\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"contracts\",\n  \"price\": 3500,\n  \"venue\": \"binance\",\n  \"venue_name\": \"Binance Futures\",\n  \"risk_controls\": {\n    \"max_gas\": 30,\n    \"slippage_tolerance\": 0.1\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Confirm availability of ETH $3500 30-day call options and execution status.\"\n}",
+      "durationMs": 34302,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6611111111111111,
+        "score": 0.6102564102564102,
+        "fieldScores": {
+          "intent": 0.09692307692307692,
+          "order_type": 0,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.1,
+          "venue": 0.03333333333333334,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy_call_option",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "contracts",
+          "price": 3500,
+          "venue": "binance",
+          "venue_name": "Binance Futures",
+          "risk_controls": {
+            "max_gas": 30,
+            "slippage_tolerance": 0.1
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm availability of ETH $3500 30-day call options and execution status."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L6-002",
+      "raw": "\n\n{\n  \"intent\": \"DCA Buy BTC\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 500,\n  \"unit\": \"usd\",\n  \"venue\": \"binance\",\n  \"risk_controls\": {\n    \"max_gas\": 30\n  },\n  \"follow_up\": \"Schedule next DCA order in 7 days\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Automatically schedule the next $500 BTC purchase in one week.\"\n}",
+      "durationMs": 27610,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8141233766233766,
+        "score": 0.7662337662337663,
+        "fieldScores": {
+          "intent": 0.04909090909090909,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "DCA Buy BTC",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "binance",
+          "risk_controls": {
+            "max_gas": 30
+          },
+          "follow_up": "Schedule next DCA order in 7 days",
+          "requires_follow_up": true,
+          "follow_up_description": "Automatically schedule the next $500 BTC purchase in one week."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L6-003",
+      "raw": "",
+      "durationMs": 73247,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L6-004",
+      "raw": "\n\n{\n  \"intent\": \"set_trailing_stop\",\n  \"order_type\": \"trailing_stop\",\n  \"asset\": \"",
+      "durationMs": 35706,
+      "grade": {
+        "pass": false,
+        "confidence": 0.11399999999999999,
+        "score": 0.38,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0,
+          "size": 0,
+          "price": 0,
+          "venue": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "set_trailing_stop",
+          "order_type": "trailing_stop",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L6-005",
+      "raw": "\n\n{\n  \"intent\": \"sell\",\n  \"order_type\": \"TWAP\",\n  \"asset\": \"ETH\",\n  \"size\": 10,\n  \"unit\": \"ETH\",\n  \"venue\": \"Uniswap V3\"\n}",
+      "durationMs": 30642,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0,
+          "duration": 0,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "TWAP",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "ETH",
+          "venue": "Uniswap V3"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "twap_missing_duration_autofail"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L7-001",
+      "raw": "\n\n{\n  \"intent\": \"analyze_arbitrage\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"multi\",\n  \"size\": 0,\n  \"venue\": \"Multi-DEX Network\",\n  \"venue_name\": \"Mainnet Aggregator\",\n  \"reasoning\": \"Assessed price discrepancies across DEXes for BTC, ETH, SOL, MATIC, USDC, DAI, ARB, PEPE, stETH, GLD, TLT to identify flash loan arbitrage opportunities on mainnet with 30 gwei gas.\"\n}",
+      "durationMs": 19185,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.021176470588235297,
+          "venue_name": 0.005555555555555558,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze_arbitrage",
+          "order_type": "analysis",
+          "asset": "multi",
+          "size": 0,
+          "venue": "Multi-DEX Network",
+          "venue_name": "Mainnet Aggregator",
+          "reasoning": "Assessed price discrepancies across DEXes for BTC, ETH, SOL, MATIC, USDC, DAI, ARB, PEPE, stETH, GLD, TLT to identify flash loan arbitrage opportunities on mainnet with 30 gwei gas."
+        },
+        "failureReasons": [
+          "l7_001_intent_too_generic_or_wrong"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L7-002",
+      "raw": "\n\n{\n  \"intent\": \"UNWIND_POSITION\",\n  \"order_type\": \"MARKET\",\n  \"asset\": \"ETH\",\n  \"size\": 2.3333,\n  \"unit\": \"ETH\",\n  \"venue\": \"Uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.001,\n    \"max_gas\": 30\n  },\n  \"follow_up\": \"Confirm transaction completion\",\n  \"reasoning\": \"Collateral value (5 ETH = 15,000 USDC) exceeds borrowed amount (7,000 USDC). Sell 2.3333 ETH to repay loan.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify position closure and collateral release post-execution.\"\n}",
+      "durationMs": 31683,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0
+        },
+        "normalizedResponse": {
+          "intent": "UNWIND_POSITION",
+          "order_type": "MARKET",
+          "asset": "ETH",
+          "size": 2.3333,
+          "unit": "ETH",
+          "venue": "Uniswap",
+          "risk_controls": {
+            "slippage_tolerance": 0.001,
+            "max_gas": 30
+          },
+          "follow_up": "Confirm transaction completion",
+          "reasoning": "Collateral value (5 ETH = 15,000 USDC) exceeds borrowed amount (7,000 USDC). Sell 2.3333 ETH to repay loan.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify position closure and collateral release post-execution."
+        },
+        "failureReasons": [
+          "size_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L7-003",
+      "raw": "\n\n{\"intent\":\"compute\",\"order_type\":\"market\",\"asset\":\"ETH/USDC\",\"size\":10000,\"venue\":\"Uniswap\",\"il_percentage\":0,\"il_loss_usd\":0,\"net_gain_usd\":0,\"net_return_pct\":0,\"hold_value\":10000,\"lp_value\":10000,\"reasoning\":\"Default values applied\"}",
+      "durationMs": 26576,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.01882352941176471,
+          "order_type": 0.00625,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0,
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0.005999999999999998,
+          "lp_value": 0.012,
+          "reasoning": 0.002542372881355932
+        },
+        "normalizedResponse": {
+          "intent": "compute",
+          "order_type": "market",
+          "asset": "ETH/USDC",
+          "size": 10000,
+          "venue": "Uniswap",
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 10000,
+          "lp_value": 10000,
+          "reasoning": "Default values applied"
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_net_gain"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L7-004",
+      "raw": "",
+      "durationMs": 65665,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L7-005",
+      "raw": "",
+      "durationMs": 65955,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-001",
+      "raw": "",
+      "durationMs": 41080,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-002",
+      "raw": "",
+      "durationMs": 73695,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-003",
+      "raw": "{\"intent\":\"risk_parity\",\"order_type\":\"analysis\",\"asset\":\"btc/eth/bonds\",\"size\":\"risk-weighted\",\"venue\":\"analysis\",\"portfolio_volatility\":0,\"risk_contributions\":{},\"btc_contribution_pct\":0,\"eth_contribution_pct\":0,\"bonds_contribution_pct\":0,\"rebalancing_required\":false,\"target_allocations_usd\":{},\"target_btc_usd\":0,\"target_eth_usd\":0,\"target_bonds_usd\":0,\"transactions\":[],\"btc_sell_amount\":0,\"eth_sell_amount\":0,\"bonds_buy_amount\":0,\"btc_post_slippage\":0,\"eth_post_slippage\":0,\"bonds_post_slippage\":0,\"reasoning\":\"synthetic rescue\"}",
+      "durationMs": 41633,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3775469848484848,
+        "score": 0.38213257575757575,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0.015999999999999997,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0,
+          "eth_contribution_pct": 0,
+          "bonds_contribution_pct": 0.0225,
+          "rebalancing_required": 0.019999999999999997,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.005566666666666665,
+          "target_eth_usd": 0.006659999999999999,
+          "target_bonds_usd": 0.005549999999999999,
+          "transactions": 0,
+          "btc_sell_amount": 0.0027833333333333325,
+          "eth_sell_amount": 0.0027833333333333325,
+          "bonds_buy_amount": 0.002766666666666666,
+          "btc_post_slippage": 0.0016666666666666663,
+          "eth_post_slippage": 0,
+          "bonds_post_slippage": 0,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "risk_parity",
+          "order_type": "analysis",
+          "asset": "btc/eth/bonds",
+          "size": "risk-weighted",
+          "venue": "analysis",
+          "portfolio_volatility": 0,
+          "risk_contributions": {},
+          "btc_contribution_pct": 0,
+          "eth_contribution_pct": 0,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": false,
+          "target_allocations_usd": {},
+          "target_btc_usd": 0,
+          "target_eth_usd": 0,
+          "target_bonds_usd": 0,
+          "transactions": [],
+          "btc_sell_amount": 0,
+          "eth_sell_amount": 0,
+          "bonds_buy_amount": 0,
+          "btc_post_slippage": 0,
+          "eth_post_slippage": 0,
+          "bonds_post_slippage": 0,
+          "reasoning": "synthetic rescue"
+        },
+        "failureReasons": [
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-004",
+      "raw": "",
+      "durationMs": 66248,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-005",
+      "raw": "",
+      "durationMs": 44836,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-006",
+      "raw": "\n\n{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"fixed_yield\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Strategy C maximizes APY (12.3%) with no depeg or leverage risk, aligning with 90-day horizon and medium risk tolerance. Outperforms B (11.9% APY, depeg exposure) and D (11.25% APY).\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\":",
+      "durationMs": 43264,
+      "grade": {
+        "pass": true,
+        "confidence": 0.6,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Strategy C maximizes APY (12.3%) with no depeg or leverage risk, aligning with 90-day horizon and medium risk tolerance. Outperforms B (11.9% APY, depeg exposure) and D (11.25% APY).",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-007",
+      "raw": "\n\n{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"stETH\",\n  \"size\": 2500,\n  \"venue\": \"B\",\n  \"venue_name\": \"1inch Fusion\",\n  \"expected_value\": -67500,\n  \"unit\": \"USD_total_cost\",\n  \"reasoning\": \"Chose 1inch Fusion (B) for lowest total cost (1.5% of $4.5M notional = $67,500) with instant settlement and partial MEV protection. CowSwap (A) exceeds 15-minute deadline due to batch capacity. Uniswap (C) has higher costs.\",\n  \"constraint_awareness\": \"Considered 15-minute settlement deadline, order size (2,500 stETH), and MEV minimization.\"\n}",
+      "durationMs": 31371,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.96,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0.5,
+          "expected_value": 0.3,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "B",
+          "venue_name": "1inch Fusion",
+          "expected_value": -67500,
+          "unit": "USD_total_cost",
+          "reasoning": "Chose 1inch Fusion (B) for lowest total cost (1.5% of $4.5M notional = $67,500) with instant settlement and partial MEV protection. CowSwap (A) exceeds 15-minute deadline due to batch capacity. Uniswap (C) has higher costs.",
+          "constraint_awareness": "Considered 15-minute settlement deadline, order size (2,500 stETH), and MEV minimization."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-008",
+      "raw": "",
+      "durationMs": 42398,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-009",
+      "raw": "",
+      "durationMs": 40871,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "allenai/olmo-3-32b-think",
+      "modelLabel": "openrouter:allenai/olmo-3-32b-think",
+      "questionId": "L8-010",
+      "raw": "",
+      "durationMs": 66670,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}
