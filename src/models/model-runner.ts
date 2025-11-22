@@ -96,14 +96,17 @@ function readBenchmarkModels(): string[] {
 }
 
 function inferProvider(modelId: string): Provider {
-  if (modelId === 'allenai/Olmo-3-32B-Think') {
-    return 'huggingface';
-  }
   // Explicit overrides for models that exist on multiple platforms
   if (modelId === 'moonshotai/kimi-k2-instruct-0905') {
     return 'groq';
   }
   if (modelId === 'moonshotai/kimi-k2-thinking') {
+    return 'openrouter';
+  }
+  if (modelId.startsWith('kwaipilot/')) {
+    return 'openrouter';
+  }
+  if (modelId.startsWith('allenai/')) {
     return 'openrouter';
   }
   if (modelId.startsWith('minimax/')) {
