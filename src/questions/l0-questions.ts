@@ -20,7 +20,7 @@ interface L0BenchmarkFile {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const BENCHMARK_PATH = path.join(__dirname, "..", "..", "data", "l0", "benchmark.json");
+const BENCHMARK_PATH = path.join(__dirname, "l0", "benchmark.json");
 
 const EXPECTED_COUNT = 20;
 

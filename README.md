@@ -77,7 +77,9 @@ Then run the `Publish Official Leaderboard` workflow to copy that sanitized JSON
 
 ## Layout
 - `scripts/` – runner/repair/combine/report utilities
-- `src/questions/schema-questions.ts` – 60Q definitions (L0 + L1–L8)
+- `src/questions/l0/benchmark.json` – L0 benchmark source data
+- `src/questions/l1-l8/questions.json` – L1–L8 schema question source data
+- `src/questions/l0-questions.ts` / `src/questions/schema-questions.ts` – loader modules that expose the question sets
 - `src/rubrics/` – rubric JSON + loader
 - `src/grading/schema-grader.ts` – normalized grading
 - `src/models/` – provider adapters + model roster
