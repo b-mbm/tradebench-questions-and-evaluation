@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-040",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "inventory_optimization": 0.35,
+    "success_rate_improvement": 0.3,
+    "revenue_calculation": 0.2,
+    "routing_design": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-040",
+    "level": 10,
+    "intent": "liquidity_routing",
+    "expected_value": 49500,
+    "range": [
+      47000,
+      52000
+    ],
+    "unit": "USD_monthly_revenue",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "inventory_optimization",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Meets rollup inventory, rebalancing, and success-rate constraints",
+          "pass_threshold": 25
+        },
+        {
+          "name": "success_rate_improvement",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Improves fill success to the stated target",
+          "pass_threshold": 21
+        },
+        {
+          "name": "revenue_calculation",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Computes revenue from final successful routed volume and net fee",
+          "pass_threshold": 14
+        },
+        {
+          "name": "routing_design",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Explains solver and RFQ routing across rollups",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 47000 AND value <= 52000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            48500,
+            50500
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            47000,
+            52000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            45000,
+            54000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            42000,
+            57000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            35000,
+            65000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

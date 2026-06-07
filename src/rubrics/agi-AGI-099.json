@@ -1,0 +1,126 @@
+{
+  "id": "agi-AGI-099",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "venue_fills.dark_rfq",
+    "venue_fills.venue_m_midpoint",
+    "venue_fills.venue_r_randomized_ladder",
+    "venue_fills.venue_c_ioc_residual",
+    "largest_lit_child_units",
+    "expected_avg_price",
+    "classifier_exposure_score",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "venue_fills.dark_rfq",
+    "venue_fills.venue_m_midpoint",
+    "venue_fills.venue_r_randomized_ladder",
+    "venue_fills.venue_c_ioc_residual",
+    "largest_lit_child_units",
+    "expected_avg_price",
+    "classifier_exposure_score",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.090909,
+    "execution_sequence": 0.090909,
+    "venue_fills.dark_rfq": 0.090909,
+    "venue_fills.venue_m_midpoint": 0.090909,
+    "venue_fills.venue_r_randomized_ladder": 0.090909,
+    "venue_fills.venue_c_ioc_residual": 0.090909,
+    "largest_lit_child_units": 0.090909,
+    "expected_avg_price": 0.090909,
+    "classifier_exposure_score": 0.090909,
+    "self_check": 0.09091
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-099",
+    "title": "Toxic Midpoint Peg Rescue",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adverse_flow_execution_rescue"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "dark_first_randomized_lit_completion"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "dark_rfq",
+          "venue_m_midpoint",
+          "venue_r_randomized_ladder",
+          "venue_c_ioc_residual"
+        ]
+      },
+      "venue_fills.dark_rfq": {
+        "type": "number",
+        "range": [
+          20979,
+          21021
+        ]
+      },
+      "venue_fills.venue_m_midpoint": {
+        "type": "number",
+        "range": [
+          17982,
+          18018
+        ]
+      },
+      "venue_fills.venue_r_randomized_ladder": {
+        "type": "number",
+        "range": [
+          22977,
+          23023
+        ]
+      },
+      "venue_fills.venue_c_ioc_residual": {
+        "type": "number",
+        "range": [
+          -1,
+          1
+        ]
+      },
+      "largest_lit_child_units": {
+        "type": "number",
+        "range": [
+          5738.5,
+          5761.5
+        ]
+      },
+      "expected_avg_price": {
+        "type": "number",
+        "range": [
+          3840.33582,
+          3848.02418
+        ]
+      },
+      "classifier_exposure_score": {
+        "type": "number",
+        "range": [
+          0.71,
+          0.73
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "dark_priority_preserved",
+          "classifier_threshold_avoided",
+          "fill_and_price_reconcile"
+        ]
+      }
+    },
+    "derivation": "Accept the dark RFQ before any lit signal, fill the midpoint peg, then split the remaining lit quantity into randomized child orders below the classifier threshold. The Venue C IOC is not needed; blended price is about 3844.18 and the lit exposure score remains below one.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

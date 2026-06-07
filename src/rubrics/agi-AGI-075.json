@@ -1,0 +1,134 @@
+{
+  "id": "agi-AGI-075",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_allocation_usd.Circle_CCTP",
+    "route_allocation_usd.Across",
+    "route_allocation_usd.Stargate",
+    "route_allocation_usd.Synapse",
+    "route_allocation_usd.CEX_internal",
+    "expected_arrival_usd",
+    "expected_cost_usd",
+    "max_route_share_pct",
+    "arrival_minutes",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_allocation_usd.Circle_CCTP",
+    "route_allocation_usd.Across",
+    "route_allocation_usd.Stargate",
+    "route_allocation_usd.Synapse",
+    "route_allocation_usd.CEX_internal",
+    "expected_arrival_usd",
+    "expected_cost_usd",
+    "max_route_share_pct",
+    "arrival_minutes",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.083333,
+    "chosen_strategy": 0.083333,
+    "route_allocation_usd.Circle_CCTP": 0.083333,
+    "route_allocation_usd.Across": 0.083333,
+    "route_allocation_usd.Stargate": 0.083333,
+    "route_allocation_usd.Synapse": 0.083333,
+    "route_allocation_usd.CEX_internal": 0.083333,
+    "expected_arrival_usd": 0.083333,
+    "expected_cost_usd": 0.083333,
+    "max_route_share_pct": 0.083333,
+    "arrival_minutes": 0.083333,
+    "self_check": 0.083337
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-075",
+    "title": "Arbitrum Collateral Router",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "cross_chain_collateral_routing"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "diversified_deadline_risk_minimizer"
+      },
+      "expected_arrival_usd": {
+        "type": "number",
+        "range": [
+          1895023.7572,
+          1902619.0428
+        ]
+      },
+      "expected_cost_usd": {
+        "type": "number",
+        "range": [
+          1176.2428,
+          1180.9572
+        ]
+      },
+      "max_route_share_pct": {
+        "type": "number",
+        "range": [
+          30.404211,
+          30.648421
+        ]
+      },
+      "arrival_minutes": {
+        "type": "number",
+        "range": [
+          31.9,
+          32.1
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_collateral_arrives",
+          "deadline_respected",
+          "route_concentration_capped"
+        ]
+      },
+      "route_allocation_usd.Circle_CCTP": {
+        "type": "number",
+        "range": [
+          578840,
+          581160
+        ]
+      },
+      "route_allocation_usd.Across": {
+        "type": "number",
+        "range": [
+          518960,
+          521040
+        ]
+      },
+      "route_allocation_usd.Stargate": {
+        "type": "number",
+        "range": [
+          369260,
+          370740
+        ]
+      },
+      "route_allocation_usd.Synapse": {
+        "type": "number",
+        "range": [
+          -1,
+          1
+        ]
+      },
+      "route_allocation_usd.CEX_internal": {
+        "type": "number",
+        "range": [
+          429140,
+          430860
+        ]
+      }
+    },
+    "derivation": "Risk-minimizing eligible routes fill 1900000. Expected cost is 1178.6, expected arrival is 1898821.4, max route share is 30.526316%, and slowest arrival is 32 minutes.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

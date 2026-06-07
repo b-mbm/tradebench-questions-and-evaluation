@@ -1,0 +1,73 @@
+{
+  "id": "agi-AGI-056",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_legs.BTC_short.notional_usd",
+    "hedge_legs.ETH_put_spread.notional_usd",
+    "expected_vol_reduction_pct",
+    "residual_1d_var_usd"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_legs.BTC_short.notional_usd",
+    "hedge_legs.ETH_put_spread.notional_usd",
+    "expected_vol_reduction_pct",
+    "residual_1d_var_usd"
+  ],
+  "field_weights": {
+    "intent": 0.125,
+    "chosen_strategy": 0.375,
+    "hedge_legs.BTC_short.notional_usd": 0.125,
+    "hedge_legs.ETH_put_spread.notional_usd": 0.125,
+    "expected_vol_reduction_pct": 0.125,
+    "residual_1d_var_usd": 0.125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-056",
+    "title": "OOD Correlation Hedge: BTC Crisis",
+    "archetype": "adversarial-minimax-hedge",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "crisis_correlation_hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "btc_short_plus_eth_put_spread"
+      },
+      "hedge_legs.BTC_short.notional_usd": {
+        "type": "number",
+        "range": [
+          418000,
+          422000
+        ]
+      },
+      "hedge_legs.ETH_put_spread.notional_usd": {
+        "type": "number",
+        "range": [
+          645000,
+          655000
+        ]
+      },
+      "expected_vol_reduction_pct": {
+        "type": "number",
+        "range": [
+          49,
+          51
+        ]
+      },
+      "residual_1d_var_usd": {
+        "type": "number",
+        "range": [
+          182500,
+          185500
+        ]
+      }
+    },
+    "derivation": "Crisis regime plus crowding cap selects BTC short 420000 and ETH put-spread convexity 650000. Vol reduction is 50% and residual VaR is 184000.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

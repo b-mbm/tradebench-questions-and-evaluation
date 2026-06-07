@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-014",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "path_optimization": 0.35,
+    "breakeven_analysis": 0.3,
+    "execution_mechanics": 0.2,
+    "profitability": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-014",
+    "level": 10,
+    "intent": "cross_chain_arbitrage",
+    "expected_value": 1,
+    "range": [
+      0.8,
+      1.2
+    ],
+    "unit": "percent_profit",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "path_optimization",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Optimal multi-chain routing minimizing costs and latency",
+          "pass_threshold": 25
+        },
+        {
+          "name": "breakeven_analysis",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Correct identification of 0.44% breakeven spread threshold",
+          "pass_threshold": 21
+        },
+        {
+          "name": "execution_mechanics",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Flash loan + bridge + swap coordination within single block",
+          "pass_threshold": 14
+        },
+        {
+          "name": "profitability",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Net profit ~1% after all costs including flash loan fees",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 0.8 AND value <= 1.2"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            0.9,
+            1.1
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            0.8,
+            1.2
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            0.7,
+            1.3
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            0.6,
+            1.4
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            0.4,
+            1.6
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

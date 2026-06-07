@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-069",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "covariance_math": 0.4,
+    "vol_target_scaling": 0.25,
+    "pro_rata_rebalance": 0.2,
+    "reporting": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-069",
+    "level": 10,
+    "intent": "volatility_target_rebalance",
+    "expected_value": 27776607,
+    "range": [
+      27400000,
+      28150000
+    ],
+    "unit": "USD_crypto_exposure",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "covariance_math",
+          "weight": 0.4,
+          "points": 40,
+          "criteria": "Computes crypto-sleeve volatility using weights, volatilities, and correlations",
+          "pass_threshold": 28
+        },
+        {
+          "name": "vol_target_scaling",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Scales the crypto sleeve so total portfolio volatility equals 3.20%",
+          "pass_threshold": 18
+        },
+        {
+          "name": "pro_rata_rebalance",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Maintains BTC/ETH/SOL relative weights while moving excess to stables",
+          "pass_threshold": 14
+        },
+        {
+          "name": "reporting",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Reports retained crypto exposure in dollars",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 27400000 AND value <= 28150000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            27587500,
+            27962500
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            27400000,
+            28150000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            27025000,
+            28525000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            26650000,
+            28900000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            25525000,
+            30025000
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "volatility_target_rebalance",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "The pro-rata crypto sleeve volatility is about 4.608%; the target crypto weight is 3.20/4.608 = 69.44%, or $27.78M."
+    }
+  }
+}

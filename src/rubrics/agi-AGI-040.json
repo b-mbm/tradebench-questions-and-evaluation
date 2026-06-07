@@ -1,0 +1,88 @@
+{
+  "id": "agi-AGI-040",
+  "expected_fields": [
+    "intent",
+    "vote",
+    "position",
+    "chosen_strategy",
+    "net_sell_pressure_delta_per_day",
+    "stabilization_buy_usd",
+    "expected_12d_price_change_pct",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "vote",
+    "position",
+    "chosen_strategy",
+    "net_sell_pressure_delta_per_day",
+    "stabilization_buy_usd",
+    "expected_12d_price_change_pct",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.125,
+    "vote": 0.125,
+    "position": 0.125,
+    "chosen_strategy": 0.125,
+    "net_sell_pressure_delta_per_day": 0.125,
+    "stabilization_buy_usd": 0.125,
+    "expected_12d_price_change_pct": 0.125,
+    "self_check": 0.125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-040",
+    "title": "Unlock Delay Governance Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tokenomics_governance_game"
+      },
+      "vote": {
+        "type": "string",
+        "expected": "yes"
+      },
+      "position": {
+        "type": "string",
+        "expected": "stay"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "pass_vote_stay_for_flow_reflexivity"
+      },
+      "net_sell_pressure_delta_per_day": {
+        "type": "number",
+        "range": [
+          29666.666666666668,
+          30666.666666666668
+        ]
+      },
+      "stabilization_buy_usd": {
+        "type": "number",
+        "range": [
+          29700,
+          30300
+        ]
+      },
+      "expected_12d_price_change_pct": {
+        "type": "number",
+        "range": [
+          15.815000000000003,
+          17.015000000000004
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "sell_pressure_delta_reconciles",
+          "treasury_flow_included",
+          "price_impact_uses_liquidity_response"
+        ]
+      }
+    },
+    "derivation": "Average new sell pressure is 25833.33, so the daily reduction is 30166.67. Twelve-day flow plus treasury support is 392000; applying the two-thirds response to $1600000 liquidity gives 16.415% expected 12-day price impact. Vote yes and stay because the self-consistent flow reflexivity is positive.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

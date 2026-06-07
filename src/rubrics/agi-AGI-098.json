@@ -1,0 +1,73 @@
+{
+  "id": "agi-AGI-098",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "price_band",
+    "child_order_units",
+    "repricing_interval_sec",
+    "expected_avg_price"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "price_band",
+    "child_order_units",
+    "repricing_interval_sec",
+    "expected_avg_price"
+  ],
+  "field_weights": {
+    "intent": 0.125,
+    "chosen_strategy": 0.375,
+    "price_band": 0.125,
+    "child_order_units": 0.125,
+    "repricing_interval_sec": 0.125,
+    "expected_avg_price": 0.125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-098",
+    "title": "OOD Adverse Flow: BTC Spoof Recovery",
+    "archetype": "information-leakage-best-execution",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "toxic_flow_execution"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "reactive_iceberg_limits"
+      },
+      "price_band": {
+        "type": "array",
+        "expected_order": [
+          61225,
+          61255
+        ]
+      },
+      "child_order_units": {
+        "type": "number",
+        "range": [
+          34.3,
+          35.7
+        ]
+      },
+      "repricing_interval_sec": {
+        "type": "number",
+        "range": [
+          44,
+          46
+        ]
+      },
+      "expected_avg_price": {
+        "type": "number",
+        "range": [
+          61180.758,
+          61303.24199999999
+        ]
+      }
+    },
+    "derivation": "Source structure AGI-036 (adverse_order_flow_execution) remapped into the diverse AGI-066..115 tranche. The resilient sell tape anchors BTC fair value; hidden clips of 35 within 61225-61255 avoid the toxicity threshold.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

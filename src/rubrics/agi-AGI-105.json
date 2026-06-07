@@ -1,0 +1,104 @@
+{
+  "id": "agi-AGI-105",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "bid_half_spread_bps",
+    "ask_half_spread_bps",
+    "update_ms",
+    "max_quote_size_usd",
+    "hedge_rate_usd_per_sec",
+    "expected_20m_pnl_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "bid_half_spread_bps",
+    "ask_half_spread_bps",
+    "update_ms",
+    "max_quote_size_usd",
+    "hedge_rate_usd_per_sec",
+    "expected_20m_pnl_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.111111,
+    "chosen_strategy": 0.111111,
+    "bid_half_spread_bps": 0.111111,
+    "ask_half_spread_bps": 0.111111,
+    "update_ms": 0.111111,
+    "max_quote_size_usd": 0.111111,
+    "hedge_rate_usd_per_sec": 0.111111,
+    "expected_20m_pnl_usd": 0.111111,
+    "self_check": 0.111112
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-105",
+    "title": "Oracle-Lag Inventory Skew Maker",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "oracle_lag_market_maker"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "asymmetric_deinventory_with_fast_cancels"
+      },
+      "bid_half_spread_bps": {
+        "type": "number",
+        "range": [
+          37.848,
+          38.152
+        ]
+      },
+      "ask_half_spread_bps": {
+        "type": "number",
+        "range": [
+          21.9,
+          22.1
+        ]
+      },
+      "update_ms": {
+        "type": "number",
+        "range": [
+          418.32,
+          421.68
+        ]
+      },
+      "max_quote_size_usd": {
+        "type": "number",
+        "range": [
+          55776,
+          56224
+        ]
+      },
+      "hedge_rate_usd_per_sec": {
+        "type": "number",
+        "range": [
+          81672,
+          82328
+        ]
+      },
+      "expected_20m_pnl_usd": {
+        "type": "number",
+        "range": [
+          1821.6,
+          1858.4
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "inventory_cap_respected",
+          "oracle_lag_cancel_safe",
+          "hedge_rate_under_impact_limit"
+        ]
+      }
+    },
+    "derivation": "An asymmetric quote encourages selling down the long inventory while wider bids avoid adding risk. Update cadence stays inside the oracle-lag safety window, and hedge rate remains below the impact threshold.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

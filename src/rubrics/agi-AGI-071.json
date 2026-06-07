@@ -1,0 +1,124 @@
+{
+  "id": "agi-AGI-071",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "exit_allocation_units.Binance_convert",
+    "exit_allocation_units.OTC_Asia",
+    "exit_allocation_units.Curve_stables",
+    "exit_allocation_units.Aave_loop_close",
+    "exit_allocation_units.DEX_BSC",
+    "expected_recovered_usd",
+    "fast_cash_usd",
+    "largest_visible_exit_units",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "exit_allocation_units.Binance_convert",
+    "exit_allocation_units.OTC_Asia",
+    "exit_allocation_units.Curve_stables",
+    "exit_allocation_units.Aave_loop_close",
+    "exit_allocation_units.DEX_BSC",
+    "expected_recovered_usd",
+    "fast_cash_usd",
+    "largest_visible_exit_units",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.090909,
+    "exit_allocation_units.Binance_convert": 0.090909,
+    "exit_allocation_units.OTC_Asia": 0.090909,
+    "exit_allocation_units.Curve_stables": 0.090909,
+    "exit_allocation_units.Aave_loop_close": 0.090909,
+    "exit_allocation_units.DEX_BSC": 0.090909,
+    "expected_recovered_usd": 0.090909,
+    "fast_cash_usd": 0.090909,
+    "largest_visible_exit_units": 0.090909,
+    "self_check": 0.09091
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-071",
+    "title": "FDUSD Cascade Exit",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "stablecoin_cascade_exit"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "recovery_ranked_no_queue_rotation"
+      },
+      "expected_recovered_usd": {
+        "type": "number",
+        "range": [
+          1241427.09016,
+          1246402.74984
+        ]
+      },
+      "fast_cash_usd": {
+        "type": "number",
+        "range": [
+          457932.75908,
+          459768.16092
+        ]
+      },
+      "largest_visible_exit_units": {
+        "type": "number",
+        "range": [
+          459080,
+          460920
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_balance_routed",
+          "fast_cash_floor_met",
+          "queue_visibility_avoided"
+        ]
+      },
+      "exit_allocation_units.Binance_convert": {
+        "type": "number",
+        "range": [
+          459080,
+          460920
+        ]
+      },
+      "exit_allocation_units.OTC_Asia": {
+        "type": "number",
+        "range": [
+          419160,
+          420840
+        ]
+      },
+      "exit_allocation_units.Curve_stables": {
+        "type": "number",
+        "range": [
+          119760,
+          120240
+        ]
+      },
+      "exit_allocation_units.Aave_loop_close": {
+        "type": "number",
+        "range": [
+          249500,
+          250500
+        ]
+      },
+      "exit_allocation_units.DEX_BSC": {
+        "type": "number",
+        "range": [
+          -1,
+          1
+        ]
+      }
+    },
+    "derivation": "Recovery-ranked queue-safe rotation routes all 1250000 FDUSD. Expected recovery is 1243914.92, fast cash is 458850.46, and largest visible exit is 460000.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

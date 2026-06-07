@@ -1,0 +1,103 @@
+{
+  "id": "agi-AGI-004",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "allocation_usd.Curve_3pool",
+    "allocation_usd.Aave_USDC",
+    "allocation_usd.Ethena_USDe",
+    "allocation_usd.GMX_GLP",
+    "expected_net_apy_pct",
+    "expected_90d_profit_usd",
+    "liquidity_48h_usd"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "allocation_usd.Curve_3pool",
+    "allocation_usd.Aave_USDC",
+    "allocation_usd.Ethena_USDe",
+    "allocation_usd.GMX_GLP",
+    "expected_net_apy_pct",
+    "expected_90d_profit_usd",
+    "liquidity_48h_usd"
+  ],
+  "field_weights": {
+    "intent": 0.038462,
+    "chosen_strategy": 0.692308,
+    "allocation_usd.Curve_3pool": 0.038462,
+    "allocation_usd.Aave_USDC": 0.038462,
+    "allocation_usd.Ethena_USDe": 0.038462,
+    "allocation_usd.GMX_GLP": 0.038462,
+    "expected_net_apy_pct": 0.038462,
+    "expected_90d_profit_usd": 0.038462,
+    "liquidity_48h_usd": 0.038462
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-004",
+    "title": "The Protocol Yield Oracle",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "crisis_liquid_yield_allocation"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "liquid_barbell_capped_tail"
+      },
+      "allocation_usd.Curve_3pool": {
+        "type": "number",
+        "range": [
+          29900,
+          30100
+        ]
+      },
+      "allocation_usd.Aave_USDC": {
+        "type": "number",
+        "range": [
+          19900,
+          20100
+        ]
+      },
+      "allocation_usd.Ethena_USDe": {
+        "type": "number",
+        "range": [
+          19900,
+          20100
+        ]
+      },
+      "allocation_usd.GMX_GLP": {
+        "type": "number",
+        "range": [
+          29900,
+          30100
+        ]
+      },
+      "expected_net_apy_pct": {
+        "type": "number",
+        "range": [
+          8.6,
+          8.8
+        ]
+      },
+      "expected_90d_profit_usd": {
+        "type": "number",
+        "range": [
+          2120,
+          2165
+        ]
+      },
+      "liquidity_48h_usd": {
+        "type": "number",
+        "range": [
+          49900,
+          50100
+        ]
+      }
+    },
+    "derivation": "Net APYs are Aave 4.2, Curve 8.1-0.18=7.92, Ethena 15.2-2.4=12.8 (but capped at 20k to avoid queue), GMX 18.7-9.0=9.7, Pendle 3.8. The 48h liquidity constraint requires 50k in Aave+Curve; with Curve better, allocate 30k Curve and 20k Aave. Remaining goes to the highest capped risk-adjusted venues: 20k Ethena and 30k GMX. Weighted APY is 8.688%; 90-day profit is 2,142.25.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

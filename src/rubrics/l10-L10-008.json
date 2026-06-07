@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-008",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "regulatory_compliance": 0.3,
+    "cost_modeling": 0.3,
+    "execution_schedule": 0.25,
+    "final_value_accuracy": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-008",
+    "level": 10,
+    "intent": "treasury_rebalance",
+    "expected_value": 48400000,
+    "range": [
+      47500000,
+      49000000
+    ],
+    "unit": "USD_final_value",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "regulatory_compliance",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Meets SEC requirements: GOV<40%, stables>50%, within timeframe",
+          "pass_threshold": 21
+        },
+        {
+          "name": "cost_modeling",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Accurate slippage, price impact, IL, and governance delay costs",
+          "pass_threshold": 21
+        },
+        {
+          "name": "execution_schedule",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Optimal sell schedule minimizing market impact over 14-21 days",
+          "pass_threshold": 18
+        },
+        {
+          "name": "final_value_accuracy",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Correct final treasury value calculation after all costs",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 47500000 AND value <= 49000000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            47700000,
+            48800000
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            47500000,
+            49000000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            47000000,
+            49500000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            47000000,
+            49500000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            46000000,
+            50000000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

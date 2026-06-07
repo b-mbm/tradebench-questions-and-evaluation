@@ -1,0 +1,73 @@
+{
+  "id": "agi-AGI-006",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "price_band",
+    "child_order_btc",
+    "repricing_interval_sec",
+    "expected_avg_price"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "price_band",
+    "child_order_btc",
+    "repricing_interval_sec",
+    "expected_avg_price"
+  ],
+  "field_weights": {
+    "intent": 0.058824,
+    "chosen_strategy": 0.705882,
+    "price_band": 0.058824,
+    "child_order_btc": 0.058824,
+    "repricing_interval_sec": 0.058824,
+    "expected_avg_price": 0.058824
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-006",
+    "title": "The Order Flow Predictor",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "toxic_flow_execution"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "reactive_iceberg_limits"
+      },
+      "price_band": {
+        "type": "array",
+        "expected_order": [
+          58525,
+          58540
+        ]
+      },
+      "child_order_btc": {
+        "type": "number",
+        "range": [
+          39,
+          41
+        ]
+      },
+      "repricing_interval_sec": {
+        "type": "number",
+        "range": [
+          44,
+          46
+        ]
+      },
+      "expected_avg_price": {
+        "type": "number",
+        "range": [
+          58530,
+          58538
+        ]
+      }
+    },
+    "derivation": "The sell shocks mean the book refills quickly around the pre-impulse fair value, while the abnormal buy impulse indicates toxic lift risk. Displaying above 150 BTC is dominated. Twelve to thirteen hidden 40-BTC clips, repriced every 45 seconds inside 58,525-58,540, complete within ten minutes and avoid the classifier; the canonical expected average is 58,534.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

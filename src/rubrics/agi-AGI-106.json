@@ -1,0 +1,104 @@
+{
+  "id": "agi-AGI-106",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "half_spread_bps",
+    "quote_size_usd",
+    "hedge_window_sec",
+    "hedge_window_cap_usd",
+    "inventory_stop_usd",
+    "expected_hourly_pnl_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "half_spread_bps",
+    "quote_size_usd",
+    "hedge_window_sec",
+    "hedge_window_cap_usd",
+    "inventory_stop_usd",
+    "expected_hourly_pnl_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.16,
+    "chosen_strategy": 0.18,
+    "half_spread_bps": 0.04,
+    "quote_size_usd": 0.04,
+    "hedge_window_sec": 0.14,
+    "hedge_window_cap_usd": 0.18,
+    "inventory_stop_usd": 0.04,
+    "expected_hourly_pnl_usd": 0.04,
+    "self_check": 0.18
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-106",
+    "title": "AMM-CEX Hedge-Lag Maker",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "amm_cex_hedge_lag_maker"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "queue_preserving_spread_with_amm_throttle"
+      },
+      "half_spread_bps": {
+        "type": "number",
+        "range": [
+          30.876,
+          31.124
+        ]
+      },
+      "quote_size_usd": {
+        "type": "number",
+        "range": [
+          41832,
+          42168
+        ]
+      },
+      "hedge_window_sec": {
+        "type": "number",
+        "range": [
+          39.9,
+          40.1
+        ]
+      },
+      "hedge_window_cap_usd": {
+        "type": "number",
+        "range": [
+          71712,
+          72288
+        ]
+      },
+      "inventory_stop_usd": {
+        "type": "number",
+        "range": [
+          167328,
+          168672
+        ]
+      },
+      "expected_hourly_pnl_usd": {
+        "type": "number",
+        "range": [
+          2930.4,
+          2989.6
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "queue_priority_preserved",
+          "amm_range_not_exhausted",
+          "inventory_stop_inside_limit"
+        ]
+      }
+    },
+    "derivation": "The selected spread stays in the benign-flow band, quote size and hedge throttle keep AMM flow below the nonlinear range, and the inventory stop is inside the desk hard cap.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

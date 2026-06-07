@@ -1,0 +1,63 @@
+{
+  "id": "agi-AGI-009",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "chosen_path",
+    "expected_wld",
+    "completion_minutes"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "chosen_path",
+    "expected_wld",
+    "completion_minutes"
+  ],
+  "field_weights": {
+    "intent": 0.043478,
+    "chosen_strategy": 0.434783,
+    "chosen_path": 0.434783,
+    "expected_wld": 0.043478,
+    "completion_minutes": 0.043478
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-009",
+    "title": "The Optimal Path Finder",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "cross_chain_wld_timing"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "buy_first_then_bridge_token"
+      },
+      "chosen_path": {
+        "type": "number",
+        "range": [
+          2,
+          2
+        ]
+      },
+      "expected_wld": {
+        "type": "number",
+        "range": [
+          403.5,
+          404.5
+        ]
+      },
+      "completion_minutes": {
+        "type": "number",
+        "range": [
+          9,
+          11
+        ]
+      }
+    },
+    "derivation": "Routes 3 and 4 are infeasible because the second bridge is unspecified. Route 1 buys after 10 minutes at an Optimism price inflated by 5%, yielding about 384.47 WLD. Route 2 buys immediately: (1,000-28)/2.40*0.999 = 404.595 WLD, then pays a 0.15% bridge token fee, leaving 403.988 WLD on Optimism in 10 minutes.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

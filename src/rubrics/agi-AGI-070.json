@@ -1,0 +1,124 @@
+{
+  "id": "agi-AGI-070",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "exit_allocation_units.CEX_USDC",
+    "exit_allocation_units.Curve_3pool",
+    "exit_allocation_units.OTC_Tether",
+    "exit_allocation_units.Aave_repay",
+    "exit_allocation_units.DEX_thin",
+    "expected_recovered_usd",
+    "fast_cash_usd",
+    "largest_visible_exit_units",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "exit_allocation_units.CEX_USDC",
+    "exit_allocation_units.Curve_3pool",
+    "exit_allocation_units.OTC_Tether",
+    "exit_allocation_units.Aave_repay",
+    "exit_allocation_units.DEX_thin",
+    "expected_recovered_usd",
+    "fast_cash_usd",
+    "largest_visible_exit_units",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.090909,
+    "exit_allocation_units.CEX_USDC": 0.090909,
+    "exit_allocation_units.Curve_3pool": 0.090909,
+    "exit_allocation_units.OTC_Tether": 0.090909,
+    "exit_allocation_units.Aave_repay": 0.090909,
+    "exit_allocation_units.DEX_thin": 0.090909,
+    "expected_recovered_usd": 0.090909,
+    "fast_cash_usd": 0.090909,
+    "largest_visible_exit_units": 0.090909,
+    "self_check": 0.09091
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-070",
+    "title": "USDT Cascade Exit",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "stablecoin_cascade_exit"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "recovery_ranked_no_queue_rotation"
+      },
+      "expected_recovered_usd": {
+        "type": "number",
+        "range": [
+          1783793.655216,
+          1790943.128784
+        ]
+      },
+      "fast_cash_usd": {
+        "type": "number",
+        "range": [
+          1129567.002672,
+          1134094.325328
+        ]
+      },
+      "largest_visible_exit_units": {
+        "type": "number",
+        "range": [
+          618760,
+          621240
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_balance_routed",
+          "fast_cash_floor_met",
+          "queue_visibility_avoided"
+        ]
+      },
+      "exit_allocation_units.CEX_USDC": {
+        "type": "number",
+        "range": [
+          618760,
+          621240
+        ]
+      },
+      "exit_allocation_units.Curve_3pool": {
+        "type": "number",
+        "range": [
+          518960,
+          521040
+        ]
+      },
+      "exit_allocation_units.OTC_Tether": {
+        "type": "number",
+        "range": [
+          359280,
+          360720
+        ]
+      },
+      "exit_allocation_units.Aave_repay": {
+        "type": "number",
+        "range": [
+          299400,
+          300600
+        ]
+      },
+      "exit_allocation_units.DEX_thin": {
+        "type": "number",
+        "range": [
+          -1,
+          1
+        ]
+      }
+    },
+    "derivation": "Recovery-ranked queue-safe rotation routes all 1800000 USDT. Expected recovery is 1787368.392, fast cash is 1131830.664, and largest visible exit is 620000.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "agi-AGI-103",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "proposal_vote",
+    "hedge_action",
+    "expected_30d_value_usd",
+    "supply_shock_pct",
+    "lp_depth_after_30d_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "proposal_vote",
+    "hedge_action",
+    "expected_30d_value_usd",
+    "supply_shock_pct",
+    "lp_depth_after_30d_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.15,
+    "chosen_strategy": 0.2,
+    "proposal_vote": 0.2,
+    "hedge_action": 0.15,
+    "expected_30d_value_usd": 0.075,
+    "supply_shock_pct": 0.075,
+    "lp_depth_after_30d_usd": 0.075,
+    "self_check": 0.075
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-103",
+    "title": "Protocol Emission Reflexivity Vote",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tokenomics_reflexive_vote"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "emission_cut_with_locked_lp_redirect"
+      },
+      "proposal_vote": {
+        "type": "string",
+        "expected": "vote_for_emission_cut_redirect"
+      },
+      "hedge_action": {
+        "type": "string",
+        "expected": "hold_spot_with_short_unlock_tail"
+      },
+      "expected_30d_value_usd": {
+        "type": "number",
+        "range": [
+          1541808,
+          1554192
+        ]
+      },
+      "supply_shock_pct": {
+        "type": "number",
+        "range": [
+          5.87,
+          5.93
+        ]
+      },
+      "lp_depth_after_30d_usd": {
+        "type": "number",
+        "range": [
+          30079200,
+          30320800
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "supply_shock_cap_respected",
+          "lp_depth_feedback_reconciles",
+          "vote_and_hedge_consistent"
+        ]
+      }
+    },
+    "derivation": "The emission cut with locked LP redirect reduces immediate sell pressure while crossing the LP-depth fee feedback threshold; the unlock delay has larger direct supply shock after bribe effects. The hedge protects unlock-tail risk without negating the governance exposure.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

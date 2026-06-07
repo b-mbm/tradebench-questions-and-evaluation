@@ -1,0 +1,108 @@
+{
+  "id": "agi-AGI-008",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "actions",
+    "priority_order",
+    "direct_usdt_neutralized_usd",
+    "latest_direct_neutralization_min",
+    "margin_notional_reduced_usd",
+    "expected_execution_cost_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "actions",
+    "priority_order",
+    "direct_usdt_neutralized_usd",
+    "latest_direct_neutralization_min",
+    "margin_notional_reduced_usd",
+    "expected_execution_cost_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.111111,
+    "chosen_strategy": 0.111111,
+    "actions": 0.111111,
+    "priority_order": 0.111111,
+    "direct_usdt_neutralized_usd": 0.111111,
+    "latest_direct_neutralization_min": 0.111111,
+    "margin_notional_reduced_usd": 0.111111,
+    "expected_execution_cost_usd": 0.111111,
+    "self_check": 0.111111
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-008",
+    "title": "The Regulatory Risk Cascade",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "stablecoin_regulatory_cascade"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "neutralize_timeboxed_usdt_then_margin"
+      },
+      "actions": {
+        "type": "array",
+        "expected_order": [
+          "exit_curve_3pool",
+          "unwind_aave_usdt_loop",
+          "reduce_eth_perp_half",
+          "hold_unencumbered_btc"
+        ]
+      },
+      "priority_order": {
+        "type": "array",
+        "expected_order": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "direct_usdt_neutralized_usd": {
+        "type": "number",
+        "range": [
+          799000,
+          801000
+        ]
+      },
+      "latest_direct_neutralization_min": {
+        "type": "number",
+        "range": [
+          19,
+          21
+        ]
+      },
+      "margin_notional_reduced_usd": {
+        "type": "number",
+        "range": [
+          199000,
+          201000
+        ]
+      },
+      "expected_execution_cost_usd": {
+        "type": "number",
+        "range": [
+          2700,
+          2800
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "curve_gate_beaten",
+          "aave_oracle_beaten",
+          "margin_window_reduced_before_t40"
+        ]
+      }
+    },
+    "derivation": "Starting at T+10m with one action per ten minutes, the Curve position must be exited first because the imbalance path reaches the 65% gate around T+33m and exit cost jumps after gating. The Aave USDT loop must be unwound second, completing by T+20m before the T+28m oracle/liquidation window. Those first two actions neutralize $500,000 + $300,000 = $800,000 of direct USDT principal by minute 20. The third action reduces half the $400,000 ETH perp notional at T+30m, before the T+40m stablecoin-margin window. BTC spot is held because it is unencumbered and not USDT-collateralized. Costs are Curve 0.25%*$500,000 = $1,250, Aave 0.40%*$300,000 = $1,200, and ETH half reduction 0.15%*$200,000 = $300, for total expected execution cost of $2,750. The self-check verifies the Curve gate, Aave oracle timing, and margin action timing.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "agi-AGI-112",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "pair_allocations_usd.BTC",
+    "pair_allocations_usd.ETH",
+    "pair_allocations_usd.SOL",
+    "venue_sequence",
+    "expected_36h_net_pnl_usd",
+    "max_margin_utilization_pct",
+    "shock_survival_buffer_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "pair_allocations_usd.BTC",
+    "pair_allocations_usd.ETH",
+    "pair_allocations_usd.SOL",
+    "venue_sequence",
+    "expected_36h_net_pnl_usd",
+    "max_margin_utilization_pct",
+    "shock_survival_buffer_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.1,
+    "chosen_strategy": 0.13,
+    "pair_allocations_usd.BTC": 0.13,
+    "pair_allocations_usd.ETH": 0.12,
+    "pair_allocations_usd.SOL": 0.13,
+    "venue_sequence": 0.14,
+    "expected_36h_net_pnl_usd": 0.05,
+    "max_margin_utilization_pct": 0.05,
+    "shock_survival_buffer_usd": 0.05,
+    "self_check": 0.1
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-112",
+    "title": "Borrow-Constrained Basis Rotation",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "funding_basis_rotation"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "borrow_capped_multi_asset_basis_ladder"
+      },
+      "pair_allocations_usd.BTC": {
+        "type": "number",
+        "range": [
+          677280,
+          682720
+        ]
+      },
+      "pair_allocations_usd.ETH": {
+        "type": "number",
+        "range": [
+          936240,
+          943760
+        ]
+      },
+      "pair_allocations_usd.SOL": {
+        "type": "number",
+        "range": [
+          776880,
+          783120
+        ]
+      },
+      "venue_sequence": {
+        "type": "array",
+        "expected_order": [
+          "Venue_B_SOL_first",
+          "Venue_A_BTC_capped",
+          "Venue_B_ETH_residual",
+          "rebalance_collateral_before_second_funding"
+        ]
+      },
+      "expected_36h_net_pnl_usd": {
+        "type": "number",
+        "range": [
+          11749.08,
+          11890.92
+        ]
+      },
+      "max_margin_utilization_pct": {
+        "type": "number",
+        "range": [
+          58.1664,
+          58.6336
+        ]
+      },
+      "shock_survival_buffer_usd": {
+        "type": "number",
+        "range": [
+          145124,
+          146876
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "borrow_caps_respected",
+          "funding_windows_reconciled",
+          "shock_buffer_positive"
+        ]
+      }
+    },
+    "derivation": "The rotation caps BTC at the borrow knee, uses ETH as residual balance-sheet filler, sizes SOL below the utilization haircut, and pays one collateral rebalance before the second funding window to keep shock survival positive.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

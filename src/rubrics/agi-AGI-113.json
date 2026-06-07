@@ -1,0 +1,122 @@
+{
+  "id": "agi-AGI-113",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "lots_to_harvest",
+    "replacement_basket",
+    "harvested_loss_usd",
+    "immediate_tax_alpha_usd",
+    "carryforward_loss_usd",
+    "implementation_cost_usd",
+    "net_tax_alpha_usd",
+    "tracking_gap_pct",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "lots_to_harvest",
+    "replacement_basket",
+    "harvested_loss_usd",
+    "immediate_tax_alpha_usd",
+    "carryforward_loss_usd",
+    "implementation_cost_usd",
+    "net_tax_alpha_usd",
+    "tracking_gap_pct",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.090909,
+    "lots_to_harvest": 0.090909,
+    "replacement_basket": 0.090909,
+    "harvested_loss_usd": 0.090909,
+    "immediate_tax_alpha_usd": 0.090909,
+    "carryforward_loss_usd": 0.090909,
+    "implementation_cost_usd": 0.090909,
+    "net_tax_alpha_usd": 0.090909,
+    "tracking_gap_pct": 0.090909,
+    "self_check": 0.09091
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-113",
+    "title": "Cross-Venue Wash-Sale Harvest",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tax_loss_factor_neutral_optimization"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "net_after_tax_alpha_with_tracking_constraint"
+      },
+      "lots_to_harvest": {
+        "type": "array",
+        "expected_set": [
+          "SOL",
+          "LINK"
+        ],
+        "min_items": 2,
+        "match_type": "exact_set"
+      },
+      "replacement_basket": {
+        "type": "object"
+      },
+      "harvested_loss_usd": {
+        "type": "number",
+        "range": [
+          102794,
+          103206
+        ]
+      },
+      "immediate_tax_alpha_usd": {
+        "type": "number",
+        "range": [
+          38033.78,
+          38186.22
+        ]
+      },
+      "carryforward_loss_usd": {
+        "type": "number",
+        "range": [
+          -1,
+          1
+        ]
+      },
+      "implementation_cost_usd": {
+        "type": "number",
+        "range": [
+          3580.824,
+          3595.176
+        ]
+      },
+      "net_tax_alpha_usd": {
+        "type": "number",
+        "range": [
+          34452.956,
+          34591.044
+        ]
+      },
+      "tracking_gap_pct": {
+        "type": "number",
+        "range": [
+          8.876118,
+          8.947412
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "wash_sale_avoided",
+          "tracking_gap_within_limit",
+          "tax_alpha_reconciles"
+        ]
+      }
+    },
+    "derivation": "Enumerated harvest subsets under the tracking-gap cap. Selected SOL, LINK with harvested loss 103000, immediate offset 103000, carryforward 0, implementation cost 3588, tracking gap 8.911765%, and net tax alpha 34522. Replacement basket: {\"SOL\":\"JitoSOL_plus_SOL_call\",\"LINK\":\"PYTH_plus_oracle_index\"}.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

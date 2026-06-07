@@ -1,0 +1,97 @@
+{
+  "id": "agi-AGI-050",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "half_spread_bps",
+    "update_ms",
+    "max_inventory_usd",
+    "expected_1h_pnl_usd",
+    "toxic_defense",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "half_spread_bps",
+    "update_ms",
+    "max_inventory_usd",
+    "expected_1h_pnl_usd",
+    "toxic_defense",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.125,
+    "chosen_strategy": 0.125,
+    "half_spread_bps": 0.125,
+    "update_ms": 0.125,
+    "max_inventory_usd": 0.125,
+    "expected_1h_pnl_usd": 0.125,
+    "toxic_defense": 0.125,
+    "self_check": 0.125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-050",
+    "title": "New Listing Market Maker C Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "market_making_strategy"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "selective_wide_defensive_quoting"
+      },
+      "half_spread_bps": {
+        "type": "number",
+        "range": [
+          34,
+          36
+        ]
+      },
+      "update_ms": {
+        "type": "number",
+        "range": [
+          108,
+          112
+        ]
+      },
+      "max_inventory_usd": {
+        "type": "number",
+        "range": [
+          29400,
+          30600
+        ]
+      },
+      "expected_1h_pnl_usd": {
+        "type": "number",
+        "range": [
+          585,
+          645
+        ]
+      },
+      "toxic_defense": {
+        "type": "array",
+        "expected_set": [
+          "cancel_on_microstructure_shock",
+          "blacklist_counterparty_signature",
+          "widen_spread_on_skew",
+          "inventory_caps"
+        ],
+        "match_type": "exact_set"
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "spread_covers_toxic_move",
+          "cadence_respects_latency",
+          "inventory_and_pnl_reconcile"
+        ]
+      }
+    },
+    "derivation": "A defensive half-spread of 35 bps covers the toxic move while staying inside the competitive band, update cadence is twice measured latency (110 ms), inventory is capped at $30000, and expected one-hour PnL is turnover*spread_bps/10000 - adverse drag = 615. Self-check verifies spread, cadence, inventory, and PnL consistency.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

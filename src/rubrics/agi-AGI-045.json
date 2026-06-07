@@ -1,0 +1,84 @@
+{
+  "id": "agi-AGI-045",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_steps",
+    "expected_tokens",
+    "completion_minutes",
+    "total_fee_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_steps",
+    "expected_tokens",
+    "completion_minutes",
+    "total_fee_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.142857,
+    "chosen_strategy": 0.142857,
+    "route_steps": 0.142857,
+    "expected_tokens": 0.142857,
+    "completion_minutes": 0.142857,
+    "total_fee_usd": 0.142857,
+    "self_check": 0.142858
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-045",
+    "title": "OP Airdrop Chase Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "cross_chain_execution_window"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_usdc_bridge_then_destination_swap"
+      },
+      "route_steps": {
+        "type": "array",
+        "expected_order": [
+          "bridge_usdc_to_optimism",
+          "swap_on_optimism"
+        ]
+      },
+      "expected_tokens": {
+        "type": "number",
+        "range": [
+          936.7427499999999,
+          946.1572499999999
+        ]
+      },
+      "completion_minutes": {
+        "type": "number",
+        "range": [
+          9,
+          11
+        ]
+      },
+      "total_fee_usd": {
+        "type": "number",
+        "range": [
+          17,
+          19
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "destination_chain_satisfied",
+          "token_amount_reconciles_to_fees_and_slippage",
+          "public_token_bridge_delay_avoided"
+        ]
+      }
+    },
+    "derivation": "USDC-first is feasible on the destination chain and avoids the public token-transfer delay. Expected tokens are (2000-18)/2.1*(1-0.0025) = 941.45. The self-check verifies destination, token arithmetic, and delay avoidance.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

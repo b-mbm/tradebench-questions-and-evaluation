@@ -1,0 +1,124 @@
+{
+  "id": "agi-AGI-072",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "exit_allocation_units.Ethena_redeem",
+    "exit_allocation_units.CEX_USDC",
+    "exit_allocation_units.Curve_USDe",
+    "exit_allocation_units.OTC_block",
+    "exit_allocation_units.DEX_thin",
+    "expected_recovered_usd",
+    "fast_cash_usd",
+    "largest_visible_exit_units",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "exit_allocation_units.Ethena_redeem",
+    "exit_allocation_units.CEX_USDC",
+    "exit_allocation_units.Curve_USDe",
+    "exit_allocation_units.OTC_block",
+    "exit_allocation_units.DEX_thin",
+    "expected_recovered_usd",
+    "fast_cash_usd",
+    "largest_visible_exit_units",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.090909,
+    "exit_allocation_units.Ethena_redeem": 0.090909,
+    "exit_allocation_units.CEX_USDC": 0.090909,
+    "exit_allocation_units.Curve_USDe": 0.090909,
+    "exit_allocation_units.OTC_block": 0.090909,
+    "exit_allocation_units.DEX_thin": 0.090909,
+    "expected_recovered_usd": 0.090909,
+    "fast_cash_usd": 0.090909,
+    "largest_visible_exit_units": 0.090909,
+    "self_check": 0.09091
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-072",
+    "title": "USDe Cascade Exit",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "stablecoin_cascade_exit"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "recovery_ranked_no_queue_rotation"
+      },
+      "expected_recovered_usd": {
+        "type": "number",
+        "range": [
+          1580120.65554,
+          1586453.80446
+        ]
+      },
+      "fast_cash_usd": {
+        "type": "number",
+        "range": [
+          777535.245136,
+          780651.618864
+        ]
+      },
+      "largest_visible_exit_units": {
+        "type": "number",
+        "range": [
+          499000,
+          501000
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_balance_routed",
+          "fast_cash_floor_met",
+          "queue_visibility_avoided"
+        ]
+      },
+      "exit_allocation_units.Ethena_redeem": {
+        "type": "number",
+        "range": [
+          429140,
+          430860
+        ]
+      },
+      "exit_allocation_units.CEX_USDC": {
+        "type": "number",
+        "range": [
+          499000,
+          501000
+        ]
+      },
+      "exit_allocation_units.Curve_USDe": {
+        "type": "number",
+        "range": [
+          289420,
+          290580
+        ]
+      },
+      "exit_allocation_units.OTC_block": {
+        "type": "number",
+        "range": [
+          379240,
+          380760
+        ]
+      },
+      "exit_allocation_units.DEX_thin": {
+        "type": "number",
+        "range": [
+          -1,
+          1
+        ]
+      }
+    },
+    "derivation": "Recovery-ranked queue-safe rotation routes all 1600000 USDe. Expected recovery is 1583287.23, fast cash is 779093.432, and largest visible exit is 500000.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

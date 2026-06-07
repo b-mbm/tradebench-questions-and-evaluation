@@ -1,0 +1,120 @@
+{
+  "id": "agi-AGI-014",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "perp_short_allocation_usd.Binance",
+    "perp_short_allocation_usd.Bybit",
+    "perp_short_allocation_usd.Hyperliquid",
+    "perp_short_allocation_usd.OKX",
+    "perp_short_allocation_usd.dYdX",
+    "leverage",
+    "apr_pct",
+    "pnl_30d_usd",
+    "survives_cascade"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "perp_short_allocation_usd.Binance",
+    "perp_short_allocation_usd.Bybit",
+    "perp_short_allocation_usd.Hyperliquid",
+    "perp_short_allocation_usd.OKX",
+    "perp_short_allocation_usd.dYdX",
+    "leverage",
+    "apr_pct",
+    "pnl_30d_usd",
+    "survives_cascade"
+  ],
+  "field_weights": {
+    "intent": 0.018868,
+    "chosen_strategy": 0.415094,
+    "perp_short_allocation_usd.Binance": 0.018868,
+    "perp_short_allocation_usd.Bybit": 0.018868,
+    "perp_short_allocation_usd.Hyperliquid": 0.018868,
+    "perp_short_allocation_usd.OKX": 0.018868,
+    "perp_short_allocation_usd.dYdX": 0.018868,
+    "leverage": 0.018868,
+    "apr_pct": 0.018868,
+    "pnl_30d_usd": 0.018868,
+    "survives_cascade": 0.415094
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-014",
+    "title": "The Funding Rate Curve Trader",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "resilient_funding_basis"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "capped_multi_venue_delta_neutral"
+      },
+      "perp_short_allocation_usd.Binance": {
+        "type": "number",
+        "range": [
+          149000,
+          151000
+        ]
+      },
+      "perp_short_allocation_usd.Bybit": {
+        "type": "number",
+        "range": [
+          99000,
+          101000
+        ]
+      },
+      "perp_short_allocation_usd.Hyperliquid": {
+        "type": "number",
+        "range": [
+          99000,
+          101000
+        ]
+      },
+      "perp_short_allocation_usd.OKX": {
+        "type": "number",
+        "range": [
+          99000,
+          101000
+        ]
+      },
+      "perp_short_allocation_usd.dYdX": {
+        "type": "number",
+        "range": [
+          49000,
+          51000
+        ]
+      },
+      "leverage": {
+        "type": "number",
+        "range": [
+          0.95,
+          1.05
+        ]
+      },
+      "apr_pct": {
+        "type": "number",
+        "range": [
+          28.7,
+          29.2
+        ]
+      },
+      "pnl_30d_usd": {
+        "type": "number",
+        "range": [
+          11750,
+          12050
+        ]
+      },
+      "survives_cascade": {
+        "type": "boolean",
+        "expected": true
+      }
+    },
+    "derivation": "Fill highest resilient venue caps while keeping total short notional at 500k against 500k spot: Binance 150k, Bybit 100k, Hyperliquid 100k, OKX 100k, dYdX 50k. Weighted funding APR is 25.3%. Basis compression from 0.6% to 0.1% over 30 days annualizes to 6.083%. Subtract 2.4% drag for 28.983% net APR. 30-day PnL is 500k*0.28983*30/365 = about 11,911. Delta-neutral 1x survives the cascade.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "id": "agi-AGI-054",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_legs.SOL_short.notional_usd",
+    "hedge_legs.BTC_put_spread.notional_usd",
+    "expected_vol_reduction_pct",
+    "residual_1d_var_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_legs.SOL_short.notional_usd",
+    "hedge_legs.BTC_put_spread.notional_usd",
+    "expected_vol_reduction_pct",
+    "residual_1d_var_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.142857,
+    "chosen_strategy": 0.142857,
+    "hedge_legs.SOL_short.notional_usd": 0.142857,
+    "hedge_legs.BTC_put_spread.notional_usd": 0.142857,
+    "expected_vol_reduction_pct": 0.142857,
+    "residual_1d_var_usd": 0.142857,
+    "self_check": 0.142858
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-054",
+    "title": "SOL Crisis Correlation Hedge Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "crisis_correlation_hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "sol_short_plus_btc_put_spread"
+      },
+      "hedge_legs.SOL_short.notional_usd": {
+        "type": "number",
+        "range": [
+          308000,
+          312000
+        ]
+      },
+      "hedge_legs.BTC_put_spread.notional_usd": {
+        "type": "number",
+        "range": [
+          745000,
+          755000
+        ]
+      },
+      "expected_vol_reduction_pct": {
+        "type": "number",
+        "range": [
+          51,
+          53
+        ]
+      },
+      "residual_1d_var_usd": {
+        "type": "number",
+        "range": [
+          156000,
+          160000
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "crowding_cap_not_tripped",
+          "convex_leg_offsets_common_crash",
+          "var_reduction_reconciles"
+        ]
+      }
+    },
+    "derivation": "The self-consistent hedge uses SOL short at the $310,000 crowding cap and BTC put-spread convexity at $750,000, producing about 52% vol reduction and residual one-day VaR near $158,000 while avoiding spot sales and short-crowding inconsistency.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

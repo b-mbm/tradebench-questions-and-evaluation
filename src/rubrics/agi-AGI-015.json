@@ -1,0 +1,103 @@
+{
+  "id": "agi-AGI-015",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Velodrome_Optimism",
+    "venue_allocation_usd.Uniswap_Arbitrum",
+    "venue_allocation_usd.Kraken",
+    "venue_allocation_usd.Curve_ETH",
+    "venue_allocation_usd.Binance",
+    "expected_eth_received",
+    "effective_price"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Velodrome_Optimism",
+    "venue_allocation_usd.Uniswap_Arbitrum",
+    "venue_allocation_usd.Kraken",
+    "venue_allocation_usd.Curve_ETH",
+    "venue_allocation_usd.Binance",
+    "expected_eth_received",
+    "effective_price"
+  ],
+  "field_weights": {
+    "intent": 0.038462,
+    "chosen_strategy": 0.692308,
+    "venue_allocation_usd.Velodrome_Optimism": 0.038462,
+    "venue_allocation_usd.Uniswap_Arbitrum": 0.038462,
+    "venue_allocation_usd.Kraken": 0.038462,
+    "venue_allocation_usd.Curve_ETH": 0.038462,
+    "venue_allocation_usd.Binance": 0.038462,
+    "expected_eth_received": 0.038462,
+    "effective_price": 0.038462
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-015",
+    "title": "The Multi-Venue Arbitrage Router",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_multi_venue_eth_buy"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "capacity_capped_best_execution"
+      },
+      "venue_allocation_usd.Velodrome_Optimism": {
+        "type": "number",
+        "range": [
+          399000,
+          401000
+        ]
+      },
+      "venue_allocation_usd.Uniswap_Arbitrum": {
+        "type": "number",
+        "range": [
+          399000,
+          401000
+        ]
+      },
+      "venue_allocation_usd.Kraken": {
+        "type": "number",
+        "range": [
+          499000,
+          501000
+        ]
+      },
+      "venue_allocation_usd.Curve_ETH": {
+        "type": "number",
+        "range": [
+          399000,
+          401000
+        ]
+      },
+      "venue_allocation_usd.Binance": {
+        "type": "number",
+        "range": [
+          299000,
+          301000
+        ]
+      },
+      "expected_eth_received": {
+        "type": "number",
+        "range": [
+          665.1,
+          665.7
+        ]
+      },
+      "effective_price": {
+        "type": "number",
+        "range": [
+          3004.5,
+          3006.9
+        ]
+      }
+    },
+    "derivation": "Rank venues by all-in effective cost while respecting adversarial capacity. Use Velodrome 400k, Uniswap Arbitrum 400k, Kraken 500k, Curve 400k, and Binance for the remaining 300k. Deduct fixed costs before percentage fees for bridge/gas venues. Expected ETH is 665.3996 and effective price is 3,005.71.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

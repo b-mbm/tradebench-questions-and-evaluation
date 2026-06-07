@@ -1,0 +1,84 @@
+{
+  "id": "agi-AGI-038",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "price_band",
+    "child_order_units",
+    "repricing_interval_sec",
+    "expected_avg_price",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "price_band",
+    "child_order_units",
+    "repricing_interval_sec",
+    "expected_avg_price",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.142857,
+    "chosen_strategy": 0.142857,
+    "price_band": 0.142857,
+    "child_order_units": 0.142857,
+    "repricing_interval_sec": 0.142857,
+    "expected_avg_price": 0.142857,
+    "self_check": 0.142858
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-038",
+    "title": "SOL Thin Venue Recovery Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "toxic_flow_execution"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "hidden_layered_limits_at_recovered_fair"
+      },
+      "price_band": {
+        "type": "array",
+        "expected_order": [
+          146.45,
+          147.15
+        ]
+      },
+      "child_order_units": {
+        "type": "number",
+        "range": [
+          2475,
+          2525
+        ]
+      },
+      "repricing_interval_sec": {
+        "type": "number",
+        "range": [
+          44,
+          46
+        ]
+      },
+      "expected_avg_price": {
+        "type": "number",
+        "range": [
+          146.75,
+          146.95
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "fair_anchor_from_recovered_tape",
+          "child_size_below_classifier",
+          "repricing_cadence_consistent"
+        ]
+      }
+    },
+    "derivation": "Recovered sell impulses anchor fair value near 146.90 while the final buy is a toxic momentum burst. The plan uses hidden layered limits around 146.45-147.15, keeps child size at the 2,500 hidden threshold, reprices every 45 seconds, and reports an expected average price near 146.85. Self-check verifies fair anchor, classifier threshold, and cadence.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

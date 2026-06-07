@@ -1,0 +1,141 @@
+{
+  "id": "agi-AGI-111",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "perp_short_allocation_usd.Binance",
+    "perp_short_allocation_usd.Bybit",
+    "perp_short_allocation_usd.OKX",
+    "perp_short_allocation_usd.Hyperliquid",
+    "perp_short_allocation_usd.dYdX",
+    "leverage",
+    "apr_pct",
+    "pnl_30d_usd",
+    "cascade_buffer_pct",
+    "survives_cascade",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "perp_short_allocation_usd.Binance",
+    "perp_short_allocation_usd.Bybit",
+    "perp_short_allocation_usd.OKX",
+    "perp_short_allocation_usd.Hyperliquid",
+    "perp_short_allocation_usd.dYdX",
+    "leverage",
+    "apr_pct",
+    "pnl_30d_usd",
+    "cascade_buffer_pct",
+    "survives_cascade",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.076923,
+    "chosen_strategy": 0.076923,
+    "perp_short_allocation_usd.Binance": 0.076923,
+    "perp_short_allocation_usd.Bybit": 0.076923,
+    "perp_short_allocation_usd.OKX": 0.076923,
+    "perp_short_allocation_usd.Hyperliquid": 0.076923,
+    "perp_short_allocation_usd.dYdX": 0.076923,
+    "leverage": 0.076923,
+    "apr_pct": 0.076923,
+    "pnl_30d_usd": 0.076923,
+    "cascade_buffer_pct": 0.076923,
+    "survives_cascade": 0.076923,
+    "self_check": 0.076924
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-111",
+    "title": "SOL Premium Funding Basis Diverse Holdout",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "resilient_funding_basis"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "capacity_capped_delta_neutral_ladder"
+      },
+      "leverage": {
+        "type": "number",
+        "range": [
+          0.99,
+          1.01
+        ]
+      },
+      "apr_pct": {
+        "type": "number",
+        "range": [
+          30.65,
+          31.15
+        ]
+      },
+      "pnl_30d_usd": {
+        "type": "number",
+        "range": [
+          12618.630136986301,
+          12778.630136986301
+        ]
+      },
+      "cascade_buffer_pct": {
+        "type": "number",
+        "range": [
+          15,
+          17
+        ]
+      },
+      "survives_cascade": {
+        "type": "boolean",
+        "expected": true
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "venue_caps_not_breached",
+          "delta_neutral_notional_reconciles",
+          "apr_and_pnl_reconcile"
+        ]
+      },
+      "perp_short_allocation_usd.Binance": {
+        "type": "number",
+        "range": [
+          118800,
+          121200
+        ]
+      },
+      "perp_short_allocation_usd.Bybit": {
+        "type": "number",
+        "range": [
+          118800,
+          121200
+        ]
+      },
+      "perp_short_allocation_usd.OKX": {
+        "type": "number",
+        "range": [
+          108900,
+          111100
+        ]
+      },
+      "perp_short_allocation_usd.Hyperliquid": {
+        "type": "number",
+        "range": [
+          89100,
+          90900
+        ]
+      },
+      "perp_short_allocation_usd.dYdX": {
+        "type": "number",
+        "range": [
+          59400,
+          60600
+        ]
+      }
+    },
+    "derivation": "Source structure AGI-061 (funding_basis_arbitrage) remapped into the diverse AGI-066..115 tranche. The ladder uses resilient displayed capacities summing to $500000. Weighted APR is 30.9%, 30-day PnL is 12698.63, leverage is 1x delta-neutral, and cascade buffer remains about 16%. Self-check verifies venue caps, notional reconciliation, and APR/PnL arithmetic.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

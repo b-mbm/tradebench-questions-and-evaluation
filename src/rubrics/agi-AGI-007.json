@@ -1,0 +1,57 @@
+{
+  "id": "agi-AGI-007",
+  "expected_fields": [
+    "intent",
+    "vote",
+    "position",
+    "chosen_strategy",
+    "expected_12d_price_change_pct"
+  ],
+  "required_fields": [
+    "intent",
+    "vote",
+    "position",
+    "chosen_strategy",
+    "expected_12d_price_change_pct"
+  ],
+  "field_weights": {
+    "intent": 0.03125,
+    "vote": 0.3125,
+    "position": 0.3125,
+    "chosen_strategy": 0.3125,
+    "expected_12d_price_change_pct": 0.03125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-007",
+    "title": "The Protocol Economics Puzzle",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tokenomics_governance_game"
+      },
+      "vote": {
+        "type": "string",
+        "expected": "yes"
+      },
+      "position": {
+        "type": "string",
+        "expected": "stay"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "vote_yes_stay_after_reflexive_cut"
+      },
+      "expected_12d_price_change_pct": {
+        "type": "number",
+        "range": [
+          25.3,
+          26.1
+        ]
+      }
+    },
+    "derivation": "If the cut passes, sell pressure falls by 16k/day for three days and 20k/day for nine days versus the current 30k/day baseline, for 228k fewer YLD sold. At $2.40 this is $547.2k less sell pressure, plus the $40k stabilization order. With a 0.35 impact coefficient against $800k DEX liquidity, expected 12-day price change is (587.2k/800k)*0.35 = 25.69%. Positive reflexivity above 10% supports vote yes and stay.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "id": "agi-AGI-083",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Jupiter_Solana",
+    "venue_allocation_usd.Binance",
+    "venue_allocation_usd.OKX",
+    "venue_allocation_usd.Wintermute_RFQ",
+    "venue_allocation_usd.Orca",
+    "venue_allocation_usd.Coinbase",
+    "largest_visible_clip_usd",
+    "expected_asset_received",
+    "effective_price",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Jupiter_Solana",
+    "venue_allocation_usd.Binance",
+    "venue_allocation_usd.OKX",
+    "venue_allocation_usd.Wintermute_RFQ",
+    "venue_allocation_usd.Orca",
+    "venue_allocation_usd.Coinbase",
+    "largest_visible_clip_usd",
+    "expected_asset_received",
+    "effective_price",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.083333,
+    "chosen_strategy": 0.083333,
+    "venue_allocation_usd.Jupiter_Solana": 0.083333,
+    "venue_allocation_usd.Binance": 0.083333,
+    "venue_allocation_usd.OKX": 0.083333,
+    "venue_allocation_usd.Wintermute_RFQ": 0.083333,
+    "venue_allocation_usd.Orca": 0.083333,
+    "venue_allocation_usd.Coinbase": 0.083333,
+    "largest_visible_clip_usd": 0.083333,
+    "expected_asset_received": 0.083333,
+    "effective_price": 0.083333,
+    "self_check": 0.083337
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-083",
+    "title": "JUP Announcement Router",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_multi_venue_acquisition"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "visibility_capped_best_execution_router"
+      },
+      "largest_visible_clip_usd": {
+        "type": "number",
+        "range": [
+          638720,
+          641280
+        ]
+      },
+      "expected_asset_received": {
+        "type": "number",
+        "range": [
+          3103714.551227,
+          3116154.288907
+        ]
+      },
+      "effective_price": {
+        "type": "number",
+        "range": [
+          0.914585,
+          0.918251
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_notional_allocated",
+          "visible_clip_below_copy_threshold",
+          "received_and_effective_price_reconcile"
+        ]
+      },
+      "venue_allocation_usd.Jupiter_Solana": {
+        "type": "number",
+        "range": [
+          698600,
+          701400
+        ]
+      },
+      "venue_allocation_usd.Binance": {
+        "type": "number",
+        "range": [
+          638720,
+          641280
+        ]
+      },
+      "venue_allocation_usd.OKX": {
+        "type": "number",
+        "range": [
+          499000,
+          501000
+        ]
+      },
+      "venue_allocation_usd.Wintermute_RFQ": {
+        "type": "number",
+        "range": [
+          548900,
+          551100
+        ]
+      },
+      "venue_allocation_usd.Orca": {
+        "type": "number",
+        "range": [
+          299400,
+          300600
+        ]
+      },
+      "venue_allocation_usd.Coinbase": {
+        "type": "number",
+        "range": [
+          159680,
+          160320
+        ]
+      }
+    },
+    "derivation": "Filled venues in visibility-capped best-execution order. Allocations sum to 2850000; received 3109934.42006689 JUP; effective price 0.916418038; largest visible clip 640000.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

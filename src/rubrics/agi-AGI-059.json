@@ -1,0 +1,108 @@
+{
+  "id": "agi-AGI-059",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "assets_to_sell",
+    "sale_sequence",
+    "replacement_assets.FTM",
+    "replacement_assets.MATIC",
+    "replacement_assets.UNI",
+    "net_tax_benefit",
+    "remaining_unoffset_gains",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "assets_to_sell",
+    "sale_sequence",
+    "replacement_assets.FTM",
+    "replacement_assets.MATIC",
+    "replacement_assets.UNI",
+    "net_tax_benefit",
+    "remaining_unoffset_gains",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.1,
+    "chosen_strategy": 0.1,
+    "assets_to_sell": 0.1,
+    "sale_sequence": 0.1,
+    "replacement_assets.FTM": 0.1,
+    "replacement_assets.MATIC": 0.1,
+    "replacement_assets.UNI": 0.1,
+    "net_tax_benefit": 0.1,
+    "remaining_unoffset_gains": 0.1,
+    "self_check": 0.1
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-059",
+    "title": "December Harvest C Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tax_loss_harvest_strategy"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "thin_first_full_loss_harvest"
+      },
+      "assets_to_sell": {
+        "type": "array",
+        "expected_set": [
+          "FTM",
+          "MATIC",
+          "UNI"
+        ],
+        "match_type": "exact_set"
+      },
+      "sale_sequence": {
+        "type": "array",
+        "expected_order": [
+          "FTM",
+          "MATIC",
+          "UNI"
+        ]
+      },
+      "net_tax_benefit": {
+        "type": "number",
+        "range": [
+          24830,
+          24990
+        ]
+      },
+      "remaining_unoffset_gains": {
+        "type": "number",
+        "range": [
+          21900,
+          22100
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "all_loss_lots_reconciled",
+          "thin_first_sequence_preserved",
+          "tax_benefit_net_of_costs"
+        ]
+      },
+      "replacement_assets.FTM": {
+        "type": "string",
+        "expected": "L1_alt_basket"
+      },
+      "replacement_assets.MATIC": {
+        "type": "string",
+        "expected": "ARB_OP_basket"
+      },
+      "replacement_assets.UNI": {
+        "type": "string",
+        "expected": "AAVE_COMP_basket"
+      }
+    },
+    "derivation": "All listed loss lots are below realized gains in aggregate, so harvesting them preserves tax value while replacements maintain exposure. Thin-first sequence is FTM -> MATIC -> UNI. Net benefit is 73000*37% - 350000*0.60% = 24910, with 22000 remaining unoffset gains. Self-check verifies lot selection, sequence, and tax arithmetic.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

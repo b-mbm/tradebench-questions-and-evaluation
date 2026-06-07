@@ -1,0 +1,86 @@
+{
+  "id": "agi-AGI-079",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "selected_hedges",
+    "premium_usd",
+    "worst_case_pnl_usd",
+    "expected_pnl_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "selected_hedges",
+    "premium_usd",
+    "worst_case_pnl_usd",
+    "expected_pnl_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.142857,
+    "chosen_strategy": 0.142857,
+    "selected_hedges": 0.142857,
+    "premium_usd": 0.142857,
+    "worst_case_pnl_usd": 0.142857,
+    "expected_pnl_usd": 0.142857,
+    "self_check": 0.142858
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-079",
+    "title": "ETH validator slashing Tail Overlay",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tail_risk_overlay_design"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "expected_value_subject_to_drawdown_floor"
+      },
+      "selected_hedges": {
+        "type": "array",
+        "expected_set": [
+          "put_spread_3400_3000",
+          "stETH_discount_swap"
+        ],
+        "min_items": 2,
+        "match_type": "exact_set"
+      },
+      "premium_usd": {
+        "type": "number",
+        "range": [
+          31936,
+          32064
+        ]
+      },
+      "worst_case_pnl_usd": {
+        "type": "number",
+        "range": [
+          -58232,
+          -57768
+        ]
+      },
+      "expected_pnl_usd": {
+        "type": "number",
+        "range": [
+          -28443.32,
+          -28216.68
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "premium_cap_respected",
+          "drawdown_floor_respected",
+          "scenario_ev_reconciles"
+        ]
+      }
+    },
+    "derivation": "Enumerated hedge packages under premium cap 38000 and drawdown floor -115000. Selected put_spread_3400_3000, stETH_discount_swap with premium 32000, worst-case PnL -58000, and expected PnL -28330.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

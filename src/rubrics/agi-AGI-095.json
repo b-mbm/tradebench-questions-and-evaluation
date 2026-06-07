@@ -1,0 +1,94 @@
+{
+  "id": "agi-AGI-095",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_allocation_usd.Alpha",
+    "route_allocation_usd.Delta",
+    "observable_largest_clip_usd",
+    "expected_loss_usd",
+    "expected_arrival_minutes",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_allocation_usd.Alpha",
+    "route_allocation_usd.Delta",
+    "observable_largest_clip_usd",
+    "expected_loss_usd",
+    "expected_arrival_minutes",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.125,
+    "chosen_strategy": 0.125,
+    "route_allocation_usd.Alpha": 0.125,
+    "route_allocation_usd.Delta": 0.125,
+    "observable_largest_clip_usd": 0.125,
+    "expected_loss_usd": 0.125,
+    "expected_arrival_minutes": 0.125,
+    "self_check": 0.125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-095",
+    "title": "Insurance Bridge Matrix Diverse Holdout",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_bridge_risk"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_attested_deadline_repair"
+      },
+      "observable_largest_clip_usd": {
+        "type": "number",
+        "range": [
+          247500,
+          252500
+        ]
+      },
+      "expected_loss_usd": {
+        "type": "number",
+        "range": [
+          3530,
+          3650
+        ]
+      },
+      "expected_arrival_minutes": {
+        "type": "number",
+        "range": [
+          64,
+          66
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "auction_deadline_met",
+          "largest_observable_clip_not_focal",
+          "loss_reconciles_to_route_primitives"
+        ]
+      },
+      "route_allocation_usd.Alpha": {
+        "type": "number",
+        "range": [
+          346500,
+          353500
+        ]
+      },
+      "route_allocation_usd.Delta": {
+        "type": "number",
+        "range": [
+          247500,
+          252500
+        ]
+      }
+    },
+    "derivation": "Source structure AGI-033 (bridge_safety_selection) remapped into the diverse AGI-066..115 tranche. Gamma settles after the auction and Beta creates a focal public challenge clip at this size. Selected allocation is {\"Alpha\":350000,\"Delta\":250000}. Expected loss is sum of toll plus non-arrival risk, 3590, and slowest selected route arrives in 65 minutes before the 90-minute deadline. Self-check verifies timing, observability, and loss arithmetic.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

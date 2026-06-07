@@ -1,0 +1,94 @@
+{
+  "id": "agi-AGI-034",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_allocation_usd.Gamma",
+    "route_allocation_usd.Sigma",
+    "observable_largest_clip_usd",
+    "expected_loss_usd",
+    "expected_arrival_minutes",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_allocation_usd.Gamma",
+    "route_allocation_usd.Sigma",
+    "observable_largest_clip_usd",
+    "expected_loss_usd",
+    "expected_arrival_minutes",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.125,
+    "chosen_strategy": 0.125,
+    "route_allocation_usd.Gamma": 0.125,
+    "route_allocation_usd.Sigma": 0.125,
+    "observable_largest_clip_usd": 0.125,
+    "expected_loss_usd": 0.125,
+    "expected_arrival_minutes": 0.125,
+    "self_check": 0.125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-034",
+    "title": "Audit Bridge Matrix Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_bridge_risk"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_attested_deadline_repair"
+      },
+      "observable_largest_clip_usd": {
+        "type": "number",
+        "range": [
+          198000,
+          202000
+        ]
+      },
+      "expected_loss_usd": {
+        "type": "number",
+        "range": [
+          1760,
+          1880
+        ]
+      },
+      "expected_arrival_minutes": {
+        "type": "number",
+        "range": [
+          69,
+          71
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "auction_deadline_met",
+          "largest_observable_clip_not_focal",
+          "loss_reconciles_to_route_primitives"
+        ]
+      },
+      "route_allocation_usd.Gamma": {
+        "type": "number",
+        "range": [
+          297000,
+          303000
+        ]
+      },
+      "route_allocation_usd.Sigma": {
+        "type": "number",
+        "range": [
+          198000,
+          202000
+        ]
+      }
+    },
+    "derivation": "Omega settles after the auction and Beta has larger non-arrival risk plus public challenge dynamics. Selected allocation is {\"Gamma\":300000,\"Sigma\":200000}. Expected loss is sum of toll plus non-arrival risk, 1820, and slowest selected route arrives in 70 minutes before the 100-minute deadline. Self-check verifies timing, observability, and loss arithmetic.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

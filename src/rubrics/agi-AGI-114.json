@@ -1,0 +1,121 @@
+{
+  "id": "agi-AGI-114",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "lots_to_harvest",
+    "replacement_basket",
+    "harvested_loss_usd",
+    "immediate_tax_alpha_usd",
+    "carryforward_loss_usd",
+    "implementation_cost_usd",
+    "net_tax_alpha_usd",
+    "tracking_gap_pct",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "lots_to_harvest",
+    "replacement_basket",
+    "harvested_loss_usd",
+    "immediate_tax_alpha_usd",
+    "carryforward_loss_usd",
+    "implementation_cost_usd",
+    "net_tax_alpha_usd",
+    "tracking_gap_pct",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.090909,
+    "lots_to_harvest": 0.090909,
+    "replacement_basket": 0.090909,
+    "harvested_loss_usd": 0.090909,
+    "immediate_tax_alpha_usd": 0.090909,
+    "carryforward_loss_usd": 0.090909,
+    "implementation_cost_usd": 0.090909,
+    "net_tax_alpha_usd": 0.090909,
+    "tracking_gap_pct": 0.090909,
+    "self_check": 0.09091
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-114",
+    "title": "Year-End Factor-Neutral Harvest",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tax_loss_factor_neutral_optimization"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "net_after_tax_alpha_with_tracking_constraint"
+      },
+      "lots_to_harvest": {
+        "type": "array",
+        "expected_set": [
+          "ARB"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      },
+      "replacement_basket": {
+        "type": "object"
+      },
+      "harvested_loss_usd": {
+        "type": "number",
+        "range": [
+          35928,
+          36072
+        ]
+      },
+      "immediate_tax_alpha_usd": {
+        "type": "number",
+        "range": [
+          14658.624,
+          14717.376
+        ]
+      },
+      "carryforward_loss_usd": {
+        "type": "number",
+        "range": [
+          -1,
+          1
+        ]
+      },
+      "implementation_cost_usd": {
+        "type": "number",
+        "range": [
+          1361.272,
+          1366.728
+        ]
+      },
+      "net_tax_alpha_usd": {
+        "type": "number",
+        "range": [
+          13297.352,
+          13350.648
+        ]
+      },
+      "tracking_gap_pct": {
+        "type": "number",
+        "range": [
+          8.964,
+          9.036
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "wash_sale_avoided",
+          "tracking_gap_within_limit",
+          "tax_alpha_reconciles"
+        ]
+      }
+    },
+    "derivation": "Enumerated harvest subsets under the tracking-gap cap. Selected ARB with harvested loss 36000, immediate offset 36000, carryforward 0, implementation cost 1364, tracking gap 9%, and net tax alpha 13324. Replacement basket: {\"ARB\":\"OP_STRK_pair\"}.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

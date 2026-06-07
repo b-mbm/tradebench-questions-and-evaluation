@@ -1,0 +1,103 @@
+{
+  "id": "agi-AGI-001",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "shorts.MATIC.notional_usd",
+    "shorts.MATIC.units",
+    "shorts.SOL.notional_usd",
+    "shorts.SOL.units",
+    "expected_risk_reduction_pct",
+    "worst_case_residual_pnl_usd"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "shorts.MATIC.notional_usd",
+    "shorts.MATIC.units",
+    "shorts.SOL.notional_usd",
+    "shorts.SOL.units",
+    "expected_risk_reduction_pct",
+    "worst_case_residual_pnl_usd"
+  ],
+  "field_weights": {
+    "intent": 0.025974,
+    "chosen_strategy": 0.467532,
+    "execution_sequence": 0.350649,
+    "shorts.MATIC.notional_usd": 0.025974,
+    "shorts.MATIC.units": 0.025974,
+    "shorts.SOL.notional_usd": 0.025974,
+    "shorts.SOL.units": 0.025974,
+    "expected_risk_reduction_pct": 0.025974,
+    "worst_case_residual_pnl_usd": 0.025974
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-001",
+    "title": "The Correlation Detector",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "hedge_adversarial_beta"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "alt_beta_pair_matic_first"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "MATIC_short",
+          "SOL_short"
+        ]
+      },
+      "shorts.MATIC.notional_usd": {
+        "type": "number",
+        "range": [
+          219000,
+          221000
+        ]
+      },
+      "shorts.MATIC.units": {
+        "type": "number",
+        "range": [
+          244000,
+          245000
+        ]
+      },
+      "shorts.SOL.notional_usd": {
+        "type": "number",
+        "range": [
+          179000,
+          181000
+        ]
+      },
+      "shorts.SOL.units": {
+        "type": "number",
+        "range": [
+          1284,
+          1287
+        ]
+      },
+      "expected_risk_reduction_pct": {
+        "type": "number",
+        "range": [
+          55,
+          55.4
+        ]
+      },
+      "worst_case_residual_pnl_usd": {
+        "type": "number",
+        "range": [
+          -74000,
+          -73000
+        ]
+      }
+    },
+    "derivation": "Total crisis beta-dollar is 1,007,850. Only SOL+MATIC fits the $400k cap while exceeding a 50% beta cut: 270,000+286,000 = 556,000, or 55.17%. MATIC first has lower adversarial impact ($626 total) than SOL first ($664). Stress residuals after hedge payoffs and impact are approximately -36,760 (SVB), +60,015 (ETF squeeze), and -73,473 (yen unwind), so the worst case is -73,473.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

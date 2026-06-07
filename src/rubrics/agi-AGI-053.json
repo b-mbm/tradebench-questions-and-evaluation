@@ -1,0 +1,91 @@
+{
+  "id": "agi-AGI-053",
+  "expected_fields": [
+    "intent",
+    "decision",
+    "chosen_strategy",
+    "exit_sequence",
+    "private_sale_usd",
+    "expected_exit_value_usd",
+    "expected_stay_value_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "decision",
+    "chosen_strategy",
+    "exit_sequence",
+    "private_sale_usd",
+    "expected_exit_value_usd",
+    "expected_stay_value_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.125,
+    "decision": 0.125,
+    "chosen_strategy": 0.125,
+    "exit_sequence": 0.125,
+    "private_sale_usd": 0.125,
+    "expected_exit_value_usd": 0.125,
+    "expected_stay_value_usd": 0.125,
+    "self_check": 0.125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-053",
+    "title": "Meme Pool Exit Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tail_event_exit_strategy"
+      },
+      "decision": {
+        "type": "string",
+        "expected": "exit"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_first_full_exit"
+      },
+      "exit_sequence": {
+        "type": "array",
+        "expected_order": [
+          "private_mm",
+          "dex_slice"
+        ]
+      },
+      "private_sale_usd": {
+        "type": "number",
+        "range": [
+          99000,
+          101000
+        ]
+      },
+      "expected_exit_value_usd": {
+        "type": "number",
+        "range": [
+          148100,
+          148900
+        ]
+      },
+      "expected_stay_value_usd": {
+        "type": "number",
+        "range": [
+          119600,
+          120400
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "private_liquidity_not_invalidated",
+          "exit_ev_exceeds_stay_ev",
+          "sequence_and_proceeds_reconcile"
+        ]
+      }
+    },
+    "derivation": "Private-first execution preserves the private bid and then uses the public slice. Expected exit value is 148500 and expected stay value is 120000, so the decision is exit. Self-check verifies sequence validity, EV comparison, and proceeds reconciliation.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "agi-AGI-012",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_legs.SOL_short.notional_usd",
+    "hedge_legs.BTC_put_spread.notional_usd",
+    "expected_vol_reduction_pct",
+    "residual_1d_var_usd"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_legs.SOL_short.notional_usd",
+    "hedge_legs.BTC_put_spread.notional_usd",
+    "expected_vol_reduction_pct",
+    "residual_1d_var_usd"
+  ],
+  "field_weights": {
+    "intent": 0.058824,
+    "chosen_strategy": 0.705882,
+    "hedge_legs.SOL_short.notional_usd": 0.058824,
+    "hedge_legs.BTC_put_spread.notional_usd": 0.058824,
+    "expected_vol_reduction_pct": 0.058824,
+    "residual_1d_var_usd": 0.058824
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-012",
+    "title": "The Correlation Regime Arbitrage",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "crisis_correlation_hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "sol_short_plus_btc_put_spread"
+      },
+      "hedge_legs.SOL_short.notional_usd": {
+        "type": "number",
+        "range": [
+          318000,
+          322000
+        ]
+      },
+      "hedge_legs.BTC_put_spread.notional_usd": {
+        "type": "number",
+        "range": [
+          795000,
+          805000
+        ]
+      },
+      "expected_vol_reduction_pct": {
+        "type": "number",
+        "range": [
+          52,
+          54
+        ]
+      },
+      "residual_1d_var_usd": {
+        "type": "number",
+        "range": [
+          160000,
+          164000
+        ]
+      }
+    },
+    "derivation": "The current correlations and all-negative tape identify crisis. SOL is the largest marginal volatility contributor, but the short is capped below the $350k margin tripwire, so the canonical hedge uses a $320k SOL short and BTC put-spread convexity on the $800k BTC leg. The covariance reduction plus put convexity gives a 53% crisis-volatility cut and residual 1-day VaR near $162k.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

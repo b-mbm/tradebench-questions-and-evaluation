@@ -1,0 +1,84 @@
+{
+  "id": "agi-AGI-091",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_units",
+    "net_exposure_units",
+    "worst_case_margin_drawdown_pct",
+    "funding_window_pnl_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_units",
+    "net_exposure_units",
+    "worst_case_margin_drawdown_pct",
+    "funding_window_pnl_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.142857,
+    "chosen_strategy": 0.142857,
+    "hedge_units": 0.142857,
+    "net_exposure_units": 0.142857,
+    "worst_case_margin_drawdown_pct": 0.142857,
+    "funding_window_pnl_usd": 0.142857,
+    "self_check": 0.142858
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-091",
+    "title": "Funding Credit Trap Diverse Holdout",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "liquidation_cascade_defense"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_delever_to_mandate_floor"
+      },
+      "hedge_units": {
+        "type": "number",
+        "range": [
+          123750,
+          126250
+        ]
+      },
+      "net_exposure_units": {
+        "type": "number",
+        "range": [
+          74250,
+          75750
+        ]
+      },
+      "worst_case_margin_drawdown_pct": {
+        "type": "number",
+        "range": [
+          -23.854508196721305,
+          -23.354508196721305
+        ]
+      },
+      "funding_window_pnl_usd": {
+        "type": "number",
+        "range": [
+          -1683.1250000000014,
+          -1483.1250000000014
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "net_exposure_at_mandate_floor",
+          "sweep_feed_below_trigger",
+          "stress_and_funding_pnl_reconcile"
+        ]
+      }
+    },
+    "derivation": "Source structure AGI-029 (leveraged_ev_decision) remapped into the diverse AGI-066..115 tranche. Original margin is 61000. Hedging 125000 units leaves 75000, below the sweep trigger while preserving the mandate floor. Realized hedge PnL is -3898.75. The sweep stress drawdown is -23.6045% of original margin, and the post-sweep funding-window PnL is -1583.125. The self-check verifies mandate floor, feed threshold, and PnL reconciliation.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

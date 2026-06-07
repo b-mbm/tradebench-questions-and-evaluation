@@ -1,0 +1,84 @@
+{
+  "id": "agi-AGI-003",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_eth",
+    "net_exposure_eth",
+    "worst_case_margin_drawdown_pct",
+    "funding_window_pnl_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_eth",
+    "net_exposure_eth",
+    "worst_case_margin_drawdown_pct",
+    "funding_window_pnl_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.142857,
+    "chosen_strategy": 0.142857,
+    "hedge_eth": 0.142857,
+    "net_exposure_eth": 0.142857,
+    "worst_case_margin_drawdown_pct": 0.142857,
+    "funding_window_pnl_usd": 0.142857,
+    "self_check": 0.142857
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-003",
+    "title": "The Funding Rate Trap",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "liquidation_cascade_defense"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_delever_to_mandate_floor"
+      },
+      "hedge_eth": {
+        "type": "number",
+        "range": [
+          59,
+          61
+        ]
+      },
+      "net_exposure_eth": {
+        "type": "number",
+        "range": [
+          39,
+          41
+        ]
+      },
+      "worst_case_margin_drawdown_pct": {
+        "type": "number",
+        "range": [
+          -13.8,
+          -13.5
+        ]
+      },
+      "funding_window_pnl_usd": {
+        "type": "number",
+        "range": [
+          -520,
+          -460
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "net_exposure_at_mandate_floor",
+          "sweep_feed_below_trigger",
+          "stress_and_funding_pnl_reconcile"
+        ]
+      }
+    },
+    "derivation": "Original notional is 100*2,850 = 285,000 and original margin is 57,000. The private tunnel can reduce 60 ETH before the sweep, leaving the mandated 40 ETH upside delta while putting visible net exposure below the >60 ETH sweep trigger. The reduction realizes 60*(2,822-2,850) - 60*2,822*0.0006 = -1,781.592. In the $2,700 sweep stress, the residual 40 ETH loses 40*(2,700-2,850) = -6,000, so total worst drawdown is -7,781.592 / 57,000 = -13.6519%. If the account avoids the sweep and reaches the $2,880 funding mark, residual PnL is 40*(2,880-2,850) = 1,200 and funding is 40*2,880*0.0008 = 92.16, for total funding-window PnL of -489.432 after the realized reduction loss. The self-check verifies the mandate floor, sweep-feed threshold, and PnL reconciliation.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

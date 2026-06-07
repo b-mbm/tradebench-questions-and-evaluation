@@ -1,0 +1,86 @@
+{
+  "id": "agi-AGI-010",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "spread_bps",
+    "update_ms",
+    "max_inventory_usd",
+    "toxic_defense",
+    "expected_daily_pnl_usd"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "spread_bps",
+    "update_ms",
+    "max_inventory_usd",
+    "toxic_defense",
+    "expected_daily_pnl_usd"
+  ],
+  "field_weights": {
+    "intent": 0.030303,
+    "chosen_strategy": 0.424242,
+    "spread_bps": 0.030303,
+    "update_ms": 0.030303,
+    "max_inventory_usd": 0.030303,
+    "toxic_defense": 0.424242,
+    "expected_daily_pnl_usd": 0.030303
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-010",
+    "title": "The Market Maker Game Theory",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "market_making_strategy"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "selective_wide_toxic_filter"
+      },
+      "spread_bps": {
+        "type": "number",
+        "range": [
+          31,
+          33
+        ]
+      },
+      "update_ms": {
+        "type": "number",
+        "range": [
+          75,
+          85
+        ]
+      },
+      "max_inventory_usd": {
+        "type": "number",
+        "range": [
+          24500,
+          25500
+        ]
+      },
+      "toxic_defense": {
+        "type": "array",
+        "expected_set": [
+          "cancel_on_microstructure_shock",
+          "blacklist_counterparty_signature",
+          "widen_spread_on_skew",
+          "inventory_caps"
+        ],
+        "match_type": "exact_set"
+      },
+      "expected_daily_pnl_usd": {
+        "type": "number",
+        "range": [
+          700,
+          770
+        ]
+      }
+    },
+    "derivation": "FastBot proves tight spreads are loss-making under toxic flow. WideBot proves wider spreads are profitable. A 32 bps half-spread is inside WideBot's 50 bps half-spread equivalent but far outside FastBot. Gross capture is 4,000,000*12%*0.0032 = 1,536. Subtract 600 toxic losses and about 200 inventory cost to get 736 expected daily PnL. Updating around 80 ms avoids pretending to beat a 30 ms toxic trader while still cancelling stale quotes.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

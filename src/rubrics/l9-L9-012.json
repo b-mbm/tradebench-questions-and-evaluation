@@ -1,0 +1,24 @@
+{
+  "id": "l9-L9-012",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "expected_value": 1
+  },
+  "pass_threshold": 0.7,
+  "_l9_canonical": {
+    "question_id": "L9-012",
+    "expected_value": 0,
+    "acceptable_range": [
+      0,
+      0
+    ],
+    "unit": "USD_profit",
+    "grading_logic": "numeric_within_range",
+    "grading_notes": "No-action sentinel. Principal = 100 stETH * $3,200 = $320,000 and horizon factor = 90/365. R1 net EV = $320,000*9%*90/365 - $320,000*0.4%*90/365 - 2.2%*$320,000 - $300 = about -$554 and violates the 1.5% slashing cap. R2 net EV = $320,000*13%*90/365 - $320,000*0.6%*90/365 - 3.0%*$320,000 - $500 = about -$316 and violates slashing and withdrawal-delay caps. R3 net EV = $320,000*6%*90/365 - $320,000*0.2%*90/365 - 0.8%*$320,000 - $2,000 - $250 = about -$234 and violates oracle freshness. Correct response must use intent no_action/abstain, expected_value 0, unit USD_profit, and articulate all option rejections."
+  }
+}

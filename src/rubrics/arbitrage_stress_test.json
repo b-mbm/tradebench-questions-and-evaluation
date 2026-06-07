@@ -1,0 +1,58 @@
+{
+  "id": "arbitrage_stress_test",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "venue_name",
+    "risk_controls",
+    "follow_up",
+    "reasoning"
+  ],
+  "required_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "venue"
+  ],
+  "field_weights": {
+    "intent": 0.18,
+    "order_type": 0.18,
+    "asset": 0.16,
+    "size": 0.16,
+    "venue": 0.12,
+    "venue_name": 0.08,
+    "risk_controls": 0.06,
+    "follow_up": 0.03,
+    "reasoning": 0.03
+  },
+  "synonyms": {
+    "intent": [
+      "action"
+    ],
+    "order_type": [
+      "strategy",
+      "trade_type"
+    ],
+    "venue": [
+      "platform",
+      "exchange"
+    ],
+    "venue_name": [
+      "pool",
+      "protocol"
+    ],
+    "risk_controls": [
+      "risk_management"
+    ],
+    "follow_up": [
+      "next_steps"
+    ],
+    "reasoning": [
+      "analysis"
+    ]
+  },
+  "pass_threshold": 0.7
+}

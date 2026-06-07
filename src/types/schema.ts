@@ -1,4 +1,4 @@
-export type ParsingMethod = 'json' | 'fenced_json' | 'none';
+export type ParsingMethod = 'json' | 'fenced_json' | 'evaluated_literal' | 'none';
 
 export type FailureReason =
   | 'missing_field'

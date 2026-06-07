@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-045",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "defense_strategy": 0.35,
+    "cost_calculation": 0.3,
+    "success_probability": 0.2,
+    "chain_specifics": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-045",
+    "level": 10,
+    "intent": "mev_defense_strategy",
+    "expected_value": 0.37,
+    "range": [
+      0.33,
+      0.42
+    ],
+    "unit": "total_cost_percentage",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "defense_strategy",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Selects the hybrid strategy satisfying child-order and success constraints",
+          "pass_threshold": 25
+        },
+        {
+          "name": "cost_calculation",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Accurately sums split slippage, routing cost, and residual adverse selection",
+          "pass_threshold": 21
+        },
+        {
+          "name": "success_probability",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Reports the prescribed protected-completion probability",
+          "pass_threshold": 14
+        },
+        {
+          "name": "chain_specifics",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Understands Ethereum mempool and private-orderflow constraints",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 0.33 AND value <= 0.42"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            0.35,
+            0.39
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            0.33,
+            0.42
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            0.3,
+            0.45
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            0.25,
+            0.5
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            0.15,
+            0.65
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

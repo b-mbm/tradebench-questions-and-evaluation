@@ -1,0 +1,103 @@
+{
+  "id": "agi-AGI-093",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "expected_net_apy_pct",
+    "expected_90d_profit_usd",
+    "liquidity_48h_usd",
+    "allocation_usd.Aave_USDC",
+    "allocation_usd.Symbiotic_AVS",
+    "allocation_usd.EigenLayer_AVS",
+    "allocation_usd.Pendle_PT"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "expected_net_apy_pct",
+    "expected_90d_profit_usd",
+    "liquidity_48h_usd",
+    "allocation_usd.Aave_USDC",
+    "allocation_usd.Symbiotic_AVS",
+    "allocation_usd.EigenLayer_AVS",
+    "allocation_usd.Pendle_PT"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.272727,
+    "expected_net_apy_pct": 0.090909,
+    "expected_90d_profit_usd": 0.090909,
+    "liquidity_48h_usd": 0.090909,
+    "allocation_usd.Aave_USDC": 0.090909,
+    "allocation_usd.Symbiotic_AVS": 0.090909,
+    "allocation_usd.EigenLayer_AVS": 0.090909,
+    "allocation_usd.Pendle_PT": 0.090909
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-093",
+    "title": "OOD Composite Risk: Restaking Yield Holdout",
+    "archetype": "tail-adjusted-protocol-allocation",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tail_adjusted_protocol_allocation"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "liquid_capped_tail_barbell"
+      },
+      "expected_net_apy_pct": {
+        "type": "number",
+        "range": [
+          7.64,
+          8.04
+        ]
+      },
+      "expected_90d_profit_usd": {
+        "type": "number",
+        "range": [
+          1858,
+          2008
+        ]
+      },
+      "liquidity_48h_usd": {
+        "type": "number",
+        "range": [
+          49750,
+          50250
+        ]
+      },
+      "allocation_usd.Aave_USDC": {
+        "type": "number",
+        "range": [
+          24850,
+          25150
+        ]
+      },
+      "allocation_usd.Symbiotic_AVS": {
+        "type": "number",
+        "range": [
+          19850,
+          20150
+        ]
+      },
+      "allocation_usd.EigenLayer_AVS": {
+        "type": "number",
+        "range": [
+          24850,
+          25150
+        ]
+      },
+      "allocation_usd.Pendle_PT": {
+        "type": "number",
+        "range": [
+          29850,
+          30150
+        ]
+      }
+    },
+    "derivation": "Source structure AGI-031 (composite_risk_ranking) remapped into the diverse AGI-066..115 tranche. Caps, liquidity, and queue thresholds force {\"Aave_USDC\":25000,\"Symbiotic_AVS\":20000,\"EigenLayer_AVS\":25000,\"Pendle_PT\":30000}. Weighted net APY is 7.84% and 90-day profit is 1933.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

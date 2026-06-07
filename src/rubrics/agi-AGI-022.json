@@ -1,0 +1,83 @@
+{
+  "id": "agi-AGI-022",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_legs.MATIC.notional_usd",
+    "hedge_legs.AVAX.notional_usd",
+    "risk_reduction_pct",
+    "worst_case_residual_pnl_usd"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_legs.MATIC.notional_usd",
+    "hedge_legs.AVAX.notional_usd",
+    "risk_reduction_pct",
+    "worst_case_residual_pnl_usd"
+  ],
+  "field_weights": {
+    "intent": 0.1,
+    "chosen_strategy": 0.3,
+    "execution_sequence": 0.2,
+    "hedge_legs.MATIC.notional_usd": 0.1,
+    "hedge_legs.AVAX.notional_usd": 0.1,
+    "risk_reduction_pct": 0.1,
+    "worst_case_residual_pnl_usd": 0.1
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-022",
+    "title": "OOD Beta Hedge: March 2020 Liquidation",
+    "archetype": "adversarial-minimax-hedge",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_minimax_hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "matic_avax_pair"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "MATIC_short",
+          "AVAX_short"
+        ]
+      },
+      "hedge_legs.MATIC.notional_usd": {
+        "type": "number",
+        "range": [
+          224000,
+          226000
+        ]
+      },
+      "hedge_legs.AVAX.notional_usd": {
+        "type": "number",
+        "range": [
+          174000,
+          176000
+        ]
+      },
+      "risk_reduction_pct": {
+        "type": "number",
+        "range": [
+          52.2,
+          53
+        ]
+      },
+      "worst_case_residual_pnl_usd": {
+        "type": "number",
+        "range": [
+          -74900,
+          -73400
+        ]
+      }
+    },
+    "derivation": "The lower-beta third clip cannot meet the beta cut with either main leg. The two main legs are the unique feasible pair; executing MATIC before AVAX avoids the crowded-short repricing. Canonical risk reduction is 52.6% and worst residual PnL is -74150.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

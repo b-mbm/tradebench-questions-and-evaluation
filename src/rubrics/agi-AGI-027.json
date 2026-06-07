@@ -1,0 +1,84 @@
+{
+  "id": "agi-AGI-027",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_units",
+    "net_exposure_units",
+    "worst_case_margin_drawdown_pct",
+    "funding_window_pnl_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_units",
+    "net_exposure_units",
+    "worst_case_margin_drawdown_pct",
+    "funding_window_pnl_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.142857,
+    "chosen_strategy": 0.142857,
+    "hedge_units": 0.142857,
+    "net_exposure_units": 0.142857,
+    "worst_case_margin_drawdown_pct": 0.142857,
+    "funding_window_pnl_usd": 0.142857,
+    "self_check": 0.142858
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-027",
+    "title": "Basis Cascade Window Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "liquidation_cascade_defense"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_delever_to_mandate_floor"
+      },
+      "hedge_units": {
+        "type": "number",
+        "range": [
+          49.5,
+          50.5
+        ]
+      },
+      "net_exposure_units": {
+        "type": "number",
+        "range": [
+          29.7,
+          30.3
+        ]
+      },
+      "worst_case_margin_drawdown_pct": {
+        "type": "number",
+        "range": [
+          -13.703515625000001,
+          -13.203515625000001
+        ]
+      },
+      "funding_window_pnl_usd": {
+        "type": "number",
+        "range": [
+          -851.57,
+          -651.57
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "net_exposure_at_mandate_floor",
+          "sweep_feed_below_trigger",
+          "stress_and_funding_pnl_reconcile"
+        ]
+      }
+    },
+    "derivation": "Original margin is 64000. Hedging 50 units leaves 30, below the sweep trigger while preserving the mandate floor. Realized hedge PnL is -2610.25. The sweep stress drawdown is -13.4535% of original margin, and the post-sweep funding-window PnL is -751.57. The self-check verifies mandate floor, feed threshold, and PnL reconciliation.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

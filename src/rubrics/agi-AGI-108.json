@@ -1,0 +1,137 @@
+{
+  "id": "agi-AGI-108",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_legs.ETH_short_A.notional_usd",
+    "hedge_legs.BTC_put_spread.notional_usd",
+    "hedge_legs.ETH_put_spread.notional_usd",
+    "hedge_legs.SOL_AI_correlation_short.notional_usd",
+    "crowding_score",
+    "false_break_upside_capture_pct",
+    "crisis_var_reduction_usd",
+    "expected_vol_reduction_pct",
+    "residual_1d_var_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "hedge_legs.ETH_short_A.notional_usd",
+    "hedge_legs.BTC_put_spread.notional_usd",
+    "hedge_legs.ETH_put_spread.notional_usd",
+    "hedge_legs.SOL_AI_correlation_short.notional_usd",
+    "crowding_score",
+    "false_break_upside_capture_pct",
+    "crisis_var_reduction_usd",
+    "expected_vol_reduction_pct",
+    "residual_1d_var_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.083333,
+    "chosen_strategy": 0.083333,
+    "hedge_legs.ETH_short_A.notional_usd": 0.083333,
+    "hedge_legs.BTC_put_spread.notional_usd": 0.083333,
+    "hedge_legs.ETH_put_spread.notional_usd": 0.083333,
+    "hedge_legs.SOL_AI_correlation_short.notional_usd": 0.083333,
+    "crowding_score": 0.083333,
+    "false_break_upside_capture_pct": 0.083333,
+    "crisis_var_reduction_usd": 0.083333,
+    "expected_vol_reduction_pct": 0.083333,
+    "residual_1d_var_usd": 0.083333,
+    "self_check": 0.083337
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-108",
+    "title": "Windowed Correlation Regime Hedge",
+    "archetype": "correlation_regime_hedge",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "crisis_correlation_hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "layered_eth_convex_ai_correlation_package"
+      },
+      "hedge_legs.ETH_short_A.notional_usd": {
+        "type": "number",
+        "range": [
+          218000,
+          222000
+        ]
+      },
+      "hedge_legs.BTC_put_spread.notional_usd": {
+        "type": "number",
+        "range": [
+          495000,
+          505000
+        ]
+      },
+      "hedge_legs.ETH_put_spread.notional_usd": {
+        "type": "number",
+        "range": [
+          297000,
+          303000
+        ]
+      },
+      "hedge_legs.SOL_AI_correlation_short.notional_usd": {
+        "type": "number",
+        "range": [
+          178000,
+          182000
+        ]
+      },
+      "crowding_score": {
+        "type": "number",
+        "range": [
+          0.55,
+          0.57
+        ]
+      },
+      "false_break_upside_capture_pct": {
+        "type": "number",
+        "range": [
+          59,
+          61
+        ]
+      },
+      "crisis_var_reduction_usd": {
+        "type": "number",
+        "range": [
+          186000,
+          190000
+        ]
+      },
+      "expected_vol_reduction_pct": {
+        "type": "number",
+        "range": [
+          53,
+          53.8
+        ]
+      },
+      "residual_1d_var_usd": {
+        "type": "number",
+        "range": [
+          162000,
+          166000
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_set": [
+          "no_spot_sales",
+          "crowding_cap_respected",
+          "false_break_floor_respected",
+          "var_reconciles"
+        ],
+        "min_items": 4,
+        "match_type": "exact_set"
+      }
+    },
+    "derivation": "Regenerated AGI-108 after Opus flagged the prior version as over-prescribed. The valid package excludes ETH short B because ETH short A plus B would breach the 0.60 crowding cap. The selected package is ETH short A, BTC put-spread convexity, ETH put-spread convexity, and SOL/AI correlation short: crowding score 0.34 + 0.22 = 0.56, false-break upside capture 100 - 14 - 7 - 4 - 15 = 60%, crisis VaR reduction 56000 + 57000 + 37000 + 38000 = 188000, expected reduction 188000 / 352000 = 53.409%, and residual VaR 352000 - 188000 = 164000.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

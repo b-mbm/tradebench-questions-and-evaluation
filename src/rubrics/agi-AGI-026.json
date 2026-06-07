@@ -1,0 +1,126 @@
+{
+  "id": "agi-AGI-026",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "venue_fills.Internalizer",
+    "venue_fills.Dark_RFQ",
+    "venue_fills.CEX_Y",
+    "venue_fills.hidden_public",
+    "hidden_public_qty",
+    "expected_avg_price",
+    "expected_slippage_pct",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "venue_fills.Internalizer",
+    "venue_fills.Dark_RFQ",
+    "venue_fills.CEX_Y",
+    "venue_fills.hidden_public",
+    "hidden_public_qty",
+    "expected_avg_price",
+    "expected_slippage_pct",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.090909,
+    "execution_sequence": 0.090909,
+    "venue_fills.Internalizer": 0.090909,
+    "venue_fills.Dark_RFQ": 0.090909,
+    "venue_fills.CEX_Y": 0.090909,
+    "venue_fills.hidden_public": 0.090909,
+    "hidden_public_qty": 0.090909,
+    "expected_avg_price": 0.090909,
+    "expected_slippage_pct": 0.090909,
+    "self_check": 0.09091
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-026",
+    "title": "Weekend Liquidity Gap Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_event_execution"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_first_hidden_completion"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "Internalizer",
+          "Dark_RFQ",
+          "CEX_Y",
+          "hidden_public"
+        ]
+      },
+      "hidden_public_qty": {
+        "type": "number",
+        "range": [
+          12870,
+          13130
+        ]
+      },
+      "expected_avg_price": {
+        "type": "number",
+        "range": [
+          4.923812925,
+          4.933670408333333
+        ]
+      },
+      "expected_slippage_pct": {
+        "type": "number",
+        "range": [
+          0.3017040054310938,
+          0.46170400543109386
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_size_reconciles",
+          "public_trigger_avoided",
+          "avg_price_matches_fills"
+        ]
+      },
+      "venue_fills.Internalizer": {
+        "type": "number",
+        "range": [
+          41580,
+          42420
+        ]
+      },
+      "venue_fills.Dark_RFQ": {
+        "type": "number",
+        "range": [
+          34650,
+          35350
+        ]
+      },
+      "venue_fills.CEX_Y": {
+        "type": "number",
+        "range": [
+          29700,
+          30300
+        ]
+      },
+      "venue_fills.hidden_public": {
+        "type": "number",
+        "range": [
+          12870,
+          13130
+        ]
+      }
+    },
+    "derivation": "Private/semi-private blocks plus the hidden public iceberg fill 120000 without showing a public parent above the copy threshold: {\"Internalizer\":42000,\"Dark_RFQ\":35000,\"CEX_Y\":30000,\"hidden_public\":13000}. Average price is 4.928742 and slippage versus 4.91 mid is 0.3817%. The self-check verifies full-size reconciliation, trigger avoidance, and price arithmetic.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

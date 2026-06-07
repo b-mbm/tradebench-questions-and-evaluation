@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-064",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "expected_value": 0.3,
+    "gas_knapsack": 0.3,
+    "bid_and_tip": 0.25,
+    "bundle_summary": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-064",
+    "level": 10,
+    "intent": "priority_gas_auction_bundle",
+    "expected_value": 236150,
+    "range": [
+      231000,
+      241000
+    ],
+    "unit": "USD_profit",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "expected_value",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes success-weighted gross value per opportunity",
+          "pass_threshold": 21
+        },
+        {
+          "name": "gas_knapsack",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Selects the highest-value gas-feasible subset",
+          "pass_threshold": 21
+        },
+        {
+          "name": "bid_and_tip",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Applies builder bid split and priority tip cost",
+          "pass_threshold": 18
+        },
+        {
+          "name": "bundle_summary",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Reports selected opportunities and retained net profit",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 231000 AND value <= 241000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            233500,
+            238500
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            231000,
+            241000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            226000,
+            246000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            221000,
+            251000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            206000,
+            266000
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "priority_gas_auction_bundle",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "A+B+D+E uses exactly 25M gas and $465K expected gross; retained net after fixed bid and tips is about $236,150."
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "id": "agi-AGI-085",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Binance",
+    "venue_allocation_usd.Ethena_RFQ",
+    "venue_allocation_usd.OKX",
+    "venue_allocation_usd.Bybit",
+    "venue_allocation_usd.Curve_USDe",
+    "venue_allocation_usd.Coinbase",
+    "largest_visible_clip_usd",
+    "expected_asset_received",
+    "effective_price",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Binance",
+    "venue_allocation_usd.Ethena_RFQ",
+    "venue_allocation_usd.OKX",
+    "venue_allocation_usd.Bybit",
+    "venue_allocation_usd.Curve_USDe",
+    "venue_allocation_usd.Coinbase",
+    "largest_visible_clip_usd",
+    "expected_asset_received",
+    "effective_price",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.083333,
+    "chosen_strategy": 0.083333,
+    "venue_allocation_usd.Binance": 0.083333,
+    "venue_allocation_usd.Ethena_RFQ": 0.083333,
+    "venue_allocation_usd.OKX": 0.083333,
+    "venue_allocation_usd.Bybit": 0.083333,
+    "venue_allocation_usd.Curve_USDe": 0.083333,
+    "venue_allocation_usd.Coinbase": 0.083333,
+    "largest_visible_clip_usd": 0.083333,
+    "expected_asset_received": 0.083333,
+    "effective_price": 0.083333,
+    "self_check": 0.083337
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-085",
+    "title": "ENA Announcement Router",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_multi_venue_acquisition"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "visibility_capped_best_execution_router"
+      },
+      "largest_visible_clip_usd": {
+        "type": "number",
+        "range": [
+          618760,
+          621240
+        ]
+      },
+      "expected_asset_received": {
+        "type": "number",
+        "range": [
+          3264277.158634,
+          3277360.433819
+        ]
+      },
+      "effective_price": {
+        "type": "number",
+        "range": [
+          0.732294,
+          0.735229
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_notional_allocated",
+          "visible_clip_below_copy_threshold",
+          "received_and_effective_price_reconcile"
+        ]
+      },
+      "venue_allocation_usd.Binance": {
+        "type": "number",
+        "range": [
+          618760,
+          621240
+        ]
+      },
+      "venue_allocation_usd.Ethena_RFQ": {
+        "type": "number",
+        "range": [
+          499000,
+          501000
+        ]
+      },
+      "venue_allocation_usd.OKX": {
+        "type": "number",
+        "range": [
+          449100,
+          450900
+        ]
+      },
+      "venue_allocation_usd.Bybit": {
+        "type": "number",
+        "range": [
+          449100,
+          450900
+        ]
+      },
+      "venue_allocation_usd.Curve_USDe": {
+        "type": "number",
+        "range": [
+          249500,
+          250500
+        ]
+      },
+      "venue_allocation_usd.Coinbase": {
+        "type": "number",
+        "range": [
+          129740,
+          130260
+        ]
+      }
+    },
+    "derivation": "Filled venues in visibility-capped best-execution order. Allocations sum to 2400000; received 3270818.796226272 ENA; effective price 0.733761223; largest visible clip 620000.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

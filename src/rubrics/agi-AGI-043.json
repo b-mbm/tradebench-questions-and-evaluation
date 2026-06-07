@@ -1,0 +1,108 @@
+{
+  "id": "agi-AGI-043",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "actions",
+    "priority_order",
+    "direct_stablecoin_neutralized_usd",
+    "latest_direct_neutralization_min",
+    "margin_notional_reduced_usd",
+    "expected_execution_cost_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "actions",
+    "priority_order",
+    "direct_stablecoin_neutralized_usd",
+    "latest_direct_neutralization_min",
+    "margin_notional_reduced_usd",
+    "expected_execution_cost_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.111111,
+    "chosen_strategy": 0.111111,
+    "actions": 0.111111,
+    "priority_order": 0.111111,
+    "direct_stablecoin_neutralized_usd": 0.111111,
+    "latest_direct_neutralization_min": 0.111111,
+    "margin_notional_reduced_usd": 0.111111,
+    "expected_execution_cost_usd": 0.111111,
+    "self_check": 0.111112
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-043",
+    "title": "Depeg Print Stablecoin Cascade Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "stablecoin_regulatory_cascade"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "neutralize_timeboxed_stables_then_margin"
+      },
+      "actions": {
+        "type": "array",
+        "expected_order": [
+          "unwind_usdt_lending_loop",
+          "exit_curve_usdt_pool",
+          "reduce_sol_perp_half",
+          "hold_btc_spot"
+        ]
+      },
+      "priority_order": {
+        "type": "array",
+        "expected_order": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "direct_stablecoin_neutralized_usd": {
+        "type": "number",
+        "range": [
+          831600,
+          848400
+        ]
+      },
+      "latest_direct_neutralization_min": {
+        "type": "number",
+        "range": [
+          13,
+          15
+        ]
+      },
+      "margin_notional_reduced_usd": {
+        "type": "number",
+        "range": [
+          247500,
+          252500
+        ]
+      },
+      "expected_execution_cost_usd": {
+        "type": "number",
+        "range": [
+          2890,
+          2970
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "lending_oracle_beaten",
+          "curve_gate_beaten",
+          "margin_window_reduced_before_congestion"
+        ]
+      }
+    },
+    "derivation": "Starting at T+4m with one action every ten minutes, the direct stablecoin actions must precede indirect margin work while beating the tighter gate/oracle windows. The first two actions neutralize $840000, the second completes by minute 14, the third reduces $250000 of margin notional, and listed costs sum to $2930. Self-check verifies gate, oracle, and margin timing.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

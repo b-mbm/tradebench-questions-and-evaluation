@@ -1,0 +1,64 @@
+{
+  "id": "agi-AGI-011",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "withdrawal_sequence",
+    "ev_withdraw",
+    "ev_stay"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "withdrawal_sequence",
+    "ev_withdraw",
+    "ev_stay"
+  ],
+  "field_weights": {
+    "decision": 0.3125,
+    "chosen_strategy": 0.3125,
+    "withdrawal_sequence": 0.3125,
+    "ev_withdraw": 0.03125,
+    "ev_stay": 0.03125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-011",
+    "title": "The Flash Loan Attack Predictor",
+    "bar": "strictly harder than L10 anchors; >=3 AGI properties; strategy not disclosed in prompt",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "withdraw"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_relay_full_exit_riskycoin_last"
+      },
+      "withdrawal_sequence": {
+        "type": "array",
+        "expected_order": [
+          "YieldFarm",
+          "BlueChip",
+          "RiskyCoin"
+        ]
+      },
+      "ev_withdraw": {
+        "type": "number",
+        "range": [
+          373800,
+          375000
+        ]
+      },
+      "ev_stay": {
+        "type": "number",
+        "range": [
+          4650,
+          4770
+        ]
+      }
+    },
+    "derivation": "The private sequence completes in 25+12+8=45 seconds, inside the 60-second exploit window, and avoids the public mempool trigger by leaving RiskyCoin last. EV withdraw is 375,000-600 = 374,400. EV stay is 0.2%*2,355,000 + 99.8%*0 = 4,710. Withdraw dominates.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

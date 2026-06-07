@@ -1,0 +1,105 @@
+{
+  "id": "agi-AGI-068",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_notional_usd.INJ",
+    "hedge_notional_usd.JTO",
+    "hedge_notional_usd.PYTH",
+    "crisis_beta_reduction_pct",
+    "worst_case_residual_pnl_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_notional_usd.INJ",
+    "hedge_notional_usd.JTO",
+    "hedge_notional_usd.PYTH",
+    "crisis_beta_reduction_pct",
+    "worst_case_residual_pnl_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.111111,
+    "chosen_strategy": 0.111111,
+    "execution_sequence": 0.111111,
+    "hedge_notional_usd.INJ": 0.111111,
+    "hedge_notional_usd.JTO": 0.111111,
+    "hedge_notional_usd.PYTH": 0.111111,
+    "crisis_beta_reduction_pct": 0.111111,
+    "worst_case_residual_pnl_usd": 0.111111,
+    "self_check": 0.111112
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-068",
+    "title": "Stable Reserve Rumor Hedge",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_beta_minimax"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "ordered_minimax_beta_hedge"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "INJ_short",
+          "JTO_short",
+          "PYTH_short"
+        ]
+      },
+      "crisis_beta_reduction_pct": {
+        "type": "number",
+        "range": [
+          45.109052,
+          45.471373
+        ]
+      },
+      "worst_case_residual_pnl_usd": {
+        "type": "number",
+        "range": [
+          -150463.0835,
+          -147483.6165
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "beta_cut_met",
+          "gross_cap_respected",
+          "stress_pnl_reconciles"
+        ]
+      },
+      "hedge_notional_usd.INJ": {
+        "type": "number",
+        "range": [
+          309380,
+          310620
+        ]
+      },
+      "hedge_notional_usd.JTO": {
+        "type": "number",
+        "range": [
+          229540,
+          230460
+        ]
+      },
+      "hedge_notional_usd.PYTH": {
+        "type": "number",
+        "range": [
+          149700,
+          150300
+        ]
+      }
+    },
+    "derivation": "Brute-force eligible hedge subsets and execution orders under the gross cap. The selected INJ_short -> JTO_short -> PYTH_short order gives beta reduction 45.290213% and worst residual PnL -148973.35 after impact 1064.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

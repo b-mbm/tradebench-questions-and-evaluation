@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-044",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "hedge_selection": 0.35,
+    "scenario_analysis": 0.3,
+    "upside_capture": 0.2,
+    "cost_efficiency": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-044",
+    "level": 10,
+    "intent": "impermanent_loss_hedging",
+    "expected_value": 75,
+    "range": [
+      72,
+      78
+    ],
+    "unit": "upside_capture_percentage",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "hedge_selection",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Uses the prescribed asymmetric hedge and cost",
+          "pass_threshold": 25
+        },
+        {
+          "name": "scenario_analysis",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Calculates PnL across the stated price-move table",
+          "pass_threshold": 21
+        },
+        {
+          "name": "upside_capture",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Computes upside capture from LP value versus HODL profit",
+          "pass_threshold": 14
+        },
+        {
+          "name": "cost_efficiency",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Subtracts hedge cost and avoids unsupported upside payoff assumptions",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 72 AND value <= 78"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            74,
+            76
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            72,
+            78
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            69,
+            82
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            65,
+            85
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            55,
+            95
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

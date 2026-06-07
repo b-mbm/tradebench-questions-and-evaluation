@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-062",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "stress_pnl": 0.35,
+    "stressed_notional": 0.25,
+    "withdrawal_limit": 0.25,
+    "margin_reasoning": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-062",
+    "level": 10,
+    "intent": "cex_cross_margin_stress",
+    "expected_value": 3241600,
+    "range": [
+      3180000,
+      3310000
+    ],
+    "unit": "USD_withdrawable",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "stress_pnl",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Computes BTC, ETH short, and SOL stress PnL correctly",
+          "pass_threshold": 25
+        },
+        {
+          "name": "stressed_notional",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Computes post-stress gross notional",
+          "pass_threshold": 18
+        },
+        {
+          "name": "withdrawal_limit",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Subtracts required 8% equity from stressed equity",
+          "pass_threshold": 18
+        },
+        {
+          "name": "margin_reasoning",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Explains the account remains compliant after withdrawal",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 3180000 AND value <= 3310000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            3212500,
+            3277500
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            3180000,
+            3310000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            3115000,
+            3375000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            3050000,
+            3440000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            2855000,
+            3635000
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "cex_cross_margin_stress",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Stress PnL is -$6.84M, stressed equity is $8.16M, required equity is $4.9184M, leaving $3.2416M withdrawable."
+    }
+  }
+}

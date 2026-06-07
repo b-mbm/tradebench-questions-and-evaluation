@@ -1,0 +1,105 @@
+{
+  "id": "agi-AGI-067",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_notional_usd.SUI",
+    "hedge_notional_usd.SEI",
+    "hedge_notional_usd.OP",
+    "crisis_beta_reduction_pct",
+    "worst_case_residual_pnl_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_notional_usd.SUI",
+    "hedge_notional_usd.SEI",
+    "hedge_notional_usd.OP",
+    "crisis_beta_reduction_pct",
+    "worst_case_residual_pnl_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.111111,
+    "chosen_strategy": 0.111111,
+    "execution_sequence": 0.111111,
+    "hedge_notional_usd.SUI": 0.111111,
+    "hedge_notional_usd.SEI": 0.111111,
+    "hedge_notional_usd.OP": 0.111111,
+    "crisis_beta_reduction_pct": 0.111111,
+    "worst_case_residual_pnl_usd": 0.111111,
+    "self_check": 0.111112
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-067",
+    "title": "ETF Rebalance Crowd Hedge",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_beta_minimax"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "ordered_minimax_beta_hedge"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "SUI_short",
+          "SEI_short",
+          "OP_short"
+        ]
+      },
+      "crisis_beta_reduction_pct": {
+        "type": "number",
+        "range": [
+          48.816849,
+          49.208953
+        ]
+      },
+      "worst_case_residual_pnl_usd": {
+        "type": "number",
+        "range": [
+          -110381.284,
+          -108195.516
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "beta_cut_met",
+          "gross_cap_respected",
+          "stress_pnl_reconciles"
+        ]
+      },
+      "hedge_notional_usd.SUI": {
+        "type": "number",
+        "range": [
+          279440,
+          280560
+        ]
+      },
+      "hedge_notional_usd.SEI": {
+        "type": "number",
+        "range": [
+          239520,
+          240480
+        ]
+      },
+      "hedge_notional_usd.OP": {
+        "type": "number",
+        "range": [
+          189620,
+          190380
+        ]
+      }
+    },
+    "derivation": "Brute-force eligible hedge subsets and execution orders under the gross cap. The selected SUI_short -> SEI_short -> OP_short order gives beta reduction 49.012901% and worst residual PnL -109288.4 after impact 1151.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

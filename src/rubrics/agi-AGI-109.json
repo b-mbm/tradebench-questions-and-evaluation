@@ -1,0 +1,112 @@
+{
+  "id": "agi-AGI-109",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "trigger_rule",
+    "selected_hedges",
+    "hedge_notional_usd.BTC_perp_short",
+    "hedge_notional_usd.ETH_put_spread",
+    "hedge_notional_usd.FET_RNDR_basket_short",
+    "confirmed_regime_residual_var_usd",
+    "false_break_upside_capture_pct",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "trigger_rule",
+    "selected_hedges",
+    "hedge_notional_usd.BTC_perp_short",
+    "hedge_notional_usd.ETH_put_spread",
+    "hedge_notional_usd.FET_RNDR_basket_short",
+    "confirmed_regime_residual_var_usd",
+    "false_break_upside_capture_pct",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.1,
+    "chosen_strategy": 0.14,
+    "trigger_rule": 0.16,
+    "selected_hedges": 0.16,
+    "hedge_notional_usd.BTC_perp_short": 0.1,
+    "hedge_notional_usd.ETH_put_spread": 0.09,
+    "hedge_notional_usd.FET_RNDR_basket_short": 0.09,
+    "confirmed_regime_residual_var_usd": 0.05,
+    "false_break_upside_capture_pct": 0.05,
+    "self_check": 0.06
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-109",
+    "title": "Lead-Lag Correlation Break Hedge",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "correlation_regime_trigger_hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "staged_btc_then_eth_ai_confirmation"
+      },
+      "trigger_rule": {
+        "type": "string",
+        "expected": "btc_first_eth_confirm_then_ai_beta"
+      },
+      "selected_hedges": {
+        "type": "array",
+        "expected_order": [
+          "BTC_perp_short",
+          "ETH_put_spread",
+          "FET_RNDR_basket_short"
+        ]
+      },
+      "hedge_notional_usd.BTC_perp_short": {
+        "type": "number",
+        "range": [
+          418320,
+          421680
+        ]
+      },
+      "hedge_notional_usd.ETH_put_spread": {
+        "type": "number",
+        "range": [
+          358560,
+          361440
+        ]
+      },
+      "hedge_notional_usd.FET_RNDR_basket_short": {
+        "type": "number",
+        "range": [
+          239040,
+          240960
+        ]
+      },
+      "confirmed_regime_residual_var_usd": {
+        "type": "number",
+        "range": [
+          184884,
+          187116
+        ]
+      },
+      "false_break_upside_capture_pct": {
+        "type": "number",
+        "range": [
+          58.266,
+          58.734
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "lag_trigger_respected",
+          "false_break_upside_preserved",
+          "residual_var_reconciles"
+        ]
+      }
+    },
+    "derivation": "The staged package hedges BTC first, adds convex ETH protection on confirmation, and uses the AI basket only after correlation persistence validates the regime. This preserves the false-break upside floor while reducing confirmed-regime VaR.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

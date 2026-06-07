@@ -1,0 +1,134 @@
+{
+  "id": "agi-AGI-082",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Binance",
+    "venue_allocation_usd.Hyperliquid_RFQ",
+    "venue_allocation_usd.Bybit",
+    "venue_allocation_usd.CoW_RFQ",
+    "venue_allocation_usd.Uniswap_Arbitrum",
+    "venue_allocation_usd.Coinbase",
+    "largest_visible_clip_usd",
+    "expected_asset_received",
+    "effective_price",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Binance",
+    "venue_allocation_usd.Hyperliquid_RFQ",
+    "venue_allocation_usd.Bybit",
+    "venue_allocation_usd.CoW_RFQ",
+    "venue_allocation_usd.Uniswap_Arbitrum",
+    "venue_allocation_usd.Coinbase",
+    "largest_visible_clip_usd",
+    "expected_asset_received",
+    "effective_price",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.083333,
+    "chosen_strategy": 0.083333,
+    "venue_allocation_usd.Binance": 0.083333,
+    "venue_allocation_usd.Hyperliquid_RFQ": 0.083333,
+    "venue_allocation_usd.Bybit": 0.083333,
+    "venue_allocation_usd.CoW_RFQ": 0.083333,
+    "venue_allocation_usd.Uniswap_Arbitrum": 0.083333,
+    "venue_allocation_usd.Coinbase": 0.083333,
+    "largest_visible_clip_usd": 0.083333,
+    "expected_asset_received": 0.083333,
+    "effective_price": 0.083333,
+    "self_check": 0.083337
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-082",
+    "title": "HYPE Announcement Router",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_multi_venue_acquisition"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "visibility_capped_best_execution_router"
+      },
+      "largest_visible_clip_usd": {
+        "type": "number",
+        "range": [
+          778440,
+          781560
+        ]
+      },
+      "expected_asset_received": {
+        "type": "number",
+        "range": [
+          165422.534287,
+          166085.550456
+        ]
+      },
+      "effective_price": {
+        "type": "number",
+        "range": [
+          24.866603,
+          24.966269
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_notional_allocated",
+          "visible_clip_below_copy_threshold",
+          "received_and_effective_price_reconcile"
+        ]
+      },
+      "venue_allocation_usd.Binance": {
+        "type": "number",
+        "range": [
+          778440,
+          781560
+        ]
+      },
+      "venue_allocation_usd.Hyperliquid_RFQ": {
+        "type": "number",
+        "range": [
+          848300,
+          851700
+        ]
+      },
+      "venue_allocation_usd.Bybit": {
+        "type": "number",
+        "range": [
+          698600,
+          701400
+        ]
+      },
+      "venue_allocation_usd.CoW_RFQ": {
+        "type": "number",
+        "range": [
+          648700,
+          651300
+        ]
+      },
+      "venue_allocation_usd.Uniswap_Arbitrum": {
+        "type": "number",
+        "range": [
+          548900,
+          551100
+        ]
+      },
+      "venue_allocation_usd.Coinbase": {
+        "type": "number",
+        "range": [
+          598800,
+          601200
+        ]
+      }
+    },
+    "derivation": "Filled venues in visibility-capped best-execution order. Allocations sum to 4130000; received 165754.042371732 HYPE; effective price 24.916436069; largest visible clip 780000.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "id": "agi-AGI-064",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Binance",
+    "venue_allocation_usd.Kraken",
+    "venue_allocation_usd.Coinbase",
+    "venue_allocation_usd.Curve_BTC",
+    "venue_allocation_usd.OTC_Circle",
+    "largest_visible_clip_usd",
+    "expected_asset_received",
+    "effective_price",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "venue_allocation_usd.Binance",
+    "venue_allocation_usd.Kraken",
+    "venue_allocation_usd.Coinbase",
+    "venue_allocation_usd.Curve_BTC",
+    "venue_allocation_usd.OTC_Circle",
+    "largest_visible_clip_usd",
+    "expected_asset_received",
+    "effective_price",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.090909,
+    "venue_allocation_usd.Binance": 0.090909,
+    "venue_allocation_usd.Kraken": 0.090909,
+    "venue_allocation_usd.Coinbase": 0.090909,
+    "venue_allocation_usd.Curve_BTC": 0.090909,
+    "venue_allocation_usd.OTC_Circle": 0.090909,
+    "largest_visible_clip_usd": 0.090909,
+    "expected_asset_received": 0.090909,
+    "effective_price": 0.090909,
+    "self_check": 0.09091
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-064",
+    "title": "BTC Buy Router Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_multi_venue_acquisition"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "capacity_capped_private_public_router"
+      },
+      "largest_visible_clip_usd": {
+        "type": "number",
+        "range": [
+          594000,
+          606000
+        ]
+      },
+      "expected_asset_received": {
+        "type": "number",
+        "range": [
+          33.253682132796065,
+          33.38696342390947
+        ]
+      },
+      "effective_price": {
+        "type": "number",
+        "range": [
+          59903.38128707272,
+          60143.474999646154
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_notional_allocated",
+          "visible_clip_below_copy_threshold",
+          "received_and_effective_price_reconcile"
+        ]
+      },
+      "venue_allocation_usd.Binance": {
+        "type": "number",
+        "range": [
+          594000,
+          606000
+        ]
+      },
+      "venue_allocation_usd.Kraken": {
+        "type": "number",
+        "range": [
+          495000,
+          505000
+        ]
+      },
+      "venue_allocation_usd.Coinbase": {
+        "type": "number",
+        "range": [
+          297000,
+          303000
+        ]
+      },
+      "venue_allocation_usd.Curve_BTC": {
+        "type": "number",
+        "range": [
+          297000,
+          303000
+        ]
+      },
+      "venue_allocation_usd.OTC_Circle": {
+        "type": "number",
+        "range": [
+          297000,
+          303000
+        ]
+      }
+    },
+    "derivation": "Selected clips sum to $2000000. Asset received is sum((allocation-fixed)*(1-fee)/price) = 33.320323 BTC, giving effective price 60023.428143. Largest visible public clip is $600000. Self-check verifies notional allocation, visible-clip constraint, and received/effective-price arithmetic.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

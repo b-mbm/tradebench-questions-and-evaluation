@@ -1,0 +1,83 @@
+{
+  "id": "agi-AGI-023",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_legs.ARB.notional_usd",
+    "hedge_legs.DOGE.notional_usd",
+    "risk_reduction_pct",
+    "worst_case_residual_pnl_usd"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_legs.ARB.notional_usd",
+    "hedge_legs.DOGE.notional_usd",
+    "risk_reduction_pct",
+    "worst_case_residual_pnl_usd"
+  ],
+  "field_weights": {
+    "intent": 0.1,
+    "chosen_strategy": 0.3,
+    "execution_sequence": 0.2,
+    "hedge_legs.ARB.notional_usd": 0.1,
+    "hedge_legs.DOGE.notional_usd": 0.1,
+    "risk_reduction_pct": 0.1,
+    "worst_case_residual_pnl_usd": 0.1
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-023",
+    "title": "OOD Beta Hedge: Yen Unwind Holdout",
+    "archetype": "adversarial-minimax-hedge",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_minimax_hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "arb_doge_pair"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "ARB_short",
+          "DOGE_short"
+        ]
+      },
+      "hedge_legs.ARB.notional_usd": {
+        "type": "number",
+        "range": [
+          239000,
+          241000
+        ]
+      },
+      "hedge_legs.DOGE.notional_usd": {
+        "type": "number",
+        "range": [
+          159000,
+          161000
+        ]
+      },
+      "risk_reduction_pct": {
+        "type": "number",
+        "range": [
+          56.800000000000004,
+          57.6
+        ]
+      },
+      "worst_case_residual_pnl_usd": {
+        "type": "number",
+        "range": [
+          -81050,
+          -79550
+        ]
+      }
+    },
+    "derivation": "The lower-beta third clip cannot meet the beta cut with either main leg. The two main legs are the unique feasible pair; executing ARB before DOGE avoids the crowded-short repricing. Canonical risk reduction is 57.2% and worst residual PnL is -80300.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

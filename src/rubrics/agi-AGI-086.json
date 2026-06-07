@@ -1,0 +1,126 @@
+{
+  "id": "agi-AGI-086",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "venue_fills.Dark_RFQ",
+    "venue_fills.Internalizer",
+    "venue_fills.RFQ_A",
+    "venue_fills.hidden_public",
+    "hidden_public_qty",
+    "expected_avg_price",
+    "expected_slippage_pct",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "venue_fills.Dark_RFQ",
+    "venue_fills.Internalizer",
+    "venue_fills.RFQ_A",
+    "venue_fills.hidden_public",
+    "hidden_public_qty",
+    "expected_avg_price",
+    "expected_slippage_pct",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.090909,
+    "execution_sequence": 0.090909,
+    "venue_fills.Dark_RFQ": 0.090909,
+    "venue_fills.Internalizer": 0.090909,
+    "venue_fills.RFQ_A": 0.090909,
+    "venue_fills.hidden_public": 0.090909,
+    "hidden_public_qty": 0.090909,
+    "expected_avg_price": 0.090909,
+    "expected_slippage_pct": 0.090909,
+    "self_check": 0.09091
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-086",
+    "title": "Thin Book Breakout Diverse Holdout",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_event_execution"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_first_hidden_completion"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "Dark_RFQ",
+          "Internalizer",
+          "RFQ_A",
+          "hidden_public"
+        ]
+      },
+      "hidden_public_qty": {
+        "type": "number",
+        "range": [
+          6930,
+          7070
+        ]
+      },
+      "expected_avg_price": {
+        "type": "number",
+        "range": [
+          1.2056531400000001,
+          1.20806686
+        ]
+      },
+      "expected_slippage_pct": {
+        "type": "number",
+        "range": [
+          0.4916666666666814,
+          0.6516666666666814
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "full_size_reconciles",
+          "public_trigger_avoided",
+          "avg_price_matches_fills"
+        ]
+      },
+      "venue_fills.Dark_RFQ": {
+        "type": "number",
+        "range": [
+          14850,
+          15150
+        ]
+      },
+      "venue_fills.Internalizer": {
+        "type": "number",
+        "range": [
+          17820,
+          18180
+        ]
+      },
+      "venue_fills.RFQ_A": {
+        "type": "number",
+        "range": [
+          9900,
+          10100
+        ]
+      },
+      "venue_fills.hidden_public": {
+        "type": "number",
+        "range": [
+          6930,
+          7070
+        ]
+      }
+    },
+    "derivation": "Source structure AGI-024 (liquidity_slippage_projection) remapped into the diverse AGI-066..115 tranche. Private/semi-private blocks plus the hidden public iceberg fill 50000 without showing a public parent above the copy threshold: {\"Dark_RFQ\":15000,\"Internalizer\":18000,\"RFQ_A\":10000,\"hidden_public\":7000}. Average price is 1.20686 and slippage versus 1.2 mid is 0.5717%. The self-check verifies full-size reconciliation, trigger avoidance, and price arithmetic.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-005",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "venue_selection": 0.3,
+    "cost_modeling": 0.3,
+    "twap_design": 0.25,
+    "timing_optimization": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-005",
+    "level": 10,
+    "intent": "execution_strategy",
+    "expected_value": 3960000,
+    "range": [
+      3900000,
+      4050000
+    ],
+    "unit": "USD_proceeds",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "venue_selection",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Optimal multi-venue allocation considering depth and costs",
+          "pass_threshold": 21
+        },
+        {
+          "name": "cost_modeling",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Accurate slippage, bridge, and gas cost calculations",
+          "pass_threshold": 21
+        },
+        {
+          "name": "twap_design",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "TWAP execution schedule minimizes market impact",
+          "pass_threshold": 18
+        },
+        {
+          "name": "timing_optimization",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Completes before 40% pump with minimal slippage",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 3900000 AND value <= 4050000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            3920000,
+            4020000
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            3900000,
+            4050000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            3850000,
+            4100000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            3800000,
+            4150000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            3700000,
+            4250000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

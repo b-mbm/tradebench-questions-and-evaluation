@@ -1,0 +1,103 @@
+{
+  "id": "agi-AGI-030",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "expected_net_apy_pct",
+    "expected_90d_profit_usd",
+    "liquidity_48h_usd",
+    "allocation_usd.Aave_USDC",
+    "allocation_usd.Curve_3pool",
+    "allocation_usd.Ethena_USDe",
+    "allocation_usd.GMX_GLP"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "expected_net_apy_pct",
+    "expected_90d_profit_usd",
+    "liquidity_48h_usd",
+    "allocation_usd.Aave_USDC",
+    "allocation_usd.Curve_3pool",
+    "allocation_usd.Ethena_USDe",
+    "allocation_usd.GMX_GLP"
+  ],
+  "field_weights": {
+    "intent": 0.090909,
+    "chosen_strategy": 0.272727,
+    "expected_net_apy_pct": 0.090909,
+    "expected_90d_profit_usd": 0.090909,
+    "liquidity_48h_usd": 0.090909,
+    "allocation_usd.Aave_USDC": 0.090909,
+    "allocation_usd.Curve_3pool": 0.090909,
+    "allocation_usd.Ethena_USDe": 0.090909,
+    "allocation_usd.GMX_GLP": 0.090909
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-030",
+    "title": "OOD Composite Risk: Stable Yield Holdout",
+    "archetype": "tail-adjusted-protocol-allocation",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tail_adjusted_protocol_allocation"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "liquid_capped_tail_barbell"
+      },
+      "expected_net_apy_pct": {
+        "type": "number",
+        "range": [
+          8.49,
+          8.889999999999999
+        ]
+      },
+      "expected_90d_profit_usd": {
+        "type": "number",
+        "range": [
+          2067,
+          2217
+        ]
+      },
+      "liquidity_48h_usd": {
+        "type": "number",
+        "range": [
+          49750,
+          50250
+        ]
+      },
+      "allocation_usd.Aave_USDC": {
+        "type": "number",
+        "range": [
+          19850,
+          20150
+        ]
+      },
+      "allocation_usd.Curve_3pool": {
+        "type": "number",
+        "range": [
+          29850,
+          30150
+        ]
+      },
+      "allocation_usd.Ethena_USDe": {
+        "type": "number",
+        "range": [
+          19850,
+          20150
+        ]
+      },
+      "allocation_usd.GMX_GLP": {
+        "type": "number",
+        "range": [
+          29850,
+          30150
+        ]
+      }
+    },
+    "derivation": "Caps, liquidity, and queue thresholds force {\"Aave_USDC\":20000,\"Curve_3pool\":30000,\"Ethena_USDe\":20000,\"GMX_GLP\":30000}. Weighted net APY is 8.69% and 90-day profit is 2142.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

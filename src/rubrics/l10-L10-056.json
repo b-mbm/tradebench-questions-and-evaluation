@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-056",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "risk_adjusted_yield": 0.35,
+    "slash_budget": 0.25,
+    "allocation_optimization": 0.25,
+    "answer_format": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-056",
+    "level": 10,
+    "intent": "restaking_slashing_budget",
+    "expected_value": 8.66,
+    "range": [
+      8.45,
+      8.85
+    ],
+    "unit": "APR_percentage",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "risk_adjusted_yield",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Computes net APR after expected slash loss for each AVS",
+          "pass_threshold": 25
+        },
+        {
+          "name": "slash_budget",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Checks the weighted expected slash loss cap",
+          "pass_threshold": 18
+        },
+        {
+          "name": "allocation_optimization",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Fills highest net-yield capped AVSs while maintaining native staking minimum",
+          "pass_threshold": 18
+        },
+        {
+          "name": "answer_format",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Reports allocation and APR",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 8.45 AND value <= 8.85"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            8.55,
+            8.75
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            8.45,
+            8.85
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            8.25,
+            9.05
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            8.05,
+            9.25
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            7.45,
+            9.85
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "restaking_slashing_budget",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Use 35% native, 20% AVS C, 30% AVS B, and 15% AVS A for 8.662% risk-adjusted APR."
+    }
+  }
+}
