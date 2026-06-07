@@ -1,0 +1,93 @@
+name: Evaluate 300Q
+
+on:
+  workflow_dispatch:
+    inputs:
+      model_id:
+        description: "Model ID (e.g., claude-sonnet-4-5-20250929)"
+        required: true
+      levels:
+        description: "Space- or comma-separated levels"
+        required: false
+        default: "1 2 3 4 5 6 7 8 9 10 11"
+      channel:
+        description: "Result channel root"
+        required: false
+        default: "community"
+      label:
+        description: "Label prefix for output files"
+        required: false
+        default: "300q-run"
+      call_spacing_ms:
+        description: "Per-question spacing (ms)"
+        required: false
+        default: "600"
+      retry_attempts:
+        description: "Retry attempts"
+        required: false
+        default: "2"
+      retry_base_delay_ms:
+        description: "Retry base delay (ms)"
+        required: false
+        default: "700"
+      smoke_concurrency:
+        description: "Concurrent question workers"
+        required: false
+        default: "4"
+      smoke_max_tokens:
+        description: "Max output tokens"
+        required: false
+        default: "2200"
+      notify_email:
+        description: "Optional email to notify on completion"
+        required: false
+        default: ""
+
+jobs:
+  run:
+    concurrency:
+      group: eval-300q-${{ github.event.inputs.model_id }}
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Run 300Q
+        env:
+          NODE_OPTIONS: -r dotenv/config
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          MODEL_IDS: ${{ github.event.inputs.model_id }}
+          OUTPUT_SUBDIR: ${{ github.event.inputs.channel }}/300
+          CALL_SPACING_MS: ${{ github.event.inputs.call_spacing_ms }}
+          RETRY_ATTEMPTS: ${{ github.event.inputs.retry_attempts }}
+          RETRY_BASE_DELAY_MS: ${{ github.event.inputs.retry_base_delay_ms }}
+          SMOKE_CONCURRENCY: ${{ github.event.inputs.smoke_concurrency }}
+          SMOKE_MAX_TOKENS: ${{ github.event.inputs.smoke_max_tokens }}
+        run: |
+          mkdir -p results
+          npx tsx scripts/run-300q.ts \
+            --levels "${{ github.event.inputs.levels }}" \
+            --label "${{ github.event.inputs.label }}" \
+            --file-prefix "${{ github.event.inputs.label }}"
+      - name: Upload results artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-300q-${{ github.event.inputs.channel }}-${{ github.event.inputs.label }}
+          path: |
+            results/${{ github.event.inputs.channel }}/300/*.json
+      - name: Optional email notification
+        if: ${{ github.event.inputs.notify_email != '' }}
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+        run: |
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          npx tsx scripts/send-email.ts --to "${{ github.event.inputs.notify_email }}" --subject "Tradebench 300Q run completed: ${{ github.event.inputs.model_id }}" --text "Your 300Q run has finished. View logs and download the artifact here: ${RUN_URL}"
