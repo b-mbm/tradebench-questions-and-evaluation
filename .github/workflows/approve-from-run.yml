@@ -18,6 +18,9 @@ permissions:
 jobs:
   promote:
     runs-on: ubuntu-latest
+    outputs:
+      publish_60q: ${{ steps.merge.outputs.publish_60q }}
+      publish_300q: ${{ steps.merge.outputs.publish_300q }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,47 +31,74 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p results
-          if [ -f results/official-manifest.json ]; then
-            cp results/official-manifest.json results/official-manifest.prev.json
-            echo "Backed up existing manifest."
-          else
-            echo "No existing manifest to back up."
-          fi
+          for manifest in results/official-manifest.json results/official-300-manifest.json; do
+            if [ -f "$manifest" ]; then
+              cp "$manifest" "${manifest%.json}.prev.json"
+              echo "Backed up $manifest."
+            else
+              echo "No existing $manifest to back up."
+            fi
+          done
       - name: Download artifact and approve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npx tsx scripts/approve-from-run.ts --run-id "${{ github.event.inputs.run_id }}" --artifact-contains "${{ github.event.inputs.artifact_contains }}"
       - name: Merge manifest entries
+        id: merge
         run: |
           set -euo pipefail
-          OUT="results/official-manifest.json"
-          PREV="results/official-manifest.prev.json"
-          if [ ! -f "$OUT" ]; then
-            echo "ERROR: $OUT missing after approve step."
+          changed=0
+          publish_60q=false
+          publish_300q=false
+          for OUT in results/official-manifest.json results/official-300-manifest.json; do
+            PREV="${OUT%.json}.prev.json"
+            if [ ! -f "$OUT" ]; then
+              rm -f "$PREV"
+              continue
+            fi
+            if [ -f "$PREV" ] && cmp -s "$OUT" "$PREV"; then
+              rm -f "$PREV"
+              echo "$OUT unchanged."
+              continue
+            fi
+            changed=1
+            if [ "$OUT" = "results/official-manifest.json" ]; then
+              publish_60q=true
+            elif [ "$OUT" = "results/official-300-manifest.json" ]; then
+              publish_300q=true
+            fi
+            if [ -f "$PREV" ]; then
+              jq -n \
+                --argjson prev "$(cat "$PREV")" \
+                --argjson curr "$(cat "$OUT")" \
+                '{updatedAt: (now | todate), entries: (($prev.entries // {}) + ($curr.entries // {}))}' \
+                > "${OUT}.tmp"
+              mv "${OUT}.tmp" "$OUT"
+              rm -f "$PREV"
+              echo "Merged previous manifest entries into $OUT."
+            else
+              jq '.updatedAt = (now | todate)' "$OUT" > "${OUT}.tmp"
+              mv "${OUT}.tmp" "$OUT"
+              echo "No previous $OUT; refreshed timestamp."
+            fi
+            jq --arg path "$OUT" '.entries | length as $n | "✅ \($n) manifest entries in \($path)"' "$OUT"
+          done
+          if [ "$changed" = "0" ]; then
+            echo "ERROR: no official manifest changed after approve step."
             exit 1
           fi
-          if [ -f "$PREV" ]; then
-            jq -n \
-              --argjson prev "$(cat "$PREV")" \
-              --argjson curr "$(cat "$OUT")" \
-              '{updatedAt: (now | todate), entries: ($prev.entries // {}) + ($curr.entries // {})}' \
-              > "${OUT}.tmp"
-            mv "${OUT}.tmp" "$OUT"
-            rm -f "$PREV"
-            echo "Merged previous manifest entries."
-          else
-            jq '.updatedAt = (now | todate)' "$OUT" > "${OUT}.tmp"
-            mv "${OUT}.tmp" "$OUT"
-            echo "No previous manifest; refreshed timestamp."
-          fi
-          jq '.entries | length as $n | "✅ manifest entries: \($n)"' "$OUT"
+          echo "publish_60q=$publish_60q" >> "$GITHUB_OUTPUT"
+          echo "publish_300q=$publish_300q" >> "$GITHUB_OUTPUT"
       - name: Commit and push
         run: |
           if git status --porcelain | grep .; then
             git config user.name "tradebench-bot"
             git config user.email "actions@users.noreply.github.com"
             git add -f results/official results/official-manifest.json
+            if [ -f results/official-300-manifest.json ]; then
+              git add -f results/official-300-manifest.json
+            fi
             git commit -m "chore: approve from run ${{ github.event.inputs.run_id }}"
             git push
           else
@@ -77,10 +107,18 @@ jobs:
       - name: Sanity check manifest
         run: |
           set -euo pipefail
-          echo "Manifest contents:"
-          cat results/official-manifest.json
-          jq '.entries | keys' results/official-manifest.json
+          for manifest in results/official-manifest.json results/official-300-manifest.json; do
+            if [ -f "$manifest" ]; then
+              echo "$manifest contents:"
+              cat "$manifest"
+              jq '.entries | keys' "$manifest"
+            fi
+          done
   publish:
     needs: promote
     uses: ./.github/workflows/publish-official.yml
+    with:
+      checkout_ref: ${{ github.ref_name }}
+      publish_60q: ${{ needs.promote.outputs.publish_60q }}
+      publish_300q: ${{ needs.promote.outputs.publish_300q }}
     secrets: inherit

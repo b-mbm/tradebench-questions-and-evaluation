@@ -6,6 +6,7 @@ import path from "path";
 type ResultFile = {
   runAt: string;
   label: string;
+  suite?: string;
   models: string[];
   questionIds: string[];
   evaluations: Array<{ modelId: string; [k: string]: any }>;
@@ -44,22 +45,34 @@ function parseArgs(argv: string[]) {
 
 const ROOT = process.cwd();
 const RESULTS_DIR = path.join(ROOT, "results");
-const OFFICIAL_DIR = path.join(RESULTS_DIR, "official");
-const MANIFEST_PATH = path.join(RESULTS_DIR, "official-manifest.json");
+
+function officialPathsForSuite(suite?: string) {
+  if (suite === "r5e1-300q") {
+    return {
+      officialDir: path.join(RESULTS_DIR, "official", "300"),
+      manifestPath: path.join(RESULTS_DIR, "official-300-manifest.json"),
+    };
+  }
+
+  return {
+    officialDir: path.join(RESULTS_DIR, "official"),
+    manifestPath: path.join(RESULTS_DIR, "official-manifest.json"),
+  };
+}
 
 function ensureDir(dir: string) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
-function loadManifest(): Manifest {
-  if (!fs.existsSync(MANIFEST_PATH)) {
+function loadManifest(manifestPath: string): Manifest {
+  if (!fs.existsSync(manifestPath)) {
     return { updatedAt: null, entries: {} };
   }
-  return JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8")) as Manifest;
+  return JSON.parse(fs.readFileSync(manifestPath, "utf8")) as Manifest;
 }
 
-function saveManifest(manifest: Manifest) {
-  fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2));
+function saveManifest(manifestPath: string, manifest: Manifest) {
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 }
 
 function nextAvailablePath(baseDir: string, desiredName: string) {
@@ -85,12 +98,13 @@ async function main() {
     throw new Error("Result file is missing models array.");
   }
 
-  ensureDir(OFFICIAL_DIR);
+  const { officialDir, manifestPath } = officialPathsForSuite(payload.suite);
+  ensureDir(officialDir);
   const desiredName = args.destName || path.basename(sourcePath);
-  const destPath = nextAvailablePath(OFFICIAL_DIR, desiredName);
+  const destPath = nextAvailablePath(officialDir, desiredName);
   fs.copyFileSync(sourcePath, destPath);
 
-  const manifest = loadManifest();
+  const manifest = loadManifest(manifestPath);
   const approvedAt = new Date().toISOString();
   const relDest = path.relative(ROOT, destPath);
   const relSource = path.relative(ROOT, sourcePath);
@@ -105,9 +119,9 @@ async function main() {
     };
   }
   manifest.updatedAt = approvedAt;
-  saveManifest(manifest);
+  saveManifest(manifestPath, manifest);
 
-  console.log(`✅ Approved ${payload.models.length} model(s). Copied to ${relDest} and updated manifest.`);
+  console.log(`✅ Approved ${payload.models.length} model(s). Copied to ${relDest} and updated ${path.relative(ROOT, manifestPath)}.`);
 }
 
 main().catch(err => {

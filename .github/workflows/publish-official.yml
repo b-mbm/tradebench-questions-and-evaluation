@@ -13,11 +13,41 @@ on:
         required: false
         type: string
         default: "main"
+      checkout_ref:
+        description: "Ref to check out from this evaluation repo"
+        required: false
+        type: string
+        default: ""
       website_path:
         description: "Path inside website repo for the JSON"
         required: false
         type: string
         default: "public/data/current.json"
+      website_300_path:
+        description: "Path inside website repo for the 300Q JSON"
+        required: false
+        type: string
+        default: "public/data/current-300.json"
+      publish_60q:
+        description: "Whether to publish the 60Q JSON"
+        required: false
+        type: string
+        default: "true"
+      publish_300q:
+        description: "Whether to publish the 300Q JSON: true, false, or auto"
+        required: false
+        type: string
+        default: "auto"
+      official_300_manifest:
+        description: "300Q official manifest path"
+        required: false
+        type: string
+        default: "results/official-300-manifest.json"
+      require_300q:
+        description: "Fail if the 300Q manifest is missing"
+        required: false
+        type: string
+        default: "false"
       deploy_hook_url:
         description: "Optional Vercel deploy hook URL"
         required: false
@@ -38,10 +68,34 @@ on:
         description: "Branch to update"
         required: false
         default: "main"
+      checkout_ref:
+        description: "Ref to check out from this evaluation repo"
+        required: false
+        default: ""
       website_path:
         description: "Path inside website repo for the JSON"
         required: false
         default: "public/data/current.json"
+      website_300_path:
+        description: "Path inside website repo for the 300Q JSON"
+        required: false
+        default: "public/data/current-300.json"
+      publish_60q:
+        description: "Whether to publish the 60Q JSON"
+        required: false
+        default: "true"
+      publish_300q:
+        description: "Whether to publish the 300Q JSON: true, false, or auto"
+        required: false
+        default: "auto"
+      official_300_manifest:
+        description: "300Q official manifest path"
+        required: false
+        default: "results/official-300-manifest.json"
+      require_300q:
+        description: "Fail if the 300Q manifest is missing"
+        required: false
+        default: "false"
       deploy_hook_url:
         description: "Optional Vercel deploy hook URL"
         required: false
@@ -54,17 +108,43 @@ jobs:
       WEBSITE_REPO: ${{ inputs.website_repo }}
       WEBSITE_BRANCH: ${{ inputs.website_branch }}
       WEBSITE_PATH: ${{ inputs.website_path }}
+      WEBSITE_300_PATH: ${{ inputs.website_300_path }}
+      PUBLISH_60Q_REQUEST: ${{ inputs.publish_60q }}
+      PUBLISH_300Q_REQUEST: ${{ inputs.publish_300q }}
+      OFFICIAL_300_MANIFEST: ${{ inputs.official_300_manifest }}
+      REQUIRE_300Q: ${{ inputs.require_300q }}
       DEPLOY_HOOK_INPUT: ${{ inputs.deploy_hook_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.checkout_ref || github.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 20
       - run: npm ci
-      - name: Build official combined file
+      - name: Build official leaderboard files
         run: |
-          npx tsx scripts/combine-from-manifest.ts results/official-manifest.json --out results/official-combined.json --label official
-          npx tsx scripts/make-public-summary.ts --in results/official-combined.json --out results/site-current.json --suite r5e1-60q
+          set -euo pipefail
+          if [ "$PUBLISH_60Q_REQUEST" = "true" ]; then
+            npx tsx scripts/combine-from-manifest.ts results/official-manifest.json --out results/official-combined.json --label official
+            npx tsx scripts/make-public-summary.ts --in results/official-combined.json --out results/site-current.json --suite r5e1-60q
+            echo "PUBLISH_60Q=true" >> "$GITHUB_ENV"
+          else
+            echo "Skipping 60Q publish."
+            echo "PUBLISH_60Q=false" >> "$GITHUB_ENV"
+          fi
+
+          if [ "$PUBLISH_300Q_REQUEST" = "true" ] || { [ "$PUBLISH_300Q_REQUEST" = "auto" ] && [ -f "$OFFICIAL_300_MANIFEST" ]; }; then
+            npx tsx scripts/combine-from-manifest.ts "$OFFICIAL_300_MANIFEST" --out results/official-300-combined.json --label official-300
+            npx tsx scripts/make-public-summary.ts --in results/official-300-combined.json --out results/site-current-300.json --suite r5e1-300q
+            echo "PUBLISH_300Q=true" >> "$GITHUB_ENV"
+          elif [ "$PUBLISH_300Q_REQUEST" = "true" ] || [ "$REQUIRE_300Q" = "true" ]; then
+            echo "ERROR: required 300Q manifest not found: $OFFICIAL_300_MANIFEST"
+            exit 1
+          else
+            echo "No 300Q manifest found at $OFFICIAL_300_MANIFEST; skipping current-300.json."
+            echo "PUBLISH_300Q=false" >> "$GITHUB_ENV"
+          fi
       - name: Clone website repo
         env:
           PAT: ${{ secrets.WEBSITE_REPO_PAT || secrets.WEBSITE_REPO_PAT }}
@@ -75,16 +155,27 @@ jobs:
       - name: Copy JSON into website repo
         run: |
           set -euo pipefail
-          mkdir -p "website/$(dirname "$WEBSITE_PATH")"
-          npx tsx scripts/merge-site-json.ts --source results/site-current.json --dest "website/$WEBSITE_PATH" --seed data/legacy-leaderboard.json
+          if [ "$PUBLISH_60Q" = "true" ]; then
+            mkdir -p "website/$(dirname "$WEBSITE_PATH")"
+            npx tsx scripts/merge-site-json.ts --source results/site-current.json --dest "website/$WEBSITE_PATH" --seed data/legacy-leaderboard.json
+          fi
+          if [ "$PUBLISH_300Q" = "true" ]; then
+            mkdir -p "website/$(dirname "$WEBSITE_300_PATH")"
+            cp results/site-current-300.json "website/$WEBSITE_300_PATH"
+          fi
       - name: Commit and push website update
         working-directory: website
         run: |
           set -euo pipefail
-          if git status --porcelain; then
-            git config user.name "${{ secrets.WEBSITE_GIT_NAME || 'tradebench-bot' }}"
-            git config user.email "${{ secrets.WEBSITE_GIT_EMAIL || 'actions@users.noreply.github.com' }}"
+          git config user.name "${{ secrets.WEBSITE_GIT_NAME || 'tradebench-bot' }}"
+          git config user.email "${{ secrets.WEBSITE_GIT_EMAIL || 'actions@users.noreply.github.com' }}"
+          if [ "$PUBLISH_60Q" = "true" ]; then
             git add "$WEBSITE_PATH"
+          fi
+          if [ "$PUBLISH_300Q" = "true" ]; then
+            git add "$WEBSITE_300_PATH"
+          fi
+          if ! git diff --cached --quiet; then
             git commit -m "chore: update official leaderboard [skip ci]" && git push origin "$WEBSITE_BRANCH"
           else
             echo "No changes to push."

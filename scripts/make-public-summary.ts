@@ -8,7 +8,7 @@ type EvalRow = { modelId: string; questionId: string; grade?: Grade; durationMs?
 
 function usage() {
   console.error(
-    "Usage: npx tsx scripts/make-public-summary.ts --in results/official-combined.json --out site-current.json [--suite r5e1-60q]"
+    "Usage: npx tsx scripts/make-public-summary.ts --in results/official-combined.json --out site-current.json [--suite r5e1-60q|r5e1-300q]"
   );
 }
 
@@ -25,10 +25,9 @@ function parseArgs(argv: string[]) {
 }
 
 function levelFromQid(id: string): string {
-  const m = id.match(/^([A-Z]+\d?)/i) || id.match(/^(L\d+)/i);
+  const m = id.match(/^(AGI|L\d+)/i) || id.match(/^([A-Z]+\d?)/i);
   if (m) return m[1].toUpperCase();
-  const m2 = id.match(/^L(\d+)/i);
-  return m2 ? `L${m2[1]}` : "L?";
+  return "L?";
 }
 
 async function main() {
