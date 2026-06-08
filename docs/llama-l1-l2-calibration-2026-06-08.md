@@ -20,9 +20,11 @@ Four requested aliases worked directly:
 - `meta-llama/llama-4-maverick`
 - `meta-llama/llama-4-scout`
 
-The requested `meta-llama/llama-3.1-405b-instruct` returned `404 No endpoints found` on OpenRouter. The live OpenRouter 405B substitute used for this calibration was:
+The requested `meta-llama/llama-3.1-405b-instruct` returned `404 No endpoints found` on OpenRouter. A substitute smoke/full run was mistakenly attempted with:
 
 - `nousresearch/hermes-3-llama-3.1-405b`
+
+That substitute is excluded from accepted calibration because model identity is part of the benchmark condition. Do not substitute models unless explicitly authorized.
 
 ## Result Files
 
@@ -46,11 +48,16 @@ Smoke files:
 | `llama-3.1-8b-instant` | 8/9 | 0.810 | 3/12 | 0.677 |
 | `meta-llama/llama-4-maverick` | 9/9 | 0.913 | 7/12 | 0.774 |
 | `meta-llama/llama-4-scout` | 8/9 | 0.832 | 8/12 | 0.788 |
+
+Excluded mistaken substitute:
+
+| Model | L1 Passes | L1 Avg Score | L2 Passes | L2 Avg Score |
+|---|---:|---:|---:|---:|
 | `nousresearch/hermes-3-llama-3.1-405b` | 9/9 | 0.888 | 9/12 | 0.763 |
 
 ## Calibration Notes
 
 - The n=3 policy was useful even at L1: `llama-3.1-8b-instant` and `meta-llama/llama-4-scout` each had one `L1-003` miss.
-- `L2-004` failed for all five model identities in all three repetitions.
+- `L2-004` failed for all four accepted requested model identities in all three repetitions.
 - `L2-004` uses the generic `arbitrage` rubric while the prompt asks for liquidity analysis before a USDC/WETH swap. The observed outputs were plausible swap/liquidity schemas but repeatedly landed just under the pass threshold.
-- Do not continue broad paid sweeps until `L2-004` is reviewed or explicitly accepted as intentionally strict.
+- This is a calibration inspection note, not a recommendation to make the item easier. Failed questions may be valuable and should remain strict when the rubric is correct.
