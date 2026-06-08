@@ -509,13 +509,20 @@ function hasNestedPath(fields: string[]): boolean {
 
 export function buildExecuteOnePrompts(
   question: SchemaQuestion,
-  rubric?: { required_fields?: string[] }
+  rubric?: { required_fields?: string[]; _l9_canonical?: { expected_value?: unknown; grading_logic?: string } }
 ): ExecuteOnePrompts {
   const contextBlock = JSON.stringify(question.context ?? {}, null, 2);
   const expectedValues = JSON.stringify(question.expected_values ?? {}, null, 2);
 
   const explicitSchemaHintConfig = RUBRIC_SCHEMA_HINTS[question.rubric_id];
   const hasNonDefaultRequiredField = rubric?.required_fields?.some(field => !DEFAULT_INTERFACE_FIELDS.has(field));
+  const l9ExpectedValueIsArray =
+    rubric?._l9_canonical?.grading_logic === 'unordered_array_set_equality' ||
+    Array.isArray(rubric?._l9_canonical?.expected_value);
+  const numericDerivedFields = (rubric?.required_fields ?? []).filter(field =>
+    /_usd$|_pct$|_units$|_value$|_amount$|_ms$|_minutes$|_sec$|_days$|_apy$|_apr$|_pnl/.test(field) &&
+    !(field === 'expected_value' && l9ExpectedValueIsArray)
+  );
   const derivedSchemaHintConfig =
     !explicitSchemaHintConfig &&
     Array.isArray(rubric?.required_fields) &&
@@ -527,11 +534,14 @@ export function buildExecuteOnePrompts(
             ...rubric.required_fields.map(topLevelKey),
             'reasoning',
           ])),
-          numericKeys: rubric.required_fields.filter(field =>
-            /_usd$|_pct$|_units$|_value$|_amount$|_ms$|_minutes$|_sec$|_days$|_apy$|_apr$|_pnl/.test(field)
-          ),
+          numericKeys: numericDerivedFields,
           notes: [
             '- Field list derived from rubric.required_fields; emit each field the rubric expects.',
+            ...(l9ExpectedValueIsArray
+              ? [
+                  '- `expected_value` must be a JSON array containing the selected labels, not a number or comma-separated string.',
+                ]
+              : []),
             ...(hasNestedPath(rubric.required_fields)
               ? [
                   `- Nested required paths must be represented as nested JSON objects, not as literal dotted keys. Required paths: ${rubric.required_fields.join(', ')}.`,
@@ -552,9 +562,11 @@ export function buildExecuteOnePrompts(
       'Output Requirements:',
       `- Return a single JSON object with exactly these top-level keys: ${keysList}.`,
       '- Do not include any additional top-level keys.',
-      `- Use numeric JSON values (not quoted strings) for: ${numericList}.`,
       '- The `reasoning` field must be a concise string summarizing how you derived the numbers.'
     ];
+    if (numericList) {
+      lines.splice(3, 0, `- Use numeric JSON values (not quoted strings) for: ${numericList}.`);
+    }
     if (disallowedList) {
       lines.push(`- Omit fields such as ${disallowedList}; they are not part of the required schema.`);
     }

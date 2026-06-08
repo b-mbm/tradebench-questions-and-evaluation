@@ -563,6 +563,33 @@ function scoreL10ExpectedValue(value: unknown, rubric: SchemaRubric): number {
   return 0;
 }
 
+function scoreL9ExpectedValue(value: unknown, rubric: SchemaRubric): number {
+  const canonical = (rubric as any)._l9_canonical;
+  if (!canonical || typeof canonical !== 'object') return 1;
+
+  if (canonical.grading_logic === 'unordered_array_set_equality') {
+    if (!Array.isArray(value) || !Array.isArray(canonical.expected_value)) return 0;
+    const received = value.map(item => normalizeCategorical(item)).sort();
+    const expected = canonical.expected_value.map((item: unknown) => normalizeCategorical(item)).sort();
+    if (received.length !== expected.length) return 0;
+    return expected.every((item: string, index: number) => received[index] === item) ? 1 : 0;
+  }
+
+  const numeric = toNumber(value);
+  if (numeric === null) return 0;
+
+  if (Array.isArray(canonical.acceptable_range) && canonical.acceptable_range.length === 2) {
+    const [min, max] = canonical.acceptable_range.map(Number);
+    if (numeric >= min && numeric <= max) return 1;
+  }
+
+  if (typeof canonical.expected_value === 'number') {
+    return numeric === canonical.expected_value ? 1 : 0;
+  }
+
+  return 0;
+}
+
 function removeFailureReason(failureReasons: FailureReason[], reason: FailureReason): void {
   const index = failureReasons.indexOf(reason);
   if (index > -1) {
@@ -1368,12 +1395,13 @@ function computeFieldScores(
   let requiredPresent = 0;
 
   for (const field of rubric.expected_fields) {
+    const isL9CanonicalExpectedValue = field === 'expected_value' && Boolean((rubric as any)._l9_canonical);
     const isL10CanonicalExpectedValue = field === 'expected_value' && Boolean((rubric as any)._l10_canonical);
-    const weight = rubric.field_weights[field] ?? (isL10CanonicalExpectedValue ? 1 : 0);
+    const weight = rubric.field_weights[field] ?? (isL9CanonicalExpectedValue || isL10CanonicalExpectedValue ? 1 : 0);
     weightTotal += weight;
     const agiValidation = ((rubric as any)._agi_canonical?.validation || {}) as Record<string, any>;
 
-    if (isL10CanonicalExpectedValue) {
+    if (isL9CanonicalExpectedValue || isL10CanonicalExpectedValue) {
       const key = normalizeFieldName(field, response);
       if (!key) {
         if (rubric.required_fields.includes(field)) {
@@ -1396,12 +1424,12 @@ function computeFieldScores(
         requiredPresent += 1;
       }
 
-      const score = scoreL10ExpectedValue(value, rubric);
+      const score = isL9CanonicalExpectedValue ? scoreL9ExpectedValue(value, rubric) : scoreL10ExpectedValue(value, rubric);
       const weightedScore = score * weight;
       scores[field] = weightedScore;
       weightedSum += weightedScore;
       if (score === 0) {
-        failureReasons.push('l10_expected_value_out_of_range');
+        failureReasons.push(isL9CanonicalExpectedValue ? 'l9_expected_value_mismatch' : 'l10_expected_value_out_of_range');
       }
       continue;
     }
