@@ -521,6 +521,10 @@ function scoreAgiValidation(value: unknown, spec: any): number {
     return value.length > 0 ? 1 : 0;
   }
 
+  if (spec.type === 'object') {
+    return value !== null && typeof value === 'object' && !Array.isArray(value) ? 1 : 0;
+  }
+
   const expected = spec.expected;
   if (expected === undefined) return fieldPresent(value) ? 1 : 0;
   if (Array.isArray(spec.enum)) {
@@ -1397,9 +1401,10 @@ function computeFieldScores(
   for (const field of rubric.expected_fields) {
     const isL9CanonicalExpectedValue = field === 'expected_value' && Boolean((rubric as any)._l9_canonical);
     const isL10CanonicalExpectedValue = field === 'expected_value' && Boolean((rubric as any)._l10_canonical);
-    const weight = rubric.field_weights[field] ?? (isL9CanonicalExpectedValue || isL10CanonicalExpectedValue ? 1 : 0);
-    weightTotal += weight;
     const agiValidation = ((rubric as any)._agi_canonical?.validation || {}) as Record<string, any>;
+    const isAgiCanonicalField = field in agiValidation;
+    const weight = isAgiCanonicalField ? 1 : rubric.field_weights[field] ?? (isL9CanonicalExpectedValue || isL10CanonicalExpectedValue ? 1 : 0);
+    weightTotal += weight;
 
     if (isL9CanonicalExpectedValue || isL10CanonicalExpectedValue) {
       const key = normalizeFieldName(field, response);
@@ -1434,7 +1439,7 @@ function computeFieldScores(
       continue;
     }
 
-    if (field in agiValidation) {
+    if (isAgiCanonicalField) {
       const value = getPathValue(response, field);
       if (!fieldPresent(value)) {
         if (rubric.required_fields.includes(field)) {
@@ -3860,7 +3865,17 @@ export function gradeSchemaResponse(
   const confidenceMultiplier = method === 'json' ? 1 : method === 'fenced_json' ? 0.8 : 0.6;
   const confidence = Math.min(1, presentRatio * confidenceMultiplier * Math.min(1, normalizedScore + averageFieldScore / 2));
 
-  const pass = normalizedScore >= rubric.pass_threshold && confidence >= 0.6;
+  const agiValidation = ((rubric as any)._agi_canonical?.validation || {}) as Record<string, any>;
+  const hasAgiValidation = Object.keys(agiValidation).length > 0;
+  const agiStructuralSatisfied = !hasAgiValidation || (
+    !failureReasons.includes('missing_field') &&
+    !failureReasons.includes('mismatch_fieldname') &&
+    !rubric.required_fields.some(field =>
+      agiValidation[field]?.type === 'object' &&
+      failureReasons.includes(`agi_validation_failed:${field}`)
+    )
+  );
+  const pass = normalizedScore >= rubric.pass_threshold && confidence >= 0.6 && agiStructuralSatisfied;
 
   return {
     pass,
