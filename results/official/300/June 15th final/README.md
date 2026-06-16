@@ -10,6 +10,8 @@ This folder is the canonical June 15, 2026 archive for the active TradeBench 300
 - `local-qwen35-q6k-300-scores.jsonl` - local Qwen scored rows.
 - `local-qwen35-q6k-300-generations.jsonl` - local Qwen generation rows.
 - `manifest.json` - machine-readable archive metadata and evidence path patterns.
+- `evidence-results.tar.gz` - compressed raw evidence bundle for another agent to inspect.
+- `evidence/README.md` - extraction note for the raw evidence bundle.
 
 ## Definitions
 
