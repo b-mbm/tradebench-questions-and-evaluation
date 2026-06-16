@@ -1,11 +1,14 @@
 # June 15th Final
 
-This folder is the canonical June 15, 2026 archive for the active TradeBench 300Q N=1 candidate numbers.
+This folder is the canonical June 15, 2026 archive for the active TradeBench 300Q N=1 candidate numbers. It was updated on June 16, 2026 to include the local Qwen3.5 Q6K runs.
 
 ## Files
 
 - `June 15th final numbers.csv` - canonical CSV ranking.
 - `June 15th final numbers.json` - same rows as JSON with metadata.
+- `local-qwen35-q6k-300-summary.csv` - local Qwen run summary.
+- `local-qwen35-q6k-300-scores.jsonl` - local Qwen scored rows.
+- `local-qwen35-q6k-300-generations.jsonl` - local Qwen generation rows.
 - `manifest.json` - machine-readable archive metadata and evidence path patterns.
 
 ## Definitions
