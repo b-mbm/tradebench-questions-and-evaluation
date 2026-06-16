@@ -86,6 +86,8 @@ const DEFAULT_MODELS_FILE = path.join(process.cwd(), "models.yaml");
 const DEFAULT_TEMPERATURE = 0.1;
 const DEFAULT_MAX_TOKENS = 2200;
 const OPENROUTER_TIMEOUT_MS = Number(process.env.OPENROUTER_TIMEOUT_MS || 180000);
+const LMSTUDIO_TIMEOUT_MS = Number(process.env.LMSTUDIO_TIMEOUT_MS || 300000);
+const LMSTUDIO_BASE_URL = process.env.LMSTUDIO_BASE_URL || "http://localhost:1234/v1";
 
 function parseList(value: string): string[] {
   return value
@@ -466,6 +468,10 @@ function isTransportFailureError(error: string | undefined): boolean {
   return /connection error|network|econnreset|socket hang up|fetch failed|read etimedout|premature close/i.test(error || "");
 }
 
+function isLmStudioModel(model: ModelSelection): boolean {
+  return model.family === "lmstudio" || model.id.startsWith("local-") || model.id.startsWith("lmstudio-");
+}
+
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -510,8 +516,37 @@ async function callOpenRouter(
   }
 }
 
-async function generateOne(
+async function callLmStudio(
   client: OpenAI,
+  model: string,
+  system: string,
+  user: string,
+  options: { temperature: number; maxTokens: number }
+): Promise<{ text: string; durationMs: number }> {
+  const start = Date.now();
+  const request: Record<string, any> = {
+    model,
+    temperature: options.temperature,
+    max_tokens: options.maxTokens,
+    messages: [
+      { role: "system", content: system },
+      { role: "user", content: user },
+    ],
+  };
+  const responseFormat = String(process.env.LMSTUDIO_RESPONSE_FORMAT || "none").toLowerCase();
+  if (responseFormat !== "none") {
+    request.response_format = { type: responseFormat };
+  }
+  const resp = await client.chat.completions.create(request);
+  const text = resp.choices?.[0]?.message?.content ?? "";
+  if (!text.trim()) {
+    throw new Error("blank response");
+  }
+  return { text, durationMs: Date.now() - start };
+}
+
+async function generateOne(
+  clients: { openrouter?: OpenAI; lmstudio?: OpenAI },
   model: ModelSelection,
   question: SchemaQuestion,
   args: CliArgs,
@@ -532,10 +567,15 @@ async function generateOne(
       if (model.id.endsWith(":free")) {
         await freeModelGate?.wait();
       }
-      const result = await callOpenRouter(client, model.id, prompts.system, prompts.user, {
-        temperature: args.temperature,
-        maxTokens: args.maxTokens,
-      });
+      const result = isLmStudioModel(model)
+        ? await callLmStudio(requiredClient(clients.lmstudio, "LM Studio"), model.id, prompts.system, prompts.user, {
+            temperature: args.temperature,
+            maxTokens: args.maxTokens,
+          })
+        : await callOpenRouter(requiredClient(clients.openrouter, "OpenRouter"), model.id, prompts.system, prompts.user, {
+            temperature: args.temperature,
+            maxTokens: args.maxTokens,
+          });
       return {
         phase: "generation",
         runAt: new Date().toISOString(),
@@ -575,6 +615,13 @@ async function generateOne(
   };
 }
 
+function requiredClient(client: OpenAI | undefined, name: string): OpenAI {
+  if (!client) {
+    throw new Error(`${name} client is not configured.`);
+  }
+  return client;
+}
+
 async function runWithSemaphore<T>(
   items: T[],
   concurrency: number,
@@ -597,7 +644,9 @@ async function runGeneration(
   questions: SchemaQuestion[],
   generationsPath: string
 ): Promise<void> {
-  if (!process.env.OPENROUTER_API_KEY && !args.dryRun) {
+  const needsOpenRouter = models.some(model => !isLmStudioModel(model));
+  const needsLmStudio = models.some(isLmStudioModel);
+  if (needsOpenRouter && !process.env.OPENROUTER_API_KEY && !args.dryRun) {
     throw new Error("OPENROUTER_API_KEY is required for generation.");
   }
 
@@ -618,16 +667,28 @@ async function runGeneration(
     return;
   }
 
-  const client = new OpenAI({
-    baseURL: "https://openrouter.ai/api/v1",
-    apiKey: process.env.OPENROUTER_API_KEY,
-    timeout: OPENROUTER_TIMEOUT_MS,
-    maxRetries: 0,
-    defaultHeaders: {
-      "HTTP-Referer": "tradebench-lite",
-      "X-Title": "TradeBench 300Q Parallel Runner",
-    },
-  });
+  const clients = {
+    openrouter: needsOpenRouter
+      ? new OpenAI({
+          baseURL: "https://openrouter.ai/api/v1",
+          apiKey: process.env.OPENROUTER_API_KEY,
+          timeout: OPENROUTER_TIMEOUT_MS,
+          maxRetries: 0,
+          defaultHeaders: {
+            "HTTP-Referer": "tradebench-lite",
+            "X-Title": "TradeBench 300Q Parallel Runner",
+          },
+        })
+      : undefined,
+    lmstudio: needsLmStudio
+      ? new OpenAI({
+          baseURL: LMSTUDIO_BASE_URL,
+          apiKey: process.env.LMSTUDIO_API_KEY || "lm-studio",
+          timeout: LMSTUDIO_TIMEOUT_MS,
+          maxRetries: 0,
+        })
+      : undefined,
+  };
   const writer = new JsonlWriter(generationsPath);
   const freeModelGate = new RateGate(args.freeModelMinIntervalMs);
   let completed = 0;
@@ -638,7 +699,7 @@ async function runGeneration(
   try {
     await runWithSemaphore(tasks, args.concurrency, async ({ model, question }) => {
       if (abortReason) return;
-      const row = await generateOne(client, model, question, args, freeModelGate);
+      const row = await generateOne(clients, model, question, args, freeModelGate);
       await writer.append(row);
       completed += 1;
       const outcome = row.status === "ok" ? "ok" : "failed";

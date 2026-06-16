@@ -9,9 +9,10 @@ import { callGemini } from './providers/gemini';
 import { callGroq } from './providers/groq';
 import { callOpenRouter } from './providers/openrouter';
 import { callHuggingFace } from './providers/huggingface';
+import { callLmStudio } from './providers/lmstudio';
 import { buildExecuteOnePrompts } from '../prompts/schema-prompts';
 
-export type Provider = 'openai' | 'anthropic' | 'google' | 'groq' | 'openrouter' | 'huggingface';
+export type Provider = 'openai' | 'anthropic' | 'google' | 'groq' | 'openrouter' | 'huggingface' | 'lmstudio';
 
 export interface ModelConfig {
   id: string;
@@ -71,6 +72,7 @@ const PROVIDER_ENV: Record<Provider, string> = {
   groq: 'GROQ_API_KEY',
   openrouter: 'OPENROUTER_API_KEY',
   huggingface: 'HUGGINGFACE_API_KEY',
+  lmstudio: '',
 };
 
 function readBenchmarkModels(): string[] {
@@ -115,6 +117,9 @@ function inferProvider(modelId: string): Provider {
   if (modelId.startsWith('x-ai/')) {
     return 'openrouter';
   }
+  if (modelId.startsWith('local-') || modelId.startsWith('lmstudio-')) {
+    return 'lmstudio';
+  }
   if (modelId.startsWith('gpt-5') || modelId.startsWith('gpt-4') || modelId.startsWith('gpt-4o') || modelId.startsWith('o')) {
     return 'openai';
   }
@@ -138,6 +143,7 @@ function inferProvider(modelId: string): Provider {
 
 function hasProviderAccess(provider: Provider): boolean {
   const envKey = PROVIDER_ENV[provider];
+  if (!envKey) return true;
   return !!envKey && !!process.env[envKey];
 }
 
@@ -198,6 +204,8 @@ export async function callExecuteOneModel(
       return await callOpenRouter(modelId, system, user, { temperature, maxTokens });
     case 'huggingface':
       return await callHuggingFace(modelId, system, user, { temperature, maxTokens });
+    case 'lmstudio':
+      return await callLmStudio(modelId, system, user, { temperature, maxTokens });
     default:
       throw new Error(`Unsupported provider ${config.provider} for model ${modelId}`);
   }
