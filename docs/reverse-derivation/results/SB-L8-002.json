@@ -1,0 +1,1 @@
+{"id":"SB-L8-002","derivable":"PARTIAL","unique":"UNIQUE","recomputed_ok":true,"issue":"trade_value_usd uses spot 80.00 (=64000) not the limit price 80.25 (=64200); a solver could reasonably price a limit ticket at the limit, which fails the 0.01 tolerance.","fix":"State that trade_value uses the snapshot spot/last, or widen tolerance to admit limit-price valuation."}
