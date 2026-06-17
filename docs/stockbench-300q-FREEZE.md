@@ -31,6 +31,24 @@ The reverse-derivation audit is the strongest claim: for every one of the 300, a
 reasoner saw the answer and confirmed it is *uniquely* derivable from problem + rubric alone, with
 all arithmetic recomputed.
 
+## Independent dual-model confirmation
+
+The reverse-derivation + non-uniqueness audit was run **twice, by two independent models**, each
+deriving every row from scratch and writing its own per-row verdicts:
+
+- **Claude** — `docs/reverse-derivation/results/` (300 files): 300 VERIFIED / 300 UNIQUE / 0 ERROR /
+  0 NON_UNIQUE.
+- **Codex** (independent `/goal` run) — `docs/reverse-derivation/codex-results/` (300 files): 300
+  VERIFIED / 300 UNIQUE / 0 ERROR / 0 NON_UNIQUE; reproduced the gates + both hashes; verdict
+  **APPROVE for freeze-v2 + clear for smoke**.
+
+A direct per-row diff of the two independent result sets shows **0 disagreements across all 300**.
+(Honest caveat: Codex noted it spawned extra subagents late that did not return before close; its
+verdict rests on its direct 300-row audit + repo gates, which is complete coverage.)
+
+So freeze-v2 is confirmed by two independent models, not one — the peer-review bar for the
+solvability/uniqueness claim.
+
 ## v2 amendments (recorded per the freeze contract)
 
 1. Options early-assignment prompts state the full rule (rational only when ITM **and** dividend >
