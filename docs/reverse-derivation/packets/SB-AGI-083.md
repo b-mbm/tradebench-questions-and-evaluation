@@ -25,6 +25,7 @@ Select the feasible strategy with the highest expected carry under the SPAN marg
 Objective:
 select the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.
 
+For this task set "decision" = "trade".
 Output JSON fields: { "decision", "selected_route", "spread_count", "expected_carry_usd", "margin_used", "feasibility", "rejected_routes", "scenario_pnl", "worst_case_pnl", "self_check" }
 ```
 

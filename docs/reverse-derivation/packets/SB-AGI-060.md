@@ -30,6 +30,7 @@ Choose the feasible route that meets the reduction target at the lowest upfront 
 Objective:
 select the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.
 
+For this task set "decision" = "hedge".
 Output JSON fields: { "decision", "selected_route", "es_contracts", "beta_reduction_usd", "beta_reduction_pct", "margin_used", "expected_cost", "feasibility", "rejected_routes", "scenario_pnl", "worst_case_pnl", "self_check" }
 ```
 

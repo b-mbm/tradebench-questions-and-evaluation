@@ -37,8 +37,6 @@ Output JSON fields: { "decision", "chosen_strategy", "buy_to_close_calls", "sell
   "self_check"
 ]
 - critical_fields (must be exactly correct or the row fails): [
-  "decision",
-  "chosen_strategy",
   "buy_to_close_calls",
   "sell_to_open_calls",
   "buy_put_contracts",

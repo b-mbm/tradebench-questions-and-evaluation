@@ -8,7 +8,7 @@ tier: AGI   primary_domain: Listed options strategy / Greeks   scenario_family: 
 Frozen market snapshot:
 - Covered call on XLK ETF: long 100 shares at 215.00, short 1 215 call.
 - Call quote: 1.40 USD/share; option multiplier 100 shares. Intrinsic = max(0, spot - strike).
-- Ordinary cash dividend 0.50/share with ex-dividend tomorrow. Early assignment of an American call is rational for the holder when the dividend exceeds the call's remaining time value.
+- Ordinary cash dividend 0.50/share with ex-dividend tomorrow. Early assignment of an American call is rational ONLY when the call is in-the-money (spot > strike, i.e. intrinsic > 0) AND the dividend exceeds the call's remaining time value. An out-of-the-money or at-the-money call is never assigned.
 Candidate routes (decide which is required by the assignment economics):
 - Route A (route_a): roll/close the short call before ex-dividend to avoid early assignment
 - Route B (route_b): hold the covered call through ex-dividend unchanged
@@ -20,11 +20,12 @@ Frozen scenario PnL before action:
 The selected route's per-scenario hedge effect (before cost) is: rate_shock +1500, vol_spike -500, credit_widening +1000 USD. Apply this effect to each scenario, then subtract the 0 USD cash cost from every scenario.
 
 Task:
-Compute the call's time value, compare to the dividend, decide the early-assignment risk, and select the route. Report rejected routes by route id.
+Check whether the call is in-the-money, compute its time value, compare to the dividend, decide the early-assignment risk, and select the route. Report rejected routes by route id.
 
 Objective:
 remove early-assignment/dividend risk when and only when it is economically rational.
 
+For this task set "decision" = "manage_assignment".
 Output JSON fields: { "decision", "selected_route", "instrument", "call_strike", "dividend_per_share", "call_time_value", "early_assignment_risk", "feasibility", "rejected_routes", "scenario_pnl", "worst_case_pnl", "self_check" }
 ```
 
@@ -195,7 +196,7 @@ context.canonical_answer:
 
 ## D. STATED DERIVATION
 
-Intrinsic = max(0, 215-215); time value = 1.4 - intrinsic = 1.4. Dividend 0.5 <= time value -> early assignment not rational (hold).
+Spot 215, strike 215 -> intrinsic 0 (not in-the-money); time value 1.4; dividend 0.5. Early assignment rational only if ITM AND dividend>time value -> false -> route_b (hold).
 
 ## YOUR TASK
 

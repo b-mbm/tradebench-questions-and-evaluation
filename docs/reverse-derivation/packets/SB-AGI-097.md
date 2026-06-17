@@ -25,6 +25,7 @@ Roll the position and compute total executable cost. Report rejected routes by r
 Objective:
 select the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.
 
+For this task set "decision" = "roll".
 Output JSON fields: { "decision", "selected_route", "contracts", "roll_cost_usd", "fees_usd", "total_cost_usd", "feasibility", "rejected_routes", "scenario_pnl", "worst_case_pnl", "self_check" }
 ```
 

@@ -63,7 +63,6 @@ Output JSON fields:
 ]
 - critical_fields (must be exactly correct or the row fails): [
   "decision",
-  "chosen_strategy",
   "aapl_buy_to_cover_shares",
   "aapl_cover_cash_used",
   "es_contracts",

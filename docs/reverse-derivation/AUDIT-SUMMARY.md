@@ -67,3 +67,18 @@ ledger in `LEDGER.csv`. No paid model calls.
 5. Re-run the full reverse-derivation audit (this script) until ERROR 0 / NON_UNIQUE 0 and PARTIAL
    only where documented-acceptable.
 6. Re-tag freeze-v2 with new hashes; update FREEZE record + amendments.
+
+---
+
+## RE-AUDIT RESULT (post-fix, commit bff19cb)
+
+After implementing all fixes above, the full per-row reverse-derivation + non-uniqueness audit was
+re-run across all 300 (20 subagent batches, packets re-emitted from the fixed content):
+
+**300 VERIFIED · 300 UNIQUE · 0 ERROR · 0 NON_UNIQUE · 0 PARTIAL · recomputed_ok all true.**
+
+Every previously-flagged row was re-derived clean (e.g. SB-AGI-030/042/054/066/078/090 and SB-L9-055
+now follow the full stated ITM rule; SB-L9-005 keyed answer is the true cost-minimum under the 35%
+target; SB-L10-005 sell quantity is pinned; trade_value rows state the snapshot-price basis;
+`decision` is stated in the output line). Frozen as v2 (tag stockbench-300q-freeze-v2),
+hashes problem 6688f45c…, full 984e1f86….

@@ -1,52 +1,57 @@
 # StockBench 300Q — FREEZE RECORD
 
-**Status: FROZEN (v1)**
-**Frozen commit:** `4d6aae2` on `codex-work` · **tag:** `stockbench-300q-freeze-v1`
-**Freeze date:** 2026-06-16
-**Lead:** Claude · **Independent reviewers:** Codex, Perplexity
+**Status: FROZEN (v2)**
+**Tag:** `stockbench-300q-freeze-v2` · **Freeze date:** 2026-06-16
+**Lead:** Claude · **Independent reviewers:** Codex, Perplexity · **Full audit:** subagent fan-out
 
-## Frozen-state hashes (reproduce with `npx tsx scripts/prove-stockbench-solvability.ts`)
+## Why v2 supersedes v1
 
-- problem/rubric: `cadf634ec421d0149b72cb7ae71d1f351e6cd71f6f31bb7a975c82089be30cdc`
-- full-review: `a4647f8729847c603aa4fd0687f03822cb8ab49c0804acd48a804e9f2ed42948`
+v1 (`4d6aae2`) passed the gates and both reviewers, but a subsequent **exhaustive per-row
+reverse-derivation + non-uniqueness audit of all 300** (the check a peer reviewer would run) found
+8 ERROR + 6 NON_UNIQUE + 51 PARTIAL — invalidating v1. Those were fixed and the full audit re-run to
+a clean result. v2 is the remediated, fully-audited freeze.
 
-The working tree is clean at the frozen commit; HEAD reproduces these hashes.
+## Frozen-state hashes (`npx tsx scripts/prove-stockbench-solvability.ts`)
 
-## Gate results at freeze
+- problem/rubric: `6688f45ca0dbfe6c2f5f65cb01a796e5ec004bea6d86d659c1757f1ffe071cf1`
+- full-review: `984e1f8616f695b6835b123148c681b0d10704f2dd519e1b1c7c08528756cf69`
 
-| Gate | Result |
+Working tree clean at the frozen commit; HEAD reproduces these hashes.
+
+## Verification at freeze
+
+| Check | Result |
 |---|---|
-| `scripts/mutation-test-stockbench.ts` | 300/300 mutation-robust, 0 wrong-answer leaks |
-| `scripts/stockbench-quality-gate.ts` | PASS — leakage 0, scenario_family mismatch 0/293, answer-key dups 0, hidden-schema 0, pre-labeled feasibility 0; cognitive diversity L9 0.593 / L10 0.667 / AGI 0.491 (bar 0.40), L1–L8 all above bar |
-| `scripts/audit-stockbench-freeze-candidate.ts` | `freezeReady: true` (tier/domain/matrix all match) |
-| `scripts/prove-stockbench-solvability.ts` | ALL_300_VERIFIED (consistency linter) |
+| Mutation gate | 300/300 mutation-robust, 0 leaks |
+| Quality gate | PASS — leakage 0, scenario_family mismatch 0/293, dups 0, hidden-schema 0, pre-labeled 0, diversity L9 .59 / L10 .67 / AGI .49 |
+| Freeze audit | `freezeReady: true` |
+| **Full reverse-derivation + non-uniqueness audit (all 300)** | **300 VERIFIED, 300 UNIQUE, 0 ERROR, 0 NON_UNIQUE, 0 PARTIAL** (per-row ledger in `docs/reverse-derivation/LEDGER.csv`, evidence in `docs/reverse-derivation/results/`) |
 
-## Reviewer sign-offs
+The reverse-derivation audit is the strongest claim: for every one of the 300, an independent
+reasoner saw the answer and confirmed it is *uniquely* derivable from problem + rubric alone, with
+all arithmetic recomputed.
 
-- **Codex — APPROVE** at `4d6aae2` / `64f4c60`: reproduced gates + both hashes; all prior findings closed (self_check schema, selected∈rejected consistency, L8 honesty, AGI reallocation, low/mid domain/family honesty, clean committed tree); cleared for smoke + freeze; problem rows: none.
-- **Perplexity — APPROVE** at `488f135` (rebuild `8906fef`): fresh 30-row / 69-probe hand-derivation, 0 canonical errors, 0 leakage, 0 mis-tier blockers; cleared for smoke + freeze. The changes between `488f135` and the frozen `4d6aae2` are the low/mid-tier metadata-honesty fixes (domain-aware mechanics + honest families) — improvement-only, no regression, verified green by all gates.
+## v2 amendments (recorded per the freeze contract)
 
-## What this benchmark is
+1. Options early-assignment prompts state the full rule (rational only when ITM **and** dividend >
+   remaining time value; OTM/ATM never assigned); derivation text corrected. (fixed 7 ERRORs)
+2. SB-L9-005 target 30%→35% so the keyed 1ES+4MES is the true cost-minimum. (ERROR+NON_UNIQUE)
+3. SB-L10-005 pins full XLK exit. (NON_UNIQUE)
+4. Options exercise branch made a binary exercise-vs-sell choice. (NON_UNIQUE)
+5. Spot-equity tickets state trade_value is marked at the snapshot price. (PARTIAL ×~8)
+6. `decision` enum stated in the output line (derivable); un-derivable composed labels dropped from
+   critical_fields. (PARTIAL ×~37)
+7. FX prompts state the US-retail CFD ban; SB-L1-001 ticker SPY; SB-AGI-006 fill-price basis;
+   SB-L8-001 instrument "AAPL 175 call"; SB-L3-001 PnL tolerance.
+8. Grader: feasibility↔decision consistency check. Mutation harness: wrong-strategy targets the
+   derivable critical choice field.
 
-300 self-contained TradFi trading questions (L1→AGI). Hard tail concentrated in synthesis domains
-(98/110 AGI in options/futures/portfolio/shorting). Strict pass@1. Every graded field is
-deterministically derivable from the frozen packet; feasibility must be derived, not read from a
-label; wrong strategy/instrument/number/missing-critical/invalid-route all fail the grader.
+## Freeze contract
 
-## Freeze contract (from plan v2, "Audit Standard")
+No edits to canonical answers, rubric scoring contracts, or pass thresholds after this freeze
+without a recorded amendment here (id, reason, reviewer, new hashes). Prompt-only typo fixes must be
+re-gated with updated hashes. The AGI matrix reallocation is recorded in `stockbench-300q-plan_v2.md`.
 
-- **No edits to canonical answers, rubric scoring contracts, or pass thresholds after this freeze
-  without a recorded amendment** in this file (id, reason, reviewer, new hashes).
-- Prompt typo/clarity fixes that do not change any answer are permitted but must be re-gated and the
-  hashes updated here.
-- The AGI matrix reallocation (2026-06-16) is recorded in `stockbench-300q-plan_v2.md`.
-
-## Next step (not part of the freeze)
+## Remaining step (not part of the freeze)
 
 Model smoke run across the free/local roster (plan step 12) — measurement only, no paid calls.
-Suggested canary (per Perplexity): a strong model (Sonnet 4.6 / Opus) for AGI-threshold sanity, one
-small open-weight (Qwen / Llama) as a floor canary, with L1–L7 gated separately.
-
-## Amendments
-
-_(none yet)_

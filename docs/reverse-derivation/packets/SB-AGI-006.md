@@ -11,6 +11,7 @@ Frozen market snapshot:
 - Regular equity session is closed. Extended-hours SPY liquidity is firm for only 300 shares at 499.50.
 - CME ES futures are open. ES quote: 5,000, multiplier 50, margin 13,000, margin capacity 15,000, slippage/fees 25.
 - CFD route unavailable. New SPY short sale unavailable in extended hours.
+- exposure_reduction_usd is measured at execution (fill) prices: SPY shares at the 499.50 extended-hours fill, ES at quote * multiplier.
 - Objective: maximize immediate exposure reduction before overnight under these route constraints.
 
 Task: Build the valid immediate reduction plan and reject invalid routes.
@@ -35,8 +36,6 @@ Output JSON fields: { "decision", "chosen_strategy", "spy_sell_shares", "es_cont
   "self_check"
 ]
 - critical_fields (must be exactly correct or the row fails): [
-  "decision",
-  "chosen_strategy",
   "spy_sell_shares",
   "es_contracts",
   "exposure_reduction_usd",

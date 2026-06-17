@@ -12,7 +12,6 @@ Frozen market snapshot:
 Candidate routes (decide from the exercise economics; do not assume a route):
 - Route A (route_a): exercise the long call early to capture the 2.60/share dividend (you forfeit remaining time value)
 - Route B (route_b): sell the long call at its 12.00 quote and keep the time value
-- Route C (route_c): roll the call to the next expiry
 
 Frozen scenario PnL before action:
 - rate_shock: -140000 USD.
@@ -26,6 +25,7 @@ Compare the dividend to the time value, decide whether to exercise early, and se
 Objective:
 resolve the exercise/assignment decision at the highest economic value.
 
+For this task set "decision" = "exercise_decision".
 Output JSON fields: { "decision", "selected_route", "instrument", "dividend_per_share", "call_time_value", "exercise_early", "feasibility", "rejected_routes", "scenario_pnl", "worst_case_pnl", "self_check" }
 ```
 
@@ -96,10 +96,9 @@ Output JSON fields: { "decision", "selected_route", "instrument", "dividend_per_
   "rejected_routes": {
     "type": "array",
     "expected_set": [
-      "route_b",
-      "route_c"
+      "route_b"
     ],
-    "min_items": 2,
+    "min_items": 1,
     "match_type": "exact_set"
   },
   "scenario_pnl.rate_shock": {
@@ -145,8 +144,7 @@ Output JSON fields: { "decision", "selected_route", "instrument", "dividend_per_
   "exercise_early": true,
   "feasibility": "feasible",
   "rejected_routes": [
-    "route_b",
-    "route_c"
+    "route_b"
   ],
   "scenario_pnl": {
     "rate_shock": -138800,
@@ -172,8 +170,7 @@ context.canonical_answer:
   "exercise_early": true,
   "feasibility": "feasible",
   "rejected_routes": [
-    "route_b",
-    "route_c"
+    "route_b"
   ],
   "scenario_pnl": {
     "rate_shock": -138800,

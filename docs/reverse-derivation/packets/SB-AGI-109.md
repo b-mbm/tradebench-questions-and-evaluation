@@ -23,6 +23,7 @@ Sell and report trade value and the T+1 cash date. Report rejected routes by rou
 Objective:
 select the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.
 
+For this task set "decision" = "sell".
 Output JSON fields: { "decision", "selected_route", "trade_value_usd", "settlement_rule", "settlement_cash_date", "feasibility", "rejected_routes", "scenario_pnl", "worst_case_pnl", "self_check" }
 ```
 

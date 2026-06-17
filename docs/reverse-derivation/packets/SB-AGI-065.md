@@ -26,6 +26,7 @@ Choose the feasible bearish implementation that maximizes bearish delta-shares w
 Objective:
 maximize bearish delta-shares subject to locate and option-cash constraints.
 
+For this task set "decision" = "trade".
 Output JSON fields: { "decision", "selected_route", "instrument", "short_shares", "put_contracts", "premium_paid", "bearish_delta_shares", "feasibility", "rejected_routes", "scenario_pnl", "worst_case_pnl", "self_check" }
 ```
 

@@ -26,6 +26,7 @@ Route to the only feasible venue. Report rejected routes by route id.
 Objective:
 select the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.
 
+For this task set "decision" = "trade".
 Output JSON fields: { "decision", "selected_route", "instrument", "order_shares", "limit_price", "venue", "feasibility", "rejected_routes", "scenario_pnl", "worst_case_pnl", "self_check" }
 ```
 
