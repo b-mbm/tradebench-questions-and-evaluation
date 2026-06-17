@@ -1,65 +1,57 @@
-# StockBench 300Q — Remediation Handoff for Re-Audit (Codex + Perplexity)
+# StockBench 300Q — Remediation Handoff (Round 2 re-audit) for Codex + Perplexity
 
-**Lead:** Claude. **Branch:** `codex-work`. **Commit to review:** `303e4f8`
-(`fix(stockbench-300q): leakage-free tail rebuild + real correctness gates`).
-**Do not run paid model calls.** A model smoke run is intentionally deferred until you approve.
+**Lead:** Claude. **Branch:** `codex-work`. **Commit to review:** `8906fef`.
+**Do not run paid model calls.** Smoke run deferred until you both approve.
 
-## What changed and why
+## What changed since your last review (commit 303e4f8 → 8906fef)
 
-Three independent audits (Claude/Perplexity/ChatGPT) all returned NOT FREEZE-READY. Root causes:
-1. The audit/proof scripts were circular, so the prior pass optimized them — turning non-derivable
-   route labels into **prompt-visible answer leakage** (164 rows).
-2. The L9/L10/AGI tail was ~2 templates; `scenario_family` was decorative.
+Both prior reviews were reproduced and **every finding was verified against the grader before fixing.**
 
-This commit fixes the causes, not the symptoms:
+| Finding | Reviewer | Status |
+|---|---|---|
+| Hidden `self_check` schema (rubric required exact nested keys never named in prompt) | Codex (BLOCKER) | **Fixed** — `self_check` is now a pure presence check; a natural `self_check` passes. |
+| `selected_route ∈ rejected_routes` still passes (self-contradiction) | Perplexity | **Fixed** — grader now hard-fails it; new mutation asserts it. |
+| L8 = one template wearing 9 family labels | Perplexity (HIGH) + Codex | **Fixed** — L8 now uses the real per-family domain builders; L8 cognitive diversity 0.1 → 0.9; all L8 family tags match content. |
+| ~38% of AGI is route-screening, not synthesis | Codex (MAJOR) + Perplexity (MED) | **Fixed by matrix reallocation** (recorded amendment): AGI concentrated in options/futures/portfolio/shorting = **98/110**; non-hedge content demoted to L9/L10. Per-tier (81/69/110) and per-domain totals unchanged. |
+| `SB-AGI-005` family mismatch | Codex | **Fixed** — retagged to `multi_asset_drawdown_hedge` (its real content). |
+| Gate blind spots (mutation builds from canonical; family check skipped L8) | both | **Fixed** — added a hidden-schema check + a self-contradiction mutator; family-content check now covers L8. |
 
-- **Generator (`scripts/generate-stockbench-first-draft.ts`) fully rebuilt.** Neutral route ids
-  (`route_a..d`); feasibility must be **derived** from stated facts. Removed `_valid_plan_/_reject_*`
-  labels, "satisfies the domain check"/"violates margin" tells, decorative `Scenario family:` lines,
-  and "name exactly from the route list". Real per-domain mechanics, tier-escalated (L10 = residual
-  recompute; AGI = stress-scenario PnL reconciliation + derived `self_check`).
-- **Canonical errors fixed:** futures rows (incl. former L7-002) state the multiplier and compute
-  notional correctly; order-book rows (former L9-024) compute the true clip-bounded max fill.
-- **Grading:** fixed a real bug in `src/grading/schema-grader-300q.ts` — the `critical_fields` gate
-  compared the *weighted* score to `1`, so fractional-weight rubrics could never satisfy it; now it
-  requires full credit. Added `critical_fields` to all 30 hand anchors.
+Also fixed a real grader bug found while implementing: the `critical_fields` gate compared the
+*weighted* score to 1, so fractional-weight rubrics could never satisfy a critical field.
 
-## The real gates (please run these, not just the linters)
+## Reproduce (the real gates)
 
-```bash
-npx tsx scripts/mutation-test-stockbench.ts        # canonical passes AND wrong answers must fail
-npx tsx scripts/stockbench-quality-gate.ts         # leakage / diversity / family / dups / honesty
-npx tsx scripts/prove-stockbench-solvability.ts    # NOTE: consistency linter only (now annotated)
-npx tsx scripts/audit-stockbench-freeze-candidate.ts
+```
+npx tsx scripts/mutation-test-stockbench.ts      # 300/300 robust, 0 leaks
+npx tsx scripts/stockbench-quality-gate.ts       # PASS
+npx tsx scripts/audit-stockbench-freeze-candidate.ts   # freezeReady:true (matrix/tier/domain match)
+npx tsx scripts/prove-stockbench-solvability.ts  # consistency linter only (annotated)
 ```
 
-Current results on `303e4f8`:
+Current results on `8906fef`:
 
 | Gate | Result |
 |---|---|
-| Mutation-robust rows | **300 / 300** (wrong strategy/instrument/number/missing-critical/invalid-route all FAIL) |
-| Answer leakage | **0** |
-| Cognitive diversity (strict) | L9 0.568 / L10 0.522 / AGI 0.445 (bar 0.40) |
-| scenario_family content match (hard tiers) | 99.6% (1/257 miss) |
-| Answer-key duplicates | **0** |
-| Pre-labeled-feasibility hard rows | **0** |
-| Solvability hashes | problem `51c643fa…a4b428`, full-review `677d07a5…d05470` |
+| Mutation-robust rows | **300 / 300** (now incl. self-contradiction mutator) |
+| Answer leakage | 0 |
+| Cognitive diversity | L8 0.9 / L9 0.593 / L10 0.667 / **AGI 0.491** (bar 0.40) |
+| scenario_family content match (L8–AGI) | **0/267 mismatch** |
+| Answer-key duplicates | 0 |
+| Hidden-schema (critical nested key un-named in prompt) | 0 |
+| AGI in synthesis domains | **98 / 110** |
+| Solvability hashes | problem `9118a443…1343d`, full-review `28d3e4cb…14a3fc` |
 
-## Please be adversarial about
+## Please re-audit adversarially
 
-1. **Is feasibility genuinely derivable, not leaked?** Sample neutral-route rows (e.g. `SB-AGI-033`,
-   `SB-L10-040`) and confirm the prompt never says which route is valid.
-2. **Do the new mechanics hold up arithmetically?** Re-derive a sample across all 9 domains,
-   especially SPAN calendar spread, order-book max-fill, put-spread floor, FX settlement, futures roll.
-3. **Is the mutation harness honest?** Confirm it isn't trivially satisfiable and that 300/300 is real
-   (try hand-mutating a row and grading it).
-4. **AGI flavor:** non-hedge domains (FX/settlement/execution) are "feasibility+conversion synthesis"
-   with a carry-through scenario block rather than stress-hedge synthesis. Acceptable for AGI tier, or
-   should those be re-tagged/rebuilt?
-5. **Anything still too easy/too hard for its tier**, or any residual objective/family mismatch.
+1. Confirm the `self_check` fix: a natural/omitted `self_check` should no longer hard-fail; exact nested keys must NOT be required.
+2. Confirm self-contradiction now fails (put `selected_route` into `rejected_routes`).
+3. Confirm L8 rows genuinely exercise their tagged families (no fabricated labels).
+4. Judge the reallocated AGI tier: are options/futures/portfolio/shorting AGI rows genuine autonomous synthesis? Re-derive a sample.
+5. Independent re-derivation: please hand-derive a fresh 30-row sample (Perplexity item 3) — a different reviewer, not the author.
+6. Anything still mis-tiered, mislabeled, or unfair under strict pass@1.
 
-## Standing constraints
+## Return
 
-- No edits to frozen canonical/rubric/threshold without a recorded amendment.
-- Static gates all pass; **freeze still requires a model smoke run** (plan step 12) — to be run only
-  after you both approve this commit.
+`APPROVE / APPROVE-WITH-FIXES / REJECT`, whether you reproduced the gates+hashes, counts, a table of any problem rows (`ID | issue | severity | fix`), systemic concerns, and explicit smoke-run clearance.
+
+Freeze still requires a model smoke run (plan step 12) after your approval.
