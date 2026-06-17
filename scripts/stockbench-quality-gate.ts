@@ -135,6 +135,22 @@ const FAMILY_SIGNATURES: Record<string, RegExp[]> = {
   etf_sector_rebalance_t_plus_one: [/etf|sector|rebalance/i],
   opening_auction_limit: [/auction|opening/i],
   market_on_close_rebalance: [/market on close|moc|close/i],
+  // generic low/mid-tier mechanic families (honest tier-skill tags)
+  instrument_quote_extraction: [/extract/i],
+  option_premium_calc: [/premium/i],
+  futures_notional_calc: [/notional/i, /futures|es /i],
+  fx_conversion_calc: [/eur|fx|usd per eur|convert/i],
+  equity_notional_calc: [/notional/i],
+  option_cost_calc: [/premium/i, /commission|cost/i],
+  futures_margin_calc: [/margin/i],
+  trade_cash_calc: [/cash|commission|gross/i],
+  borrow_cost_calc: [/borrow/i],
+  financing_cost_calc: [/financ/i],
+  order_ticket_mapping: [/ticket|order/i],
+  operational_settlement_sequence: [/sequence|settle/i],
+  futures_whole_unit_sizing: [/contract|notional/i],
+  option_whole_unit_sizing: [/premium|contract/i],
+  equity_whole_unit_sizing: [/shares|notional|residual/i],
 };
 let familyChecked = 0, familyMismatch = 0;
 const familyMismatchByFamily: Record<string, { miss: number; total: number }> = {};
@@ -142,7 +158,7 @@ const familyMismatchIds: string[] = [];
 for (const q of qs) {
   // scenario_family content is enforced where it matters most: the hard tiers, where
   // "decorative family" was the original blocker. Low/mid-tier family tags are nominal.
-  if (!['L8', 'L9', 'L10', 'AGI'].includes(String(q.context?.stockbench?.tier))) continue;
+  // family-content now enforced at every tier (low/mid carry honest generic-mechanic families).
   const fam = String(q.context?.stockbench?.scenario_family ?? '');
   const sig = FAMILY_SIGNATURES[fam];
   if (!sig) continue;

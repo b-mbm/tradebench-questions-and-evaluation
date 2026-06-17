@@ -29,29 +29,29 @@ SB-AGI-005,AGI,AGI,0,VERIFIED,Portfolio risk / rebalancing,judgment_risk_augment
 SB-AGI-006,AGI,AGI,0,VERIFIED,Execution / liquidity / microstructure,execution_action_quality,invalid_route_session_trap,true,canonical local grade pass; metadata complete; packet assumptions present
 SB-AGI-007,AGI,AGI,0,VERIFIED,Futures / commodities / spreads / rolls,execution_action_quality,commodity_roll_basis_hedge,true,canonical local grade pass; metadata complete; packet assumptions present
 SB-AGI-008,AGI,AGI,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,event_vol_assignment_constrained,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L1-002,L1,L1,0,VERIFIED,Spot equities / ETFs,execution_action_quality,etf_sector_rebalance_t_plus_one,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L1-003,L1,L1,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,early_assignment_dividend_risk,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L2-002,L2,L2,0,VERIFIED,Execution / liquidity / microstructure,judgment_risk_augmentation,twap_slippage_limit,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L2-003,L2,L2,0,VERIFIED,Spot equities / ETFs,execution_action_quality,equity_order_ticket,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L2-004,L2,L2,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,put_spread_downside_floor,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L3-002,L3,L3,0,VERIFIED,Futures / commodities / spreads / rolls,judgment_risk_augmentation,commodity_roll_basis_hedge,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L3-003,L3,L3,0,VERIFIED,Portfolio risk / rebalancing,execution_action_quality,risk_budget_rebalance,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L4-002,L4,L4,0,VERIFIED,Execution / liquidity / microstructure,execution_action_quality,order_book_liquidity_limit,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L4-003,L4,L4,0,VERIFIED,Spot FX / CFDs / multi-currency,judgment_risk_augmentation,cfd_margin_regional_constraint,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L4-004,L4,L4,0,VERIFIED,Corporate actions / settlement / calendar / jurisdiction,execution_action_quality,corporate_action_adjustment,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L4-005,L4,L4,0,VERIFIED,Spot equities / ETFs,execution_action_quality,market_on_close_rebalance,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L5-002,L5,L5,0,VERIFIED,Futures / commodities / spreads / rolls,execution_action_quality,futures_beta_hedge,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L5-003,L5,L5,0,VERIFIED,Spot equities / ETFs,execution_action_quality,etf_sector_rebalance_t_plus_one,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L5-004,L5,L5,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,early_assignment_dividend_risk,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L5-005,L5,L5,0,VERIFIED,Futures / commodities / spreads / rolls,execution_action_quality,span_margin_calendar_spread,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L6-002,L6,L6,0,VERIFIED,Shorting / borrow / margin / locates,execution_action_quality,short_locate_failure,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L6-003,L6,L6,0,VERIFIED,Spot FX / CFDs / multi-currency,execution_action_quality,cfd_margin_regional_constraint,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L6-004,L6,L6,0,VERIFIED,Spot equities / ETFs,judgment_risk_augmentation,opening_auction_limit,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L6-005,L6,L6,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,exercise_assignment_roll_decision,false,canonical local grade pass; metadata complete; packet assumptions present
-SB-L7-002,L7,L7,0,VERIFIED,Futures / commodities / spreads / rolls,execution_action_quality,futures_beta_hedge,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L7-003,L7,L7,0,VERIFIED,Shorting / borrow / margin / locates,judgment_risk_augmentation,borrow_cost_vs_trade_edge,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L7-004,L7,L7,0,VERIFIED,Execution / liquidity / microstructure,execution_action_quality,auction_session_constraint,true,canonical local grade pass; metadata complete; packet assumptions present
-SB-L7-005,L7,L7,0,VERIFIED,Spot FX / CFDs / multi-currency,execution_action_quality,forward_vs_spot_payment,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L1-002,L1,L1,0,VERIFIED,Spot equities / ETFs,execution_action_quality,instrument_quote_extraction,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L1-003,L1,L1,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,instrument_quote_extraction,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L2-002,L2,L2,0,VERIFIED,Execution / liquidity / microstructure,judgment_risk_augmentation,equity_notional_calc,true,canonical local grade pass; metadata complete; packet assumptions present
+SB-L2-003,L2,L2,0,VERIFIED,Spot equities / ETFs,execution_action_quality,equity_notional_calc,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L2-004,L2,L2,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,option_premium_calc,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L3-002,L3,L3,0,VERIFIED,Futures / commodities / spreads / rolls,judgment_risk_augmentation,futures_margin_calc,true,canonical local grade pass; metadata complete; packet assumptions present
+SB-L3-003,L3,L3,0,VERIFIED,Portfolio risk / rebalancing,execution_action_quality,trade_cash_calc,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L4-002,L4,L4,0,VERIFIED,Execution / liquidity / microstructure,execution_action_quality,financing_cost_calc,true,canonical local grade pass; metadata complete; packet assumptions present
+SB-L4-003,L4,L4,0,VERIFIED,Spot FX / CFDs / multi-currency,judgment_risk_augmentation,financing_cost_calc,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L4-004,L4,L4,0,VERIFIED,Corporate actions / settlement / calendar / jurisdiction,execution_action_quality,financing_cost_calc,true,canonical local grade pass; metadata complete; packet assumptions present
+SB-L4-005,L4,L4,0,VERIFIED,Spot equities / ETFs,execution_action_quality,financing_cost_calc,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L5-002,L5,L5,0,VERIFIED,Futures / commodities / spreads / rolls,execution_action_quality,order_ticket_mapping,true,canonical local grade pass; metadata complete; packet assumptions present
+SB-L5-003,L5,L5,0,VERIFIED,Spot equities / ETFs,execution_action_quality,order_ticket_mapping,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L5-004,L5,L5,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,order_ticket_mapping,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L5-005,L5,L5,0,VERIFIED,Futures / commodities / spreads / rolls,execution_action_quality,order_ticket_mapping,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L6-002,L6,L6,0,VERIFIED,Shorting / borrow / margin / locates,execution_action_quality,operational_settlement_sequence,true,canonical local grade pass; metadata complete; packet assumptions present
+SB-L6-003,L6,L6,0,VERIFIED,Spot FX / CFDs / multi-currency,execution_action_quality,operational_settlement_sequence,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L6-004,L6,L6,0,VERIFIED,Spot equities / ETFs,judgment_risk_augmentation,operational_settlement_sequence,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L6-005,L6,L6,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,operational_settlement_sequence,false,canonical local grade pass; metadata complete; packet assumptions present
+SB-L7-002,L7,L7,0,VERIFIED,Futures / commodities / spreads / rolls,execution_action_quality,futures_whole_unit_sizing,true,canonical local grade pass; metadata complete; packet assumptions present
+SB-L7-003,L7,L7,0,VERIFIED,Shorting / borrow / margin / locates,judgment_risk_augmentation,equity_whole_unit_sizing,true,canonical local grade pass; metadata complete; packet assumptions present
+SB-L7-004,L7,L7,0,VERIFIED,Execution / liquidity / microstructure,execution_action_quality,equity_whole_unit_sizing,true,canonical local grade pass; metadata complete; packet assumptions present
+SB-L7-005,L7,L7,0,VERIFIED,Spot FX / CFDs / multi-currency,execution_action_quality,equity_whole_unit_sizing,false,canonical local grade pass; metadata complete; packet assumptions present
 SB-L8-002,L8,L8,0,VERIFIED,Spot equities / ETFs,judgment_risk_augmentation,equity_order_ticket,false,canonical local grade pass; metadata complete; packet assumptions present
 SB-L8-003,L8,L8,0,VERIFIED,Listed options strategy / Greeks,execution_action_quality,put_spread_downside_floor,false,canonical local grade pass; metadata complete; packet assumptions present
 SB-L8-004,L8,L8,0,VERIFIED,Futures / commodities / spreads / rolls,execution_action_quality,commodity_roll_basis_hedge,true,canonical local grade pass; metadata complete; packet assumptions present

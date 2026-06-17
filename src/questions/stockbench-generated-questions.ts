@@ -20,7 +20,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Spot equities / ETFs",
         "tier": "L1",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "etf_sector_rebalance_t_plus_one",
+        "scenario_family": "instrument_quote_extraction",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "instrument",
@@ -54,7 +54,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Listed options strategy / Greeks",
         "tier": "L1",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "early_assignment_dividend_risk",
+        "scenario_family": "instrument_quote_extraction",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "instrument",
@@ -78,7 +78,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "prompt": "Frozen market snapshot:\n- Instrument: XLK ETF.\n- Quantity: 300.\n- Price: 165.00 USD.\n\nTask:\nCompute notional USD value.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"quantity\", \"price\", \"notional_usd\" }",
     "expected_values": {
       "decision": "calculate_notional",
-      "instrument": "XLK",
+      "instrument": "XLK ETF",
       "quantity": 300,
       "price": 165,
       "notional_usd": 49500
@@ -89,7 +89,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Execution / liquidity / microstructure",
         "tier": "L2",
         "capability_tag": "judgment_risk_augmentation",
-        "scenario_family": "twap_slippage_limit",
+        "scenario_family": "equity_notional_calc",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "instrument",
@@ -100,7 +100,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "calculate_notional",
-        "instrument": "XLK",
+        "instrument": "XLK ETF",
         "quantity": 300,
         "price": 165,
         "notional_usd": 49500
@@ -115,7 +115,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF.\n- Quantity: 400.\n- Price: 170.00 USD.\n\nTask:\nCompute notional USD value.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"quantity\", \"price\", \"notional_usd\" }",
     "expected_values": {
       "decision": "calculate_notional",
-      "instrument": "XLF",
+      "instrument": "XLF ETF",
       "quantity": 400,
       "price": 170,
       "notional_usd": 68000
@@ -126,7 +126,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Spot equities / ETFs",
         "tier": "L2",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "equity_order_ticket",
+        "scenario_family": "equity_notional_calc",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "instrument",
@@ -137,7 +137,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "calculate_notional",
-        "instrument": "XLF",
+        "instrument": "XLF ETF",
         "quantity": 400,
         "price": 170,
         "notional_usd": 68000
@@ -149,9 +149,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 2,
     "type": "schema",
     "rubric_id": "stockbench-l2-004",
-    "prompt": "Frozen market snapshot:\n- Listed option premium: 6.00 USD/share.\n- Contracts: 6.\n- Option multiplier: 100 shares per contract.\n\nTask:\nCompute total option premium in USD.\n\nOutput JSON fields: { \"decision\", \"contracts\", \"premium_per_share\", \"multiplier\", \"total_premium_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Listed option: GLD 500 call, premium 6.00 USD/share.\n- Contracts: 6.\n- Option multiplier: 100 shares per contract.\n\nTask:\nCompute total option premium in USD.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"contracts\", \"premium_per_share\", \"multiplier\", \"total_premium_usd\" }",
     "expected_values": {
       "decision": "calculate_option_premium",
+      "instrument": "GLD 500 call",
       "contracts": 6,
       "premium_per_share": 6,
       "multiplier": 100,
@@ -163,9 +164,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Listed options strategy / Greeks",
         "tier": "L2",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "put_spread_downside_floor",
+        "scenario_family": "option_premium_calc",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
+          "instrument",
           "contracts",
           "premium_per_share",
           "multiplier",
@@ -174,6 +176,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "calculate_option_premium",
+        "instrument": "GLD 500 call",
         "contracts": 6,
         "premium_per_share": 6,
         "multiplier": 100,
@@ -186,14 +189,14 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 3,
     "type": "schema",
     "rubric_id": "stockbench-l3-002",
-    "prompt": "Frozen market snapshot:\n- Buy quantity: 300 shares.\n- Frozen price: 135.00 USD/share.\n- Commission: 0.005 USD/share.\n\nTask:\nCompute gross value, commission, and total cash required.\n\nOutput JSON fields: { \"decision\", \"quantity\", \"price\", \"gross_value_usd\", \"fee_usd\", \"cash_required_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Buy 2 ES futures (multiplier 50 USD/point). Initial margin: 13000 USD/contract. Fee: 4.00 USD/contract.\n- Margin is posted as collateral, not full notional.\n\nTask:\nCompute total cash to post (initial margin plus fees).\n\nOutput JSON fields: { \"decision\", \"instrument\", \"contracts\", \"margin_per_contract\", \"fees_usd\", \"total_cash_usd\" }",
     "expected_values": {
-      "decision": "calculate_trade_cash",
-      "quantity": 300,
-      "price": 135,
-      "gross_value_usd": 40500,
-      "fee_usd": 1.5,
-      "cash_required_usd": 40501.5
+      "decision": "calculate_initial_margin",
+      "instrument": "ES futures",
+      "contracts": 2,
+      "margin_per_contract": 13000,
+      "fees_usd": 8,
+      "total_cash_usd": 26008
     },
     "context": {
       "benchmark": "StockBench",
@@ -201,23 +204,23 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Futures / commodities / spreads / rolls",
         "tier": "L3",
         "capability_tag": "judgment_risk_augmentation",
-        "scenario_family": "commodity_roll_basis_hedge",
+        "scenario_family": "futures_margin_calc",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
-          "quantity",
-          "price",
-          "gross_value_usd",
-          "fee_usd",
-          "cash_required_usd"
+          "instrument",
+          "contracts",
+          "margin_per_contract",
+          "fees_usd",
+          "total_cash_usd"
         ]
       },
       "canonical_answer": {
-        "decision": "calculate_trade_cash",
-        "quantity": 300,
-        "price": 135,
-        "gross_value_usd": 40500,
-        "fee_usd": 1.5,
-        "cash_required_usd": 40501.5
+        "decision": "calculate_initial_margin",
+        "instrument": "ES futures",
+        "contracts": 2,
+        "margin_per_contract": 13000,
+        "fees_usd": 8,
+        "total_cash_usd": 26008
       }
     }
   },
@@ -226,9 +229,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 3,
     "type": "schema",
     "rubric_id": "stockbench-l3-003",
-    "prompt": "Frozen market snapshot:\n- Buy quantity: 400 shares.\n- Frozen price: 140.00 USD/share.\n- Commission: 0.005 USD/share.\n\nTask:\nCompute gross value, commission, and total cash required.\n\nOutput JSON fields: { \"decision\", \"quantity\", \"price\", \"gross_value_usd\", \"fee_usd\", \"cash_required_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Buy 400 XLF ETF shares at 140.00 USD/share.\n- Commission: 0.005 USD/share.\n\nTask:\nCompute gross value, commission, and total cash required.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"quantity\", \"price\", \"gross_value_usd\", \"fee_usd\", \"cash_required_usd\" }",
     "expected_values": {
       "decision": "calculate_trade_cash",
+      "instrument": "XLF ETF",
       "quantity": 400,
       "price": 140,
       "gross_value_usd": 56000,
@@ -241,9 +245,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Portfolio risk / rebalancing",
         "tier": "L3",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "risk_budget_rebalance",
+        "scenario_family": "trade_cash_calc",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
+          "instrument",
           "quantity",
           "price",
           "gross_value_usd",
@@ -253,6 +258,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "calculate_trade_cash",
+        "instrument": "XLF ETF",
         "quantity": 400,
         "price": 140,
         "gross_value_usd": 56000,
@@ -266,9 +272,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 4,
     "type": "schema",
     "rubric_id": "stockbench-l4-002",
-    "prompt": "Frozen market snapshot:\n- Principal: 110000 USD.\n- Annual rate: 6.00%.\n- Day count: Actual/360.\n- Holding period: 19 calendar days.\n- Simple interest; ignore compounding.\n\nTask:\nCompute the time-based cost in USD.\n\nOutput JSON fields: { \"decision\", \"principal_usd\", \"annual_rate\", \"day_count\", \"days\", \"cost_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: TSLA common stock. Financed/borrowed principal: 110000 USD.\n- Financing rate: 6.00% APR. Day count: Actual/360.\n- Holding period: 19 calendar days. Simple interest; ignore compounding.\n\nTask:\nCompute the financing cost in USD.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"principal_usd\", \"annual_rate\", \"day_count\", \"days\", \"cost_usd\" }",
     "expected_values": {
-      "decision": "calculate_time_cost",
+      "decision": "calculate_financing_cost",
+      "instrument": "TSLA common stock",
       "principal_usd": 110000,
       "annual_rate": 0.06,
       "day_count": "Actual/360",
@@ -281,9 +288,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Execution / liquidity / microstructure",
         "tier": "L4",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "order_book_liquidity_limit",
+        "scenario_family": "financing_cost_calc",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
+          "instrument",
           "principal_usd",
           "annual_rate",
           "day_count",
@@ -292,7 +300,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         ]
       },
       "canonical_answer": {
-        "decision": "calculate_time_cost",
+        "decision": "calculate_financing_cost",
+        "instrument": "TSLA common stock",
         "principal_usd": 110000,
         "annual_rate": 0.06,
         "day_count": "Actual/360",
@@ -306,9 +315,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 4,
     "type": "schema",
     "rubric_id": "stockbench-l4-003",
-    "prompt": "Frozen market snapshot:\n- Principal: 50000 USD.\n- Annual rate: 7.00%.\n- Day count: Actual/360.\n- Holding period: 20 calendar days.\n- Simple interest; ignore compounding.\n\nTask:\nCompute the time-based cost in USD.\n\nOutput JSON fields: { \"decision\", \"principal_usd\", \"annual_rate\", \"day_count\", \"days\", \"cost_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: EURUSD spot. Financed/borrowed principal: 50000 USD.\n- Financing rate: 7.00% APR. Day count: Actual/360.\n- Holding period: 20 calendar days. Simple interest; ignore compounding.\n\nTask:\nCompute the financing cost in USD.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"principal_usd\", \"annual_rate\", \"day_count\", \"days\", \"cost_usd\" }",
     "expected_values": {
-      "decision": "calculate_time_cost",
+      "decision": "calculate_financing_cost",
+      "instrument": "EURUSD spot",
       "principal_usd": 50000,
       "annual_rate": 0.07,
       "day_count": "Actual/360",
@@ -321,9 +331,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Spot FX / CFDs / multi-currency",
         "tier": "L4",
         "capability_tag": "judgment_risk_augmentation",
-        "scenario_family": "cfd_margin_regional_constraint",
+        "scenario_family": "financing_cost_calc",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
+          "instrument",
           "principal_usd",
           "annual_rate",
           "day_count",
@@ -332,7 +343,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         ]
       },
       "canonical_answer": {
-        "decision": "calculate_time_cost",
+        "decision": "calculate_financing_cost",
+        "instrument": "EURUSD spot",
         "principal_usd": 50000,
         "annual_rate": 0.07,
         "day_count": "Actual/360",
@@ -346,9 +358,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 4,
     "type": "schema",
     "rubric_id": "stockbench-l4-004",
-    "prompt": "Frozen market snapshot:\n- Principal: 60000 USD.\n- Annual rate: 8.00%.\n- Day count: Actual/360.\n- Holding period: 21 calendar days.\n- Simple interest; ignore compounding.\n\nTask:\nCompute the time-based cost in USD.\n\nOutput JSON fields: { \"decision\", \"principal_usd\", \"annual_rate\", \"day_count\", \"days\", \"cost_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF. Financed/borrowed principal: 60000 USD.\n- Financing rate: 8.00% APR. Day count: Actual/360.\n- Holding period: 21 calendar days. Simple interest; ignore compounding.\n\nTask:\nCompute the financing cost in USD.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"principal_usd\", \"annual_rate\", \"day_count\", \"days\", \"cost_usd\" }",
     "expected_values": {
-      "decision": "calculate_time_cost",
+      "decision": "calculate_financing_cost",
+      "instrument": "XLF ETF",
       "principal_usd": 60000,
       "annual_rate": 0.08,
       "day_count": "Actual/360",
@@ -361,9 +374,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Corporate actions / settlement / calendar / jurisdiction",
         "tier": "L4",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "corporate_action_adjustment",
+        "scenario_family": "financing_cost_calc",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
+          "instrument",
           "principal_usd",
           "annual_rate",
           "day_count",
@@ -372,7 +386,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         ]
       },
       "canonical_answer": {
-        "decision": "calculate_time_cost",
+        "decision": "calculate_financing_cost",
+        "instrument": "XLF ETF",
         "principal_usd": 60000,
         "annual_rate": 0.08,
         "day_count": "Actual/360",
@@ -386,9 +401,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 4,
     "type": "schema",
     "rubric_id": "stockbench-l4-005",
-    "prompt": "Frozen market snapshot:\n- Principal: 70000 USD.\n- Annual rate: 9.00%.\n- Day count: Actual/360.\n- Holding period: 22 calendar days.\n- Simple interest; ignore compounding.\n\nTask:\nCompute the time-based cost in USD.\n\nOutput JSON fields: { \"decision\", \"principal_usd\", \"annual_rate\", \"day_count\", \"days\", \"cost_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: GLD ETF. Financed/borrowed principal: 70000 USD.\n- Financing rate: 9.00% APR. Day count: Actual/360.\n- Holding period: 22 calendar days. Simple interest; ignore compounding.\n\nTask:\nCompute the financing cost in USD.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"principal_usd\", \"annual_rate\", \"day_count\", \"days\", \"cost_usd\" }",
     "expected_values": {
-      "decision": "calculate_time_cost",
+      "decision": "calculate_financing_cost",
+      "instrument": "GLD ETF",
       "principal_usd": 70000,
       "annual_rate": 0.09,
       "day_count": "Actual/360",
@@ -401,9 +417,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Spot equities / ETFs",
         "tier": "L4",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "market_on_close_rebalance",
+        "scenario_family": "financing_cost_calc",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
+          "instrument",
           "principal_usd",
           "annual_rate",
           "day_count",
@@ -412,7 +429,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         ]
       },
       "canonical_answer": {
-        "decision": "calculate_time_cost",
+        "decision": "calculate_financing_cost",
+        "instrument": "GLD ETF",
         "principal_usd": 70000,
         "annual_rate": 0.09,
         "day_count": "Actual/360",
@@ -426,14 +444,15 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 5,
     "type": "schema",
     "rubric_id": "stockbench-l5-002",
-    "prompt": "Frozen market snapshot:\n- Allowed products: XLK ETF trading allowed.\n- Buy 200 shares, limit 168.25, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"side\", \"quantity\", \"order_type\", \"limit_price\", \"time_in_force\", \"feasibility\" }",
+    "prompt": "Frozen market snapshot:\n- Allowed products: ES futures trading allowed. Multiplier 50 USD/point.\n- Buy 3 ES contracts, limit 5226.00 index points, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"side\", \"quantity\", \"order_type\", \"limit_price\", \"multiplier\", \"time_in_force\", \"feasibility\" }",
     "expected_values": {
       "decision": "trade",
-      "instrument": "XLK",
+      "instrument": "ES futures",
       "side": "buy",
-      "quantity": 200,
+      "quantity": 3,
       "order_type": "limit",
-      "limit_price": 168.25,
+      "limit_price": 5226,
+      "multiplier": 50,
       "time_in_force": "day",
       "feasibility": "feasible"
     },
@@ -443,7 +462,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Futures / commodities / spreads / rolls",
         "tier": "L5",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "futures_beta_hedge",
+        "scenario_family": "order_ticket_mapping",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "instrument",
@@ -451,17 +470,19 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
           "quantity",
           "order_type",
           "limit_price",
+          "multiplier",
           "time_in_force",
           "feasibility"
         ]
       },
       "canonical_answer": {
         "decision": "trade",
-        "instrument": "XLK",
+        "instrument": "ES futures",
         "side": "buy",
-        "quantity": 200,
+        "quantity": 3,
         "order_type": "limit",
-        "limit_price": 168.25,
+        "limit_price": 5226,
+        "multiplier": 50,
         "time_in_force": "day",
         "feasibility": "feasible"
       }
@@ -475,7 +496,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "prompt": "Frozen market snapshot:\n- Allowed products: XLF ETF trading allowed.\n- Buy 300 shares, limit 172.25, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"side\", \"quantity\", \"order_type\", \"limit_price\", \"time_in_force\", \"feasibility\" }",
     "expected_values": {
       "decision": "trade",
-      "instrument": "XLF",
+      "instrument": "XLF ETF",
       "side": "buy",
       "quantity": 300,
       "order_type": "limit",
@@ -489,7 +510,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Spot equities / ETFs",
         "tier": "L5",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "etf_sector_rebalance_t_plus_one",
+        "scenario_family": "order_ticket_mapping",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "instrument",
@@ -503,7 +524,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "trade",
-        "instrument": "XLF",
+        "instrument": "XLF ETF",
         "side": "buy",
         "quantity": 300,
         "order_type": "limit",
@@ -518,14 +539,15 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 5,
     "type": "schema",
     "rubric_id": "stockbench-l5-004",
-    "prompt": "Frozen market snapshot:\n- Allowed products: GLD ETF trading allowed.\n- Buy 400 shares, limit 176.25, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"side\", \"quantity\", \"order_type\", \"limit_price\", \"time_in_force\", \"feasibility\" }",
+    "prompt": "Frozen market snapshot:\n- Allowed products: listed options level 2 allowed. Multiplier 100 shares.\n- Buy to open 4 GLD 500 call contracts, limit 8.25 USD/share, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"side\", \"quantity\", \"order_type\", \"limit_price\", \"multiplier\", \"time_in_force\", \"feasibility\" }",
     "expected_values": {
       "decision": "trade",
-      "instrument": "GLD",
-      "side": "buy",
-      "quantity": 400,
+      "instrument": "GLD 500 call",
+      "side": "buy_to_open",
+      "quantity": 4,
       "order_type": "limit",
-      "limit_price": 176.25,
+      "limit_price": 8.25,
+      "multiplier": 100,
       "time_in_force": "day",
       "feasibility": "feasible"
     },
@@ -535,7 +557,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Listed options strategy / Greeks",
         "tier": "L5",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "early_assignment_dividend_risk",
+        "scenario_family": "order_ticket_mapping",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "instrument",
@@ -543,17 +565,19 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
           "quantity",
           "order_type",
           "limit_price",
+          "multiplier",
           "time_in_force",
           "feasibility"
         ]
       },
       "canonical_answer": {
         "decision": "trade",
-        "instrument": "GLD",
-        "side": "buy",
-        "quantity": 400,
+        "instrument": "GLD 500 call",
+        "side": "buy_to_open",
+        "quantity": 4,
         "order_type": "limit",
-        "limit_price": 176.25,
+        "limit_price": 8.25,
+        "multiplier": 100,
         "time_in_force": "day",
         "feasibility": "feasible"
       }
@@ -564,14 +588,15 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 5,
     "type": "schema",
     "rubric_id": "stockbench-l5-005",
-    "prompt": "Frozen market snapshot:\n- Allowed products: SPY ETF trading allowed.\n- Buy 500 shares, limit 100.25, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"side\", \"quantity\", \"order_type\", \"limit_price\", \"time_in_force\", \"feasibility\" }",
+    "prompt": "Frozen market snapshot:\n- Allowed products: ES futures trading allowed. Multiplier 50 USD/point.\n- Buy 1 ES contracts, limit 5026.00 index points, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"side\", \"quantity\", \"order_type\", \"limit_price\", \"multiplier\", \"time_in_force\", \"feasibility\" }",
     "expected_values": {
       "decision": "trade",
-      "instrument": "SPY",
+      "instrument": "ES futures",
       "side": "buy",
-      "quantity": 500,
+      "quantity": 1,
       "order_type": "limit",
-      "limit_price": 100.25,
+      "limit_price": 5026,
+      "multiplier": 50,
       "time_in_force": "day",
       "feasibility": "feasible"
     },
@@ -581,7 +606,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Futures / commodities / spreads / rolls",
         "tier": "L5",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "span_margin_calendar_spread",
+        "scenario_family": "order_ticket_mapping",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "instrument",
@@ -589,17 +614,19 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
           "quantity",
           "order_type",
           "limit_price",
+          "multiplier",
           "time_in_force",
           "feasibility"
         ]
       },
       "canonical_answer": {
         "decision": "trade",
-        "instrument": "SPY",
+        "instrument": "ES futures",
         "side": "buy",
-        "quantity": 500,
+        "quantity": 1,
         "order_type": "limit",
-        "limit_price": 100.25,
+        "limit_price": 5026,
+        "multiplier": 50,
         "time_in_force": "day",
         "feasibility": "feasible"
       }
@@ -610,9 +637,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 6,
     "type": "schema",
     "rubric_id": "stockbench-l6-002",
-    "prompt": "Frozen market snapshot:\n- Account permission for XLF ETF: allowed.\n- US equity proceeds settle T+1; cash date 2026-06-24.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+1 cash date.\n\nOutput JSON fields: { \"decision\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
+    "prompt": "Frozen market snapshot:\n- Account permission for XLF ETF: allowed.\n- Proceeds settle T+1; cash date 2026-06-24.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+1 cash date.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
     "expected_values": {
       "decision": "sequence",
+      "instrument": "XLF ETF",
       "execution_sequence": [
         "check_permission",
         "submit_order",
@@ -628,9 +656,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Shorting / borrow / margin / locates",
         "tier": "L6",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "short_locate_failure",
+        "scenario_family": "operational_settlement_sequence",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
+          "instrument",
           "execution_sequence",
           "settlement_rule",
           "settlement_cash_date",
@@ -639,6 +668,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "sequence",
+        "instrument": "XLF ETF",
         "execution_sequence": [
           "check_permission",
           "submit_order",
@@ -655,15 +685,16 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 6,
     "type": "schema",
     "rubric_id": "stockbench-l6-003",
-    "prompt": "Frozen market snapshot:\n- Account permission for GLD ETF: allowed.\n- US equity proceeds settle T+1; cash date 2026-06-25.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+1 cash date.\n\nOutput JSON fields: { \"decision\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
+    "prompt": "Frozen market snapshot:\n- Account permission for EURUSD spot: allowed.\n- Proceeds settle T+2; cash date 2026-06-25.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+2 cash date.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
     "expected_values": {
       "decision": "sequence",
+      "instrument": "EURUSD spot",
       "execution_sequence": [
         "check_permission",
         "submit_order",
         "confirm_settlement"
       ],
-      "settlement_rule": "T+1",
+      "settlement_rule": "T+2",
       "settlement_cash_date": "2026-06-25",
       "feasibility": "feasible"
     },
@@ -673,9 +704,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Spot FX / CFDs / multi-currency",
         "tier": "L6",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "cfd_margin_regional_constraint",
+        "scenario_family": "operational_settlement_sequence",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
+          "instrument",
           "execution_sequence",
           "settlement_rule",
           "settlement_cash_date",
@@ -684,12 +716,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "sequence",
+        "instrument": "EURUSD spot",
         "execution_sequence": [
           "check_permission",
           "submit_order",
           "confirm_settlement"
         ],
-        "settlement_rule": "T+1",
+        "settlement_rule": "T+2",
         "settlement_cash_date": "2026-06-25",
         "feasibility": "feasible"
       }
@@ -700,9 +733,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 6,
     "type": "schema",
     "rubric_id": "stockbench-l6-004",
-    "prompt": "Frozen market snapshot:\n- Account permission for SPY ETF: allowed.\n- US equity proceeds settle T+1; cash date 2026-06-16.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+1 cash date.\n\nOutput JSON fields: { \"decision\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
+    "prompt": "Frozen market snapshot:\n- Account permission for SPY ETF: allowed.\n- Proceeds settle T+1; cash date 2026-06-16.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+1 cash date.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
     "expected_values": {
       "decision": "sequence",
+      "instrument": "SPY ETF",
       "execution_sequence": [
         "check_permission",
         "submit_order",
@@ -718,9 +752,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Spot equities / ETFs",
         "tier": "L6",
         "capability_tag": "judgment_risk_augmentation",
-        "scenario_family": "opening_auction_limit",
+        "scenario_family": "operational_settlement_sequence",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
+          "instrument",
           "execution_sequence",
           "settlement_rule",
           "settlement_cash_date",
@@ -729,6 +764,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "sequence",
+        "instrument": "SPY ETF",
         "execution_sequence": [
           "check_permission",
           "submit_order",
@@ -745,9 +781,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 6,
     "type": "schema",
     "rubric_id": "stockbench-l6-005",
-    "prompt": "Frozen market snapshot:\n- Account permission for QQQ ETF: allowed.\n- US equity proceeds settle T+1; cash date 2026-06-17.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+1 cash date.\n\nOutput JSON fields: { \"decision\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
+    "prompt": "Frozen market snapshot:\n- Account permission for QQQ 485 call: allowed.\n- Proceeds settle T+1; cash date 2026-06-17.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+1 cash date.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
     "expected_values": {
       "decision": "sequence",
+      "instrument": "QQQ 485 call",
       "execution_sequence": [
         "check_permission",
         "submit_order",
@@ -763,9 +800,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Listed options strategy / Greeks",
         "tier": "L6",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "exercise_assignment_roll_decision",
+        "scenario_family": "operational_settlement_sequence",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
+          "instrument",
           "execution_sequence",
           "settlement_rule",
           "settlement_cash_date",
@@ -774,6 +812,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "sequence",
+        "instrument": "QQQ 485 call",
         "execution_sequence": [
           "check_permission",
           "submit_order",
@@ -807,7 +846,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Futures / commodities / spreads / rolls",
         "tier": "L7",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "futures_beta_hedge",
+        "scenario_family": "futures_whole_unit_sizing",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "instrument",
@@ -839,7 +878,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "prompt": "Frozen market snapshot:\n- Target notional: 50000 USD in SPY ETF.\n- Price: 100.00 USD/share. Fractional shares not allowed.\n\nTask:\nCompute whole shares, used notional, and residual cash.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"target_notional_usd\", \"price\", \"shares\", \"used_notional_usd\", \"residual_cash_usd\" }",
     "expected_values": {
       "decision": "rebalance",
-      "instrument": "SPY",
+      "instrument": "SPY ETF",
       "target_notional_usd": 50000,
       "price": 100,
       "shares": 500,
@@ -852,7 +891,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Shorting / borrow / margin / locates",
         "tier": "L7",
         "capability_tag": "judgment_risk_augmentation",
-        "scenario_family": "borrow_cost_vs_trade_edge",
+        "scenario_family": "equity_whole_unit_sizing",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "instrument",
@@ -865,7 +904,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "rebalance",
-        "instrument": "SPY",
+        "instrument": "SPY ETF",
         "target_notional_usd": 50000,
         "price": 100,
         "shares": 500,
@@ -882,7 +921,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "prompt": "Frozen market snapshot:\n- Target notional: 60000 USD in QQQ ETF.\n- Price: 104.00 USD/share. Fractional shares not allowed.\n\nTask:\nCompute whole shares, used notional, and residual cash.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"target_notional_usd\", \"price\", \"shares\", \"used_notional_usd\", \"residual_cash_usd\" }",
     "expected_values": {
       "decision": "rebalance",
-      "instrument": "QQQ",
+      "instrument": "QQQ ETF",
       "target_notional_usd": 60000,
       "price": 104,
       "shares": 576,
@@ -895,7 +934,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Execution / liquidity / microstructure",
         "tier": "L7",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "auction_session_constraint",
+        "scenario_family": "equity_whole_unit_sizing",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "instrument",
@@ -908,7 +947,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "rebalance",
-        "instrument": "QQQ",
+        "instrument": "QQQ ETF",
         "target_notional_usd": 60000,
         "price": 104,
         "shares": 576,
@@ -922,10 +961,10 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 7,
     "type": "schema",
     "rubric_id": "stockbench-l7-005",
-    "prompt": "Frozen market snapshot:\n- Target notional: 70000 USD in IWM ETF.\n- Price: 108.00 USD/share. Fractional shares not allowed.\n\nTask:\nCompute whole shares, used notional, and residual cash.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"target_notional_usd\", \"price\", \"shares\", \"used_notional_usd\", \"residual_cash_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Target notional: 70000 USD in EURUSD spot.\n- Price: 108.00 USD/share. Fractional shares not allowed.\n\nTask:\nCompute whole shares, used notional, and residual cash.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"target_notional_usd\", \"price\", \"shares\", \"used_notional_usd\", \"residual_cash_usd\" }",
     "expected_values": {
       "decision": "rebalance",
-      "instrument": "IWM",
+      "instrument": "EURUSD spot",
       "target_notional_usd": 70000,
       "price": 108,
       "shares": 648,
@@ -938,7 +977,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Spot FX / CFDs / multi-currency",
         "tier": "L7",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "forward_vs_spot_payment",
+        "scenario_family": "equity_whole_unit_sizing",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "instrument",
@@ -951,7 +990,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
       },
       "canonical_answer": {
         "decision": "rebalance",
-        "instrument": "IWM",
+        "instrument": "EURUSD spot",
         "target_notional_usd": 70000,
         "price": 108,
         "shares": 648,

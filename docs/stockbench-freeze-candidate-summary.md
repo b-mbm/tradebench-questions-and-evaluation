@@ -65,8 +65,8 @@ This is an audit artifact for the first StockBench 300Q draft. No paid model cal
 {
   "L4": {
     "questions": 5,
-    "distinctSkeletons": 2,
-    "ratio": 0.4,
+    "distinctSkeletons": 4,
+    "ratio": 0.8,
     "minRatio": 0
   },
   "L9": {
@@ -95,26 +95,26 @@ This is an audit artifact for the first StockBench 300Q draft. No paid model cal
   },
   "L3": {
     "questions": 3,
-    "distinctSkeletons": 2,
-    "ratio": 0.667,
+    "distinctSkeletons": 3,
+    "ratio": 1,
     "minRatio": 0
   },
   "L5": {
     "questions": 5,
-    "distinctSkeletons": 2,
-    "ratio": 0.4,
+    "distinctSkeletons": 4,
+    "ratio": 0.8,
     "minRatio": 0
   },
   "L6": {
     "questions": 5,
-    "distinctSkeletons": 2,
-    "ratio": 0.4,
+    "distinctSkeletons": 4,
+    "ratio": 0.8,
     "minRatio": 0
   },
   "L7": {
     "questions": 5,
-    "distinctSkeletons": 3,
-    "ratio": 0.6,
+    "distinctSkeletons": 4,
+    "ratio": 0.8,
     "minRatio": 0
   },
   "L8": {

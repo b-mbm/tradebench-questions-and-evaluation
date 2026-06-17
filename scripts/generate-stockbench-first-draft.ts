@@ -49,6 +49,7 @@ type Packet = {
   derivation: string;
   failureModes: string[];
   mustNot: string[];
+  family?: string; // honest scenario_family override (used by low/mid tiers)
 };
 
 const ROOT = process.cwd();
@@ -841,74 +842,147 @@ function buildHardTier(tier: Tier, domain: Domain, family: string, seed: number)
 // ----------------------------------------------------------------------------
 // LOW / MID TIER BUILDERS (L1-L8). Real specs incl. futures multiplier.
 // ----------------------------------------------------------------------------
-function buildLowMid(tier: Tier, domain: Domain, family: string, seed: number): Packet {
-  const sym = symFor(seed);
-  const isFut = domain === 'Futures / commodities / spreads / rolls';
-  const isOpt = domain === 'Listed options strategy / Greeks';
+type LMKind = 'equity' | 'option' | 'futures' | 'fx';
+function lmProduct(domain: Domain, seed: number): { name: string; unit: string; kind: LMKind } {
+  if (domain === 'Listed options strategy / Greeks') return { name: `${symFor(seed)} ${480 + (seed % 5) * 5} call`, unit: 'option_contract', kind: 'option' };
+  if (domain === 'Futures / commodities / spreads / rolls') return { name: 'ES futures', unit: 'futures_contract', kind: 'futures' };
+  if (domain === 'Spot FX / CFDs / multi-currency') return { name: 'EURUSD spot', unit: 'EUR', kind: 'fx' };
+  return { name: instr(symFor(seed)), unit: 'share', kind: 'equity' };
+}
+
+// L1-L7 are tier-skill rows (extraction / arithmetic / schema / settlement / sizing). They are
+// now DOMAIN-AWARE — the instrument and mechanic match the allocated domain — and carry an honest
+// generic scenario_family that describes the actual task (no decorative strategy-family labels).
+function buildLowMid(tier: Tier, domain: Domain, _family: string, seed: number): Packet {
+  const p = lmProduct(domain, seed);
+
   if (tier === 'L1') {
-    const inst = isOpt ? `${sym} ${480 + (seed % 5) * 5} call` : isFut ? 'ES futures' : instr(sym);
-    const quote = isOpt ? `${(4 + (seed % 4)).toFixed(2)} USD/share premium` : isFut ? `${(5000 + (seed % 8) * 25).toFixed(2)} index points` : `${(100 + (seed % 30) * 3).toFixed(2)} USD/share`;
-    const unit = isOpt ? 'option_contract' : isFut ? 'futures_contract' : 'share';
-    const expected = { decision: 'extract', instrument: inst, quote, unit };
-    return { prompt: `Frozen market snapshot:\n- Instrument: ${inst}.\n- Quote: ${quote}.\n- Unit type: ${unit}.\n\nTask:\nExtract the instrument, quote, and unit type from the packet. Use only the frozen packet.\n\nOutput JSON fields: ${compact(expected)}`,
+    const quote = p.kind === 'option' ? `${(4 + (seed % 4)).toFixed(2)} USD/share premium`
+      : p.kind === 'futures' ? `${(5000 + (seed % 8) * 25).toFixed(2)} index points`
+      : p.kind === 'fx' ? `${round2(1.05 + (seed % 19) / 1000).toFixed(4)} USD per EUR`
+      : `${(100 + (seed % 30) * 3).toFixed(2)} USD/share`;
+    const expected = { decision: 'extract', instrument: p.name, quote, unit: p.unit };
+    return { family: 'instrument_quote_extraction', prompt: `Frozen market snapshot:\n- Instrument: ${p.name}.\n- Quote: ${quote}.\n- Unit type: ${p.unit}.\n\nTask:\nExtract the instrument, quote, and unit type from the packet. Use only the frozen packet.\n\nOutput JSON fields: ${compact(expected)}`,
       expected, deterministic: ['instrument', 'quote', 'unit'], derivation: 'Literal extraction from the frozen packet.',
       failureModes: ['uses live data', 'changes a field'], mustNot: ['must_not_use_live_market_data'] };
   }
+
   if (tier === 'L2') {
-    if (isOpt) {
+    if (p.kind === 'option') {
       const contracts = 3 + (seed % 4); const premium = 2 + (seed % 5); const total = contracts * premium * 100;
-      const expected = { decision: 'calculate_option_premium', contracts, premium_per_share: premium, multiplier: 100, total_premium_usd: total };
-      return { prompt: `Frozen market snapshot:\n- Listed option premium: ${premium}.00 USD/share.\n- Contracts: ${contracts}.\n- Option multiplier: 100 shares per contract.\n\nTask:\nCompute total option premium in USD.\n\nOutput JSON fields: ${compact(expected)}`,
-        expected, deterministic: ['contracts', 'premium_per_share', 'multiplier', 'total_premium_usd'], derivation: `${contracts}*${premium}*100=${total}.`, failureModes: ['omits option multiplier'], mustNot: ['must_not_ignore_option_multiplier'] };
+      const expected = { decision: 'calculate_option_premium', instrument: p.name, contracts, premium_per_share: premium, multiplier: 100, total_premium_usd: total };
+      return { family: 'option_premium_calc', prompt: `Frozen market snapshot:\n- Listed option: ${p.name}, premium ${premium}.00 USD/share.\n- Contracts: ${contracts}.\n- Option multiplier: 100 shares per contract.\n\nTask:\nCompute total option premium in USD.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'contracts', 'premium_per_share', 'multiplier', 'total_premium_usd'], derivation: `${contracts}*${premium}*100=${total}.`, failureModes: ['omits option multiplier'], mustNot: ['must_not_ignore_option_multiplier'] };
     }
-    if (isFut) {
+    if (p.kind === 'futures') {
       const contracts = 1 + (seed % 4); const price = 5000 + (seed % 6) * 25; const mult = 50; const notional = contracts * price * mult;
-      const expected = { decision: 'calculate_futures_notional', contracts, price, multiplier: mult, notional_usd: notional };
-      return { prompt: `Frozen market snapshot:\n- ES futures price: ${price.toFixed(2)} index points.\n- Contract multiplier: ${mult} USD per index point.\n- Contracts: ${contracts}.\n\nTask:\nCompute futures notional in USD (price * multiplier * contracts).\n\nOutput JSON fields: ${compact(expected)}`,
-        expected, deterministic: ['contracts', 'price', 'multiplier', 'notional_usd'], derivation: `${contracts}*${price}*${mult}=${notional}.`, failureModes: ['omits futures multiplier'], mustNot: ['must_not_ignore_futures_multiplier'] };
+      const expected = { decision: 'calculate_futures_notional', instrument: p.name, contracts, price, multiplier: mult, notional_usd: notional };
+      return { family: 'futures_notional_calc', prompt: `Frozen market snapshot:\n- ES futures price: ${price.toFixed(2)} index points.\n- Contract multiplier: ${mult} USD per index point.\n- Contracts: ${contracts}.\n\nTask:\nCompute futures notional in USD (price * multiplier * contracts).\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'contracts', 'price', 'multiplier', 'notional_usd'], derivation: `${contracts}*${price}*${mult}=${notional}.`, failureModes: ['omits futures multiplier'], mustNot: ['must_not_ignore_futures_multiplier'] };
+    }
+    if (p.kind === 'fx') {
+      const eur = 100000 + (seed % 9) * 50000; const spot = round2(1.05 + (seed % 19) / 1000); const usd = round2(eur * spot);
+      const expected = { decision: 'calculate_fx_conversion', instrument: p.name, eur_amount: eur, spot, usd_value: usd };
+      return { family: 'fx_conversion_calc', prompt: `Frozen market snapshot:\n- EURUSD spot: ${spot.toFixed(4)} USD per EUR.\n- EUR amount: ${eur}.\n\nTask:\nConvert the EUR amount to USD at the frozen spot rate.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'eur_amount', 'spot', 'usd_value'], derivation: `${eur}*${spot}=${usd}.`, failureModes: ['wrong rate direction'], mustNot: ['must_not_use_live_fx_rate'] };
     }
     const qty = 100 + (seed % 5) * 100; const price = 80 + (seed % 20) * 5; const notional = qty * price;
-    const expected = { decision: 'calculate_notional', instrument: sym, quantity: qty, price, notional_usd: notional };
-    return { prompt: `Frozen market snapshot:\n- Instrument: ${instr(sym)}.\n- Quantity: ${qty}.\n- Price: ${price}.00 USD.\n\nTask:\nCompute notional USD value.\n\nOutput JSON fields: ${compact(expected)}`,
+    const expected = { decision: 'calculate_notional', instrument: p.name, quantity: qty, price, notional_usd: notional };
+    return { family: 'equity_notional_calc', prompt: `Frozen market snapshot:\n- Instrument: ${p.name}.\n- Quantity: ${qty}.\n- Price: ${price}.00 USD.\n\nTask:\nCompute notional USD value.\n\nOutput JSON fields: ${compact(expected)}`,
       expected, deterministic: ['instrument', 'quantity', 'price', 'notional_usd'], derivation: `${qty}*${price}=${notional}.`, failureModes: ['wrong multiplication'], mustNot: ['must_not_use_live_market_data'] };
   }
+
   if (tier === 'L3') {
+    if (p.kind === 'option') {
+      const contracts = 2 + (seed % 5); const premium = 2 + (seed % 5); const fee = contracts * 1; const cost = round2(contracts * premium * 100 + fee);
+      const expected = { decision: 'calculate_option_cost', instrument: p.name, contracts, premium_per_share: premium, fee_usd: fee, total_cost_usd: cost };
+      return { family: 'option_cost_calc', prompt: `Frozen market snapshot:\n- Buy ${contracts} ${p.name} contracts at ${premium}.00 USD/share premium.\n- Option multiplier: 100 shares. Commission: 1.00 USD/contract.\n\nTask:\nCompute total premium cost including commission.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'contracts', 'premium_per_share', 'fee_usd', 'total_cost_usd'], derivation: `${contracts}*${premium}*100 + ${fee} = ${cost}.`, failureModes: ['omits commission', 'omits option multiplier'], mustNot: ['must_not_ignore_option_multiplier'] };
+    }
+    if (p.kind === 'futures') {
+      const contracts = 1 + (seed % 4); const marginPer = 13000; const fee = contracts * 4; const cash = contracts * marginPer + fee;
+      const expected = { decision: 'calculate_initial_margin', instrument: p.name, contracts, margin_per_contract: marginPer, fees_usd: fee, total_cash_usd: cash };
+      return { family: 'futures_margin_calc', prompt: `Frozen market snapshot:\n- Buy ${contracts} ES futures (multiplier 50 USD/point). Initial margin: ${marginPer} USD/contract. Fee: 4.00 USD/contract.\n- Margin is posted as collateral, not full notional.\n\nTask:\nCompute total cash to post (initial margin plus fees).\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'contracts', 'margin_per_contract', 'fees_usd', 'total_cash_usd'], derivation: `${contracts}*${marginPer} + ${fee} = ${cash}.`, failureModes: ['confuses notional with margin'], mustNot: ['must_not_post_full_notional_for_futures'] };
+    }
+    if (p.kind === 'fx') {
+      const eur = 100000 + (seed % 9) * 50000; const spot = round2(1.05 + (seed % 19) / 1000); const fee = round2(eur * spot * 0.0001); const usd = round2(eur * spot + fee);
+      const expected = { decision: 'calculate_fx_cost', instrument: p.name, eur_amount: eur, spot, fee_usd: fee, total_usd_cost: usd };
+      return { family: 'fx_conversion_calc', prompt: `Frozen market snapshot:\n- Buy ${eur} EUR at EURUSD ${spot.toFixed(4)}. Fee: 1 bp of USD notional.\n\nTask:\nCompute total USD cost including the fee.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'eur_amount', 'spot', 'fee_usd', 'total_usd_cost'], derivation: `${eur}*${spot} + 1bp fee ${fee} = ${usd}.`, failureModes: ['omits fee'], mustNot: ['must_not_use_live_fx_rate'] };
+    }
     const qty = 200 + (seed % 4) * 100; const price = 90 + (seed % 12) * 5; const fee = round2(qty * 0.005); const gross = qty * price; const net = round2(gross + fee);
-    const expected = { decision: 'calculate_trade_cash', quantity: qty, price, gross_value_usd: gross, fee_usd: fee, cash_required_usd: net };
-    return { prompt: `Frozen market snapshot:\n- Buy quantity: ${qty} shares.\n- Frozen price: ${price}.00 USD/share.\n- Commission: 0.005 USD/share.\n\nTask:\nCompute gross value, commission, and total cash required.\n\nOutput JSON fields: ${compact(expected)}`,
-      expected, deterministic: ['quantity', 'price', 'gross_value_usd', 'fee_usd', 'cash_required_usd'], derivation: `gross=${qty}*${price}=${gross}; fee=${fee}; cash=${net}.`, failureModes: ['omits commission'], mustNot: ['must_not_omit_commission'] };
+    const expected = { decision: 'calculate_trade_cash', instrument: p.name, quantity: qty, price, gross_value_usd: gross, fee_usd: fee, cash_required_usd: net };
+    return { family: 'trade_cash_calc', prompt: `Frozen market snapshot:\n- Buy ${qty} ${p.name} shares at ${price}.00 USD/share.\n- Commission: 0.005 USD/share.\n\nTask:\nCompute gross value, commission, and total cash required.\n\nOutput JSON fields: ${compact(expected)}`,
+      expected, deterministic: ['instrument', 'quantity', 'price', 'gross_value_usd', 'fee_usd', 'cash_required_usd'], derivation: `gross=${qty}*${price}=${gross}; fee=${fee}; cash=${net}.`, failureModes: ['omits commission'], mustNot: ['must_not_omit_commission'] };
   }
+
   if (tier === 'L4') {
+    // Financing/borrow cost — appropriate across margin/shorting/financing domains.
     const principal = 50000 + (seed % 7) * 10000; const rate = round2(0.06 + (seed % 4) * 0.01); const days = 15 + (seed % 8); const cost = round2(principal * rate * days / 360);
-    const expected = { decision: 'calculate_time_cost', principal_usd: principal, annual_rate: rate, day_count: 'Actual/360', days, cost_usd: cost };
-    return { prompt: `Frozen market snapshot:\n- Principal: ${principal} USD.\n- Annual rate: ${(rate * 100).toFixed(2)}%.\n- Day count: Actual/360.\n- Holding period: ${days} calendar days.\n- Simple interest; ignore compounding.\n\nTask:\nCompute the time-based cost in USD.\n\nOutput JSON fields: ${compact(expected)}`,
-      expected, deterministic: ['principal_usd', 'annual_rate', 'day_count', 'days', 'cost_usd'], derivation: `${principal}*${rate}*${days}/360=${cost}.`, failureModes: ['uses 365 basis'], mustNot: ['must_not_ignore_day_count'] };
+    const isShort = domain === 'Shorting / borrow / margin / locates';
+    const label = isShort ? 'borrow' : 'financing';
+    const expected = { decision: isShort ? 'calculate_borrow_cost' : 'calculate_financing_cost', instrument: p.name, principal_usd: principal, annual_rate: rate, day_count: 'Actual/360', days, cost_usd: cost };
+    return { family: isShort ? 'borrow_cost_calc' : 'financing_cost_calc', prompt: `Frozen market snapshot:\n- Instrument: ${p.name}. Financed/borrowed principal: ${principal} USD.\n- ${label[0].toUpperCase() + label.slice(1)} rate: ${(rate * 100).toFixed(2)}% APR. Day count: Actual/360.\n- Holding period: ${days} calendar days. Simple interest; ignore compounding.\n\nTask:\nCompute the ${label} cost in USD.\n\nOutput JSON fields: ${compact(expected)}`,
+      expected, deterministic: ['instrument', 'principal_usd', 'annual_rate', 'day_count', 'days', 'cost_usd'], derivation: `${principal}*${rate}*${days}/360=${cost}.`, failureModes: ['uses 365 basis'], mustNot: ['must_not_ignore_day_count'] };
   }
+
   if (tier === 'L5') {
+    if (p.kind === 'futures') {
+      const contracts = 1 + (seed % 5); const px = 5000 + (seed % 11) * 25; const limit = round2(px + 1);
+      const expected = { decision: 'trade', instrument: p.name, side: 'buy', quantity: contracts, order_type: 'limit', limit_price: limit, multiplier: 50, time_in_force: 'day', feasibility: 'feasible' };
+      return { family: 'order_ticket_mapping', prompt: `Frozen market snapshot:\n- Allowed products: ES futures trading allowed. Multiplier 50 USD/point.\n- Buy ${contracts} ES contracts, limit ${limit.toFixed(2)} index points, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'side', 'quantity', 'order_type', 'limit_price', 'multiplier', 'time_in_force', 'feasibility'], derivation: 'Schema mapping from the frozen futures instruction.', failureModes: ['wrong schema shape', 'omits multiplier'], mustNot: ['must_not_use_live_market_data'] };
+    }
+    if (p.kind === 'option') {
+      const contracts = 1 + (seed % 6); const limit = round2(4 + (seed % 5) + 0.25);
+      const expected = { decision: 'trade', instrument: p.name, side: 'buy_to_open', quantity: contracts, order_type: 'limit', limit_price: limit, multiplier: 100, time_in_force: 'day', feasibility: 'feasible' };
+      return { family: 'order_ticket_mapping', prompt: `Frozen market snapshot:\n- Allowed products: listed options level 2 allowed. Multiplier 100 shares.\n- Buy to open ${contracts} ${p.name} contracts, limit ${limit.toFixed(2)} USD/share, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'side', 'quantity', 'order_type', 'limit_price', 'multiplier', 'time_in_force', 'feasibility'], derivation: 'Schema mapping from the frozen option instruction.', failureModes: ['wrong schema shape'], mustNot: ['must_not_use_live_market_data'] };
+    }
+    if (p.kind === 'fx') {
+      const eur = 100000 + (seed % 9) * 50000; const limit = round2(1.05 + (seed % 19) / 1000);
+      const expected = { decision: 'trade', instrument: p.name, side: 'buy', quantity: eur, order_type: 'limit', limit_price: limit, settlement_rule: 'T+2', time_in_force: 'day', feasibility: 'feasible' };
+      return { family: 'order_ticket_mapping', prompt: `Frozen market snapshot:\n- Allowed products: spot FX allowed. Settlement T+2.\n- Buy ${eur} EUR via EURUSD, limit ${limit.toFixed(4)}, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'side', 'quantity', 'order_type', 'limit_price', 'settlement_rule', 'time_in_force', 'feasibility'], derivation: 'Schema mapping from the frozen FX instruction.', failureModes: ['wrong schema shape', 'omits T+2'], mustNot: ['must_not_use_live_fx_rate'] };
+    }
     const qty = 100 + (seed % 6) * 100; const price = 100 + (seed % 20) * 4; const limit = round2(price + 0.25);
-    const expected = { decision: 'trade', instrument: sym, side: 'buy', quantity: qty, order_type: 'limit', limit_price: limit, time_in_force: 'day', feasibility: 'feasible' };
-    return { prompt: `Frozen market snapshot:\n- Allowed products: ${instr(sym)} trading allowed.\n- Buy ${qty} shares, limit ${limit.toFixed(2)}, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: ${compact(expected)}`,
+    const expected = { decision: 'trade', instrument: p.name, side: 'buy', quantity: qty, order_type: 'limit', limit_price: limit, time_in_force: 'day', feasibility: 'feasible' };
+    return { family: 'order_ticket_mapping', prompt: `Frozen market snapshot:\n- Allowed products: ${p.name} trading allowed.\n- Buy ${qty} shares, limit ${limit.toFixed(2)}, time in force day.\n\nTask:\nMap the instruction into the required order ticket schema.\n\nOutput JSON fields: ${compact(expected)}`,
       expected, deterministic: ['instrument', 'side', 'quantity', 'order_type', 'limit_price', 'time_in_force', 'feasibility'], derivation: 'Schema mapping from the frozen instruction.', failureModes: ['wrong schema shape'], mustNot: ['must_not_use_live_market_data'] };
   }
+
   if (tier === 'L6') {
     const { settle } = tPlusOne(seed);
-    const expected = { decision: 'sequence', execution_sequence: ['check_permission', 'submit_order', 'confirm_settlement'], settlement_rule: 'T+1', settlement_cash_date: settle, feasibility: 'feasible' };
-    return { prompt: `Frozen market snapshot:\n- Account permission for ${instr(sym)}: allowed.\n- US equity proceeds settle T+1; cash date ${settle}.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+1 cash date.\n\nOutput JSON fields: ${compact(expected)}`,
-      expected, deterministic: ['execution_sequence', 'settlement_rule', 'settlement_cash_date', 'feasibility'], derivation: 'Permission precedes order; settlement confirmed T+1.', failureModes: ['skips permission'], mustNot: ['must_not_ignore_settlement_rule'] };
+    const rule = p.kind === 'fx' ? 'T+2' : 'T+1';
+    const expected = { decision: 'sequence', instrument: p.name, execution_sequence: ['check_permission', 'submit_order', 'confirm_settlement'], settlement_rule: rule, settlement_cash_date: settle, feasibility: 'feasible' };
+    return { family: 'operational_settlement_sequence', prompt: `Frozen market snapshot:\n- Account permission for ${p.name}: allowed.\n- Proceeds settle ${rule}; cash date ${settle}.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the ${rule} cash date.\n\nOutput JSON fields: ${compact(expected)}`,
+      expected, deterministic: ['instrument', 'execution_sequence', 'settlement_rule', 'settlement_cash_date', 'feasibility'], derivation: `Permission precedes order; settlement confirmed ${rule}.`, failureModes: ['skips permission'], mustNot: ['must_not_ignore_settlement_rule'] };
   }
-  if (tier === 'L7') {
-    if (isFut) {
-      const target = 600000 + (seed % 6) * 50000; const price = 5000 + (seed % 8) * 25; const mult = 50; const notionalPer = price * mult;
-      const contracts = Math.floor(target / notionalPer); const used = contracts * notionalPer; const residual = target - used;
-      const expected = { decision: 'rebalance', instrument: 'ES futures', target_notional_usd: target, price, multiplier: mult, contracts, used_notional_usd: used, residual_cash_usd: residual };
-      return { prompt: `Frozen market snapshot:\n- Target notional: ${target} USD via ES futures.\n- ES price ${price.toFixed(2)} index points; multiplier ${mult} USD/point; notional per contract = price * multiplier = ${notionalPer} USD.\n- Fractional contracts not allowed.\n\nTask:\nCompute whole contracts, used notional, and residual cash.\n\nOutput JSON fields: ${compact(expected)}`,
-        expected, deterministic: ['instrument', 'target_notional_usd', 'price', 'multiplier', 'contracts', 'used_notional_usd', 'residual_cash_usd'], derivation: `notional/contract=${notionalPer}; floor(${target}/${notionalPer})=${contracts}; used=${used}; residual=${residual}.`, failureModes: ['ignores futures multiplier'], mustNot: ['must_not_ignore_futures_multiplier'] };
-    }
-    const target = 50000 + (seed % 5) * 10000; const price = 100 + (seed % 20) * 4; const shares = Math.floor(target / price); const used = shares * price; const residual = target - used;
-    const expected = { decision: 'rebalance', instrument: sym, target_notional_usd: target, price, shares, used_notional_usd: used, residual_cash_usd: residual };
-    return { prompt: `Frozen market snapshot:\n- Target notional: ${target} USD in ${instr(sym)}.\n- Price: ${price}.00 USD/share. Fractional shares not allowed.\n\nTask:\nCompute whole shares, used notional, and residual cash.\n\nOutput JSON fields: ${compact(expected)}`,
-      expected, deterministic: ['instrument', 'target_notional_usd', 'price', 'shares', 'used_notional_usd', 'residual_cash_usd'], derivation: `floor(${target}/${price})=${shares}; used=${used}; residual=${residual}.`, failureModes: ['uses fractional shares'], mustNot: ['must_not_use_fractional_units'] };
+
+  // L7: whole-unit sizing with residual, domain-aware unit.
+  if (p.kind === 'futures') {
+    const target = 600000 + (seed % 6) * 50000; const price = 5000 + (seed % 8) * 25; const mult = 50; const notionalPer = price * mult;
+    const contracts = Math.floor(target / notionalPer); const used = contracts * notionalPer; const residual = target - used;
+    const expected = { decision: 'rebalance', instrument: p.name, target_notional_usd: target, price, multiplier: mult, contracts, used_notional_usd: used, residual_cash_usd: residual };
+    return { family: 'futures_whole_unit_sizing', prompt: `Frozen market snapshot:\n- Target notional: ${target} USD via ES futures.\n- ES price ${price.toFixed(2)} index points; multiplier ${mult} USD/point; notional per contract = price * multiplier = ${notionalPer} USD.\n- Fractional contracts not allowed.\n\nTask:\nCompute whole contracts, used notional, and residual cash.\n\nOutput JSON fields: ${compact(expected)}`,
+      expected, deterministic: ['instrument', 'target_notional_usd', 'price', 'multiplier', 'contracts', 'used_notional_usd', 'residual_cash_usd'], derivation: `notional/contract=${notionalPer}; floor(${target}/${notionalPer})=${contracts}; used=${used}; residual=${residual}.`, failureModes: ['ignores futures multiplier'], mustNot: ['must_not_ignore_futures_multiplier'] };
   }
+  if (p.kind === 'option') {
+    const budget = 40000 + (seed % 6) * 5000; const premium = 4 + (seed % 5); const per = premium * 100;
+    const contracts = Math.floor(budget / per); const used = contracts * per; const residual = budget - used;
+    const expected = { decision: 'rebalance', instrument: p.name, premium_budget_usd: budget, premium_per_share: premium, multiplier: 100, contracts, used_premium_usd: used, residual_cash_usd: residual };
+    return { family: 'option_whole_unit_sizing', prompt: `Frozen market snapshot:\n- Premium budget: ${budget} USD for ${p.name}.\n- Premium ${premium}.00 USD/share; multiplier 100; cost per contract = ${per} USD.\n- Fractional contracts not allowed.\n\nTask:\nCompute whole contracts, used premium, and residual cash.\n\nOutput JSON fields: ${compact(expected)}`,
+      expected, deterministic: ['instrument', 'premium_budget_usd', 'premium_per_share', 'multiplier', 'contracts', 'used_premium_usd', 'residual_cash_usd'], derivation: `cost/contract=${per}; floor(${budget}/${per})=${contracts}; used=${used}; residual=${residual}.`, failureModes: ['ignores option multiplier'], mustNot: ['must_not_ignore_option_multiplier'] };
+  }
+  const target = 50000 + (seed % 5) * 10000; const price = 100 + (seed % 20) * 4; const shares = Math.floor(target / price); const used = shares * price; const residual = target - used;
+  const expected = { decision: 'rebalance', instrument: p.name, target_notional_usd: target, price, shares, used_notional_usd: used, residual_cash_usd: residual };
+  return { family: 'equity_whole_unit_sizing', prompt: `Frozen market snapshot:\n- Target notional: ${target} USD in ${p.name}.\n- Price: ${price}.00 USD/share. Fractional shares not allowed.\n\nTask:\nCompute whole shares, used notional, and residual cash.\n\nOutput JSON fields: ${compact(expected)}`,
+    expected, deterministic: ['instrument', 'target_notional_usd', 'price', 'shares', 'used_notional_usd', 'residual_cash_usd'], derivation: `floor(${target}/${price})=${shares}; used=${used}; residual=${residual}.`, failureModes: ['uses fractional shares'], mustNot: ['must_not_use_fractional_units'] };
+}
+
+function buildLowMidUnusedL8(tier: Tier, domain: Domain, seed: number): Packet {
+  const sym = symFor(seed);
   // L8: route choice where feasibility is DERIVED from a stated fact (not labeled)
   const qty = 100 + (seed % 6) * 100; const price = 100 + (seed % 20) * 4;
   const directCost = qty * price; const compliantCost = directCost + 500 + (seed % 4) * 100;
@@ -1010,7 +1084,8 @@ for (const tier of tiers) {
     const id = nextId(tier);
     const seed = globalIndex + levelByTier[tier] * 17;
     const packet = buildPacket(tier, domain, family, seed);
-    const objective_function = objectiveFor(tier, `objective for ${family}`);
+    const scenarioFamily = packet.family ?? family; // low/mid tiers carry an honest family override
+    const objective_function = objectiveFor(tier, `objective for ${scenarioFamily}`);
     const q: Question = {
       id, level: levelByTier[tier], type: 'schema',
       rubric_id: `stockbench-${tier.toLowerCase()}-${id.split('-').at(-1)}`,
@@ -1019,7 +1094,7 @@ for (const tier of tiers) {
         benchmark: 'StockBench',
         stockbench: {
           primary_domain: domain, tier, capability_tag: capTag(tier, globalIndex),
-          scenario_family: family, feasibility_trap: feasibilityFlag(domain, tier, globalIndex),
+          scenario_family: scenarioFamily, feasibility_trap: feasibilityFlag(domain, tier, globalIndex),
           ...(objective_function ? { objective_function } : {}),
           deterministic_grading_fields: packet.deterministic,
         },
