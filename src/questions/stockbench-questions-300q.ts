@@ -286,9 +286,9 @@ export const STOCKBENCH_QUESTIONS_300Q: SchemaQuestion[] = [
     prompt:
       'Frozen market snapshot:\n' +
       '- Timestamp: 2026-04-02 10:00:00 America/New_York.\n' +
-      '- Instrument: SPY ETF, trading on NYSE Arca.\n' +
+      '- Instrument ticker: SPY, trading on NYSE Arca.\n' +
       '- User instruction: Buy 100 SPY with a day limit order at 499.50 USD.\n\n' +
-      'Task: Return the order ticket fields from the instruction. Use only this frozen packet.\n\n' +
+      'Task: Return the order ticket fields from the instruction. Use only this frozen packet. Use the ticker symbol for the instrument field.\n\n' +
       'Output JSON fields: { "decision", "instrument", "side", "quantity", "order_type", "limit_price", "time_in_force", "venue" }',
     expected_values: {
       decision: 'trade',
@@ -504,7 +504,7 @@ export const STOCKBENCH_QUESTIONS_300Q: SchemaQuestion[] = [
       'Output JSON fields: { "decision", "instrument", "action", "contracts", "premium_paid", "assignment_risk", "reason_code" }',
     expected_values: {
       decision: 'reduce_assignment_risk',
-      instrument: 'AAPL_175_call',
+      instrument: 'AAPL 175 call',
       action: 'buy_to_close',
       contracts: 1,
       premium_paid: 650,
@@ -651,14 +651,14 @@ export const STOCKBENCH_QUESTIONS_300Q: SchemaQuestion[] = [
     prompt:
       'Frozen market snapshot:\n' +
       '- Portfolio beta-dollar exposure to reduce: 1,000,000 USD.\n' +
-      '- Target: reduce beta-dollar exposure by at least 30%.\n' +
+      '- Target: reduce beta-dollar exposure by at least 35%.\n' +
       '- Margin capacity: 20,000 USD.\n' +
       '- ES quote: 5,000, multiplier 50, margin 13,000, slippage/fees 25 per contract.\n' +
       '- MES quote: 5,000, multiplier 5, margin 1,300, slippage/fees 5 per contract.\n' +
       '- SPY put package: reduces beta dollars by 320,000, premium 12,000.\n' +
       '- Objective uses upfront cost only; margin is a constraint, not cost.\n\n' +
-      'Task: Choose the lowest upfront-cost feasible hedge that reduces beta exposure by at least 30%.\n\n' +
-      'Objective: minimize upfront cost subject to beta_reduction_pct >= 30 and margin_used <= 20,000.\n\n' +
+      'Task: Choose the lowest upfront-cost feasible hedge that reduces beta exposure by at least 35%.\n\n' +
+      'Objective: minimize upfront cost subject to beta_reduction_pct >= 35 and margin_used <= 20,000.\n\n' +
       'Output JSON fields: { "decision", "chosen_strategy", "es_contracts", "mes_contracts", "beta_reduction_usd", "beta_reduction_pct", "margin_used", "expected_cost", "feasibility", "rejected_routes", "reasoning" }',
     expected_values: {
       decision: 'hedge',
@@ -935,7 +935,7 @@ export const STOCKBENCH_QUESTIONS_300Q: SchemaQuestion[] = [
       '- Account: US cash account. US ETF settlement rule: T+1.\n' +
       '- Trade date: 2026-06-17. No market holiday on trade date or next business day.\n' +
       '- Current position: long 1,000 XLK at 210.00.\n' +
-      '- Target order: reduce technology exposure and add utilities exposure by buying 1,500 XLU at 70.00.\n' +
+      '- Target order: FULLY EXIT the entire 1,000-share XLK position and add utilities exposure by buying 1,500 XLU at 70.00.\n' +
       '- Cash before trades: 0 USD.\n' +
       '- Broker permits same-day paired ETF sell/buy if both settle T+1 and net cash is nonnegative on settlement.\n' +
       '- Fees: ignore.\n\n' +
@@ -1217,6 +1217,7 @@ export const STOCKBENCH_QUESTIONS_300Q: SchemaQuestion[] = [
       '- Regular equity session is closed. Extended-hours SPY liquidity is firm for only 300 shares at 499.50.\n' +
       '- CME ES futures are open. ES quote: 5,000, multiplier 50, margin 13,000, margin capacity 15,000, slippage/fees 25.\n' +
       '- CFD route unavailable. New SPY short sale unavailable in extended hours.\n' +
+      '- exposure_reduction_usd is measured at execution (fill) prices: SPY shares at the 499.50 extended-hours fill, ES at quote * multiplier.\n' +
       '- Objective: maximize immediate exposure reduction before overnight under these route constraints.\n\n' +
       'Task: Build the valid immediate reduction plan and reject invalid routes.\n\n' +
       'Objective: maximize beta-dollar exposure reduction subject to session liquidity, margin, and route-permission constraints.\n\n' +

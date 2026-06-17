@@ -3906,6 +3906,22 @@ export function gradeSchemaResponse(
       }
     }
   }
+  // feasibility <-> decision consistency: a no_trade decision must be infeasible, and an infeasible
+  // verdict must not carry a trade-like decision. Enforces the relationship even when `decision`
+  // is not itself a critical field.
+  const decisionVal = normalizeCategorical((normalizedResponse as Record<string, unknown>).decision);
+  const feasVal = normalizeCategorical((normalizedResponse as Record<string, unknown>).feasibility);
+  if (decisionVal && feasVal) {
+    const isNoTrade = decisionVal === 'notrade' || decisionVal === 'no trade';
+    if (isNoTrade && feasVal === 'feasible') {
+      consistencySatisfied = false;
+      failureReasons.push('no_trade_but_feasible' as FailureReason);
+    }
+    if (!isNoTrade && feasVal === 'infeasible') {
+      consistencySatisfied = false;
+      failureReasons.push('infeasible_but_trade_decision' as FailureReason);
+    }
+  }
   const pass = normalizedScore >= rubric.pass_threshold && confidence >= 0.6 && agiStructuralSatisfied && criticalSatisfied && consistencySatisfied;
 
   return {

@@ -25,8 +25,8 @@ Use `problem_rubric_hash` when asking another agent to independently solve from 
 - Questions reviewed: 300
 - Verified rows: 300
 - Error rows: 0
-- Aggregate problem/rubric hash: `cadf634ec421d0149b72cb7ae71d1f351e6cd71f6f31bb7a975c82089be30cdc`
-- Aggregate full-review hash: `a4647f8729847c603aa4fd0687f03822cb8ab49c0804acd48a804e9f2ed42948`
+- Aggregate problem/rubric hash: `6688f45ca0dbfe6c2f5f65cb01a796e5ec004bea6d86d659c1757f1ffe071cf1`
+- Aggregate full-review hash: `984e1f8616f695b6835b123148c681b0d10704f2dd519e1b1c7c08528756cf69`
 
 ## Verdict Counts
 

@@ -63,7 +63,10 @@ type RowResult = {
   robust: boolean;
 };
 
-const STRATEGY_FIELDS = ['chosen_strategy', 'selected_route', 'chosen_route', 'chosen_strategy_id'];
+// Wrong-strategy is tested via the DERIVABLE critical choice field (selected_route). Composed
+// labels like chosen_strategy/chosen_route are not solver-derivable and are no longer critical;
+// a wrong strategy is still caught because it implies wrong critical numerics.
+const STRATEGY_FIELDS = ['selected_route'];
 const INSTRUMENT_FIELDS = ['selected_instrument', 'instrument'];
 
 const results: RowResult[] = [];

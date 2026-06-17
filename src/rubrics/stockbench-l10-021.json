@@ -78,7 +78,7 @@
         "expected": "recomputed"
       }
     },
-    "derivation": "Intrinsic = max(0, 190-195); time value = 1.1 - intrinsic = 1.1. Dividend 0.7 <= time value -> early assignment not rational (hold).",
+    "derivation": "Spot 190, strike 195 -> intrinsic 0 (not in-the-money); time value 1.1; dividend 0.7. Early assignment rational only if ITM AND dividend>time value -> false -> route_b (hold).",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {

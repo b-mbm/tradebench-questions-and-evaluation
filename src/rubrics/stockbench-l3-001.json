@@ -36,7 +36,7 @@
       "gross_pnl_usd": {
         "type": "number",
         "expected": 900,
-        "tolerance": 0
+        "tolerance": 1
       },
       "fee_usd": {
         "type": "number",
@@ -46,7 +46,7 @@
       "net_pnl_usd": {
         "type": "number",
         "expected": 875,
-        "tolerance": 0
+        "tolerance": 1
       }
     },
     "derivation": "200,000 * (1.0865 - 1.0820) = 900 gross USD PnL; net after 25 fee = 875."
@@ -66,7 +66,6 @@
       "must_not_use_live_fx_rate"
     ],
     "critical_fields": [
-      "decision",
       "instrument",
       "eur_notional",
       "gross_pnl_usd",

@@ -416,12 +416,12 @@ function buildOptions(tier: Tier, family: string, seed: number): Packet {
     const prompt =
       `Frozen market snapshot:\n- Covered call on ${instr(sym)}: long 100 shares at ${stock.toFixed(2)}, short 1 ${strike} call.\n` +
       `- Call quote: ${callBid.toFixed(2)} USD/share; option multiplier 100 shares. Intrinsic = max(0, spot - strike).\n` +
-      `- Ordinary cash dividend ${div.toFixed(2)}/share with ex-dividend tomorrow. Early assignment of an American call is rational for the holder when the dividend exceeds the call's remaining time value.\n` +
+      `- Ordinary cash dividend ${div.toFixed(2)}/share with ex-dividend tomorrow. Early assignment of an American call is rational ONLY when the call is in-the-money (spot > strike, i.e. intrinsic > 0) AND the dividend exceeds the call's remaining time value. An out-of-the-money or at-the-money call is never assigned.\n` +
       `Candidate routes (decide which is required by the assignment economics):\n` + renderRoutes(routes) + `\n` + esc.extraPrompt + `\n` +
-      `Task:\nCompute the call's time value, compare to the dividend, decide the early-assignment risk, and select the route. Report rejected routes by route id.\n\n` +
+      `Task:\nCheck whether the call is in-the-money, compute its time value, compare to the dividend, decide the early-assignment risk, and select the route. Report rejected routes by route id.\n\n` +
       `Objective:\nremove early-assignment/dividend risk when and only when it is economically rational.\n\nOutput JSON fields: ${compact(expected)}`;
     return { prompt, expected, deterministic,
-      derivation: `Intrinsic = max(0, ${stock}-${strike}); time value = ${callBid} - intrinsic = ${timeValue}. Dividend ${div} ${earlyAssignRational ? '>' : '<='} time value -> early assignment ${earlyAssignRational ? 'rational (roll/close)' : 'not rational (hold)'}.`,
+      derivation: `Spot ${stock}, strike ${strike} -> intrinsic ${intrinsic} (${intrinsic > 0 ? 'in-the-money' : 'not in-the-money'}); time value ${timeValue}; dividend ${div}. Early assignment rational only if ITM AND dividend>time value -> ${earlyAssignRational} -> ${earlyAssignRational ? 'route_a (roll/close)' : 'route_b (hold)'}.`,
       failureModes: ['ignores dividend vs time value test', 'mishandles assignment'],
       mustNot: ['must_not_ignore_dividend_vs_time_value'] };
   }
@@ -434,15 +434,16 @@ function buildOptions(tier: Tier, family: string, seed: number): Packet {
     const timeValue = round2(callBid - (stock - strike));
     const div = round2(timeValue + (seed % 2 === 0 ? 0.6 : -0.6)); // rotate which side wins
     const exerciseEarly = div > timeValue;
+    // Binary decision (exercise vs sell) so the answer is uniquely forced — no unquantified
+    // "roll" route to tie with "sell".
     const routes = [
       `exercise the long call early to capture the ${div.toFixed(2)}/share dividend (you forfeit remaining time value)`,
       `sell the long call at its ${callBid.toFixed(2)} quote and keep the time value`,
-      `roll the call to the next expiry`,
     ];
     const expected: Record<string, unknown> = {
       decision: 'exercise_decision', selected_route: exerciseEarly ? 'route_a' : 'route_b',
       instrument: sym, dividend_per_share: div, call_time_value: timeValue, exercise_early: exerciseEarly,
-      feasibility: 'feasible', rejected_routes: exerciseEarly ? ['route_b', 'route_c'] : ['route_a', 'route_c'],
+      feasibility: 'feasible', rejected_routes: exerciseEarly ? ['route_b'] : ['route_a'],
     };
     const deterministic = ['selected_route', 'instrument', 'dividend_per_share', 'call_time_value', 'exercise_early'];
     const esc = escalationFields(tier, seed, expected, deterministic, { risk_off: 1200, squeeze: -400, gap: 900 }, 0,
@@ -584,6 +585,7 @@ function buildFX(tier: Tier, family: string, seed: number): Packet {
     { settlement_matches: true, product_permitted: true, margin_ok: true });
   const prompt =
     `Frozen market snapshot:\n- Account holder: US retail customer. Account base currency: USD. ${familyLine}\n` +
+    `- Retail CFDs on FX are unavailable to this US retail account (a CFD route is never feasible here).\n` +
     `- Required: obtain ${eur} EUR settling T+2. Spot EURUSD ${spot.toFixed(4)}. EUR futures initial margin capacity: ${marginCap} USD.\n` +
     `Candidate routes (decide feasibility from jurisdiction, settlement and margin facts yourself):\n` + renderRoutes(routes) + `\n` + esc.extraPrompt + `\n` +
     `Task:\nChoose the feasible route and compute USD cost. Report rejected routes by route id.\n\n` +
@@ -765,6 +767,7 @@ function buildSpotEquities(tier: Tier, family: string, seed: number): Packet {
   const prompt =
     `Frozen market snapshot:\n- Instrument: ${instr(sym)} at ${price.toFixed(2)}. ${familyLine}\n` +
     `- Buy ${qty} shares with a protective day limit ${limit.toFixed(2)}; T+1 cash date ${settle}.\n` +
+    `- trade_value_usd is marked at the snapshot price ${price.toFixed(2)} (quantity * snapshot price), not the limit price.\n` +
     `Candidate routes:\n` + renderRoutes(routes) + `\n` + esc.extraPrompt + `\n` +
     `Task:\nCreate the order ticket and report trade value and T+1 date. Report rejected routes by route id.\n\nObjective:\n${esc.objective}.\n\nOutput JSON fields: ${compact(expected)}`;
   return { prompt, expected, deterministic,
@@ -1085,7 +1088,7 @@ function validationFor(value: unknown, key: string): Array<[string, Record<strin
 }
 
 const SEMANTIC_STRING_CRITICAL = new Set([
-  'decision', 'feasibility', 'selected_route', 'chosen_route', 'selected_instrument', 'instrument',
+  'decision', 'feasibility', 'selected_route', 'selected_instrument', 'instrument',
   'side', 'unit', 'order_type', 'venue', 'settlement_rule', 'settlement_cash_date', 'settlement_date',
   'settlement_date_rule', 'day_count',
 ]);
@@ -1143,6 +1146,14 @@ for (const tier of tiers) {
     const id = nextId(tier);
     const seed = globalIndex + levelByTier[tier] * 17;
     const packet = buildPacket(tier, domain, family, seed);
+    // The `decision` enum token is not otherwise inferable from prose, yet it is graded critical.
+    // State it in the output line so it is derivable (the answer is the label, not the reasoning).
+    if (typeof packet.expected.decision === 'string') {
+      packet.prompt = packet.prompt.replace(
+        'Output JSON fields:',
+        `For this task set "decision" = "${packet.expected.decision}".\nOutput JSON fields:`,
+      );
+    }
     const scenarioFamily = packet.family ?? family; // low/mid tiers carry an honest family override
     const objective_function = objectiveFor(tier, `objective for ${scenarioFamily}`);
     const q: Question = {
