@@ -1,0 +1,74 @@
+{
+  "id": "stockbench-l6-002",
+  "expected_fields": [
+    "decision",
+    "execution_sequence",
+    "settlement_rule",
+    "settlement_cash_date",
+    "feasibility"
+  ],
+  "required_fields": [
+    "decision",
+    "execution_sequence",
+    "settlement_rule",
+    "settlement_cash_date",
+    "feasibility"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L6-002",
+    "title": "SB-L6-002 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "sequence"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_set": [
+          "check_permission",
+          "submit_order",
+          "confirm_settlement"
+        ],
+        "min_items": 3,
+        "match_type": "exact_set"
+      },
+      "settlement_rule": {
+        "type": "string",
+        "expected": "T+1"
+      },
+      "settlement_cash_date": {
+        "type": "string",
+        "expected": "2026-06-24"
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      }
+    },
+    "derivation": "Permission precedes order; settlement confirmed T+1.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Shorting / borrow / margin / locates",
+    "tier": "L6",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "short_locate_failure",
+    "feasibility_trap": true,
+    "failure_modes": [
+      "skips permission"
+    ],
+    "must_not": [
+      "must_not_ignore_settlement_rule"
+    ],
+    "critical_fields": [
+      "decision",
+      "settlement_rule",
+      "settlement_cash_date",
+      "feasibility"
+    ],
+    "needs_review": false
+  }
+}

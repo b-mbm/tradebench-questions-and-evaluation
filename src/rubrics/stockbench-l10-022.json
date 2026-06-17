@@ -1,0 +1,115 @@
+{
+  "id": "stockbench-l10-022",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "short_shares",
+    "put_contracts",
+    "premium_paid",
+    "bearish_delta_shares",
+    "feasibility",
+    "rejected_routes",
+    "residual_check"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "short_shares",
+    "put_contracts",
+    "premium_paid",
+    "bearish_delta_shares",
+    "feasibility",
+    "rejected_routes",
+    "residual_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L10-022",
+    "title": "SB-L10-022 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_a"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "QQQ"
+      },
+      "short_shares": {
+        "type": "number",
+        "expected": 700,
+        "tolerance": 0.01
+      },
+      "put_contracts": {
+        "type": "number",
+        "expected": 3,
+        "tolerance": 0.01
+      },
+      "premium_paid": {
+        "type": "number",
+        "expected": 2400,
+        "tolerance": 0.01
+      },
+      "bearish_delta_shares": {
+        "type": "number",
+        "expected": 805,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b",
+          "route_c"
+        ],
+        "min_items": 2,
+        "match_type": "exact_set"
+      },
+      "residual_check": {
+        "type": "string",
+        "expected": "recomputed"
+      }
+    },
+    "derivation": "Short 700 located shares + 3 puts * 35 delta-shares = 805; premium = 3*8*100 = 2400 (<= 2400). Route B shorts beyond locate; Route C exceeds option cash.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Shorting / borrow / margin / locates",
+    "tier": "L10",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "borrow_cost_vs_trade_edge",
+    "feasibility_trap": true,
+    "objective_function": "objective for borrow_cost_vs_trade_edge",
+    "failure_modes": [
+      "shorts beyond locate",
+      "exceeds option cash",
+      "misses option delta multiplier"
+    ],
+    "must_not": [
+      "must_not_short_more_than_locate",
+      "must_not_exceed_option_cash"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "instrument",
+      "short_shares",
+      "put_contracts",
+      "premium_paid",
+      "bearish_delta_shares",
+      "feasibility"
+    ],
+    "needs_review": false
+  }
+}

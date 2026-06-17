@@ -3875,7 +3875,23 @@ export function gradeSchemaResponse(
       failureReasons.includes(`agi_validation_failed:${field}`)
     )
   );
-  const pass = normalizedScore >= rubric.pass_threshold && confidence >= 0.6 && agiStructuralSatisfied;
+  const criticalFields = Array.isArray((rubric as any).metadata?.critical_fields)
+    ? (rubric as any).metadata.critical_fields.map(String)
+    : [];
+  // A critical field must be FULLY correct. scores[field] is weighted, so compare against
+  // the field's full-credit weight (raw score of 1), not the absolute value 1 — otherwise
+  // any rubric with fractional field_weights can never satisfy a critical field.
+  const criticalValidation = ((rubric as any)._agi_canonical?.validation || {}) as Record<string, any>;
+  const criticalSatisfied = criticalFields.every(field => {
+    const fullCredit = field in criticalValidation ? 1 : (rubric.field_weights[field] ?? 1);
+    const got = scores[field];
+    const ok = typeof got === 'number' && fullCredit > 0 && got >= fullCredit - 1e-9;
+    if (!ok) {
+      failureReasons.push(`critical_field_failed:${field}` as FailureReason);
+    }
+    return ok;
+  });
+  const pass = normalizedScore >= rubric.pass_threshold && confidence >= 0.6 && agiStructuralSatisfied && criticalSatisfied;
 
   return {
     pass,

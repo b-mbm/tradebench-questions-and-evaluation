@@ -1,0 +1,89 @@
+{
+  "id": "stockbench-l1-001",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "time_in_force",
+    "venue"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "time_in_force",
+    "venue"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "SPY"
+      },
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "quantity": {
+        "type": "number",
+        "expected": 100,
+        "tolerance": 0
+      },
+      "order_type": {
+        "type": "string",
+        "expected": "limit"
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 499.5,
+        "tolerance": 0
+      },
+      "time_in_force": {
+        "type": "string",
+        "expected": "day"
+      },
+      "venue": {
+        "type": "string",
+        "expected": "NYSE Arca"
+      }
+    },
+    "derivation": "Literal extraction from the frozen order instruction."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot equities / ETFs",
+    "tier": "L1",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "equity_order_ticket",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "wrong ticker",
+      "wrong side",
+      "missing limit price"
+    ],
+    "must_not": [
+      "must_not_use_live_market_data"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "side",
+      "quantity",
+      "order_type",
+      "limit_price",
+      "venue"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "id": "stockbench-l7-001",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "quantity",
+    "current_beta_dollars",
+    "target_max_beta_dollars",
+    "post_trade_beta_dollars"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "quantity",
+    "current_beta_dollars",
+    "target_max_beta_dollars",
+    "post_trade_beta_dollars"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "rebalance"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "QQQ"
+      },
+      "side": {
+        "type": "string",
+        "expected": "sell"
+      },
+      "quantity": {
+        "type": "number",
+        "expected": 203,
+        "tolerance": 0
+      },
+      "current_beta_dollars": {
+        "type": "number",
+        "expected": 652000,
+        "tolerance": 0
+      },
+      "target_max_beta_dollars": {
+        "type": "number",
+        "expected": 550000,
+        "tolerance": 0
+      },
+      "post_trade_beta_dollars": {
+        "type": "number",
+        "expected": 549688,
+        "tolerance": 0
+      }
+    },
+    "derivation": "Current beta dollars = 800*500 + 500*420*1.2 = 652,000. Selling 203 QQQ removes 203*420*1.2 = 102,312, leaving 549,688."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Portfolio risk / rebalancing",
+    "tier": "L7",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "beta_dollar_rebalance",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "rounds down and misses target",
+      "uses market value instead of beta dollars"
+    ],
+    "must_not": [
+      "must_not_use_fractional_shares",
+      "must_not_ignore_beta"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "side",
+      "quantity",
+      "current_beta_dollars",
+      "target_max_beta_dollars",
+      "post_trade_beta_dollars"
+    ]
+  }
+}

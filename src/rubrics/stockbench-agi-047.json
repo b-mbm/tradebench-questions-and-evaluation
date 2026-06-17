@@ -1,0 +1,153 @@
+{
+  "id": "stockbench-agi-047",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.average_price_within_cap",
+    "self_check.max_fill_in_clips"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.average_price_within_cap",
+    "self_check.max_fill_in_clips"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-047",
+    "title": "SB-AGI-047 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "MSFT"
+      },
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "clip_size_shares": {
+        "type": "number",
+        "expected": 500,
+        "tolerance": 0.01
+      },
+      "filled_shares": {
+        "type": "number",
+        "expected": 94500,
+        "tolerance": 0.01
+      },
+      "average_price": {
+        "type": "number",
+        "expected": 134.11,
+        "tolerance": 0.01
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 134.3,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      },
+      "scenario_pnl.risk_off": {
+        "type": "number",
+        "expected": -140000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.squeeze": {
+        "type": "number",
+        "expected": 56000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.idiosyncratic_gap": {
+        "type": "number",
+        "expected": -76000,
+        "tolerance": 0.01
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "expected": -140000,
+        "tolerance": 0.01
+      },
+      "self_check.average_price_within_cap": {
+        "type": "boolean",
+        "expected": true
+      },
+      "self_check.max_fill_in_clips": {
+        "type": "boolean",
+        "expected": true
+      }
+    },
+    "derivation": "Fill 40000@134.05 and 40000@134.10 (avg 134.07), then x@134.30 with x <= (cap*80000-10726000)/(134.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 134.11 (<= 134.11). Full-size route breaches the cap.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Execution / liquidity / microstructure",
+    "tier": "AGI",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "twap_slippage_limit",
+    "feasibility_trap": true,
+    "objective_function": "objective for twap_slippage_limit",
+    "failure_modes": [
+      "takes full book and breaches the average cap",
+      "ignores clip rounding",
+      "uses last price not average"
+    ],
+    "must_not": [
+      "must_not_exceed_average_price_cap"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "side",
+      "clip_size_shares",
+      "filled_shares",
+      "average_price",
+      "limit_price",
+      "feasibility",
+      "scenario_pnl.risk_off",
+      "scenario_pnl.squeeze",
+      "scenario_pnl.idiosyncratic_gap",
+      "worst_case_pnl",
+      "self_check.average_price_within_cap",
+      "self_check.max_fill_in_clips"
+    ],
+    "needs_review": false
+  }
+}

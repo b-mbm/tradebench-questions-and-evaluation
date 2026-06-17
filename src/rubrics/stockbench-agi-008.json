@@ -1,0 +1,117 @@
+{
+  "id": "stockbench-agi-008",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_to_close_calls",
+    "sell_to_open_calls",
+    "buy_put_contracts",
+    "net_debit_usd",
+    "covered_shares",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_to_close_calls",
+    "sell_to_open_calls",
+    "buy_put_contracts",
+    "net_debit_usd",
+    "covered_shares",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "adjust_options"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "roll_calls_to_285_and_buy_235_puts"
+      },
+      "buy_to_close_calls": {
+        "type": "number",
+        "expected": 10,
+        "tolerance": 0
+      },
+      "sell_to_open_calls": {
+        "type": "number",
+        "expected": 10,
+        "tolerance": 0
+      },
+      "buy_put_contracts": {
+        "type": "number",
+        "expected": 10,
+        "tolerance": 0
+      },
+      "net_debit_usd": {
+        "type": "number",
+        "expected": 8300,
+        "tolerance": 0
+      },
+      "covered_shares": {
+        "type": "number",
+        "expected": 1000,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "hold_260_calls_through_earnings",
+          "buy_puts_without_closing_short_calls",
+          "full_call_close_plus_puts_without_roll_costs_11500"
+        ],
+        "min_items": 3
+      },
+      "self_check": {
+        "type": "array",
+        "expected_set": [
+          "event_call_risk_removed",
+          "downside_puts_added",
+          "net_debit_within_cash"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "Close 260 calls costs 7,000; sell 285 calls receives 3,200; buy 235 puts costs 4,500. Net debit = 8,300, within 9,000, and covers 1,000 shares."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "event_vol_assignment_constrained",
+    "feasibility_trap": true,
+    "objective_function": "remove short-call event risk and maximize protected shares subject to net debit constraint",
+    "failure_modes": [
+      "holds near-the-money short calls through earnings",
+      "adds puts without removing call risk",
+      "exceeds cash"
+    ],
+    "must_not": [
+      "must_not_hold_near_money_short_calls_through_event",
+      "must_not_exceed_net_debit_limit"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "buy_to_close_calls",
+      "sell_to_open_calls",
+      "buy_put_contracts",
+      "net_debit_usd",
+      "covered_shares",
+      "feasibility"
+    ]
+  }
+}

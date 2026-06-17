@@ -1,0 +1,105 @@
+{
+  "id": "stockbench-l9-037",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "call_strike",
+    "dividend_per_share",
+    "call_time_value",
+    "early_assignment_risk",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "call_strike",
+    "dividend_per_share",
+    "call_time_value",
+    "early_assignment_risk",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L9-037",
+    "title": "SB-L9-037 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "manage_assignment"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_b"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "NVDA"
+      },
+      "call_strike": {
+        "type": "number",
+        "expected": 220,
+        "tolerance": 0.01
+      },
+      "dividend_per_share": {
+        "type": "number",
+        "expected": 1.3,
+        "tolerance": 0.01
+      },
+      "call_time_value": {
+        "type": "number",
+        "expected": 1.4,
+        "tolerance": 0.01
+      },
+      "early_assignment_risk": {
+        "type": "boolean",
+        "expected": false
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_a"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      }
+    },
+    "derivation": "Intrinsic = max(0, 215-220); time value = 1.4 - intrinsic = 1.4. Dividend 1.3 <= time value -> early assignment not rational (hold).",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "L9",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "early_assignment_dividend_risk",
+    "feasibility_trap": false,
+    "objective_function": "objective for early_assignment_dividend_risk",
+    "failure_modes": [
+      "ignores dividend vs time value test",
+      "mishandles assignment"
+    ],
+    "must_not": [
+      "must_not_ignore_dividend_vs_time_value"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "instrument",
+      "call_strike",
+      "dividend_per_share",
+      "call_time_value",
+      "early_assignment_risk",
+      "feasibility"
+    ],
+    "needs_review": false
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": "stockbench-l4-002",
+  "expected_fields": [
+    "decision",
+    "principal_usd",
+    "annual_rate",
+    "day_count",
+    "days",
+    "cost_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "principal_usd",
+    "annual_rate",
+    "day_count",
+    "days",
+    "cost_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L4-002",
+    "title": "SB-L4-002 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "calculate_time_cost"
+      },
+      "principal_usd": {
+        "type": "number",
+        "expected": 110000,
+        "tolerance": 0.01
+      },
+      "annual_rate": {
+        "type": "number",
+        "expected": 0.06,
+        "tolerance": 0.01
+      },
+      "day_count": {
+        "type": "string",
+        "expected": "Actual/360"
+      },
+      "days": {
+        "type": "number",
+        "expected": 19,
+        "tolerance": 0.01
+      },
+      "cost_usd": {
+        "type": "number",
+        "expected": 348.33,
+        "tolerance": 0.01
+      }
+    },
+    "derivation": "110000*0.06*19/360=348.33.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Execution / liquidity / microstructure",
+    "tier": "L4",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "order_book_liquidity_limit",
+    "feasibility_trap": true,
+    "failure_modes": [
+      "uses 365 basis"
+    ],
+    "must_not": [
+      "must_not_ignore_day_count"
+    ],
+    "critical_fields": [
+      "decision",
+      "principal_usd",
+      "annual_rate",
+      "day_count",
+      "days",
+      "cost_usd"
+    ],
+    "needs_review": false
+  }
+}

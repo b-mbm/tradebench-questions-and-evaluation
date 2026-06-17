@@ -1,0 +1,234 @@
+{
+  "id": "stockbench-agi-001",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "execution_sequence",
+    "aapl_buy_to_cover_shares",
+    "aapl_cover_cash_used",
+    "es_contracts",
+    "spy_put_contracts",
+    "option_premium_paid",
+    "margin_used",
+    "cash_after_execution",
+    "beta_reduction_pct",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.tech_squeeze",
+    "scenario_pnl.index_flat_aapl_squeeze",
+    "worst_case_pnl",
+    "feasibility",
+    "rejected_routes",
+    "self_check",
+    "reasoning"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "execution_sequence",
+    "aapl_buy_to_cover_shares",
+    "aapl_cover_cash_used",
+    "es_contracts",
+    "spy_put_contracts",
+    "option_premium_paid",
+    "margin_used",
+    "cash_after_execution",
+    "beta_reduction_pct",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.tech_squeeze",
+    "scenario_pnl.index_flat_aapl_squeeze",
+    "worst_case_pnl",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "field_weights": {
+    "decision": 1,
+    "chosen_strategy": 1,
+    "execution_sequence": 1,
+    "aapl_buy_to_cover_shares": 1,
+    "aapl_cover_cash_used": 1,
+    "es_contracts": 1,
+    "spy_put_contracts": 1,
+    "option_premium_paid": 1,
+    "margin_used": 1,
+    "cash_after_execution": 1,
+    "beta_reduction_pct": 1,
+    "scenario_pnl.risk_off": 1,
+    "scenario_pnl.tech_squeeze": 1,
+    "scenario_pnl.index_flat_aapl_squeeze": 1,
+    "worst_case_pnl": 1,
+    "feasibility": 1,
+    "rejected_routes": 1,
+    "self_check": 1,
+    "reasoning": 0.2
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-001",
+    "title": "Borrow Recall Plus ES Hedge Triage",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "cover_recall_sell_1_es_buy_5_spy_puts"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "buy_to_cover_300_AAPL",
+          "sell_1_ES",
+          "buy_5_SPY_495_puts"
+        ]
+      },
+      "aapl_buy_to_cover_shares": {
+        "type": "number",
+        "expected": 300,
+        "tolerance": 0
+      },
+      "aapl_cover_cash_used": {
+        "type": "number",
+        "range": [
+          54301.49,
+          54301.51
+        ]
+      },
+      "es_contracts": {
+        "type": "number",
+        "expected": 1,
+        "tolerance": 0
+      },
+      "spy_put_contracts": {
+        "type": "number",
+        "expected": 5,
+        "tolerance": 0
+      },
+      "option_premium_paid": {
+        "type": "number",
+        "expected": 2000,
+        "tolerance": 0
+      },
+      "margin_used": {
+        "type": "number",
+        "expected": 13000,
+        "tolerance": 0
+      },
+      "cash_after_execution": {
+        "type": "number",
+        "range": [
+          3673.49,
+          3673.51
+        ]
+      },
+      "beta_reduction_pct": {
+        "type": "number",
+        "range": [
+          69.99,
+          70.01
+        ]
+      },
+      "scenario_pnl.risk_off": {
+        "type": "number",
+        "range": [
+          -4026.51,
+          -4026.49
+        ]
+      },
+      "scenario_pnl.tech_squeeze": {
+        "type": "number",
+        "range": [
+          673.49,
+          673.51
+        ]
+      },
+      "scenario_pnl.index_flat_aapl_squeeze": {
+        "type": "number",
+        "range": [
+          -5326.51,
+          -5326.49
+        ]
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "range": [
+          -5326.51,
+          -5326.49
+        ]
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "no_cover_violates_borrow_recall",
+          "sell_2_ES_violates_margin",
+          "put_only_fails_beta_target",
+          "buy_10_puts_with_es_worse_worst_case",
+          "SPY_CFD_unavailable_US"
+        ],
+        "min_items": 5
+      },
+      "self_check": {
+        "type": "array",
+        "expected_set": [
+          "borrow_recall_satisfied",
+          "beta_reduction_70_pct",
+          "margin_within_limit",
+          "cash_nonnegative",
+          "no_cfd_or_new_short",
+          "worst_case_optimized_at_5_puts"
+        ],
+        "min_items": 6
+      }
+    },
+    "derivation": "Covering 300 AAPL costs 300 * 181 + 300 * 0.005 = 54301.50, leaving 5698.50 before ES slippage and options. One ES hedges 5000 * 50 = 250000, or 50% of 500000 SPY beta dollars, and uses 13000 of 14000 margin. Two ES violates margin. Put-only hedging maxes at 10 * 100 * 500 * 0.40 = 200000 delta hedge, or 40%, below the 45% target. With one ES, k SPY puts changes risk-off PnL by +2100 per contract and flat/squeeze PnL by -400 per contract, so the worst-case PnL is maximized at 5 puts. Final cash after cover, ES slippage, and 5 puts is 3673.50. Scenario PnL: risk-off = -30000 + 15000 + 800 + 12500 - 301.50 - 25 - 2000 = -4026.50; tech squeeze = 10000 - 5000 - 2000 + 0 - 301.50 - 25 - 2000 = 673.50; index-flat AAPL squeeze = 0 + 0 - 3000 + 0 - 301.50 - 25 - 2000 = -5326.50.",
+    "pass_condition": "The answer must satisfy recall, beta, cash, margin, and route-permission constraints and report the frozen-scenario PnL fields."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Feasibility / rejection / no-trade traps",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "borrow_recall_margin_hedge",
+    "feasibility_trap": true,
+    "objective_function": "maximize worst-case PnL across frozen scenarios, with feasibility constraints binding before PnL ranking",
+    "failure_modes": [
+      "does not cover the recalled AAPL borrow",
+      "uses two ES contracts despite insufficient margin",
+      "uses only SPY puts even though max executable contracts fail the beta target",
+      "misses the 5-put overlay that maximizes worst-case PnL",
+      "uses unavailable CFD route",
+      "opens a new short without a locate",
+      "reports PnL without immediate execution costs",
+      "returns a plausible plan without self-checking constraints"
+    ],
+    "must_not": [
+      "must_not_skip_borrow_recall",
+      "must_not_use_cfds_when_unavailable",
+      "must_not_open_new_short_without_locate",
+      "must_not_exceed_futures_margin_capacity",
+      "must_not_return_generic_financial_advice_without_answer"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "aapl_buy_to_cover_shares",
+      "aapl_cover_cash_used",
+      "es_contracts",
+      "spy_put_contracts",
+      "option_premium_paid",
+      "margin_used",
+      "cash_after_execution",
+      "beta_reduction_pct",
+      "scenario_pnl.risk_off",
+      "scenario_pnl.tech_squeeze",
+      "scenario_pnl.index_flat_aapl_squeeze",
+      "worst_case_pnl",
+      "feasibility"
+    ]
+  }
+}

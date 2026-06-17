@@ -1,0 +1,113 @@
+{
+  "id": "stockbench-l9-005",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "es_contracts",
+    "mes_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "es_contracts",
+    "mes_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "sell_1_ES_and_4_MES"
+      },
+      "es_contracts": {
+        "type": "number",
+        "expected": 1,
+        "tolerance": 0
+      },
+      "mes_contracts": {
+        "type": "number",
+        "expected": 4,
+        "tolerance": 0
+      },
+      "beta_reduction_usd": {
+        "type": "number",
+        "expected": 350000,
+        "tolerance": 0
+      },
+      "beta_reduction_pct": {
+        "type": "number",
+        "expected": 35,
+        "tolerance": 0
+      },
+      "margin_used": {
+        "type": "number",
+        "expected": 18200,
+        "tolerance": 0
+      },
+      "expected_cost": {
+        "type": "number",
+        "expected": 45,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "sell_1_ES_fails_target",
+          "sell_2_ES_exceeds_margin",
+          "SPY_put_package_higher_cost"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "1 ES reduces 250k and 4 MES reduce 100k; total 350k = 35%. Margin 13,000 + 4*1,300 = 18,200; cost 25 + 4*5 = 45."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Portfolio risk / rebalancing",
+    "tier": "L9",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "cross_asset_beta_trim",
+    "feasibility_trap": false,
+    "objective_function": "minimize upfront hedge cost subject to beta reduction and margin constraints",
+    "failure_modes": [
+      "uses one ES and misses target",
+      "uses two ES and exceeds margin"
+    ],
+    "must_not": [
+      "must_not_ignore_margin_capacity",
+      "must_not_miss_beta_target"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "es_contracts",
+      "mes_contracts",
+      "beta_reduction_usd",
+      "beta_reduction_pct",
+      "margin_used",
+      "expected_cost",
+      "feasibility"
+    ]
+  }
+}

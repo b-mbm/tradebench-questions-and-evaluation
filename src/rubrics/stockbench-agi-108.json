@@ -1,0 +1,153 @@
+{
+  "id": "stockbench-agi-108",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.average_price_within_cap",
+    "self_check.max_fill_in_clips"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.average_price_within_cap",
+    "self_check.max_fill_in_clips"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-108",
+    "title": "SB-AGI-108 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "NVDA"
+      },
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "clip_size_shares": {
+        "type": "number",
+        "expected": 500,
+        "tolerance": 0.01
+      },
+      "filled_shares": {
+        "type": "number",
+        "expected": 94500,
+        "tolerance": 0.01
+      },
+      "average_price": {
+        "type": "number",
+        "expected": 135.11,
+        "tolerance": 0.01
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 135.3,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      },
+      "scenario_pnl.risk_off": {
+        "type": "number",
+        "expected": -145000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.squeeze": {
+        "type": "number",
+        "expected": 40000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.idiosyncratic_gap": {
+        "type": "number",
+        "expected": -79000,
+        "tolerance": 0.01
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "expected": -145000,
+        "tolerance": 0.01
+      },
+      "self_check.average_price_within_cap": {
+        "type": "boolean",
+        "expected": true
+      },
+      "self_check.max_fill_in_clips": {
+        "type": "boolean",
+        "expected": true
+      }
+    },
+    "derivation": "Fill 40000@135.05 and 40000@135.10 (avg 135.07), then x@135.30 with x <= (cap*80000-10806000)/(135.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 135.11 (<= 135.11). Full-size route breaches the cap.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Execution / liquidity / microstructure",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "order_book_liquidity_limit",
+    "feasibility_trap": true,
+    "objective_function": "objective for order_book_liquidity_limit",
+    "failure_modes": [
+      "takes full book and breaches the average cap",
+      "ignores clip rounding",
+      "uses last price not average"
+    ],
+    "must_not": [
+      "must_not_exceed_average_price_cap"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "side",
+      "clip_size_shares",
+      "filled_shares",
+      "average_price",
+      "limit_price",
+      "feasibility",
+      "scenario_pnl.risk_off",
+      "scenario_pnl.squeeze",
+      "scenario_pnl.idiosyncratic_gap",
+      "worst_case_pnl",
+      "self_check.average_price_within_cap",
+      "self_check.max_fill_in_clips"
+    ],
+    "needs_review": false
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "id": "stockbench-l10-041",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes",
+    "residual_check"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes",
+    "residual_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L10-041",
+    "title": "SB-L10-041 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "SPY"
+      },
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "clip_size_shares": {
+        "type": "number",
+        "expected": 500,
+        "tolerance": 0.01
+      },
+      "filled_shares": {
+        "type": "number",
+        "expected": 94500,
+        "tolerance": 0.01
+      },
+      "average_price": {
+        "type": "number",
+        "expected": 130.11,
+        "tolerance": 0.01
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 130.3,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      },
+      "residual_check": {
+        "type": "string",
+        "expected": "recomputed"
+      }
+    },
+    "derivation": "Fill 40000@130.05 and 40000@130.10 (avg 130.07), then x@130.30 with x <= (cap*80000-10406000)/(130.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 130.11 (<= 130.11). Full-size route breaches the cap.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Execution / liquidity / microstructure",
+    "tier": "L10",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "order_book_liquidity_limit",
+    "feasibility_trap": true,
+    "objective_function": "objective for order_book_liquidity_limit",
+    "failure_modes": [
+      "takes full book and breaches the average cap",
+      "ignores clip rounding",
+      "uses last price not average"
+    ],
+    "must_not": [
+      "must_not_exceed_average_price_cap"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "side",
+      "clip_size_shares",
+      "filled_shares",
+      "average_price",
+      "limit_price",
+      "feasibility"
+    ],
+    "needs_review": false
+  }
+}

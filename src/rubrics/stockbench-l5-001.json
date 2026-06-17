@@ -1,0 +1,97 @@
+{
+  "id": "stockbench-l5-001",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "time_in_force",
+    "venue",
+    "feasibility"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "time_in_force",
+    "venue",
+    "feasibility"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "MSFT"
+      },
+      "side": {
+        "type": "string",
+        "expected": "sell"
+      },
+      "quantity": {
+        "type": "number",
+        "expected": 800,
+        "tolerance": 0
+      },
+      "order_type": {
+        "type": "string",
+        "expected": "limit"
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 415.25,
+        "tolerance": 0
+      },
+      "time_in_force": {
+        "type": "string",
+        "expected": "day"
+      },
+      "venue": {
+        "type": "string",
+        "expected": "NASDAQ"
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      }
+    },
+    "derivation": "Map the stated MSFT sell instruction into the order ticket."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Execution / liquidity / microstructure",
+    "tier": "L5",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "session_limit_order_ticket",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "wrong side",
+      "wrong order type",
+      "creates short sale"
+    ],
+    "must_not": [
+      "must_not_mark_short_sale",
+      "must_not_change_limit_price"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "side",
+      "quantity",
+      "order_type",
+      "limit_price",
+      "venue",
+      "feasibility"
+    ]
+  }
+}

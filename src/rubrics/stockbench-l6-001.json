@@ -1,0 +1,80 @@
+{
+  "id": "stockbench-l6-001",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "trade_date",
+    "settlement_rule",
+    "settlement_date",
+    "settled_cash_usd",
+    "withdrawal_allowed_date"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "trade_date",
+    "settlement_rule",
+    "settlement_date",
+    "settled_cash_usd",
+    "withdrawal_allowed_date"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "settlement_schedule"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "SPY"
+      },
+      "trade_date": {
+        "type": "string",
+        "expected": "2026-06-15"
+      },
+      "settlement_rule": {
+        "type": "string",
+        "expected": "T+1"
+      },
+      "settlement_date": {
+        "type": "string",
+        "expected": "2026-06-16"
+      },
+      "settled_cash_usd": {
+        "type": "number",
+        "expected": 100000,
+        "tolerance": 0
+      },
+      "withdrawal_allowed_date": {
+        "type": "string",
+        "expected": "2026-06-16"
+      }
+    },
+    "derivation": "T+1 from Monday 2026-06-15 with no holiday is Tuesday 2026-06-16; proceeds are 200 * 500 = 100,000."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Corporate actions / settlement / calendar / jurisdiction",
+    "tier": "L6",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "t_plus_one_settlement_sequence",
+    "feasibility_trap": true,
+    "failure_modes": [
+      "uses obsolete T+2 rule",
+      "allows withdrawal on trade date"
+    ],
+    "must_not": [
+      "must_not_use_T_plus_2",
+      "must_not_ignore_cash_account_settlement"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "settlement_rule",
+      "settlement_date",
+      "settled_cash_usd"
+    ]
+  }
+}

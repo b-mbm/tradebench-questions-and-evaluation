@@ -1,0 +1,95 @@
+{
+  "id": "stockbench-l9-051",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "eur_amount",
+    "usd_cost",
+    "settlement_date_rule",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "eur_amount",
+    "usd_cost",
+    "settlement_date_rule",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L9-051",
+    "title": "SB-L9-051 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "convert_fx"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_a"
+      },
+      "eur_amount": {
+        "type": "number",
+        "expected": 300000,
+        "tolerance": 0.01
+      },
+      "usd_cost": {
+        "type": "number",
+        "expected": 315000,
+        "tolerance": 0.01
+      },
+      "settlement_date_rule": {
+        "type": "string",
+        "expected": "T+2"
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b",
+          "route_c",
+          "route_d"
+        ],
+        "min_items": 3,
+        "match_type": "exact_set"
+      }
+    },
+    "derivation": "Spot route USD cost = 300000 * 1.05 = 315000, settles T+2 (feasible). CFD unavailable to US retail; futures margin 3000 > 2000; forward settles after the required date.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot FX / CFDs / multi-currency",
+    "tier": "L9",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "fx_settlement_mismatch",
+    "feasibility_trap": true,
+    "objective_function": "objective for fx_settlement_mismatch",
+    "failure_modes": [
+      "uses unavailable CFD",
+      "uses margin-infeasible futures",
+      "wrong FX multiplication",
+      "misses settlement date"
+    ],
+    "must_not": [
+      "must_not_use_cfd_when_unavailable",
+      "must_not_exceed_margin_capacity"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "eur_amount",
+      "usd_cost",
+      "settlement_date_rule",
+      "feasibility"
+    ],
+    "needs_review": false
+  }
+}

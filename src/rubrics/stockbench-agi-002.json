@@ -1,0 +1,110 @@
+{
+  "id": "stockbench-agi-002",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_to_cover_shares",
+    "put_contracts",
+    "cash_used",
+    "bearish_delta_shares",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_to_cover_shares",
+    "put_contracts",
+    "cash_used",
+    "bearish_delta_shares",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "cover_700_buy_5_puts"
+      },
+      "buy_to_cover_shares": {
+        "type": "number",
+        "expected": 700,
+        "tolerance": 0
+      },
+      "put_contracts": {
+        "type": "number",
+        "expected": 5,
+        "tolerance": 0
+      },
+      "cash_used": {
+        "type": "number",
+        "expected": 86203.5,
+        "tolerance": 0
+      },
+      "bearish_delta_shares": {
+        "type": "number",
+        "expected": 500,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "skip_recall",
+          "new_short_without_locate",
+          "buy_4_puts_fails_delta"
+        ],
+        "min_items": 3
+      },
+      "self_check": {
+        "type": "array",
+        "expected_set": [
+          "recall_satisfied",
+          "bearish_delta_500",
+          "cash_nonnegative",
+          "no_new_short"
+        ],
+        "min_items": 4
+      }
+    },
+    "derivation": "Cover 700 costs 700*121 + 700*0.005 = 84,703.50. Remaining short 300 plus 5 puts * 40 delta shares = 500 bearish delta shares. Put premium = 1,500, total cash used = 86,203.50."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Shorting / borrow / margin / locates",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "locate_recall_options_substitution",
+    "feasibility_trap": true,
+    "objective_function": "minimize option premium while satisfying recall and bearish delta constraints",
+    "failure_modes": [
+      "skips recall",
+      "opens new short without locate",
+      "under-hedges bearish delta"
+    ],
+    "must_not": [
+      "must_not_skip_borrow_recall",
+      "must_not_open_new_short_without_locate"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "buy_to_cover_shares",
+      "put_contracts",
+      "cash_used",
+      "bearish_delta_shares",
+      "feasibility"
+    ]
+  }
+}

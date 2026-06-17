@@ -1,0 +1,137 @@
+{
+  "id": "stockbench-agi-082",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "adjusted_stop_price",
+    "option_strike_adjusted",
+    "option_strike_after",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.stop_adjusted",
+    "self_check.option_strike_unchanged"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "adjusted_stop_price",
+    "option_strike_adjusted",
+    "option_strike_after",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.stop_adjusted",
+    "self_check.option_strike_unchanged"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-082",
+    "title": "SB-AGI-082 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "adjust_order_for_ex_dividend"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_a"
+      },
+      "adjusted_stop_price": {
+        "type": "number",
+        "expected": 284.45,
+        "tolerance": 0.01
+      },
+      "option_strike_adjusted": {
+        "type": "boolean",
+        "expected": false
+      },
+      "option_strike_after": {
+        "type": "number",
+        "expected": 290,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b",
+          "route_c"
+        ],
+        "min_items": 2,
+        "match_type": "exact_set"
+      },
+      "scenario_pnl.risk_off": {
+        "type": "number",
+        "expected": -135000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.squeeze": {
+        "type": "number",
+        "expected": 56000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.idiosyncratic_gap": {
+        "type": "number",
+        "expected": -73000,
+        "tolerance": 0.01
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "expected": -135000,
+        "tolerance": 0.01
+      },
+      "self_check.stop_adjusted": {
+        "type": "boolean",
+        "expected": true
+      },
+      "self_check.option_strike_unchanged": {
+        "type": "boolean",
+        "expected": true
+      }
+    },
+    "derivation": "Adjusted stop = 285 - 0.55 = 284.45; ordinary dividend does not adjust the option strike (stays 290).",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Corporate actions / settlement / calendar / jurisdiction",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "corporate_action_adjustment",
+    "feasibility_trap": true,
+    "objective_function": "objective for corporate_action_adjustment",
+    "failure_modes": [
+      "leaves stop unadjusted",
+      "adjusts option strike for ordinary dividend"
+    ],
+    "must_not": [
+      "must_not_treat_ordinary_dividend_as_strike_adjustment"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "adjusted_stop_price",
+      "option_strike_adjusted",
+      "option_strike_after",
+      "feasibility",
+      "scenario_pnl.risk_off",
+      "scenario_pnl.squeeze",
+      "scenario_pnl.idiosyncratic_gap",
+      "worst_case_pnl",
+      "self_check.stop_adjusted",
+      "self_check.option_strike_unchanged"
+    ],
+    "needs_review": false
+  }
+}

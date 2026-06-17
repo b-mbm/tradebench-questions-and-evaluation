@@ -1,0 +1,86 @@
+{
+  "id": "stockbench-l4-001",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "price",
+    "borrow_days",
+    "borrow_cost_usd",
+    "venue",
+    "reasoning"
+  ],
+  "required_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "price",
+    "borrow_days",
+    "borrow_cost_usd",
+    "venue"
+  ],
+  "field_weights": {
+    "intent": 0.1,
+    "order_type": 0.08,
+    "asset": 0.08,
+    "size": 0.1,
+    "price": 0.1,
+    "borrow_days": 0.14,
+    "borrow_cost_usd": 0.34,
+    "venue": 0.04,
+    "reasoning": 0.02
+  },
+  "synonyms": {
+    "intent": [
+      "borrow_cost",
+      "calculate_borrow_fee",
+      "short_borrow_cost"
+    ],
+    "order_type": [
+      "calculation",
+      "cost_analysis",
+      "borrow_analysis"
+    ],
+    "venue": [
+      "margin_account",
+      "broker",
+      "prime_broker",
+      "reg_t_margin_account"
+    ]
+  },
+  "range_fields": {
+    "borrow_cost_usd": {
+      "min": 356.99,
+      "max": 357.01,
+      "strict": true,
+      "description": "500 * 180 * 0.084 * 17 / 360 = 357.00 USD."
+    }
+  },
+  "pass_threshold": 0.7,
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Shorting / borrow / margin / locates",
+    "tier": "L4",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "borrow_cost_calendar",
+    "feasibility_trap": false,
+    "canonical_derivation": "Short notional = 500 * 180 = 90000. Borrow cost = 90000 * 8.40% * 17 / 360 = 357.00.",
+    "failure_modes": [
+      "uses 365-day basis instead of stated Actual/360",
+      "compounds the borrow rate despite simple-interest instruction",
+      "uses live AAPL data instead of frozen price",
+      "omits borrow_days or borrow_cost_usd"
+    ],
+    "must_not": [
+      "must_not_use_live_market_data",
+      "must_not_ignore_day_count",
+      "must_not_return_generic_financial_advice_without_answer"
+    ],
+    "critical_fields": [
+      "borrow_days",
+      "borrow_cost_usd"
+    ]
+  }
+}

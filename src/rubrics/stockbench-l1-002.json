@@ -1,0 +1,62 @@
+{
+  "id": "stockbench-l1-002",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "quote",
+    "unit"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "quote",
+    "unit"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L1-002",
+    "title": "SB-L1-002 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "extract"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "XLF ETF"
+      },
+      "quote": {
+        "type": "string",
+        "expected": "154.00 USD/share"
+      },
+      "unit": {
+        "type": "string",
+        "expected": "share"
+      }
+    },
+    "derivation": "Literal extraction from the frozen packet.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot equities / ETFs",
+    "tier": "L1",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "etf_sector_rebalance_t_plus_one",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "uses live data",
+      "changes a field"
+    ],
+    "must_not": [
+      "must_not_use_live_market_data"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "unit"
+    ],
+    "needs_review": false
+  }
+}

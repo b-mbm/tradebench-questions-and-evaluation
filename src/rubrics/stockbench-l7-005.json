@@ -1,0 +1,88 @@
+{
+  "id": "stockbench-l7-005",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "target_notional_usd",
+    "price",
+    "shares",
+    "used_notional_usd",
+    "residual_cash_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "target_notional_usd",
+    "price",
+    "shares",
+    "used_notional_usd",
+    "residual_cash_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L7-005",
+    "title": "SB-L7-005 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "rebalance"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "IWM"
+      },
+      "target_notional_usd": {
+        "type": "number",
+        "expected": 70000,
+        "tolerance": 0.01
+      },
+      "price": {
+        "type": "number",
+        "expected": 108,
+        "tolerance": 0.01
+      },
+      "shares": {
+        "type": "number",
+        "expected": 648,
+        "tolerance": 0.01
+      },
+      "used_notional_usd": {
+        "type": "number",
+        "expected": 69984,
+        "tolerance": 0.01
+      },
+      "residual_cash_usd": {
+        "type": "number",
+        "expected": 16,
+        "tolerance": 0.01
+      }
+    },
+    "derivation": "floor(70000/108)=648; used=69984; residual=16.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot FX / CFDs / multi-currency",
+    "tier": "L7",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "forward_vs_spot_payment",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "uses fractional shares"
+    ],
+    "must_not": [
+      "must_not_use_fractional_units"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "target_notional_usd",
+      "price",
+      "shares",
+      "used_notional_usd",
+      "residual_cash_usd"
+    ],
+    "needs_review": false
+  }
+}

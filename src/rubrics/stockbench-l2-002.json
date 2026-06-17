@@ -1,0 +1,72 @@
+{
+  "id": "stockbench-l2-002",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "quantity",
+    "price",
+    "notional_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "quantity",
+    "price",
+    "notional_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L2-002",
+    "title": "SB-L2-002 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "calculate_notional"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "XLK"
+      },
+      "quantity": {
+        "type": "number",
+        "expected": 300,
+        "tolerance": 0.01
+      },
+      "price": {
+        "type": "number",
+        "expected": 165,
+        "tolerance": 0.01
+      },
+      "notional_usd": {
+        "type": "number",
+        "expected": 49500,
+        "tolerance": 0.01
+      }
+    },
+    "derivation": "300*165=49500.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Execution / liquidity / microstructure",
+    "tier": "L2",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "twap_slippage_limit",
+    "feasibility_trap": true,
+    "failure_modes": [
+      "wrong multiplication"
+    ],
+    "must_not": [
+      "must_not_use_live_market_data"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "quantity",
+      "price",
+      "notional_usd"
+    ],
+    "needs_review": false
+  }
+}

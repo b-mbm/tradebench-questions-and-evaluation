@@ -1,0 +1,100 @@
+{
+  "id": "stockbench-agi-005",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "stress_loss_reduction_usd",
+    "hedge_cash_used",
+    "margin_used",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "stress_loss_reduction_usd",
+    "hedge_cash_used",
+    "margin_used",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "buy_SPY_put_package"
+      },
+      "stress_loss_reduction_usd": {
+        "type": "number",
+        "expected": 120000,
+        "tolerance": 0
+      },
+      "hedge_cash_used": {
+        "type": "number",
+        "expected": 25000,
+        "tolerance": 0
+      },
+      "margin_used": {
+        "type": "number",
+        "expected": 0,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "sell_2_ES_margin_exceeded",
+          "sell_HYG_block_fails_target",
+          "sell_1_ES_plus_HYG_fails_target"
+        ],
+        "min_items": 3
+      },
+      "self_check": {
+        "type": "array",
+        "expected_set": [
+          "stress_reduction_target_met",
+          "cash_within_limit",
+          "margin_within_limit"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "The SPY put package is the only listed action that reaches at least 100,000 stress reduction while staying within cash and margin constraints."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Portfolio risk / rebalancing",
+    "tier": "AGI",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "cross_asset_var_liquidity_triage",
+    "feasibility_trap": false,
+    "objective_function": "minimize feasible hedge cash cost subject to stress-loss reduction and margin constraints",
+    "failure_modes": [
+      "chooses margin-infeasible futures",
+      "chooses cheaper but insufficient hedge"
+    ],
+    "must_not": [
+      "must_not_miss_stress_reduction_target",
+      "must_not_exceed_margin_capacity"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "stress_loss_reduction_usd",
+      "hedge_cash_used",
+      "margin_used",
+      "feasibility"
+    ]
+  }
+}

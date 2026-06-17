@@ -1,0 +1,132 @@
+{
+  "id": "stockbench-l10-069",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "trade_value_usd",
+    "settlement_rule",
+    "settlement_cash_date",
+    "feasibility",
+    "rejected_routes",
+    "residual_check"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "trade_value_usd",
+    "settlement_rule",
+    "settlement_cash_date",
+    "feasibility",
+    "rejected_routes",
+    "residual_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L10-069",
+    "title": "SB-L10-069 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_a"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "XLF"
+      },
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "quantity": {
+        "type": "number",
+        "expected": 600,
+        "tolerance": 0.01
+      },
+      "order_type": {
+        "type": "string",
+        "expected": "limit"
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 134.25,
+        "tolerance": 0.01
+      },
+      "trade_value_usd": {
+        "type": "number",
+        "expected": 80400,
+        "tolerance": 0.01
+      },
+      "settlement_rule": {
+        "type": "string",
+        "expected": "T+1"
+      },
+      "settlement_cash_date": {
+        "type": "string",
+        "expected": "2026-06-18"
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      },
+      "residual_check": {
+        "type": "string",
+        "expected": "recomputed"
+      }
+    },
+    "derivation": "Limit buy 600 @ 134.25; trade value = 600*134 = 80400; T+1 cash on 2026-06-18. Market route ignores the protective limit.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot equities / ETFs",
+    "tier": "L10",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "equity_order_ticket",
+    "feasibility_trap": true,
+    "objective_function": "objective for equity_order_ticket",
+    "failure_modes": [
+      "ignores protective limit",
+      "wrong T+1 date"
+    ],
+    "must_not": [
+      "must_not_ignore_protective_limit"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "instrument",
+      "side",
+      "quantity",
+      "order_type",
+      "limit_price",
+      "trade_value_usd",
+      "settlement_rule",
+      "settlement_cash_date",
+      "feasibility"
+    ],
+    "needs_review": false
+  }
+}

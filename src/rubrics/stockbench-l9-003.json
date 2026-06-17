@@ -1,0 +1,105 @@
+{
+  "id": "stockbench-l9-003",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_put_strike",
+    "sell_put_strike",
+    "contracts",
+    "net_premium_paid",
+    "scenario_pnl_usd",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_put_strike",
+    "sell_put_strike",
+    "contracts",
+    "net_premium_paid",
+    "scenario_pnl_usd",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "SPY_500_470_put_spread"
+      },
+      "buy_put_strike": {
+        "type": "number",
+        "expected": 500,
+        "tolerance": 0
+      },
+      "sell_put_strike": {
+        "type": "number",
+        "expected": 470,
+        "tolerance": 0
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 10,
+        "tolerance": 0
+      },
+      "net_premium_paid": {
+        "type": "number",
+        "expected": 8000,
+        "tolerance": 0
+      },
+      "scenario_pnl_usd": {
+        "type": "number",
+        "expected": -28000,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "unhedged_floor_fail",
+          "SPY_500_480_put_spread_floor_fail",
+          "SPY_500_460_put_spread_higher_cost"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "500/470 spread costs (12-4)*100*10 = 8,000 and pays 30,000 at 450, so -50,000 + 30,000 - 8,000 = -28,000."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "L9",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "put_spread_downside_floor",
+    "feasibility_trap": false,
+    "objective_function": "minimize net premium while keeping frozen downside scenario PnL >= -30000",
+    "failure_modes": [
+      "chooses cheaper failing spread",
+      "omits premium from PnL"
+    ],
+    "must_not": [
+      "must_not_ignore_downside_floor",
+      "must_not_ignore_option_multiplier"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "buy_put_strike",
+      "sell_put_strike",
+      "contracts",
+      "net_premium_paid",
+      "scenario_pnl_usd",
+      "feasibility"
+    ]
+  }
+}

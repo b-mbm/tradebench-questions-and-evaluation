@@ -1,0 +1,165 @@
+{
+  "id": "stockbench-agi-093",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "trade_value_usd",
+    "settlement_rule",
+    "settlement_cash_date",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.limit_respected"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "trade_value_usd",
+    "settlement_rule",
+    "settlement_cash_date",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.limit_respected"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-093",
+    "title": "SB-AGI-093 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_a"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "SPY"
+      },
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "quantity": {
+        "type": "number",
+        "expected": 900,
+        "tolerance": 0.01
+      },
+      "order_type": {
+        "type": "string",
+        "expected": "limit"
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 80.25,
+        "tolerance": 0.01
+      },
+      "trade_value_usd": {
+        "type": "number",
+        "expected": 72000,
+        "tolerance": 0.01
+      },
+      "settlement_rule": {
+        "type": "string",
+        "expected": "T+1"
+      },
+      "settlement_cash_date": {
+        "type": "string",
+        "expected": "2026-06-16"
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      },
+      "scenario_pnl.risk_off": {
+        "type": "number",
+        "expected": -130000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.squeeze": {
+        "type": "number",
+        "expected": 40000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.idiosyncratic_gap": {
+        "type": "number",
+        "expected": -70000,
+        "tolerance": 0.01
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "expected": -130000,
+        "tolerance": 0.01
+      },
+      "self_check.limit_respected": {
+        "type": "boolean",
+        "expected": true
+      }
+    },
+    "derivation": "Limit buy 900 @ 80.25; trade value = 900*80 = 72000; T+1 cash on 2026-06-16. Market route ignores the protective limit.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot equities / ETFs",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "etf_sector_rebalance_t_plus_one",
+    "feasibility_trap": false,
+    "objective_function": "objective for etf_sector_rebalance_t_plus_one",
+    "failure_modes": [
+      "ignores protective limit",
+      "wrong T+1 date"
+    ],
+    "must_not": [
+      "must_not_ignore_protective_limit"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "instrument",
+      "side",
+      "quantity",
+      "order_type",
+      "limit_price",
+      "trade_value_usd",
+      "settlement_rule",
+      "settlement_cash_date",
+      "feasibility",
+      "scenario_pnl.risk_off",
+      "scenario_pnl.squeeze",
+      "scenario_pnl.idiosyncratic_gap",
+      "worst_case_pnl",
+      "self_check.limit_respected"
+    ],
+    "needs_review": false
+  }
+}

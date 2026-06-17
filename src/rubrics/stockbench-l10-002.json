@@ -1,0 +1,108 @@
+{
+  "id": "stockbench-l10-002",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "sell_contract",
+    "buy_contract",
+    "contracts",
+    "roll_debit_usd",
+    "fees_usd",
+    "total_cost_usd",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "sell_contract",
+    "buy_contract",
+    "contracts",
+    "roll_debit_usd",
+    "fees_usd",
+    "total_cost_usd",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "roll"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "sell_June_buy_July_CL"
+      },
+      "sell_contract": {
+        "type": "string",
+        "expected": "CL_June"
+      },
+      "buy_contract": {
+        "type": "string",
+        "expected": "CL_July"
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 4,
+        "tolerance": 0
+      },
+      "roll_debit_usd": {
+        "type": "number",
+        "expected": 2680,
+        "tolerance": 0
+      },
+      "fees_usd": {
+        "type": "number",
+        "expected": 32,
+        "tolerance": 0
+      },
+      "total_cost_usd": {
+        "type": "number",
+        "expected": 2712,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "hold_June_into_first_notice",
+          "use_mid_prices_not_executable"
+        ],
+        "min_items": 2
+      }
+    },
+    "derivation": "Roll debit = (78.87 - 78.20) * 1,000 * 4 = 2,680; fees = 4 contracts * 2 legs * 4 = 32; total = 2,712."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Futures / commodities / spreads / rolls",
+    "tier": "L10",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "futures_roll_calendar",
+    "feasibility_trap": true,
+    "objective_function": "preserve exposure and eliminate first-notice risk at minimum executable bid/ask roll cost",
+    "failure_modes": [
+      "holds into first notice",
+      "uses non-executable mid prices"
+    ],
+    "must_not": [
+      "must_not_ignore_first_notice_day",
+      "must_not_use_mid_when_bid_ask_given"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "contracts",
+      "roll_debit_usd",
+      "fees_usd",
+      "total_cost_usd",
+      "feasibility"
+    ]
+  }
+}

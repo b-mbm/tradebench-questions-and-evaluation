@@ -1,0 +1,106 @@
+{
+  "id": "stockbench-l10-004",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "es_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "es_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "sell_2_ES"
+      },
+      "es_contracts": {
+        "type": "number",
+        "expected": 2,
+        "tolerance": 0
+      },
+      "beta_reduction_usd": {
+        "type": "number",
+        "expected": 500000,
+        "tolerance": 0
+      },
+      "beta_reduction_pct": {
+        "type": "number",
+        "range": [
+          52.07,
+          52.09
+        ]
+      },
+      "margin_used": {
+        "type": "number",
+        "expected": 26000,
+        "tolerance": 0
+      },
+      "expected_cost": {
+        "type": "number",
+        "expected": 50,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "sell_1_ES_fails_target",
+          "SPY_put_package_cash_exceeded"
+        ],
+        "min_items": 2
+      }
+    },
+    "derivation": "Two ES reduce 500,000 beta dollars, or 52.08% of 960,000. Margin = 26,000 and cost = 50."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Portfolio risk / rebalancing",
+    "tier": "L10",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "multi_asset_drawdown_hedge",
+    "feasibility_trap": false,
+    "objective_function": "minimize upfront hedge cost while satisfying beta-reduction and cash/margin constraints",
+    "failure_modes": [
+      "misses beta target",
+      "chooses cash-infeasible puts"
+    ],
+    "must_not": [
+      "must_not_ignore_premium_cash_limit",
+      "must_not_miss_beta_target"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "es_contracts",
+      "beta_reduction_usd",
+      "beta_reduction_pct",
+      "margin_used",
+      "expected_cost",
+      "feasibility"
+    ]
+  }
+}

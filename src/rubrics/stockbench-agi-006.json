@@ -1,0 +1,109 @@
+{
+  "id": "stockbench-agi-006",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "spy_sell_shares",
+    "es_contracts",
+    "exposure_reduction_usd",
+    "margin_used",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "spy_sell_shares",
+    "es_contracts",
+    "exposure_reduction_usd",
+    "margin_used",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "reduce"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "sell_300_SPY_extended_hours_and_sell_1_ES"
+      },
+      "spy_sell_shares": {
+        "type": "number",
+        "expected": 300,
+        "tolerance": 0
+      },
+      "es_contracts": {
+        "type": "number",
+        "expected": 1,
+        "tolerance": 0
+      },
+      "exposure_reduction_usd": {
+        "type": "number",
+        "expected": 399850,
+        "tolerance": 0
+      },
+      "margin_used": {
+        "type": "number",
+        "expected": 13000,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "sell_1000_SPY_extended_hours_liquidity_exceeded",
+          "use_CFD_unavailable",
+          "new_SPY_short_unavailable"
+        ],
+        "min_items": 3
+      },
+      "self_check": {
+        "type": "array",
+        "expected_set": [
+          "session_constraint_checked",
+          "margin_within_limit",
+          "route_permissions_checked"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "Extended-hours SPY liquidity permits 300 shares = 149,850 exposure reduction. One ES adds 250,000 with 13,000 margin; total reduction 399,850."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Execution / liquidity / microstructure",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "invalid_route_session_trap",
+    "feasibility_trap": true,
+    "objective_function": "maximize immediate exposure reduction under frozen session/liquidity/margin constraints",
+    "failure_modes": [
+      "uses closed regular session liquidity",
+      "uses unavailable CFD",
+      "ignores futures margin"
+    ],
+    "must_not": [
+      "must_not_exceed_extended_hours_liquidity",
+      "must_not_use_unavailable_route"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "spy_sell_shares",
+      "es_contracts",
+      "exposure_reduction_usd",
+      "margin_used",
+      "feasibility"
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "id": "stockbench-l10-003",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_to_cover_shares",
+    "put_contracts",
+    "cash_used",
+    "bearish_delta_shares",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_to_cover_shares",
+    "put_contracts",
+    "cash_used",
+    "bearish_delta_shares",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "cover_recall_buy_9_puts"
+      },
+      "buy_to_cover_shares": {
+        "type": "number",
+        "expected": 900,
+        "tolerance": 0
+      },
+      "put_contracts": {
+        "type": "number",
+        "expected": 9,
+        "tolerance": 0
+      },
+      "cash_used": {
+        "type": "number",
+        "expected": 21699,
+        "tolerance": 0
+      },
+      "bearish_delta_shares": {
+        "type": "number",
+        "expected": 1050,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "skip_recall",
+          "new_short_without_locate",
+          "buy_10_puts_liquidity_exceeded"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "Cover cost = 900*22.10 + 900*0.01 = 19,899. Nine puts cost 1,800 and add 450 bearish delta shares; remaining short 600 + 450 = 1,050. Total cash used 21,699."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Shorting / borrow / margin / locates",
+    "tier": "L10",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "hard_to_borrow_margin_recall",
+    "feasibility_trap": true,
+    "objective_function": "maximize remaining bearish delta after mandatory recall cover under cash/liquidity constraints",
+    "failure_modes": [
+      "skips recall",
+      "opens new short without locate",
+      "exceeds put liquidity"
+    ],
+    "must_not": [
+      "must_not_skip_borrow_recall",
+      "must_not_open_new_short_without_locate"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "buy_to_cover_shares",
+      "put_contracts",
+      "cash_used",
+      "bearish_delta_shares",
+      "feasibility"
+    ]
+  }
+}

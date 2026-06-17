@@ -1,0 +1,107 @@
+{
+  "id": "stockbench-l10-005",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "sell_instrument",
+    "sell_shares",
+    "buy_instrument",
+    "buy_shares",
+    "settlement_date",
+    "net_settlement_cash_usd",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "sell_instrument",
+    "sell_shares",
+    "buy_instrument",
+    "buy_shares",
+    "settlement_date",
+    "net_settlement_cash_usd",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "rebalance"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "sell_XLK_buy_XLU_same_trade_date"
+      },
+      "sell_instrument": {
+        "type": "string",
+        "expected": "XLK"
+      },
+      "sell_shares": {
+        "type": "number",
+        "expected": 1000,
+        "tolerance": 0
+      },
+      "buy_instrument": {
+        "type": "string",
+        "expected": "XLU"
+      },
+      "buy_shares": {
+        "type": "number",
+        "expected": 1500,
+        "tolerance": 0
+      },
+      "settlement_date": {
+        "type": "string",
+        "expected": "2026-06-18"
+      },
+      "net_settlement_cash_usd": {
+        "type": "number",
+        "expected": 105000,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "withdraw_sale_proceeds_on_trade_date",
+          "buy_more_than_settlement_proceeds"
+        ],
+        "min_items": 2
+      }
+    },
+    "derivation": "Sell proceeds 210,000 and buy cost 105,000 settle together T+1 on 2026-06-18, leaving 105,000 settled cash."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot equities / ETFs",
+    "tier": "L10",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "etf_sector_rebalance_t_plus_one",
+    "feasibility_trap": true,
+    "objective_function": "complete paired ETF rebalance while respecting T+1 settlement cash constraints",
+    "failure_modes": [
+      "withdraws unsettled cash",
+      "creates settlement deficit"
+    ],
+    "must_not": [
+      "must_not_ignore_T_plus_1",
+      "must_not_create_cash_account_settlement_deficit"
+    ],
+    "critical_fields": [
+      "decision",
+      "chosen_strategy",
+      "sell_shares",
+      "buy_shares",
+      "settlement_date",
+      "net_settlement_cash_usd",
+      "feasibility"
+    ]
+  }
+}

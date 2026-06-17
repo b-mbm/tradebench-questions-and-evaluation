@@ -1,0 +1,165 @@
+{
+  "id": "stockbench-agi-020",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "es_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.min_reduction_met",
+    "self_check.margin_ok",
+    "self_check.lowest_cost_feasible"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "es_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "scenario_pnl.idiosyncratic_gap",
+    "worst_case_pnl",
+    "self_check.min_reduction_met",
+    "self_check.margin_ok",
+    "self_check.lowest_cost_feasible"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-020",
+    "title": "SB-AGI-020 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "hedge"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_a"
+      },
+      "es_contracts": {
+        "type": "number",
+        "expected": 3,
+        "tolerance": 0.01
+      },
+      "beta_reduction_usd": {
+        "type": "number",
+        "expected": 765000,
+        "tolerance": 0.01
+      },
+      "beta_reduction_pct": {
+        "type": "number",
+        "expected": 66.52,
+        "tolerance": 0.01
+      },
+      "margin_used": {
+        "type": "number",
+        "expected": 39000,
+        "tolerance": 0.01
+      },
+      "expected_cost": {
+        "type": "number",
+        "expected": 75,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b",
+          "route_c",
+          "route_d"
+        ],
+        "min_items": 3,
+        "match_type": "exact_set"
+      },
+      "scenario_pnl.risk_off": {
+        "type": "number",
+        "expected": -30075,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.squeeze": {
+        "type": "number",
+        "expected": 32925,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.idiosyncratic_gap": {
+        "type": "number",
+        "expected": -19075,
+        "tolerance": 0.01
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "expected": -30075,
+        "tolerance": 0.01
+      },
+      "self_check.min_reduction_met": {
+        "type": "boolean",
+        "expected": true
+      },
+      "self_check.margin_ok": {
+        "type": "boolean",
+        "expected": true
+      },
+      "self_check.lowest_cost_feasible": {
+        "type": "boolean",
+        "expected": true
+      }
+    },
+    "derivation": "Futures beta hedge: ",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Futures / commodities / spreads / rolls",
+    "tier": "AGI",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "futures_beta_hedge",
+    "feasibility_trap": true,
+    "objective_function": "objective for futures_beta_hedge",
+    "failure_modes": [
+      "uses too few contracts and misses target",
+      "treats margin as cash cost",
+      "chooses higher-cost put package",
+      "ignores margin capacity"
+    ],
+    "must_not": [
+      "must_not_miss_beta_target",
+      "must_not_ignore_margin_capacity"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "es_contracts",
+      "beta_reduction_usd",
+      "beta_reduction_pct",
+      "margin_used",
+      "expected_cost",
+      "feasibility",
+      "scenario_pnl.risk_off",
+      "scenario_pnl.squeeze",
+      "scenario_pnl.idiosyncratic_gap",
+      "worst_case_pnl",
+      "self_check.min_reduction_met",
+      "self_check.margin_ok",
+      "self_check.lowest_cost_feasible"
+    ],
+    "needs_review": false
+  }
+}

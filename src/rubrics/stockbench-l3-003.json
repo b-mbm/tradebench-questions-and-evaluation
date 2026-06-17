@@ -1,0 +1,81 @@
+{
+  "id": "stockbench-l3-003",
+  "expected_fields": [
+    "decision",
+    "quantity",
+    "price",
+    "gross_value_usd",
+    "fee_usd",
+    "cash_required_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "quantity",
+    "price",
+    "gross_value_usd",
+    "fee_usd",
+    "cash_required_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L3-003",
+    "title": "SB-L3-003 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "calculate_trade_cash"
+      },
+      "quantity": {
+        "type": "number",
+        "expected": 400,
+        "tolerance": 0.01
+      },
+      "price": {
+        "type": "number",
+        "expected": 140,
+        "tolerance": 0.01
+      },
+      "gross_value_usd": {
+        "type": "number",
+        "expected": 56000,
+        "tolerance": 0.01
+      },
+      "fee_usd": {
+        "type": "number",
+        "expected": 2,
+        "tolerance": 0.01
+      },
+      "cash_required_usd": {
+        "type": "number",
+        "expected": 56002,
+        "tolerance": 0.01
+      }
+    },
+    "derivation": "gross=400*140=56000; fee=2; cash=56002.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Portfolio risk / rebalancing",
+    "tier": "L3",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "risk_budget_rebalance",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "omits commission"
+    ],
+    "must_not": [
+      "must_not_omit_commission"
+    ],
+    "critical_fields": [
+      "decision",
+      "quantity",
+      "price",
+      "gross_value_usd",
+      "fee_usd",
+      "cash_required_usd"
+    ],
+    "needs_review": false
+  }
+}

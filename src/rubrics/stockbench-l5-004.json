@@ -1,0 +1,91 @@
+{
+  "id": "stockbench-l5-004",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "time_in_force",
+    "feasibility"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "quantity",
+    "order_type",
+    "limit_price",
+    "time_in_force",
+    "feasibility"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L5-004",
+    "title": "SB-L5-004 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "GLD"
+      },
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "quantity": {
+        "type": "number",
+        "expected": 400,
+        "tolerance": 0.01
+      },
+      "order_type": {
+        "type": "string",
+        "expected": "limit"
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 176.25,
+        "tolerance": 0.01
+      },
+      "time_in_force": {
+        "type": "string",
+        "expected": "day"
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      }
+    },
+    "derivation": "Schema mapping from the frozen instruction.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "L5",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "early_assignment_dividend_risk",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "wrong schema shape"
+    ],
+    "must_not": [
+      "must_not_use_live_market_data"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "side",
+      "quantity",
+      "order_type",
+      "limit_price",
+      "feasibility"
+    ],
+    "needs_review": false
+  }
+}

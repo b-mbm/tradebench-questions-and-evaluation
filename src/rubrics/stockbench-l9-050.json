@@ -1,0 +1,107 @@
+{
+  "id": "stockbench-l9-050",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L9-050",
+    "title": "SB-L9-050 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "XLF"
+      },
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "clip_size_shares": {
+        "type": "number",
+        "expected": 500,
+        "tolerance": 0.01
+      },
+      "filled_shares": {
+        "type": "number",
+        "expected": 94500,
+        "tolerance": 0.01
+      },
+      "average_price": {
+        "type": "number",
+        "expected": 138.11,
+        "tolerance": 0.01
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 138.3,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      }
+    },
+    "derivation": "Fill 40000@138.05 and 40000@138.10 (avg 138.07), then x@138.30 with x <= (cap*80000-11046000)/(138.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 138.11 (<= 138.11). Full-size route breaches the cap.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Execution / liquidity / microstructure",
+    "tier": "L9",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "twap_slippage_limit",
+    "feasibility_trap": true,
+    "objective_function": "objective for twap_slippage_limit",
+    "failure_modes": [
+      "takes full book and breaches the average cap",
+      "ignores clip rounding",
+      "uses last price not average"
+    ],
+    "must_not": [
+      "must_not_exceed_average_price_cap"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "side",
+      "clip_size_shares",
+      "filled_shares",
+      "average_price",
+      "limit_price",
+      "feasibility"
+    ],
+    "needs_review": false
+  }
+}
