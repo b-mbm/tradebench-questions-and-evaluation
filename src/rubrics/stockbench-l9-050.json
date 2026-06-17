@@ -52,12 +52,12 @@
       },
       "average_price": {
         "type": "number",
-        "expected": 138.11,
+        "expected": 135.11,
         "tolerance": 0.01
       },
       "limit_price": {
         "type": "number",
-        "expected": 138.3,
+        "expected": 135.3,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -73,7 +73,7 @@
         "match_type": "exact_set"
       }
     },
-    "derivation": "Fill 40000@138.05 and 40000@138.10 (avg 138.07), then x@138.30 with x <= (cap*80000-11046000)/(138.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 138.11 (<= 138.11). Full-size route breaches the cap.",
+    "derivation": "Fill 40000@135.05 and 40000@135.10 (avg 135.07), then x@135.30 with x <= (cap*80000-10806000)/(135.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 135.11 (<= 135.11). Full-size route breaches the cap.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {

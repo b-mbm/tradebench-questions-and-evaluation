@@ -3,32 +3,30 @@
   "expected_fields": [
     "decision",
     "selected_route",
-    "es_contracts",
-    "beta_reduction_usd",
-    "beta_reduction_pct",
-    "margin_used",
-    "expected_cost",
+    "contracts",
+    "roll_cost_usd",
+    "fees_usd",
+    "total_cost_usd",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
     "worst_case_pnl",
     "self_check"
   ],
   "required_fields": [
     "decision",
     "selected_route",
-    "es_contracts",
-    "beta_reduction_usd",
-    "beta_reduction_pct",
-    "margin_used",
-    "expected_cost",
+    "contracts",
+    "roll_cost_usd",
+    "fees_usd",
+    "total_cost_usd",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
     "worst_case_pnl",
     "self_check"
   ],
@@ -40,35 +38,30 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "hedge"
+        "expected": "roll"
       },
       "selected_route": {
         "type": "string",
         "expected": "route_a"
       },
-      "es_contracts": {
+      "contracts": {
         "type": "number",
-        "expected": 2,
+        "expected": 6,
         "tolerance": 0.01
       },
-      "beta_reduction_usd": {
+      "roll_cost_usd": {
         "type": "number",
-        "expected": 522500,
+        "expected": 2400,
         "tolerance": 0.01
       },
-      "beta_reduction_pct": {
+      "fees_usd": {
         "type": "number",
-        "expected": 61.47,
+        "expected": 48,
         "tolerance": 0.01
       },
-      "margin_used": {
+      "total_cost_usd": {
         "type": "number",
-        "expected": 26000,
-        "tolerance": 0.01
-      },
-      "expected_cost": {
-        "type": "number",
-        "expected": 50,
+        "expected": 2448,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -79,67 +72,64 @@
         "type": "array",
         "expected_set": [
           "route_b",
-          "route_c",
-          "route_d"
+          "route_c"
         ],
-        "min_items": 3,
+        "min_items": 2,
         "match_type": "exact_set"
       },
-      "scenario_pnl.risk_off": {
+      "scenario_pnl.rate_shock": {
         "type": "number",
-        "expected": -30050,
+        "expected": -124448,
         "tolerance": 0.01
       },
-      "scenario_pnl.squeeze": {
+      "scenario_pnl.vol_spike": {
         "type": "number",
-        "expected": 28950,
+        "expected": 40552,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
+      "scenario_pnl.credit_widening": {
         "type": "number",
-        "expected": -13050,
+        "expected": -73448,
         "tolerance": 0.01
       },
       "worst_case_pnl": {
         "type": "number",
-        "expected": -30050,
+        "expected": -124448,
         "tolerance": 0.01
       },
       "self_check": {}
     },
-    "derivation": "Needed reduction = 850000*0.45 = 382500; ES per contract hedges 261250; ceil = 2 contracts -> reduction 522500 (61.47%), margin 26000 (<= 33000), cost 50. Route B (1) misses target; Route C costs 19000 > 50; extra-ES route busts margin.",
+    "derivation": "Roll cost = (74.4 - 74) * 1000 * 6 = 2400; fees = 48; total = 2448. Mid-price route not executable; holding into first notice violates policy.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Portfolio risk / rebalancing",
+    "primary_domain": "Futures / commodities / spreads / rolls",
     "tier": "AGI",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "cross_asset_var_liquidity_triage",
-    "feasibility_trap": false,
-    "objective_function": "objective for cross_asset_var_liquidity_triage",
+    "scenario_family": "commodity_roll_basis_hedge",
+    "feasibility_trap": true,
+    "objective_function": "objective for commodity_roll_basis_hedge",
     "failure_modes": [
-      "uses too few contracts and misses target",
-      "treats margin as cash cost",
-      "chooses higher-cost put package",
-      "ignores margin capacity"
+      "uses mid prices",
+      "holds into first notice",
+      "omits fees"
     ],
     "must_not": [
-      "must_not_miss_beta_target",
-      "must_not_ignore_margin_capacity"
+      "must_not_use_mid_when_bid_ask_given",
+      "must_not_hold_deliverable_into_first_notice"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
-      "es_contracts",
-      "beta_reduction_usd",
-      "beta_reduction_pct",
-      "margin_used",
-      "expected_cost",
+      "contracts",
+      "roll_cost_usd",
+      "fees_usd",
+      "total_cost_usd",
       "feasibility",
-      "scenario_pnl.risk_off",
-      "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
+      "scenario_pnl.rate_shock",
+      "scenario_pnl.vol_spike",
+      "scenario_pnl.credit_widening",
       "worst_case_pnl"
     ],
     "needs_review": false

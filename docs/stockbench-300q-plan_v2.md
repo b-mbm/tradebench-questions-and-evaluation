@@ -101,19 +101,27 @@ The anchor set should be a miniature hard-tail eval, not a warmup set.
 
 Before writing all 300 questions, fill the domain x tier matrix. This prevents accidental holes such as no AGI futures-spread questions or no L9 FX questions.
 
-Initial 300Q target matrix:
+> **Amendment 2026-06-16 (AGI reallocation).** After the multi-reviewer audit (Codex + Perplexity)
+> found that ~38% of AGI rows were feasibility/conversion route-screening rather than autonomous
+> strategy synthesis, the AGI tail was reallocated to concentrate in genuine-synthesis domains
+> (options/futures/portfolio/shorting = 98/110 AGI) while the demoted feasibility/conversion content
+> moved into L9/L10 of the same domain. **Per-tier totals (15/25/81/69/110) and every per-domain
+> total are unchanged**; only the within-domain bucket split changed. The matrix below is the current
+> (post-amendment) target, enforced by `audit-stockbench-freeze-candidate.ts`.
+
+Current 300Q target matrix (post-amendment):
 
 | Primary Domain | L1-L4 | L5-L8 | L9 | L10 | AGI | Total |
 |---|---:|---:|---:|---:|---:|---:|
-| Spot equities / ETFs | 4 | 4 | 5 | 3 | 4 | 20 |
-| Shorting / borrow / margin / locates | 1 | 3 | 8 | 8 | 15 | 35 |
-| Listed options strategy / Greeks | 2 | 4 | 15 | 13 | 21 | 55 |
-| Futures / commodities / spreads / rolls | 2 | 4 | 14 | 12 | 18 | 50 |
-| Spot FX / CFDs / multi-currency | 2 | 3 | 8 | 6 | 11 | 30 |
-| Portfolio risk / rebalancing | 1 | 2 | 10 | 10 | 17 | 40 |
-| Execution / liquidity / microstructure | 2 | 3 | 10 | 8 | 12 | 35 |
-| Corporate actions / settlement / calendar / jurisdiction | 1 | 2 | 6 | 5 | 6 | 20 |
-| Feasibility / rejection / no-trade traps | 0 | 0 | 5 | 4 | 6 | 15 |
+| Spot equities / ETFs | 4 | 4 | 6 | 6 | 0 | 20 |
+| Shorting / borrow / margin / locates | 1 | 3 | 6 | 6 | 19 | 35 |
+| Listed options strategy / Greeks | 2 | 4 | 10 | 9 | 30 | 55 |
+| Futures / commodities / spreads / rolls | 2 | 4 | 10 | 8 | 26 | 50 |
+| Spot FX / CFDs / multi-currency | 2 | 3 | 12 | 11 | 2 | 30 |
+| Portfolio risk / rebalancing | 1 | 2 | 8 | 6 | 23 | 40 |
+| Execution / liquidity / microstructure | 2 | 3 | 14 | 12 | 4 | 35 |
+| Corporate actions / settlement / calendar / jurisdiction | 1 | 2 | 8 | 7 | 2 | 20 |
+| Feasibility / rejection / no-trade traps | 0 | 0 | 7 | 4 | 4 | 15 |
 | Total | 15 | 25 | 81 | 69 | 110 | 300 |
 
 Anchor domain mix:

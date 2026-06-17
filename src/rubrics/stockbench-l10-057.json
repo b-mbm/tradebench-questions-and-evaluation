@@ -2,24 +2,18 @@
   "id": "stockbench-l10-057",
   "expected_fields": [
     "decision",
+    "selected_route",
     "instrument",
-    "side",
-    "clip_size_shares",
-    "filled_shares",
-    "average_price",
-    "limit_price",
+    "requested_shares",
     "feasibility",
     "rejected_routes",
     "residual_check"
   ],
   "required_fields": [
     "decision",
+    "selected_route",
     "instrument",
-    "side",
-    "clip_size_shares",
-    "filled_shares",
-    "average_price",
-    "limit_price",
+    "requested_shares",
     "feasibility",
     "rejected_routes",
     "residual_check"
@@ -32,46 +26,33 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "trade"
+        "expected": "no_trade"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "none"
       },
       "instrument": {
         "type": "string",
         "expected": "TSLA"
       },
-      "side": {
-        "type": "string",
-        "expected": "buy"
-      },
-      "clip_size_shares": {
+      "requested_shares": {
         "type": "number",
         "expected": 500,
         "tolerance": 0.01
       },
-      "filled_shares": {
-        "type": "number",
-        "expected": 94500,
-        "tolerance": 0.01
-      },
-      "average_price": {
-        "type": "number",
-        "expected": 136.11,
-        "tolerance": 0.01
-      },
-      "limit_price": {
-        "type": "number",
-        "expected": 136.3,
-        "tolerance": 0.01
-      },
       "feasibility": {
         "type": "string",
-        "expected": "feasible"
+        "expected": "infeasible"
       },
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_b"
+          "route_a",
+          "route_b",
+          "route_c"
         ],
-        "min_items": 1,
+        "min_items": 3,
         "match_type": "exact_set"
       },
       "residual_check": {
@@ -79,33 +60,29 @@
         "expected": "recomputed"
       }
     },
-    "derivation": "Fill 40000@136.05 and 40000@136.10 (avg 136.07), then x@136.30 with x <= (cap*80000-10886000)/(136.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 136.11 (<= 136.11). Full-size route breaches the cap.",
+    "derivation": "CFD unavailable, cash-account short not allowed, futures not approved, session closed -> every route infeasible -> no_trade.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Execution / liquidity / microstructure",
+    "primary_domain": "Feasibility / rejection / no-trade traps",
     "tier": "L10",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "order_book_liquidity_limit",
+    "scenario_family": "no_trade_invalid_route",
     "feasibility_trap": true,
-    "objective_function": "objective for order_book_liquidity_limit",
+    "objective_function": "objective for no_trade_invalid_route",
     "failure_modes": [
-      "takes full book and breaches the average cap",
-      "ignores clip rounding",
-      "uses last price not average"
+      "forces a trade on an invalid route"
     ],
     "must_not": [
-      "must_not_exceed_average_price_cap"
+      "must_not_use_unavailable_route",
+      "must_not_short_in_cash_account"
     ],
     "critical_fields": [
       "decision",
+      "selected_route",
       "instrument",
-      "side",
-      "clip_size_shares",
-      "filled_shares",
-      "average_price",
-      "limit_price",
+      "requested_shares",
       "feasibility"
     ],
     "needs_review": false

@@ -4,10 +4,9 @@
     "decision",
     "selected_route",
     "instrument",
-    "short_shares",
+    "buy_to_cover_shares",
     "put_contracts",
     "premium_paid",
-    "bearish_delta_shares",
     "feasibility",
     "rejected_routes"
   ],
@@ -15,10 +14,9 @@
     "decision",
     "selected_route",
     "instrument",
-    "short_shares",
+    "buy_to_cover_shares",
     "put_contracts",
     "premium_paid",
-    "bearish_delta_shares",
     "feasibility",
     "rejected_routes"
   ],
@@ -40,24 +38,19 @@
         "type": "string",
         "expected": "TSLA"
       },
-      "short_shares": {
+      "buy_to_cover_shares": {
         "type": "number",
-        "expected": 600,
+        "expected": 500,
         "tolerance": 0.01
       },
       "put_contracts": {
         "type": "number",
-        "expected": 3,
+        "expected": 5,
         "tolerance": 0.01
       },
       "premium_paid": {
         "type": "number",
-        "expected": 2400,
-        "tolerance": 0.01
-      },
-      "bearish_delta_shares": {
-        "type": "number",
-        "expected": 705,
+        "expected": 4000,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -74,34 +67,32 @@
         "match_type": "exact_set"
       }
     },
-    "derivation": "Short 600 located shares + 3 puts * 35 delta-shares = 705; premium = 3*8*100 = 2400 (<= 2400). Route B shorts beyond locate; Route C exceeds option cash.",
+    "derivation": "Recall forces buy-to-cover 500; replace with 5 puts, premium 4000. Ignoring recall is not permitted; new short has no locate.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Shorting / borrow / margin / locates",
+    "primary_domain": "Feasibility / rejection / no-trade traps",
     "tier": "L9",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "borrow_cost_vs_trade_edge",
+    "scenario_family": "borrow_recall_margin_hedge",
     "feasibility_trap": true,
-    "objective_function": "objective for borrow_cost_vs_trade_edge",
+    "objective_function": "objective for borrow_recall_margin_hedge",
     "failure_modes": [
-      "shorts beyond locate",
-      "exceeds option cash",
-      "misses option delta multiplier"
+      "ignores recall",
+      "shorts without locate"
     ],
     "must_not": [
-      "must_not_short_more_than_locate",
-      "must_not_exceed_option_cash"
+      "must_not_ignore_borrow_recall",
+      "must_not_short_without_locate"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
       "instrument",
-      "short_shares",
+      "buy_to_cover_shares",
       "put_contracts",
       "premium_paid",
-      "bearish_delta_shares",
       "feasibility"
     ],
     "needs_review": false

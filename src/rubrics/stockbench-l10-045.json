@@ -82,17 +82,17 @@
         "expected": "recomputed"
       }
     },
-    "derivation": "Futures beta hedge: ",
+    "derivation": "Needed reduction = 1200000*0.5 = 600000; ES per contract hedges 257500; ceil = 3 contracts -> reduction 772500 (64.38%), margin 39000 (<= 46000), cost 75. Route B (2) misses target; Route C costs 20000 > 75; extra-ES route busts margin.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Futures / commodities / spreads / rolls",
+    "primary_domain": "Portfolio risk / rebalancing",
     "tier": "L10",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "futures_beta_hedge",
+    "scenario_family": "beta_dollar_rebalance",
     "feasibility_trap": true,
-    "objective_function": "objective for futures_beta_hedge",
+    "objective_function": "objective for beta_dollar_rebalance",
     "failure_modes": [
       "uses too few contracts and misses target",
       "treats margin as cash cost",

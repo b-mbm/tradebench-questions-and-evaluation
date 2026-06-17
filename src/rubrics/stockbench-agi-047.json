@@ -2,33 +2,29 @@
   "id": "stockbench-agi-047",
   "expected_fields": [
     "decision",
-    "instrument",
-    "side",
-    "clip_size_shares",
-    "filled_shares",
-    "average_price",
-    "limit_price",
+    "selected_route",
+    "spread_count",
+    "expected_carry_usd",
+    "margin_used",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
     "worst_case_pnl",
     "self_check"
   ],
   "required_fields": [
     "decision",
-    "instrument",
-    "side",
-    "clip_size_shares",
-    "filled_shares",
-    "average_price",
-    "limit_price",
+    "selected_route",
+    "spread_count",
+    "expected_carry_usd",
+    "margin_used",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
     "worst_case_pnl",
     "self_check"
   ],
@@ -42,32 +38,23 @@
         "type": "string",
         "expected": "trade"
       },
-      "instrument": {
+      "selected_route": {
         "type": "string",
-        "expected": "MSFT"
+        "expected": "route_a"
       },
-      "side": {
-        "type": "string",
-        "expected": "buy"
-      },
-      "clip_size_shares": {
+      "spread_count": {
         "type": "number",
-        "expected": 500,
+        "expected": 7,
         "tolerance": 0.01
       },
-      "filled_shares": {
+      "expected_carry_usd": {
         "type": "number",
-        "expected": 94500,
+        "expected": 1700,
         "tolerance": 0.01
       },
-      "average_price": {
+      "margin_used": {
         "type": "number",
-        "expected": 134.11,
-        "tolerance": 0.01
-      },
-      "limit_price": {
-        "type": "number",
-        "expected": 134.3,
+        "expected": 10500,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -77,64 +64,63 @@
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_b"
+          "route_b",
+          "route_c"
         ],
-        "min_items": 1,
+        "min_items": 2,
         "match_type": "exact_set"
       },
-      "scenario_pnl.risk_off": {
+      "scenario_pnl.rate_shock": {
         "type": "number",
-        "expected": -140000,
+        "expected": -132000,
         "tolerance": 0.01
       },
-      "scenario_pnl.squeeze": {
+      "scenario_pnl.vol_spike": {
         "type": "number",
-        "expected": 56000,
+        "expected": 54000,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
+      "scenario_pnl.credit_widening": {
         "type": "number",
-        "expected": -76000,
+        "expected": -71000,
         "tolerance": 0.01
       },
       "worst_case_pnl": {
         "type": "number",
-        "expected": -140000,
+        "expected": -132000,
         "tolerance": 0.01
       },
       "self_check": {}
     },
-    "derivation": "Fill 40000@134.05 and 40000@134.10 (avg 134.07), then x@134.30 with x <= (cap*80000-10726000)/(134.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 134.11 (<= 134.11). Full-size route breaches the cap.",
+    "derivation": "Outright SPAN margin 24000 > cap 12000 (infeasible). Calendar spread margin 10500 <= cap, carry 1700. Flat earns 0. Best feasible = calendar spread.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Execution / liquidity / microstructure",
+    "primary_domain": "Futures / commodities / spreads / rolls",
     "tier": "AGI",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "twap_slippage_limit",
-    "feasibility_trap": true,
-    "objective_function": "objective for twap_slippage_limit",
+    "scenario_family": "span_margin_calendar_spread",
+    "feasibility_trap": false,
+    "objective_function": "objective for span_margin_calendar_spread",
     "failure_modes": [
-      "takes full book and breaches the average cap",
-      "ignores clip rounding",
-      "uses last price not average"
+      "picks outright that busts SPAN margin",
+      "stays flat despite feasible carry"
     ],
     "must_not": [
-      "must_not_exceed_average_price_cap"
+      "must_not_exceed_span_margin",
+      "must_not_select_infeasible_route"
     ],
     "critical_fields": [
       "decision",
-      "instrument",
-      "side",
-      "clip_size_shares",
-      "filled_shares",
-      "average_price",
-      "limit_price",
+      "selected_route",
+      "spread_count",
+      "expected_carry_usd",
+      "margin_used",
       "feasibility",
-      "scenario_pnl.risk_off",
-      "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
+      "scenario_pnl.rate_shock",
+      "scenario_pnl.vol_spike",
+      "scenario_pnl.credit_widening",
       "worst_case_pnl"
     ],
     "needs_review": false

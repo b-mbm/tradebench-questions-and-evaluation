@@ -9,9 +9,10 @@
     "total_cost_usd",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
@@ -24,9 +25,10 @@
     "total_cost_usd",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
@@ -46,22 +48,22 @@
       },
       "contracts": {
         "type": "number",
-        "expected": 4,
+        "expected": 6,
         "tolerance": 0.01
       },
       "roll_cost_usd": {
         "type": "number",
-        "expected": 2200,
+        "expected": 2700,
         "tolerance": 0.01
       },
       "fees_usd": {
         "type": "number",
-        "expected": 32,
+        "expected": 48,
         "tolerance": 0.01
       },
       "total_cost_usd": {
         "type": "number",
-        "expected": 2232,
+        "expected": 2748,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -77,29 +79,34 @@
         "min_items": 2,
         "match_type": "exact_set"
       },
-      "scenario_pnl.risk_off": {
+      "scenario_pnl.gap_down": {
         "type": "number",
-        "expected": -129232,
+        "expected": -129748,
         "tolerance": 0.01
       },
-      "scenario_pnl.squeeze": {
+      "scenario_pnl.melt_up": {
         "type": "number",
-        "expected": 44768,
+        "expected": 44252,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
+      "scenario_pnl.range_chop": {
         "type": "number",
-        "expected": -70232,
+        "expected": -70748,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.sector_rotation": {
+        "type": "number",
+        "expected": -62248,
         "tolerance": 0.01
       },
       "worst_case_pnl": {
         "type": "number",
-        "expected": -129232,
+        "expected": -129748,
         "tolerance": 0.01
       },
       "self_check": {}
     },
-    "derivation": "Roll cost = (80.55 - 80) * 1000 * 4 = 2200; fees = 32; total = 2232. Mid-price route not executable; holding into first notice violates policy.",
+    "derivation": "Roll cost = (80.45 - 80) * 1000 * 6 = 2700; fees = 48; total = 2748. Mid-price route not executable; holding into first notice violates policy.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
@@ -127,9 +134,10 @@
       "fees_usd",
       "total_cost_usd",
       "feasibility",
-      "scenario_pnl.risk_off",
-      "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
+      "scenario_pnl.gap_down",
+      "scenario_pnl.melt_up",
+      "scenario_pnl.range_chop",
+      "scenario_pnl.sector_rotation",
       "worst_case_pnl"
     ],
     "needs_review": false

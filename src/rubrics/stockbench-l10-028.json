@@ -2,24 +2,24 @@
   "id": "stockbench-l10-028",
   "expected_fields": [
     "decision",
-    "instrument",
-    "side",
-    "clip_size_shares",
-    "filled_shares",
-    "average_price",
-    "limit_price",
+    "selected_route",
+    "es_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
     "feasibility",
     "rejected_routes",
     "residual_check"
   ],
   "required_fields": [
     "decision",
-    "instrument",
-    "side",
-    "clip_size_shares",
-    "filled_shares",
-    "average_price",
-    "limit_price",
+    "selected_route",
+    "es_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
     "feasibility",
     "rejected_routes",
     "residual_check"
@@ -32,34 +32,35 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "trade"
+        "expected": "hedge"
       },
-      "instrument": {
+      "selected_route": {
         "type": "string",
-        "expected": "XLK"
+        "expected": "route_a"
       },
-      "side": {
-        "type": "string",
-        "expected": "buy"
-      },
-      "clip_size_shares": {
+      "es_contracts": {
         "type": "number",
-        "expected": 500,
+        "expected": 2,
         "tolerance": 0.01
       },
-      "filled_shares": {
+      "beta_reduction_usd": {
         "type": "number",
-        "expected": 94500,
+        "expected": 500000,
         "tolerance": 0.01
       },
-      "average_price": {
+      "beta_reduction_pct": {
         "type": "number",
-        "expected": 137.11,
+        "expected": 62.5,
         "tolerance": 0.01
       },
-      "limit_price": {
+      "margin_used": {
         "type": "number",
-        "expected": 137.3,
+        "expected": 26000,
+        "tolerance": 0.01
+      },
+      "expected_cost": {
+        "type": "number",
+        "expected": 50,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -69,9 +70,11 @@
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_b"
+          "route_b",
+          "route_c",
+          "route_d"
         ],
-        "min_items": 1,
+        "min_items": 3,
         "match_type": "exact_set"
       },
       "residual_check": {
@@ -79,33 +82,35 @@
         "expected": "recomputed"
       }
     },
-    "derivation": "Fill 40000@137.05 and 40000@137.10 (avg 137.07), then x@137.30 with x <= (cap*80000-10966000)/(137.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 137.11 (<= 137.11). Full-size route breaches the cap.",
+    "derivation": "Needed reduction = 800000*0.4 = 320000; ES per contract hedges 250000; ceil = 2 contracts -> reduction 500000 (62.5%), margin 26000 (<= 33000), cost 50. Route B (1) misses target; Route C costs 19000 > 50; extra-ES route busts margin.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Execution / liquidity / microstructure",
+    "primary_domain": "Portfolio risk / rebalancing",
     "tier": "L10",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "twap_slippage_limit",
-    "feasibility_trap": true,
-    "objective_function": "objective for twap_slippage_limit",
+    "scenario_family": "risk_budget_rebalance",
+    "feasibility_trap": false,
+    "objective_function": "objective for risk_budget_rebalance",
     "failure_modes": [
-      "takes full book and breaches the average cap",
-      "ignores clip rounding",
-      "uses last price not average"
+      "uses too few contracts and misses target",
+      "treats margin as cash cost",
+      "chooses higher-cost put package",
+      "ignores margin capacity"
     ],
     "must_not": [
-      "must_not_exceed_average_price_cap"
+      "must_not_miss_beta_target",
+      "must_not_ignore_margin_capacity"
     ],
     "critical_fields": [
       "decision",
-      "instrument",
-      "side",
-      "clip_size_shares",
-      "filled_shares",
-      "average_price",
-      "limit_price",
+      "selected_route",
+      "es_contracts",
+      "beta_reduction_usd",
+      "beta_reduction_pct",
+      "margin_used",
+      "expected_cost",
       "feasibility"
     ],
     "needs_review": false

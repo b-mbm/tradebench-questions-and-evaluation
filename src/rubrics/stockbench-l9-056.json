@@ -36,22 +36,22 @@
       },
       "contracts": {
         "type": "number",
-        "expected": 6,
+        "expected": 5,
         "tolerance": 0.01
       },
       "roll_cost_usd": {
         "type": "number",
-        "expected": 3000,
+        "expected": 1750,
         "tolerance": 0.01
       },
       "fees_usd": {
         "type": "number",
-        "expected": 48,
+        "expected": 40,
         "tolerance": 0.01
       },
       "total_cost_usd": {
         "type": "number",
-        "expected": 3048,
+        "expected": 1790,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -68,7 +68,7 @@
         "match_type": "exact_set"
       }
     },
-    "derivation": "Roll cost = (83.5 - 83) * 1000 * 6 = 3000; fees = 48; total = 3048. Mid-price route not executable; holding into first notice violates policy.",
+    "derivation": "Roll cost = (83.35 - 83) * 1000 * 5 = 1750; fees = 40; total = 1790. Mid-price route not executable; holding into first notice violates policy.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {

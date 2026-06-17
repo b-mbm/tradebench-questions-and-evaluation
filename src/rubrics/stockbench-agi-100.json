@@ -2,29 +2,31 @@
   "id": "stockbench-agi-100",
   "expected_fields": [
     "decision",
-    "selected_route",
-    "adjusted_stop_price",
-    "option_strike_adjusted",
-    "option_strike_after",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
     "feasibility",
     "rejected_routes",
     "scenario_pnl.risk_off",
     "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
     "self_check"
   ],
   "required_fields": [
     "decision",
-    "selected_route",
-    "adjusted_stop_price",
-    "option_strike_adjusted",
-    "option_strike_after",
+    "instrument",
+    "side",
+    "clip_size_shares",
+    "filled_shares",
+    "average_price",
+    "limit_price",
     "feasibility",
     "rejected_routes",
     "scenario_pnl.risk_off",
     "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
     "self_check"
   ],
@@ -36,24 +38,34 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "adjust_order_for_ex_dividend"
+        "expected": "trade"
       },
-      "selected_route": {
+      "instrument": {
         "type": "string",
-        "expected": "route_a"
+        "expected": "XLK"
       },
-      "adjusted_stop_price": {
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "clip_size_shares": {
         "type": "number",
-        "expected": 264.35,
+        "expected": 500,
         "tolerance": 0.01
       },
-      "option_strike_adjusted": {
-        "type": "boolean",
-        "expected": false
-      },
-      "option_strike_after": {
+      "filled_shares": {
         "type": "number",
-        "expected": 270,
+        "expected": 94500,
+        "tolerance": 0.01
+      },
+      "average_price": {
+        "type": "number",
+        "expected": 122.11,
+        "tolerance": 0.01
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 122.3,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -63,10 +75,9 @@
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_b",
-          "route_c"
+          "route_b"
         ],
-        "min_items": 2,
+        "min_items": 1,
         "match_type": "exact_set"
       },
       "scenario_pnl.risk_off": {
@@ -79,11 +90,6 @@
         "expected": 48000,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
-        "type": "number",
-        "expected": -79000,
-        "tolerance": 0.01
-      },
       "worst_case_pnl": {
         "type": "number",
         "expected": -135000,
@@ -91,34 +97,36 @@
       },
       "self_check": {}
     },
-    "derivation": "Adjusted stop = 265 - 0.65 = 264.35; ordinary dividend does not adjust the option strike (stays 270).",
+    "derivation": "Fill 40000@122.05 and 40000@122.10 (avg 122.08), then x@122.30 with x <= (cap*80000-9766000)/(122.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 122.11 (<= 122.11). Full-size route breaches the cap.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Corporate actions / settlement / calendar / jurisdiction",
+    "primary_domain": "Execution / liquidity / microstructure",
     "tier": "AGI",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "ex_dividend_adjustment",
+    "scenario_family": "order_book_liquidity_limit",
     "feasibility_trap": true,
-    "objective_function": "objective for ex_dividend_adjustment",
+    "objective_function": "objective for order_book_liquidity_limit",
     "failure_modes": [
-      "leaves stop unadjusted",
-      "adjusts option strike for ordinary dividend"
+      "takes full book and breaches the average cap",
+      "ignores clip rounding",
+      "uses last price not average"
     ],
     "must_not": [
-      "must_not_treat_ordinary_dividend_as_strike_adjustment"
+      "must_not_exceed_average_price_cap"
     ],
     "critical_fields": [
       "decision",
-      "selected_route",
-      "adjusted_stop_price",
-      "option_strike_adjusted",
-      "option_strike_after",
+      "instrument",
+      "side",
+      "clip_size_shares",
+      "filled_shares",
+      "average_price",
+      "limit_price",
       "feasibility",
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
       "worst_case_pnl"
     ],
     "needs_review": false

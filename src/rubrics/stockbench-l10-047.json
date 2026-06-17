@@ -4,10 +4,9 @@
     "decision",
     "selected_route",
     "instrument",
-    "short_shares",
-    "put_contracts",
-    "premium_paid",
-    "bearish_delta_shares",
+    "order_shares",
+    "limit_price",
+    "venue",
     "feasibility",
     "rejected_routes",
     "residual_check"
@@ -16,10 +15,9 @@
     "decision",
     "selected_route",
     "instrument",
-    "short_shares",
-    "put_contracts",
-    "premium_paid",
-    "bearish_delta_shares",
+    "order_shares",
+    "limit_price",
+    "venue",
     "feasibility",
     "rejected_routes",
     "residual_check"
@@ -42,25 +40,19 @@
         "type": "string",
         "expected": "TSLA"
       },
-      "short_shares": {
+      "order_shares": {
         "type": "number",
-        "expected": 400,
+        "expected": 200,
         "tolerance": 0.01
       },
-      "put_contracts": {
+      "limit_price": {
         "type": "number",
-        "expected": 2,
+        "expected": 101.25,
         "tolerance": 0.01
       },
-      "premium_paid": {
-        "type": "number",
-        "expected": 1600,
-        "tolerance": 0.01
-      },
-      "bearish_delta_shares": {
-        "type": "number",
-        "expected": 470,
-        "tolerance": 0.01
+      "venue": {
+        "type": "string",
+        "expected": "regular_session"
       },
       "feasibility": {
         "type": "string",
@@ -80,34 +72,30 @@
         "expected": "recomputed"
       }
     },
-    "derivation": "Short 400 located shares + 2 puts * 35 delta-shares = 470; premium = 2*8*100 = 1600 (<= 1600). Route B shorts beyond locate; Route C exceeds option cash.",
+    "derivation": "Only the open, permitted regular session is executable. After-hours is closed; dark venue not enabled.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Shorting / borrow / margin / locates",
+    "primary_domain": "Execution / liquidity / microstructure",
     "tier": "L10",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "hard_to_borrow_margin_recall",
+    "scenario_family": "auction_session_constraint",
     "feasibility_trap": true,
-    "objective_function": "objective for hard_to_borrow_margin_recall",
+    "objective_function": "objective for auction_session_constraint",
     "failure_modes": [
-      "shorts beyond locate",
-      "exceeds option cash",
-      "misses option delta multiplier"
+      "routes to a closed/unpermitted venue"
     ],
     "must_not": [
-      "must_not_short_more_than_locate",
-      "must_not_exceed_option_cash"
+      "must_not_route_to_unpermitted_venue"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
       "instrument",
-      "short_shares",
-      "put_contracts",
-      "premium_paid",
-      "bearish_delta_shares",
+      "order_shares",
+      "limit_price",
+      "venue",
       "feasibility"
     ],
     "needs_review": false

@@ -10,7 +10,6 @@
     "rejected_routes",
     "scenario_pnl.risk_off",
     "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
     "self_check"
   ],
@@ -24,7 +23,6 @@
     "rejected_routes",
     "scenario_pnl.risk_off",
     "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
     "self_check"
   ],
@@ -44,12 +42,12 @@
       },
       "eur_amount": {
         "type": "number",
-        "expected": 375000,
+        "expected": 300000,
         "tolerance": 0.01
       },
       "usd_cost": {
         "type": "number",
-        "expected": 401250,
+        "expected": 321000,
         "tolerance": 0.01
       },
       "settlement_date_rule": {
@@ -79,11 +77,6 @@
         "expected": 52000,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
-        "type": "number",
-        "expected": -73000,
-        "tolerance": 0.01
-      },
       "worst_case_pnl": {
         "type": "number",
         "expected": -135000,
@@ -91,7 +84,7 @@
       },
       "self_check": {}
     },
-    "derivation": "Spot route USD cost = 375000 * 1.07 = 401250, settles T+2 (feasible). CFD unavailable to US retail; futures margin 2750 > 2000.",
+    "derivation": "Spot route USD cost = 300000 * 1.07 = 321000, settles T+2 (feasible). CFD unavailable to US retail; futures margin 2750 > 2000.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
@@ -121,7 +114,6 @@
       "feasibility",
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
       "worst_case_pnl"
     ],
     "needs_review": false

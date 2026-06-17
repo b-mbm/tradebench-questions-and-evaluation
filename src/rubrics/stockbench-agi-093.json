@@ -4,18 +4,15 @@
     "decision",
     "selected_route",
     "instrument",
-    "side",
-    "quantity",
-    "order_type",
+    "order_shares",
     "limit_price",
-    "trade_value_usd",
-    "settlement_rule",
-    "settlement_cash_date",
+    "venue",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
@@ -23,18 +20,15 @@
     "decision",
     "selected_route",
     "instrument",
-    "side",
-    "quantity",
-    "order_type",
+    "order_shares",
     "limit_price",
-    "trade_value_usd",
-    "settlement_rule",
-    "settlement_cash_date",
+    "venue",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
@@ -56,36 +50,19 @@
         "type": "string",
         "expected": "SPY"
       },
-      "side": {
-        "type": "string",
-        "expected": "buy"
-      },
-      "quantity": {
+      "order_shares": {
         "type": "number",
         "expected": 900,
         "tolerance": 0.01
       },
-      "order_type": {
-        "type": "string",
-        "expected": "limit"
-      },
       "limit_price": {
         "type": "number",
-        "expected": 80.25,
+        "expected": 66.25,
         "tolerance": 0.01
       },
-      "trade_value_usd": {
-        "type": "number",
-        "expected": 72000,
-        "tolerance": 0.01
-      },
-      "settlement_rule": {
+      "venue": {
         "type": "string",
-        "expected": "T+1"
-      },
-      "settlement_cash_date": {
-        "type": "string",
-        "expected": "2026-06-16"
+        "expected": "regular_session"
       },
       "feasibility": {
         "type": "string",
@@ -94,24 +71,30 @@
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_b"
+          "route_b",
+          "route_c"
         ],
-        "min_items": 1,
+        "min_items": 2,
         "match_type": "exact_set"
       },
-      "scenario_pnl.risk_off": {
+      "scenario_pnl.gap_down": {
         "type": "number",
         "expected": -130000,
         "tolerance": 0.01
       },
-      "scenario_pnl.squeeze": {
+      "scenario_pnl.melt_up": {
         "type": "number",
         "expected": 40000,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
+      "scenario_pnl.range_chop": {
         "type": "number",
         "expected": -70000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.sector_rotation": {
+        "type": "number",
+        "expected": -62000,
         "tolerance": 0.01
       },
       "worst_case_pnl": {
@@ -121,39 +104,35 @@
       },
       "self_check": {}
     },
-    "derivation": "Limit buy 900 @ 80.25; trade value = 900*80 = 72000; T+1 cash on 2026-06-16. Market route ignores the protective limit.",
+    "derivation": "Only the open, permitted regular session is executable. After-hours is closed; dark venue not enabled.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Spot equities / ETFs",
+    "primary_domain": "Execution / liquidity / microstructure",
     "tier": "AGI",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "etf_sector_rebalance_t_plus_one",
-    "feasibility_trap": false,
-    "objective_function": "objective for etf_sector_rebalance_t_plus_one",
+    "scenario_family": "invalid_route_session_trap",
+    "feasibility_trap": true,
+    "objective_function": "objective for invalid_route_session_trap",
     "failure_modes": [
-      "ignores protective limit",
-      "wrong T+1 date"
+      "routes to a closed/unpermitted venue"
     ],
     "must_not": [
-      "must_not_ignore_protective_limit"
+      "must_not_route_to_unpermitted_venue"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
       "instrument",
-      "side",
-      "quantity",
-      "order_type",
+      "order_shares",
       "limit_price",
-      "trade_value_usd",
-      "settlement_rule",
-      "settlement_cash_date",
+      "venue",
       "feasibility",
-      "scenario_pnl.risk_off",
-      "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
+      "scenario_pnl.gap_down",
+      "scenario_pnl.melt_up",
+      "scenario_pnl.range_chop",
+      "scenario_pnl.sector_rotation",
       "worst_case_pnl"
     ],
     "needs_review": false

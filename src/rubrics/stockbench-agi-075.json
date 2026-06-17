@@ -3,30 +3,30 @@
   "expected_fields": [
     "decision",
     "selected_route",
-    "instrument",
-    "quantity",
-    "limit_price",
-    "venue",
+    "spread_count",
+    "expected_carry_usd",
+    "margin_used",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
   "required_fields": [
     "decision",
     "selected_route",
-    "instrument",
-    "quantity",
-    "limit_price",
-    "venue",
+    "spread_count",
+    "expected_carry_usd",
+    "margin_used",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
@@ -44,23 +44,20 @@
         "type": "string",
         "expected": "route_a"
       },
-      "instrument": {
-        "type": "string",
-        "expected": "IWM"
-      },
-      "quantity": {
+      "spread_count": {
         "type": "number",
-        "expected": 900,
+        "expected": 5,
         "tolerance": 0.01
       },
-      "limit_price": {
+      "expected_carry_usd": {
         "type": "number",
-        "expected": 146.25,
+        "expected": 1800,
         "tolerance": 0.01
       },
-      "venue": {
-        "type": "string",
-        "expected": "market_on_close"
+      "margin_used": {
+        "type": "number",
+        "expected": 9500,
+        "tolerance": 0.01
       },
       "feasibility": {
         "type": "string",
@@ -69,62 +66,69 @@
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_b"
+          "route_b",
+          "route_c"
         ],
-        "min_items": 1,
+        "min_items": 2,
         "match_type": "exact_set"
       },
-      "scenario_pnl.risk_off": {
+      "scenario_pnl.gap_down": {
         "type": "number",
-        "expected": -130000,
+        "expected": -122000,
         "tolerance": 0.01
       },
-      "scenario_pnl.squeeze": {
+      "scenario_pnl.melt_up": {
         "type": "number",
-        "expected": 48000,
+        "expected": 46000,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
+      "scenario_pnl.range_chop": {
         "type": "number",
-        "expected": -76000,
+        "expected": -71000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.sector_rotation": {
+        "type": "number",
+        "expected": -55500,
         "tolerance": 0.01
       },
       "worst_case_pnl": {
         "type": "number",
-        "expected": -130000,
+        "expected": -122000,
         "tolerance": 0.01
       },
       "self_check": {}
     },
-    "derivation": "Auction/close objective requires the market_on_close route; crossing the continuous-session spread misses the auction/close.",
+    "derivation": "Outright SPAN margin 24000 > cap 11000 (infeasible). Calendar spread margin 9500 <= cap, carry 1800. Flat earns 0. Best feasible = calendar spread.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Spot equities / ETFs",
+    "primary_domain": "Futures / commodities / spreads / rolls",
     "tier": "AGI",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "market_on_close_rebalance",
+    "scenario_family": "span_margin_calendar_spread",
     "feasibility_trap": false,
-    "objective_function": "objective for market_on_close_rebalance",
+    "objective_function": "objective for span_margin_calendar_spread",
     "failure_modes": [
-      "misses the auction/close",
-      "wrong venue"
+      "picks outright that busts SPAN margin",
+      "stays flat despite feasible carry"
     ],
     "must_not": [
-      "must_not_miss_auction_or_close"
+      "must_not_exceed_span_margin",
+      "must_not_select_infeasible_route"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
-      "instrument",
-      "quantity",
-      "limit_price",
-      "venue",
+      "spread_count",
+      "expected_carry_usd",
+      "margin_used",
       "feasibility",
-      "scenario_pnl.risk_off",
-      "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
+      "scenario_pnl.gap_down",
+      "scenario_pnl.melt_up",
+      "scenario_pnl.range_chop",
+      "scenario_pnl.sector_rotation",
       "worst_case_pnl"
     ],
     "needs_review": false

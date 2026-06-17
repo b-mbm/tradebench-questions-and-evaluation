@@ -8,9 +8,10 @@
     "margin_used",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
@@ -22,9 +23,10 @@
     "margin_used",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
@@ -70,19 +72,24 @@
         "min_items": 2,
         "match_type": "exact_set"
       },
-      "scenario_pnl.risk_off": {
+      "scenario_pnl.gap_down": {
         "type": "number",
         "expected": -122000,
         "tolerance": 0.01
       },
-      "scenario_pnl.squeeze": {
+      "scenario_pnl.melt_up": {
         "type": "number",
         "expected": 54000,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
+      "scenario_pnl.range_chop": {
         "type": "number",
         "expected": -71000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.sector_rotation": {
+        "type": "number",
+        "expected": -55500,
         "tolerance": 0.01
       },
       "worst_case_pnl": {
@@ -118,9 +125,10 @@
       "expected_carry_usd",
       "margin_used",
       "feasibility",
-      "scenario_pnl.risk_off",
-      "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
+      "scenario_pnl.gap_down",
+      "scenario_pnl.melt_up",
+      "scenario_pnl.range_chop",
+      "scenario_pnl.sector_rotation",
       "worst_case_pnl"
     ],
     "needs_review": false

@@ -34,12 +34,12 @@
       },
       "eur_amount": {
         "type": "number",
-        "expected": 200000,
+        "expected": 80000,
         "tolerance": 0.01
       },
       "usd_cost": {
         "type": "number",
-        "expected": 212000,
+        "expected": 84800,
         "tolerance": 0.01
       },
       "settlement_date_rule": {
@@ -60,7 +60,7 @@
         "match_type": "exact_set"
       }
     },
-    "derivation": "Spot route USD cost = 200000 * 1.06 = 212000, settles T+2 (feasible). CFD unavailable to US retail; futures margin 3000 > 2000.",
+    "derivation": "Spot route USD cost = 80000 * 1.06 = 84800, settles T+2 (feasible). CFD unavailable to US retail; futures margin 3000 > 2000.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {

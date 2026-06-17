@@ -71,14 +71,14 @@ This is an audit artifact for the first StockBench 300Q draft. No paid model cal
   },
   "L9": {
     "questions": 81,
-    "distinctSkeletons": 46,
-    "ratio": 0.568,
+    "distinctSkeletons": 48,
+    "ratio": 0.593,
     "minRatio": 0.25
   },
   "AGI": {
     "questions": 110,
-    "distinctSkeletons": 49,
-    "ratio": 0.445,
+    "distinctSkeletons": 54,
+    "ratio": 0.491,
     "minRatio": 0.3
   },
   "L1": {
@@ -125,8 +125,8 @@ This is an audit artifact for the first StockBench 300Q draft. No paid model cal
   },
   "L10": {
     "questions": 69,
-    "distinctSkeletons": 36,
-    "ratio": 0.522,
+    "distinctSkeletons": 46,
+    "ratio": 0.667,
     "minRatio": 0.3
   }
 }
@@ -139,65 +139,65 @@ This is an audit artifact for the first StockBench 300Q draft. No paid model cal
   "Shorting / borrow / margin / locates": {
     "L1-L4": 1,
     "L5-L8": 3,
-    "L9": 8,
-    "L10": 8,
-    "AGI": 15
+    "L9": 6,
+    "L10": 6,
+    "AGI": 19
   },
   "Futures / commodities / spreads / rolls": {
     "L1-L4": 2,
     "L5-L8": 4,
-    "L9": 14,
-    "L10": 12,
-    "AGI": 18
+    "L9": 10,
+    "L10": 8,
+    "AGI": 26
   },
   "Feasibility / rejection / no-trade traps": {
     "L1-L4": 0,
     "L5-L8": 0,
-    "L9": 5,
+    "L9": 7,
     "L10": 4,
-    "AGI": 6
+    "AGI": 4
   },
   "Spot equities / ETFs": {
     "L1-L4": 4,
     "L5-L8": 4,
-    "L9": 5,
-    "L10": 3,
-    "AGI": 4
+    "L9": 6,
+    "L10": 6,
+    "AGI": 0
   },
   "Spot FX / CFDs / multi-currency": {
     "L1-L4": 2,
     "L5-L8": 3,
-    "L9": 8,
-    "L10": 6,
-    "AGI": 11
+    "L9": 12,
+    "L10": 11,
+    "AGI": 2
   },
   "Execution / liquidity / microstructure": {
     "L1-L4": 2,
     "L5-L8": 3,
-    "L9": 10,
-    "L10": 8,
-    "AGI": 12
+    "L9": 14,
+    "L10": 12,
+    "AGI": 4
   },
   "Corporate actions / settlement / calendar / jurisdiction": {
     "L1-L4": 1,
     "L5-L8": 2,
-    "L9": 6,
-    "L10": 5,
-    "AGI": 6
+    "L9": 8,
+    "L10": 7,
+    "AGI": 2
   },
   "Portfolio risk / rebalancing": {
     "L1-L4": 1,
     "L5-L8": 2,
-    "L9": 10,
-    "L10": 10,
-    "AGI": 17
+    "L9": 8,
+    "L10": 6,
+    "AGI": 23
   },
   "Listed options strategy / Greeks": {
     "L1-L4": 2,
     "L5-L8": 4,
-    "L9": 15,
-    "L10": 13,
-    "AGI": 21
+    "L9": 10,
+    "L10": 9,
+    "AGI": 30
   }
 }
 ```

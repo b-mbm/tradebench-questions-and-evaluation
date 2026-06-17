@@ -84,15 +84,18 @@ const existingDomainCounts: Record<Domain, number> = {
   'Feasibility / rejection / no-trade traps': 1,
 };
 const bucketTargets: Record<Domain, Record<string, number>> = {
-  'Spot equities / ETFs': { 'L1-L4': 4, 'L5-L8': 4, L9: 5, L10: 3, AGI: 4 },
-  'Shorting / borrow / margin / locates': { 'L1-L4': 1, 'L5-L8': 3, L9: 8, L10: 8, AGI: 15 },
-  'Listed options strategy / Greeks': { 'L1-L4': 2, 'L5-L8': 4, L9: 15, L10: 13, AGI: 21 },
-  'Futures / commodities / spreads / rolls': { 'L1-L4': 2, 'L5-L8': 4, L9: 14, L10: 12, AGI: 18 },
-  'Spot FX / CFDs / multi-currency': { 'L1-L4': 2, 'L5-L8': 3, L9: 8, L10: 6, AGI: 11 },
-  'Portfolio risk / rebalancing': { 'L1-L4': 1, 'L5-L8': 2, L9: 10, L10: 10, AGI: 17 },
-  'Execution / liquidity / microstructure': { 'L1-L4': 2, 'L5-L8': 3, L9: 10, L10: 8, AGI: 12 },
-  'Corporate actions / settlement / calendar / jurisdiction': { 'L1-L4': 1, 'L5-L8': 2, L9: 6, L10: 5, AGI: 6 },
-  'Feasibility / rejection / no-trade traps': { 'L1-L4': 0, 'L5-L8': 0, L9: 5, L10: 4, AGI: 6 },
+  // AGI reallocated (amendment 2026-06-16): AGI concentrated in genuine-synthesis domains
+  // (options/futures/portfolio/shorting = 98/110); non-hedge feasibility/conversion content
+  // demoted into L9/L10. Per-tier totals (15/25/81/69/110) and per-domain totals unchanged.
+  'Spot equities / ETFs': { 'L1-L4': 4, 'L5-L8': 4, L9: 6, L10: 6, AGI: 0 },
+  'Shorting / borrow / margin / locates': { 'L1-L4': 1, 'L5-L8': 3, L9: 6, L10: 6, AGI: 19 },
+  'Listed options strategy / Greeks': { 'L1-L4': 2, 'L5-L8': 4, L9: 10, L10: 9, AGI: 30 },
+  'Futures / commodities / spreads / rolls': { 'L1-L4': 2, 'L5-L8': 4, L9: 10, L10: 8, AGI: 26 },
+  'Spot FX / CFDs / multi-currency': { 'L1-L4': 2, 'L5-L8': 3, L9: 12, L10: 11, AGI: 2 },
+  'Portfolio risk / rebalancing': { 'L1-L4': 1, 'L5-L8': 2, L9: 8, L10: 6, AGI: 23 },
+  'Execution / liquidity / microstructure': { 'L1-L4': 2, 'L5-L8': 3, L9: 14, L10: 12, AGI: 4 },
+  'Corporate actions / settlement / calendar / jurisdiction': { 'L1-L4': 1, 'L5-L8': 2, L9: 8, L10: 7, AGI: 2 },
+  'Feasibility / rejection / no-trade traps': { 'L1-L4': 0, 'L5-L8': 0, L9: 7, L10: 4, AGI: 4 },
 };
 const existingBucketCounts: Record<Domain, Record<string, number>> = {
   'Spot equities / ETFs': { 'L1-L4': 1, 'L5-L8': 0, L9: 0, L10: 1, AGI: 0 },
@@ -176,23 +179,36 @@ function tPlusOne(seed: number): { trade: string; settle: string } {
 }
 
 // AGI stress-scenario reconciliation: base PnL + chosen route's per-scenario effect - cost.
+const SCENARIO_POOLS = [
+  ['risk_off', 'squeeze', 'idiosyncratic_gap', 'liquidity_drain'],
+  ['rate_shock', 'vol_spike', 'credit_widening', 'flight_to_quality'],
+  ['gap_down', 'melt_up', 'range_chop', 'sector_rotation'],
+];
 function agiScenario(seed: number, effect: { risk_off: number; squeeze: number; gap: number }, cost: number) {
-  const baseRiskOff = -120000 - (seed % 6) * 5000;
-  const baseSqueeze = 40000 + (seed % 5) * 4000;
-  const baseGap = -70000 - (seed % 4) * 3000;
-  const scenario_pnl = {
-    risk_off: baseRiskOff + effect.risk_off - cost,
-    squeeze: baseSqueeze + effect.squeeze - cost,
-    idiosyncratic_gap: baseGap + effect.gap - cost,
-  };
-  const worst_case_pnl = Math.min(scenario_pnl.risk_off, scenario_pnl.squeeze, scenario_pnl.idiosyncratic_gap);
-  const zeroEffect = effect.risk_off === 0 && effect.squeeze === 0 && effect.gap === 0;
-  const effectLine = zeroEffect
+  // Vary the stress-scenario block by seed (name pool + 3-or-4 scenario count) so AGI rows are
+  // cognitively distinct, not 110 copies of one block. Keys are always named in the prompt.
+  const effArr = [effect.risk_off, effect.squeeze, effect.gap, Math.round((effect.risk_off + effect.gap) / 2)];
+  const zeroEffect = effArr.every(e => e === 0);
+  const count = 2 + (seed % 3); // 2-4 scenarios; varies per row and survives skeleton masking (line count)
+  const names = SCENARIO_POOLS[seed % SCENARIO_POOLS.length].slice(0, count);
+  const baseVals = [
+    -120000 - (seed % 6) * 5000,
+    40000 + (seed % 5) * 4000,
+    -70000 - (seed % 4) * 3000,
+    -50000 - (seed % 3) * 6000,
+  ];
+  const scenario_pnl: Record<string, number> = {};
+  const baseLines: string[] = [];
+  for (let i = 0; i < count; i++) {
+    scenario_pnl[names[i]] = baseVals[i] + effArr[i] - cost;
+    baseLines.push(`- ${names[i]}: ${baseVals[i]} USD.`);
+  }
+  const worst_case_pnl = Math.min(...Object.values(scenario_pnl));
+  const effDesc = zeroEffect
     ? `This action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (${cost} USD).\n`
-    : `The selected route's per-scenario hedge effect (before cost) is: risk_off ${effect.risk_off >= 0 ? '+' : ''}${effect.risk_off}, squeeze ${effect.squeeze >= 0 ? '+' : ''}${effect.squeeze}, idiosyncratic_gap ${effect.gap >= 0 ? '+' : ''}${effect.gap} USD. Apply this effect to each scenario, then subtract the ${cost} USD cash cost from every scenario.\n`;
-  const block =
-    `\nFrozen scenario PnL before action:\n- risk_off: ${baseRiskOff} USD.\n- squeeze: ${baseSqueeze} USD.\n- idiosyncratic_gap: ${baseGap} USD.\n` + effectLine;
-  return { scenario_pnl, worst_case_pnl, block, baseRiskOff, baseSqueeze, baseGap };
+    : `The selected route's per-scenario hedge effect (before cost) is: ${names.map((n, i) => `${n} ${effArr[i] >= 0 ? '+' : ''}${effArr[i]}`).join(', ')} USD. Apply this effect to each scenario, then subtract the ${cost} USD cash cost from every scenario.\n`;
+  const block = `\nFrozen scenario PnL before action:\n${baseLines.join('\n')}\n` + effDesc;
+  return { scenario_pnl, worst_case_pnl, block, names };
 }
 
 // ----------------------------------------------------------------------------
@@ -213,7 +229,8 @@ function escalationFields(
     expected.scenario_pnl = sc.scenario_pnl;
     expected.worst_case_pnl = sc.worst_case_pnl;
     expected.self_check = selfChecks;
-    deterministic.push('scenario_pnl.risk_off', 'scenario_pnl.squeeze', 'scenario_pnl.idiosyncratic_gap', 'worst_case_pnl');
+    for (const n of sc.names) deterministic.push(`scenario_pnl.${n}`);
+    deterministic.push('worst_case_pnl');
     return {
       extraPrompt: sc.block,
       objective: 'select the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case',
@@ -266,6 +283,7 @@ function buildPortfolio(tier: Tier, family: string, seed: number): Packet {
     family === 'multi_asset_drawdown_hedge' ? 'This is a drawdown hedge across the equity book; minimize hedge cost.'
     : family === 'cross_asset_var_liquidity_triage' ? 'This is a VaR/liquidity triage; only listed futures liquidity is usable.'
     : family === 'risk_budget_rebalance' ? 'This is a risk budget rebalance against the stated beta target.'
+    : family === 'futures_beta_hedge' ? 'This is an index-futures beta hedge of the cash equity book using ES futures.'
     : 'This is a beta-dollar rebalance against the stated beta target.';
   const esc = escalationFields(tier, seed, expected, deterministic, { risk_off: 95000, squeeze: -15000, gap: 60000 }, esCost,
     { min_reduction_met: true, margin_ok: true, lowest_cost_feasible: true });
@@ -323,13 +341,12 @@ function buildFutures(tier: Tier, family: string, seed: number): Packet {
       mustNot: ['must_not_exceed_span_margin', 'must_not_select_infeasible_route'] };
   }
   if (family === 'futures_beta_hedge') {
-    return { ...buildPortfolio(tier, 'beta_dollar_rebalance', seed),
-      derivation: 'Futures beta hedge: ' };
+    return buildPortfolio(tier, 'futures_beta_hedge', seed);
   }
   // roll calendar / commodity roll basis
-  const contracts = 2 + (seed % 5);
+  const contracts = 2 + (seed % 7);
   const nearBid = 70 + (seed % 17);
-  const spread = round2(0.35 + (seed % 7) * 0.05);
+  const spread = round2(0.35 + (seed % 9) * 0.05);
   const nextAsk = round2(nearBid + spread);
   const mult = 1000; // CL barrels
   const fees = contracts * 2 * 4;
@@ -536,8 +553,8 @@ function buildShorting(tier: Tier, family: string, seed: number): Packet {
 
 // ---- Spot FX / CFDs / multi-currency ----
 function buildFX(tier: Tier, family: string, seed: number): Packet {
-  const eur = 100000 + (seed % 13) * 25000;
-  const spot = round2(1.05 + (seed % 19) / 1000);
+  const eur = 80000 + (seed % 17) * 20000;
+  const spot = round2(1.05 + (seed % 23) / 1000);
   const usdSpot = round2(eur * spot);
   const fwdPts = round2(0.002 + (seed % 3) / 1000);
   const usdFwd = round2(eur * (spot + fwdPts));
@@ -579,7 +596,7 @@ function buildFX(tier: Tier, family: string, seed: number): Packet {
 // ---- Execution / liquidity / microstructure ----
 function buildExecution(tier: Tier, family: string, seed: number): Packet {
   const sym = symFor(seed);
-  const base = 130 + (seed % 10);
+  const base = 110 + (seed % 29);
   if (family === 'invalid_route_session_trap' || family === 'auction_session_constraint') {
     // session/permission derivation, not a fill calc
     const routes = [

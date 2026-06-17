@@ -2,24 +2,20 @@
   "id": "stockbench-l10-049",
   "expected_fields": [
     "decision",
-    "instrument",
-    "side",
-    "clip_size_shares",
-    "filled_shares",
-    "average_price",
-    "limit_price",
+    "selected_route",
+    "eur_amount",
+    "usd_cost",
+    "settlement_date_rule",
     "feasibility",
     "rejected_routes",
     "residual_check"
   ],
   "required_fields": [
     "decision",
-    "instrument",
-    "side",
-    "clip_size_shares",
-    "filled_shares",
-    "average_price",
-    "limit_price",
+    "selected_route",
+    "eur_amount",
+    "usd_cost",
+    "settlement_date_rule",
     "feasibility",
     "rejected_routes",
     "residual_check"
@@ -32,35 +28,25 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "trade"
+        "expected": "convert_fx"
       },
-      "instrument": {
+      "selected_route": {
         "type": "string",
-        "expected": "XLF"
+        "expected": "route_a"
       },
-      "side": {
+      "eur_amount": {
+        "type": "number",
+        "expected": 320000,
+        "tolerance": 0.01
+      },
+      "usd_cost": {
+        "type": "number",
+        "expected": 342400,
+        "tolerance": 0.01
+      },
+      "settlement_date_rule": {
         "type": "string",
-        "expected": "buy"
-      },
-      "clip_size_shares": {
-        "type": "number",
-        "expected": 500,
-        "tolerance": 0.01
-      },
-      "filled_shares": {
-        "type": "number",
-        "expected": 94500,
-        "tolerance": 0.01
-      },
-      "average_price": {
-        "type": "number",
-        "expected": 138.11,
-        "tolerance": 0.01
-      },
-      "limit_price": {
-        "type": "number",
-        "expected": 138.3,
-        "tolerance": 0.01
+        "expected": "T+2"
       },
       "feasibility": {
         "type": "string",
@@ -69,9 +55,11 @@
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_b"
+          "route_b",
+          "route_c",
+          "route_d"
         ],
-        "min_items": 1,
+        "min_items": 3,
         "match_type": "exact_set"
       },
       "residual_check": {
@@ -79,33 +67,33 @@
         "expected": "recomputed"
       }
     },
-    "derivation": "Fill 40000@138.05 and 40000@138.10 (avg 138.07), then x@138.30 with x <= (cap*80000-11046000)/(138.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 138.11 (<= 138.11). Full-size route breaches the cap.",
+    "derivation": "Spot route USD cost = 320000 * 1.07 = 342400, settles T+2 (feasible). CFD unavailable to US retail; futures margin 2750 > 2000; forward settles after the required date.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Execution / liquidity / microstructure",
+    "primary_domain": "Spot FX / CFDs / multi-currency",
     "tier": "L10",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "order_book_liquidity_limit",
+    "scenario_family": "fx_settlement_mismatch",
     "feasibility_trap": true,
-    "objective_function": "objective for order_book_liquidity_limit",
+    "objective_function": "objective for fx_settlement_mismatch",
     "failure_modes": [
-      "takes full book and breaches the average cap",
-      "ignores clip rounding",
-      "uses last price not average"
+      "uses unavailable CFD",
+      "uses margin-infeasible futures",
+      "wrong FX multiplication",
+      "misses settlement date"
     ],
     "must_not": [
-      "must_not_exceed_average_price_cap"
+      "must_not_use_cfd_when_unavailable",
+      "must_not_exceed_margin_capacity"
     ],
     "critical_fields": [
       "decision",
-      "instrument",
-      "side",
-      "clip_size_shares",
-      "filled_shares",
-      "average_price",
-      "limit_price",
+      "selected_route",
+      "eur_amount",
+      "usd_cost",
+      "settlement_date_rule",
       "feasibility"
     ],
     "needs_review": false

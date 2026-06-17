@@ -10,9 +10,10 @@
     "limit_price",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
@@ -26,9 +27,10 @@
     "limit_price",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
     "worst_case_pnl",
     "self_check"
   ],
@@ -62,12 +64,12 @@
       },
       "average_price": {
         "type": "number",
-        "expected": 135.11,
+        "expected": 130.11,
         "tolerance": 0.01
       },
       "limit_price": {
         "type": "number",
-        "expected": 135.3,
+        "expected": 130.3,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -82,19 +84,24 @@
         "min_items": 1,
         "match_type": "exact_set"
       },
-      "scenario_pnl.risk_off": {
+      "scenario_pnl.gap_down": {
         "type": "number",
         "expected": -145000,
         "tolerance": 0.01
       },
-      "scenario_pnl.squeeze": {
+      "scenario_pnl.melt_up": {
         "type": "number",
         "expected": 40000,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
+      "scenario_pnl.range_chop": {
         "type": "number",
         "expected": -79000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.sector_rotation": {
+        "type": "number",
+        "expected": -62000,
         "tolerance": 0.01
       },
       "worst_case_pnl": {
@@ -104,7 +111,7 @@
       },
       "self_check": {}
     },
-    "derivation": "Fill 40000@135.05 and 40000@135.10 (avg 135.07), then x@135.30 with x <= (cap*80000-10806000)/(135.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 135.11 (<= 135.11). Full-size route breaches the cap.",
+    "derivation": "Fill 40000@130.05 and 40000@130.10 (avg 130.07), then x@130.30 with x <= (cap*80000-10406000)/(130.3-cap) = 14736.84; floor to 500 -> 14500. Max fill 94500 at avg 130.11 (<= 130.11). Full-size route breaches the cap.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
@@ -132,9 +139,10 @@
       "average_price",
       "limit_price",
       "feasibility",
-      "scenario_pnl.risk_off",
-      "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
+      "scenario_pnl.gap_down",
+      "scenario_pnl.melt_up",
+      "scenario_pnl.range_chop",
+      "scenario_pnl.sector_rotation",
       "worst_case_pnl"
     ],
     "needs_review": false

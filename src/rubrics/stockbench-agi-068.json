@@ -3,32 +3,32 @@
   "expected_fields": [
     "decision",
     "selected_route",
-    "instrument",
-    "call_strike",
-    "dividend_per_share",
-    "call_time_value",
-    "early_assignment_risk",
+    "es_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
     "worst_case_pnl",
     "self_check"
   ],
   "required_fields": [
     "decision",
     "selected_route",
-    "instrument",
-    "call_strike",
-    "dividend_per_share",
-    "call_time_value",
-    "early_assignment_risk",
+    "es_contracts",
+    "beta_reduction_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
     "worst_case_pnl",
     "self_check"
   ],
@@ -40,34 +40,36 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "manage_assignment"
+        "expected": "hedge"
       },
       "selected_route": {
         "type": "string",
-        "expected": "route_b"
+        "expected": "route_a"
       },
-      "instrument": {
-        "type": "string",
-        "expected": "NVDA"
-      },
-      "call_strike": {
+      "es_contracts": {
         "type": "number",
-        "expected": 215,
+        "expected": 2,
         "tolerance": 0.01
       },
-      "dividend_per_share": {
+      "beta_reduction_usd": {
         "type": "number",
-        "expected": 0.5,
+        "expected": 520000,
         "tolerance": 0.01
       },
-      "call_time_value": {
+      "beta_reduction_pct": {
         "type": "number",
-        "expected": 1.4,
+        "expected": 61.18,
         "tolerance": 0.01
       },
-      "early_assignment_risk": {
-        "type": "boolean",
-        "expected": false
+      "margin_used": {
+        "type": "number",
+        "expected": 26000,
+        "tolerance": 0.01
+      },
+      "expected_cost": {
+        "type": "number",
+        "expected": 50,
+        "tolerance": 0.01
       },
       "feasibility": {
         "type": "string",
@@ -76,63 +78,68 @@
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_a"
+          "route_b",
+          "route_c",
+          "route_d"
         ],
-        "min_items": 1,
+        "min_items": 3,
         "match_type": "exact_set"
       },
-      "scenario_pnl.risk_off": {
+      "scenario_pnl.rate_shock": {
         "type": "number",
-        "expected": -123500,
+        "expected": -30050,
         "tolerance": 0.01
       },
-      "scenario_pnl.squeeze": {
+      "scenario_pnl.vol_spike": {
         "type": "number",
-        "expected": 39500,
+        "expected": 24950,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
+      "scenario_pnl.credit_widening": {
         "type": "number",
-        "expected": -78000,
+        "expected": -19050,
         "tolerance": 0.01
       },
       "worst_case_pnl": {
         "type": "number",
-        "expected": -123500,
+        "expected": -30050,
         "tolerance": 0.01
       },
       "self_check": {}
     },
-    "derivation": "Intrinsic = max(0, 215-215); time value = 1.4 - intrinsic = 1.4. Dividend 0.5 <= time value -> early assignment not rational (hold).",
+    "derivation": "Needed reduction = 850000*0.45 = 382500; ES per contract hedges 260000; ceil = 2 contracts -> reduction 520000 (61.18%), margin 26000 (<= 33000), cost 50. Route B (1) misses target; Route C costs 21000 > 50; extra-ES route busts margin.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Listed options strategy / Greeks",
+    "primary_domain": "Portfolio risk / rebalancing",
     "tier": "AGI",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "covered_call_assignment",
+    "scenario_family": "beta_dollar_rebalance",
     "feasibility_trap": true,
-    "objective_function": "objective for covered_call_assignment",
+    "objective_function": "objective for beta_dollar_rebalance",
     "failure_modes": [
-      "ignores dividend vs time value test",
-      "mishandles assignment"
+      "uses too few contracts and misses target",
+      "treats margin as cash cost",
+      "chooses higher-cost put package",
+      "ignores margin capacity"
     ],
     "must_not": [
-      "must_not_ignore_dividend_vs_time_value"
+      "must_not_miss_beta_target",
+      "must_not_ignore_margin_capacity"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
-      "instrument",
-      "call_strike",
-      "dividend_per_share",
-      "call_time_value",
-      "early_assignment_risk",
+      "es_contracts",
+      "beta_reduction_usd",
+      "beta_reduction_pct",
+      "margin_used",
+      "expected_cost",
       "feasibility",
-      "scenario_pnl.risk_off",
-      "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
+      "scenario_pnl.rate_shock",
+      "scenario_pnl.vol_spike",
+      "scenario_pnl.credit_widening",
       "worst_case_pnl"
     ],
     "needs_review": false

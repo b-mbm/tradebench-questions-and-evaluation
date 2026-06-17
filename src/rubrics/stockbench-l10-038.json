@@ -3,11 +3,10 @@
   "expected_fields": [
     "decision",
     "selected_route",
-    "es_contracts",
-    "beta_reduction_usd",
-    "beta_reduction_pct",
-    "margin_used",
-    "expected_cost",
+    "instrument",
+    "order_shares",
+    "limit_price",
+    "venue",
     "feasibility",
     "rejected_routes",
     "residual_check"
@@ -15,11 +14,10 @@
   "required_fields": [
     "decision",
     "selected_route",
-    "es_contracts",
-    "beta_reduction_usd",
-    "beta_reduction_pct",
-    "margin_used",
-    "expected_cost",
+    "instrument",
+    "order_shares",
+    "limit_price",
+    "venue",
     "feasibility",
     "rejected_routes",
     "residual_check"
@@ -32,36 +30,29 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "hedge"
+        "expected": "trade"
       },
       "selected_route": {
         "type": "string",
         "expected": "route_a"
       },
-      "es_contracts": {
+      "instrument": {
+        "type": "string",
+        "expected": "XLK"
+      },
+      "order_shares": {
         "type": "number",
-        "expected": 2,
+        "expected": 200,
         "tolerance": 0.01
       },
-      "beta_reduction_usd": {
+      "limit_price": {
         "type": "number",
-        "expected": 525000,
+        "expected": 92.25,
         "tolerance": 0.01
       },
-      "beta_reduction_pct": {
-        "type": "number",
-        "expected": 61.76,
-        "tolerance": 0.01
-      },
-      "margin_used": {
-        "type": "number",
-        "expected": 26000,
-        "tolerance": 0.01
-      },
-      "expected_cost": {
-        "type": "number",
-        "expected": 50,
-        "tolerance": 0.01
+      "venue": {
+        "type": "string",
+        "expected": "regular_session"
       },
       "feasibility": {
         "type": "string",
@@ -71,10 +62,9 @@
         "type": "array",
         "expected_set": [
           "route_b",
-          "route_c",
-          "route_d"
+          "route_c"
         ],
-        "min_items": 3,
+        "min_items": 2,
         "match_type": "exact_set"
       },
       "residual_check": {
@@ -82,35 +72,30 @@
         "expected": "recomputed"
       }
     },
-    "derivation": "Needed reduction = 850000*0.45 = 382500; ES per contract hedges 262500; ceil = 2 contracts -> reduction 525000 (61.76%), margin 26000 (<= 33000), cost 50. Route B (1) misses target; Route C costs 21000 > 50; extra-ES route busts margin.",
+    "derivation": "Only the open, permitted regular session is executable. After-hours is closed; dark venue not enabled.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Portfolio risk / rebalancing",
+    "primary_domain": "Execution / liquidity / microstructure",
     "tier": "L10",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "multi_asset_drawdown_hedge",
-    "feasibility_trap": false,
-    "objective_function": "objective for multi_asset_drawdown_hedge",
+    "scenario_family": "invalid_route_session_trap",
+    "feasibility_trap": true,
+    "objective_function": "objective for invalid_route_session_trap",
     "failure_modes": [
-      "uses too few contracts and misses target",
-      "treats margin as cash cost",
-      "chooses higher-cost put package",
-      "ignores margin capacity"
+      "routes to a closed/unpermitted venue"
     ],
     "must_not": [
-      "must_not_miss_beta_target",
-      "must_not_ignore_margin_capacity"
+      "must_not_route_to_unpermitted_venue"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
-      "es_contracts",
-      "beta_reduction_usd",
-      "beta_reduction_pct",
-      "margin_used",
-      "expected_cost",
+      "instrument",
+      "order_shares",
+      "limit_price",
+      "venue",
       "feasibility"
     ],
     "needs_review": false

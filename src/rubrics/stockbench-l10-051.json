@@ -4,7 +4,9 @@
     "decision",
     "selected_route",
     "instrument",
-    "requested_shares",
+    "quantity",
+    "limit_price",
+    "venue",
     "feasibility",
     "rejected_routes",
     "residual_check"
@@ -13,7 +15,9 @@
     "decision",
     "selected_route",
     "instrument",
-    "requested_shares",
+    "quantity",
+    "limit_price",
+    "venue",
     "feasibility",
     "rejected_routes",
     "residual_check"
@@ -26,33 +30,40 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "no_trade"
+        "expected": "trade"
       },
       "selected_route": {
         "type": "string",
-        "expected": "none"
+        "expected": "route_a"
       },
       "instrument": {
         "type": "string",
         "expected": "SPY"
       },
-      "requested_shares": {
+      "quantity": {
         "type": "number",
-        "expected": 500,
+        "expected": 600,
         "tolerance": 0.01
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 80.25,
+        "tolerance": 0.01
+      },
+      "venue": {
+        "type": "string",
+        "expected": "opening_auction"
       },
       "feasibility": {
         "type": "string",
-        "expected": "infeasible"
+        "expected": "feasible"
       },
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_a",
-          "route_b",
-          "route_c"
+          "route_b"
         ],
-        "min_items": 3,
+        "min_items": 1,
         "match_type": "exact_set"
       },
       "residual_check": {
@@ -60,29 +71,31 @@
         "expected": "recomputed"
       }
     },
-    "derivation": "CFD unavailable, cash-account short not allowed, futures not approved, session closed -> every route infeasible -> no_trade.",
+    "derivation": "Auction/close objective requires the opening_auction route; crossing the continuous-session spread misses the auction/close.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Feasibility / rejection / no-trade traps",
+    "primary_domain": "Spot equities / ETFs",
     "tier": "L10",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "unsupported_product_permission",
-    "feasibility_trap": true,
-    "objective_function": "objective for unsupported_product_permission",
+    "scenario_family": "opening_auction_limit",
+    "feasibility_trap": false,
+    "objective_function": "objective for opening_auction_limit",
     "failure_modes": [
-      "forces a trade on an invalid route"
+      "misses the auction/close",
+      "wrong venue"
     ],
     "must_not": [
-      "must_not_use_unavailable_route",
-      "must_not_short_in_cash_account"
+      "must_not_miss_auction_or_close"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
       "instrument",
-      "requested_shares",
+      "quantity",
+      "limit_price",
+      "venue",
       "feasibility"
     ],
     "needs_review": false

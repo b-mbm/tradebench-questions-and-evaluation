@@ -52,15 +52,16 @@ const domainTargets: Record<string, number> = {
 };
 
 const bucketTargets: Record<string, Record<string, number>> = {
-  'Spot equities / ETFs': { 'L1-L4': 4, 'L5-L8': 4, L9: 5, L10: 3, AGI: 4 },
-  'Shorting / borrow / margin / locates': { 'L1-L4': 1, 'L5-L8': 3, L9: 8, L10: 8, AGI: 15 },
-  'Listed options strategy / Greeks': { 'L1-L4': 2, 'L5-L8': 4, L9: 15, L10: 13, AGI: 21 },
-  'Futures / commodities / spreads / rolls': { 'L1-L4': 2, 'L5-L8': 4, L9: 14, L10: 12, AGI: 18 },
-  'Spot FX / CFDs / multi-currency': { 'L1-L4': 2, 'L5-L8': 3, L9: 8, L10: 6, AGI: 11 },
-  'Portfolio risk / rebalancing': { 'L1-L4': 1, 'L5-L8': 2, L9: 10, L10: 10, AGI: 17 },
-  'Execution / liquidity / microstructure': { 'L1-L4': 2, 'L5-L8': 3, L9: 10, L10: 8, AGI: 12 },
-  'Corporate actions / settlement / calendar / jurisdiction': { 'L1-L4': 1, 'L5-L8': 2, L9: 6, L10: 5, AGI: 6 },
-  'Feasibility / rejection / no-trade traps': { 'L1-L4': 0, 'L5-L8': 0, L9: 5, L10: 4, AGI: 6 },
+  // AGI reallocated (amendment 2026-06-16) — mirrors generate-stockbench-first-draft.ts.
+  'Spot equities / ETFs': { 'L1-L4': 4, 'L5-L8': 4, L9: 6, L10: 6, AGI: 0 },
+  'Shorting / borrow / margin / locates': { 'L1-L4': 1, 'L5-L8': 3, L9: 6, L10: 6, AGI: 19 },
+  'Listed options strategy / Greeks': { 'L1-L4': 2, 'L5-L8': 4, L9: 10, L10: 9, AGI: 30 },
+  'Futures / commodities / spreads / rolls': { 'L1-L4': 2, 'L5-L8': 4, L9: 10, L10: 8, AGI: 26 },
+  'Spot FX / CFDs / multi-currency': { 'L1-L4': 2, 'L5-L8': 3, L9: 12, L10: 11, AGI: 2 },
+  'Portfolio risk / rebalancing': { 'L1-L4': 1, 'L5-L8': 2, L9: 8, L10: 6, AGI: 23 },
+  'Execution / liquidity / microstructure': { 'L1-L4': 2, 'L5-L8': 3, L9: 14, L10: 12, AGI: 4 },
+  'Corporate actions / settlement / calendar / jurisdiction': { 'L1-L4': 1, 'L5-L8': 2, L9: 8, L10: 7, AGI: 2 },
+  'Feasibility / rejection / no-trade traps': { 'L1-L4': 0, 'L5-L8': 0, L9: 7, L10: 4, AGI: 4 },
 };
 
 function bucket(tier: string): string {

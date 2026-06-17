@@ -4,14 +4,15 @@
     "decision",
     "selected_route",
     "instrument",
-    "order_shares",
-    "limit_price",
-    "venue",
+    "short_shares",
+    "put_contracts",
+    "premium_paid",
+    "bearish_delta_shares",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
     "worst_case_pnl",
     "self_check"
   ],
@@ -19,14 +20,15 @@
     "decision",
     "selected_route",
     "instrument",
-    "order_shares",
-    "limit_price",
-    "venue",
+    "short_shares",
+    "put_contracts",
+    "premium_paid",
+    "bearish_delta_shares",
     "feasibility",
     "rejected_routes",
-    "scenario_pnl.risk_off",
-    "scenario_pnl.squeeze",
-    "scenario_pnl.idiosyncratic_gap",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
     "worst_case_pnl",
     "self_check"
   ],
@@ -48,19 +50,25 @@
         "type": "string",
         "expected": "XLF"
       },
-      "order_shares": {
+      "short_shares": {
         "type": "number",
-        "expected": 200,
+        "expected": 600,
         "tolerance": 0.01
       },
-      "limit_price": {
+      "put_contracts": {
         "type": "number",
-        "expected": 67.25,
+        "expected": 3,
         "tolerance": 0.01
       },
-      "venue": {
-        "type": "string",
-        "expected": "regular_session"
+      "premium_paid": {
+        "type": "number",
+        "expected": 2400,
+        "tolerance": 0.01
+      },
+      "bearish_delta_shares": {
+        "type": "number",
+        "expected": 705,
+        "tolerance": 0.01
       },
       "feasibility": {
         "type": "string",
@@ -75,56 +83,60 @@
         "min_items": 2,
         "match_type": "exact_set"
       },
-      "scenario_pnl.risk_off": {
+      "scenario_pnl.rate_shock": {
         "type": "number",
-        "expected": -140000,
+        "expected": -130400,
         "tolerance": 0.01
       },
-      "scenario_pnl.squeeze": {
+      "scenario_pnl.vol_spike": {
         "type": "number",
-        "expected": 52000,
+        "expected": 29600,
         "tolerance": 0.01
       },
-      "scenario_pnl.idiosyncratic_gap": {
+      "scenario_pnl.credit_widening": {
         "type": "number",
-        "expected": -70000,
+        "expected": -63400,
         "tolerance": 0.01
       },
       "worst_case_pnl": {
         "type": "number",
-        "expected": -140000,
+        "expected": -130400,
         "tolerance": 0.01
       },
       "self_check": {}
     },
-    "derivation": "Only the open, permitted regular session is executable. After-hours is closed; dark venue not enabled.",
+    "derivation": "Short 600 located shares + 3 puts * 35 delta-shares = 705; premium = 3*8*100 = 2400 (<= 2400). Route B shorts beyond locate; Route C exceeds option cash.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
     "benchmark": "StockBench",
-    "primary_domain": "Execution / liquidity / microstructure",
+    "primary_domain": "Shorting / borrow / margin / locates",
     "tier": "AGI",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "invalid_route_session_trap",
+    "scenario_family": "borrow_cost_vs_trade_edge",
     "feasibility_trap": true,
-    "objective_function": "objective for invalid_route_session_trap",
+    "objective_function": "objective for borrow_cost_vs_trade_edge",
     "failure_modes": [
-      "routes to a closed/unpermitted venue"
+      "shorts beyond locate",
+      "exceeds option cash",
+      "misses option delta multiplier"
     ],
     "must_not": [
-      "must_not_route_to_unpermitted_venue"
+      "must_not_short_more_than_locate",
+      "must_not_exceed_option_cash"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
       "instrument",
-      "order_shares",
-      "limit_price",
-      "venue",
+      "short_shares",
+      "put_contracts",
+      "premium_paid",
+      "bearish_delta_shares",
       "feasibility",
-      "scenario_pnl.risk_off",
-      "scenario_pnl.squeeze",
-      "scenario_pnl.idiosyncratic_gap",
+      "scenario_pnl.rate_shock",
+      "scenario_pnl.vol_spike",
+      "scenario_pnl.credit_widening",
       "worst_case_pnl"
     ],
     "needs_review": false
