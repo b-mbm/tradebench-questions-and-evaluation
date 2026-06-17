@@ -4,6 +4,8 @@
     "decision",
     "selected_route",
     "instrument",
+    "order_shares",
+    "limit_price",
     "venue",
     "feasibility",
     "rejected_routes",
@@ -11,13 +13,14 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.session_open",
-    "self_check.venue_permitted"
+    "self_check"
   ],
   "required_fields": [
     "decision",
     "selected_route",
     "instrument",
+    "order_shares",
+    "limit_price",
     "venue",
     "feasibility",
     "rejected_routes",
@@ -25,8 +28,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.session_open",
-    "self_check.venue_permitted"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -45,6 +47,16 @@
       "instrument": {
         "type": "string",
         "expected": "XLF"
+      },
+      "order_shares": {
+        "type": "number",
+        "expected": 600,
+        "tolerance": 0.01
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 54.25,
+        "tolerance": 0.01
       },
       "venue": {
         "type": "string",
@@ -83,14 +95,7 @@
         "expected": -130000,
         "tolerance": 0.01
       },
-      "self_check.session_open": {
-        "type": "boolean",
-        "expected": true
-      },
-      "self_check.venue_permitted": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "Only the open, permitted regular session is executable. After-hours is closed; dark venue not enabled.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -113,14 +118,14 @@
       "decision",
       "selected_route",
       "instrument",
+      "order_shares",
+      "limit_price",
       "venue",
       "feasibility",
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.session_open",
-      "self_check.venue_permitted"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

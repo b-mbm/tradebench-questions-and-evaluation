@@ -14,8 +14,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.downside_floor_met",
-    "self_check.lowest_premium_selected"
+    "self_check"
   ],
   "required_fields": [
     "decision",
@@ -31,8 +30,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.downside_floor_met",
-    "self_check.lowest_premium_selected"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -106,14 +104,7 @@
         "expected": -105000,
         "tolerance": 0.01
       },
-      "self_check.downside_floor_met": {
-        "type": "boolean",
-        "expected": true
-      },
-      "self_check.lowest_premium_selected": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "For each spread: net premium = (long-short)*100*10; scenario PnL = stock loss + spread payoff - net premium. Feasible if PnL >= -46000. Lowest-premium feasible = route_a (sell 480), net 5000, PnL -45000.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -147,9 +138,7 @@
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.downside_floor_met",
-      "self_check.lowest_premium_selected"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

@@ -3891,7 +3891,22 @@ export function gradeSchemaResponse(
     }
     return ok;
   });
-  const pass = normalizedScore >= rubric.pass_threshold && confidence >= 0.6 && agiStructuralSatisfied && criticalSatisfied;
+  // Self-consistency: the chosen route must not also appear in rejected_routes. A model that
+  // contradicts itself (selects a route while rejecting it) must fail regardless of score.
+  let consistencySatisfied = true;
+  const rejectedRoutes = (normalizedResponse as Record<string, unknown>).rejected_routes;
+  if (Array.isArray(rejectedRoutes)) {
+    const rejectedNorm = rejectedRoutes.map(r => normalizeCategorical(r));
+    for (const choiceKey of ['selected_route', 'chosen_route', 'chosen_strategy', 'selected_instrument']) {
+      const choice = (normalizedResponse as Record<string, unknown>)[choiceKey];
+      if (typeof choice === 'string' && choice && rejectedNorm.includes(normalizeCategorical(choice))) {
+        consistencySatisfied = false;
+        failureReasons.push(`selected_route_in_rejected_routes:${choiceKey}` as FailureReason);
+        break;
+      }
+    }
+  }
+  const pass = normalizedScore >= rubric.pass_threshold && confidence >= 0.6 && agiStructuralSatisfied && criticalSatisfied && consistencySatisfied;
 
   return {
     pass,

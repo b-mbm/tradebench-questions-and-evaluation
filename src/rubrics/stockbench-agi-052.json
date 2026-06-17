@@ -14,9 +14,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.min_reduction_met",
-    "self_check.margin_ok",
-    "self_check.lowest_cost_feasible"
+    "self_check"
   ],
   "required_fields": [
     "decision",
@@ -32,9 +30,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.min_reduction_met",
-    "self_check.margin_ok",
-    "self_check.lowest_cost_feasible"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -109,18 +105,7 @@
         "expected": -40050,
         "tolerance": 0.01
       },
-      "self_check.min_reduction_met": {
-        "type": "boolean",
-        "expected": true
-      },
-      "self_check.margin_ok": {
-        "type": "boolean",
-        "expected": true
-      },
-      "self_check.lowest_cost_feasible": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "Needed reduction = 950000*0.4 = 380000; ES per contract hedges 253750; ceil = 2 contracts -> reduction 507500 (53.42%), margin 26000 (<= 33000), cost 50. Route B (1) misses target; Route C costs 21000 > 50; extra-ES route busts margin.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -155,10 +140,7 @@
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.min_reduction_met",
-      "self_check.margin_ok",
-      "self_check.lowest_cost_feasible"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

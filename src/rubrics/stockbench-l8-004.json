@@ -3,18 +3,20 @@
   "expected_fields": [
     "decision",
     "selected_route",
-    "route_a_cost_usd",
-    "route_b_cost_usd",
-    "incremental_cost_for_feasibility_usd",
+    "contracts",
+    "roll_cost_usd",
+    "fees_usd",
+    "total_cost_usd",
     "feasibility",
     "rejected_routes"
   ],
   "required_fields": [
     "decision",
     "selected_route",
-    "route_a_cost_usd",
-    "route_b_cost_usd",
-    "incremental_cost_for_feasibility_usd",
+    "contracts",
+    "roll_cost_usd",
+    "fees_usd",
+    "total_cost_usd",
     "feasibility",
     "rejected_routes"
   ],
@@ -26,25 +28,30 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "choose_route"
+        "expected": "roll"
       },
       "selected_route": {
         "type": "string",
-        "expected": "route_b"
+        "expected": "route_a"
       },
-      "route_a_cost_usd": {
+      "contracts": {
         "type": "number",
-        "expected": 10800,
+        "expected": 4,
         "tolerance": 0.01
       },
-      "route_b_cost_usd": {
+      "roll_cost_usd": {
         "type": "number",
-        "expected": 11500,
+        "expected": 1600,
         "tolerance": 0.01
       },
-      "incremental_cost_for_feasibility_usd": {
+      "fees_usd": {
         "type": "number",
-        "expected": 700,
+        "expected": 32,
+        "tolerance": 0.01
+      },
+      "total_cost_usd": {
+        "type": "number",
+        "expected": 1632,
         "tolerance": 0.01
       },
       "feasibility": {
@@ -54,13 +61,14 @@
       "rejected_routes": {
         "type": "array",
         "expected_set": [
-          "route_a"
+          "route_b",
+          "route_c"
         ],
-        "min_items": 1,
+        "min_items": 2,
         "match_type": "exact_set"
       }
     },
-    "derivation": "Same-day settlement unavailable -> Route A infeasible. Route B feasible; incremental cost = 11500-10800=700.",
+    "derivation": "Roll cost = (79.4 - 79) * 1000 * 4 = 1600; fees = 32; total = 1632. Mid-price route not executable; holding into first notice violates policy.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
@@ -71,17 +79,21 @@
     "scenario_family": "commodity_roll_basis_hedge",
     "feasibility_trap": true,
     "failure_modes": [
-      "picks infeasible same-day route"
+      "uses mid prices",
+      "holds into first notice",
+      "omits fees"
     ],
     "must_not": [
-      "must_not_pick_unsupported_settlement"
+      "must_not_use_mid_when_bid_ask_given",
+      "must_not_hold_deliverable_into_first_notice"
     ],
     "critical_fields": [
       "decision",
       "selected_route",
-      "route_a_cost_usd",
-      "route_b_cost_usd",
-      "incremental_cost_for_feasibility_usd",
+      "contracts",
+      "roll_cost_usd",
+      "fees_usd",
+      "total_cost_usd",
       "feasibility"
     ],
     "needs_review": false

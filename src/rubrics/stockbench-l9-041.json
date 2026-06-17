@@ -4,6 +4,8 @@
     "decision",
     "selected_route",
     "instrument",
+    "order_shares",
+    "limit_price",
     "venue",
     "feasibility",
     "rejected_routes"
@@ -12,6 +14,8 @@
     "decision",
     "selected_route",
     "instrument",
+    "order_shares",
+    "limit_price",
     "venue",
     "feasibility",
     "rejected_routes"
@@ -33,6 +37,16 @@
       "instrument": {
         "type": "string",
         "expected": "GLD"
+      },
+      "order_shares": {
+        "type": "number",
+        "expected": 400,
+        "tolerance": 0.01
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 57.25,
+        "tolerance": 0.01
       },
       "venue": {
         "type": "string",
@@ -73,6 +87,8 @@
       "decision",
       "selected_route",
       "instrument",
+      "order_shares",
+      "limit_price",
       "venue",
       "feasibility"
     ],

@@ -13,8 +13,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.recall_handled",
-    "self_check.no_naked_short"
+    "self_check"
   ],
   "required_fields": [
     "decision",
@@ -29,8 +28,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.recall_handled",
-    "self_check.no_naked_short"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -98,14 +96,7 @@
         "expected": -136600,
         "tolerance": 0.01
       },
-      "self_check.recall_handled": {
-        "type": "boolean",
-        "expected": true
-      },
-      "self_check.no_naked_short": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "Recall forces buy-to-cover 700; replace with 7 puts, premium 5600. Ignoring recall is not permitted; new short has no locate.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -137,9 +128,7 @@
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.recall_handled",
-      "self_check.no_naked_short"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

@@ -1198,7 +1198,7 @@ export const STOCKBENCH_QUESTIONS_300Q: SchemaQuestion[] = [
         primary_domain: 'Portfolio risk / rebalancing',
         tier: 'AGI',
         capability_tag: 'judgment_risk_augmentation',
-        scenario_family: 'cross_asset_var_liquidity_triage',
+        scenario_family: 'multi_asset_drawdown_hedge',
         feasibility_trap: false,
         objective_function: 'minimize feasible hedge cash cost subject to stress-loss reduction and margin constraints',
         deterministic_grading_fields: ['chosen_strategy', 'stress_loss_reduction_usd', 'hedge_cash_used', 'margin_used', 'rejected_routes'],

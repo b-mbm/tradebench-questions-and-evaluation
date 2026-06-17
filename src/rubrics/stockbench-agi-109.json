@@ -12,7 +12,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.settlement_respected"
+    "self_check"
   ],
   "required_fields": [
     "decision",
@@ -26,7 +26,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.settlement_respected"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -87,10 +87,7 @@
         "expected": -120000,
         "tolerance": 0.01
       },
-      "self_check.settlement_respected": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "Trade value = 300 * 260 = 78000; cash settles T+1 on 2026-06-16. Same-day withdrawal route violates settlement.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -120,8 +117,7 @@
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.settlement_respected"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

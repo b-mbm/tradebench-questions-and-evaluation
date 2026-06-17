@@ -14,8 +14,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.compared_dividend_to_time_value",
-    "self_check.assignment_handled"
+    "self_check"
   ],
   "required_fields": [
     "decision",
@@ -31,8 +30,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.compared_dividend_to_time_value",
-    "self_check.assignment_handled"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -103,14 +101,7 @@
         "expected": -123500,
         "tolerance": 0.01
       },
-      "self_check.compared_dividend_to_time_value": {
-        "type": "boolean",
-        "expected": true
-      },
-      "self_check.assignment_handled": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "Intrinsic = max(0, 185-185); time value = 0.8 - intrinsic = 0.8. Dividend 0.5 <= time value -> early assignment not rational (hold).",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -142,9 +133,7 @@
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.compared_dividend_to_time_value",
-      "self_check.assignment_handled"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

@@ -119,8 +119,8 @@ This is an audit artifact for the first StockBench 300Q draft. No paid model cal
   },
   "L8": {
     "questions": 10,
-    "distinctSkeletons": 3,
-    "ratio": 0.3,
+    "distinctSkeletons": 9,
+    "ratio": 0.9,
     "minRatio": 0
   },
   "L10": {

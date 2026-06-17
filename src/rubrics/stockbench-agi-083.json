@@ -11,8 +11,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.permissions_checked",
-    "self_check.no_valid_route"
+    "self_check"
   ],
   "required_fields": [
     "decision",
@@ -25,8 +24,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.permissions_checked",
-    "self_check.no_valid_route"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -85,14 +83,7 @@
         "expected": -140000,
         "tolerance": 0.01
       },
-      "self_check.permissions_checked": {
-        "type": "boolean",
-        "expected": true
-      },
-      "self_check.no_valid_route": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "CFD unavailable, cash-account short not allowed, futures not approved, session closed -> every route infeasible -> no_trade.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -121,9 +112,7 @@
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.permissions_checked",
-      "self_check.no_valid_route"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

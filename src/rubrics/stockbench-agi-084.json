@@ -17,7 +17,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.limit_respected"
+    "self_check"
   ],
   "required_fields": [
     "decision",
@@ -36,7 +36,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.limit_respected"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -119,10 +119,7 @@
         "expected": -145000,
         "tolerance": 0.01
       },
-      "self_check.limit_respected": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "Limit buy 900 @ 173.25; trade value = 900*173 = 155700; T+1 cash on 2026-06-25. Market route ignores the protective limit.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -157,8 +154,7 @@
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.limit_respected"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

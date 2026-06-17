@@ -965,16 +965,21 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 8,
     "type": "schema",
     "rubric_id": "stockbench-l8-002",
-    "prompt": "Frozen market snapshot:\n- Instrument: SPY ETF; order 500 shares. Account fact: only T+1 settlement is supported; same-day settlement is NOT available on this account.\nCandidate routes (decide feasibility from the settlement fact yourself):\n- Route A (route_a): a same-day-settlement route at 50000 USD that requires cash to settle today\n- Route B (route_b): a standard T+1 route at 50500 USD with cash settling 2026-06-16\n\nTask:\nChoose the feasible route and compute the incremental cost paid for feasibility. Report rejected routes by route id.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"route_a_cost_usd\", \"route_b_cost_usd\", \"incremental_cost_for_feasibility_usd\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: SPY ETF at 80.00. This is an equity order ticket; equities settle T+1.\n- Buy 800 shares with a protective day limit 80.25; T+1 cash date 2026-06-16.\nCandidate routes:\n- Route A (route_a): submit a day limit buy ticket for 800 shares at 80.25 in the regular session\n- Route B (route_b): submit a market buy that ignores the protective limit\n\nTask:\nCreate the order ticket and report trade value and T+1 date. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"side\", \"quantity\", \"order_type\", \"limit_price\", \"trade_value_usd\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
-      "decision": "choose_route",
-      "selected_route": "route_b",
-      "route_a_cost_usd": 50000,
-      "route_b_cost_usd": 50500,
-      "incremental_cost_for_feasibility_usd": 500,
+      "decision": "trade",
+      "selected_route": "route_a",
+      "instrument": "SPY",
+      "side": "buy",
+      "quantity": 800,
+      "order_type": "limit",
+      "limit_price": 80.25,
+      "trade_value_usd": 64000,
+      "settlement_rule": "T+1",
+      "settlement_cash_date": "2026-06-16",
       "feasibility": "feasible",
       "rejected_routes": [
-        "route_a"
+        "route_b"
       ]
     },
     "context": {
@@ -987,20 +992,30 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "selected_route",
-          "route_a_cost_usd",
-          "route_b_cost_usd",
-          "incremental_cost_for_feasibility_usd"
+          "instrument",
+          "side",
+          "quantity",
+          "order_type",
+          "limit_price",
+          "trade_value_usd",
+          "settlement_rule",
+          "settlement_cash_date"
         ]
       },
       "canonical_answer": {
-        "decision": "choose_route",
-        "selected_route": "route_b",
-        "route_a_cost_usd": 50000,
-        "route_b_cost_usd": 50500,
-        "incremental_cost_for_feasibility_usd": 500,
+        "decision": "trade",
+        "selected_route": "route_a",
+        "instrument": "SPY",
+        "side": "buy",
+        "quantity": 800,
+        "order_type": "limit",
+        "limit_price": 80.25,
+        "trade_value_usd": 64000,
+        "settlement_rule": "T+1",
+        "settlement_cash_date": "2026-06-16",
         "feasibility": "feasible",
         "rejected_routes": [
-          "route_a"
+          "route_b"
         ]
       }
     }
@@ -1010,16 +1025,19 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 8,
     "type": "schema",
     "rubric_id": "stockbench-l8-003",
-    "prompt": "Frozen market snapshot:\n- Instrument: QQQ ETF; order 600 shares. Account fact: only T+1 settlement is supported; same-day settlement is NOT available on this account.\nCandidate routes (decide feasibility from the settlement fact yourself):\n- Route A (route_a): a same-day-settlement route at 62400 USD that requires cash to settle today\n- Route B (route_b): a standard T+1 route at 63000 USD with cash settling 2026-06-17\n\nTask:\nChoose the feasible route and compute the incremental cost paid for feasibility. Report rejected routes by route id.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"route_a_cost_usd\", \"route_b_cost_usd\", \"incremental_cost_for_feasibility_usd\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Position: long 1,000 QQQ ETF at 480.00.\n- Downside scenario for grading: QQQ closes at 430.00 at option expiry.\n- Constraint: scenario PnL including option premium must be no worse than -30000 USD (a downside floor on this put spread).\n- Option multiplier: 100 shares; use exactly 10 spreads. Stock PnL + spread payoff - net premium = scenario PnL.\nCandidate put spreads (decide which meet the floor; pick the lowest net premium among those that do):\n- Route A (route_a): buy 10 QQQ 480 puts at 12.00 and sell 10 QQQ 470 puts at 7.00 (put spread)\n- Route B (route_b): buy 10 QQQ 480 puts at 12.00 and sell 10 QQQ 460 puts at 5.00 (put spread)\n- Route C (route_c): buy 10 QQQ 480 puts at 12.00 and sell 10 QQQ 450 puts at 3.00 (put spread)\n\nTask:\nSelect the feasible put spread and compute net premium and scenario PnL. Report rejected routes by route id.\n\nObjective:\nminimize net premium subject to scenario_pnl_usd >= the stated floor.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"buy_put_strike\", \"sell_put_strike\", \"contracts\", \"net_premium_paid\", \"scenario_pnl_usd\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
-      "decision": "choose_route",
-      "selected_route": "route_b",
-      "route_a_cost_usd": 62400,
-      "route_b_cost_usd": 63000,
-      "incremental_cost_for_feasibility_usd": 600,
+      "decision": "hedge",
+      "selected_route": "route_c",
+      "buy_put_strike": 480,
+      "sell_put_strike": 450,
+      "contracts": 10,
+      "net_premium_paid": 9000,
+      "scenario_pnl_usd": -29000,
       "feasibility": "feasible",
       "rejected_routes": [
-        "route_a"
+        "route_a",
+        "route_b"
       ]
     },
     "context": {
@@ -1032,20 +1050,25 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "selected_route",
-          "route_a_cost_usd",
-          "route_b_cost_usd",
-          "incremental_cost_for_feasibility_usd"
+          "buy_put_strike",
+          "sell_put_strike",
+          "contracts",
+          "net_premium_paid",
+          "scenario_pnl_usd"
         ]
       },
       "canonical_answer": {
-        "decision": "choose_route",
-        "selected_route": "route_b",
-        "route_a_cost_usd": 62400,
-        "route_b_cost_usd": 63000,
-        "incremental_cost_for_feasibility_usd": 600,
+        "decision": "hedge",
+        "selected_route": "route_c",
+        "buy_put_strike": 480,
+        "sell_put_strike": 450,
+        "contracts": 10,
+        "net_premium_paid": 9000,
+        "scenario_pnl_usd": -29000,
         "feasibility": "feasible",
         "rejected_routes": [
-          "route_a"
+          "route_a",
+          "route_b"
         ]
       }
     }
@@ -1055,16 +1078,18 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 8,
     "type": "schema",
     "rubric_id": "stockbench-l8-004",
-    "prompt": "Frozen market snapshot:\n- Instrument: IWM ETF; order 100 shares. Account fact: only T+1 settlement is supported; same-day settlement is NOT available on this account.\nCandidate routes (decide feasibility from the settlement fact yourself):\n- Route A (route_a): a same-day-settlement route at 10800 USD that requires cash to settle today\n- Route B (route_b): a standard T+1 route at 11500 USD with cash settling 2026-06-18\n\nTask:\nChoose the feasible route and compute the incremental cost paid for feasibility. Report rejected routes by route id.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"route_a_cost_usd\", \"route_b_cost_usd\", \"incremental_cost_for_feasibility_usd\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Position: long 4 CL near-month futures. This is a commodity roll with basis between near and next; use executable bid/ask, not mid.\n- First notice day is tomorrow; account policy forbids holding physically deliverable CL long into first notice.\n- Only the displayed bid/ask is executable; mid prices are indicative and not executable.\nCandidate routes (decide feasibility yourself):\n- Route A (route_a): roll by selling near at bid 79.00 and buying next at ask 79.40; CL multiplier 1000 barrels; fee 4 USD/contract/leg\n- Route B (route_b): roll using the near/next mid prices instead of bid/ask\n- Route C (route_c): hold the long near-month position into first notice day\n\nTask:\nRoll the position and compute total executable cost. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"contracts\", \"roll_cost_usd\", \"fees_usd\", \"total_cost_usd\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
-      "decision": "choose_route",
-      "selected_route": "route_b",
-      "route_a_cost_usd": 10800,
-      "route_b_cost_usd": 11500,
-      "incremental_cost_for_feasibility_usd": 700,
+      "decision": "roll",
+      "selected_route": "route_a",
+      "contracts": 4,
+      "roll_cost_usd": 1600,
+      "fees_usd": 32,
+      "total_cost_usd": 1632,
       "feasibility": "feasible",
       "rejected_routes": [
-        "route_a"
+        "route_b",
+        "route_c"
       ]
     },
     "context": {
@@ -1077,20 +1102,23 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "selected_route",
-          "route_a_cost_usd",
-          "route_b_cost_usd",
-          "incremental_cost_for_feasibility_usd"
+          "contracts",
+          "roll_cost_usd",
+          "fees_usd",
+          "total_cost_usd"
         ]
       },
       "canonical_answer": {
-        "decision": "choose_route",
-        "selected_route": "route_b",
-        "route_a_cost_usd": 10800,
-        "route_b_cost_usd": 11500,
-        "incremental_cost_for_feasibility_usd": 700,
+        "decision": "roll",
+        "selected_route": "route_a",
+        "contracts": 4,
+        "roll_cost_usd": 1600,
+        "fees_usd": 32,
+        "total_cost_usd": 1632,
         "feasibility": "feasible",
         "rejected_routes": [
-          "route_a"
+          "route_b",
+          "route_c"
         ]
       }
     }
@@ -1100,16 +1128,19 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 8,
     "type": "schema",
     "rubric_id": "stockbench-l8-005",
-    "prompt": "Frozen market snapshot:\n- Instrument: AAPL common stock; order 200 shares. Account fact: only T+1 settlement is supported; same-day settlement is NOT available on this account.\nCandidate routes (decide feasibility from the settlement fact yourself):\n- Route A (route_a): a same-day-settlement route at 22400 USD that requires cash to settle today\n- Route B (route_b): a standard T+1 route at 23200 USD with cash settling 2026-06-19\n\nTask:\nChoose the feasible route and compute the incremental cost paid for feasibility. Report rejected routes by route id.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"route_a_cost_usd\", \"route_b_cost_usd\", \"incremental_cost_for_feasibility_usd\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Account: US portfolio margin account. This is a risk budget rebalance against the stated beta target.\n- Portfolio equity beta-dollar exposure: 850000 USD.\n- Required reduction: at least 45% of beta-dollar exposure.\n- Cash budget for premium: 15,000 USD. Futures initial-margin capacity: 33000 USD.\n- ES beta-hedge notional per contract = price * multiplier; one ES contract hedges 261250 beta-dollars.\nCandidate routes (decide feasibility yourself from the facts; do not assume any route is valid):\n- Route A (route_a): short 2 ES futures (beta hedge), ES at 5225.00, multiplier 50, initial margin 13,000 USD/contract, execution cost 25 USD/contract\n- Route B (route_b): short 1 ES futures, same specs as Route A\n- Route C (route_c): buy a SPY put package costing 21000 USD premium that reduces beta-dollars by 522500 USD\n\nTask:\nChoose the feasible route that meets the reduction target at the lowest upfront cost. Report rejected routes by their route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"es_contracts\", \"beta_reduction_usd\", \"beta_reduction_pct\", \"margin_used\", \"expected_cost\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
-      "decision": "choose_route",
-      "selected_route": "route_b",
-      "route_a_cost_usd": 22400,
-      "route_b_cost_usd": 23200,
-      "incremental_cost_for_feasibility_usd": 800,
+      "decision": "hedge",
+      "selected_route": "route_a",
+      "es_contracts": 2,
+      "beta_reduction_usd": 522500,
+      "beta_reduction_pct": 61.47,
+      "margin_used": 26000,
+      "expected_cost": 50,
       "feasibility": "feasible",
       "rejected_routes": [
-        "route_a"
+        "route_b",
+        "route_c"
       ]
     },
     "context": {
@@ -1122,20 +1153,25 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "selected_route",
-          "route_a_cost_usd",
-          "route_b_cost_usd",
-          "incremental_cost_for_feasibility_usd"
+          "es_contracts",
+          "beta_reduction_usd",
+          "beta_reduction_pct",
+          "margin_used",
+          "expected_cost"
         ]
       },
       "canonical_answer": {
-        "decision": "choose_route",
-        "selected_route": "route_b",
-        "route_a_cost_usd": 22400,
-        "route_b_cost_usd": 23200,
-        "incremental_cost_for_feasibility_usd": 800,
+        "decision": "hedge",
+        "selected_route": "route_a",
+        "es_contracts": 2,
+        "beta_reduction_usd": 522500,
+        "beta_reduction_pct": 61.47,
+        "margin_used": 26000,
+        "expected_cost": 50,
         "feasibility": "feasible",
         "rejected_routes": [
-          "route_a"
+          "route_b",
+          "route_c"
         ]
       }
     }
@@ -1145,16 +1181,19 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 8,
     "type": "schema",
     "rubric_id": "stockbench-l8-006",
-    "prompt": "Frozen market snapshot:\n- Instrument: MSFT common stock; order 300 shares. Account fact: only T+1 settlement is supported; same-day settlement is NOT available on this account.\nCandidate routes (decide feasibility from the settlement fact yourself):\n- Route A (route_a): a same-day-settlement route at 34800 USD that requires cash to settle today\n- Route B (route_b): a standard T+1 route at 35300 USD with cash settling 2026-06-22\n\nTask:\nChoose the feasible route and compute the incremental cost paid for feasibility. Report rejected routes by route id.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"route_a_cost_usd\", \"route_b_cost_usd\", \"incremental_cost_for_feasibility_usd\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Account: US margin account. Short selling requires a locate before order entry; you cannot short beyond the locate.\n- Instrument: MSFT common stock at 200.00. Desired bearish target: short 1000 shares of exposure.\n- Locate availability: exactly 600 shares. Option cash available: 2400 USD. Put delta -0.35 means 35 delta-shares per contract.\nCandidate routes (decide feasibility from the locate and cash limits yourself):\n- Route A (route_a): short exactly the 600 located shares and buy 3 listed puts (delta -0.35, premium 8.00 USD/share, multiplier 100) within 2400 USD option cash\n- Route B (route_b): short the full 1000-share target (requires shares beyond the locate)\n- Route C (route_c): buy 7 listed puts (premium 8.00 USD/share, multiplier 100), ignoring the option cash limit\n\nTask:\nChoose the feasible bearish implementation that maximizes bearish delta-shares without breaching the locate or option cash. Report rejected routes by route id.\n\nObjective:\nmaximize bearish delta-shares subject to locate and option-cash constraints.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"short_shares\", \"put_contracts\", \"premium_paid\", \"bearish_delta_shares\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
-      "decision": "choose_route",
-      "selected_route": "route_b",
-      "route_a_cost_usd": 34800,
-      "route_b_cost_usd": 35300,
-      "incremental_cost_for_feasibility_usd": 500,
+      "decision": "trade",
+      "selected_route": "route_a",
+      "instrument": "MSFT",
+      "short_shares": 600,
+      "put_contracts": 3,
+      "premium_paid": 2400,
+      "bearish_delta_shares": 705,
       "feasibility": "feasible",
       "rejected_routes": [
-        "route_a"
+        "route_b",
+        "route_c"
       ]
     },
     "context": {
@@ -1167,20 +1206,25 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "selected_route",
-          "route_a_cost_usd",
-          "route_b_cost_usd",
-          "incremental_cost_for_feasibility_usd"
+          "instrument",
+          "short_shares",
+          "put_contracts",
+          "premium_paid",
+          "bearish_delta_shares"
         ]
       },
       "canonical_answer": {
-        "decision": "choose_route",
-        "selected_route": "route_b",
-        "route_a_cost_usd": 34800,
-        "route_b_cost_usd": 35300,
-        "incremental_cost_for_feasibility_usd": 500,
+        "decision": "trade",
+        "selected_route": "route_a",
+        "instrument": "MSFT",
+        "short_shares": 600,
+        "put_contracts": 3,
+        "premium_paid": 2400,
+        "bearish_delta_shares": 705,
         "feasibility": "feasible",
         "rejected_routes": [
-          "route_a"
+          "route_b",
+          "route_c"
         ]
       }
     }
@@ -1190,16 +1234,18 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 8,
     "type": "schema",
     "rubric_id": "stockbench-l8-007",
-    "prompt": "Frozen market snapshot:\n- Instrument: NVDA common stock; order 400 shares. Account fact: only T+1 settlement is supported; same-day settlement is NOT available on this account.\nCandidate routes (decide feasibility from the settlement fact yourself):\n- Route A (route_a): a same-day-settlement route at 48000 USD that requires cash to settle today\n- Route B (route_b): a standard T+1 route at 48600 USD with cash settling 2026-06-23\n\nTask:\nChoose the feasible route and compute the incremental cost paid for feasibility. Report rejected routes by route id.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"route_a_cost_usd\", \"route_b_cost_usd\", \"incremental_cost_for_feasibility_usd\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: NVDA common stock. Order size: 400 shares at limit 56.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
-      "decision": "choose_route",
-      "selected_route": "route_b",
-      "route_a_cost_usd": 48000,
-      "route_b_cost_usd": 48600,
-      "incremental_cost_for_feasibility_usd": 600,
+      "decision": "trade",
+      "selected_route": "route_a",
+      "instrument": "NVDA",
+      "order_shares": 400,
+      "limit_price": 56.25,
+      "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
-        "route_a"
+        "route_b",
+        "route_c"
       ]
     },
     "context": {
@@ -1212,20 +1258,23 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "selected_route",
-          "route_a_cost_usd",
-          "route_b_cost_usd",
-          "incremental_cost_for_feasibility_usd"
+          "instrument",
+          "order_shares",
+          "limit_price",
+          "venue"
         ]
       },
       "canonical_answer": {
-        "decision": "choose_route",
-        "selected_route": "route_b",
-        "route_a_cost_usd": 48000,
-        "route_b_cost_usd": 48600,
-        "incremental_cost_for_feasibility_usd": 600,
+        "decision": "trade",
+        "selected_route": "route_a",
+        "instrument": "NVDA",
+        "order_shares": 400,
+        "limit_price": 56.25,
+        "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
-          "route_a"
+          "route_b",
+          "route_c"
         ]
       }
     }
@@ -1235,16 +1284,17 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 8,
     "type": "schema",
     "rubric_id": "stockbench-l8-008",
-    "prompt": "Frozen market snapshot:\n- Instrument: TSLA common stock; order 500 shares. Account fact: only T+1 settlement is supported; same-day settlement is NOT available on this account.\nCandidate routes (decide feasibility from the settlement fact yourself):\n- Route A (route_a): a same-day-settlement route at 62000 USD that requires cash to settle today\n- Route B (route_b): a standard T+1 route at 62700 USD with cash settling 2026-06-24\n\nTask:\nChoose the feasible route and compute the incremental cost paid for feasibility. Report rejected routes by route id.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"route_a_cost_usd\", \"route_b_cost_usd\", \"incremental_cost_for_feasibility_usd\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Account holder: US retail customer. Account base currency: USD. Maintain a USD cash buffer; pick the lowest-USD-cost feasible conversion.\n- Required: obtain 350000 EUR settling T+2. Spot EURUSD 1.0600. EUR futures initial margin capacity: 2000 USD.\nCandidate routes (decide feasibility from jurisdiction, settlement and margin facts yourself):\n- Route A (route_a): buy EUR spot at 1.0600, settles T+2, fees included\n- Route B (route_b): use a retail CFD on EURUSD\n- Route C (route_c): use EUR futures requiring 3000 USD initial margin\n\nTask:\nChoose the feasible route and compute USD cost. Report rejected routes by route id.\n\nObjective:\nobtain the EUR by the required settlement date at the lowest feasible USD cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"eur_amount\", \"usd_cost\", \"settlement_date_rule\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
-      "decision": "choose_route",
-      "selected_route": "route_b",
-      "route_a_cost_usd": 62000,
-      "route_b_cost_usd": 62700,
-      "incremental_cost_for_feasibility_usd": 700,
+      "decision": "convert_fx",
+      "selected_route": "route_a",
+      "eur_amount": 350000,
+      "usd_cost": 371000,
+      "settlement_date_rule": "T+2",
       "feasibility": "feasible",
       "rejected_routes": [
-        "route_a"
+        "route_b",
+        "route_c"
       ]
     },
     "context": {
@@ -1257,20 +1307,21 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "selected_route",
-          "route_a_cost_usd",
-          "route_b_cost_usd",
-          "incremental_cost_for_feasibility_usd"
+          "eur_amount",
+          "usd_cost",
+          "settlement_date_rule"
         ]
       },
       "canonical_answer": {
-        "decision": "choose_route",
-        "selected_route": "route_b",
-        "route_a_cost_usd": 62000,
-        "route_b_cost_usd": 62700,
-        "incremental_cost_for_feasibility_usd": 700,
+        "decision": "convert_fx",
+        "selected_route": "route_a",
+        "eur_amount": 350000,
+        "usd_cost": 371000,
+        "settlement_date_rule": "T+2",
         "feasibility": "feasible",
         "rejected_routes": [
-          "route_a"
+          "route_b",
+          "route_c"
         ]
       }
     }
@@ -1280,16 +1331,16 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 8,
     "type": "schema",
     "rubric_id": "stockbench-l8-009",
-    "prompt": "Frozen market snapshot:\n- Instrument: XLK ETF; order 600 shares. Account fact: only T+1 settlement is supported; same-day settlement is NOT available on this account.\nCandidate routes (decide feasibility from the settlement fact yourself):\n- Route A (route_a): a same-day-settlement route at 76800 USD that requires cash to settle today\n- Route B (route_b): a standard T+1 route at 77600 USD with cash settling 2026-06-25\n\nTask:\nChoose the feasible route and compute the incremental cost paid for feasibility. Report rejected routes by route id.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"route_a_cost_usd\", \"route_b_cost_usd\", \"incremental_cost_for_feasibility_usd\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: XLK ETF at 270.00. Account calendar: the next day is a settlement holiday, so T+1 cash lands on the stated date.\n- Trade date 2026-06-24; T+1 cash settlement date 2026-06-25. Unsettled proceeds cannot be withdrawn before settlement.\nCandidate routes (decide which respects settlement):\n- Route A (route_a): sell 400 shares on 2026-06-24; withdraw cash only after T+1 settlement on 2026-06-25\n- Route B (route_b): sell 400 shares on 2026-06-24 and withdraw the proceeds on the trade date 2026-06-24\n\nTask:\nSell and report trade value and the T+1 cash date. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"trade_value_usd\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
-      "decision": "choose_route",
-      "selected_route": "route_b",
-      "route_a_cost_usd": 76800,
-      "route_b_cost_usd": 77600,
-      "incremental_cost_for_feasibility_usd": 800,
+      "decision": "sell",
+      "selected_route": "route_a",
+      "trade_value_usd": 108000,
+      "settlement_rule": "T+1",
+      "settlement_cash_date": "2026-06-25",
       "feasibility": "feasible",
       "rejected_routes": [
-        "route_a"
+        "route_b"
       ]
     },
     "context": {
@@ -1302,20 +1353,20 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "selected_route",
-          "route_a_cost_usd",
-          "route_b_cost_usd",
-          "incremental_cost_for_feasibility_usd"
+          "trade_value_usd",
+          "settlement_rule",
+          "settlement_cash_date"
         ]
       },
       "canonical_answer": {
-        "decision": "choose_route",
-        "selected_route": "route_b",
-        "route_a_cost_usd": 76800,
-        "route_b_cost_usd": 77600,
-        "incremental_cost_for_feasibility_usd": 800,
+        "decision": "sell",
+        "selected_route": "route_a",
+        "trade_value_usd": 108000,
+        "settlement_rule": "T+1",
+        "settlement_cash_date": "2026-06-25",
         "feasibility": "feasible",
         "rejected_routes": [
-          "route_a"
+          "route_b"
         ]
       }
     }
@@ -1325,16 +1376,21 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 8,
     "type": "schema",
     "rubric_id": "stockbench-l8-010",
-    "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF; order 100 shares. Account fact: only T+1 settlement is supported; same-day settlement is NOT available on this account.\nCandidate routes (decide feasibility from the settlement fact yourself):\n- Route A (route_a): a same-day-settlement route at 13200 USD that requires cash to settle today\n- Route B (route_b): a standard T+1 route at 13700 USD with cash settling 2026-06-16\n\nTask:\nChoose the feasible route and compute the incremental cost paid for feasibility. Report rejected routes by route id.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"route_a_cost_usd\", \"route_b_cost_usd\", \"incremental_cost_for_feasibility_usd\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF at 104.00. This is an equity order ticket; equities settle T+1.\n- Buy 700 shares with a protective day limit 104.25; T+1 cash date 2026-06-16.\nCandidate routes:\n- Route A (route_a): submit a day limit buy ticket for 700 shares at 104.25 in the regular session\n- Route B (route_b): submit a market buy that ignores the protective limit\n\nTask:\nCreate the order ticket and report trade value and T+1 date. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"side\", \"quantity\", \"order_type\", \"limit_price\", \"trade_value_usd\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
-      "decision": "choose_route",
-      "selected_route": "route_b",
-      "route_a_cost_usd": 13200,
-      "route_b_cost_usd": 13700,
-      "incremental_cost_for_feasibility_usd": 500,
+      "decision": "trade",
+      "selected_route": "route_a",
+      "instrument": "XLF",
+      "side": "buy",
+      "quantity": 700,
+      "order_type": "limit",
+      "limit_price": 104.25,
+      "trade_value_usd": 72800,
+      "settlement_rule": "T+1",
+      "settlement_cash_date": "2026-06-16",
       "feasibility": "feasible",
       "rejected_routes": [
-        "route_a"
+        "route_b"
       ]
     },
     "context": {
@@ -1347,20 +1403,30 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "selected_route",
-          "route_a_cost_usd",
-          "route_b_cost_usd",
-          "incremental_cost_for_feasibility_usd"
+          "instrument",
+          "side",
+          "quantity",
+          "order_type",
+          "limit_price",
+          "trade_value_usd",
+          "settlement_rule",
+          "settlement_cash_date"
         ]
       },
       "canonical_answer": {
-        "decision": "choose_route",
-        "selected_route": "route_b",
-        "route_a_cost_usd": 13200,
-        "route_b_cost_usd": 13700,
-        "incremental_cost_for_feasibility_usd": 500,
+        "decision": "trade",
+        "selected_route": "route_a",
+        "instrument": "XLF",
+        "side": "buy",
+        "quantity": 700,
+        "order_type": "limit",
+        "limit_price": 104.25,
+        "trade_value_usd": 72800,
+        "settlement_rule": "T+1",
+        "settlement_cash_date": "2026-06-16",
         "feasibility": "feasible",
         "rejected_routes": [
-          "route_a"
+          "route_b"
         ]
       }
     }
@@ -1984,11 +2050,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 9,
     "type": "schema",
     "rubric_id": "stockbench-l9-020",
-    "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF. Order size: 100 shares at limit 89.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "XLF",
+      "order_shares": 100,
+      "limit_price": 89.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -2008,6 +2076,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -2015,6 +2085,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "XLF",
+        "order_shares": 100,
+        "limit_price": 89.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -2183,11 +2255,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 9,
     "type": "schema",
     "rubric_id": "stockbench-l9-024",
-    "prompt": "Frozen market snapshot:\n- Instrument: IWM ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: IWM ETF. Order size: 500 shares at limit 93.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "IWM",
+      "order_shares": 500,
+      "limit_price": 93.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -2207,6 +2281,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -2214,6 +2290,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "IWM",
+        "order_shares": 500,
+        "limit_price": 93.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -2436,11 +2514,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 9,
     "type": "schema",
     "rubric_id": "stockbench-l9-029",
-    "prompt": "Frozen market snapshot:\n- Instrument: XLK ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: XLK ETF. Order size: 100 shares at limit 98.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "XLK",
+      "order_shares": 100,
+      "limit_price": 98.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -2460,6 +2540,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -2467,6 +2549,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "XLK",
+        "order_shares": 100,
+        "limit_price": 98.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -3050,11 +3134,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 9,
     "type": "schema",
     "rubric_id": "stockbench-l9-041",
-    "prompt": "Frozen market snapshot:\n- Instrument: GLD ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: GLD ETF. Order size: 400 shares at limit 57.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "GLD",
+      "order_shares": 400,
+      "limit_price": 57.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -3074,6 +3160,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -3081,6 +3169,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "GLD",
+        "order_shares": 400,
+        "limit_price": 57.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -4434,11 +4524,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 9,
     "type": "schema",
     "rubric_id": "stockbench-l9-068",
-    "prompt": "Frozen market snapshot:\n- Instrument: TSLA common stock. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: TSLA common stock. Order size: 400 shares at limit 84.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "TSLA",
+      "order_shares": 400,
+      "limit_price": 84.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -4458,6 +4550,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -4465,6 +4559,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "TSLA",
+        "order_shares": 400,
+        "limit_price": 84.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -4891,11 +4987,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 9,
     "type": "schema",
     "rubric_id": "stockbench-l9-077",
-    "prompt": "Frozen market snapshot:\n- Instrument: NVDA common stock. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: NVDA common stock. Order size: 400 shares at limit 93.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route that satisfies all stated constraints at the lowest cost.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "NVDA",
+      "order_shares": 400,
+      "limit_price": 93.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -4915,6 +5013,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -4922,6 +5022,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "NVDA",
+        "order_shares": 400,
+        "limit_price": 93.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -5685,11 +5787,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 10,
     "type": "schema",
     "rubric_id": "stockbench-l10-018",
-    "prompt": "Frozen market snapshot:\n- Instrument: XLK ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nAfter selecting, recompute residual exposure/cost so the choice is self-consistent.\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the lowest-cost feasible route and recompute residual exposure after the trade.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\", \"residual_check\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: XLK ETF. Order size: 900 shares at limit 72.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nAfter selecting, recompute residual exposure/cost so the choice is self-consistent.\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the lowest-cost feasible route and recompute residual exposure after the trade.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\", \"residual_check\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "XLK",
+      "order_shares": 900,
+      "limit_price": 72.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -5710,6 +5814,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -5717,6 +5823,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "XLK",
+        "order_shares": 900,
+        "limit_price": 72.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -5950,11 +6058,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 10,
     "type": "schema",
     "rubric_id": "stockbench-l10-023",
-    "prompt": "Frozen market snapshot:\n- Instrument: IWM ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nAfter selecting, recompute residual exposure/cost so the choice is self-consistent.\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the lowest-cost feasible route and recompute residual exposure after the trade.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\", \"residual_check\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: IWM ETF. Order size: 500 shares at limit 77.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nAfter selecting, recompute residual exposure/cost so the choice is self-consistent.\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the lowest-cost feasible route and recompute residual exposure after the trade.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\", \"residual_check\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "IWM",
+      "order_shares": 500,
+      "limit_price": 77.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -5975,6 +6085,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -5982,6 +6094,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "IWM",
+        "order_shares": 500,
+        "limit_price": 77.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -6549,11 +6663,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 10,
     "type": "schema",
     "rubric_id": "stockbench-l10-034",
-    "prompt": "Frozen market snapshot:\n- Instrument: AAPL common stock. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nAfter selecting, recompute residual exposure/cost so the choice is self-consistent.\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the lowest-cost feasible route and recompute residual exposure after the trade.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\", \"residual_check\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: AAPL common stock. Order size: 700 shares at limit 88.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nAfter selecting, recompute residual exposure/cost so the choice is self-consistent.\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the lowest-cost feasible route and recompute residual exposure after the trade.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\", \"residual_check\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "AAPL",
+      "order_shares": 700,
+      "limit_price": 88.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -6574,6 +6690,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -6581,6 +6699,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "AAPL",
+        "order_shares": 700,
+        "limit_price": 88.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -8260,11 +8380,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 10,
     "type": "schema",
     "rubric_id": "stockbench-l10-066",
-    "prompt": "Frozen market snapshot:\n- Instrument: NVDA common stock. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nAfter selecting, recompute residual exposure/cost so the choice is self-consistent.\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the lowest-cost feasible route and recompute residual exposure after the trade.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\", \"residual_check\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: NVDA common stock. Order size: 300 shares at limit 67.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nAfter selecting, recompute residual exposure/cost so the choice is self-consistent.\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the lowest-cost feasible route and recompute residual exposure after the trade.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\", \"residual_check\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "NVDA",
+      "order_shares": 300,
+      "limit_price": 67.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -8285,6 +8407,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue"
         ]
       },
@@ -8292,6 +8416,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "NVDA",
+        "order_shares": 300,
+        "limit_price": 67.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -10979,11 +11105,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 11,
     "type": "schema",
     "rubric_id": "stockbench-agi-041",
-    "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -140000 USD.\n- squeeze: 52000 USD.\n- idiosyncratic_gap: -70000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF. Order size: 200 shares at limit 67.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -140000 USD.\n- squeeze: 52000 USD.\n- idiosyncratic_gap: -70000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "XLF",
+      "order_shares": 200,
+      "limit_price": 67.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -11013,6 +11141,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue",
           "scenario_pnl.risk_off",
           "scenario_pnl.squeeze",
@@ -11024,6 +11154,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "XLF",
+        "order_shares": 200,
+        "limit_price": 67.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -11904,11 +12036,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 11,
     "type": "schema",
     "rubric_id": "stockbench-agi-053",
-    "prompt": "Frozen market snapshot:\n- Instrument: SPY ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -140000 USD.\n- squeeze: 40000 USD.\n- idiosyncratic_gap: -70000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: SPY ETF. Order size: 500 shares at limit 79.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -140000 USD.\n- squeeze: 40000 USD.\n- idiosyncratic_gap: -70000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "SPY",
+      "order_shares": 500,
+      "limit_price": 79.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -11938,6 +12072,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue",
           "scenario_pnl.risk_off",
           "scenario_pnl.squeeze",
@@ -11949,6 +12085,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "SPY",
+        "order_shares": 500,
+        "limit_price": 79.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -12829,11 +12967,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 11,
     "type": "schema",
     "rubric_id": "stockbench-agi-065",
-    "prompt": "Frozen market snapshot:\n- Instrument: IWM ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -140000 USD.\n- squeeze: 48000 USD.\n- idiosyncratic_gap: -70000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: IWM ETF. Order size: 800 shares at limit 91.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -140000 USD.\n- squeeze: 48000 USD.\n- idiosyncratic_gap: -70000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "IWM",
+      "order_shares": 800,
+      "limit_price": 91.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -12863,6 +13003,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue",
           "scenario_pnl.risk_off",
           "scenario_pnl.squeeze",
@@ -12874,6 +13016,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "IWM",
+        "order_shares": 800,
+        "limit_price": 91.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -14032,11 +14176,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 11,
     "type": "schema",
     "rubric_id": "stockbench-agi-081",
-    "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -130000 USD.\n- squeeze: 52000 USD.\n- idiosyncratic_gap: -70000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: XLF ETF. Order size: 600 shares at limit 54.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Session/permission trap: only permitted, open venues are executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -130000 USD.\n- squeeze: 52000 USD.\n- idiosyncratic_gap: -70000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "XLF",
+      "order_shares": 600,
+      "limit_price": 54.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -14066,6 +14212,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue",
           "scenario_pnl.risk_off",
           "scenario_pnl.squeeze",
@@ -14077,6 +14225,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "XLF",
+        "order_shares": 600,
+        "limit_price": 54.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [
@@ -14713,11 +14863,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 11,
     "type": "schema",
     "rubric_id": "stockbench-agi-090",
-    "prompt": "Frozen market snapshot:\n- Instrument: XLK ETF. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -145000 USD.\n- squeeze: 48000 USD.\n- idiosyncratic_gap: -73000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
+    "prompt": "Frozen market snapshot:\n- Instrument: XLK ETF. Order size: 600 shares at limit 63.25. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n- Auction/session constraint: only the open regular session is executable.\nCandidate routes (decide which venue is permitted and open yourself):\n- Route A (route_a): route the order to the continuous regular session\n- Route B (route_b): route the order to the closed after-hours venue with no permission\n- Route C (route_c): route via an unsupported dark venue not enabled on this account\n\nFrozen scenario PnL before action:\n- risk_off: -145000 USD.\n- squeeze: 48000 USD.\n- idiosyncratic_gap: -73000 USD.\nThis action does not hedge the book (no per-scenario market effect), so each scenario's PnL is the frozen base PnL minus the action's cash cost (0 USD).\n\nTask:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\nselect the feasible route required by the constraints, then reconcile stress-scenario PnL and report the worst case.\n\nOutput JSON fields: { \"decision\", \"selected_route\", \"instrument\", \"order_shares\", \"limit_price\", \"venue\", \"feasibility\", \"rejected_routes\", \"scenario_pnl\", \"worst_case_pnl\", \"self_check\" }",
     "expected_values": {
       "decision": "trade",
       "selected_route": "route_a",
       "instrument": "XLK",
+      "order_shares": 600,
+      "limit_price": 63.25,
       "venue": "regular_session",
       "feasibility": "feasible",
       "rejected_routes": [
@@ -14747,6 +14899,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "deterministic_grading_fields": [
           "selected_route",
           "instrument",
+          "order_shares",
+          "limit_price",
           "venue",
           "scenario_pnl.risk_off",
           "scenario_pnl.squeeze",
@@ -14758,6 +14912,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "trade",
         "selected_route": "route_a",
         "instrument": "XLK",
+        "order_shares": 600,
+        "limit_price": 63.25,
         "venue": "regular_session",
         "feasibility": "feasible",
         "rejected_routes": [

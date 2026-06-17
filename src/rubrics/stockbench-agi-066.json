@@ -12,8 +12,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.stop_adjusted",
-    "self_check.option_strike_unchanged"
+    "self_check"
   ],
   "required_fields": [
     "decision",
@@ -27,8 +26,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.stop_adjusted",
-    "self_check.option_strike_unchanged"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -91,14 +89,7 @@
         "expected": -145000,
         "tolerance": 0.01
       },
-      "self_check.stop_adjusted": {
-        "type": "boolean",
-        "expected": true
-      },
-      "self_check.option_strike_unchanged": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "Adjusted stop = 225 - 0.55 = 224.45; ordinary dividend does not adjust the option strike (stays 230).",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -128,9 +119,7 @@
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.stop_adjusted",
-      "self_check.option_strike_unchanged"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

@@ -248,7 +248,8 @@ function buildPortfolio(tier: Tier, family: string, seed: number): Packet {
     `short ${fewer} ES futures, same specs as Route A`,
     `buy a SPY put package costing ${putCost} USD premium that reduces beta-dollars by ${reduction} USD`,
   ];
-  if (tier !== 'L9') routes.push(`short ${esNeeded + 3} ES futures, same specs as Route A`);
+  const fourRoutes = tier === 'L10' || tier === 'AGI';
+  if (fourRoutes) routes.push(`short ${esNeeded + 3} ES futures, same specs as Route A`);
   const expected: Record<string, unknown> = {
     decision: 'hedge',
     selected_route: 'route_a',
@@ -258,7 +259,7 @@ function buildPortfolio(tier: Tier, family: string, seed: number): Packet {
     margin_used: margin,
     expected_cost: esCost,
     feasibility: 'feasible',
-    rejected_routes: tier === 'L9' ? ['route_b', 'route_c'] : ['route_b', 'route_c', 'route_d'],
+    rejected_routes: fourRoutes ? ['route_b', 'route_c', 'route_d'] : ['route_b', 'route_c'],
   };
   const deterministic = ['selected_route', 'es_contracts', 'beta_reduction_usd', 'beta_reduction_pct', 'margin_used', 'expected_cost'];
   const familyLine =
@@ -586,14 +587,16 @@ function buildExecution(tier: Tier, family: string, seed: number): Packet {
       `route the order to the closed after-hours venue with no permission`,
       `route via an unsupported dark venue not enabled on this account`,
     ];
+    const sessQty = 100 + (seed % 9) * 100;
+    const sessQuote = round2(50 + (seed % 53) + 0.25);
     const expected: Record<string, unknown> = {
-      decision: 'trade', selected_route: 'route_a', instrument: sym, venue: 'regular_session', feasibility: 'feasible', rejected_routes: ['route_b', 'route_c'],
+      decision: 'trade', selected_route: 'route_a', instrument: sym, order_shares: sessQty, limit_price: sessQuote, venue: 'regular_session', feasibility: 'feasible', rejected_routes: ['route_b', 'route_c'],
     };
-    const deterministic = ['selected_route', 'instrument', 'venue'];
+    const deterministic = ['selected_route', 'instrument', 'order_shares', 'limit_price', 'venue'];
     const esc = escalationFields(tier, seed, expected, deterministic, { risk_off: 0, squeeze: 0, gap: 0 }, 0,
       { session_open: true, venue_permitted: true });
     const prompt =
-      `Frozen market snapshot:\n- Instrument: ${instr(sym)}. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n` +
+      `Frozen market snapshot:\n- Instrument: ${instr(sym)}. Order size: ${sessQty} shares at limit ${sessQuote.toFixed(2)}. The regular session is OPEN now; the after-hours venue is CLOSED; the dark venue is NOT enabled on this account.\n` +
       `- ${family === 'auction_session_constraint' ? 'Auction/session constraint: only the open regular session is executable.' : 'Session/permission trap: only permitted, open venues are executable.'}\n` +
       `Candidate routes (decide which venue is permitted and open yourself):\n` + renderRoutes(routes) + `\n` + esc.extraPrompt + `\n` +
       `Task:\nRoute to the only feasible venue. Report rejected routes by route id.\n\nObjective:\n${esc.objective}.\n\nOutput JSON fields: ${compact(expected)}`;
@@ -905,7 +908,10 @@ function buildLowMid(tier: Tier, domain: Domain, family: string, seed: number): 
 }
 
 function buildPacket(tier: Tier, domain: Domain, family: string, seed: number): Packet {
-  if (['L9', 'L10', 'AGI'].includes(tier)) return buildHardTier(tier, domain, family, seed);
+  // L8 (conditional reasoning) uses the real per-family domain builders too, so its
+  // scenario_family is honest and it is not a single mislabeled template. L8 gets the base
+  // route-selection shape (3 routes, no stress block); L10/AGI add depth.
+  if (['L8', 'L9', 'L10', 'AGI'].includes(tier)) return buildHardTier(tier, domain, family, seed);
   return buildLowMid(tier, domain, family, seed);
 }
 
@@ -913,6 +919,12 @@ function buildPacket(tier: Tier, domain: Domain, family: string, seed: number): 
 // RUBRIC ASSEMBLY
 // ----------------------------------------------------------------------------
 function validationFor(value: unknown, key: string): Array<[string, Record<string, unknown>]> {
+  // self_check is a self-verification artifact: presence-checked only, never an exact nested
+  // schema. The prompt does not (and should not) name its sub-keys, so requiring exact keys
+  // would be hidden-schema unfairness under strict pass@1.
+  if (key === 'self_check' || key.endsWith('.self_check')) {
+    return [[key, {}]]; // pure presence check — any non-empty self_check (object/array/string) is accepted
+  }
   if (typeof value === 'number') return [[key, { type: 'number', expected: value, tolerance: 0.01 }]];
   if (typeof value === 'boolean') return [[key, { type: 'boolean', expected: value }]];
   if (Array.isArray(value)) return [[key, { type: 'array', expected_set: value, min_items: value.length, match_type: 'exact_set' }]];

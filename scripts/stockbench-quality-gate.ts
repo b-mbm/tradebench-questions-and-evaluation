@@ -20,6 +20,7 @@
  * No paid model calls.
  */
 import { STOCKBENCH_QUESTIONS_300Q } from '../src/questions/stockbench-questions-300q';
+import { loadRubric300q } from '../src/rubrics/loader-300q';
 
 type Json = any;
 const qs = STOCKBENCH_QUESTIONS_300Q as Json[];
@@ -141,7 +142,7 @@ const familyMismatchIds: string[] = [];
 for (const q of qs) {
   // scenario_family content is enforced where it matters most: the hard tiers, where
   // "decorative family" was the original blocker. Low/mid-tier family tags are nominal.
-  if (!['L9', 'L10', 'AGI'].includes(String(q.context?.stockbench?.tier))) continue;
+  if (!['L8', 'L9', 'L10', 'AGI'].includes(String(q.context?.stockbench?.tier))) continue;
   const fam = String(q.context?.stockbench?.scenario_family ?? '');
   const sig = FAMILY_SIGNATURES[fam];
   if (!sig) continue;
@@ -171,6 +172,22 @@ for (const q of qs) {
   if (LEAK_PATTERNS.some(re => re.test(q.prompt))) hardExtractionFlagged += 1;
 }
 
+// ---------- 6. hidden-schema check (a critical nested key must be discoverable from the prompt) ----------
+// Catches the class Codex found: rubric requires self_check.<key> / scenario_pnl.<key> exactly,
+// but the prompt never names <key>, so a model cannot produce it (unfair under strict pass@1).
+let hiddenSchemaRows = 0;
+const hiddenSchemaExamples: string[] = [];
+for (const q of qs) {
+  const r: Json = loadRubric300q(q.rubric_id);
+  const crit: string[] = Array.isArray(r.metadata?.critical_fields) ? r.metadata.critical_fields.map(String) : [];
+  const np = norm(q.prompt);
+  const hidden = crit.filter(f => f.includes('.')).map(f => f.split('.').pop()!).filter(leaf => !np.includes(norm(leaf)));
+  if (hidden.length) {
+    hiddenSchemaRows += 1;
+    if (hiddenSchemaExamples.length < 10) hiddenSchemaExamples.push(`${q.id}: ${[...new Set(hidden)].join(',')}`);
+  }
+}
+
 // ---------- report ----------
 console.log('=== StockBench quality gate (guardrail, NOT a freeze proof) ===\n');
 console.log('1. ANSWER LEAKAGE');
@@ -191,11 +208,16 @@ console.log(`   identical-answer-key groups: ${dupAnswerGroups.length}, redundan
 console.log('\n5. DIFFICULTY HONESTY PROXY');
 console.log(`   L9/L10/AGI rows with pre-labeled feasibility (extraction, not synthesis): ${hardExtractionFlagged}`);
 
+console.log('\n6. HIDDEN-SCHEMA CHECK (critical nested keys must be named in the prompt)');
+console.log(`   rows requiring an un-named nested key: ${hiddenSchemaRows}  (target: 0)`);
+hiddenSchemaExamples.forEach(e => console.log(`     ${e}`));
+
 const gatePass =
   new Set(leakIds).size === 0 &&
   tiers.every(t => !diversity[t] || diversity[t].pass) &&
   (familyChecked === 0 || familyMismatch / familyChecked < 0.05) &&
-  dupAnswerRows === 0;
+  dupAnswerRows === 0 &&
+  hiddenSchemaRows === 0;
 
 console.log(`\nGUARDRAIL: ${gatePass ? 'PASS' : 'FAIL'} (informational; freeze also requires the mutation gate + a model smoke run)`);
 if (!gatePass) process.exitCode = 1;

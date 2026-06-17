@@ -12,8 +12,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.span_margin_within_limit",
-    "self_check.highest_feasible_carry_selected"
+    "self_check"
   ],
   "required_fields": [
     "decision",
@@ -27,8 +26,7 @@
     "scenario_pnl.squeeze",
     "scenario_pnl.idiosyncratic_gap",
     "worst_case_pnl",
-    "self_check.span_margin_within_limit",
-    "self_check.highest_feasible_carry_selected"
+    "self_check"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -92,14 +90,7 @@
         "expected": -122000,
         "tolerance": 0.01
       },
-      "self_check.span_margin_within_limit": {
-        "type": "boolean",
-        "expected": true
-      },
-      "self_check.highest_feasible_carry_selected": {
-        "type": "boolean",
-        "expected": true
-      }
+      "self_check": {}
     },
     "derivation": "Outright SPAN margin 24000 > cap 12000 (infeasible). Calendar spread margin 10500 <= cap, carry 1200. Flat earns 0. Best feasible = calendar spread.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
@@ -130,9 +121,7 @@
       "scenario_pnl.risk_off",
       "scenario_pnl.squeeze",
       "scenario_pnl.idiosyncratic_gap",
-      "worst_case_pnl",
-      "self_check.span_margin_within_limit",
-      "self_check.highest_feasible_carry_selected"
+      "worst_case_pnl"
     ],
     "needs_review": false
   }

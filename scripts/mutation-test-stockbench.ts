@@ -130,6 +130,18 @@ for (const q of STOCKBENCH_QUESTIONS_300Q as Json[]) {
     expectFail(`missing_critical:${f}`, m);
   }
 
+  // --- self-contradiction: chosen route also listed as rejected (must fail) ---
+  if (Array.isArray(expected.rejected_routes)) {
+    for (const choiceKey of ['selected_route', 'chosen_route', 'chosen_strategy', 'selected_instrument']) {
+      if (typeof expected[choiceKey] === 'string' && expected[choiceKey]) {
+        const m = clone(expected);
+        m.rejected_routes = [...m.rejected_routes, expected[choiceKey]];
+        expectFail(`selected_in_rejected:${choiceKey}`, m);
+        break;
+      }
+    }
+  }
+
   // --- invalid-route flip ---
   if (typeof expected.feasibility === 'string') {
     const m = clone(expected);
