@@ -637,13 +637,13 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 6,
     "type": "schema",
     "rubric_id": "stockbench-l6-002",
-    "prompt": "Frozen market snapshot:\n- Account permission for XLF ETF: allowed.\n- Proceeds settle T+1; cash date 2026-06-24.\n- Same-day withdrawal of unsettled proceeds is not allowed.\n\nTask:\nReturn the correct operational sequence and the T+1 cash date.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
+    "prompt": "Frozen market snapshot:\n- Account: US margin account. Short selling XLF ETF requires a confirmed locate before order entry.\n- Proceeds settle T+1; cash date 2026-06-24.\n\nTask:\nReturn the correct short-sale operational sequence (locate first) and the T+1 cash date.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"execution_sequence\", \"settlement_rule\", \"settlement_cash_date\", \"feasibility\" }",
     "expected_values": {
       "decision": "sequence",
       "instrument": "XLF ETF",
       "execution_sequence": [
-        "check_permission",
-        "submit_order",
+        "confirm_locate",
+        "submit_short_sale",
         "confirm_settlement"
       ],
       "settlement_rule": "T+1",
@@ -656,7 +656,7 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Shorting / borrow / margin / locates",
         "tier": "L6",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "operational_settlement_sequence",
+        "scenario_family": "short_borrow_sequence",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "instrument",
@@ -670,8 +670,8 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "decision": "sequence",
         "instrument": "XLF ETF",
         "execution_sequence": [
-          "check_permission",
-          "submit_order",
+          "confirm_locate",
+          "submit_short_sale",
           "confirm_settlement"
         ],
         "settlement_rule": "T+1",
@@ -875,15 +875,16 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 7,
     "type": "schema",
     "rubric_id": "stockbench-l7-003",
-    "prompt": "Frozen market snapshot:\n- Target notional: 50000 USD in SPY ETF.\n- Price: 100.00 USD/share. Fractional shares not allowed.\n\nTask:\nCompute whole shares, used notional, and residual cash.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"target_notional_usd\", \"price\", \"shares\", \"used_notional_usd\", \"residual_cash_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Target short notional: 50000 USD in SPY ETF at 100.00 USD/share.\n- Locate available: 300 shares; you cannot short beyond the locate. Fractional shares not allowed.\n\nTask:\nCompute the short share count (capped by BOTH notional and the locate), used notional, and residual unfilled notional.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"target_short_notional_usd\", \"price\", \"locate_shares\", \"short_shares\", \"used_notional_usd\", \"residual_unfilled_usd\" }",
     "expected_values": {
       "decision": "rebalance",
       "instrument": "SPY ETF",
-      "target_notional_usd": 50000,
+      "target_short_notional_usd": 50000,
       "price": 100,
-      "shares": 500,
-      "used_notional_usd": 50000,
-      "residual_cash_usd": 0
+      "locate_shares": 300,
+      "short_shares": 300,
+      "used_notional_usd": 30000,
+      "residual_unfilled_usd": 20000
     },
     "context": {
       "benchmark": "StockBench",
@@ -891,25 +892,27 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Shorting / borrow / margin / locates",
         "tier": "L7",
         "capability_tag": "judgment_risk_augmentation",
-        "scenario_family": "equity_whole_unit_sizing",
+        "scenario_family": "short_notional_sizing",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "instrument",
-          "target_notional_usd",
+          "target_short_notional_usd",
           "price",
-          "shares",
+          "locate_shares",
+          "short_shares",
           "used_notional_usd",
-          "residual_cash_usd"
+          "residual_unfilled_usd"
         ]
       },
       "canonical_answer": {
         "decision": "rebalance",
         "instrument": "SPY ETF",
-        "target_notional_usd": 50000,
+        "target_short_notional_usd": 50000,
         "price": 100,
-        "shares": 500,
-        "used_notional_usd": 50000,
-        "residual_cash_usd": 0
+        "locate_shares": 300,
+        "short_shares": 300,
+        "used_notional_usd": 30000,
+        "residual_unfilled_usd": 20000
       }
     }
   },
@@ -918,15 +921,16 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 7,
     "type": "schema",
     "rubric_id": "stockbench-l7-004",
-    "prompt": "Frozen market snapshot:\n- Target notional: 60000 USD in QQQ ETF.\n- Price: 104.00 USD/share. Fractional shares not allowed.\n\nTask:\nCompute whole shares, used notional, and residual cash.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"target_notional_usd\", \"price\", \"shares\", \"used_notional_usd\", \"residual_cash_usd\" }",
+    "prompt": "Frozen market snapshot:\n- Target notional: 70000 USD in QQQ ETF at 104.00 USD/share.\n- Max participation this interval: 500 shares of displayed liquidity. Fractional shares not allowed.\n\nTask:\nCompute the executable share count (capped by BOTH notional and the participation limit), used notional, and residual notional.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"target_notional_usd\", \"price\", \"max_participation_shares\", \"filled_shares\", \"used_notional_usd\", \"residual_notional_usd\" }",
     "expected_values": {
       "decision": "rebalance",
       "instrument": "QQQ ETF",
-      "target_notional_usd": 60000,
+      "target_notional_usd": 70000,
       "price": 104,
-      "shares": 576,
-      "used_notional_usd": 59904,
-      "residual_cash_usd": 96
+      "max_participation_shares": 500,
+      "filled_shares": 500,
+      "used_notional_usd": 52000,
+      "residual_notional_usd": 18000
     },
     "context": {
       "benchmark": "StockBench",
@@ -934,25 +938,27 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Execution / liquidity / microstructure",
         "tier": "L7",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "equity_whole_unit_sizing",
+        "scenario_family": "liquidity_capped_sizing",
         "feasibility_trap": true,
         "deterministic_grading_fields": [
           "instrument",
           "target_notional_usd",
           "price",
-          "shares",
+          "max_participation_shares",
+          "filled_shares",
           "used_notional_usd",
-          "residual_cash_usd"
+          "residual_notional_usd"
         ]
       },
       "canonical_answer": {
         "decision": "rebalance",
         "instrument": "QQQ ETF",
-        "target_notional_usd": 60000,
+        "target_notional_usd": 70000,
         "price": 104,
-        "shares": 576,
-        "used_notional_usd": 59904,
-        "residual_cash_usd": 96
+        "max_participation_shares": 500,
+        "filled_shares": 500,
+        "used_notional_usd": 52000,
+        "residual_notional_usd": 18000
       }
     }
   },
@@ -961,15 +967,17 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
     "level": 7,
     "type": "schema",
     "rubric_id": "stockbench-l7-005",
-    "prompt": "Frozen market snapshot:\n- Target notional: 70000 USD in EURUSD spot.\n- Price: 108.00 USD/share. Fractional shares not allowed.\n\nTask:\nCompute whole shares, used notional, and residual cash.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"target_notional_usd\", \"price\", \"shares\", \"used_notional_usd\", \"residual_cash_usd\" }",
+    "prompt": "Frozen market snapshot:\n- USD budget: 300000 USD to buy EUR via EURUSD at 1.0600.\n- Trade in whole 1000 EUR lots only (this is a currency amount, not shares).\n\nTask:\nCompute whole EUR lots, EUR amount, USD used, and residual USD.\n\nOutput JSON fields: { \"decision\", \"instrument\", \"usd_budget\", \"spot\", \"lot_size_eur\", \"lots\", \"eur_amount\", \"used_usd\", \"residual_usd\" }",
     "expected_values": {
       "decision": "rebalance",
       "instrument": "EURUSD spot",
-      "target_notional_usd": 70000,
-      "price": 108,
-      "shares": 648,
-      "used_notional_usd": 69984,
-      "residual_cash_usd": 16
+      "usd_budget": 300000,
+      "spot": 1.06,
+      "lot_size_eur": 1000,
+      "lots": 283,
+      "eur_amount": 283000,
+      "used_usd": 299980,
+      "residual_usd": 20
     },
     "context": {
       "benchmark": "StockBench",
@@ -977,25 +985,29 @@ export const STOCKBENCH_GENERATED_QUESTIONS: SchemaQuestion[] = [
         "primary_domain": "Spot FX / CFDs / multi-currency",
         "tier": "L7",
         "capability_tag": "execution_action_quality",
-        "scenario_family": "equity_whole_unit_sizing",
+        "scenario_family": "fx_lot_sizing",
         "feasibility_trap": false,
         "deterministic_grading_fields": [
           "instrument",
-          "target_notional_usd",
-          "price",
-          "shares",
-          "used_notional_usd",
-          "residual_cash_usd"
+          "usd_budget",
+          "spot",
+          "lot_size_eur",
+          "lots",
+          "eur_amount",
+          "used_usd",
+          "residual_usd"
         ]
       },
       "canonical_answer": {
         "decision": "rebalance",
         "instrument": "EURUSD spot",
-        "target_notional_usd": 70000,
-        "price": 108,
-        "shares": 648,
-        "used_notional_usd": 69984,
-        "residual_cash_usd": 16
+        "usd_budget": 300000,
+        "spot": 1.06,
+        "lot_size_eur": 1000,
+        "lots": 283,
+        "eur_amount": 283000,
+        "used_usd": 299980,
+        "residual_usd": 20
       }
     }
   },

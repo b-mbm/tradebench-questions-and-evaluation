@@ -2,6 +2,7 @@
   "id": "stockbench-l2-004",
   "expected_fields": [
     "decision",
+    "instrument",
     "contracts",
     "premium_per_share",
     "multiplier",
@@ -9,6 +10,7 @@
   ],
   "required_fields": [
     "decision",
+    "instrument",
     "contracts",
     "premium_per_share",
     "multiplier",
@@ -23,6 +25,10 @@
       "decision": {
         "type": "string",
         "expected": "calculate_option_premium"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "GLD 500 call"
       },
       "contracts": {
         "type": "number",
@@ -53,7 +59,7 @@
     "primary_domain": "Listed options strategy / Greeks",
     "tier": "L2",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "put_spread_downside_floor",
+    "scenario_family": "option_premium_calc",
     "feasibility_trap": false,
     "failure_modes": [
       "omits option multiplier"
@@ -63,6 +69,7 @@
     ],
     "critical_fields": [
       "decision",
+      "instrument",
       "contracts",
       "premium_per_share",
       "multiplier",

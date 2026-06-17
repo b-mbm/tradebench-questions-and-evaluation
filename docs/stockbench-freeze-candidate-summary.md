@@ -107,14 +107,14 @@ This is an audit artifact for the first StockBench 300Q draft. No paid model cal
   },
   "L6": {
     "questions": 5,
-    "distinctSkeletons": 4,
-    "ratio": 0.8,
+    "distinctSkeletons": 5,
+    "ratio": 1,
     "minRatio": 0
   },
   "L7": {
     "questions": 5,
-    "distinctSkeletons": 4,
-    "ratio": 0.8,
+    "distinctSkeletons": 5,
+    "ratio": 1,
     "minRatio": 0
   },
   "L8": {

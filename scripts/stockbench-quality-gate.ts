@@ -151,6 +151,14 @@ const FAMILY_SIGNATURES: Record<string, RegExp[]> = {
   futures_whole_unit_sizing: [/contract|notional/i],
   option_whole_unit_sizing: [/premium|contract/i],
   equity_whole_unit_sizing: [/shares|notional|residual/i],
+  // domain-flavored low/mid families (shorting / execution / fx)
+  short_order_ticket: [/short/i, /locate/i],
+  short_borrow_sequence: [/short/i, /locate|borrow/i],
+  short_notional_sizing: [/short/i, /locate/i],
+  execution_order_ticket: [/marketable|execution|liquidity/i],
+  execution_sequence: [/liquidity|execution/i],
+  liquidity_capped_sizing: [/participation|liquidity/i],
+  fx_lot_sizing: [/eur|fx|lot/i],
 };
 let familyChecked = 0, familyMismatch = 0;
 const familyMismatchByFamily: Record<string, { miss: number; total: number }> = {};

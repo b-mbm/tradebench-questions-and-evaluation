@@ -2,19 +2,19 @@
   "id": "stockbench-l3-002",
   "expected_fields": [
     "decision",
-    "quantity",
-    "price",
-    "gross_value_usd",
-    "fee_usd",
-    "cash_required_usd"
+    "instrument",
+    "contracts",
+    "margin_per_contract",
+    "fees_usd",
+    "total_cash_usd"
   ],
   "required_fields": [
     "decision",
-    "quantity",
-    "price",
-    "gross_value_usd",
-    "fee_usd",
-    "cash_required_usd"
+    "instrument",
+    "contracts",
+    "margin_per_contract",
+    "fees_usd",
+    "total_cash_usd"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -24,35 +24,34 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "calculate_trade_cash"
+        "expected": "calculate_initial_margin"
       },
-      "quantity": {
+      "instrument": {
+        "type": "string",
+        "expected": "ES futures"
+      },
+      "contracts": {
         "type": "number",
-        "expected": 300,
+        "expected": 2,
         "tolerance": 0.01
       },
-      "price": {
+      "margin_per_contract": {
         "type": "number",
-        "expected": 135,
+        "expected": 13000,
         "tolerance": 0.01
       },
-      "gross_value_usd": {
+      "fees_usd": {
         "type": "number",
-        "expected": 40500,
+        "expected": 8,
         "tolerance": 0.01
       },
-      "fee_usd": {
+      "total_cash_usd": {
         "type": "number",
-        "expected": 1.5,
-        "tolerance": 0.01
-      },
-      "cash_required_usd": {
-        "type": "number",
-        "expected": 40501.5,
+        "expected": 26008,
         "tolerance": 0.01
       }
     },
-    "derivation": "gross=300*135=40500; fee=1.5; cash=40501.5.",
+    "derivation": "2*13000 + 8 = 26008.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
@@ -60,21 +59,21 @@
     "primary_domain": "Futures / commodities / spreads / rolls",
     "tier": "L3",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "commodity_roll_basis_hedge",
+    "scenario_family": "futures_margin_calc",
     "feasibility_trap": true,
     "failure_modes": [
-      "omits commission"
+      "confuses notional with margin"
     ],
     "must_not": [
-      "must_not_omit_commission"
+      "must_not_post_full_notional_for_futures"
     ],
     "critical_fields": [
       "decision",
-      "quantity",
-      "price",
-      "gross_value_usd",
-      "fee_usd",
-      "cash_required_usd"
+      "instrument",
+      "contracts",
+      "margin_per_contract",
+      "fees_usd",
+      "total_cash_usd"
     ],
     "needs_review": false
   }

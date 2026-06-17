@@ -3,20 +3,22 @@
   "expected_fields": [
     "decision",
     "instrument",
-    "target_notional_usd",
+    "target_short_notional_usd",
     "price",
-    "shares",
+    "locate_shares",
+    "short_shares",
     "used_notional_usd",
-    "residual_cash_usd"
+    "residual_unfilled_usd"
   ],
   "required_fields": [
     "decision",
     "instrument",
-    "target_notional_usd",
+    "target_short_notional_usd",
     "price",
-    "shares",
+    "locate_shares",
+    "short_shares",
     "used_notional_usd",
-    "residual_cash_usd"
+    "residual_unfilled_usd"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -30,9 +32,9 @@
       },
       "instrument": {
         "type": "string",
-        "expected": "SPY"
+        "expected": "SPY ETF"
       },
-      "target_notional_usd": {
+      "target_short_notional_usd": {
         "type": "number",
         "expected": 50000,
         "tolerance": 0.01
@@ -42,23 +44,28 @@
         "expected": 100,
         "tolerance": 0.01
       },
-      "shares": {
+      "locate_shares": {
         "type": "number",
-        "expected": 500,
+        "expected": 300,
+        "tolerance": 0.01
+      },
+      "short_shares": {
+        "type": "number",
+        "expected": 300,
         "tolerance": 0.01
       },
       "used_notional_usd": {
         "type": "number",
-        "expected": 50000,
+        "expected": 30000,
         "tolerance": 0.01
       },
-      "residual_cash_usd": {
+      "residual_unfilled_usd": {
         "type": "number",
-        "expected": 0,
+        "expected": 20000,
         "tolerance": 0.01
       }
     },
-    "derivation": "floor(50000/100)=500; used=50000; residual=0.",
+    "derivation": "min(floor(50000/100)=500, locate 300) = 300; used=30000; residual=20000.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
@@ -66,22 +73,24 @@
     "primary_domain": "Shorting / borrow / margin / locates",
     "tier": "L7",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "borrow_cost_vs_trade_edge",
+    "scenario_family": "short_notional_sizing",
     "feasibility_trap": true,
     "failure_modes": [
+      "shorts beyond locate",
       "uses fractional shares"
     ],
     "must_not": [
-      "must_not_use_fractional_units"
+      "must_not_short_more_than_locate"
     ],
     "critical_fields": [
       "decision",
       "instrument",
-      "target_notional_usd",
+      "target_short_notional_usd",
       "price",
-      "shares",
+      "locate_shares",
+      "short_shares",
       "used_notional_usd",
-      "residual_cash_usd"
+      "residual_unfilled_usd"
     ],
     "needs_review": false
   }

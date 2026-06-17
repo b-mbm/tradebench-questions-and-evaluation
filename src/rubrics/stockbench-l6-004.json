@@ -2,6 +2,7 @@
   "id": "stockbench-l6-004",
   "expected_fields": [
     "decision",
+    "instrument",
     "execution_sequence",
     "settlement_rule",
     "settlement_cash_date",
@@ -9,6 +10,7 @@
   ],
   "required_fields": [
     "decision",
+    "instrument",
     "execution_sequence",
     "settlement_rule",
     "settlement_cash_date",
@@ -23,6 +25,10 @@
       "decision": {
         "type": "string",
         "expected": "sequence"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "SPY ETF"
       },
       "execution_sequence": {
         "type": "array",
@@ -55,7 +61,7 @@
     "primary_domain": "Spot equities / ETFs",
     "tier": "L6",
     "capability_tag": "judgment_risk_augmentation",
-    "scenario_family": "opening_auction_limit",
+    "scenario_family": "operational_settlement_sequence",
     "feasibility_trap": false,
     "failure_modes": [
       "skips permission"
@@ -65,6 +71,7 @@
     ],
     "critical_fields": [
       "decision",
+      "instrument",
       "settlement_rule",
       "settlement_cash_date",
       "feasibility"

@@ -850,10 +850,69 @@ function lmProduct(domain: Domain, seed: number): { name: string; unit: string; 
   return { name: instr(symFor(seed)), unit: 'share', kind: 'equity' };
 }
 
+// Strategy/asset-class domains need their defining mechanic even at low/mid tiers, or the
+// primary_domain tag is dishonest (e.g. a Shorting-domain row that is just generic equity sizing).
+// This covers the (Shorting, Execution) x (L5,L6,L7) cells and FX L7 (which otherwise fell through
+// to the equity branch and mis-treated EURUSD as USD/share).
+function lowMidDomainFlavor(tier: Tier, domain: Domain, seed: number): Packet | null {
+  const e = symFor(seed);
+  if (domain === 'Shorting / borrow / margin / locates') {
+    if (tier === 'L5') {
+      const qty = 100 + (seed % 6) * 100; const locate = qty + (1 + (seed % 3)) * 100; const px = 100 + (seed % 20) * 4; const limit = round2(px - 0.25);
+      const expected = { decision: 'trade', instrument: instr(e), side: 'sell_short', quantity: qty, order_type: 'limit', limit_price: limit, locate_shares: locate, time_in_force: 'day', feasibility: 'feasible' };
+      return { family: 'short_order_ticket', prompt: `Frozen market snapshot:\n- Account: US margin account; short selling requires a confirmed locate.\n- Instrument: ${instr(e)}. Locate available: ${locate} shares.\n- Sell short ${qty} shares, limit ${limit.toFixed(2)}, time in force day.\n\nTask:\nMap the instruction into the required short-sale order ticket (a locate must back the short).\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'side', 'quantity', 'order_type', 'limit_price', 'locate_shares', 'time_in_force', 'feasibility'], derivation: 'Schema mapping of a located short sale.', failureModes: ['shorts without locate', 'wrong side'], mustNot: ['must_not_short_without_locate'] };
+    }
+    if (tier === 'L6') {
+      const { settle } = tPlusOne(seed);
+      const expected = { decision: 'sequence', instrument: instr(e), execution_sequence: ['confirm_locate', 'submit_short_sale', 'confirm_settlement'], settlement_rule: 'T+1', settlement_cash_date: settle, feasibility: 'feasible' };
+      return { family: 'short_borrow_sequence', prompt: `Frozen market snapshot:\n- Account: US margin account. Short selling ${instr(e)} requires a confirmed locate before order entry.\n- Proceeds settle T+1; cash date ${settle}.\n\nTask:\nReturn the correct short-sale operational sequence (locate first) and the T+1 cash date.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'execution_sequence', 'settlement_rule', 'settlement_cash_date', 'feasibility'], derivation: 'Locate precedes the short sale; settlement T+1.', failureModes: ['shorts before locate'], mustNot: ['must_not_short_without_locate'] };
+    }
+    if (tier === 'L7') {
+      const target = 50000 + (seed % 5) * 10000; const price = 100 + (seed % 20) * 4; const locate = 100 + (seed % 6) * 100;
+      const byCash = Math.floor(target / price); const shares = Math.min(byCash, locate); const used = shares * price; const residual = target - used;
+      const expected = { decision: 'rebalance', instrument: instr(e), target_short_notional_usd: target, price, locate_shares: locate, short_shares: shares, used_notional_usd: used, residual_unfilled_usd: residual };
+      return { family: 'short_notional_sizing', prompt: `Frozen market snapshot:\n- Target short notional: ${target} USD in ${instr(e)} at ${price}.00 USD/share.\n- Locate available: ${locate} shares; you cannot short beyond the locate. Fractional shares not allowed.\n\nTask:\nCompute the short share count (capped by BOTH notional and the locate), used notional, and residual unfilled notional.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'target_short_notional_usd', 'price', 'locate_shares', 'short_shares', 'used_notional_usd', 'residual_unfilled_usd'], derivation: `min(floor(${target}/${price})=${byCash}, locate ${locate}) = ${shares}; used=${used}; residual=${residual}.`, failureModes: ['shorts beyond locate', 'uses fractional shares'], mustNot: ['must_not_short_more_than_locate'] };
+    }
+  }
+  if (domain === 'Execution / liquidity / microstructure') {
+    if (tier === 'L5') {
+      const qty = 1000 + (seed % 6) * 500; const px = 100 + (seed % 20) * 4; const limit = round2(px + 0.05);
+      const expected = { decision: 'trade', instrument: instr(e), side: 'buy', quantity: qty, order_type: 'marketable_limit', limit_price: limit, time_in_force: 'ioc', feasibility: 'feasible' };
+      return { family: 'execution_order_ticket', prompt: `Frozen market snapshot:\n- Instrument: ${instr(e)} for immediate execution against displayed liquidity.\n- Buy ${qty} shares with a marketable limit at ${limit.toFixed(2)}, time in force IOC.\n\nTask:\nMap the instruction into the required execution order ticket.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'side', 'quantity', 'order_type', 'limit_price', 'time_in_force', 'feasibility'], derivation: 'Schema mapping of a marketable-limit IOC execution order.', failureModes: ['wrong order type', 'wrong time in force'], mustNot: ['must_not_use_live_market_data'] };
+    }
+    if (tier === 'L6') {
+      const expected = { decision: 'sequence', instrument: instr(e), execution_sequence: ['check_displayed_liquidity', 'submit_marketable_limit', 'confirm_fill'], feasibility: 'feasible' };
+      return { family: 'execution_sequence', prompt: `Frozen market snapshot:\n- Instrument: ${instr(e)}. Only displayed regular-session liquidity is executable.\n- Required steps: check displayed liquidity, submit a marketable limit, confirm the fill.\n\nTask:\nReturn the correct execution sequence.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'execution_sequence', 'feasibility'], derivation: 'Liquidity check precedes the marketable order; then confirm the fill.', failureModes: ['skips liquidity check'], mustNot: ['must_not_ignore_displayed_liquidity'] };
+    }
+    if (tier === 'L7') {
+      const target = 60000 + (seed % 5) * 10000; const price = 100 + (seed % 20) * 4; const cap = 200 + (seed % 6) * 100;
+      const byCash = Math.floor(target / price); const shares = Math.min(byCash, cap); const used = shares * price; const residual = target - used;
+      const expected = { decision: 'rebalance', instrument: instr(e), target_notional_usd: target, price, max_participation_shares: cap, filled_shares: shares, used_notional_usd: used, residual_notional_usd: residual };
+      return { family: 'liquidity_capped_sizing', prompt: `Frozen market snapshot:\n- Target notional: ${target} USD in ${instr(e)} at ${price}.00 USD/share.\n- Max participation this interval: ${cap} shares of displayed liquidity. Fractional shares not allowed.\n\nTask:\nCompute the executable share count (capped by BOTH notional and the participation limit), used notional, and residual notional.\n\nOutput JSON fields: ${compact(expected)}`,
+        expected, deterministic: ['instrument', 'target_notional_usd', 'price', 'max_participation_shares', 'filled_shares', 'used_notional_usd', 'residual_notional_usd'], derivation: `min(floor(${target}/${price})=${byCash}, cap ${cap}) = ${shares}; used=${used}; residual=${residual}.`, failureModes: ['exceeds participation cap', 'uses fractional shares'], mustNot: ['must_not_exceed_participation_cap'] };
+    }
+  }
+  if (domain === 'Spot FX / CFDs / multi-currency' && tier === 'L7') {
+    const usdBudget = 100000 + (seed % 6) * 50000; const spot = round2(1.05 + (seed % 19) / 1000); const lot = 1000;
+    const lots = Math.floor((usdBudget / spot) / lot); const eur = lots * lot; const usedUsd = round2(eur * spot); const residual = round2(usdBudget - usedUsd);
+    const expected = { decision: 'rebalance', instrument: 'EURUSD spot', usd_budget: usdBudget, spot, lot_size_eur: lot, lots, eur_amount: eur, used_usd: usedUsd, residual_usd: residual };
+    return { family: 'fx_lot_sizing', prompt: `Frozen market snapshot:\n- USD budget: ${usdBudget} USD to buy EUR via EURUSD at ${spot.toFixed(4)}.\n- Trade in whole ${lot} EUR lots only (this is a currency amount, not shares).\n\nTask:\nCompute whole EUR lots, EUR amount, USD used, and residual USD.\n\nOutput JSON fields: ${compact(expected)}`,
+      expected, deterministic: ['instrument', 'usd_budget', 'spot', 'lot_size_eur', 'lots', 'eur_amount', 'used_usd', 'residual_usd'], derivation: `maxEUR=${usdBudget}/${spot}; lots=floor(maxEUR/${lot})=${lots}; EUR=${eur}; usedUSD=${usedUsd}; residual=${residual}.`, failureModes: ['treats FX as shares', 'ignores lot size'], mustNot: ['must_not_treat_fx_as_shares'] };
+  }
+  return null;
+}
+
 // L1-L7 are tier-skill rows (extraction / arithmetic / schema / settlement / sizing). They are
 // now DOMAIN-AWARE — the instrument and mechanic match the allocated domain — and carry an honest
 // generic scenario_family that describes the actual task (no decorative strategy-family labels).
 function buildLowMid(tier: Tier, domain: Domain, _family: string, seed: number): Packet {
+  const flavored = lowMidDomainFlavor(tier, domain, seed);
+  if (flavored) return flavored;
   const p = lmProduct(domain, seed);
 
   if (tier === 'L1') {

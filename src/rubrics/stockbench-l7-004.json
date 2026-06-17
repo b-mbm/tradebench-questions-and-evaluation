@@ -5,18 +5,20 @@
     "instrument",
     "target_notional_usd",
     "price",
-    "shares",
+    "max_participation_shares",
+    "filled_shares",
     "used_notional_usd",
-    "residual_cash_usd"
+    "residual_notional_usd"
   ],
   "required_fields": [
     "decision",
     "instrument",
     "target_notional_usd",
     "price",
-    "shares",
+    "max_participation_shares",
+    "filled_shares",
     "used_notional_usd",
-    "residual_cash_usd"
+    "residual_notional_usd"
   ],
   "field_weights": {},
   "pass_threshold": 0.7,
@@ -30,11 +32,11 @@
       },
       "instrument": {
         "type": "string",
-        "expected": "QQQ"
+        "expected": "QQQ ETF"
       },
       "target_notional_usd": {
         "type": "number",
-        "expected": 60000,
+        "expected": 70000,
         "tolerance": 0.01
       },
       "price": {
@@ -42,23 +44,28 @@
         "expected": 104,
         "tolerance": 0.01
       },
-      "shares": {
+      "max_participation_shares": {
         "type": "number",
-        "expected": 576,
+        "expected": 500,
+        "tolerance": 0.01
+      },
+      "filled_shares": {
+        "type": "number",
+        "expected": 500,
         "tolerance": 0.01
       },
       "used_notional_usd": {
         "type": "number",
-        "expected": 59904,
+        "expected": 52000,
         "tolerance": 0.01
       },
-      "residual_cash_usd": {
+      "residual_notional_usd": {
         "type": "number",
-        "expected": 96,
+        "expected": 18000,
         "tolerance": 0.01
       }
     },
-    "derivation": "floor(60000/104)=576; used=59904; residual=96.",
+    "derivation": "min(floor(70000/104)=673, cap 500) = 500; used=52000; residual=18000.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
@@ -66,22 +73,24 @@
     "primary_domain": "Execution / liquidity / microstructure",
     "tier": "L7",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "auction_session_constraint",
+    "scenario_family": "liquidity_capped_sizing",
     "feasibility_trap": true,
     "failure_modes": [
+      "exceeds participation cap",
       "uses fractional shares"
     ],
     "must_not": [
-      "must_not_use_fractional_units"
+      "must_not_exceed_participation_cap"
     ],
     "critical_fields": [
       "decision",
       "instrument",
       "target_notional_usd",
       "price",
-      "shares",
+      "max_participation_shares",
+      "filled_shares",
       "used_notional_usd",
-      "residual_cash_usd"
+      "residual_notional_usd"
     ],
     "needs_review": false
   }

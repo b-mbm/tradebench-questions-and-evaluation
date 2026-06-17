@@ -7,6 +7,7 @@
     "quantity",
     "order_type",
     "limit_price",
+    "multiplier",
     "time_in_force",
     "feasibility"
   ],
@@ -17,6 +18,7 @@
     "quantity",
     "order_type",
     "limit_price",
+    "multiplier",
     "time_in_force",
     "feasibility"
   ],
@@ -32,15 +34,15 @@
       },
       "instrument": {
         "type": "string",
-        "expected": "GLD"
+        "expected": "GLD 500 call"
       },
       "side": {
         "type": "string",
-        "expected": "buy"
+        "expected": "buy_to_open"
       },
       "quantity": {
         "type": "number",
-        "expected": 400,
+        "expected": 4,
         "tolerance": 0.01
       },
       "order_type": {
@@ -49,7 +51,12 @@
       },
       "limit_price": {
         "type": "number",
-        "expected": 176.25,
+        "expected": 8.25,
+        "tolerance": 0.01
+      },
+      "multiplier": {
+        "type": "number",
+        "expected": 100,
         "tolerance": 0.01
       },
       "time_in_force": {
@@ -61,7 +68,7 @@
         "expected": "feasible"
       }
     },
-    "derivation": "Schema mapping from the frozen instruction.",
+    "derivation": "Schema mapping from the frozen option instruction.",
     "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
   },
   "metadata": {
@@ -69,7 +76,7 @@
     "primary_domain": "Listed options strategy / Greeks",
     "tier": "L5",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "early_assignment_dividend_risk",
+    "scenario_family": "order_ticket_mapping",
     "feasibility_trap": false,
     "failure_modes": [
       "wrong schema shape"
@@ -84,6 +91,7 @@
       "quantity",
       "order_type",
       "limit_price",
+      "multiplier",
       "feasibility"
     ],
     "needs_review": false

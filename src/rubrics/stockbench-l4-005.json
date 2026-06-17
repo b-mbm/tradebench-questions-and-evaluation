@@ -2,6 +2,7 @@
   "id": "stockbench-l4-005",
   "expected_fields": [
     "decision",
+    "instrument",
     "principal_usd",
     "annual_rate",
     "day_count",
@@ -10,6 +11,7 @@
   ],
   "required_fields": [
     "decision",
+    "instrument",
     "principal_usd",
     "annual_rate",
     "day_count",
@@ -24,7 +26,11 @@
     "validation": {
       "decision": {
         "type": "string",
-        "expected": "calculate_time_cost"
+        "expected": "calculate_financing_cost"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "GLD ETF"
       },
       "principal_usd": {
         "type": "number",
@@ -59,7 +65,7 @@
     "primary_domain": "Spot equities / ETFs",
     "tier": "L4",
     "capability_tag": "execution_action_quality",
-    "scenario_family": "market_on_close_rebalance",
+    "scenario_family": "financing_cost_calc",
     "feasibility_trap": false,
     "failure_modes": [
       "uses 365 basis"
@@ -69,6 +75,7 @@
     ],
     "critical_fields": [
       "decision",
+      "instrument",
       "principal_usd",
       "annual_rate",
       "day_count",
