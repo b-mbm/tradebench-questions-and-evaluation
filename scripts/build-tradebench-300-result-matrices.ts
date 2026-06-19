@@ -26,7 +26,7 @@ type Candidate = {
 const ROOT = process.cwd();
 const FINAL_DIR = path.join(ROOT, 'results/official/300/June 15th final');
 const FINAL_JSON = path.join(FINAL_DIR, 'June 15th final numbers.json');
-const OUT_DIR = path.join(ROOT, 'analysis');
+const OUT_DIR = path.join(FINAL_DIR, 'exhaustive analysis');
 
 const finalJson = JSON.parse(fs.readFileSync(FINAL_JSON, 'utf8'));
 const finalRows: FinalRow[] = finalJson.rows.map((row: any) => ({

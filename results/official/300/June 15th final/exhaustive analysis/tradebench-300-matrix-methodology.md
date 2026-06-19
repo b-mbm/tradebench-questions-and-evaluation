@@ -110,16 +110,16 @@ npx tsx scripts/build-tradebench-300-result-matrices.ts
 
 writes:
 
-- `analysis/intermediate-matrix.csv`
+- `results/official/300/June 15th final/exhaustive analysis/intermediate-matrix.csv`
   - 69 model rows
   - 300 question columns
   - cells are `1` or `0`
   - includes tier row and per-question pass-count row
-- `analysis/advanced.jsonl`
+- `results/official/300/June 15th final/exhaustive analysis/advanced.jsonl`
   - 300 rubric records
   - 20,700 model-question cell records
   - includes normalized answer, pass, score, confidence, failure reasons, source
-- `analysis/basic.txt`
+- `results/official/300/June 15th final/exhaustive analysis/basic.txt`
   - universal-fail question list
   - tier breakdown
 
