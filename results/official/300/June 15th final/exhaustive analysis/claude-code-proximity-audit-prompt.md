@@ -4,6 +4,8 @@ Repo: `/Users/bradleymiles/Documents/tradebench-questions-and-evaluation`
 
 Hard rule: no paid model calls. Review only. Do not modify benchmark questions, rubrics, raw model outputs, or final accounting unless explicitly asked.
 
+Do not start from scratch. Codex already generated a proximity-audit bundle from the authoritative 69-model matrix. Your job is to verify, challenge, and improve that bundle. Rebuild only the smallest slice needed to validate a disputed row or spot-check a calculation.
+
 Read these files first:
 
 1. `results/official/300/June 15th final/exhaustive analysis/tradebench-300-matrix-methodology.md`
@@ -15,6 +17,16 @@ Read these files first:
 7. `results/official/300/June 15th final/exhaustive analysis/universal-fail-proximity-intermediate.csv`
 8. `results/official/300/June 15th final/exhaustive analysis/universal-fail-proximity-advanced.jsonl`
 9. `results/official/300/June 15th final/exhaustive analysis/universal-fail-proximity-summary.md`
+10. `scripts/audit-universal-fail-proximity.ts`
+
+Artifact map:
+
+- `universal-fail-proximity-basic.csv`: quick human triage of the 79 universal-fail rows.
+- `universal-fail-proximity-intermediate.csv`: spectrum score, closest models, common failure reasons, skill/failure-mode labels, and Codex analysis.
+- `universal-fail-proximity-advanced.jsonl`: one full record per universal-fail row, including prompt, answer key, top model answers, failure reasons, and Codex analysis.
+- `universal-fail-proximity-summary.md`: short summary of Codex's conclusions.
+- `advanced.jsonl`: source-of-truth matrix cells and rubric records used to build the proximity files.
+- `audit-universal-fail-proximity.ts`: minimal script that generated the proximity files; read it to understand methodology, not as an authority.
 
 Context:
 
@@ -29,6 +41,7 @@ Codex's current claim:
 - `L9-043` likely has a prompt/canonical contradiction: prompt says bribes cost `$0 per ARB vote`, but canonical subtracts `$52,250` bribe cost.
 - The 75 AGI universal fails are mostly genuinely hard, but some near-miss/close rows may be over-strict on exact categorical labels such as `intent`, `chosen_strategy`, and `self_check`.
 - Proximity artifacts were generated from the same canonical final matrix that exactly matches the June 15 final pass totals.
+- The proximity bundle is the object under review. If you disagree, cite row IDs and evidence from `advanced.jsonl` / the proximity files.
 
 Your task:
 
