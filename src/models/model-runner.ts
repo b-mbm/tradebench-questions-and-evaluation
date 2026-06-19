@@ -10,9 +10,10 @@ import { callGroq } from './providers/groq';
 import { callOpenRouter } from './providers/openrouter';
 import { callHuggingFace } from './providers/huggingface';
 import { callLmStudio } from './providers/lmstudio';
+import { callTogether } from './providers/together';
 import { buildExecuteOnePrompts } from '../prompts/schema-prompts';
 
-export type Provider = 'openai' | 'anthropic' | 'google' | 'groq' | 'openrouter' | 'huggingface' | 'lmstudio';
+export type Provider = 'openai' | 'anthropic' | 'google' | 'groq' | 'openrouter' | 'huggingface' | 'lmstudio' | 'together';
 
 export interface ModelConfig {
   id: string;
@@ -73,6 +74,7 @@ const PROVIDER_ENV: Record<Provider, string> = {
   openrouter: 'OPENROUTER_API_KEY',
   huggingface: 'HUGGINGFACE_API_KEY',
   lmstudio: '',
+  together: 'TOGETHER_API_KEY',
 };
 
 function readBenchmarkModels(): string[] {
@@ -98,6 +100,11 @@ function readBenchmarkModels(): string[] {
 }
 
 function inferProvider(modelId: string): Provider {
+  // Together: the exact base we fine-tuned (run on Together's own stack, not OpenRouter,
+  // so base-vs-tuned is the identical serving stack) + our Together fine-tunes (bradley_ namespace).
+  if (modelId === 'Qwen/Qwen3.5-9B' || modelId.startsWith('bradley_')) {
+    return 'together';
+  }
   // Explicit overrides for models that exist on multiple platforms
   if (modelId === 'moonshotai/kimi-k2-instruct-0905') {
     return 'groq';
@@ -206,6 +213,8 @@ export async function callExecuteOneModel(
       return await callHuggingFace(modelId, system, user, { temperature, maxTokens });
     case 'lmstudio':
       return await callLmStudio(modelId, system, user, { temperature, maxTokens });
+    case 'together':
+      return await callTogether(modelId, system, user, { temperature, maxTokens });
     default:
       throw new Error(`Unsupported provider ${config.provider} for model ${modelId}`);
   }
