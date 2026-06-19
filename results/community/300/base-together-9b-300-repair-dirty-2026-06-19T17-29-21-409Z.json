@@ -1,0 +1,126 @@
+{
+  "runAt": "2026-06-19T17:29:21.408Z",
+  "label": "base-together-9b-300-repair-dirty",
+  "suite": "r5e1-300q",
+  "models": [
+    "Qwen/Qwen3.5-9B"
+  ],
+  "questionIds": [
+    "L8-003",
+    "L10-031"
+  ],
+  "evaluations": [
+    {
+      "modelId": "Qwen/Qwen3.5-9B",
+      "modelLabel": "together:Qwen/Qwen3.5-9B",
+      "questionId": "L10-031",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"expected_value\": 13776923.08,\n  \"reasoning\": \"Initial treasury $30M (70% GOV=$21M, 20% stables=$6M, 10% ETH LP=$3M). ETH LP exited with 1.5% hit → $2.955M stables, total stables=$8.955M. Solve for GOV sold S where ($21M-S)/($29.955M-S)=0.35 → S=$16.178M. Final treasury=$29.955M-$16.178M=$13.777M.\"\n}",
+      "durationMs": 86828,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "expected_value": 13776923.08,
+          "reasoning": "Initial treasury $30M (70% GOV=$21M, 20% stables=$6M, 10% ETH LP=$3M). ETH LP exited with 1.5% hit → $2.955M stables, total stables=$8.955M. Solve for GOV sold S where ($21M-S)/($29.955M-S)=0.35 → S=$16.178M. Final treasury=$29.955M-$16.178M=$13.777M."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "Qwen/Qwen3.5-9B",
+      "modelLabel": "together:Qwen/Qwen3.5-9B",
+      "questionId": "L8-003",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 200000,\n  \"venue\": \"coinbase\",\n  \"portfolio_volatility\": 50.19,\n  \"risk_contributions\": {\n    \"btc\": 22.89,\n    \"eth\": 27.01,\n    \"bonds\": 0.23\n  },\n  \"btc_contribution_pct\": 22.89,\n  \"eth_contribution_pct\": 27.01,\n  \"bonds_contribution_pct\": 0.23,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"btc\": 200000,\n    \"eth\": 200000,\n    \"bonds\": 600000\n  },\n  \"target_btc_usd\": 200000,\n  \"target_eth_usd\": 200000,\n  \"target_bonds_usd\": 600000,\n  \"transactions\": [\n    {\"asset\": \"BTC\", \"action\": \"sell\", \"size\": 200000},\n    {\"asset\": \"ETH\", \"action\": \"sell\", \"size\": 150000},\n    {\"asset\": \"Bonds\", \"action\": \"buy\", \"size\": 350000}\n  ],\n  \"btc_sell_amount\": 200000,\n  \"eth_sell_amount\": 150000,\n  \"bonds_buy_amount\": 350000,\n  \"btc_post_slippage\": 199000,\n  \"eth_post_slippage\": 149250,\n  \"bonds_post_slippage\": 350350,\n  \"reasoning\": \"Current risk contributions (BTC: 22.89%, ETH: 27.01%, Bonds: 0.23%) all fall outside the 28.33%-38.33% trigger band. Portfolio volatility is 50.19%. Risk parity optimization requires equal risk contributions (33.33% each). Due to bonds' low volatility (10% vs 60-80% for crypto), bonds need ~60% weight to contribute equally. Target: BTC 20%, ETH 20%, Bonds 60%. Transactions rounded to nearest $1,000. Slippage applied: 0.5% for crypto sells, 0.1% for bond buys.\"\n}",
+      "durationMs": 165471,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9259415584415583,
+        "score": 0.8977272727272726,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0.08,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 200000,
+          "venue": "coinbase",
+          "portfolio_volatility": 50.19,
+          "risk_contributions": {
+            "btc": 22.89,
+            "eth": 27.01,
+            "bonds": 0.23
+          },
+          "btc_contribution_pct": 22.89,
+          "eth_contribution_pct": 27.01,
+          "bonds_contribution_pct": 0.23,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 200000,
+            "eth": 200000,
+            "bonds": 600000
+          },
+          "target_btc_usd": 200000,
+          "target_eth_usd": 200000,
+          "target_bonds_usd": 600000,
+          "transactions": [
+            {
+              "asset": "BTC",
+              "action": "sell",
+              "size": 200000
+            },
+            {
+              "asset": "ETH",
+              "action": "sell",
+              "size": 150000
+            },
+            {
+              "asset": "Bonds",
+              "action": "buy",
+              "size": 350000
+            }
+          ],
+          "btc_sell_amount": 200000,
+          "eth_sell_amount": 150000,
+          "bonds_buy_amount": 350000,
+          "btc_post_slippage": 199000,
+          "eth_post_slippage": 149250,
+          "bonds_post_slippage": 350350,
+          "reasoning": "Current risk contributions (BTC: 22.89%, ETH: 27.01%, Bonds: 0.23%) all fall outside the 28.33%-38.33% trigger band. Portfolio volatility is 50.19%. Risk parity optimization requires equal risk contributions (33.33% each). Due to bonds' low volatility (10% vs 60-80% for crypto), bonds need ~60% weight to contribute equally. Target: BTC 20%, ETH 20%, Bonds 60%. Transactions rounded to nearest $1,000. Slippage applied: 0.5% for crypto sells, 0.1% for bond buys."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}
