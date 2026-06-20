@@ -20,9 +20,13 @@ Source: authoritative 69-model matrix + Codex proximity audit. 79 universal-fail
 Note (per Codex): repairing these may shift competitor pass totals slightly (they were universal-fails) —
 re-account after all 4 are fixed; do NOT anchor to stale 154/157.
 
+## 32-split — DONE (heuristic: label derivable-from-prompt? + spot-verify pending)
+- **valid-strict (keep as skill target): 25** — AGI-005,011,012,033,034,035,048,051,052,053,055,056,060,061,062,071,073,093,095,096,097,103,104,110,111
+- **hidden-schema (defer to Tranche 2; NEVER train-to-label): 7** — AGI-007,066,067,068,069,105,114
+- **AGI/universal skill-target pool (Prong A) = 43 genuine-hard + 25 valid-strict = 68.**
+
 ## Remaining Phase A work (next wake)
-1. Repair L5-001, L5-002, L7-001 (grader/rubric strictness — read rubric + grader, minimal fix, difficulty audit).
-2. Split the 32 into valid-strict-semantic (keep as skill target) vs hidden-schema-artifact (defer to Tranche 2; do NOT train-to-label) — per-row inspection.
-3. Output the final AGI skill-target list (genuine-hard 43 + valid-strict subset of the 32).
+1. Repair L5-001, L5-002, L7-001 (grader/rubric strictness — read rubric + schema-grader, minimal fix, difficulty audit).
+2. Spot-verify the 7 hidden-schema + a sample of the 25 valid-strict (heuristic confirmation).
 
 Then Chunk 2 (formalize Phase B recoverable-by-failure-mode) → Chunk 3 (build V2 set).
