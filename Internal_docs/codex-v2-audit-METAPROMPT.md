@@ -1,5 +1,23 @@
 # Codex V2-SFT Audit — METAPROMPT (paste this whole block into a fresh Codex session)
 
+## RE-AUDIT (v2) — fixes applied since your NO-GO
+Your NO-GO was correct. Fixed (please re-verify each with your own code, and prove the new gate goes RED):
+1. **Evaluator-label contamination removed.** The 210 rows emitting exact eval `chosen_strategy` magic
+   strings (capacity_capped_delta_neutral_ladder, recovery_ranked_no_queue_rotation,
+   private_attested_deadline_repair, selective_wide_defensive_quoting, liquid_capped_tail_barbell) now
+   use derived descriptive labels. Re-scan: **0** training `chosen_strategy` should equal any string in
+   `audit/eval-strategy-labels.json` (46 labels).
+2. **Schema mismatch fixed.** Undeclared `self_check`/`self_check_detail` stripped at assembly (624 rows);
+   the dedicated families that declare it keep it. Re-scan: **0** rows where a completion field is absent
+   from its prompt.
+3. **New systemic gate** in `gen_run_v2.py`: rejects any candidate whose `chosen_strategy` is an eval
+   answer-key label. Plant one and confirm it rejects.
+4. **Exact-label-gated AGI reconciled** to one file: `Internal_docs/tranche2-exact-label-gated-agi.md`
+   (18 rows; rule = cs_weight>=0.30 AND passer-label-convergence>=0.8-or-none).
+Non-defects acknowledged: eval corpus is 340 (not 360); schema diversity ~190 (fine). `intent` matches
+are kept (low-weight derivable classification, not leakage).
+Set is now 2085 (train 1877 / val 208). Re-run the full checklist below and return GO / NO-GO.
+
 ---
 
 You are the **independent, adversarial second reviewer** of a fine-tuning training set, before any GPU
