@@ -16,8 +16,8 @@ attempt PARAPHRASED the eval prompts (cos 0.62–0.81) and was 100% rejected by 
 |---|---|---|---|
 | l9_fusion (numeric+constraint) | L9 recoverable (EV+constraint, L9-043 skill) | 220 | validator slashing-insurance, MEV bribe, liquidation-defense, cross-chain farm, OTC underwrite |
 | l10_composition (numeric) | L10 recoverable (multi-step composition) | 260 | restake stack, wrap-lend loop, options collar, T-bill ladder, cross-margin rebalance |
-| darkpool_exec (synthesis) | AGI-086/025/026/087 | 180 | hidden/lit venue routing, fills, slippage, self_check |
-| venue_route (synthesis) | AGI-015 | 70 | cross-venue allocation, effective price |
+| darkpool_exec (synthesis) | AGI-086/025/026/087 (skill-recoverable, cs-weight ~0.09) | 180 | hidden/lit venue routing, fills, slippage, self_check |
+| venue_route (synthesis) | AGI-015 — ⚠ EXACT-LABEL-GATED (cs-weight 0.69, Tranche-2) | 70 | cross-venue allocation, effective price (skill valid; AGI-015 not a T1 point — see v2-audit-benchmark-design.md) |
 | hedge_struct (synthesis) | AGI-108 | 70 | multi-leg hedge notional, crowding cap, VaR reduction |
 | tax_loss (synthesis) | AGI-059 | 70 | loss-lot harvest, sequence, wash-safe replacements |
 | maintenance (existing tier families) | anti-forgetting L1–L8 + generic AGI/L9/L10 | 405 | — |
