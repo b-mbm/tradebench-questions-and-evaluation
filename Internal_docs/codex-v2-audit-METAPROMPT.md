@@ -1,6 +1,8 @@
-# Codex V2-SFT Audit — METAPROMPT (paste this whole block into a fresh Codex session)
+# Codex V2-SFT Audit — METAPROMPT (paste into the SAME Codex session that issued the NO-GO; it owns its findings. First/fresh audit only: use a clean session.)
 
 ## RE-AUDIT (v2) — fixes applied since your NO-GO
+**IMPORTANT: the dataset changed materially since your last scan — re-run every check against the files
+on disk; do NOT trust your earlier cached numbers.**
 Your NO-GO was correct. Fixed (please re-verify each with your own code, and prove the new gate goes RED):
 1. **Evaluator-label contamination removed.** The 210 rows emitting exact eval `chosen_strategy` magic
    strings (capacity_capped_delta_neutral_ladder, recovery_ranked_no_queue_rotation,
