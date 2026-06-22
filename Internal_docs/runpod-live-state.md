@@ -2,6 +2,21 @@
 
 Updated 2026-06-21 ~23:56 UTC. Plan/architecture: see `delta-roadmap-to-sota-trading-model.md`.
 
+## EVAL PHASE — vLLM serving (Codex owns the run; Claude owns infra)
+Decision (with Codex audit): the offline gen-300q.py path was a protocol mismatch (no JSON mode, thinking not suppressed, greedy vs temp0.1, maxtok 1024<2200) → mis-scored. Use the trusted runner `scripts/run-300q.ts` against a vLLM OpenAI endpoint.
+- **Metric = strict `grade.pass` count /300.** Base `qwen/qwen3.6-27b` = **164** (exact OpenRouter run) / **166** (final archive). Baseline config: provider openrouter, temp 0.1, max_tokens 2200, retries 2, `response_format: json_object`.
+- **Two comparisons:** (a) tuned vs official 164/166 (the story); (b) tuned vs base **on the same vLLM stack** (clean causal — did the FT help?).
+- **vLLM installing to `/workspace/vllm`** (persists on volume). ⚠️ **RISK: install on the network volume is pathologically slow** (~45min+ for ~13G; normal is ~5min local). If the volume-installed vLLM is broken or too slow to load tomorrow, **fallback = install vLLM to the container disk** (`/usr/local/bin/python -m venv --system-site-packages /root/vllm && /root/vllm/bin/pip install vllm` — local disk, ~5min, but wiped on stop so reinstall each session) OR merge LoRA + serve.
+- Governor `/root/pod-governor.sh` stops the pod on VLLM_INSTALL_DONE or 90-min backstop; 3h ultimate backstop also running; RunPod key staged at pod `/root/.rpk` (rotate after).
+
+### TOMORROW'S TURNKEY RESUME
+1. `bash /tmp/resume.sh` (POD=pdm12c618p0hnk) → note new SSH port (IP 64.247.201.58, key ~/.ssh/id_ed25519).
+2. Confirm install: `grep -c VLLM_INSTALL_DONE /workspace/vllm-install.log` + `ls /workspace/vllm/bin/vllm`. If not done/broken → use container-disk fallback above.
+3. Serve (detached): `/workspace/vllm/bin/vllm serve /workspace/models/qwen3.6-27b --served-model-name local-qwen36-27b-base --enable-lora --lora-modules local-qwen36-27b-sft=/workspace/out/sft --dtype bfloat16 --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000 --trust-remote-code` (add `--language-model-only` if the VLM arch errors; if `--enable-lora` unsupported on this VLM, merge the adapter with peft `merge_and_unload`, save, serve merged).
+4. Wait for 'startup complete'; curl-smoke `POST localhost:8000/v1/chat/completions` model=local-qwen36-27b-sft, response_format json_object, temp 0.1 → confirm CLEAN JSON, NO `<think>`. Test base name too.
+5. SSH tunnel from Mac (run_in_background): `ssh -N -L 8000:localhost:8000 -o StrictHostKeyChecking=no -p <PORT> -i ~/.ssh/id_ed25519 root@64.247.201.58`. Verify `curl localhost:8000/v1/models` from Mac.
+6. Hand Codex: roster `{"models":["local-qwen36-27b-sft","local-qwen36-27b-base"]}`, env LMSTUDIO_BASE_URL=http://localhost:8000/v1, LMSTUDIO_RESPONSE_FORMAT=json_object, SMOKE_TEMP=0.1, SMOKE_MAX_TOKENS=2200, RETRY_ATTEMPTS=2. Codex smokes 10q then full 300 (both models). Re-arm a fresh pod-stop governor for the run window. Do NOT run the eval autonomously.
+
 ## ✅ SFT COMPLETE (2026-06-22 ~04:36 UTC)
 - 232/232 steps, 2 epochs, ~2h49m. **eval_loss: epoch1 0.1336 → epoch2 0.1293** (DROPPED → no overfitting, epoch 2 helped). final train_loss ~0.15; train/eval gap small → good generalization.
 - Adapter saved on volume: `/workspace/out/sft/` (adapter_model.safetensors + adapter_config.json + checkpoint-116 [ep1] + checkpoint-232 [ep2] + tokenizer). Persists while pod stopped.
