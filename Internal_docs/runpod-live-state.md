@@ -2,8 +2,17 @@
 
 Updated 2026-06-21 ~23:56 UTC. Plan/architecture: see `delta-roadmap-to-sota-trading-model.md`.
 
-## Current run
-- **Pod** `z1n9i3xz6jxdf1` ("democratic_olive_firefly"), 1× H100 80GB, region US-MO-1, IP 64.247.201.49.
+## ✅ SFT COMPLETE (2026-06-22 ~04:36 UTC)
+- 232/232 steps, 2 epochs, ~2h49m. **eval_loss: epoch1 0.1336 → epoch2 0.1293** (DROPPED → no overfitting, epoch 2 helped). final train_loss ~0.15; train/eval gap small → good generalization.
+- Adapter saved on volume: `/workspace/out/sft/` (adapter_model.safetensors + adapter_config.json + checkpoint-116 [ep1] + checkpoint-232 [ep2] + tokenizer). Persists while pod stopped.
+- Pod `pdm12c618p0hnk` STOPPED. Spend ~$12 + this run.
+- **NEXT (driven, owner go required): EVAL.** Resume/redeploy pod → serve `/workspace/out/sft` merged onto base via vLLM → point `scripts/run-300q.ts` at the vLLM endpoint → grade with TS `gradeSchemaResponse` → 166→X. ~$2, ~30min. Decision tree after: ≥189 ship / 166<X<189 + eval_loss-was-dropping → 3rd epoch / plateaued → GRPO / X<166 → roll back to checkpoint-116.
+
+## Current run (historical)
+- **Pod** `pdm12c618p0hnk` ("tradebench-sft"), 1× H100 80GB, region US-MO-1, IP **64.247.201.58**, SSH port **13656**. (Old pod `z1n9i3xz6jxdf1` terminated — see resume gotcha below.)
+- **GOTCHA — resume can fail "not enough free GPUs on the host":** stop/resume is locked to the original host; if its GPU got taken, resume fails forever. **Recovery = deploy a NEW pod attached to the same network volume** (everything persists). Mutation that worked:
+  `mutation{podFindAndDeployOnDemand(input:{cloudType:SECURE,gpuCount:1,gpuTypeId:"NVIDIA H100 80GB HBM3",containerDiskInGb:60,volumeMountPath:"/workspace",networkVolumeId:"qqz94ksxmn",imageName:"runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",name:"tradebench-sft",ports:"22/tcp",startSsh:true,supportPublicIp:true}){id desiredStatus}}`
+  Then poll `myself{pods{runtime{ports{ip publicPort privatePort}}}}` for the privatePort:22 entry → ip:publicPort. Update POD/HOST/port in /tmp/runpod-watcher.sh + the SSH commands.
 - **Port changes on every stop/resume.** Get the current port: query the RunPod API (key at `~/.runpod_key`):
   `curl -s "https://api.runpod.io/graphql?api_key=$(cat ~/.runpod_key)" -H "Content-Type: application/json" -d '{"query":"query{myself{pods{id desiredStatus runtime{ports{ip publicPort privatePort}}}}}"}'`
   → the port with `privatePort:22` is the SSH port. (At launch it was 10483.)
