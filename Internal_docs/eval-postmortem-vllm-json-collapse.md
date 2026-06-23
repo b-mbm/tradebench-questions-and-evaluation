@@ -75,3 +75,16 @@ OpenRouter `json_object` ≠ vLLM xgrammar `json_object`. A **no-json local eval
 
 ## Cost accounting
 ~$45 total credit ($25 initial + $20 top-up), spent to $0.38. Breakdown (approx): 54 GB model download + SFT training (~$9) + **eval infra debugging (the serve gauntlet, hung serves, dirty runs, the `--enforce-eager` discovery) — the bulk.** Next time the recipe is known, so eval cost should be ~$3–5, not ~$30.
+
+---
+
+## UPDATE 2026-06-23: no-json proof CONFIRMS the diagnosis
+16-row collapse-zone (L9/L10/AGI), base+tuned, `RESPONSE_FORMAT=none`, max 4000, on-pod gen (direct localhost, no tunnel) → graded with the real `gradeSchemaResponse`:
+- **base 13/16, tuned 13/15** pass — vs **~1/16 WITH json_object** on the same rows.
+- **json_object/xgrammar was destroying ~80% of the hard-tier score.** Confirmed root cause.
+- **The grader scores no-json output fine** (JSON extraction works; salvage is sufficient). Minor: `parsingMethod` label inconsistent (`none`/`fenced_json`) but pass/score correct.
+- **base ≈ tuned** on these rows → fine-tune ~neutral so far; real delta needs the full no-json run.
+- Failures = truncation at 4000 (`finish=length`, fixable with more tokens) + a few genuine value-mismatches.
+- **Codex's gate PASSED** (base 13 ≥ 10) → cleared for the 29-row gate → full 300.
+- Infra lessons banked: run the generator DIRECTLY (a wrapper silently failed to launch it); `--enforce-eager` is required but slow (budget for it); on-pod gen avoids the tunnel-drop-on-laptop-sleep failure; redeploy a fresh pod when the GPU wedges (`kill -9` can't free a stuck CUDA process).
+- Result file (local, gitignored): `results/community/300/nojson-proof-16-graded-*.json`.
