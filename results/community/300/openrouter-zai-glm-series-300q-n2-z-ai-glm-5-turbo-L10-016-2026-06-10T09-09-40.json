@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T09:10:00.454Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L10-016-2026-06-10T09-09-40",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L10-016"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L10-016",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 0.55,\n  \"reasoning\": \"Hybrid strategy splits $2M into 20 micro-swaps of $100k via private RPC. Expected cost is 0.15% split slippage + 0.0025% RPC cost + 0.3975% residual Jito cost = 0.55%, meeting the 0.6% max cost and $100k child-order limit with 90% success.\"\n}",
+      "durationMs": 19883,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 0.55,
+          "reasoning": "Hybrid strategy splits $2M into 20 micro-swaps of $100k via private RPC. Expected cost is 0.15% split slippage + 0.0025% RPC cost + 0.3975% residual Jito cost = 0.55%, meeting the 0.6% max cost and $100k child-order limit with 90% success."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

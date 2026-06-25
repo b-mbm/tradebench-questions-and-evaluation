@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-12T00:14:57.419Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-052-2026-06-12T00-13-48",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-052"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-052",
+      "raw": "{\n  \"intent\": \"compute\",\n  \"expected_value\": 1561481.48,\n  \"reasoning\": \"Calculated stressed collateral for each vault (WBTC: $12.32M, ETH: $6.8M, stSOL: $4M), then computed minimum repayment per position to achieve HF=1.08 using formula: Repayment = Debt - (Stressed Collateral × LT / 1.08). WBTC needs $902,222.22, ETH needs $37,037.04, stSOL needs $622,222.22, totaling $1,561,481.48.\"\n}",
+      "durationMs": 69008,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "compute",
+          "expected_value": 1561481.48,
+          "reasoning": "Calculated stressed collateral for each vault (WBTC: $12.32M, ETH: $6.8M, stSOL: $4M), then computed minimum repayment per position to achieve HF=1.08 using formula: Repayment = Debt - (Stressed Collateral × LT / 1.08). WBTC needs $902,222.22, ETH needs $37,037.04, stSOL needs $622,222.22, totaling $1,561,481.48."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

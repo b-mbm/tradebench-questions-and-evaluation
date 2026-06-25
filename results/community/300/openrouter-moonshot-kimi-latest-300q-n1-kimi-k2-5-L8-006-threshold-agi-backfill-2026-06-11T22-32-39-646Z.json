@@ -1,0 +1,59 @@
+{
+  "runAt": "2026-06-11T22:32:39.645Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L8-006-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L8-006"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"pendle_pt\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Pendle PT-USDe offers the highest APY at 12.3% fixed for 90 days with no leverage or depeg liquidation risk, outperforming the 3x loop (11.9%) and hybrid (11.25%) while satisfying medium risk tolerance and the 90-day horizon.\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\": {\n    \"A\": \"Simple staking underperforms at 8.5% APY without the fixed-term yield premium.\",\n    \"B\": \"3x leverage introduces liquidation risk on a >2% USDe depeg and yields only 11.9%, below Pendle’s fixed 12.3%.\",\n    \"D\": \"Hybrid 2x loop + PT yields 11.25% with unnecessary leverage complexity for lower return than pure Pendle.\"\n  }\n}",
+      "durationMs": 71188,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9952727272727273,
+        "score": 0.9520000000000001,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.011999999999999997,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "pendle_pt",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Pendle PT-USDe offers the highest APY at 12.3% fixed for 90 days with no leverage or depeg liquidation risk, outperforming the 3x loop (11.9%) and hybrid (11.25%) while satisfying medium risk tolerance and the 90-day horizon.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "A": "Simple staking underperforms at 8.5% APY without the fixed-term yield premium.",
+            "B": "3x leverage introduces liquidation risk on a >2% USDe depeg and yields only 11.9%, below Pendle’s fixed 12.3%.",
+            "D": "Hybrid 2x loop + PT yields 11.25% with unnecessary leverage complexity for lower return than pure Pendle."
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

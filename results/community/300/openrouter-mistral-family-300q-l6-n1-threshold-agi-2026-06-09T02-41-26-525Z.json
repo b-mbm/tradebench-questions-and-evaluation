@@ -1,0 +1,436 @@
+{
+  "runAt": "2026-06-09T02:41:26.524Z",
+  "label": "openrouter-mistral-family-300q-l6-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "mistralai/mistral-medium-3-5",
+    "mistralai/mistral-small-2603"
+  ],
+  "questionIds": [
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L6-001",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"limit\", \"asset\": \"ETH\", \"size\": 2, \"unit\": \"contracts\", \"price\": 3500, \"venue\": \"deribit\", \"venue_name\": \"Deribit\", \"risk_controls\": {\"slippage_tolerance\": \"2%\", \"max_gas\": \"30 gwei\", \"position_size_limit\": 2}, \"follow_up\": \"monitor delta and theta decay\", \"reasoning\": \"purchase of 2 ETH call options with strike $3,500 expiring in 30 days on Deribit\", \"requires_follow_up\": true, \"follow_up_description\": \"Track option Greeks (delta, theta) and adjust hedges if needed\"}",
+      "durationMs": 1476,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.1,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "contracts",
+          "price": 3500,
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "risk_controls": {
+            "slippage_tolerance": "2%",
+            "max_gas": "30 gwei",
+            "position_size_limit": 2
+          },
+          "follow_up": "monitor delta and theta decay",
+          "reasoning": "purchase of 2 ETH call options with strike $3,500 expiring in 30 days on Deribit",
+          "requires_follow_up": true,
+          "follow_up_description": "Track option Greeks (delta, theta) and adjust hedges if needed"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L6-002",
+      "raw": "{\"intent\": \"dca_buy\", \"order_type\": \"recurring\", \"asset\": \"BTC\", \"size\": 500, \"unit\": \"usd\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase Pro\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"position_size_limit\": 1500}, \"follow_up\": \"schedule next purchase\", \"reasoning\": \"DCA setup for $500 BTC weekly over 3 months (12 weeks, total $6000)\", \"requires_follow_up\": true, \"follow_up_description\": \"Automate weekly recurring buy orders for 12 weeks\"}",
+      "durationMs": 1279,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8553125,
+        "score": 0.805,
+        "fieldScores": {
+          "intent": 0.09,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "dca_buy",
+          "order_type": "recurring",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "coinbase",
+          "venue_name": "Coinbase Pro",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": 1500
+          },
+          "follow_up": "schedule next purchase",
+          "reasoning": "DCA setup for $500 BTC weekly over 3 months (12 weeks, total $6000)",
+          "requires_follow_up": true,
+          "follow_up_description": "Automate weekly recurring buy orders for 12 weeks"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L6-003",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"limit\", \"asset\": \"BTC\", \"size\": \"0.02222222\", \"unit\": \"BTC\", \"price\": 40000, \"venue\": \"coinbase\", \"venue_name\": \"Coinbase Pro\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"position_size_limit\": \"0.1 BTC\"}, \"follow_up\": \"place next ladder order at $41,000\", \"reasoning\": \"First ladder buy order at $40,000 with size calculated to spend ~$1,000 per order (1000/40000 = 0.025 BTC, rounded to 8 decimals). Subsequent orders will follow at $1,000 increments.\", \"requires_follow_up\": true, \"follow_up_description\": \"Create additional limit buy orders at $41k, $42k, $43k, $44k, and $45k with same size (0.02222222 BTC) and risk controls.\"}",
+      "durationMs": 1849,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8303571428571429,
+        "score": 0.775,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.02222222",
+          "unit": "BTC",
+          "price": 40000,
+          "venue": "coinbase",
+          "venue_name": "Coinbase Pro",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "position_size_limit": "0.1 BTC"
+          },
+          "follow_up": "place next ladder order at $41,000",
+          "reasoning": "First ladder buy order at $40,000 with size calculated to spend ~$1,000 per order (1000/40000 = 0.025 BTC, rounded to 8 decimals). Subsequent orders will follow at $1,000 increments.",
+          "requires_follow_up": true,
+          "follow_up_description": "Create additional limit buy orders at $41k, $42k, $43k, $44k, and $45k with same size (0.02222222 BTC) and risk controls."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L6-004",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"trailing_stop\", \"asset\": \"BTC\", \"size\": 0.5, \"unit\": \"btc\", \"price\": 42750, \"venue\": \"coinbase\", \"venue_name\": \"Coinbase Pro\", \"risk_controls\": {\"stop_loss\": \"5%\", \"slippage_tolerance\": \"0.1%\"}, \"follow_up\": \"monitor trailing stop activation\", \"reasoning\": \"Trailing stop set 5% below current BTC market price (45000 * 0.95 = 42750). Order will trigger if price falls to 42750 and trail upward if price rises.\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify trailing stop is active and monitor for price movements that may trigger the order.\"}",
+      "durationMs": 3130,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7943055555555556,
+        "score": 0.7525000000000001,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "price": 42750,
+          "venue": "coinbase",
+          "venue_name": "Coinbase Pro",
+          "risk_controls": {
+            "stop_loss": "5%",
+            "slippage_tolerance": "0.1%"
+          },
+          "follow_up": "monitor trailing stop activation",
+          "reasoning": "Trailing stop set 5% below current BTC market price (45000 * 0.95 = 42750). Order will trigger if price falls to 42750 and trail upward if price rises.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify trailing stop is active and monitor for price movements that may trigger the order."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L6-005",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"TWAP\", \"asset\": \"ETH\", \"size\": 10, \"venue\": \"coinbase\", \"duration\": \"4 hours\", \"reasoning\": \"TWAP order to evenly distribute 10 ETH sale over 4 hours to minimize market impact\"}",
+      "durationMs": 1611,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8477083333333334,
+        "score": 0.7825000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "TWAP",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "coinbase",
+          "duration": "4 hours",
+          "reasoning": "TWAP order to evenly distribute 10 ETH sale over 4 hours to minimize market impact"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L6-001",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"ETH-3500-C-30D\", \"size\": 2, \"unit\": \"contracts\", \"venue\": \"deribit\", \"venue_name\": \"Deribit\", \"risk_controls\": {\"slippage_tolerance\": \"0.2%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"confirm fill and monitor implied volatility\", \"reasoning\": \"market order for immediate execution of 2 ETH $3,500 calls expiring in 30 days on Deribit\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify fill price and IV shift post-trade\"}",
+      "durationMs": 1235,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0,
+          "asset": 0.03428571428571429,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "ETH-3500-C-30D",
+          "size": 2,
+          "unit": "contracts",
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "risk_controls": {
+            "slippage_tolerance": "0.2%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill and monitor implied volatility",
+          "reasoning": "market order for immediate execution of 2 ETH $3,500 calls expiring in 30 days on Deribit",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify fill price and IV shift post-trade"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L6-002",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"recurring\", \"asset\": \"BTC\", \"size\": \"500\", \"unit\": \"usd\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase Advanced\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor weekly execution\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify weekly DCA purchases and adjust for price changes if needed\"}",
+      "durationMs": 957,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "recurring",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "venue_name": "Coinbase Advanced",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor weekly execution",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify weekly DCA purchases and adjust for price changes if needed"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L6-003",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"limit\", \"asset\": \"BTC\", \"size\": \"0.022222222222222223\", \"unit\": \"btc\", \"price\": \"40000\", \"venue\": \"exchange\", \"venue_name\": \"binance\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor fills and place next ladder order\", \"requires_follow_up\": true, \"follow_up_description\": \"Place next limit buy order at $41,000 after fill at $40,000\"}",
+      "durationMs": 1269,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8493506493506494,
+        "score": 0.7927272727272728,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.07272727272727274,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.12,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.022222222222222223",
+          "unit": "btc",
+          "price": "40000",
+          "venue": "exchange",
+          "venue_name": "binance",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor fills and place next ladder order",
+          "requires_follow_up": true,
+          "follow_up_description": "Place next limit buy order at $41,000 after fill at $40,000"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L6-004",
+      "raw": "{\"intent\": \"set_trailing_stop\", \"order_type\": \"trailing_stop\", \"asset\": \"BTC\", \"size\": \"0.5\", \"unit\": \"btc\", \"venue\": \"exchange\", \"risk_controls\": {\"stop_loss\": \"5%\", \"slippage_tolerance\": \"0.1%\"}, \"follow_up\": \"monitor trailing stop activation\", \"reasoning\": \"trailing stop set 5% below current BTC price of 45000\", \"requires_follow_up\": true, \"follow_up_description\": \"await activation or manual adjustment\"}",
+      "durationMs": 1135,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7055000000000001,
+        "score": 0.8300000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_trailing_stop",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "exchange",
+          "risk_controls": {
+            "stop_loss": "5%",
+            "slippage_tolerance": "0.1%"
+          },
+          "follow_up": "monitor trailing stop activation",
+          "reasoning": "trailing stop set 5% below current BTC price of 45000",
+          "requires_follow_up": true,
+          "follow_up_description": "await activation or manual adjustment"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L6-005",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"twap\", \"asset\": \"ETH\", \"size\": 10, \"venue\": \"dex\", \"duration\": \"4h\", \"reasoning\": \"TWAP order for 10 ETH over 4 hours to minimize market impact\"}",
+      "durationMs": 811,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9425,
+        "score": 0.87,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.1,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "dex",
+          "duration": "4h",
+          "reasoning": "TWAP order for 10 ETH over 4 hours to minimize market impact"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

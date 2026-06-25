@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T08:59:00.389Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-069-2026-06-10T08-58-37",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-069"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-069",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 57.28,\n  \"reasoning\": \"Net profit",
+      "durationMs": 22473,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 57.28,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

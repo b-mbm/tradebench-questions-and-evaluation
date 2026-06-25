@@ -1,0 +1,488 @@
+{
+  "runAt": "2026-06-08T16:54:31.961Z",
+  "label": "openrouter-llamas-300q-l1-n2-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "meta-llama/llama-3.1-8b-instruct"
+  ],
+  "questionIds": [
+    "L1-001",
+    "L1-002",
+    "L1-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\"\n}",
+      "durationMs": 2451,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": \"10\",\n  \"unit\": \"SOL\",\n  \"price\": \"95\",\n  \"venue\": \"exchange\",\n  \"venue_name\": \"binance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"stop_loss\": \"90\",\n    \"take_profit\": \"100\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"limit order for buying SOL at specified price\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check order status and adjust as needed\"\n}",
+      "durationMs": 4463,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "unit": "SOL",
+          "price": "95",
+          "venue": "exchange",
+          "venue_name": "binance",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "stop_loss": "90",
+            "take_profit": "100"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "limit order for buying SOL at specified price",
+          "requires_follow_up": true,
+          "follow_up_description": "check order status and adjust as needed"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L1-003",
+      "raw": "{\n  \"intent\": \"set_stop_loss\",\n  \"order_type\": \"stop_loss_limit\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"price\": \"2800\",\n  \"venue\": \"exchange\",\n  \"risk_controls\": {\n    \"stop_loss\": \"2800\"\n  },\n  \"reasoning\": \"set stop loss at $2800 for 2 ETH\"\n}",
+      "durationMs": 1520,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9035336538461539,
+        "score": 0.8503846153846154,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.055384615384615386,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "stop_loss_limit",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": "2800",
+          "venue": "exchange",
+          "risk_controls": {
+            "stop_loss": "2800"
+          },
+          "reasoning": "set stop loss at $2800 for 2 ETH"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify transaction is settled\"\n}",
+      "durationMs": 1758,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution",
+          "requires_follow_up": true,
+          "follow_up_description": "verify transaction is settled"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": \"10\",\n  \"price\": \"95\",\n  \"unit\": \"usd\",\n  \"venue\": \"serum\",\n  \"venue_name\": \"serum dex\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor order status\",\n  \"reasoning\": \"limit order to buy SOL at $95\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check if order is filled or partially filled\"\n}",
+      "durationMs": 3044,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9542222222222224,
+        "score": 0.9040000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.023999999999999994,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "price": "95",
+          "unit": "usd",
+          "venue": "serum",
+          "venue_name": "serum dex",
+          "risk_controls": {
+            "slippage_tolerance": "0%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor order status",
+          "reasoning": "limit order to buy SOL at $95",
+          "requires_follow_up": true,
+          "follow_up_description": "check if order is filled or partially filled"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L1-003",
+      "raw": "{\n  \"intent\": \"set_stop_loss\",\n  \"order_type\": \"stop_loss\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"price\": \"2800\",\n  \"venue\": \"exchange\",\n  \"risk_controls\": {},\n  \"follow_up\": \"monitor price\",\n  \"reasoning\": \"protect against potential downside\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check if stop loss is triggered\"\n}",
+      "durationMs": 4545,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": "2",
+          "price": "2800",
+          "venue": "exchange",
+          "risk_controls": {},
+          "follow_up": "monitor price",
+          "reasoning": "protect against potential downside",
+          "requires_follow_up": true,
+          "follow_up_description": "check if stop loss is triggered"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L1-001",
+      "raw": "{\n\"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"BTC\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\"\n}",
+      "durationMs": 444,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "BTC",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": \"10\",\n  \"unit\": \"SOL\",\n  \"price\": \"95\",\n  \"unit_price\": \"USD\",\n  \"venue\": \"binance\",\n  \"risk_controls\": {},\n  \"follow_up\": \"\",\n  \"reasoning\": \"\"\n}",
+      "durationMs": 1877,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8852380952380953,
+        "score": 0.8171428571428572,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "unit": "SOL",
+          "price": "95",
+          "unit_price": "USD",
+          "venue": "binance",
+          "risk_controls": {},
+          "follow_up": "",
+          "reasoning": ""
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L1-003",
+      "raw": "{\n  \"intent\": \"set stop loss\",\n  \"order_type\": \"conditional\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"price\": 2240,\n  \"venue\": \"manual\",\n  \"risk_controls\": {\n    \"stop_loss\": 2240\n  },\n  \"follow_up\": \"monitor price\",\n  \"reasoning\": \"protect 2 ETH position from downside risk\"\n}",
+      "durationMs": 3561,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6767679195804196,
+        "score": 0.636958041958042,
+        "fieldScores": {
+          "intent": 0.16923076923076924,
+          "order_type": 0.032727272727272716,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.085,
+          "venue": 0,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set stop loss",
+          "order_type": "conditional",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": 2240,
+          "venue": "manual",
+          "risk_controls": {
+            "stop_loss": 2240
+          },
+          "follow_up": "monitor price",
+          "reasoning": "protect 2 ETH position from downside risk"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"BTC\",\n  \"price\": \"45000\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\"\n}",
+      "durationMs": 1441,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "BTC",
+          "price": "45000",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": \"10\",\n  \"price\": \"95\",\n  \"venue\": \"exchange\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor order status\",\n  \"reasoning\": \"limit order for 10 SOL at $95\"\n}",
+      "durationMs": 1756,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "price": "95",
+          "venue": "exchange",
+          "risk_controls": {
+            "slippage_tolerance": "5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor order status",
+          "reasoning": "limit order for 10 SOL at $95"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L1-003",
+      "raw": "{\n  \"intent\": \"set stop loss\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"price\": \"2800\",\n  \"venue\": \"binance\",\n  \"risk_controls\": {\n    \"stop_loss\": \"2800\",\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor price\",\n  \"reasoning\": \"set stop loss to limit potential losses\"\n}",
+      "durationMs": 2173,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7474862637362638,
+        "score": 0.7035164835164835,
+        "fieldScores": {
+          "intent": 0.16923076923076924,
+          "order_type": 0,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.01428571428571429,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set stop loss",
+          "order_type": "limit",
+          "asset": "ETH",
+          "size": "2",
+          "price": "2800",
+          "venue": "binance",
+          "risk_controls": {
+            "stop_loss": "2800",
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor price",
+          "reasoning": "set stop loss to limit potential losses"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

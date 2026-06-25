@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T11:07:01.483Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-046-2026-06-10T11-06-57",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-046"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-046",
+      "raw": "{\"intent\":\"swap\",\"expected_value\":3240,\"reasoning\":\"Route A cost: 0.45%*900000+900+0.05%*900000=4050+900+450=5400 USD. Route B: 0.21%*900000+1800+0.02%*900000=1890+1800+180=3870 USD. Route C: 0.19%*900000+2400+0.09%*900000=1710+2400+810=4920 USD. All routes meet constraints (settlement<=12min, oracle<=60s, capacity>=900000). Route B is best at 3870 USD, Route A second-best at 5400 USD. Savings=1530 USD. Extra HYPE=1530/28=54.64 HYPE.\"}",
+      "durationMs": 3491,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 3240,
+          "reasoning": "Route A cost: 0.45%*900000+900+0.05%*900000=4050+900+450=5400 USD. Route B: 0.21%*900000+1800+0.02%*900000=1890+1800+180=3870 USD. Route C: 0.19%*900000+2400+0.09%*900000=1710+2400+810=4920 USD. All routes meet constraints (settlement<=12min, oracle<=60s, capacity>=900000). Route B is best at 3870 USD, Route A second-best at 5400 USD. Savings=1530 USD. Extra HYPE=1530/28=54.64 HYPE."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

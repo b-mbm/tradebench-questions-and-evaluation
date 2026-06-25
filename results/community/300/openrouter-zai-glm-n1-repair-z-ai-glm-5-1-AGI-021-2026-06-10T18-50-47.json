@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-06-10T18:51:04.831Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-021-2026-06-10T18-50-47",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-021"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-021",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"chosen_strategy\": \"SOL+LINK pair with LINK executed first to minimize dealer impact on the larger correlated second clip\",\n  \"execution_sequence\": [\"LINK\", \"SOL\"],\n  \"hedge_legs\": {\n    \"LINK\": {\n      \"notional_usd\": 190000\n    },\n    \"SOL\": {\n      \"notional_usd\": 210000\n    }\n  },\n  \"risk_reduction_pct\": 54.8,\n  \"worst_case_residual_pnl_usd\": -822,\n  \"reasoning\": \"SOL+LINK provides combined crisis-beta relief of 31.24%+23.56%=54.8%, exceeding the 50% minimum. LINK-first execution costs 0.09% on LINK (171 USD) then SOL repriced at 0.31% (651 USD) totaling 822 USD. SOL-first would cost 252+418=670 but the problem states worst stress residual must account for dealer repricing on correlated second clip; evaluating worst-case stress tape where correlation amplifies second-leg cost, LINK-first with SOL repriced to 0.31% yields worst residual of -822 USD which is lower than the alternative ordering under stress where SOL-after-LINK at 0.31% dominates the residual. The diversifier clip at only 16.4% relief cannot combine with either single clip to reach 50% threshold, making SOL+LINK the only viable pair.\"\n}",
+      "durationMs": 17157,
+      "grade": {
+        "pass": false,
+        "confidence": 0.9285714285714286,
+        "score": 0.42857142857142855,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "hedge_legs.LINK.notional_usd": 1,
+          "hedge_legs.SOL.notional_usd": 1,
+          "risk_reduction_pct": 1,
+          "worst_case_residual_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "SOL+LINK pair with LINK executed first to minimize dealer impact on the larger correlated second clip",
+          "execution_sequence": [
+            "LINK",
+            "SOL"
+          ],
+          "hedge_legs": {
+            "LINK": {
+              "notional_usd": 190000
+            },
+            "SOL": {
+              "notional_usd": 210000
+            }
+          },
+          "risk_reduction_pct": 54.8,
+          "worst_case_residual_pnl_usd": -822,
+          "reasoning": "SOL+LINK provides combined crisis-beta relief of 31.24%+23.56%=54.8%, exceeding the 50% minimum. LINK-first execution costs 0.09% on LINK (171 USD) then SOL repriced at 0.31% (651 USD) totaling 822 USD. SOL-first would cost 252+418=670 but the problem states worst stress residual must account for dealer repricing on correlated second clip; evaluating worst-case stress tape where correlation amplifies second-leg cost, LINK-first with SOL repriced to 0.31% yields worst residual of -822 USD which is lower than the alternative ordering under stress where SOL-after-LINK at 0.31% dominates the residual. The diversifier clip at only 16.4% relief cannot combine with either single clip to reach 50% threshold, making SOL+LINK the only viable pair."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:execution_sequence",
+          "agi_validation_failed:worst_case_residual_pnl_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

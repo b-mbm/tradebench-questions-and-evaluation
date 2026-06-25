@@ -1,0 +1,238 @@
+{
+  "runAt": "2026-06-10T10:43:40.679Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-l9-chunk1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L9-001",
+    "L9-002",
+    "L9-003",
+    "L9-004",
+    "L9-005",
+    "L9-006",
+    "L9-007",
+    "L9-008",
+    "L9-009",
+    "L9-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-001",
+      "raw": " {\n  \"intent\": \"arbitrage\",\n  \"order_type\": \"delta_neutral\",\n  \"asset\": \"HYPE\",\n  \"size\": 500000,\n  \"unit\": \"usd\",\n  \"price\": 28.5,\n  \"venue\": \"hyperliquid\",\n  \"venue_name\": \"hyperliquid\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": 500000\n  },\n  \"follow_up\": \"rebalance entry/exit once\",\n  \"reasoning\": \"Short HYPE-PERP at $28.50 and long spot HYPE at $28.20 on Base. Funding rate -0.017% per 8h means shorts receive 0.017% every 8 hours. APR = 0.017% * 3 * 365 = 18.615%. With $500k unlevered notional, expected funding-only APR is 18.615%. 5x leverage increases position size but not unlevered APR. Gas and slippage are de minimis or excluded per instructions.\",\n  \"expected_value\": 18.615,\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Rebalance entry/exit once during 1-year hold\"\n}",
+      "durationMs": 1732,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "order_type": "delta_neutral",
+          "asset": "HYPE",
+          "size": 500000,
+          "unit": "usd",
+          "price": 28.5,
+          "venue": "hyperliquid",
+          "venue_name": "hyperliquid",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei",
+            "position_size_limit": 500000
+          },
+          "follow_up": "rebalance entry/exit once",
+          "reasoning": "Short HYPE-PERP at $28.50 and long spot HYPE at $28.20 on Base. Funding rate -0.017% per 8h means shorts receive 0.017% every 8 hours. APR = 0.017% * 3 * 365 = 18.615%. With $500k unlevered notional, expected funding-only APR is 18.615%. 5x leverage increases position size but not unlevered APR. Gas and slippage are de minimis or excluded per instructions.",
+          "expected_value": 18.615,
+          "requires_follow_up": true,
+          "follow_up_description": "Rebalance entry/exit once during 1-year hold"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-002",
+      "raw": "",
+      "durationMs": 25083,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-003",
+      "raw": "",
+      "durationMs": 31787,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-004",
+      "raw": "",
+      "durationMs": 20375,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-005",
+      "raw": "",
+      "durationMs": 20050,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-006",
+      "raw": "",
+      "durationMs": 327,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-007",
+      "raw": " {\n  \"intent\": \"calculate\",\n  \"expected_value\": 0.0438,\n  \"reasoning\": \"Arb-bot volume = 80% of $50M/day = $40M/day. Extra hook fee = 0.03% on arb-bot flow only. Daily hook fee revenue = $40M * 0.0003 = $12,000. Annual hook fee revenue = $12,000 * 365 = $4,380,000. Active LP liquidity = $10M. Incremental hook-fee APR boost = $4.38M / $10M = 0.438 = 43.8%. Expressed as decimal APR: 0.438. Wait, let me recalculate: 0.03% = 0.0003. $40,000,000 * 0.0003 = $12,000 per day. $12,000 * 365 = $4,380,000 per year. $4,380,000 / $10,000,000 = 0.438. So expected_value = 0.438 (43.8% APR boost).\"\n}",
+      "durationMs": 1237,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "expected_value": 0.0438,
+          "reasoning": "Arb-bot volume = 80% of $50M/day = $40M/day. Extra hook fee = 0.03% on arb-bot flow only. Daily hook fee revenue = $40M * 0.0003 = $12,000. Annual hook fee revenue = $12,000 * 365 = $4,380,000. Active LP liquidity = $10M. Incremental hook-fee APR boost = $4.38M / $10M = 0.438 = 43.8%. Expressed as decimal APR: 0.438. Wait, let me recalculate: 0.03% = 0.0003. $40,000,000 * 0.0003 = $12,000 per day. $12,000 * 365 = $4,380,000 per year. $4,380,000 / $10,000,000 = 0.438. So expected_value = 0.438 (43.8% APR boost)."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-008",
+      "raw": "",
+      "durationMs": 12738,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-009",
+      "raw": "",
+      "durationMs": 8920,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-010",
+      "raw": "{\"intent\":\"compute_expected_value\",\"expected_value\":502500,\"reasoning",
+      "durationMs": 62379,
+      "grade": {
+        "pass": true,
+        "confidence": 0.6,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "compute_expected_value",
+          "expected_value": 502500,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:45:11.932Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-028-2026-06-10T06-44-38",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-028"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-028",
+      "raw": "{\n  \"intent\": \"convert to AURA\",\n  \"expected_value\": 577500,\n  \"reasoning\": \"Option 1: veBAL bribes = $3M × ((1+0.18/52)^14 - 1) ≈ $148,680; expected veBAL price loss = 0.55 × 25% × $3M = $412,500; net = -$263,820. Option 2: Aura-wrapped bribes = $3M × ((1+0.13/52)^14 - 1) ≈ $106,710; same veBAL price exposure loss = $412,500; net = -$305,790. Option 3: convert to AURA, forfeit bribes, gain probability-weighted AURA pump = 0.55 × 35% × $3M = $577,500; net = +$577,500. Option 3 maximizes expected profit.\"\n}",
+      "durationMs": 32695,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 0.3
+        },
+        "normalizedResponse": {
+          "intent": "convert to AURA",
+          "expected_value": 577500,
+          "reasoning": "Option 1: veBAL bribes = $3M × ((1+0.18/52)^14 - 1) ≈ $148,680; expected veBAL price loss = 0.55 × 25% × $3M = $412,500; net = -$263,820. Option 2: Aura-wrapped bribes = $3M × ((1+0.13/52)^14 - 1) ≈ $106,710; same veBAL price exposure loss = $412,500; net = -$305,790. Option 3: convert to AURA, forfeit bribes, gain probability-weighted AURA pump = 0.55 × 35% × $3M = $577,500; net = +$577,500. Option 3 maximizes expected profit."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

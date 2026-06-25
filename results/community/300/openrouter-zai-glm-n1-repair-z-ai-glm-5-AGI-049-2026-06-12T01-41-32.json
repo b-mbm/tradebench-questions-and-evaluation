@@ -1,0 +1,56 @@
+{
+  "runAt": "2026-06-12T01:44:10.918Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-049-2026-06-12T01-41-32",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-049"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-049",
+      "raw": "{\n  \"intent\": \"market_make\",\n  \"chosen_strategy\": \"selective_wide_defensive_quoting\",\n  \"half_spread_bps\": 28,\n  \"update_ms\": 100,\n  \"max_inventory_usd\": 15000,\n  \"expected_1h_pnl_usd\": 378,\n  \"toxic_defense\": \"half-spread set above 19 bps toxic threshold to avoid adverse selection; update cadence 100ms exceeds 80ms round-trip latency preventing stale quote accumulation; inventory capped at 83% of hedge desk capacity to avoid nonlinear skew\",\n  \"self_check\": \"28 bps half-spread exceeds 19 bps toxic move threshold; 28 bps lies within 20-32 bps competitive band for benign flow; 100ms update > 80ms round-trip latency prevents cancel queue buildup; $15K inventory < $18K hedge capacity preserves buffer; expected PnL $378 = $448 revenue ($160K × 28bps) - $70 toxic drag, positive\",\n  \"reasoning\": \"Selected selective_wide_defensive_quoting to balance toxic defense with benign flow capture. Half-spread of 28 bps sits above 19 bps toxic threshold while remaining competitive within 20-32 bps band. Update cadence of 100ms provides 25% buffer over 80ms round-trip latency to prevent stale quotes during toxic bursts. Inventory cap at $15K leaves $3K buffer before nonlinear region. PnL derived from $160K turnover × 28bps spread = $448 gross, less $70 toxic drag.\"\n}",
+      "durationMs": 158542,
+      "grade": {
+        "pass": false,
+        "confidence": 0.625,
+        "score": 0.125,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "half_spread_bps": 0,
+          "update_ms": 0,
+          "max_inventory_usd": 0,
+          "expected_1h_pnl_usd": 0,
+          "toxic_defense": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "market_make",
+          "chosen_strategy": "selective_wide_defensive_quoting",
+          "half_spread_bps": 28,
+          "update_ms": 100,
+          "max_inventory_usd": 15000,
+          "expected_1h_pnl_usd": 378,
+          "toxic_defense": "half-spread set above 19 bps toxic threshold to avoid adverse selection; update cadence 100ms exceeds 80ms round-trip latency preventing stale quote accumulation; inventory capped at 83% of hedge desk capacity to avoid nonlinear skew",
+          "self_check": "28 bps half-spread exceeds 19 bps toxic move threshold; 28 bps lies within 20-32 bps competitive band for benign flow; 100ms update > 80ms round-trip latency prevents cancel queue buildup; $15K inventory < $18K hedge capacity preserves buffer; expected PnL $378 = $448 revenue ($160K × 28bps) - $70 toxic drag, positive",
+          "reasoning": "Selected selective_wide_defensive_quoting to balance toxic defense with benign flow capture. Half-spread of 28 bps sits above 19 bps toxic threshold while remaining competitive within 20-32 bps band. Update cadence of 100ms provides 25% buffer over 80ms round-trip latency to prevent stale quotes during toxic bursts. Inventory cap at $15K leaves $3K buffer before nonlinear region. PnL derived from $160K turnover × 28bps spread = $448 gross, less $70 toxic drag."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:half_spread_bps",
+          "agi_validation_failed:update_ms",
+          "agi_validation_failed:max_inventory_usd",
+          "agi_validation_failed:expected_1h_pnl_usd",
+          "agi_validation_failed:toxic_defense",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

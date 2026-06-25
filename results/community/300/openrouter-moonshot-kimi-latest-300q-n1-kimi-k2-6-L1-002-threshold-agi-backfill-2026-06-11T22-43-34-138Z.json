@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-11T22:43:34.137Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L1-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L1-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L1-002",
+      "raw": " {\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"SOL\",\"size\":10,\"unit\":\"SOL\",\"price\":95,\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"1%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"limit order to buy 10 SOL at $95, below current spot price of $100\"}",
+      "durationMs": 21585,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "SOL",
+          "price": 95,
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "1%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "limit order to buy 10 SOL at $95, below current spot price of $100"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

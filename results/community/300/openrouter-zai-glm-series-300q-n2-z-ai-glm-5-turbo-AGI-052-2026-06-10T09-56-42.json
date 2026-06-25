@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-10T09:57:11.124Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-AGI-052-2026-06-10T09-56-42",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-052"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-052",
+      "raw": "{\n  \"intent\": \"exit\",\n  \"decision\": \"exit\",\n  \"chosen_strategy\": \"sequential_private_then_public\",\n  \"exit_sequence\": \"rfq_block then cex_twap\",\n  \"private_sale_usd\": 297300,\n  \"expected_exit_value_usd\": 493700,\n  \"expected_stay_value_usd\": 227500,\n  \"self_check\": \"Exit value (493,700) exceeds stay value (227,500), and sequence preserves private liquidity by executing rfq_block before cex_twap.\",\n  \"reasoning\": \"Calculated rfq_block proceeds as 300,000 * 0.991 = 297,300 and cex_twap proceeds as 200,000 * 0.982 = 196,400, totaling 493,700. Expected stay value is 650,000 * 0.35 = 227,500. Exiting is optimal, and private must be executed first to prevent public flow from canceling the private bid.\"\n}\n",
+      "durationMs": 28089,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "decision": 1,
+          "chosen_strategy": 0,
+          "exit_sequence": 0,
+          "private_sale_usd": 1,
+          "expected_exit_value_usd": 1,
+          "expected_stay_value_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit",
+          "decision": "exit",
+          "chosen_strategy": "sequential_private_then_public",
+          "exit_sequence": "rfq_block then cex_twap",
+          "private_sale_usd": 297300,
+          "expected_exit_value_usd": 493700,
+          "expected_stay_value_usd": 227500,
+          "self_check": "Exit value (493,700) exceeds stay value (227,500), and sequence preserves private liquidity by executing rfq_block before cex_twap.",
+          "reasoning": "Calculated rfq_block proceeds as 300,000 * 0.991 = 297,300 and cex_twap proceeds as 200,000 * 0.982 = 196,400, totaling 493,700. Expected stay value is 650,000 * 0.35 = 227,500. Exiting is optimal, and private must be executed first to prevent public flow from canceling the private bid."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:exit_sequence",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "runAt": "2026-06-10T10:18:14.148Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-AGI-086-2026-06-10T10-17-46",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-086"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-086",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"sequential dark/internalized routing with capped hidden public sweep\",\n  \"execution_sequence\": [\n    \"Dark_RFQ\",\n    \"Internalizer\",\n    \"RFQ_A\",\n    \"hidden_public\"\n  ],\n  \"venue_fills\": {\n    \"Dark_RFQ\": 15000,\n    \"Internalizer\": 18000,\n    \"RFQ_A\": 10000,\n    \"hidden_public\": 7000\n  },\n  \"hidden_public_qty\": 7000,\n  \"expected_avg_price\": 1.20686,\n",
+      "durationMs": 27263,
+      "grade": {
+        "pass": false,
+        "confidence": 0.1487603305785124,
+        "score": 0.18181818181818182,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "venue_fills.Dark_RFQ": 0,
+          "venue_fills.Internalizer": 0,
+          "venue_fills.RFQ_A": 0,
+          "venue_fills.hidden_public": 0,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "sequential dark/internalized routing with capped hidden public sweep",
+          "Dark_RFQ": 15000,
+          "Internalizer": 18000,
+          "RFQ_A": 10000,
+          "hidden_public": 7000,
+          "hidden_public_qty": 7000,
+          "expected_avg_price": 1.20686,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

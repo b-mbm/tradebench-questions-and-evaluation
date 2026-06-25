@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T08:36:04.344Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-030-2026-06-10T08-35-43",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-030"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-030",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 320,\n  \"reasoning\": \"Route B (Across solver) costs $15,440 (0.31%*3.2M + $3,600 + 0.06%*3.2M), Route C (CEX) costs $15,760, Route A (Uniswap) costs $21,240. All meet constraints (settlement<=18m, oracle<=60s, capacity>=3.2M). Best is Route B, saving $320 vs Route C, yielding 0.0032 extra BTC.\"\n}\n",
+      "durationMs": 20771,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 320,
+          "reasoning": "Route B (Across solver) costs $15,440 (0.31%*3.2M + $3,600 + 0.06%*3.2M), Route C (CEX) costs $15,760, Route A (Uniswap) costs $21,240. All meet constraints (settlement<=18m, oracle<=60s, capacity>=3.2M). Best is Route B, saving $320 vs Route C, yielding 0.0032 extra BTC."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

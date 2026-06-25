@@ -1,0 +1,46 @@
+{
+  "runAt": "2026-06-10T11:46:24.945Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-023-2026-06-10T11-45-26",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-023"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-023",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": 40000000,\n  \"unit\": \"usd\",\n  \"venue\": \"sequential\",\n  \"venue_name\": \"flashbots_then_eden_then_cowswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"reasoning\": \"Sequential route: Flashbots (91%, 0.10%) → Eden (87%, 0.12%) → CowSwap (82%, 0.20%). Combined success = 1 - (0.09 × 0.13 × 0.18) = 99.79% > 99.5% target. Expected cost = 0.10 + 0.09×0.12 + 0.09×0.13×0.20 = 0.1236%. Shielded alone costs 0.75%, so sequential saves 0.6264% on $40M = $250,560. All routes non-custodial and complete within 36 hours.\"\n}",
+      "durationMs": 58559,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": 40000000,
+          "unit": "usd",
+          "venue": "sequential",
+          "venue_name": "flashbots_then_eden_then_cowswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "reasoning": "Sequential route: Flashbots (91%, 0.10%) → Eden (87%, 0.12%) → CowSwap (82%, 0.20%). Combined success = 1 - (0.09 × 0.13 × 0.18) = 99.79% > 99.5% target. Expected cost = 0.10 + 0.09×0.12 + 0.09×0.13×0.20 = 0.1236%. Shielded alone costs 0.75%, so sequential saves 0.6264% on $40M = $250,560. All routes non-custodial and complete within 36 hours."
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

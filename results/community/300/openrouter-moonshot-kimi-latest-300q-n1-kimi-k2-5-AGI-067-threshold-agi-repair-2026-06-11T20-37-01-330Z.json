@@ -1,0 +1,73 @@
+{
+  "runAt": "2026-06-11T20:37:01.329Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-067-threshold-agi-repair",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-067"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-067",
+      "raw": " {\"intent\": \"crisis_hedge_execution\", \"chosen_strategy\": \"maximize_downside_protection_via_full_clip_utilization_sui_priority\", \"execution_sequence\": [{\"clip\": \"SUI_short\", \"notional_usd\": 280000, \"impact_assumed\": \"0.09%\"}, {\"clip\": \"SEI_short\", \"notional_usd\": 240000, \"impact_assumed\": \"0.24%\"}, {\"clip\": \"OP_short\", \"notional_usd\": 190000, \"impact_assumed\": \"0.17%\"}], \"hedge_notional_usd\": {\"SUI\": 280000, \"SEI\": 240000, \"OP\": 190000}, \"crisis_beta_reduction_pct\": 49.001, \"worst_case_residual_pnl_usd\": -109288.4, \"self_check\": \"Gross notional $710,000 <= $760,000 limit; Crisis beta reduction 49.00% (1.0729M/2.189M) meets 48.51% floor; Impact minimized $1,151 via SUI-first sequencing; Worst-case Asia deleveraging scenario yields residual PnL -$109,288\", \"reasoning\": \"Selected all three available perp clips to maximize hedge coverage against the Asia deleveraging tape (worst-case loss of -$247k spot). Executing SUI first minimizes aggregate impact costs (0.09% first vs 0.22% after-first), preserving $143 vs OP-first ordering. Full deployment achieves 49.0% beta-dollar reduction, satisfying the 48.51% minimum while staying within the $760k gross notional cap.\"}",
+      "durationMs": 135815,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5555555555555556,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "hedge_notional_usd.SUI": 1,
+          "hedge_notional_usd.SEI": 1,
+          "hedge_notional_usd.OP": 1,
+          "crisis_beta_reduction_pct": 1,
+          "worst_case_residual_pnl_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "crisis_hedge_execution",
+          "chosen_strategy": "maximize_downside_protection_via_full_clip_utilization_sui_priority",
+          "execution_sequence": [
+            {
+              "clip": "SUI_short",
+              "notional_usd": 280000,
+              "impact_assumed": "0.09%"
+            },
+            {
+              "clip": "SEI_short",
+              "notional_usd": 240000,
+              "impact_assumed": "0.24%"
+            },
+            {
+              "clip": "OP_short",
+              "notional_usd": 190000,
+              "impact_assumed": "0.17%"
+            }
+          ],
+          "hedge_notional_usd": {
+            "SUI": 280000,
+            "SEI": 240000,
+            "OP": 190000
+          },
+          "crisis_beta_reduction_pct": 49.001,
+          "worst_case_residual_pnl_usd": -109288.4,
+          "self_check": "Gross notional $710,000 <= $760,000 limit; Crisis beta reduction 49.00% (1.0729M/2.189M) meets 48.51% floor; Impact minimized $1,151 via SUI-first sequencing; Worst-case Asia deleveraging scenario yields residual PnL -$109,288",
+          "reasoning": "Selected all three available perp clips to maximize hedge coverage against the Asia deleveraging tape (worst-case loss of -$247k spot). Executing SUI first minimizes aggregate impact costs (0.09% first vs 0.22% after-first), preserving $143 vs OP-first ordering. Full deployment achieves 49.0% beta-dollar reduction, satisfying the 48.51% minimum while staying within the $760k gross notional cap."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:execution_sequence",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

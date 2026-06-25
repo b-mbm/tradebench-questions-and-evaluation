@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:44:01.881Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-026-2026-06-10T06-43-56",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-026"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-026",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"expected_value\": 4048890,\n  \"reasoning\": \"Coinbase: 700,000 TOKEN × $3.40 × (1 - 0.0045) = $2,369,290 via TWAP (32 slices of ~22,059 TOKEN each at $75K depth, ~34 min intervals over 18 hours). Camelot: 500,000 TOKEN × $3.40 × (1 - 0.012) = $1,679,600. Binance excluded (Arbitrum deposits won't clear in 18h), Uniswap excluded (no inventory on Ethereum). Total net proceeds: $2,369,290 + $1,679,600 = $4,048,890.\"\n}",
+      "durationMs": 4791,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "expected_value": 4048890,
+          "reasoning": "Coinbase: 700,000 TOKEN × $3.40 × (1 - 0.0045) = $2,369,290 via TWAP (32 slices of ~22,059 TOKEN each at $75K depth, ~34 min intervals over 18 hours). Camelot: 500,000 TOKEN × $3.40 × (1 - 0.012) = $1,679,600. Binance excluded (Arbitrum deposits won't clear in 18h), Uniswap excluded (no inventory on Ethereum). Total net proceeds: $2,369,290 + $1,679,600 = $4,048,890."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

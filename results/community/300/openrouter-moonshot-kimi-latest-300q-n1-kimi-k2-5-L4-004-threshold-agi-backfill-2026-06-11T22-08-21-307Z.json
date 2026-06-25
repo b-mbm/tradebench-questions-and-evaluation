@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-11T22:08:21.306Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L4-004-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L4-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L4-004",
+      "raw": "{\"intent\":\"stress_test\",\"order_type\":\"simulation\",\"asset\":\"CRYPTO_PORTFOLIO\",\"size\":\"TBD\",\"venue\":\"risk_engine\",\"risk_controls\":{\"position_size_limit\":\"calculate_margin_impact\"},\"requires_follow_up\":true,\"follow_up_description\":\"Provide current holdings for BTC, ETH, SOL, MATIC, ARB, PEPE, stETH to simulate -50% valuation drop and assess liquidation risks\",\"reasoning\":\"Stress test requires portfolio composition to calculate drawdown impact, remaining collateral, and margin call thresholds under extreme -50% crypto market conditions\"}",
+      "durationMs": 25332,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03599999999999999,
+          "asset": 0.096,
+          "size": 0,
+          "venue": 0.011999999999999997,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "CRYPTO_PORTFOLIO",
+          "size": "TBD",
+          "venue": "risk_engine",
+          "risk_controls": {
+            "position_size_limit": "calculate_margin_impact"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Provide current holdings for BTC, ETH, SOL, MATIC, ARB, PEPE, stETH to simulate -50% valuation drop and assess liquidation risks",
+          "reasoning": "Stress test requires portfolio composition to calculate drawdown impact, remaining collateral, and margin call thresholds under extreme -50% crypto market conditions"
+        },
+        "failureReasons": [
+          "stress_test_invalid_size"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

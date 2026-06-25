@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T17:21:06.389Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-050-2026-06-11T17-19-52",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-050"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-050",
+      "raw": "{\n  \"intent\": \"market_make\",\n  \"chosen_strategy\": \"selective_wide_defensive_quoting\",\n  \"half_spread_bps\": 30,\n  \"update_ms\": 110,\n  \"max_inventory_usd\": 25000,\n  \"expected_1h_pnl_usd\": 510,\n  \"toxic_defense\": \"Quote half-spread at 30 bps approximating toxic burst magnitude (31 bps) to neutralize adverse selection while remaining in competitive 24-35 bps band; update cadence 110ms matches round-trip cancel latency to prevent stale quotes during shocks; inventory capped $5k below nonlinear threshold for safe hedging\",\n  \"self_check\": \"Half-spread 30 bps within 24-35 bps competitive range ✓; update 110ms ≥ 2×55ms round-trip cancels ✓; inventory $25k < $30k hedge capacity ✓; gross spread revenue $630 (210k×0.30%) exceeds toxic drag $120 for net positive PnL ✓\",\n  \"reasoning\": \"Selected half-spread 30 bps to approximate toxic move (31 bps) while staying competitive for benign flow; update cadence 110ms ensures round-trip cancel completion; inventory cap provides $5k buffer below nonlinear hedging threshold; expected PnL $510 = $630 gross spread - $120 toxic drag\"\n}",
+      "durationMs": 73484,
+      "grade": {
+        "pass": false,
+        "confidence": 0.75,
+        "score": 0.25,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "half_spread_bps": 0,
+          "update_ms": 1,
+          "max_inventory_usd": 0,
+          "expected_1h_pnl_usd": 0,
+          "toxic_defense": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "market_make",
+          "chosen_strategy": "selective_wide_defensive_quoting",
+          "half_spread_bps": 30,
+          "update_ms": 110,
+          "max_inventory_usd": 25000,
+          "expected_1h_pnl_usd": 510,
+          "toxic_defense": "Quote half-spread at 30 bps approximating toxic burst magnitude (31 bps) to neutralize adverse selection while remaining in competitive 24-35 bps band; update cadence 110ms matches round-trip cancel latency to prevent stale quotes during shocks; inventory capped $5k below nonlinear threshold for safe hedging",
+          "self_check": "Half-spread 30 bps within 24-35 bps competitive range ✓; update 110ms ≥ 2×55ms round-trip cancels ✓; inventory $25k < $30k hedge capacity ✓; gross spread revenue $630 (210k×0.30%) exceeds toxic drag $120 for net positive PnL ✓",
+          "reasoning": "Selected half-spread 30 bps to approximate toxic move (31 bps) while staying competitive for benign flow; update cadence 110ms ensures round-trip cancel completion; inventory cap provides $5k buffer below nonlinear hedging threshold; expected PnL $510 = $630 gross spread - $120 toxic drag"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:half_spread_bps",
+          "agi_validation_failed:max_inventory_usd",
+          "agi_validation_failed:expected_1h_pnl_usd",
+          "agi_validation_failed:toxic_defense",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

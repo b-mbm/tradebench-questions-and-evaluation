@@ -1,0 +1,63 @@
+{
+  "runAt": "2026-06-12T01:37:17.972Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-042-2026-06-12T01-36-04",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-042"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-042",
+      "raw": "{\n  \"intent\": \"crisis_sequence\",\n  \"chosen_strategy\": \"neutralize_timeboxed_stables_then_margin\",\n  \"actions\": [\n    \"T+5m: Exit Curve FRAX LP, $420,000 principal, exit cost 0.30%\",\n    \"T+15m: Unwind Fraxlend FRAX loop, $340,000 principal, unwind cost 0.45%\",\n    \"T+25m: Reduce ETH perpetuals by half, $300,000 notional, reduction cost 0.12%\"\n  ],\n  \"priority_order\": [\"Curve FRAX LP\", \"Fraxlend FRAX loop\", \"ETH perpetuals\"],\n  \"direct_stablecoin_neutralized_usd\": 760000,\n  \"latest_direct_neutralization_min\": 15,\n  \"margin_notional_reduced_usd\": 300000,\n  \"expected_execution_cost_usd\": 3150,\n  \"self_check\": \"Seat constraints satisfied: T+5m, T+15m, T+25m within 10-min cadence. Curve exit at T+5m before T+27m gate deadline. Fraxlend unwind at T+15m before T+32m oracle push. ETH margin reduction at T+25m before T+40m instability. Stablecoin neutralized $420k+$340k=$760k. Margin reduced $300k. Costs: $1260+$1530+$360=$3150. BTC untouched as non-stablecoin-collateralized.\",\n  \"reasoning\": \"Strategy prioritizes stablecoin exits by deadline urgency: Curve FRAX LP (T+27m gate) executed first at T+5m seat, Fraxlend (T+32m oracle) second at T+15m seat, then ETH perpetuals half-reduction at T+25m before T+40m margin instability. BTC excluded as unencumbered non-stablecoin asset. Cost arithmetic: $420k×0.30%=$1260, $340k×0.45%=$1530, $300k×0.12%=$360, total $3150.\"\n}",
+      "durationMs": 73454,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5555555555555556,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "actions": 0,
+          "priority_order": 0,
+          "direct_stablecoin_neutralized_usd": 1,
+          "latest_direct_neutralization_min": 1,
+          "margin_notional_reduced_usd": 1,
+          "expected_execution_cost_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "crisis_sequence",
+          "chosen_strategy": "neutralize_timeboxed_stables_then_margin",
+          "actions": [
+            "T+5m: Exit Curve FRAX LP, $420,000 principal, exit cost 0.30%",
+            "T+15m: Unwind Fraxlend FRAX loop, $340,000 principal, unwind cost 0.45%",
+            "T+25m: Reduce ETH perpetuals by half, $300,000 notional, reduction cost 0.12%"
+          ],
+          "priority_order": [
+            "Curve FRAX LP",
+            "Fraxlend FRAX loop",
+            "ETH perpetuals"
+          ],
+          "direct_stablecoin_neutralized_usd": 760000,
+          "latest_direct_neutralization_min": 15,
+          "margin_notional_reduced_usd": 300000,
+          "expected_execution_cost_usd": 3150,
+          "self_check": "Seat constraints satisfied: T+5m, T+15m, T+25m within 10-min cadence. Curve exit at T+5m before T+27m gate deadline. Fraxlend unwind at T+15m before T+32m oracle push. ETH margin reduction at T+25m before T+40m instability. Stablecoin neutralized $420k+$340k=$760k. Margin reduced $300k. Costs: $1260+$1530+$360=$3150. BTC untouched as non-stablecoin-collateralized.",
+          "reasoning": "Strategy prioritizes stablecoin exits by deadline urgency: Curve FRAX LP (T+27m gate) executed first at T+5m seat, Fraxlend (T+32m oracle) second at T+15m seat, then ETH perpetuals half-reduction at T+25m before T+40m margin instability. BTC excluded as unencumbered non-stablecoin asset. Cost arithmetic: $420k×0.30%=$1260, $340k×0.45%=$1530, $300k×0.12%=$360, total $3150."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:actions",
+          "agi_validation_failed:priority_order",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "runAt": "2026-06-10T11:40:39.810Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-l9-chunk4-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L9-031",
+    "L9-032",
+    "L9-033",
+    "L9-034",
+    "L9-035",
+    "L9-036",
+    "L9-037",
+    "L9-038",
+    "L9-039",
+    "L9-040"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-031",
+      "raw": "{\"intent\":\"repay\",\"expected_value\":373547.54,\"reasoning\":\"Pre-repay HF = (1200×3300×0.83)/2900000 ≈ 1.1334. Post-shock HF after −6% = 1200×3300×0.94×0.83/2900000 ≈ 1.0657, below target 1.22, so repay USDC and reject borrow-more. Max allowable post-shock debt = 1200×3300×0.94×0.83/1.22 ≈ 2532452.46. Required debt reduction after $6000 fees = max(0, 2900000+6000−2532452.46) = 373547.54.\"}",
+      "durationMs": 113422,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "expected_value": 373547.54,
+          "reasoning": "Pre-repay HF = (1200×3300×0.83)/2900000 ≈ 1.1334. Post-shock HF after −6% = 1200×3300×0.94×0.83/2900000 ≈ 1.0657, below target 1.22, so repay USDC and reject borrow-more. Max allowable post-shock debt = 1200×3300×0.94×0.83/1.22 ≈ 2532452.46. Required debt reduction after $6000 fees = max(0, 2900000+6000−2532452.46) = 373547.54."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-032",
+      "raw": "",
+      "durationMs": 65111,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-033",
+      "raw": "",
+      "durationMs": 477,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-034",
+      "raw": "",
+      "durationMs": 54182,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-035",
+      "raw": "",
+      "durationMs": 37791,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-036",
+      "raw": "",
+      "durationMs": 17213,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-037",
+      "raw": "",
+      "durationMs": 42941,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-038",
+      "raw": " {\"intent\":\"swap\",\"expected_value\":0,\"reasoning\":\"All three routes were evaluated for feasibility against hard constraints: settlement <= 14 min, oracle age <= 60 sec, capacity >= $2,000,000. Route A: cost = 0.70%*2,000,000 + 1,800 + 0.02%*2,000,000 = 14,000 + 1,800 + 400 = $16,200; settlement 13 min, oracle 48 sec, capacity $3M → feasible. Route B: cost = 0.35%*2,000,000 + 2,300 + 0.04%*2,000,000 = 7,000 + 2,300 + 800 = $10,100; settlement 9 min, oracle 25 sec, capacity $2.6M → feasible. Route C: cost = 0.28%*2,000,000 + 1,400 + 0.18%*2,000,000 = 5,600 + 1,400 + 3,600 = $10,600; settlement 12 min, oracle 36 sec, capacity $2.4M → feasible. Best feasible route is Route B at $10,100; second-best feasible is Route C at $10,600. USD saved = 10,600 - 10,100 = $500. Extra SOL = 500 / 142 ≈ 3.5211 SOL.\",\"order_type\":\"cross-chain\",\"asset\":\"SOL\",\"size\":2000000,\"unit\":\"usd\",\"price\":142,\"venue\":\"cross-chain\",\"venue_name\":\"intent_solver\",\"risk_controls\":{\"slippage_tolerance\":\"0.35%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":2600000},\"follow_up\":\"monitor fill and settlement within 9 minutes\",\"requires_follow_up\":true,\"follow_up_description\":\"confirm intent solver execution and final SOL delivery on Solana\"}",
+      "durationMs": 1959,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 0,
+          "reasoning": "All three routes were evaluated for feasibility against hard constraints: settlement <= 14 min, oracle age <= 60 sec, capacity >= $2,000,000. Route A: cost = 0.70%*2,000,000 + 1,800 + 0.02%*2,000,000 = 14,000 + 1,800 + 400 = $16,200; settlement 13 min, oracle 48 sec, capacity $3M → feasible. Route B: cost = 0.35%*2,000,000 + 2,300 + 0.04%*2,000,000 = 7,000 + 2,300 + 800 = $10,100; settlement 9 min, oracle 25 sec, capacity $2.6M → feasible. Route C: cost = 0.28%*2,000,000 + 1,400 + 0.18%*2,000,000 = 5,600 + 1,400 + 3,600 = $10,600; settlement 12 min, oracle 36 sec, capacity $2.4M → feasible. Best feasible route is Route B at $10,100; second-best feasible is Route C at $10,600. USD saved = 10,600 - 10,100 = $500. Extra SOL = 500 / 142 ≈ 3.5211 SOL.",
+          "order_type": "cross-chain",
+          "asset": "SOL",
+          "size": 2000000,
+          "unit": "usd",
+          "price": 142,
+          "venue": "cross-chain",
+          "venue_name": "intent_solver",
+          "risk_controls": {
+            "slippage_tolerance": "0.35%",
+            "max_gas": "30 gwei",
+            "position_size_limit": 2600000
+          },
+          "follow_up": "monitor fill and settlement within 9 minutes",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm intent solver execution and final SOL delivery on Solana"
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-039",
+      "raw": "",
+      "durationMs": 103222,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-040",
+      "raw": "",
+      "durationMs": 20764,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "runAt": "2026-06-11T22:12:04.549Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L5-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L5-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L5-002",
+      "raw": " {\"intent\":\"leveraged_long\",\"order_type\":\"flash_loan_loop\",\"asset\":\"ETH\",\"size\":\"1\",\"unit\":\"ETH\",\"venue\":\"aave\",\"venue_name\":\"aave_v3\",\"risk_controls\":{\"stop_loss\":\"2500\",\"take_profit\":\"6000\",\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":\"3\"},\"follow_up\":\"monitor_health_factor\",\"reasoning\":\"Create 3x leveraged ETH position via flash loan mechanics: flash borrow 2 ETH, deposit total 3 ETH collateral, borrow 6000 USDC (2 ETH worth) against collateral to repay flash loan. Results in 3 ETH notional exposure with 6000 USDC debt and 1 ETH equity. Liquidation risk begins near $2500 ETH price.\",\"requires_follow_up\":true,\"follow_up_description\":\"Continuous monitoring of health factor required due to 3x leverage; liquidation threshold approximately $2,500\"}",
+      "durationMs": 61380,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.022666666666666665,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "leveraged_long",
+          "order_type": "flash_loan_loop",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "ETH",
+          "venue": "aave",
+          "venue_name": "aave_v3",
+          "risk_controls": {
+            "stop_loss": "2500",
+            "take_profit": "6000",
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "3"
+          },
+          "follow_up": "monitor_health_factor",
+          "reasoning": "Create 3x leveraged ETH position via flash loan mechanics: flash borrow 2 ETH, deposit total 3 ETH collateral, borrow 6000 USDC (2 ETH worth) against collateral to repay flash loan. Results in 3 ETH notional exposure with 6000 USDC debt and 1 ETH equity. Liquidation risk begins near $2500 ETH price.",
+          "requires_follow_up": true,
+          "follow_up_description": "Continuous monitoring of health factor required due to 3x leverage; liquidation threshold approximately $2,500"
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

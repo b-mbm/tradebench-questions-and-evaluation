@@ -1,0 +1,528 @@
+{
+  "runAt": "2026-06-08T16:56:30.164Z",
+  "label": "openrouter-llamas-300q-l3-n2-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "meta-llama/llama-3.1-8b-instruct"
+  ],
+  "questionIds": [
+    "L3-001",
+    "L3-002",
+    "L3-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge_and_buy\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": \"1000\",\n  \"unit\": \"usd\",\n  \"venue\": \"arbitrum_bridge\",\n  \"venue_name\": \"offchainlabs\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"buy ARB\",\n  \"reasoning\": \"bridge USDC to Arbitrum and prepare to buy ARB\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"execute buy order for ARB after bridging USDC\"\n}",
+      "durationMs": 10770,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7041300366300368,
+        "score": 0.6627106227106229,
+        "fieldScores": {
+          "intent": 0.12461538461538461,
+          "order_type": 0.02666666666666666,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.05142857142857143,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_buy",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "1000",
+          "unit": "usd",
+          "venue": "arbitrum_bridge",
+          "venue_name": "offchainlabs",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "buy ARB",
+          "reasoning": "bridge USDC to Arbitrum and prepare to buy ARB",
+          "requires_follow_up": true,
+          "follow_up_description": "execute buy order for ARB after bridging USDC"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L3-002",
+      "raw": "{\n  \"intent\": \"split\",\n  \"order_type\": \"market\",\n  \"asset\": \"USDC\",\n  \"size\": \"10000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"multi-venue\",\n  \"venue_name\": \"ethereum, arbitrum, optimism\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm fills\",\n  \"reasoning\": \"split USDC across three chains for diversification\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify that 1/3 of 10,000 USDC is sent to each of Ethereum, Arbitrum, and Optimism\"\n}",
+      "durationMs": 2922,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5568837412587412,
+        "score": 0.5241258741258741,
+        "fieldScores": {
+          "intent": 0.029999999999999992,
+          "order_type": 0,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.021818181818181813,
+          "venue_name": 0.01230769230769231,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "split",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": "10000",
+          "unit": "usdc",
+          "venue": "multi-venue",
+          "venue_name": "ethereum, arbitrum, optimism",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm fills",
+          "reasoning": "split USDC across three chains for diversification",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify that 1/3 of 10,000 USDC is sent to each of Ethereum, Arbitrum, and Optimism"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"bridge_and_swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"venue\": \"polygon_bridge\",\n  \"venue_name\": \"official_polygon_bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"swap_for_matic\",\n  \"reasoning\": \"bridge eth to polygon and swap for matic\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"swap 2 ETH for MATIC on polygon dex\"\n}",
+      "durationMs": 6994,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7903133903133904,
+        "score": 0.7487179487179488,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02666666666666666,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.055384615384615386,
+          "venue_name": 0.026666666666666672,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_swap",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "venue": "polygon_bridge",
+          "venue_name": "official_polygon_bridge",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "swap_for_matic",
+          "reasoning": "bridge eth to polygon and swap for matic",
+          "requires_follow_up": true,
+          "follow_up_description": "swap 2 ETH for MATIC on polygon dex"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge_and_buy\",\n  \"order_type\": \"bridge_then_market\",\n  \"asset\": \"ARB\",\n  \"size\": \"833.33\",\n  \"unit\": \"usd\",\n  \"price\": \"market\",\n  \"venue\": \"arbitrum\",\n  \"venue_name\": \"arbitrum_one\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm bridge and fill\",\n  \"reasoning\": \"bridge USDC to Arbitrum, then buy ARB at market price\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify successful bridging and execution of ARB purchase\"\n}",
+      "durationMs": 2776,
+      "grade": {
+        "pass": false,
+        "confidence": 0.47423076923076923,
+        "score": 0.44261538461538463,
+        "fieldScores": {
+          "intent": 0.12461538461538461,
+          "order_type": 0.06,
+          "asset": 0,
+          "size": 0,
+          "venue": 0.03,
+          "venue_name": 0.048,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_buy",
+          "order_type": "bridge_then_market",
+          "asset": "ARB",
+          "size": "833.33",
+          "unit": "usd",
+          "price": "market",
+          "venue": "arbitrum",
+          "venue_name": "arbitrum_one",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm bridge and fill",
+          "reasoning": "bridge USDC to Arbitrum, then buy ARB at market price",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify successful bridging and execution of ARB purchase"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L3-002",
+      "raw": "{\n  \"intent\": \"transfer\",\n  \"order_type\": \"split\",\n  \"asset\": \"USDC\",\n  \"size\": \"10000\",\n  \"unit\": \"usd\",\n  \"venue\": \"multichain\",\n  \"venue_name\": \"circle bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm receipt on each chain\",\n  \"reasoning\": \"split USDC across Ethereum, Arbitrum, and Optimism\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify successful bridging to each network\"\n}",
+      "durationMs": 2886,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5619807692307692,
+        "score": 0.5289230769230769,
+        "fieldScores": {
+          "intent": 0.020000000000000007,
+          "order_type": 0,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.011999999999999997,
+          "venue_name": 0.036923076923076927,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "transfer",
+          "order_type": "split",
+          "asset": "USDC",
+          "size": "10000",
+          "unit": "usd",
+          "venue": "multichain",
+          "venue_name": "circle bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm receipt on each chain",
+          "reasoning": "split USDC across Ethereum, Arbitrum, and Optimism",
+          "requires_follow_up": true,
+          "follow_up_description": "verify successful bridging to each network"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"bridge_and_swap\",\n  \"order_type\": \"bridge_then_dex\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"price\": \"pool spot\",\n  \"venue\": \"polygon_bridge\",\n  \"venue_name\": \"polygon_pos_bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor bridge and swap status\",\n  \"reasoning\": \"bridge ETH to Polygon and swap for MATIC using a DEX like QuickSwap\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify successful bridging and swap execution on Polygon\"\n}",
+      "durationMs": 2830,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8594658119658121,
+        "score": 0.8142307692307693,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.07384615384615385,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.055384615384615386,
+          "venue_name": 0.045,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_swap",
+          "order_type": "bridge_then_dex",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": "pool spot",
+          "venue": "polygon_bridge",
+          "venue_name": "polygon_pos_bridge",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor bridge and swap status",
+          "reasoning": "bridge ETH to Polygon and swap for MATIC using a DEX like QuickSwap",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify successful bridging and swap execution on Polygon"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge_and_buy\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": \"1000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"bridge\",\n  \"risk_controls\": {},\n  \"follow_up\": \"confirm bridge transfer\",\n  \"reasoning\": \"bridge to Arbitrum for buying ARB\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify USDC received on Arbitrum\"\n}",
+      "durationMs": 2317,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8192307692307693,
+        "score": 0.7646153846153847,
+        "fieldScores": {
+          "intent": 0.12461538461538461,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_buy",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "1000",
+          "unit": "usdc",
+          "venue": "bridge",
+          "risk_controls": {},
+          "follow_up": "confirm bridge transfer",
+          "reasoning": "bridge to Arbitrum for buying ARB",
+          "requires_follow_up": true,
+          "follow_up_description": "verify USDC received on Arbitrum"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L3-002",
+      "raw": "{\n\"intent\": \"split\",\n  \"order_type\": \"cross-chain\",\n  \"asset\": \"USDC\",\n  \"size\": \"10000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm bridge\",\n  \"reasoning\": \"split across multiple chains\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify USDC distribution on Ethereum, Arbitrum, and Optimism\",\n  \"split_details\": [\n    {\n      \"chain\": \"Ethereum\",\n      \"size\": \"3333.33\"\n    },\n    {\n      \"chain\": \"Arbitrum\",\n      \"size\": \"3333.33\"\n    },\n    {\n      \"chain\": \"Optimism\",\n      \"size\": \"3333.34\"\n    }\n  ]\n}",
+      "durationMs": 1020,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6635795454545456,
+        "score": 0.6245454545454546,
+        "fieldScores": {
+          "intent": 0.029999999999999992,
+          "order_type": 0.01454545454545455,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "split",
+          "order_type": "cross-chain",
+          "asset": "USDC",
+          "size": "10000",
+          "unit": "usdc",
+          "venue": "bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm bridge",
+          "reasoning": "split across multiple chains",
+          "requires_follow_up": true,
+          "follow_up_description": "verify USDC distribution on Ethereum, Arbitrum, and Optimism",
+          "split_details": [
+            {
+              "chain": "Ethereum",
+              "size": "3333.33"
+            },
+            {
+              "chain": "Arbitrum",
+              "size": "3333.33"
+            },
+            {
+              "chain": "Optimism",
+              "size": "3333.34"
+            }
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"bridge_and_swap\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"ETH\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"polygon bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\"\n  },\n  \"follow_up\": \"swap on polygon\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"execute swap on polygon\",\n  \"reasoning\": \"bridge ETH to polygon for swap\"\n}",
+      "durationMs": 6066,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9657142857142857,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.045714285714285714,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_swap",
+          "order_type": "bridge",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "ETH",
+          "venue": "bridge",
+          "venue_name": "polygon bridge",
+          "risk_controls": {
+            "slippage_tolerance": "1%"
+          },
+          "follow_up": "swap on polygon",
+          "requires_follow_up": true,
+          "follow_up_description": "execute swap on polygon",
+          "reasoning": "bridge ETH to polygon for swap"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"ARB\",\n  \"size\": \"1000\",\n  \"unit\": \"USDC\",\n  \"venue\": \"arbitrum\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"bridge USDC to Arbitrum and execute market buy for ARB\"\n}",
+      "durationMs": 3237,
+      "grade": {
+        "pass": false,
+        "confidence": 0.39416666666666667,
+        "score": 0.3638461538461538,
+        "fieldScores": {
+          "intent": 0.013846153846153836,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0.14,
+          "venue": 0.03,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "ARB",
+          "size": "1000",
+          "unit": "USDC",
+          "venue": "arbitrum",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "bridge USDC to Arbitrum and execute market buy for ARB"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L3-002",
+      "raw": "{\n  \"intent\": \"split\",\n  \"order_type\": \"market\",\n  \"asset\": \"USDC\",\n  \"size\": \"10000\",\n  \"unit\": \"usd\",\n  \"venue\": \"arbitrum\",\n  \"venue_name\": \"arbitrum\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor fills\",\n  \"reasoning\": \"split USDC across Ethereum, Arbitrum, and Optimism\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"confirm fills on all three chains\"\n}",
+      "durationMs": 2863,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5666666666666667,
+        "score": 0.5333333333333333,
+        "fieldScores": {
+          "intent": 0.029999999999999992,
+          "order_type": 0,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.03,
+          "venue_name": 0.01333333333333333,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "split",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": "10000",
+          "unit": "usd",
+          "venue": "arbitrum",
+          "venue_name": "arbitrum",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor fills",
+          "reasoning": "split USDC across Ethereum, Arbitrum, and Optimism",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm fills on all three chains"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"price\": \"pool spot\",\n  \"venue\": \"polygon\",\n  \"venue_name\": \"sushi\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"route via largest pool\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Confirm MATIC receipt on Polygon\"\n}",
+      "durationMs": 3214,
+      "grade": {
+        "pass": false,
+        "confidence": 0.594143772893773,
+        "score": 0.5591941391941393,
+        "fieldScores": {
+          "intent": 0.055384615384615386,
+          "order_type": 0.02666666666666666,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.017142857142857147,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": "2",
+          "price": "pool spot",
+          "venue": "polygon",
+          "venue_name": "sushi",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest pool",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm MATIC receipt on Polygon"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

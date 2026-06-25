@@ -1,0 +1,66 @@
+{
+  "runAt": "2026-06-10T10:00:28.830Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-AGI-057-2026-06-10T10-00-04",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-057"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-057",
+      "raw": "{\n  \"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"sequential_full_harvest\",\n  \"assets_to_sell\": [\n    \"LINK\",\n    \"ARB\",\n    \"SOL\"\n  ],\n  \"sale_sequence\": [\n    \"LINK\",\n    \"ARB\",\n    \"SOL\"\n  ],\n  \"replacement_assets\": {\n    \"LINK\": \"LST_beta_basket\",\n    \"ARB\": \"OP_IMX_basket\",\n    \"SOL\": \"JTO_PYTH_basket\"\n  },\n  \"net_tax_benefit\": 18190,\n  \"remaining_unoffset_gains\": 15000,\n  \"self_check\": \"Wash sale rule satisfied via non-identical replacement baskets; fully invested status maintained; thinnest lot (LINK) sold first to minimize market maker adverse selection; all available losses harvested.\",\n  \"reasoning\": \"Total losses of $55k are less than $70k gains, so all lots are sold. Tax savings of $20,350 minus $2,160 round-trip costs yields $18,190 net benefit. Thinnest lot (LINK, depth 1.1) is sold first to prevent market maker widening on later exits.\"\n}",
+      "durationMs": 23582,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "assets_to_sell": 1,
+          "sale_sequence": 1,
+          "replacement_assets.LINK": 1,
+          "replacement_assets.ARB": 1,
+          "replacement_assets.SOL": 1,
+          "net_tax_benefit": 1,
+          "remaining_unoffset_gains": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "sequential_full_harvest",
+          "assets_to_sell": [
+            "LINK",
+            "ARB",
+            "SOL"
+          ],
+          "sale_sequence": [
+            "LINK",
+            "ARB",
+            "SOL"
+          ],
+          "replacement_assets": {
+            "LINK": "LST_beta_basket",
+            "ARB": "OP_IMX_basket",
+            "SOL": "JTO_PYTH_basket"
+          },
+          "net_tax_benefit": 18190,
+          "remaining_unoffset_gains": 15000,
+          "self_check": "Wash sale rule satisfied via non-identical replacement baskets; fully invested status maintained; thinnest lot (LINK) sold first to minimize market maker adverse selection; all available losses harvested.",
+          "reasoning": "Total losses of $55k are less than $70k gains, so all lots are sold. Tax savings of $20,350 minus $2,160 round-trip costs yields $18,190 net benefit. Thinnest lot (LINK, depth 1.1) is sold first to prevent market maker widening on later exits."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

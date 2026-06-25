@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T00:19:50.375Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-037-2026-06-11T00-19-31",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-037"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-037",
+      "raw": "{\n  \"intent\": \"multi-leg ETH upgrade strategy\",\n  \"expected_value\": 19.13,\n  \"reasoning\": \"Weighted sum of four legs: 35% spot × 28% = 9.8%, 30% CME basis × 2.4% = 0.72%, 20% perp funding × 1.808% (11% APR × 60/365) = 0.362%, 15% options × 55% = 8.25%. Total = 19.13% over 60 days.\"\n}",
+      "durationMs": 19035,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "multi-leg ETH upgrade strategy",
+          "expected_value": 19.13,
+          "reasoning": "Weighted sum of four legs: 35% spot × 28% = 9.8%, 30% CME basis × 2.4% = 0.72%, 20% perp funding × 1.808% (11% APR × 60/365) = 0.362%, 15% options × 55% = 8.25%. Total = 19.13% over 60 days."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:32:45.779Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-046-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-046"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-046",
+      "raw": " {\"intent\": \"swap\", \"expected_value\": 0.35, \"reasoning\": \"Selected Hybrid strategy: split $3M USDC into 15 child orders of $200k each and route through private solver/RPC. Calculation: 0.10% aggregate split slippage + 0.01% private routing cost ($300/$3M) + 0.24% residual adverse-selection = 0.35% total expected cost. Success probability: 92%. This meets all constraints: cost ≤0.45%, protected-completion probability ≥90%, and individual order size ≤$200k.\"}",
+      "durationMs": 44252,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 0.35,
+          "reasoning": "Selected Hybrid strategy: split $3M USDC into 15 child orders of $200k each and route through private solver/RPC. Calculation: 0.10% aggregate split slippage + 0.01% private routing cost ($300/$3M) + 0.24% residual adverse-selection = 0.35% total expected cost. Success probability: 92%. This meets all constraints: cost ≤0.45%, protected-completion probability ≥90%, and individual order size ≤$200k."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

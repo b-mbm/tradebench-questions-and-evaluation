@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T00:20:18.517Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-040-2026-06-11T00-20-05",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-040"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-040",
+      "raw": "{\n  \"intent\": \"liquidity_routing_plan\",\n  \"expected_value\": 49500,\n  \"reasoning\": \"Final successful routed volume target is $45,000,000 at 0.11% net fee rate. Revenue = $45,000,000 × 0.0011 = $49,500. To achieve 97% fill success (up from 91%), implement dynamic inventory rebalancing across Arbitrum, Base, and Optimism with minimum 20% allocation per rollup ($600,000 each). Rebalancing budget of $6,000/month enables cross-rollup transfers to address the inventory imbalance causing current 9% failures. Institutional RFQ flow and solver integrations scaled to achieve exactly $45,000,000 successful monthly volume.\"\n}",
+      "durationMs": 12660,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "liquidity_routing_plan",
+          "expected_value": 49500,
+          "reasoning": "Final successful routed volume target is $45,000,000 at 0.11% net fee rate. Revenue = $45,000,000 × 0.0011 = $49,500. To achieve 97% fill success (up from 91%), implement dynamic inventory rebalancing across Arbitrum, Base, and Optimism with minimum 20% allocation per rollup ($600,000 each). Rebalancing budget of $6,000/month enables cross-rollup transfers to address the inventory imbalance causing current 9% failures. Institutional RFQ flow and solver integrations scaled to achieve exactly $45,000,000 successful monthly volume."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

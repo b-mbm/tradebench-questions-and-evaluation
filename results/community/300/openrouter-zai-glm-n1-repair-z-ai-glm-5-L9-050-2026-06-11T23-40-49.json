@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T23:41:24.805Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L9-050-2026-06-11T23-40-49",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-050"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-050",
+      "raw": "{\n  \"intent\": \"calculate incremental fee APR for HYPE/USDC pool\",\n  \"expected_value\": 5.43,\n  \"reasoning\": \"Incremental APR = ((9,500,000 * 0.58 * 0.00035 * 0.88 * 0.85 - 520) * 365) / 6,200,000 = ((1,928.50 * 0.748 - 520) * 365) / 6,200,000 = (922.52 * 365) / 6,200,000 = 5.43%. Stress test at 20% volume yields negative APR (-8.47%), but expected_value remains base-case per instructions.\"\n}",
+      "durationMs": 34736,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate incremental fee APR for HYPE/USDC pool",
+          "expected_value": 5.43,
+          "reasoning": "Incremental APR = ((9,500,000 * 0.58 * 0.00035 * 0.88 * 0.85 - 520) * 365) / 6,200,000 = ((1,928.50 * 0.748 - 520) * 365) / 6,200,000 = (922.52 * 365) / 6,200,000 = 5.43%. Stress test at 20% volume yields negative APR (-8.47%), but expected_value remains base-case per instructions."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

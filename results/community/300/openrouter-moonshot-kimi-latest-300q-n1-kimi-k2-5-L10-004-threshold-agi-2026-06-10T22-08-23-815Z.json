@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T22:08:23.814Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-004-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-004",
+      "raw": "{\"intent\": \"hedge\", \"expected_value\": -12000, \"reasoning\": \"Hedging on a CEX incurs $12,000 in slippage but immediately neutralizes the $180,000 unhedged loss from the oracle skew. Pulling liquidity costs $8,000 but fails to neutralize the existing exposure, resulting in the full $180,000 loss. Trusting the oracle costs $180,000. Therefore, hedging minimizes expected cost at -$12,000.\"}",
+      "durationMs": 54052,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "expected_value": -12000,
+          "reasoning": "Hedging on a CEX incurs $12,000 in slippage but immediately neutralizes the $180,000 unhedged loss from the oracle skew. Pulling liquidity costs $8,000 but fails to neutralize the existing exposure, resulting in the full $180,000 loss. Trusting the oracle costs $180,000. Therefore, hedging minimizes expected cost at -$12,000."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

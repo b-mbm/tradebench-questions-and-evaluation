@@ -1,0 +1,1059 @@
+{
+  "runAt": "2026-06-10T05:10:24.431Z",
+  "label": "openrouter-zai-glm-series-300q-l8-n2",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1",
+    "z-ai/glm-5-turbo",
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-001",
+      "raw": "",
+      "durationMs": 27803,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 514.42,\n  \"cost_breakdown\": {\n    \"gas\": 1.82,\n    \"fees\": 182.60,\n    \"expected_mev_loss\": 330\n  },\n  \"reasoning\": \"Strategy A: gas = 320k × 2 gwei = 0.00064 ETH × $2,850 = $1.82; fees = $180 setup + (0.04 × $65 retry) = $182.60; expected MEV loss = (1 - 0.985) × $22,000 = $330; total = $514.42. Strategy B: gas = 180k × 170 gwei = 0.0306 ETH × $2,850 = $87.21; expected MEV loss = $22,000;",
+      "durationMs": 74829,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.06666666666666665,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 514.42,
+          "gas": 1.82,
+          "fees": 182.6,
+          "expected_mev_loss": 330,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-003",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"MULTI\",\n  \"size\": 1000000,\n  \"venue\": \"multi-venue\",\n  \"portfolio_volatility\": 0.4248,\n  \"risk_contributions\": {\n    \"btc\": 0.5485,\n    \"eth\": 0.4276,\n    \"bonds\": 0.0239\n  },\n  \"btc_contribution_pct\": 54.85,\n  \"eth_contribution_pct\": 42.76,\n  \"bonds_contribution_pct\": 2.39,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"btc\": 191000,\n    \"eth\": 143000,\n    \"bonds\": 666000\n  },\n  \"target_btc_usd\": 191000,\n  \"target_eth_usd\": 143000,\n  \"target_bonds_usd\": 666000,\n  \"transactions\": [\n    {\n      \"action\": \"sell\",\n      \"asset\": \"BTC\",\n      \"amount_usd\": 209000,\n      \"venue\": \"coinbase\",\n      \"slippage\": 0.005\n    },\n    {\n      \"action\": \"sell\",\n      \"asset\": \"ETH\",\n      \"amount_usd\": 207000,\n      \"venue\": \"coinbase\",\n      \"slippage\": 0.005\n    },\n    {\n      \"action\": \"buy\",\n      \"asset\": \"Bonds\",\n      \"amount_usd\": 416000,\n      \"venue\": \"brokerage\",\n      \"slippage\": 0.001\n    }\n  ],\n  \"btc_sell_amount\": 209000,\n  \"eth_sell_amount\": 207000,\n  \"bonds_buy_amount\": 416000,\n  \"btc_post_slippage\": 207955,\n  \"eth_post_slippage\": 205965,\n  \"bonds_post_slippage\": 415584,\n  \"reasoning\": \"Covariance matrix computed from volatilities and correlations. Current risk contributions: BTC 54.85%, ETH 42.76%, Bonds 2.39% — all outside 28.33%-38.33% band. Risk-parity targets solved via iterative optimization: BTC $191K, ETH $143K, Bonds $666K. Sell BTC $209K, sell ETH $207K, buy Bonds $416K. Post-slippage amounts account for 0.5% crypto and 0.1% bond slippage.\"\n}",
+      "durationMs": 25957,
+      "grade": {
+        "pass": true,
+        "confidence": 0.834125874125874,
+        "score": 0.8068181818181818,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "MULTI",
+          "size": 1000000,
+          "venue": "multi-venue",
+          "portfolio_volatility": 0.4248,
+          "risk_contributions": {
+            "btc": 0.5485,
+            "eth": 0.4276,
+            "bonds": 0.0239
+          },
+          "btc_contribution_pct": 54.85,
+          "eth_contribution_pct": 42.76,
+          "bonds_contribution_pct": 2.39,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 191000,
+            "eth": 143000,
+            "bonds": 666000
+          },
+          "target_btc_usd": 191000,
+          "target_eth_usd": 143000,
+          "target_bonds_usd": 666000,
+          "transactions": [
+            {
+              "action": "sell",
+              "asset": "BTC",
+              "amount_usd": 209000,
+              "venue": "coinbase",
+              "slippage": 0.005
+            },
+            {
+              "action": "sell",
+              "asset": "ETH",
+              "amount_usd": 207000,
+              "venue": "coinbase",
+              "slippage": 0.005
+            },
+            {
+              "action": "buy",
+              "asset": "Bonds",
+              "amount_usd": 416000,
+              "venue": "brokerage",
+              "slippage": 0.001
+            }
+          ],
+          "btc_sell_amount": 209000,
+          "eth_sell_amount": 207000,
+          "bonds_buy_amount": 416000,
+          "btc_post_slippage": 207955,
+          "eth_post_slippage": 205965,
+          "bonds_post_slippage": 415584,
+          "reasoning": "Covariance matrix computed from volatilities and correlations. Current risk contributions: BTC 54.85%, ETH 42.76%, Bonds 2.39% — all outside 28.33%-38.33% band. Risk-parity targets solved via iterative optimization: BTC $191K, ETH $143K, Bonds $666K. Sell BTC $209K, sell ETH $207K, buy Bonds $416K. Post-slippage amounts account for 0.5% crypto and 0.1% bond slippage."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"restake\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer\",\n  \"rationale\": \"Option A (EigenLayer) is optimal: total APR 7.0% (4.2% Lido + 2.8% AVS) minus portfolio-weighted borrow cost 2.75% yields net 4.25%, exceeding 1.0% target. Slashing risk 3% is within 4% cap, and 7-day lock clears 8-day collateral deadline. Option B fails both slashing (5%>4%) and timing (14>8 days). Option C yields only 1.45% net.\",\n  \"decision_factors\": \"Option B eliminated: slashing 5% exceeds 4% max and 14-day lock misses 8-day collateral deadline. Option A satisfies all constraints and outperforms Option C by 2.8 percentage points in net APR. EigenLayer's $8.2B TVL provides superior liquidity for collateral release.\",\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 4.25,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 1.45,\n  \"option_a_outperformance\": 2.8\n}",
+      "durationMs": 11227,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "restake",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer",
+          "rationale": "Option A (EigenLayer) is optimal: total APR 7.0% (4.2% Lido + 2.8% AVS) minus portfolio-weighted borrow cost 2.75% yields net 4.25%, exceeding 1.0% target. Slashing risk 3% is within 4% cap, and 7-day lock clears 8-day collateral deadline. Option B fails both slashing (5%>4%) and timing (14>8 days). Option C yields only 1.45% net.",
+          "decision_factors": "Option B eliminated: slashing 5% exceeds 4% max and 14-day lock misses 8-day collateral deadline. Option A satisfies all constraints and outperforms Option C by 2.8 percentage points in net APR. EigenLayer's $8.2B TVL provides superior liquidity for collateral release.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-005",
+      "raw": "",
+      "durationMs": 26593,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"fixed_yield\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Strategy C (Pendle PT-USDe) delivers the highest APY at 12.3% with fixed yield locked for 90 days, perfectly matching the horizon. Strategy B's 3x leverage causes liquidation at just 2% USDe depeg, breaching the 3% max depeg exposure constraint—liquidation occurs before the tolerance threshold is reached. Strategy D still carries depeg/liquidation risk on the 50K loop portion and yields only 11.25%. Strategy A at 8.5% is far inferior. Pendle's $45M liquidity depth easily absorbs 100K with only 0.15% slippage, and zero leverage eliminates liquidation risk entirely, aligning with medium risk tolerance and APY maximization.\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": \"true\",\n  \"alternatives_rejected\": {\n    \"A\": \"8.5% APY is 3.8 percentage points below optimal; no leverage risk but severely suboptimal yield\",\n    \"B\": \"3x loop yields 11.9% but liquidates at 2% depeg, violating the 3% max depeg exposure constraint; effective risk exceeds tolerance\",\n    \"D\": \"11.25% weighted APY is 1.05 points below C; 50K loop portion still carries liquidation risk at 2% depeg threshold, partially violating risk constraints\"\n  }\n}",
+      "durationMs": 5018,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Strategy C (Pendle PT-USDe) delivers the highest APY at 12.3% with fixed yield locked for 90 days, perfectly matching the horizon. Strategy B's 3x leverage causes liquidation at just 2% USDe depeg, breaching the 3% max depeg exposure constraint—liquidation occurs before the tolerance threshold is reached. Strategy D still carries depeg/liquidation risk on the 50K loop portion and yields only 11.25%. Strategy A at 8.5% is far inferior. Pendle's $45M liquidity depth easily absorbs 100K with only 0.15% slippage, and zero leverage eliminates liquidation risk entirely, aligning with medium risk tolerance and APY maximization.",
+          "risk_assessment": "low",
+          "meets_constraints": "true",
+          "alternatives_rejected": {
+            "A": "8.5% APY is 3.8 percentage points below optimal; no leverage risk but severely suboptimal yield",
+            "B": "3x loop yields 11.9% but liquidates at 2% depeg, violating the 3% max depeg exposure constraint; effective risk exceeds tolerance",
+            "D": "11.25% weighted APY is 1.05 points below C; 50K loop portion still carries liquidation risk at 2% depeg threshold, partially violating risk constraints"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-007",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"dex\",\n  \"asset\": \"stETH\",\n  \"size\": 2500,\n  \"venue\": \"dex\",\n  \"venue_name\": \"1inch Fusion\",\n  \"expected_value\": -67500,\n  \"unit\": \"USD_total_cost\",\n  \"reasoning\": \"CowSwap eliminated: 2000 stETH/batch capacity causes 24-min settlement exceeding 15-min deadline. Common costs on $4.5M notional: spread 0.25%=$11,250, impact 0.35%=$15,750, dynamic widening 9×0.05%=$20,250, total common=$47,250. 1inch Fusion: +0.05% fee=$2,250 + 0.4% MEV=$18,000 → total $67,500. Uniswap V3: +0.30% fee=$13,500 + 0.8% MEV=$36,000 → total $96,750. 1inch Fusion optimal at lowest cost meeting all constraints.\",\n  \"constraint_awareness\": \"15-minute margin call deadline eliminates CowSwap (2,000 stETH/batch with 500 overflow queues to +24min",
+      "durationMs": 68141,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5595333333333334,
+        "score": 0.8720000000000001,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0.05,
+          "venue_name": 0.5,
+          "expected_value": 0.3,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "stETH",
+          "size": "2500",
+          "venue": "dex",
+          "venue_name": "1inch Fusion",
+          "expected_value": -67500,
+          "unit": "USD_total_cost",
+          "reasoning": "CowSwap eliminated: 2000 stETH/batch capacity causes 24-min settlement exceeding 15-min deadline. Common costs on $4.5M notional: spread 0.25%=$11,250, impact 0.35%=$15,750, dynamic widening 9×0.05%=$20,250, total common=$47,250. 1inch Fusion: +0.05% fee=$2,250 + 0.4% MEV=$18,000 → total $67,500. Uniswap V3: +0.30% fee=$13,500 + 0.8% MEV=$36,000 → total $96,750. 1inch Fusion optimal at lowest cost meeting all constraints.",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"risk-parity rebalance (buy side)\",\n  \"strategy\": \"Execute all 4 legs on Interactive Brokers to minimize total fees; T+2 settlement does not impede same-day execution\",\n  \"execution_plan\": [\n    {\n      \"asset\": \"BTC\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 22500,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 22.50\n    },\n    {\n      \"asset\": \"ETH\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 22400,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 22.40\n    },\n    {\n      \"asset\": \"GLD\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 222000,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 222\n    },\n    {\n      \"asset\": \"TLT\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 228000,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 228\n    }\n  ],\n  \"fee_summary\": {\n    \"total_fees\": 494.90,\n    \"total_notional\": 494900,\n    \"total_execution_cost\": 495394.90\n  },\n  \"rationale\": \"Interactive Brokers charges 0.1% vs Coinbase 0.6%, saving $224.50 on crypto legs alone. T+2 settlement governs finalization not execution—all orders can be placed and filled same day. Routing all legs through IB yields $494.90 total fees, the global minimum under given fee schedules, well within the $2,000 cap.\",\n  \"constraints_met\": true\n}",
+      "durationMs": 41621,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9624999999999999,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.4,
+          "execution_plan": 0.3,
+          "fee_summary": 0.15,
+          "rationale": 0.0125,
+          "constraints_met": 0.1
+        },
+        "normalizedResponse": {
+          "intent": "risk-parity rebalance (buy side)",
+          "strategy": "Execute all 4 legs on Interactive Brokers to minimize total fees; T+2 settlement does not impede same-day execution",
+          "execution_plan": [
+            {
+              "asset": "BTC",
+              "venue": "interactive_brokers",
+              "notional": 22500,
+              "fee_rate": 0.001,
+              "fee_amount": 22.5
+            },
+            {
+              "asset": "ETH",
+              "venue": "interactive_brokers",
+              "notional": 22400,
+              "fee_rate": 0.001,
+              "fee_amount": 22.4
+            },
+            {
+              "asset": "GLD",
+              "venue": "interactive_brokers",
+              "notional": 222000,
+              "fee_rate": 0.001,
+              "fee_amount": 222
+            },
+            {
+              "asset": "TLT",
+              "venue": "interactive_brokers",
+              "notional": 228000,
+              "fee_rate": 0.001,
+              "fee_amount": 228
+            }
+          ],
+          "fee_summary": {
+            "total_fees": 494.9,
+            "total_notional": 494900,
+            "total_execution_cost": 495394.9
+          },
+          "rationale": "Interactive Brokers charges 0.1% vs Coinbase 0.6%, saving $224.50 on crypto legs alone. T+2 settlement governs finalization not execution—all orders can be placed and filled same day. Routing all legs through IB yields $494.90 total fees, the global minimum under given fee schedules, well within the $2,000 cap.",
+          "constraints_met": true
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-009",
+      "raw": "",
+      "durationMs": 21659,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-010",
+      "raw": "{\n  \"intent\": \"collar\",\n  \"order_type\": \"options_collar\",\n  \"asset\": \"BTC\",\n  \"size\": 10,\n  \"call_strike\": 49500,\n  \"put_strike\": 40500,\n  \"net_cost_per_btc\": -60,\n  \"venue\": \"deribit\",\n  \"venue_name\": \"Deribit\",\n  \"expiry_days\": 30,\n  \"reasoning\": \"Selling the 10% OTM call (+$420 credit) and buying the 10% OTM put (-$480 debit) yields a net -$60/BTC debit, within the -80 to -40 target. This avoids the expensive 5% OTM put which carries 20-30% skew overpricing. The 10% OTM call cap at $49,500 sits above the median +8% move ($48,600), preserving full upside participation in the most likely scenario and minimizing opportunity cost. The 10% OTM put at $40,500 still provides meaningful protection against severe downside while keeping total economic cost (premium + opportunity cost) far lower than the 5%/5% collar whose cap at $47,250 would clip the median outcome.\"\n}",
+      "durationMs": 62480,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9772820512820515,
+        "score": 0.925846153846154,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.05384615384615385,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.2,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "collar",
+          "order_type": "options_collar",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 40500,
+          "net_cost_per_btc": -60,
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "expiry_days": 30,
+          "reasoning": "Selling the 10% OTM call (+$420 credit) and buying the 10% OTM put (-$480 debit) yields a net -$60/BTC debit, within the -80 to -40 target. This avoids the expensive 5% OTM put which carries 20-30% skew overpricing. The 10% OTM call cap at $49,500 sits above the median +8% move ($48,600), preserving full upside participation in the most likely scenario and minimizing opportunity cost. The 10% OTM put at $40,500 still provides meaningful protection against severe downside while keeping total economic cost (premium + opportunity cost) far lower than the 5%/5% collar whose cap at $47,250 would clip the median outcome."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-001",
+      "raw": "",
+      "durationMs": 24630,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 651.224,\n  \"cost_breakdown\": {\n    \"gas\": 138.624,\n    \"fees\": 182.6,\n    \"expected_mev_loss\": 330\n  },\n  \"reasoning\": \"Strategy A total cost is $651.22 (gas: 320k units * 152 gwei * $2850 = $138.62; fees: $180 setup + 4% fail rate * $65 retry = $182.60; residual MEV: $22k * 1.5% = $330). Strategy B total cost is $22,087.21 (gas: 180k * 170 gwei * $2850 = $87.21; MEV loss: $22,000). Strategy A is optimal.\"\n}",
+      "durationMs": 13952,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9642857142857143,
+        "score": 0.7714285714285715,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.17142857142857146,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 651.224,
+          "cost_breakdown": {
+            "gas": 138.624,
+            "fees": 182.6,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Strategy A total cost is $651.22 (gas: 320k units * 152 gwei * $2850 = $138.62; fees: $180 setup + 4% fail rate * $65 retry = $182.60; residual MEV: $22k * 1.5% = $330). Strategy B total cost is $22,087.21 (gas: 180k * 170 gwei * $2850 = $87.21; MEV loss: $22,000). Strategy A is optimal."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-003",
+      "raw": "",
+      "durationMs": 22047,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"delegate\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer\",\n  \"rationale\": \"Option A maximizes net return at 4.25% APR while satisfying all constraints: the 7-day lock period is within the 8-day collateral requirement, and the 3% slashing risk is below the 4% maximum tolerance. Option B is disqualified due to 5% slashing risk, and Option C yields less.\",\n  \"decision_factors\": \"EigenLayer provides an additional 2.8% APR with acceptable 3% slashing risk and a 7-day lock period that fits the 8-day borrowing timeline. Symbiotic exceeds the 4% slashing risk limit. Lido only yields 1.45% net APR, making EigenLayer the optimal choice with a 2.8% outperformance.\",\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 4.25,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 1.45,\n  \"option_a_outperformance\": 2.8\n}",
+      "durationMs": 20131,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "delegate",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer",
+          "rationale": "Option A maximizes net return at 4.25% APR while satisfying all constraints: the 7-day lock period is within the 8-day collateral requirement, and the 3% slashing risk is below the 4% maximum tolerance. Option B is disqualified due to 5% slashing risk, and Option C yields less.",
+          "decision_factors": "EigenLayer provides an additional 2.8% APR with acceptable 3% slashing risk and a 7-day lock period that fits the 8-day borrowing timeline. Symbiotic exceeds the 4% slashing risk limit. Lido only yields 1.45% net APR, making EigenLayer the optimal choice with a 2.8% outperformance.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-005",
+      "raw": "",
+      "durationMs": 27957,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"fixed_yield\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Strategy C maximizes APY at 12.3% with zero depeg liquidation risk, perfectly aligning with the 90-day fixed horizon. Strategy B is rejected due to liquidation risk at >2% depeg, violating the >3% depeg exposure constraint. Strategy D yields lower APY (11.25%) and introduces unnecessary leverage risk.\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\": {\n    \"B\": \"Liquidation risk at >2% depeg violates medium risk tolerance constraint of avoiding >3% depeg exposure.\",\n    \"D\": \"Lower APY (11.25%) than C (12.3%) with unnecessary leverage risk.\"\n  }\n}\n",
+      "durationMs": 24085,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Strategy C maximizes APY at 12.3% with zero depeg liquidation risk, perfectly aligning with the 90-day fixed horizon. Strategy B is rejected due to liquidation risk at >2% depeg, violating the >3% depeg exposure constraint. Strategy D yields lower APY (11.25%) and introduces unnecessary leverage risk.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "Liquidation risk at >2% depeg violates medium risk tolerance constraint of avoiding >3% depeg exposure.",
+            "D": "Lower APY (11.25%) than C (12.3%) with unnecessary leverage risk."
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-007",
+      "raw": "",
+      "durationMs": 36453,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-008",
+      "raw": "",
+      "durationMs": 37764,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-009",
+      "raw": "",
+      "durationMs": 25679,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-010",
+      "raw": "",
+      "durationMs": 24346,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-001",
+      "raw": "{\n  \"intent\": \"deploy\",\n  \"order_type\": \"allocation\",\n  \"asset\": \"USDC\",\n  \"size\": 5000000,\n  \"venue\": \"multi\",\n  \"venue_name\": \"pendle_convex\",\n  \"expected_value\": 0.0875,\n  \"unit\": \"usd\",\n  \"allocation\": {\n    \"pendle_pt_steth\": 3500000,\n    \"convex_curve_3pool\": 1500000\n    },\n  \"reasoning\": \"Pendle PT-stETH yields 12.0% annualized (3% discount over 90 days). Convex Curve 3pool yields 10.5% annualized (4.2% base * 2.5 boost). Optimal allocation maximizes Pendle at 70% ($3.5M) for higher yield, with 30% ($1.5M) in Convex. Net annualized yield: (0.7*12.0% + 0.3*10.5%) = 11.55% before costs. After slippage and gas costs, approximately 8.75% net annualized yield.\"\n}",
+      "durationMs": 2453,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.010434782608695655,
+          "order_type": 0.007894736842105265,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.016666666666666666,
+          "venue_name": 0.03,
+          "expected_value": 0,
+          "unit": 0.001428571428571428,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "deploy",
+          "order_type": "allocation",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "multi",
+          "venue_name": "pendle_convex",
+          "expected_value": 0.0875,
+          "unit": "usd",
+          "allocation": {
+            "pendle_pt_steth": 3500000,
+            "convex_curve_3pool": 1500000
+          },
+          "reasoning": "Pendle PT-stETH yields 12.0% annualized (3% discount over 90 days). Convex Curve 3pool yields 10.5% annualized (4.2% base * 2.5 boost). Optimal allocation maximizes Pendle at 70% ($3.5M) for higher yield, with 30% ($1.5M) in Convex. Net annualized yield: (0.7*12.0% + 0.3*10.5%) = 11.55% before costs. After slippage and gas costs, approximately 8.75% net annualized yield."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range",
+          "multi_protocol_liquidity_constraint"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-002",
+      "raw": "",
+      "durationMs": 33747,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-003",
+      "raw": "",
+      "durationMs": 180002,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"stake\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer AVS\",\n  \"rationale\": \"Option A (EigenLayer) selected: satisfies all constraints (3% slashing < 4% max, 7-day lock < 8-day requirement), delivers highest net APR of 4.25% vs Option C's 1.45%, outperforming by 2.8%. Option B eliminated due to 5% slashing risk and 14-day lock period both exceeding constraints.\",\n  \"decision_factors\": \"Constraint compliance: EigenLayer 7-day lock meets 8-day collateral deadline; 3% slashing within 4% tolerance. Yield optimization: 7.0% total staking APR minus 2.75% effective borrow cost yields 4.25% net APR, exceeding 1% minimum target by 3.25 percentage points.\",\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 4.25,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 1.45,\n  \"option_a_outperformance\": 2.8\n}",
+      "durationMs": 32681,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "stake",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS",
+          "rationale": "Option A (EigenLayer) selected: satisfies all constraints (3% slashing < 4% max, 7-day lock < 8-day requirement), delivers highest net APR of 4.25% vs Option C's 1.45%, outperforming by 2.8%. Option B eliminated due to 5% slashing risk and 14-day lock period both exceeding constraints.",
+          "decision_factors": "Constraint compliance: EigenLayer 7-day lock meets 8-day collateral deadline; 3% slashing within 4% tolerance. Yield optimization: 7.0% total staking APR minus 2.75% effective borrow cost yields 4.25% net APR, exceeding 1% minimum target by 3.25 percentage points.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-005",
+      "raw": "",
+      "durationMs": 35994,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"fixed_yield\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Strategy C offers highest APY (12.3%) with zero liquidation risk, perfectly aligning with 90-day horizon. Strategy B rejected due to liquidation risk at 2% depeg despite meeting 3% constraint threshold. Strategy D rejected as 11.25% weighted APY underperforms C while introducing unnecessary complexity and loop exposure. Strategy A rejected as 8.5% APY significantly underperforms. Pendle liquidity ($45M) easily accommodates $100K allocation with minimal slippage (0.15%).\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\": {\n    \"A\": \"8.5% APY significantly underperforms, no leverage risk but opportunity cost too high\",\n    \"B\": \"3x leverage creates liquidation risk at 2% depeg, violates medium risk tolerance despite being within 3% threshold\",\n    \"D\": \"11.25% weighted APY lower than C, introduces unnecessary loop exposure and complexity without yield benefit\"\n  }\n}",
+      "durationMs": 39663,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Strategy C offers highest APY (12.3%) with zero liquidation risk, perfectly aligning with 90-day horizon. Strategy B rejected due to liquidation risk at 2% depeg despite meeting 3% constraint threshold. Strategy D rejected as 11.25% weighted APY underperforms C while introducing unnecessary complexity and loop exposure. Strategy A rejected as 8.5% APY significantly underperforms. Pendle liquidity ($45M) easily accommodates $100K allocation with minimal slippage (0.15%).",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "A": "8.5% APY significantly underperforms, no leverage risk but opportunity cost too high",
+            "B": "3x leverage creates liquidation risk at 2% depeg, violates medium risk tolerance despite being within 3% threshold",
+            "D": "11.25% weighted APY lower than C, introduces unnecessary loop exposure and complexity without yield benefit"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-007",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"stETH\",\n  \"size\": 2500,\n  \"venue\": \"dex\",\n  \"venue_name\": \"1inch Fusion\",\n  \"expected_value\": -67500,\n  \"unit\": \"USD_total_cost\",\n  \"reasoning\": \"Notional $4.5M (2500 stETH × $1800). Common costs: spread 0.25% ($11,250) + impact 0.35% ($15,750) + dynamic widening 0.45% ($20,250) = $47,250. CowSwap disqualified: 2000 stETH/batch capacity causes overflow to 24min settlement, violating 15min deadline. 1inch Fusion: $47,250 + fee 0.05% ($2,250) + MEV 0.4% ($18,000) = $67,500. Uniswap V3: $47,250 + fee 0.30% ($13,500) + MEV 0.8% ($36,000) = $96,750. 1inch Fusion optimal: 30% cost savings vs Uniswap, meets 15min deadline, handles full 2500 stETH capacity.\",\n  \"constraint_awareness\": \"Hard 15-minute settlement deadline met via instant 1inch Fusion execution. Single-venue execution constraint satisfied. MEV protection reduces extraction from 0.8% to 0.4% vs unprotected swap.\"\n}",
+      "durationMs": 28815,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.97,
+        "fieldScores": {
+          "intent": 0.0125,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0.05,
+          "venue_name": 0.5,
+          "expected_value": 0.3,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "dex",
+          "venue_name": "1inch Fusion",
+          "expected_value": -67500,
+          "unit": "USD_total_cost",
+          "reasoning": "Notional $4.5M (2500 stETH × $1800). Common costs: spread 0.25% ($11,250) + impact 0.35% ($15,750) + dynamic widening 0.45% ($20,250) = $47,250. CowSwap disqualified: 2000 stETH/batch capacity causes overflow to 24min settlement, violating 15min deadline. 1inch Fusion: $47,250 + fee 0.05% ($2,250) + MEV 0.4% ($18,000) = $67,500. Uniswap V3: $47,250 + fee 0.30% ($13,500) + MEV 0.8% ($36,000) = $96,750. 1inch Fusion optimal: 30% cost savings vs Uniswap, meets 15min deadline, handles full 2500 stETH capacity.",
+          "constraint_awareness": "Hard 15-minute settlement deadline met via instant 1inch Fusion execution. Single-venue execution constraint satisfied. MEV protection reduces extraction from 0.8% to 0.4% vs unprotected swap."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\"\n}",
+      "durationMs": 995,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "execution_plan": 0,
+          "fee_summary": 0,
+          "rationale": 0,
+          "constraints_met": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "l8_008_missing_execution_plan"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-009",
+      "raw": "{\n  \"decision\": \"execute\",\n  \"reasoning\": {\n    \"capital_allocation\": {\n      \"spot_usd\": 49980,\n      \"margin_usd\": 50020\n    },\n    \"position_size_eth\": 20.4,\n    \"perp_notional_usd\": 50143.2,\n    \"funding_revenue_daily\": 120.15,\n    \"costs_entry\": 20,\n    \"break_even_periods\": 1.67,\n    \"annualized_funding_rate_pct\": 87.6,\n    \"annual_roi_on_total_capital_pct\": 43.86\n  },\n  \"execution\": {\n    \"step_1\": \"transfer_50020_usdt_to_binance_for_margin\",\n    \"step_2\": \"buy_20.4_eth_spot_coinbase_maker\",\n    \"step_3\": \"short_20.4_eth_perp_binance_maker\",\n    \"delta_neutral\": true,\n    \"exit_trigger\": \"premium_converges_to_zero_or_funding_turns_negative\"\n  }\n}",
+      "durationMs": 31070,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 49980,
+              "margin_usd": 50020
+            },
+            "position_size_eth": 20.4,
+            "perp_notional_usd": 50143.2,
+            "funding_revenue_daily": 120.15,
+            "costs_entry": 20,
+            "break_even_periods": 1.67,
+            "annualized_funding_rate_pct": 87.6,
+            "annual_roi_on_total_capital_pct": 43.86
+          },
+          "execution": {
+            "step_1": "transfer_50020_usdt_to_binance_for_margin",
+            "step_2": "buy_20.4_eth_spot_coinbase_maker",
+            "step_3": "short_20.4_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "premium_converges_to_zero_or_funding_turns_negative"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-010",
+      "raw": "",
+      "durationMs": 7705,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

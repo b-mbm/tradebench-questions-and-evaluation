@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T18:22:37.228Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L10-057-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L10-057"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-057",
+      "raw": " {\n  \"intent\": \"optimize\",\n  \"expected_value\": 22680,\n  \"reasoning\": \"Evaluated all gas-feasible subsets under 12,000,000 gas. Expected bonus = gross * success prob. Keeper retains 60% of expected bonus. Single opportunities: A=22680, B=19950, C=11520, D=25200, E=10584. Feasible pairs: A+B=42630 (6M gas), A+C=34200 (3.5M), A+E=33264 (3M), B+C=31470 (5.5M), B+E=30534 (5M), C+E=22104 (2.5M). Feasible triple: A+B+E=53214 (7M gas) exceeds? No, 7M <=12M. Wait check: A(2M)+B(4M)+E(1M)=7M, yes feasible. A+B+C=45630 (7.5M). A+C+E=44784 (4.5M). B+C+E=42054 (6.5M). A+B+C+E=56298 (8.5M). A+B+D exceeds 12M (13M). A+C+D=10.5M feasible: 22680+11520+25200=59400. A+D+E=10M feasible: 22680+25200+10584=58464. B+C+D=12.5M infeasible. B+D+E=12M feasible exactly: 19950+25200+10584=55734. C+D+E=9.5M feasible: 11520+25200+10584=47304. A+B+C+E=8.5M feasible: 22680+19950+11520+10584=64734. A+B+D+E=14M infeasible. A+C+D+E=11.5M feasible: 22680+11520+25200+10584=69984. B+C+D+E=13.5M infeasible. A+B+C+D=14.5M infeasible. All five=15.5M infeasible. Best feasible subset is A+C+D+E with expected bonus = 42000*0.9 + 24000*0.8 + 60000*0.7 + 18000*0.98 = 37800+19200+42000+17640 = 116640. Keeper retained = 116640*0.6 = 69984. Wait recalc: A=37800, C=19200, D=42000, E=17640. Sum=116640. 60% = 69984. Gas=2+1.5+7+1=11.5M <=12M. This is better than A+B+C+E (expected bonus=37800+33250+19200+17640=107890, retained=64734). So max retained profit is 69984.\"\n}",
+      "durationMs": 3651,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "optimize",
+          "expected_value": 22680,
+          "reasoning": "Evaluated all gas-feasible subsets under 12,000,000 gas. Expected bonus = gross * success prob. Keeper retains 60% of expected bonus. Single opportunities: A=22680, B=19950, C=11520, D=25200, E=10584. Feasible pairs: A+B=42630 (6M gas), A+C=34200 (3.5M), A+E=33264 (3M), B+C=31470 (5.5M), B+E=30534 (5M), C+E=22104 (2.5M). Feasible triple: A+B+E=53214 (7M gas) exceeds? No, 7M <=12M. Wait check: A(2M)+B(4M)+E(1M)=7M, yes feasible. A+B+C=45630 (7.5M). A+C+E=44784 (4.5M). B+C+E=42054 (6.5M). A+B+C+E=56298 (8.5M). A+B+D exceeds 12M (13M). A+C+D=10.5M feasible: 22680+11520+25200=59400. A+D+E=10M feasible: 22680+25200+10584=58464. B+C+D=12.5M infeasible. B+D+E=12M feasible exactly: 19950+25200+10584=55734. C+D+E=9.5M feasible: 11520+25200+10584=47304. A+B+C+E=8.5M feasible: 22680+19950+11520+10584=64734. A+B+D+E=14M infeasible. A+C+D+E=11.5M feasible: 22680+11520+25200+10584=69984. B+C+D+E=13.5M infeasible. A+B+C+D=14.5M infeasible. All five=15.5M infeasible. Best feasible subset is A+C+D+E with expected bonus = 42000*0.9 + 24000*0.8 + 60000*0.7 + 18000*0.98 = 37800+19200+42000+17640 = 116640. Keeper retained = 116640*0.6 = 69984. Wait recalc: A=37800, C=19200, D=42000, E=17640. Sum=116640. 60% = 69984. Gas=2+1.5+7+1=11.5M <=12M. This is better than A+B+C+E (expected bonus=37800+33250+19200+17640=107890, retained=64734). So max retained profit is 69984."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

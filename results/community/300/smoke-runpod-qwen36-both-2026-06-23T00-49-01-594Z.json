@@ -1,0 +1,301 @@
+{
+  "runAt": "2026-06-23T00:49:01.593Z",
+  "label": "smoke-runpod-qwen36-both",
+  "suite": "r5e1-300q",
+  "models": [
+    "local-qwen36-27b-sft",
+    "local-qwen36-27b-base"
+  ],
+  "questionIds": [
+    "L1-001",
+    "L9-001",
+    "L10-001",
+    "AGI-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "local-qwen36-27b-sft",
+      "modelLabel": "lmstudio:local-qwen36-27b-sft",
+      "questionId": "AGI-001",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"order_type\": \"perp_short\",\n  \"asset\": \"SOL\",\n  \"size\": \"180000\",\n  \"unit\": \"usd\",\n  \"venue\": \"perp_exchange\",\n  \"venue_name\": \"deribit\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.10%\",\n    \"max_gas\": \"0\",\n    \"position_size_limit\": \"400000\"\n  },\n  \"follow_up\": \"execute MATIC short clip\",\n  \"reasoning\": \"First clip SOL short $180k at 0.10% impact to reduce high beta exposure (1.50). Follow with MATIC short $220k at 0.22% impact (after SOL clip) to meet $400k gross notional limit. This sequence minimizes worst-case PnL across stress tapes by targeting highest beta assets first while managing market maker repricing impact. Crisis beta-dollar exposure reduced by >50% via SOL and MATIC shorts.\"\n}",
+      "durationMs": 6333,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "shorts.MATIC.notional_usd": 0,
+          "shorts.MATIC.units": 0,
+          "shorts.SOL.notional_usd": 0,
+          "shorts.SOL.units": 0,
+          "expected_risk_reduction_pct": 0,
+          "worst_case_residual_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "order_type": "perp_short",
+          "asset": "SOL",
+          "size": "180000",
+          "unit": "usd",
+          "venue": "perp_exchange",
+          "venue_name": "deribit",
+          "risk_controls": {
+            "slippage_tolerance": "0.10%",
+            "max_gas": "0",
+            "position_size_limit": "400000"
+          },
+          "follow_up": "execute MATIC short clip",
+          "reasoning": "First clip SOL short $180k at 0.10% impact to reduce high beta exposure (1.50). Follow with MATIC short $220k at 0.22% impact (after SOL clip) to meet $400k gross notional limit. This sequence minimizes worst-case PnL across stress tapes by targeting highest beta assets first while managing market maker repricing impact. Crisis beta-dollar exposure reduced by >50% via SOL and MATIC shorts."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-sft",
+      "modelLabel": "lmstudio:local-qwen36-27b-sft",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify order execution and confirm BTC balance update\"\n}",
+      "durationMs": 3410,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify order execution and confirm BTC balance update"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-sft",
+      "modelLabel": "lmstudio:local-qwen36-27b-sft",
+      "questionId": "L10-001",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"order_type\": \"portfolio\",\n  \"asset\": \"USDC\",\n  \"size\": \"10000000\",\n  \"unit\": \"usd\",\n  \"venue\": \"defi\",\n  \"venue_name\": \"multi-protocol\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"3000000\",\n    \"slippage_tolerance\": \"0.1%\"\n  },\n  \"follow_up\": \"monitor yields\",\n  \"reasoning\": \"Aave: 60%*4.5% + 20%*8% + 20%*2% = 2.7% + 1.6% + 0.4% = 4.7% APR. Curve: 6% - 1%*20% = 5.8% APR. GMX: 6% net. Ethena: 12% - 5%*100% = 7% APR. Optimal: 30% Aave (1.41%), 30% Curve (1.74%), 30% GMX (1.8%), 10% Ethena (0.7%). Total: 5.65% APR. Liquid: 60% (Aave+Curve). Expected value: 5.65%.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Rebalance if yields shift\"\n}",
+      "durationMs": 8436,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "portfolio",
+          "asset": "USDC",
+          "size": "10000000",
+          "unit": "usd",
+          "venue": "defi",
+          "venue_name": "multi-protocol",
+          "risk_controls": {
+            "position_size_limit": "3000000",
+            "slippage_tolerance": "0.1%"
+          },
+          "follow_up": "monitor yields",
+          "reasoning": "Aave: 60%*4.5% + 20%*8% + 20%*2% = 2.7% + 1.6% + 0.4% = 4.7% APR. Curve: 6% - 1%*20% = 5.8% APR. GMX: 6% net. Ethena: 12% - 5%*100% = 7% APR. Optimal: 30% Aave (1.41%), 30% Curve (1.74%), 30% GMX (1.8%), 10% Ethena (0.7%). Total: 5.65% APR. Liquid: 60% (Aave+Curve). Expected value: 5.65%.",
+          "requires_follow_up": true,
+          "follow_up_description": "Rebalance if yields shift"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-sft",
+      "modelLabel": "lmstudio:local-qwen36-27b-sft",
+      "questionId": "L9-001",
+      "raw": "{\n  \"intent\": \"delta-neutral funding-rate arbitrage\",\n  \"expected_value\": 18.525,\n  \"reasoning\": \"Funding rate -0.017%/8h means shorts receive 0.017% per 8h. Annualized: 0.017% * 3 * 365 = 18.525% APR on unlevered notional. Leverage excluded per instructions. Gas and slippage de minimis.\"\n}",
+      "durationMs": 3813,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "delta-neutral funding-rate arbitrage",
+          "expected_value": 18.525,
+          "reasoning": "Funding rate -0.017%/8h means shorts receive 0.017% per 8h. Annualized: 0.017% * 3 * 365 = 18.525% APR on unlevered notional. Leverage excluded per instructions. Gas and slippage de minimis."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "AGI-001",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"order_type\": \"perp_short\",\n  \"asset\": \"SOL\",\n  \"size\": \"180000\",\n  \"unit\": \"usd\",\n  \"venue\": \"perp_exchange\",\n  \"venue_name\": \"deribit\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.10%\",\n    \"max_gas\": \"0\",\n    \"position_size_limit\": \"400000\"\n  },\n  \"follow_up\": \"execute MATIC short clip\",\n  \"reasoning\": \"First clip SOL short $180k at 0.10% impact. Then MATIC short $220k at 0.22% impact. Total $400k notional. Reduces crisis beta-dollar exposure by >50%. Worst-case residual PnL minimized across stress tapes.\"\n}",
+      "durationMs": 4337,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "shorts.MATIC.notional_usd": 0,
+          "shorts.MATIC.units": 0,
+          "shorts.SOL.notional_usd": 0,
+          "shorts.SOL.units": 0,
+          "expected_risk_reduction_pct": 0,
+          "worst_case_residual_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "order_type": "perp_short",
+          "asset": "SOL",
+          "size": "180000",
+          "unit": "usd",
+          "venue": "perp_exchange",
+          "venue_name": "deribit",
+          "risk_controls": {
+            "slippage_tolerance": "0.10%",
+            "max_gas": "0",
+            "position_size_limit": "400000"
+          },
+          "follow_up": "execute MATIC short clip",
+          "reasoning": "First clip SOL short $180k at 0.10% impact. Then MATIC short $220k at 0.22% impact. Total $400k notional. Reduces crisis beta-dollar exposure by >50%. Worst-case residual PnL minimized across stress tapes."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify order execution and confirm BTC balance update\"\n}",
+      "durationMs": 2668,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify order execution and confirm BTC balance update"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L10-001",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"expected_value\": 7.15,\n  \"reasoning\": \"Aave: 60%*4.5% + 20%*8% + 20%*2% = 2.7% + 1.6% + 0.4% = 4.7% APR. Curve: 6% APR - 1%*20% = 6% - 0.2% = 5.8% risk-adjusted. GMX: 18% - 12% hedge = 6% net, no tail loss stated, so 6%. Ethena: 12% - 5%*100% = 12% - 5% = 7% risk-adjusted. Constraints: max 30% per protocol, at least 50% liquid (Aave + Curve). To maximize yield: allocate 30% to Ethena (7%), 30% to GMX (6%), 30% to Aave (4.7%), 10% to Curve (5.8%). But Aave + Curve = 40% < 50% liquid. Adjust: 30% Ethena, 30% GMX, 20% Aave, 20% Curve. Liquid = 40% still < 50%. Need Aave + Curve >= 50%. Max per protocol 30%, so Aave 30%, Curve 20% = 50% liquid. Remaining 50%: Ethena 30%, GMX 20%. Yield: 30%*4.7% + 20%*5.8% + 30%*7% + 20%*6% = 1.41% + 1.16% + 2.1% + 1.2% = 5.87%. Wait, target >7% pre-tail-loss nominal APR. Pre-tail-loss: Aave 4.7%, Curve 6%, GMX 6%, Ethena 12%. Allocation: 30% Aave, 20% Curve, 30% Ethena, 20% GMX. Pre-tail nominal: 30%*4.7% + 20%*6% + 30%*12% + 20%*6% = 1.41% + 1.2% + 3.6% + 1.2% = 7.41% > 7%. Risk-adjusted: 30%*4.7% + 20%*5.8% + 30%*7% + 20%*6% = 1.41% + 1.16% + 2.1% + 1.2% = 5.87%. Downside: Aave 0%, Curve 1%*20%*20% = 0.4%, GMX 0%, Ethena 5%*100%*30% = 1.5%. Total downside = 1.9% < 2%. Expected annualized yield = 5.87%. But prompt says 'Report risk-adjusted annualized yield by subtracting the stated 30-day catastrophic-loss probability times loss severity from each protocol's APR as percentage points'. So risk-adjusted APRs are: Aave 4.7%, Curve 5.8%, GMX 6%, Ethena 7%. Weighted: 30%*4.7 + 20%*5.8 + 30%*7 + 20%*6 = 1.41 + 1.16 + 2.1 + 1.2 = 5.87. However, maybe optimize differently: maximize risk-adjusted yield subject to constraints. Ethena has highest risk-adjusted (7%), then GMX (6%), Curve (5.8%), Aave (4.7%). Allocate max to Ethena (30%), then GMX (30%), then need 50% liquid: Aave + Curve >= 50%. Max Aave 30%, Curve 20% = 50%. Remaining 20% to GMX? Wait, total 100%. 30% Ethena, 30% GMX, 30% Aave, 10% Curve. Liquid = 40% < 50%. So must increase liquid. 30% Ethena, 20% GMX, 30% Aave, 20% Curve. Liquid = 50%. Yield = 30%*7 + 20%*6 + 30%*4.7 + 20%*5.8 = 2.1 + 1.2 + 1.41 + 1.16 = 5.87. Same. What if 30% Ethena, 10% GMX, 30% Aave, 30% Curve? Liquid = 60%. Yield = 30%*7 + 10%*6 + 30%*4.7 + 30%*5.8 = 2.1 + 0.6 + 1.41 + 1.74 = 5.85. Lower. So 5.87 is max. But prompt says 'expected annualized yield'. I'll output 5.87. Wait, check downside: Curve 1% chance -20% loss on 20% allocation = 0.4% portfolio loss. Ethena 5% chance -100% on 30% = 1.5%. Total 1.9% < 2%. OK. Pre-tail nominal: 30%*4.7 + 20%*6 + 30%*12 + 20%*6 = 1.41 + 1.2 + 3.6 + 1.2 = 7.41 > 7%. OK. So expected_value = 5.87. I will format as JSON.\"\n}",
+      "durationMs": 28313,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "expected_value": 7.15,
+          "reasoning": "Aave: 60%*4.5% + 20%*8% + 20%*2% = 2.7% + 1.6% + 0.4% = 4.7% APR. Curve: 6% APR - 1%*20% = 6% - 0.2% = 5.8% risk-adjusted. GMX: 18% - 12% hedge = 6% net, no tail loss stated, so 6%. Ethena: 12% - 5%*100% = 12% - 5% = 7% risk-adjusted. Constraints: max 30% per protocol, at least 50% liquid (Aave + Curve). To maximize yield: allocate 30% to Ethena (7%), 30% to GMX (6%), 30% to Aave (4.7%), 10% to Curve (5.8%). But Aave + Curve = 40% < 50% liquid. Adjust: 30% Ethena, 30% GMX, 20% Aave, 20% Curve. Liquid = 40% still < 50%. Need Aave + Curve >= 50%. Max per protocol 30%, so Aave 30%, Curve 20% = 50% liquid. Remaining 50%: Ethena 30%, GMX 20%. Yield: 30%*4.7% + 20%*5.8% + 30%*7% + 20%*6% = 1.41% + 1.16% + 2.1% + 1.2% = 5.87%. Wait, target >7% pre-tail-loss nominal APR. Pre-tail-loss: Aave 4.7%, Curve 6%, GMX 6%, Ethena 12%. Allocation: 30% Aave, 20% Curve, 30% Ethena, 20% GMX. Pre-tail nominal: 30%*4.7% + 20%*6% + 30%*12% + 20%*6% = 1.41% + 1.2% + 3.6% + 1.2% = 7.41% > 7%. Risk-adjusted: 30%*4.7% + 20%*5.8% + 30%*7% + 20%*6% = 1.41% + 1.16% + 2.1% + 1.2% = 5.87%. Downside: Aave 0%, Curve 1%*20%*20% = 0.4%, GMX 0%, Ethena 5%*100%*30% = 1.5%. Total downside = 1.9% < 2%. Expected annualized yield = 5.87%. But prompt says 'Report risk-adjusted annualized yield by subtracting the stated 30-day catastrophic-loss probability times loss severity from each protocol's APR as percentage points'. So risk-adjusted APRs are: Aave 4.7%, Curve 5.8%, GMX 6%, Ethena 7%. Weighted: 30%*4.7 + 20%*5.8 + 30%*7 + 20%*6 = 1.41 + 1.16 + 2.1 + 1.2 = 5.87. However, maybe optimize differently: maximize risk-adjusted yield subject to constraints. Ethena has highest risk-adjusted (7%), then GMX (6%), Curve (5.8%), Aave (4.7%). Allocate max to Ethena (30%), then GMX (30%), then need 50% liquid: Aave + Curve >= 50%. Max Aave 30%, Curve 20% = 50%. Remaining 20% to GMX? Wait, total 100%. 30% Ethena, 30% GMX, 30% Aave, 10% Curve. Liquid = 40% < 50%. So must increase liquid. 30% Ethena, 20% GMX, 30% Aave, 20% Curve. Liquid = 50%. Yield = 30%*7 + 20%*6 + 30%*4.7 + 20%*5.8 = 2.1 + 1.2 + 1.41 + 1.16 = 5.87. Same. What if 30% Ethena, 10% GMX, 30% Aave, 30% Curve? Liquid = 60%. Yield = 30%*7 + 10%*6 + 30%*4.7 + 30%*5.8 = 2.1 + 0.6 + 1.41 + 1.74 = 5.85. Lower. So 5.87 is max. But prompt says 'expected annualized yield'. I'll output 5.87. Wait, check downside: Curve 1% chance -20% loss on 20% allocation = 0.4% portfolio loss. Ethena 5% chance -100% on 30% = 1.5%. Total 1.9% < 2%. OK. Pre-tail nominal: 30%*4.7 + 20%*6 + 30%*12 + 20%*6 = 1.41 + 1.2 + 3.6 + 1.2 = 7.41 > 7%. OK. So expected_value = 5.87. I will format as JSON."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L9-001",
+      "raw": "{\n  \"intent\": \"delta-neutral funding-rate arbitrage\",\n  \"expected_value\": 18.525,\n  \"reasoning\": \"funding-only APR on unlevered notional: abs(-0.017%) × 3 × 365 × 100 = 0.017 × 3 × 365 × 100 = 18.525%\"\n}",
+      "durationMs": 2173,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "delta-neutral funding-rate arbitrage",
+          "expected_value": 18.525,
+          "reasoning": "funding-only APR on unlevered notional: abs(-0.017%) × 3 × 365 × 100 = 0.017 × 3 × 365 × 100 = 18.525%"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

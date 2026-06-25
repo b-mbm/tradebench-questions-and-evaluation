@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T12:19:33.831Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-067-2026-06-10T12-19-20",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-067"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-067",
+      "raw": "{\"intent\":\"report\",\"expected_value\":5669280,\"reasoning\":\"Base revenue $840k minus base data cost $5.01M = -$4.17M. Brotli saves $1.4M for $65k cost. Blobs save $2.23M for $90k cost plus $33.6k revenue loss. Combined: Brotli reduces bytes 28% to 30.24 bytes, then blobs reduce gas cost 62% to 6.05 gas/byte. Total data cost $1.9M. Revenue $806.4k. Net = $806.4k - $1.9M - $155k = -$1.25M. Best option is blobs alone: $840k - $1.9M - $90k - $33.6k = -$1.19M. Wait, let me recalculate more carefully.\"}",
+      "durationMs": 13385,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "report",
+          "expected_value": 5669280,
+          "reasoning": "Base revenue $840k minus base data cost $5.01M = -$4.17M. Brotli saves $1.4M for $65k cost. Blobs save $2.23M for $90k cost plus $33.6k revenue loss. Combined: Brotli reduces bytes 28% to 30.24 bytes, then blobs reduce gas cost 62% to 6.05 gas/byte. Total data cost $1.9M. Revenue $806.4k. Net = $806.4k - $1.9M - $155k = -$1.25M. Best option is blobs alone: $840k - $1.9M - $90k - $33.6k = -$1.19M. Wait, let me recalculate more carefully."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-10T23:02:28.366Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L4-004-2026-06-10T23-02-08",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L4-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"stress_test\",\n  \"order_type\": \"simulation\",\n  \"asset\": \"crypto_portfolio\",\n  \"size\": \"all\",\n  \"venue\": \"internal\",\n  \"risk_controls\": {\n    \"stop_loss\": \"stress_test_scenario\",\n    \"position_size_limit\": \"-50% drawdown\"\n  },\n  \"follow_up\": \"review VaR and exposure metrics\",\n  \"reasoning\": \"simulate portfolio impact under -50% crypto market crash scenario using provided price context\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"analyze stress test results and recommend hedging strategies if needed\"\n}",
+      "durationMs": 19842,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03599999999999999,
+          "asset": 0.096,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "crypto_portfolio",
+          "size": "all",
+          "venue": "internal",
+          "risk_controls": {
+            "stop_loss": "stress_test_scenario",
+            "position_size_limit": "-50% drawdown"
+          },
+          "follow_up": "review VaR and exposure metrics",
+          "reasoning": "simulate portfolio impact under -50% crypto market crash scenario using provided price context",
+          "requires_follow_up": true,
+          "follow_up_description": "analyze stress test results and recommend hedging strategies if needed"
+        },
+        "failureReasons": [
+          "stress_test_invalid_size"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

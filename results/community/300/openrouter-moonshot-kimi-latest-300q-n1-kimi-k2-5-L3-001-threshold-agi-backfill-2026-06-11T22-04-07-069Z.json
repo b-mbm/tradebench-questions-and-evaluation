@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-11T22:04:07.068Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L3-001-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L3-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L3-001",
+      "raw": " {\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": \"1000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"Arbitrum\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Swap bridged USDC for ARB on Arbitrum DEX (target: ~833.33 ARB at 1.2 USDC/ARB)\",\n  \"follow_up\": \"buy\",\n  \"reasoning\": \"Execute two-step cross-chain strategy: First bridge 1000 USDC from mainnet to Arbitrum L2, then swap for ARB token\"\n}",
+      "durationMs": 63710,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9138404558404559,
+        "score": 0.8657435897435898,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.042666666666666665,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "1000",
+          "unit": "usdc",
+          "venue": "bridge",
+          "venue_name": "Arbitrum",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Swap bridged USDC for ARB on Arbitrum DEX (target: ~833.33 ARB at 1.2 USDC/ARB)",
+          "follow_up": "buy",
+          "reasoning": "Execute two-step cross-chain strategy: First bridge 1000 USDC from mainnet to Arbitrum L2, then swap for ARB token"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

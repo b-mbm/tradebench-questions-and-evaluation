@@ -1,0 +1,59 @@
+{
+  "runAt": "2026-06-10T21:55:01.464Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-AGI-058-2026-06-10T21-54-33",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-058"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-058",
+      "raw": "{\n  \"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"sequential_full_harvest\",\n  \"assets_to_sell\": [\n    \"DOGE\",\n    \"OP\",\n    \"AVAX\"\n  ],\n  \"sale_sequence\": [\n    \"DOGE\",\n    \"OP\",\n    \"AVAX\"\n  ],\n  \"replacement_assets\": {\n    \"DOGE\": \"MEME_largecap_basket\",\n    \"OP\": \"ARB_IMX_basket\",\n    \"AVAX\": \"TIA_ATOM_basket\"\n  },\n  \"net_tax_benefit\": 16080,\n  \"remaining_unoffset_gains\": 12000,\n  \"self_check\": \"Total losses $48k offset $60k gains, leaving $12k unoffset. Net benefit $16,080 after $1,680 costs. Sequence avoids MM widening by selling thinnest (DOGE) first. Wash sale rule avoided via distinct replacement baskets.\",\n  \"reasoning\": \"Harvest all $48k losses to offset $60k ST gains. Tax savings $17,760 minus $1,680 round-trip costs equals $16,080 net benefit. Sell DOGE first (depth 0.6) to prevent market maker widening",
+      "durationMs": 27951,
+      "grade": {
+        "pass": false,
+        "confidence": 0.21,
+        "score": 0.2,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "assets_to_sell": 0,
+          "sale_sequence": 0,
+          "replacement_assets.DOGE": 0,
+          "replacement_assets.OP": 0,
+          "replacement_assets.AVAX": 0,
+          "net_tax_benefit": 1,
+          "remaining_unoffset_gains": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "sequential_full_harvest",
+          "DOGE": "MEME_largecap_basket",
+          "OP": "ARB_IMX_basket",
+          "AVAX": "TIA_ATOM_basket",
+          "net_tax_benefit": 16080,
+          "remaining_unoffset_gains": 12000,
+          "self_check": "Total losses $48k offset $60k gains, leaving $12k unoffset. Net benefit $16,080 after $1,680 costs. Sequence avoids MM widening by selling thinnest (DOGE) first. Wash sale rule avoided via distinct replacement baskets.",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

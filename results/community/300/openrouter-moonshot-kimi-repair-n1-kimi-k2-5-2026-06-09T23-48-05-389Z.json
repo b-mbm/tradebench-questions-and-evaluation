@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-09T23:48:05.388Z",
+  "label": "openrouter-moonshot-kimi-repair-n1-kimi-k2-5",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L1-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L1-003",
+      "raw": "{\"intent\":\"set_stop_loss\",\"order_type\":\"stop_loss\",\"asset\":\"ETH\",\"size\":2,\"unit\":\"ETH\",\"price\":2800,\"venue\":\"exchange\",\"risk_controls\":{\"stop_loss\":2800,\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm order placement and monitor for trigger\",\"requires_follow_up\":true,\"reasoning\":\"Protect existing 2 ETH position by setting stop loss trigger at $2,800 (6.7% below current $3,000 market price) to limit downside risk\"}",
+      "durationMs": 10653,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "ETH",
+          "price": 2800,
+          "venue": "exchange",
+          "risk_controls": {
+            "stop_loss": 2800,
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm order placement and monitor for trigger",
+          "requires_follow_up": true,
+          "reasoning": "Protect existing 2 ETH position by setting stop loss trigger at $2,800 (6.7% below current $3,000 market price) to limit downside risk"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "runAt": "2026-06-10T20:42:52.177Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-075-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-075"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-075",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"transfer\",\n  \"asset\": \"USDC\",\n  \"size\": 1900000,\n  \"unit\": \"usd\",\n  \"venue\": \"multi_route_bridge\",\n  \"venue_name\": \"Circle_CCTP, Across, Stargate, Synapse, CEX_internal\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"dynamic\",\n    \"position_size_limit\": 646000\n  },\n  \"follow_up\": \"confirm arrival before snapshot\",\n  \"reasoning\": \"Maximize expected arrival value by selecting routes that finish before 35-minute snapshot while capping any single route at 34% of total ($646,000). CEX_internal at 32 min is too risky for the deadline due to expected failure drag and no buffer, so exclude it. Use Circle_CCTP ($580,000), Across ($520,000), and Stargate ($460,000) for a total of $1,560,000. This leaves $340,000 unmet. Synapse at 21 min meets deadline but its high fee and failure drag make it suboptimal for the marginal amount; however, to maximize expected value we include Synapse for the residual $340,000 because any arrived value is better than zero. Re-checking concentration: $580,000 / $1,900,000 = 30.53%, $520,000 / $1,900,000 = 27.37%, $460,000 / $1,900,000 = 24.21%, $340,000 / $1,900,000 = 17.89%. All under 34%. Expected cost: Circle_CCTP 4bps + 0.004% drag = 0.008% -> $46.40; Across 6bps + 0.009% = 0.015% -> $78.00; Stargate 8bps + 0.011% = 0.019% -> $87.40; Synapse 14bps + 0.016% = 0.030% -> $102.00. Total expected cost = $313.80. Expected arrival = $1,900,000 - $313.80 = $1,899,686.20. Max route share = 30.53%. Arrival time is determined by the slowest used route = 13 minutes (Stargate), well under 35. Self-check: all routes <=34%, all arrive before snapshot, total allocated = $1,900,000, total cost computed correctly.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor on-chain confirmations for each route to ensure all funds arrive before the 35-minute liquidation keeper snapshot.\"\n}",
+      "durationMs": 3690,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_allocation_usd.Circle_CCTP": 0,
+          "route_allocation_usd.Across": 0,
+          "route_allocation_usd.Stargate": 0,
+          "route_allocation_usd.Synapse": 0,
+          "route_allocation_usd.CEX_internal": 0,
+          "expected_arrival_usd": 0,
+          "expected_cost_usd": 0,
+          "max_route_share_pct": 0,
+          "arrival_minutes": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "transfer",
+          "asset": "USDC",
+          "size": 1900000,
+          "unit": "usd",
+          "venue": "multi_route_bridge",
+          "venue_name": "Circle_CCTP, Across, Stargate, Synapse, CEX_internal",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "dynamic",
+            "position_size_limit": 646000
+          },
+          "follow_up": "confirm arrival before snapshot",
+          "reasoning": "Maximize expected arrival value by selecting routes that finish before 35-minute snapshot while capping any single route at 34% of total ($646,000). CEX_internal at 32 min is too risky for the deadline due to expected failure drag and no buffer, so exclude it. Use Circle_CCTP ($580,000), Across ($520,000), and Stargate ($460,000) for a total of $1,560,000. This leaves $340,000 unmet. Synapse at 21 min meets deadline but its high fee and failure drag make it suboptimal for the marginal amount; however, to maximize expected value we include Synapse for the residual $340,000 because any arrived value is better than zero. Re-checking concentration: $580,000 / $1,900,000 = 30.53%, $520,000 / $1,900,000 = 27.37%, $460,000 / $1,900,000 = 24.21%, $340,000 / $1,900,000 = 17.89%. All under 34%. Expected cost: Circle_CCTP 4bps + 0.004% drag = 0.008% -> $46.40; Across 6bps + 0.009% = 0.015% -> $78.00; Stargate 8bps + 0.011% = 0.019% -> $87.40; Synapse 14bps + 0.016% = 0.030% -> $102.00. Total expected cost = $313.80. Expected arrival = $1,900,000 - $313.80 = $1,899,686.20. Max route share = 30.53%. Arrival time is determined by the slowest used route = 13 minutes (Stargate), well under 35. Self-check: all routes <=34%, all arrive before snapshot, total allocated = $1,900,000, total cost computed correctly.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor on-chain confirmations for each route to ensure all funds arrive before the 35-minute liquidation keeper snapshot."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

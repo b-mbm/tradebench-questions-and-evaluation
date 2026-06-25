@@ -1,0 +1,73 @@
+{
+  "runAt": "2026-06-11T17:37:27.092Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-031-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-031"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-031",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"order_type\": \"restaking_yield_holdout\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"unit\": \"usd\",\n  \"venue\": \"multi_venue\",\n  \"venue_name\": \"Aave_USDC,Symbiotic_AVS,EigenLayer_AVS,Pendle_PT\",\n  \"risk_controls\": {\n    \"liquidity_requirement_48h\": 50000,\n    \"max_allocation_per_venue\": {\n      \"Aave_USDC\": 25000,\n      \"Symbiotic_AVS\": 20000,\n      \"EigenLayer_AVS\": 25000,\n      \"Pendle_PT\": 30000\n    },\n    \"avoid_adversarial_queue\": true,\n    \"tail_loss_hedged\": true\n  },\n  \"allocation_usd\": {\n    \"Aave_USDC\": 25000,\n    \"Symbiotic_AVS\": 20000,\n    \"EigenLayer_AVS\": 25000,\n    \"Pendle_PT\": 30000\n  },\n  \"chosen_strategy\": \"maximize_yield_subject_to_liquidity_constraint\",\n  \"expected_net_apy_pct\": 7.895,\n  \"expected_90d_profit_usd\": 1943.75,\n  \"liquidity_48h_usd\": 45000,\n  \"reasoning\": \"Maximized allocation to highest APY venues (Pendle_PT 9.49%, EigenLayer_AVS 8.39%) while filling liquid venue caps (Aave_USDC 6.19%, Symbiotic_AVS 7.29%). Total liquid capacity $45k falls short of $50k requirement; fifth venue excluded due to lower APY and adversarial queue risk above $10k. Weighted APY calculation: (25000*6.19 + 20000*7.29 + 25000*8.39 + 30000*9.49)/100000 = 7.895%. 90-day profit: 100000 * 7.895% * (90/365) = $1943.75.\"\n}",
+      "durationMs": 74656,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "expected_net_apy_pct": 1,
+          "expected_90d_profit_usd": 1,
+          "liquidity_48h_usd": 0,
+          "allocation_usd.Aave_USDC": 1,
+          "allocation_usd.Symbiotic_AVS": 1,
+          "allocation_usd.EigenLayer_AVS": 1,
+          "allocation_usd.Pendle_PT": 1
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "restaking_yield_holdout",
+          "asset": "USDC",
+          "size": 100000,
+          "unit": "usd",
+          "venue": "multi_venue",
+          "venue_name": "Aave_USDC,Symbiotic_AVS,EigenLayer_AVS,Pendle_PT",
+          "risk_controls": {
+            "liquidity_requirement_48h": 50000,
+            "max_allocation_per_venue": {
+              "Aave_USDC": 25000,
+              "Symbiotic_AVS": 20000,
+              "EigenLayer_AVS": 25000,
+              "Pendle_PT": 30000
+            },
+            "avoid_adversarial_queue": true,
+            "tail_loss_hedged": true
+          },
+          "allocation_usd": {
+            "Aave_USDC": 25000,
+            "Symbiotic_AVS": 20000,
+            "EigenLayer_AVS": 25000,
+            "Pendle_PT": 30000
+          },
+          "chosen_strategy": "maximize_yield_subject_to_liquidity_constraint",
+          "expected_net_apy_pct": 7.895,
+          "expected_90d_profit_usd": 1943.75,
+          "liquidity_48h_usd": 45000,
+          "reasoning": "Maximized allocation to highest APY venues (Pendle_PT 9.49%, EigenLayer_AVS 8.39%) while filling liquid venue caps (Aave_USDC 6.19%, Symbiotic_AVS 7.29%). Total liquid capacity $45k falls short of $50k requirement; fifth venue excluded due to lower APY and adversarial queue risk above $10k. Weighted APY calculation: (25000*6.19 + 20000*7.29 + 25000*8.39 + 30000*9.49)/100000 = 7.895%. 90-day profit: 100000 * 7.895% * (90/365) = $1943.75."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:liquidity_48h_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

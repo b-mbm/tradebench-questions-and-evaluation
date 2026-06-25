@@ -1,0 +1,49 @@
+{
+  "runAt": "2026-06-11T17:10:14.414Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-037-2026-06-11T17-09-52",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-037"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-037",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"hidden_passive_repricing\",\n  \"price_band\": \"3418-3422\",\n  \"child_order_units\": 8,\n  \"repricing_interval_sec\": 45,\n  \"expected_avg_price\": 3421,\n  \"reasoning\": \"Fair value inferred at 3420 from pre-impulse level; sell impulses recovered (real bids) but buy impulse had abnormal impact (thin offers). Split 300 ETH into 8 units of ~37.5 ETH each to stay well below 1200 ETH toxicity threshold. Tight price band around fair value avoids momentum bursts that trigger classifier sweeps. Passive hidden execution prevents signaling.\"\n}",
+      "durationMs": 21619,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.3333333333333333,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "price_band": 0,
+          "child_order_units": 0,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 1
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "hidden_passive_repricing",
+          "price_band": "3418-3422",
+          "child_order_units": 8,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": 3421,
+          "reasoning": "Fair value inferred at 3420 from pre-impulse level; sell impulses recovered (real bids) but buy impulse had abnormal impact (thin offers). Split 300 ETH into 8 units of ~37.5 ETH each to stay well below 1200 ETH toxicity threshold. Tight price band around fair value avoids momentum bursts that trigger classifier sweeps. Passive hidden execution prevents signaling."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:price_band",
+          "agi_validation_failed:child_order_units"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

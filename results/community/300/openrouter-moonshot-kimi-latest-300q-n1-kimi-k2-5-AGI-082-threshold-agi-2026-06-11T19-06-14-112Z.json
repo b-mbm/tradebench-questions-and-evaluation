@@ -1,0 +1,62 @@
+{
+  "runAt": "2026-06-11T19:06:14.111Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-082-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-082"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-082",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"Private-First Execution with Capped Public Slices\",\n  \"venue_allocation_usd\": {\n    \"Binance\": 780000,\n    \"Hyperliquid_RFQ\": 850000,\n    \"Bybit\": 700000,\n    \"CoW_RFQ\": 650000,\n    \"Uniswap_Arbitrum\": 550000,\n    \"Coinbase\": 600000\n  },\n  \"largest_visible_clip_usd\": 780000,\n  \"expected_asset_received\": 165876.71,\n  \"effective_price\": 24.916,\n  \"self_check\": \"Total allocation sums to $4,130,000; largest public clip $780,000 is at safety threshold (≤$780,000); all allocations within usable clip limits; private venues ($2.05M) prevent pre-announcement leakage; no spot inventory used.\",\n  \"reasoning\": \"Maximized private liquidity (Hyperliquid_RFQ, CoW_RFQ, Uniswap_Arbitrum) totaling $2.05M to avoid public order book leakage. Remaining $2.08M allocated to public venues with clip sizes capped at $780,000 to prevent MEV searcher copying (Binance capped from $900k usable to $780k). Allocations respect venue limits and prioritize best available quoted prices.\"\n}",
+      "durationMs": 146462,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.75,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "venue_allocation_usd.Binance": 1,
+          "venue_allocation_usd.Hyperliquid_RFQ": 1,
+          "venue_allocation_usd.Bybit": 1,
+          "venue_allocation_usd.CoW_RFQ": 1,
+          "venue_allocation_usd.Uniswap_Arbitrum": 1,
+          "venue_allocation_usd.Coinbase": 1,
+          "largest_visible_clip_usd": 1,
+          "expected_asset_received": 1,
+          "effective_price": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "Private-First Execution with Capped Public Slices",
+          "venue_allocation_usd": {
+            "Binance": 780000,
+            "Hyperliquid_RFQ": 850000,
+            "Bybit": 700000,
+            "CoW_RFQ": 650000,
+            "Uniswap_Arbitrum": 550000,
+            "Coinbase": 600000
+          },
+          "largest_visible_clip_usd": 780000,
+          "expected_asset_received": 165876.71,
+          "effective_price": 24.916,
+          "self_check": "Total allocation sums to $4,130,000; largest public clip $780,000 is at safety threshold (≤$780,000); all allocations within usable clip limits; private venues ($2.05M) prevent pre-announcement leakage; no spot inventory used.",
+          "reasoning": "Maximized private liquidity (Hyperliquid_RFQ, CoW_RFQ, Uniswap_Arbitrum) totaling $2.05M to avoid public order book leakage. Remaining $2.08M allocated to public venues with clip sizes capped at $780,000 to prevent MEV searcher copying (Binance capped from $900k usable to $780k). Allocations respect venue limits and prioritize best available quoted prices."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

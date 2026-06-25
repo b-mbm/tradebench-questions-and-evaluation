@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T22:58:09.600Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-028-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-028"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-028",
+      "raw": "{\n  \"intent\": \"hold\",\n  \"expected_value\": 577500,\n  \"reasoning\": \"Calculated expected profit for three strategies over 14 weeks on $3M principal. Option 1 (stay in veBAL): 18% APR compounded weekly yields $148,710 in bribes, but expected capital loss of 0.55*0.25*$3M=$412,500 gives net -$263,790. Option 2 (Aura wrap): 13% APR yields $109,731 in rewards with same expected capital loss of $412,500 gives net -$302,769. Option 3 (convert to AURA): forfeits yield but captures expected AURA price appreciation of 0.55*0.35*$3M=$577,500 with no downside price exposure. Option 3 maximizes expected profit at $577,500.\"\n}",
+      "durationMs": 56077,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 0.3
+        },
+        "normalizedResponse": {
+          "intent": "hold",
+          "expected_value": 577500,
+          "reasoning": "Calculated expected profit for three strategies over 14 weeks on $3M principal. Option 1 (stay in veBAL): 18% APR compounded weekly yields $148,710 in bribes, but expected capital loss of 0.55*0.25*$3M=$412,500 gives net -$263,790. Option 2 (Aura wrap): 13% APR yields $109,731 in rewards with same expected capital loss of $412,500 gives net -$302,769. Option 3 (convert to AURA): forfeits yield but captures expected AURA price appreciation of 0.55*0.35*$3M=$577,500 with no downside price exposure. Option 3 maximizes expected profit at $577,500."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

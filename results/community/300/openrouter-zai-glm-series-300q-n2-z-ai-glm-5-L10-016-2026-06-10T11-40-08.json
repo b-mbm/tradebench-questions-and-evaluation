@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:40:28.184Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-016-2026-06-10T11-40-08",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-016"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-016",
+      "raw": "{\n  \"intent\": \"Execute $2,000,000 USDC to SOL swap via Jupiter using hybrid MEV defense: private RPC (Triton/Helius) with 20-way split of $100,000 per child order\",\n  \"expected_value\": 0.55,\n  \"reasoning\": \"Hybrid strategy achieves 90% success probability with 0.55% total cost (0.15% split slippage + 0.0025% RPC fee + 0.3975% residual Jito adverse-selection), meeting all constraints: ≤0.6% cost, ≥90% protected-completion, ≤$100,000 per child order. Private RPC alone fails child-order limit; splitting alone fails 90% target.\"\n}",
+      "durationMs": 19465,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "Execute $2,000,000 USDC to SOL swap via Jupiter using hybrid MEV defense: private RPC (Triton/Helius) with 20-way split of $100,000 per child order",
+          "expected_value": 0.55,
+          "reasoning": "Hybrid strategy achieves 90% success probability with 0.55% total cost (0.15% split slippage + 0.0025% RPC fee + 0.3975% residual Jito adverse-selection), meeting all constraints: ≤0.6% cost, ≥90% protected-completion, ≤$100,000 per child order. Private RPC alone fails child-order limit; splitting alone fails 90% target."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

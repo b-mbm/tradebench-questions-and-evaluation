@@ -1,0 +1,122 @@
+{
+  "runAt": "2026-06-10T14:27:21.160Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-l9-from31-chunk4-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L9-046",
+    "L9-047",
+    "L9-048",
+    "L9-049",
+    "L9-050"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-046",
+      "raw": " {\n  \"intent\": \"select_route\",\n  \"expected_value\": 1050,\n  \"reasoning\": \"Calculated all-in costs: Route A=$5400 (0.45%*$900k+$900+0.05%*$900k), Route B=$3870 (0.21%*$900k+$1800+0.02%*$900k), Route C=$4920 (0.19%*$900k+$2400+0.09%*$900k). All routes feasible (capacity≥$900k, settlement≤12min, oracle≤60s). Best is Route B at $3870 vs second-best Route C at $4920, saving $1050. Extra HYPE gained: $1050/$28=37.5.\"\n}",
+      "durationMs": 60828,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "select_route",
+          "expected_value": 1050,
+          "reasoning": "Calculated all-in costs: Route A=$5400 (0.45%*$900k+$900+0.05%*$900k), Route B=$3870 (0.21%*$900k+$1800+0.02%*$900k), Route C=$4920 (0.19%*$900k+$2400+0.09%*$900k). All routes feasible (capacity≥$900k, settlement≤12min, oracle≤60s). Best is Route B at $3870 vs second-best Route C at $4920, saving $1050. Extra HYPE gained: $1050/$28=37.5."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-047",
+      "raw": "",
+      "durationMs": 46091,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-048",
+      "raw": "{\"intent\":\"select_restaking_avs\",\"expected_value\":[\"A1\",\"A2\",\"A5\"],\"reasoning\":\"Calculated net score = yield - operator fee - (slashing multiplier × expected slashing loss). A1: 6.4-0.2-(1×0.5)=5.7%; A2: 8.9-0.5-(2.1×0.7)=6.93%; A5: 7.8-0.4-(1.8×0.5)=6.5%. A3 excluded (slashing multiplier 2.7 > 2.5). A4 excluded (withdrawal delay 6 days > 5 days). All eligible AVSs meet constraints: net score ≥5%, capacity ≥60 ETH, oracle ≤18 min. Selected the three eligible AVSs with highest risk-adjusted APR.\"}",
+      "durationMs": 116827,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "select_restaking_avs",
+          "expected_value": [
+            "A1",
+            "A2",
+            "A5"
+          ],
+          "reasoning": "Calculated net score = yield - operator fee - (slashing multiplier × expected slashing loss). A1: 6.4-0.2-(1×0.5)=5.7%; A2: 8.9-0.5-(2.1×0.7)=6.93%; A5: 7.8-0.4-(1.8×0.5)=6.5%. A3 excluded (slashing multiplier 2.7 > 2.5). A4 excluded (withdrawal delay 6 days > 5 days). All eligible AVSs meet constraints: net score ≥5%, capacity ≥60 ETH, oracle ≤18 min. Selected the three eligible AVSs with highest risk-adjusted APR."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-049",
+      "raw": "",
+      "durationMs": 53095,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Invalid response body while trying to fetch https://openrouter.ai/api/v1/chat/completions: read ETIMEDOUT"
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-050",
+      "raw": "",
+      "durationMs": 5008,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Connection error."
+    }
+  ]
+}

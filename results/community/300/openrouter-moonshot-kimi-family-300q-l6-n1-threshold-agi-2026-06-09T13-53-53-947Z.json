@@ -1,0 +1,794 @@
+{
+  "runAt": "2026-06-09T13:53:53.946Z",
+  "label": "openrouter-moonshot-kimi-family-300q-l6-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2-thinking",
+    "moonshotai/kimi-k2.6",
+    "moonshotai/kimi-k2.5",
+    "moonshotai/kimi-k2-0905"
+  ],
+  "questionIds": [
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"ETH-3500C-30D\",\"size\":2,\"unit\":\"contracts\",\"venue\":\"deribit\",\"venue_name\":\"Deribit\",\"risk_controls\":{\"slippage_tolerance\":\"2%\"},\"follow_up\":\"confirm fill and monitor greeks\",\"reasoning\":\"purchasing 2 ETH call options at $3500 strike for 30-day leveraged upside exposure\",\"requires_follow_up\":true,\"follow_up_description\":\"monitor delta, gamma, theta, vega; manage position before expiry; consider profit-taking if ETH rallies significantly\"}",
+      "durationMs": 40689,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0,
+          "asset": 0.03692307692307692,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "ETH-3500C-30D",
+          "size": 2,
+          "unit": "contracts",
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "risk_controls": {
+            "slippage_tolerance": "2%"
+          },
+          "follow_up": "confirm fill and monitor greeks",
+          "reasoning": "purchasing 2 ETH call options at $3500 strike for 30-day leveraged upside exposure",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor delta, gamma, theta, vega; manage position before expiry; consider profit-taking if ETH rallies significantly"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"recurring\",\"asset\":\"BTC\",\"size\":\"500\",\"unit\":\"usd\",\"price\":\"market\",\"venue\":\"coinbase\",\"venue_name\":\"Coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"position_size_limit\":\"6000\"},\"follow_up\":\"confirm schedule\",\"reasoning\":\"DCA strategy: $500 weekly BTC purchases for 3 months (~12 weeks, total $6000 exposure)\",\"requires_follow_up\":true,\"follow_up_description\":\"Verify recurring buy schedule is properly configured, confirm weekly $500 purchases execute, monitor total position size approaching $6000 limit, review after 3 months to continue or modify strategy\"}",
+      "durationMs": 30461,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "recurring",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "price": "market",
+          "venue": "coinbase",
+          "venue_name": "Coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "6000"
+          },
+          "follow_up": "confirm schedule",
+          "reasoning": "DCA strategy: $500 weekly BTC purchases for 3 months (~12 weeks, total $6000 exposure)",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify recurring buy schedule is properly configured, confirm weekly $500 purchases execute, monitor total position size approaching $6000 limit, review after 3 months to continue or modify strategy"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-003",
+      "raw": "{\"intent\":\": \",\"order_type\":\"ladder\",\"asset\":\"BTC\",\"size\":\"10000\",\"unit\":\"usd\",\"price\":\"40000-45000/1000\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"monitor all 6 ladder orders for partial fills\",\"reasoning\":\"DCA ladder: 6 limit orders from $40k to $45k in $1k increments, total $10k notional. Current price $45k means immediate fill possible at top of ladder.\",\"requires_follow_up\":true,\"follow_up_description\":\"Track fill status at each level: $40k, $41k, $42k, $43k, $44k, $45k. Confirm total BTC acquired and average entry price.\"}",
+      "durationMs": 43448,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6445833333333335,
+        "score": 0.5950000000000002,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": ": ",
+          "order_type": "ladder",
+          "asset": "BTC",
+          "size": "10000",
+          "unit": "usd",
+          "price": "40000-45000/1000",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor all 6 ladder orders for partial fills",
+          "reasoning": "DCA ladder: 6 limit orders from $40k to $45k in $1k increments, total $10k notional. Current price $45k means immediate fill possible at top of ladder.",
+          "requires_follow_up": true,
+          "follow_up_description": "Track fill status at each level: $40k, $41k, $42k, $43k, $44k, $45k. Confirm total BTC acquired and average entry price."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-004",
+      "raw": "{\"intent\": \"set_stop\", \"order_type\": \"trailing_stop\", \"asset\": \"BTC\", \"size\": \"0.5\", \"unit\": \"btc\", \"price\": \"5%\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\"}, \"follow_up\": \"confirm stop active\", \"reasoning\": \"Trailing stop 5% below market on 0.5 BTC position to protect against downside\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify trailing stop order is placed and tracking market price\"}",
+      "durationMs": 11641,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8506018518518519,
+        "score": 0.8058333333333334,
+        "fieldScores": {
+          "intent": 0.09333333333333334,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_stop",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "price": "5%",
+          "venue": "coinbase",
+          "venue_name": "Coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm stop active",
+          "reasoning": "Trailing stop 5% below market on 0.5 BTC position to protect against downside",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify trailing stop order is placed and tracking market price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L6-005",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"twap\",\"asset\":\"ETH\",\"size\":10,\"venue\":\"coinbase\",\"duration\":\"4h\",\"reasoning\":\"Sell 10 ETH via TWAP over 4h on coinbase per user request\"}",
+      "durationMs": 41499,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "coinbase",
+          "duration": "4h",
+          "reasoning": "Sell 10 ETH via TWAP over 4h on coinbase per user request"
+        },
+        "failureReasons": [
+          "twap_missing_duration_autofail"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L6-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"options\",\"asset\":\"ETH\",\"size\":\"2\",\"unit\":\"contracts\",\"price\":\"3500\",\"venue\":\"deribit\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":\"2 contracts\"},\"follow_up\":\"confirm option fill and monitor delta/gamma exposure\",\"reasoning\":\"purchasing 2 ETH call options with $3,500 strike expiring in 30 days; requires options venue with ETH options liquidity\",\"requires_follow_up\":true,\"follow_up_description\":\"verify strike, expiry, and premium paid; check Greeks and margin requirements\"}",
+      "durationMs": 1830,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.1,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "options",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "contracts",
+          "price": "3500",
+          "venue": "deribit",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "2 contracts"
+          },
+          "follow_up": "confirm option fill and monitor delta/gamma exposure",
+          "reasoning": "purchasing 2 ETH call options with $3,500 strike expiring in 30 days; requires options venue with ETH options liquidity",
+          "requires_follow_up": true,
+          "follow_up_description": "verify strike, expiry, and premium paid; check Greeks and margin requirements"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L6-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"recurring\",\"asset\":\"BTC\",\"size\":500,\"unit\":\"usd\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"position_size_limit\":6000},\"follow_up\":\"schedule weekly recurring buy\",\"reasoning\":\"DCA strategy to purchase $500 of BTC weekly for 3 months (12 weeks, ~$6,000 total) to average entry price over time\",\"requires_follow_up\":true,\"follow_up_description\":\"Set up automated recurring purchase: $500 of BTC every week for 12 weeks starting 2025-10-13\"}",
+      "durationMs": 83868,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "recurring",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "position_size_limit": 6000
+          },
+          "follow_up": "schedule weekly recurring buy",
+          "reasoning": "DCA strategy to purchase $500 of BTC weekly for 3 months (12 weeks, ~$6,000 total) to average entry price over time",
+          "requires_follow_up": true,
+          "follow_up_description": "Set up automated recurring purchase: $500 of BTC every week for 12 weeks starting 2025-10-13"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"ladder_buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": \"TBD\",\n  \"price\": \"40000-45000 step 1000\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"specify size per rung\",\n  \"reasoning\": \"User requested six limit buy orders for BTC spaced every $1,000 from $40,000 to $45,000. Cannot execute without knowing the quantity per rung.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Provide the BTC or USD amount to purchase at each $1,000 price level ($40k, $41k, $42k, $43k, $44k, $45k).\"\n}",
+      "durationMs": 41438,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.07272727272727274,
+          "asset": 0.14,
+          "size": 0.021818181818181813,
+          "unit": 0,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "ladder_buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "TBD",
+          "price": "40000-45000 step 1000",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "specify size per rung",
+          "reasoning": "User requested six limit buy orders for BTC spaced every $1,000 from $40,000 to $45,000. Cannot execute without knowing the quantity per rung.",
+          "requires_follow_up": true,
+          "follow_up_description": "Provide the BTC or USD amount to purchase at each $1,000 price level ($40k, $41k, $42k, $43k, $44k, $45k)."
+        },
+        "failureReasons": [
+          "ladder_size_unreasonable"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L6-004",
+      "raw": "",
+      "durationMs": 125871,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L6-005",
+      "raw": " {\"intent\":\"sell\",\"order_type\":\"twap\",\"asset\":\"ETH\",\"size\":10,\"venue\":\"coinbase\",\"duration\":\"4 hours\",\"reasoning\":\"Sell 10 ETH via TWAP over 4 hours, slicing into smaller orders to minimize market impact and slippage.\"}",
+      "durationMs": 90698,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8477083333333334,
+        "score": 0.7825000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "coinbase",
+          "duration": "4 hours",
+          "reasoning": "Sell 10 ETH via TWAP over 4 hours, slicing into smaller orders to minimize market impact and slippage."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L6-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"options\",\"asset\":\"ETH-USD-3500-CALL-30D\",\"size\":2,\"unit\":\"contracts\",\"venue\":\"deribit\",\"risk_controls\":{\"slippage_tolerance\":\"2%\"},\"follow_up\":\"confirm premium and exact expiry\",\"reasoning\":\"OTM ETH call (strike 3500, spot 3000) with 30 days to expiry. No option premium provided; defaulting to Deribit as the most liquid crypto options venue. Requires follow-up for pricing and exact expiry timestamp.\",\"requires_follow_up\":true,\"follow_up_description\":\"Need option premium quote to set limit price, exact expiry date/time, and confirmation of venue preference (Deribit CEX vs on-chain protocol).\"}",
+      "durationMs": 53755,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.18,
+          "asset": 0.022857142857142864,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "options",
+          "asset": "ETH-USD-3500-CALL-30D",
+          "size": 2,
+          "unit": "contracts",
+          "venue": "deribit",
+          "risk_controls": {
+            "slippage_tolerance": "2%"
+          },
+          "follow_up": "confirm premium and exact expiry",
+          "reasoning": "OTM ETH call (strike 3500, spot 3000) with 30 days to expiry. No option premium provided; defaulting to Deribit as the most liquid crypto options venue. Requires follow-up for pricing and exact expiry timestamp.",
+          "requires_follow_up": true,
+          "follow_up_description": "Need option premium quote to set limit price, exact expiry date/time, and confirmation of venue preference (Deribit CEX vs on-chain protocol)."
+        },
+        "failureReasons": [
+          "options_asset_encoded"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L6-002",
+      "raw": " {\"intent\":\"buy\",\"order_type\":\"dca\",\"asset\":\"BTC\",\"size\":500,\"unit\":\"usd\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"1%\"},\"follow_up\":\"confirm schedule active\",\"reasoning\":\"dollar cost averaging $500 weekly into BTC for 3 months to smooth entry price and mitigate volatility risk\",\"requires_follow_up\":true,\"follow_up_description\":\"12 weekly $500 BTC purchases scheduled. Monitor execution and ensure USD balance sufficient for full 3-month duration.\"} ",
+      "durationMs": 35289,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "1%"
+          },
+          "follow_up": "confirm schedule active",
+          "reasoning": "dollar cost averaging $500 weekly into BTC for 3 months to smooth entry price and mitigate volatility risk",
+          "requires_follow_up": true,
+          "follow_up_description": "12 weekly $500 BTC purchases scheduled. Monitor execution and ensure USD balance sufficient for full 3-month duration."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L6-003",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"ladder\",\"asset\":\"BTC\",\"size\":\"TBD\",\"unit\":\"btc\",\"price\":\"40000-45000\",\"venue\":\"coinbase\",\"risk_controls\":{\"position_size_limit\":\"TBD\",\"slippage_tolerance\":\"0.5%\"},\"requires_follow_up\":true,\"follow_up_description\":\"Specify BTC quantity per price level for 6 ladder steps ($40k, $41k, $42k, $43k, $44k, $45k) or total USD allocation to distribute across the range\",\"reasoning\":\"Ladder strategy to accumulate BTC below current $45k market price with limit orders placed every $1,000 increment for dollar-cost averaging and downside capture\"}",
+      "durationMs": 30714,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.021818181818181813,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "ladder",
+          "asset": "BTC",
+          "size": "TBD",
+          "unit": "btc",
+          "price": "40000-45000",
+          "venue": "coinbase",
+          "risk_controls": {
+            "position_size_limit": "TBD",
+            "slippage_tolerance": "0.5%"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Specify BTC quantity per price level for 6 ladder steps ($40k, $41k, $42k, $43k, $44k, $45k) or total USD allocation to distribute across the range",
+          "reasoning": "Ladder strategy to accumulate BTC below current $45k market price with limit orders placed every $1,000 increment for dollar-cost averaging and downside capture"
+        },
+        "failureReasons": [
+          "ladder_size_unreasonable"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L6-004",
+      "raw": "",
+      "durationMs": 36899,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L6-005",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"TWAP\",\"asset\":\"ETH\",\"size\":10,\"venue\":\"coinbase\",\"duration\":\"4 hours\",\"reasoning\":\"Slice 10 ETH into smaller orders executed evenly over 4 hours to minimize market impact and achieve time-weighted average price\"}",
+      "durationMs": 37292,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8477083333333334,
+        "score": 0.7825000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "TWAP",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "coinbase",
+          "duration": "4 hours",
+          "reasoning": "Slice 10 ETH into smaller orders executed evenly over 4 hours to minimize market impact and achieve time-weighted average price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"call\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"contracts\",\n  \"price\": 3500,\n  \"venue\": \"deribit\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill and monitor expiry\",\n  \"reasoning\": \"buy 30-day 3500 calls on ETH\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track delta and theta decay\"\n}",
+      "durationMs": 753,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9469841269841269,
+        "score": 0.8971428571428571,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.1,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "call",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "contracts",
+          "price": 3500,
+          "venue": "deribit",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill and monitor expiry",
+          "reasoning": "buy 30-day 3500 calls on ETH",
+          "requires_follow_up": true,
+          "follow_up_description": "track delta and theta decay"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dca\",\n  \"asset\": \"BTC\",\n  \"size\": 500,\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": \"weekly $500\"\n  },\n  \"follow_up\": \"schedule recurring weekly purchase for 12 weeks\",\n  \"reasoning\": \"dollar-cost averaging reduces timing risk over 3-month horizon\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"automate weekly $500 BTC purchases for 12 total executions\"\n}",
+      "durationMs": 924,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "weekly $500"
+          },
+          "follow_up": "schedule recurring weekly purchase for 12 weeks",
+          "reasoning": "dollar-cost averaging reduces timing risk over 3-month horizon",
+          "requires_follow_up": true,
+          "follow_up_description": "automate weekly $500 BTC purchases for 12 total executions"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L6-003",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"BTC\",\"size\":\"0.1\",\"unit\":\"btc\",\"price\":\"44000\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.25%\",\"position_size_limit\":\"0.5 btc\"},\"follow_up\":\"place next rung at 43000\",\"reasoning\":\"first ladder rung at 44k; 6 total orders needed from 40k-45k in 1k steps\",\"requires_follow_up\":true,\"follow_up_description\":\"continue placing limit buy orders every 1k down to 40k\"}",
+      "durationMs": 6783,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8303571428571429,
+        "score": 0.775,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.1",
+          "unit": "btc",
+          "price": "44000",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.25%",
+            "position_size_limit": "0.5 btc"
+          },
+          "follow_up": "place next rung at 43000",
+          "reasoning": "first ladder rung at 44k; 6 total orders needed from 40k-45k in 1k steps",
+          "requires_follow_up": true,
+          "follow_up_description": "continue placing limit buy orders every 1k down to 40k"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L6-004",
+      "raw": " {\"intent\":\"trailing_stop\",\"order_type\":\"trailing_stop\",\"asset\":\"BTC\",\"size\":\"0.5\",\"unit\":\"btc\",\"price\":\"5% trailing\",\"venue\":\"binance\",\"risk_controls\":{\"stop_loss\":\"5% trailing\",\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm order placement\",\"reasoning\":\"set trailing stop loss 5% below current market price ($45,000) to protect 0.5 BTC long position, locking in gains as price rises while limiting downside to 5% retracement\"} ",
+      "durationMs": 23985,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9228571428571429,
+        "score": 0.8742857142857143,
+        "fieldScores": {
+          "intent": 0.16000000000000003,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.01428571428571429,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "trailing_stop",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "price": "5% trailing",
+          "venue": "binance",
+          "risk_controls": {
+            "stop_loss": "5% trailing",
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm order placement",
+          "reasoning": "set trailing stop loss 5% below current market price ($45,000) to protect 0.5 BTC long position, locking in gains as price rises while limiting downside to 5% retracement"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L6-005",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"twap\",\"asset\":\"ETH\",\"size\":\"10\",\"venue\":\"coinbase\",\"duration\":\"4 hours\",\"reasoning\":\"TWAP order splits 10 ETH into 4 equal hourly slices of 2.5 ETH each to minimize market impact over 4-hour window\"}",
+      "durationMs": 3619,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8477083333333334,
+        "score": 0.7825000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": "10",
+          "venue": "coinbase",
+          "duration": "4 hours",
+          "reasoning": "TWAP order splits 10 ETH into 4 equal hourly slices of 2.5 ETH each to minimize market impact over 4-hour window"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

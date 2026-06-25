@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-10T16:37:02.685Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-L8-009-2026-06-10T16-34-11",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L8-009"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L8-009",
+      "raw": "{\n  \"decision\": \"execute\",\n  \"reasoning\": {\n    \"capital_allocation\": {\"spot_usd\": 49980, \"margin_usd\": 50020},\n    \"position_size_eth\": 20.4,\n    \"perp_notional_usd\": 50095,\n    \"funding_revenue_daily\": 120,\n    \"costs_entry\": 22,\n    \"break_even_periods\": 0.55,\n    \"annualized_funding_rate_pct\": 87.6,\n    \"annual_roi_on_total_capital_pct\": 43.8\n  },\n  \"execution\": {\n    \"step_1\": \"transfer_50020_usdt_to_binance_for_margin\",\n    \"step_2\": \"buy_20.4_eth_spot_coinbase_maker\",\n    \"step_3\": \"short_20.4_eth_perp_binance_maker\",\n    \"delta_neutral\": true,\n    \"exit_trigger\": \"funding_rate_flips_negative_or_basis_converges_to_zero\"\n  }\n}",
+      "durationMs": 79818,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 49980,
+              "margin_usd": 50020
+            },
+            "position_size_eth": 20.4,
+            "perp_notional_usd": 50095,
+            "funding_revenue_daily": 120,
+            "costs_entry": 22,
+            "break_even_periods": 0.55,
+            "annualized_funding_rate_pct": 87.6,
+            "annual_roi_on_total_capital_pct": 43.8
+          },
+          "execution": {
+            "step_1": "transfer_50020_usdt_to_binance_for_margin",
+            "step_2": "buy_20.4_eth_spot_coinbase_maker",
+            "step_3": "short_20.4_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding_rate_flips_negative_or_basis_converges_to_zero"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

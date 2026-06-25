@@ -1,0 +1,1041 @@
+{
+  "runAt": "2026-06-08T17:03:24.117Z",
+  "label": "openrouter-llamas-300q-l7-n2-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "meta-llama/llama-3.1-8b-instruct"
+  ],
+  "questionIds": [
+    "L7-001",
+    "L7-002",
+    "L7-003",
+    "L7-004",
+    "L7-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L7-001",
+      "raw": "{\n  \"intent\": \"arbitrage\",\n  \"order_type\": \"flash loan\",\n  \"asset\": \"USDC\",\n  \"size\": \"100000\",\n  \"unit\": \"usd\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor arbitrage opportunity\",\n  \"reasoning\": \"identify price discrepancy between DEXes for USDC\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check for price differences on other DEXes such as SushiSwap, Curve, or Balancer\"\n}",
+      "durationMs": 3335,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.10124999999999999,
+          "order_type": 0.015999999999999997,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "order_type": "flash loan",
+          "asset": "USDC",
+          "size": "100000",
+          "unit": "usd",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor arbitrage opportunity",
+          "reasoning": "identify price discrepancy between DEXes for USDC",
+          "requires_follow_up": true,
+          "follow_up_description": "check for price differences on other DEXes such as SushiSwap, Curve, or Balancer"
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L7-002",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"order_type\": \"market\",\n  \"asset\": \"USDC\",\n  \"size\": 7000,\n  \"unit\": \"usd\",\n  \"venue\": \"lending_protocol\",\n  \"venue_name\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"close borrow position\",\n  \"reasoning\": \"repay borrowed USDC to unwind underwater position\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"once USDC is repaid, close the borrow position and reclaim the 5 ETH collateral\"\n}",
+      "durationMs": 2916,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8892857142857143,
+        "score": 0.8300000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": 7000,
+          "unit": "usd",
+          "venue": "lending_protocol",
+          "venue_name": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "close borrow position",
+          "reasoning": "repay borrowed USDC to unwind underwater position",
+          "requires_follow_up": true,
+          "follow_up_description": "once USDC is repaid, close the borrow position and reclaim the 5 ETH collateral"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 10000,\n  \"venue\": \"dex\",\n  \"il_percentage\": 11.8,\n  \"il_loss_usd\": 1180,\n  \"net_gain_usd\": -333,\n  \"net_return_pct\": -3.33,\n  \"hold_value\": 15000,\n  \"lp_value\": 14667,\n  \"reasoning\": \"impermanent loss calculated as 11.8% of initial position, fees earned subtracted from il loss to derive net return\"\n}",
+      "durationMs": 5888,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.042352941176470586,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0.04,
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0,
+          "lp_value": 0,
+          "reasoning": 0.01152542372881356
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analysis",
+          "asset": "ETH/USDC",
+          "size": 10000,
+          "venue": "dex",
+          "il_percentage": 11.8,
+          "il_loss_usd": 1180,
+          "net_gain_usd": -333,
+          "net_return_pct": -3.33,
+          "hold_value": 15000,
+          "lp_value": 14667,
+          "reasoning": "impermanent loss calculated as 11.8% of initial position, fees earned subtracted from il loss to derive net return"
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_il_loss",
+          "lp_net_return_il_pct_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"portfolio\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 6.06,\n  \"weighted_risk_score\": 1.9,\n  \"excess_return\": 1.06,\n  \"risk_adjusted_ratio\": 0.558,\n  \"total_annual_yield_usd\": 6060,\n  \"allocation\": {\n    \"aave\": 0.5,\n    \"curve\": 0.3,\n    \"yearn\": 0.2\n  },\n  \"reasoning\": \"Weighted APY and risk scores, then calculated excess return and risk-adjusted ratio\"\n}",
+      "durationMs": 6183,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.019285714285714285,
+          "order_type": 0.003333333333333335,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0,
+          "weighted_risk_score": 0,
+          "excess_return": 0,
+          "risk_adjusted_ratio": 0,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.005464480874316939
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "portfolio",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "defi",
+          "blended_apy": 6.06,
+          "weighted_risk_score": 1.9,
+          "excess_return": 1.06,
+          "risk_adjusted_ratio": 0.558,
+          "total_annual_yield_usd": 6060,
+          "allocation": {
+            "aave": 0.5,
+            "curve": 0.3,
+            "yearn": 0.2
+          },
+          "reasoning": "Weighted APY and risk scores, then calculated excess return and risk-adjusted ratio"
+        },
+        "failureReasons": [
+          "portfolio_efficiency_inconsistent_blended_apy",
+          "portfolio_efficiency_inconsistent_weighted_risk",
+          "portfolio_efficiency_inconsistent_excess_return",
+          "portfolio_efficiency_inconsistent_risk_ratio",
+          "portfolio_efficiency_inconsistent_total_yield"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.52,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.759,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"CowSwap\",\n  \"worst_option\": \"Uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"dex\",\n  \"venue_name\": \"CowSwap\",\n  \"reasoning\": \"Calculated total costs and net proceeds for each option, comparing slippage, gas, and MEV protection to determine the best venue.\"\n}",
+      "durationMs": 14500,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9837422710380971,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.002105263157894737,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.00028787878787878786
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.52,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.759,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "dex",
+          "venue_name": "CowSwap",
+          "reasoning": "Calculated total costs and net proceeds for each option, comparing slippage, gas, and MEV protection to determine the best venue."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L7-001",
+      "raw": "{\n  \"intent\": \"arbitrage\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"unit\": \"eth\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"exploit price discrepancy between uniswap and sushiswap\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track ETH price on sushiswap and uniswap\"\n}",
+      "durationMs": 2050,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.10124999999999999,
+          "order_type": 0,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "eth",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "exploit price discrepancy between uniswap and sushiswap",
+          "requires_follow_up": true,
+          "follow_up_description": "track ETH price on sushiswap and uniswap"
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L7-002",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"order_type\": \"market\",\n  \"asset\": \"USDC\",\n  \"size\": \"7000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm repayment\",\n  \"reasoning\": \"repay borrowed USDC to unwind underwater position\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check if collateral can be released after repayment\"\n}",
+      "durationMs": 2191,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8892857142857143,
+        "score": 0.8300000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": "7000",
+          "unit": "usdc",
+          "venue": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm repayment",
+          "reasoning": "repay borrowed USDC to unwind underwater position",
+          "requires_follow_up": true,
+          "follow_up_description": "check if collateral can be released after repayment"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"lp_position\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 10000,\n  \"venue\": \"amm\",\n  \"il_percentage\": -8.33,\n  \"il_loss_usd\": -833,\n  \"net_gain_usd\": 14,\n  \"net_return_pct\": 0.14,\n  \"hold_value\": 13333.33,\n  \"lp_value\": 10514,\n  \"reasoning\": \"Calculated IL using constant product AMM formula, combined with fee earnings to derive net return\"\n}",
+      "durationMs": 1316,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.01882352941176471,
+          "order_type": 0.004999999999999999,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0.04,
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0.03,
+          "lp_value": 0,
+          "reasoning": 0.008135593220338985
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "lp_position",
+          "asset": "ETH/USDC",
+          "size": 10000,
+          "venue": "amm",
+          "il_percentage": -8.33,
+          "il_loss_usd": -833,
+          "net_gain_usd": 14,
+          "net_return_pct": 0.14,
+          "hold_value": 13333.33,
+          "lp_value": 10514,
+          "reasoning": "Calculated IL using constant product AMM formula, combined with fee earnings to derive net return"
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_net_gain",
+          "lp_net_return_inconsistent_il_loss",
+          "lp_net_return_il_pct_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"portfolio\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 5.74,\n  \"weighted_risk_score\": 1.7,\n  \"excess_return\": 0.74,\n  \"risk_adjusted_ratio\": 0.4353,\n  \"total_annual_yield_usd\": 5740,\n  \"allocation\": {\n    \"aave\": 0.5,\n    \"curve\": 0.3,\n    \"yearn\": 0.2\n  },\n  \"reasoning\": \"Blended APY = (0.5*4.2) + (0.3*6.8) + (0.2*8.1) = 5.74; Weighted Risk = (0.5*1) + (0.3*2) + (0.2*3) = 1.7; Excess Return = 5.74 - 5 = 0.74; Risk-Adjusted Ratio = 0.74 / 1.7 = 0.4353; Total Annual Yield = 100000 * 0.0574 = 5740\"\n}",
+      "durationMs": 2429,
+      "grade": {
+        "pass": true,
+        "confidence": 0.959747259062592,
+        "score": 0.9172215334221122,
+        "fieldScores": {
+          "intent": 0.008571428571428574,
+          "order_type": 0.003333333333333335,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0.24,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.01366120218579235
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "portfolio",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "defi",
+          "blended_apy": 5.74,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.74,
+          "risk_adjusted_ratio": 0.4353,
+          "total_annual_yield_usd": 5740,
+          "allocation": {
+            "aave": 0.5,
+            "curve": 0.3,
+            "yearn": 0.2
+          },
+          "reasoning": "Blended APY = (0.5*4.2) + (0.3*6.8) + (0.2*8.1) = 5.74; Weighted Risk = (0.5*1) + (0.3*2) + (0.2*3) = 1.7; Excess Return = 5.74 - 5 = 0.74; Risk-Adjusted Ratio = 0.74 / 1.7 = 0.4353; Total Annual Yield = 100000 * 0.0574 = 5740"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.5167,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.7583,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"cowswap\",\n  \"worst_option\": \"uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"dex\",\n  \"venue_name\": \"cowswap\",\n  \"reasoning\": \"Calculated total costs for each venue by summing slippage, gas, and MEV costs. Compared net proceeds to determine best and worst options.\"\n}",
+      "durationMs": 3390,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9837074399687833,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.002105263157894737,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.00025252525252525247
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5167,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "cowswap",
+          "worst_option": "uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "dex",
+          "venue_name": "cowswap",
+          "reasoning": "Calculated total costs for each venue by summing slippage, gas, and MEV costs. Compared net proceeds to determine best and worst options."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L7-001",
+      "raw": "{\n  \"intent\": \"flash loan\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": \"100000\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"exploit price discrepancy between dexes\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify arbitrage profit\"\n}",
+      "durationMs": 3736,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.03375,
+          "order_type": 0,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "flash loan",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "100000",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "exploit price discrepancy between dexes",
+          "requires_follow_up": true,
+          "follow_up_description": "verify arbitrage profit"
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L7-002",
+      "raw": "{\n\"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH\",\n  \"size\": \"5\",\n  \"unit\": \"ETH\",\n  \"venue\": \"uniswap\",\n  \"venue_name\": \"Uniswap V3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\"\n  },\n  \"follow_up\": \"repay loan\",\n  \"reasoning\": \"liquidate collateral to repay loan\"\n}",
+      "durationMs": 620,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3036,
+        "score": 0.27599999999999997,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0.015999999999999997,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": "5",
+          "unit": "ETH",
+          "venue": "uniswap",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {
+            "slippage_tolerance": "1%"
+          },
+          "follow_up": "repay loan",
+          "reasoning": "liquidate collateral to repay loan"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"lp\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 10000,\n  \"venue\": \"constant_product_amm\",\n  \"il_percentage\": 5.45,\n  \"il_loss_usd\": 272.25,\n  \"net_gain_usd\": 574.75,\n  \"net_return_pct\": 5.75,\n  \"hold_value\": 16666.67,\n  \"lp_value\": 13666.67,\n  \"reasoning\": \"Calculated impermanent loss and net return from fees and price change\"\n}",
+      "durationMs": 3453,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.042352941176470586,
+          "order_type": 0.00625,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0.002222222222222223,
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0,
+          "lp_value": 0,
+          "reasoning": 0.00694915254237288
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "lp",
+          "asset": "ETH/USDC",
+          "size": 10000,
+          "venue": "constant_product_amm",
+          "il_percentage": 5.45,
+          "il_loss_usd": 272.25,
+          "net_gain_usd": 574.75,
+          "net_return_pct": 5.75,
+          "hold_value": 16666.67,
+          "lp_value": 13666.67,
+          "reasoning": "Calculated impermanent loss and net return from fees and price change"
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_il_loss",
+          "lp_net_return_il_pct_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"portfolio\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 5.74,\n  \"weighted_risk_score\": 1.9,\n  \"excess_return\": 0.74,\n  \"risk_adjusted_ratio\": 0.39,\n  \"total_annual_yield_usd\": 5740,\n  \"allocation\": {\n    \"Aave USDC Lending\": 50000,\n    \"Curve 3pool\": 30000,\n    \"Yearn USDC Vault\": 20000\n  },\n  \"reasoning\": \"Calculated blended APY, weighted risk score, excess return, risk-adjusted ratio, and total annual yield using given allocations, APYs, and risk scores.\"\n}",
+      "durationMs": 3762,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.008571428571428574,
+          "order_type": 0.003333333333333335,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.00459016393442623
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "portfolio",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "defi",
+          "blended_apy": 5.74,
+          "weighted_risk_score": 1.9,
+          "excess_return": 0.74,
+          "risk_adjusted_ratio": 0.39,
+          "total_annual_yield_usd": 5740,
+          "allocation": {
+            "Aave USDC Lending": 50000,
+            "Curve 3pool": 30000,
+            "Yearn USDC Vault": 20000
+          },
+          "reasoning": "Calculated blended APY, weighted risk score, excess return, risk-adjusted ratio, and total annual yield using given allocations, APYs, and risk scores."
+        },
+        "failureReasons": [
+          "portfolio_efficiency_inconsistent_weighted_risk",
+          "portfolio_efficiency_inconsistent_risk_ratio"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"swap\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.5167,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.7583,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"cowswap\",\n  \"worst_option\": \"uniswap\",\n  \"savings_vs_worst\": 4350,\n  \"venue\": \"cowswap\",\n  \"venue_name\": \"cowswap\",\n  \"reasoning\": \"Calculated slippage, gas, and MEV costs for each option; chose option with highest net proceeds\"\n}",
+      "durationMs": 7259,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9982762653760842,
+        "score": 0.9811068947185102,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0,
+          "venue_name": 0.001,
+          "reasoning": 0.00019191919191919194
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "swap",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5167,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "cowswap",
+          "worst_option": "uniswap",
+          "savings_vs_worst": 4350,
+          "venue": "cowswap",
+          "venue_name": "cowswap",
+          "reasoning": "Calculated slippage, gas, and MEV costs for each option; chose option with highest net proceeds"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L7-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"DAI\",\n  \"size\": \"5000\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"route via largest pool\"\n}",
+      "durationMs": 4798,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest pool"
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L7-002",
+      "raw": "{\n  \"intent\": \"liquidate\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH\",\n  \"size\": \"5\",\n  \"unit\": \"eth\",\n  \"price\": \"2500\",\n  \"venue\": \"binance\",\n  \"venue_name\": \"binance\",\n  \"risk_controls\": {\n    \"stop_loss\": \"0\",\n    \"take_profit\": \"0\",\n    \"slippage_tolerance\": \"0%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"100%\"\n  },\n  \"follow_up\": \"verify collateral liquidation\",\n  \"reasoning\": \"liquidate underwater position to minimize losses\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"confirm collateral liquidation and review position\"\n}",
+      "durationMs": 4344,
+      "grade": {
+        "pass": false,
+        "confidence": 0.31239999999999996,
+        "score": 0.284,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0.023999999999999994,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "liquidate",
+          "order_type": "limit",
+          "asset": "ETH",
+          "size": "5",
+          "unit": "eth",
+          "price": "2500",
+          "venue": "binance",
+          "venue_name": "binance",
+          "risk_controls": {
+            "stop_loss": "0",
+            "take_profit": "0",
+            "slippage_tolerance": "0%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "100%"
+          },
+          "follow_up": "verify collateral liquidation",
+          "reasoning": "liquidate underwater position to minimize losses",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm collateral liquidation and review position"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH\",\n  \"size\": 0,\n  \"venue\": \"market\",\n  \"il_percentage\": 0.5,\n  \"il_loss_usd\": 250,\n  \"net_gain_usd\": 597,\n  \"net_return_pct\": 5.97,\n  \"hold_value\": 12500,\n  \"lp_value\": 12500,\n  \"reasoning\": \"Impermanent loss calculated as 50% of initial position, fees earned added to net gain, net return percentage derived from net gain and initial position\"\n}",
+      "durationMs": 3274,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.042352941176470586,
+          "order_type": 0.00625,
+          "asset": 0.018750000000000003,
+          "size": 0
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 0,
+          "venue": "market",
+          "il_percentage": 0.5,
+          "il_loss_usd": 250,
+          "net_gain_usd": 597,
+          "net_return_pct": 5.97,
+          "hold_value": 12500,
+          "lp_value": 12500,
+          "reasoning": "Impermanent loss calculated as 50% of initial position, fees earned added to net gain, net return percentage derived from net gain and initial position"
+        },
+        "failureReasons": [
+          "size_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"none\",\n  \"asset\": \"portfolio\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 6.43,\n  \"weighted_risk_score\": 1.87,\n  \"excess_return\": 1.43,\n  \"risk_adjusted_ratio\": 0.77,\n  \"total_annual_yield_usd\": 6430.3,\n  \"allocation\": {\n    \"aave\": 50000,\n    \"curve\": 30000,\n    \"yearn\": 20000\n  },\n  \"reasoning\": \"Blended APY calculated as weighted average of individual APYs. Weighted risk score calculated as weighted average of individual risk scores. Excess return calculated as blended APY minus risk-free rate. Risk-adjusted ratio calculated as excess return divided by weighted risk score. Total annual yield in USD calculated as excess return multiplied by total capital.\"\n}",
+      "durationMs": 6110,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.019285714285714285,
+          "order_type": 0.00375,
+          "asset": 0,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0,
+          "weighted_risk_score": 0,
+          "excess_return": 0,
+          "risk_adjusted_ratio": 0,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.005205479452054795
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "none",
+          "asset": "portfolio",
+          "size": 100000,
+          "venue": "defi",
+          "blended_apy": 6.43,
+          "weighted_risk_score": 1.87,
+          "excess_return": 1.43,
+          "risk_adjusted_ratio": 0.77,
+          "total_annual_yield_usd": 6430.3,
+          "allocation": {
+            "aave": 50000,
+            "curve": 30000,
+            "yearn": 20000
+          },
+          "reasoning": "Blended APY calculated as weighted average of individual APYs. Weighted risk score calculated as weighted average of individual risk scores. Excess return calculated as blended APY minus risk-free rate. Risk-adjusted ratio calculated as excess return divided by weighted risk score. Total annual yield in USD calculated as excess return multiplied by total capital."
+        },
+        "failureReasons": [
+          "portfolio_efficiency_inconsistent_blended_apy",
+          "portfolio_efficiency_inconsistent_weighted_risk",
+          "portfolio_efficiency_inconsistent_excess_return",
+          "portfolio_efficiency_inconsistent_risk_ratio",
+          "portfolio_efficiency_inconsistent_total_yield"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 0.003,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 36000,\n  \"uniswap_total_cost\": 36053.003,\n  \"uniswap_total_cost_pct\": 0.012017,\n  \"uniswap_net_proceeds\": 299637.997,\n  \"cowswap_slippage_cost\": 0.004,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 0.004,\n  \"cowswap_total_cost_pct\": 0.000001,\n  \"cowswap_net_proceeds\": 299999.996,\n  \"oneinch_slippage_cost\": 0.0035,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 1228.5,\n  \"oneinch_total_cost_pct\": 0.0041,\n  \"oneinch_net_proceeds\": 299071.529,\n  \"best_option\": \"cowswap\",\n  \"worst_option\": \"uniswap\",\n  \"savings_vs_worst\": 2968.4,\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"reasoning\": \"Calculate slippage, gas, and MEV costs for each option, then compare net proceeds to determine best and worst options.\"\n}",
+      "durationMs": 13212,
+      "grade": {
+        "pass": false,
+        "confidence": 0.604582098103092,
+        "score": 0.593427852359665,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.0004,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.0008,
+          "uniswap_total_cost": 0.0002222222222222222,
+          "uniswap_total_cost_pct": 0,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.0004,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.0004,
+          "cowswap_total_cost_pct": 0,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.00016666666666666663,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.0005,
+          "oneinch_total_cost_pct": 0,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.0005714285714285714,
+          "reasoning": 0.00023737373737373735
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 0.003,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 36000,
+          "uniswap_total_cost": 36053.003,
+          "uniswap_total_cost_pct": 0.012017,
+          "uniswap_net_proceeds": 299637.997,
+          "cowswap_slippage_cost": 0.004,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 0.004,
+          "cowswap_total_cost_pct": 0.000001,
+          "cowswap_net_proceeds": 299999.996,
+          "oneinch_slippage_cost": 0.0035,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 1228.5,
+          "oneinch_total_cost_pct": 0.0041,
+          "oneinch_net_proceeds": 299071.529,
+          "best_option": "cowswap",
+          "worst_option": "uniswap",
+          "savings_vs_worst": 2968.4,
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "reasoning": "Calculate slippage, gas, and MEV costs for each option, then compare net proceeds to determine best and worst options."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

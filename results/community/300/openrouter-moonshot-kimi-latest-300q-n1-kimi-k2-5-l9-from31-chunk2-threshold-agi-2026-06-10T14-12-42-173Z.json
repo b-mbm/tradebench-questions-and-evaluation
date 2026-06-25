@@ -1,0 +1,128 @@
+{
+  "runAt": "2026-06-10T14:12:42.173Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-l9-from31-chunk2-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L9-036",
+    "L9-037",
+    "L9-038",
+    "L9-039",
+    "L9-040"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-036",
+      "raw": "{\"intent\": \"no_action\", \"expected_value\": 0, \"reasoning\": \"Option A: EV=-$3,440 (34k-9k-3.24k-25.2k), violates settlement time 18min>15min. Option B: EV=-$580 (22.5k-7.1k-5.58k-10.4k), violates slippage 0.31%>0.25%. Option C: EV=-$11,120 (28k-11.8k-2.52k-24.8k), violates oracle age 61s>50s. No option satisfies positive-EV and all hard constraints.\"}",
+      "durationMs": 80081,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "Option A: EV=-$3,440 (34k-9k-3.24k-25.2k), violates settlement time 18min>15min. Option B: EV=-$580 (22.5k-7.1k-5.58k-10.4k), violates slippage 0.31%>0.25%. Option C: EV=-$11,120 (28k-11.8k-2.52k-24.8k), violates oracle age 61s>50s. No option satisfies positive-EV and all hard constraints."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-037",
+      "raw": "",
+      "durationMs": 54180,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-038",
+      "raw": "{\n  \"intent\": \"select_route\",\n  \"expected_value\": 500,\n  \"reasoning\": \"Calculated all-in costs: Route A $16,200 (0.70%×$2M+$1,800+0.02%×$2M), Route B $10,100 (0.35%×$2M+$2,300+0.04%×$2M), Route C $10,600 (0.28%×$2M+$1,400+0.18%×$2M). All routes satisfy hard constraints (settlement≤14min, oracle≤60s, capacity≥$2M). Route B is optimal at $10,100 vs second-best Route C at $10,600, saving $500 which equals 3.52 extra SOL at $142/SOL.\"\n}",
+      "durationMs": 95395,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "select_route",
+          "expected_value": 500,
+          "reasoning": "Calculated all-in costs: Route A $16,200 (0.70%×$2M+$1,800+0.02%×$2M), Route B $10,100 (0.35%×$2M+$2,300+0.04%×$2M), Route C $10,600 (0.28%×$2M+$1,400+0.18%×$2M). All routes satisfy hard constraints (settlement≤14min, oracle≤60s, capacity≥$2M). Route B is optimal at $10,100 vs second-best Route C at $10,600, saving $500 which equals 3.52 extra SOL at $142/SOL."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-039",
+      "raw": "{\"intent\": \"repay\", \"expected_value\": 245075, \"reasoning\": \"Pre-repay HF is 1.21 (1.96M/1.62M). Post-10% ETH drop, collateral value is $2.205M. Max sustainable debt at HF 1.28 is ($2.205M * 0.8)/1.28 = $1,378,125. Current debt plus $3,200 closing fees totals $1,623,200. Required USDC debt reduction is $1,623,200 - $1,378,125 = 245,075.\"}",
+      "durationMs": 125078,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "expected_value": 245075,
+          "reasoning": "Pre-repay HF is 1.21 (1.96M/1.62M). Post-10% ETH drop, collateral value is $2.205M. Max sustainable debt at HF 1.28 is ($2.205M * 0.8)/1.28 = $1,378,125. Current debt plus $3,200 closing fees totals $1,623,200. Required USDC debt reduction is $1,623,200 - $1,378,125 = 245,075."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-040",
+      "raw": "{\"intent\":\"restake_select_avs\",\"expected_value\":[\"A1\",\"A3\",\"A5\"],\"reasoning\":\"Net score = yield - operator_fee - (slashing_multiplier × expected_slashing_loss). A1: 8.8-0.5-(2×0.6)=7.1%, A3: 9.1-0.4-(1.6×0.7)=7.58%, A5: 10.8-0.8-(2.4×0.8)=8.08%. A2 excluded (slashing multiplier 3.2>3), A4 excluded (capacity 200<250). All selected meet constraints: net score ≥6.2%, multiplier ≤3, delay ≤10 days, oracle ≤30 min, capacity ≥250 stETH.\"}",
+      "durationMs": 108440,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake_select_avs",
+          "expected_value": [
+            "A1",
+            "A3",
+            "A5"
+          ],
+          "reasoning": "Net score = yield - operator_fee - (slashing_multiplier × expected_slashing_loss). A1: 8.8-0.5-(2×0.6)=7.1%, A3: 9.1-0.4-(1.6×0.7)=7.58%, A5: 10.8-0.8-(2.4×0.8)=8.08%. A2 excluded (slashing multiplier 3.2>3), A4 excluded (capacity 200<250). All selected meet constraints: net score ≥6.2%, multiplier ≤3, delay ≤10 days, oracle ≤30 min, capacity ≥250 stETH."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

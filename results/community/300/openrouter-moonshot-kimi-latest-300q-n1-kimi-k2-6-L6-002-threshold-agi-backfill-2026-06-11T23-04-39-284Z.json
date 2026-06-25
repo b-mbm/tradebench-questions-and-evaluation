@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-11T23:04:39.283Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L6-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L6-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L6-002",
+      "raw": " {\"intent\":\"buy\",\"order_type\":\"recurring\",\"asset\":\"BTC\",\"size\":\"500\",\"unit\":\"usd\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"position_size_limit\":\"6000\"},\"follow_up\":\"confirm schedule activation and funding\",\"reasoning\":\"weekly DCA over 3 months (12 orders) to accumulate BTC and reduce timing risk; total program exposure $6,000\",\"requires_follow_up",
+      "durationMs": 112058,
+      "grade": {
+        "pass": false,
+        "confidence": 0.45175,
+        "score": 0.6950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "recurring",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "slippage_tolerance": "1%",
+          "position_size_limit": "6000",
+          "follow_up": "confirm schedule activation and funding",
+          "reasoning": "weekly DCA over 3 months (12 orders) to accumulate BTC and reduce timing risk; total program exposure $6,000",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "runAt": "2026-06-12T02:15:51.960Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-084-2026-06-12T02-12-56",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-084"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-084",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"Multi-venue split prioritizing private routes at full capacity and capping public routes at $760K threshold to avoid searcher copying\",\n  \"venue_allocation_usd\": {\n    \"Binance\": 760000,\n    \"OTC_Block\": 900000,\n    \"Kraken\": 500000,\n    \"Bybit\": 650000,\n    \"CoW_RFQ\": 450000,\n    \"Uniswap_Base\": 300000\n  },\n  \"largest_visible_clip_usd\": 760000,\n  \"expected_asset_received\": 6854.62,\n  \"effective_price\": 519.72,\n  \"self_check\": \"Total allocation $3,560,000 matches target; all public clips ≤$760K avoid copy risk; all allocations within venue limits; no spot inventory used\",\n  \"reasoning\": \"Private venues (OTC_Block $900K, CoW_RFQ $450K, Uniswap_Base $300K = $1,650K) used at full capacity with no pre-fill graph exposure. Public venues (Binance $760K, Kraken $500K, Bybit $650K = $1,910K) capped at or below $760K threshold to prevent searcher front-running. Total fills exactly $3,560,000 notional. TAO received: 6854.62 at effective price $519.72 including $2,622 total fees.\"\n}",
+      "durationMs": 158000,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.75,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "venue_allocation_usd.Binance": 1,
+          "venue_allocation_usd.OTC_Block": 1,
+          "venue_allocation_usd.Kraken": 1,
+          "venue_allocation_usd.Bybit": 1,
+          "venue_allocation_usd.CoW_RFQ": 1,
+          "venue_allocation_usd.Uniswap_Base": 1,
+          "largest_visible_clip_usd": 1,
+          "expected_asset_received": 1,
+          "effective_price": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "Multi-venue split prioritizing private routes at full capacity and capping public routes at $760K threshold to avoid searcher copying",
+          "venue_allocation_usd": {
+            "Binance": 760000,
+            "OTC_Block": 900000,
+            "Kraken": 500000,
+            "Bybit": 650000,
+            "CoW_RFQ": 450000,
+            "Uniswap_Base": 300000
+          },
+          "largest_visible_clip_usd": 760000,
+          "expected_asset_received": 6854.62,
+          "effective_price": 519.72,
+          "self_check": "Total allocation $3,560,000 matches target; all public clips ≤$760K avoid copy risk; all allocations within venue limits; no spot inventory used",
+          "reasoning": "Private venues (OTC_Block $900K, CoW_RFQ $450K, Uniswap_Base $300K = $1,650K) used at full capacity with no pre-fill graph exposure. Public venues (Binance $760K, Kraken $500K, Bybit $650K = $1,910K) capped at or below $760K threshold to prevent searcher front-running. Total fills exactly $3,560,000 notional. TAO received: 6854.62 at effective price $519.72 including $2,622 total fees."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

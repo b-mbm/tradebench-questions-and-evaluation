@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T23:25:21.327Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L9-034-2026-06-10T23-25-07",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-034"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-034",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"expected_value\": 15.668,\n  \"reasoning\": \"Base-case incremental APR: (($42M * 0.48 * 0.012% * 0.92 * 0.88) - $1,100) * 365 / $20M = ($1,958.58 - $1,100) * 365 / $20M = $858.58 * 365 / $20M = 15.668%. Under 20% volume stress ($8.4M daily), net daily revenue becomes negative (-$428.28), but expected_value remains the base-case APR as specified.\"\n}",
+      "durationMs": 13146,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "expected_value": 15.668,
+          "reasoning": "Base-case incremental APR: (($42M * 0.48 * 0.012% * 0.92 * 0.88) - $1,100) * 365 / $20M = ($1,958.58 - $1,100) * 365 / $20M = $858.58 * 365 / $20M = 15.668%. Under 20% volume stress ($8.4M daily), net daily revenue becomes negative (-$428.28), but expected_value remains the base-case APR as specified."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "runAt": "2026-06-10T21:21:20.023Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-092-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-092"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-092",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"order_type\": \"yield_holdout\",\n  \"asset\": \"USD\",\n  \"size\": 100000,\n  \"unit\": \"usd\",\n  \"venue\": \"multi\",\n  \"risk_controls\": {\n    \"position_size_limit\": 100000,\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"rebalance at day 45 and monitor caps/queues\",\n  \"reasoning\": \"Maximize risk-adjusted 90-day return while keeping >=$50K liquid within 48h and avoiding adversarial redemption queues. Aave_USDC and Curve_3pool are 48h-liquid; Ethena_USDe and GMX_GLP are term/slow-exit and capped. The fifth venue is uncapped-looking but lower APY and enters a queue above $10K, so it is excluded to avoid the adversarial queue. Allocate exactly to caps for the term venues (Ethena_USDe $20K, GMX_GLP $30K) to capture highest APYs without queue risk. Fill remaining $50K into the two liquid venues at their caps or balanced: Curve_3pool $30K (higher liquid APY) and Aave_USDC $20K. This gives $50K liquid (Aave $20K + Curve $30K). Weighted APY = (20000*7.04 + 30000*8.14 + 20000*9.24 + 30000*10.34)/100000 = 8.774%. 90-day profit = 100000 * 8.774% * 90/365 = $2163.45. Liquidity_48h = $50,000.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor venue caps, redemption queue status, and rebalance if any venue becomes queue-prone or APY changes materially.\",\n  \"chosen_strategy\": \"Cap-max term venues, fill residual into highest-liquid-APY 48h venues, exclude queue-prone fifth venue.\",\n  \"expected_net_apy_pct\": 8.774,\n  \"expected_90d_profit_usd\": 2163.45,\n  \"liquidity_48h_usd\": 50000,\n  \"allocation_usd\": {\n    \"Aave_USDC\": 20000,\n    \"Curve_3pool\": 30000,\n    \"Ethena_USDe\": 20000,\n    \"GMX_GLP\": 30000\n  }\n}",
+      "durationMs": 27386,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7777777777777778,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "expected_net_apy_pct": 1,
+          "expected_90d_profit_usd": 1,
+          "liquidity_48h_usd": 1,
+          "allocation_usd.Aave_USDC": 1,
+          "allocation_usd.Curve_3pool": 1,
+          "allocation_usd.Ethena_USDe": 1,
+          "allocation_usd.GMX_GLP": 1
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "yield_holdout",
+          "asset": "USD",
+          "size": 100000,
+          "unit": "usd",
+          "venue": "multi",
+          "risk_controls": {
+            "position_size_limit": 100000,
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "rebalance at day 45 and monitor caps/queues",
+          "reasoning": "Maximize risk-adjusted 90-day return while keeping >=$50K liquid within 48h and avoiding adversarial redemption queues. Aave_USDC and Curve_3pool are 48h-liquid; Ethena_USDe and GMX_GLP are term/slow-exit and capped. The fifth venue is uncapped-looking but lower APY and enters a queue above $10K, so it is excluded to avoid the adversarial queue. Allocate exactly to caps for the term venues (Ethena_USDe $20K, GMX_GLP $30K) to capture highest APYs without queue risk. Fill remaining $50K into the two liquid venues at their caps or balanced: Curve_3pool $30K (higher liquid APY) and Aave_USDC $20K. This gives $50K liquid (Aave $20K + Curve $30K). Weighted APY = (20000*7.04 + 30000*8.14 + 20000*9.24 + 30000*10.34)/100000 = 8.774%. 90-day profit = 100000 * 8.774% * 90/365 = $2163.45. Liquidity_48h = $50,000.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor venue caps, redemption queue status, and rebalance if any venue becomes queue-prone or APY changes materially.",
+          "chosen_strategy": "Cap-max term venues, fill residual into highest-liquid-APY 48h venues, exclude queue-prone fifth venue.",
+          "expected_net_apy_pct": 8.774,
+          "expected_90d_profit_usd": 2163.45,
+          "liquidity_48h_usd": 50000,
+          "allocation_usd": {
+            "Aave_USDC": 20000,
+            "Curve_3pool": 30000,
+            "Ethena_USDe": 20000,
+            "GMX_GLP": 30000
+          }
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

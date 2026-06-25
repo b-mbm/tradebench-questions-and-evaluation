@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-06-11T18:27:59.034Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-064-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-064"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-064",
+      "raw": " {\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"sweep_all_usable_clips_with_private_route\",\n  \"venue_allocation_usd\": {\n    \"Binance\": 600000,\n    \"Kraken\": 500000,\n    \"Coinbase\": 300000,\n    \"Curve_BTC\": 300000,\n    \"OTC_Circle\": 300000\n  },\n  \"largest_visible_clip_usd\": 600000,\n  \"expected_asset_received\": 33.3203,\n  \"effective_price\": 60021.71,\n  \"self_check\": \"Sum of allocations equals $2,000,000. Largest visible clip matches Binance capacity at $600,000. Total BTC 33.3203 derived per venue using (USD - FixedCost) / Price × (1 - Fee%). Effective price $60,021.71 falls between best quoted $59,880 and worst $60,120; private Curve_BTC absorbs 15% of flow to minimize public pre-fill signals.\",\n  \"reasoning\": \"Allocated full usable clip across all five venues to reach exactly $2M notional, with Curve_BTC providing $300k of private non-visible liquidity to reduce copy-trading risk. Largest public exposure capped at Binance's $600k clip. Calculated expected BTC by deducting fixed costs then percentage fees from each tranche, summing to 33.3203 BTC at an effective price of $60,021.71.\"\n}",
+      "durationMs": 150311,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7272727272727273,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "venue_allocation_usd.Binance": 1,
+          "venue_allocation_usd.Kraken": 1,
+          "venue_allocation_usd.Coinbase": 1,
+          "venue_allocation_usd.Curve_BTC": 1,
+          "venue_allocation_usd.OTC_Circle": 1,
+          "largest_visible_clip_usd": 1,
+          "expected_asset_received": 1,
+          "effective_price": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "sweep_all_usable_clips_with_private_route",
+          "venue_allocation_usd": {
+            "Binance": 600000,
+            "Kraken": 500000,
+            "Coinbase": 300000,
+            "Curve_BTC": 300000,
+            "OTC_Circle": 300000
+          },
+          "largest_visible_clip_usd": 600000,
+          "expected_asset_received": 33.3203,
+          "effective_price": 60021.71,
+          "self_check": "Sum of allocations equals $2,000,000. Largest visible clip matches Binance capacity at $600,000. Total BTC 33.3203 derived per venue using (USD - FixedCost) / Price × (1 - Fee%). Effective price $60,021.71 falls between best quoted $59,880 and worst $60,120; private Curve_BTC absorbs 15% of flow to minimize public pre-fill signals.",
+          "reasoning": "Allocated full usable clip across all five venues to reach exactly $2M notional, with Curve_BTC providing $300k of private non-visible liquidity to reduce copy-trading risk. Largest public exposure capped at Binance's $600k clip. Calculated expected BTC by deducting fixed costs then percentage fees from each tranche, summing to 33.3203 BTC at an effective price of $60,021.71."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

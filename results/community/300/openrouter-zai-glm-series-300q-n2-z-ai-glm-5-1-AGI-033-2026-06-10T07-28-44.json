@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-10T07:29:35.369Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-033-2026-06-10T07-28-44",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-033"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-033",
+      "raw": "{\n  \"intent\": \"transfer\",\n  \"chosen_strategy\": \"split across private-attested Alpha and relayer Delta to minimize observable clip while meeting deadline\",\n  \"route_allocation_usd\": {\n    \"Alpha\": 350000,\n    \"Delta\": 250000\n  },\n  \"observable_largest_clip_usd\": 250000,\n  \"expected_loss_usd\": 3590,\n  \"expected_arrival_minutes\": 65,\n  \"self_check\": \"Alpha settles at 65 min < 90 min deadline; Delta settles at 40 min < 90 min deadline; Alpha private attestation hides its $350K clip from searcher, making Delta's $250K the largest observable clip — below searcher's focal threshold; combined tolls $190 plus non-arrival expected loss $3400 yields total expected loss $3590; both clips must arrive for full $600K repair, so expected arrival governed by slower Alpha at 65 min; joint arrival probability 99.6% × 99.2% = 98.8%\",\n  \"reasoning\": \"Alpha private attestation conceals its $350K from the searcher graph, so observable largest clip is Delta's $250K. Tolls: Alpha $140 + Delta $50 = $190. Non-arrival EV: Alpha 0.4%×$350K=$1400, Delta 0.8%×$250K=$2000, total $3400. Combined expected loss $3590. Full repair requires both clips, so arrival time is max(65,40)=65 min, within 90 min deadline.\"\n}",
+      "durationMs": 50439,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.625,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_allocation_usd.Alpha": 1,
+          "route_allocation_usd.Delta": 1,
+          "observable_largest_clip_usd": 1,
+          "expected_loss_usd": 1,
+          "expected_arrival_minutes": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "transfer",
+          "chosen_strategy": "split across private-attested Alpha and relayer Delta to minimize observable clip while meeting deadline",
+          "route_allocation_usd": {
+            "Alpha": 350000,
+            "Delta": 250000
+          },
+          "observable_largest_clip_usd": 250000,
+          "expected_loss_usd": 3590,
+          "expected_arrival_minutes": 65,
+          "self_check": "Alpha settles at 65 min < 90 min deadline; Delta settles at 40 min < 90 min deadline; Alpha private attestation hides its $350K clip from searcher, making Delta's $250K the largest observable clip — below searcher's focal threshold; combined tolls $190 plus non-arrival expected loss $3400 yields total expected loss $3590; both clips must arrive for full $600K repair, so expected arrival governed by slower Alpha at 65 min; joint arrival probability 99.6% × 99.2% = 98.8%",
+          "reasoning": "Alpha private attestation conceals its $350K from the searcher graph, so observable largest clip is Delta's $250K. Tolls: Alpha $140 + Delta $50 = $190. Non-arrival EV: Alpha 0.4%×$350K=$1400, Delta 0.8%×$250K=$2000, total $3400. Combined expected loss $3590. Full repair requires both clips, so arrival time is max(65,40)=65 min, within 90 min deadline."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "runAt": "2026-06-12T01:13:26.475Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-022-2026-06-12T01-13-24",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-022"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-022",
+      "raw": "{\"intent\":\"hedge\",\"chosen_strategy\":\"AVAX-MATIC pair with AVAX first\",\"execution_sequence\":[\"AVAX\",\"MATIC\"],\"hedge_legs\":{\"AVAX\":{\"notional_usd\":175000},\"MATIC\":{\"notional_usd\":225000}},\"risk_reduction_pct\":51.5,\"worst_case_residual_pnl_usd\":-42500,\"reasoning\":\"AVAX first (0.12%) then MATIC (0.22%) = 0.34% total cost. Combined beta relief 52.6% exceeds 50% threshold. Worst residual from stress tape with highest spot loss after hedge offsets.\"}",
+      "durationMs": 1656,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7857142857142857,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "hedge_legs.MATIC.notional_usd": 1,
+          "hedge_legs.AVAX.notional_usd": 1,
+          "risk_reduction_pct": 0,
+          "worst_case_residual_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "AVAX-MATIC pair with AVAX first",
+          "execution_sequence": [
+            "AVAX",
+            "MATIC"
+          ],
+          "hedge_legs": {
+            "AVAX": {
+              "notional_usd": 175000
+            },
+            "MATIC": {
+              "notional_usd": 225000
+            }
+          },
+          "risk_reduction_pct": 51.5,
+          "worst_case_residual_pnl_usd": -42500,
+          "reasoning": "AVAX first (0.12%) then MATIC (0.22%) = 0.34% total cost. Combined beta relief 52.6% exceeds 50% threshold. Worst residual from stress tape with highest spot loss after hedge offsets."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:execution_sequence",
+          "agi_validation_failed:risk_reduction_pct",
+          "agi_validation_failed:worst_case_residual_pnl_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

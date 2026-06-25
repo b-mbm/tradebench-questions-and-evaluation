@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-10T20:20:10.790Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-096-2026-06-10T20-18-54",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-096"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-096",
+      "raw": "{\n  \"intent\": \"transfer\",\n  \"chosen_strategy\": \"Split across private-attested Gamma ($300K) and relayer Sigma ($200K) to minimize observable clip while ensuring both legs settle before 100-min auction deadline\",\n  \"route_allocation_usd\": {\n    \"Gamma\": 300000,\n    \"Sigma\": 200000\n  },\n  \"observable_largest_clip_usd\": 200000,\n  \"expected_loss_usd\": 1820,\n  \"expected_arrival_minutes\": 70,\n  \"self_check\": \"Gamma settles in 70 min < 100 min deadline; Sigma settles in 55 min < 100 min deadline. Gamma private-attestation hides $300K from searchers; largest observable clip is Sigma's $200K. Tolls: Gamma $180 + Sigma $40 = $220. Non-arrival risk: Gamma $600 + Sigma $1000 = $1600. Total expected loss $1820. Full $500K spendable only after slower Gamma settles at 70 min, well within deadline.\",\n  \"reasoning\": \"Max-fill both routes at their usable clips ($300K Gamma + $200K Sigma = $500K). Gamma's private attestation conceals its clip from the searcher, making Sigma's $200K the largest observable target. Expected loss = tolls ($180+$40=$220) + non-arrival expected value ($600+$1000=$1600) = $1820. Account is fully repaired at max(70,55)=70 minutes, within the 100-minute deadline.\"\n}",
+      "durationMs": 36872,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.625,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_allocation_usd.Gamma": 1,
+          "route_allocation_usd.Sigma": 1,
+          "observable_largest_clip_usd": 1,
+          "expected_loss_usd": 1,
+          "expected_arrival_minutes": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "transfer",
+          "chosen_strategy": "Split across private-attested Gamma ($300K) and relayer Sigma ($200K) to minimize observable clip while ensuring both legs settle before 100-min auction deadline",
+          "route_allocation_usd": {
+            "Gamma": 300000,
+            "Sigma": 200000
+          },
+          "observable_largest_clip_usd": 200000,
+          "expected_loss_usd": 1820,
+          "expected_arrival_minutes": 70,
+          "self_check": "Gamma settles in 70 min < 100 min deadline; Sigma settles in 55 min < 100 min deadline. Gamma private-attestation hides $300K from searchers; largest observable clip is Sigma's $200K. Tolls: Gamma $180 + Sigma $40 = $220. Non-arrival risk: Gamma $600 + Sigma $1000 = $1600. Total expected loss $1820. Full $500K spendable only after slower Gamma settles at 70 min, well within deadline.",
+          "reasoning": "Max-fill both routes at their usable clips ($300K Gamma + $200K Sigma = $500K). Gamma's private attestation conceals its clip from the searcher, making Sigma's $200K the largest observable target. Expected loss = tolls ($180+$40=$220) + non-arrival expected value ($600+$1000=$1600) = $1820. Account is fully repaired at max(70,55)=70 minutes, within the 100-minute deadline."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

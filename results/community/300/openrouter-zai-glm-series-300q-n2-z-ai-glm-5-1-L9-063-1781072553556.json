@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:22:40.214Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-063-1781072553556",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-063"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-063",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"expected_value\": 81345.45,\n  \"reasoning\": \"Collateral value = 4200 * 125 = 525000. Stressed collateral = 525000 * 0.68 * (1-0.16) / 1.32 = 525000 * 0.68 * 0.84 / 1.32 = 227454.55. Min repay = max(0, 305000 + 3800 - 227454.55) = 81345.45. Pre-repay stressed HF = (525000 * 0.84 * 0.68) / 305000 = 300240 / 305000 = 0.984, below 1 and far below target 1.32, confirming liquidation risk without repay. Borrow-more action rejected as it worsens HF.\"\n}",
+      "durationMs": 6310,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "expected_value": 81345.45,
+          "reasoning": "Collateral value = 4200 * 125 = 525000. Stressed collateral = 525000 * 0.68 * (1-0.16) / 1.32 = 525000 * 0.68 * 0.84 / 1.32 = 227454.55. Min repay = max(0, 305000 + 3800 - 227454.55) = 81345.45. Pre-repay stressed HF = (525000 * 0.84 * 0.68) / 305000 = 300240 / 305000 = 0.984, below 1 and far below target 1.32, confirming liquidation risk without repay. Borrow-more action rejected as it worsens HF."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

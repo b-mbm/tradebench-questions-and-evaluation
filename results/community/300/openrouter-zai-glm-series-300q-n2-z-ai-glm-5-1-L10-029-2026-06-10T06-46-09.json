@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:46:34.619Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-029-2026-06-10T06-46-09",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-029"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-029",
+      "raw": "{\n  \"intent\": \"convert to FXTL\",\n  \"expected_value\": 1260000,\n  \"reasoning\": \"Strategy 1 expected profit: bribes $6M×((1+0.24/52)^10−1)=$283,302 minus expected price drop 0.7×$1.2M=$840,000 → −$556,698. Strategy 2: bribes $6M×((1+0.17/52)^10−1)=$199,302 minus same $840,000 → −$640,698. Strategy 3: no bribes but expected FXTL gain = 0.7×0.3×$6M=$1,260,000. Strategy 3 dominates.\"\n}",
+      "durationMs": 24883,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 0.3
+        },
+        "normalizedResponse": {
+          "intent": "convert to FXTL",
+          "expected_value": 1260000,
+          "reasoning": "Strategy 1 expected profit: bribes $6M×((1+0.24/52)^10−1)=$283,302 minus expected price drop 0.7×$1.2M=$840,000 → −$556,698. Strategy 2: bribes $6M×((1+0.17/52)^10−1)=$199,302 minus same $840,000 → −$640,698. Strategy 3: no bribes but expected FXTL gain = 0.7×0.3×$6M=$1,260,000. Strategy 3 dominates."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

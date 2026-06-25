@@ -1,0 +1,48 @@
+{
+  "runAt": "2026-06-10T07:11:09.200Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-006-2026-06-10T07-10-50",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-006"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-006",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"reactive_iceberg_limits\",\n  \"price_band\": \"$58,538-$58,555\",\n  \"child_order_btc\": 40,\n  \"repricing_interval_sec\": 45,\n  \"expected_avg_price\": \"$58,548\",\n  \"reasoning\": \"Iceberg children at 40 BTC stay below toxicity classifier's 150 BTC displayed threshold, avoiding fade. 500/40=12.5 fills across 13 intervals of 45s (585s total) completes within 600s window. Price band from current bid to slight premium over ask ensures fill certainty while reactive repricing every 45s adapts to momentum bursts",
+      "durationMs": 18058,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "price_band": 0,
+          "child_order_btc": 1,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "reactive_iceberg_limits",
+          "price_band": "$58,538-$58,555",
+          "child_order_btc": 40,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": "$58,548",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:price_band",
+          "agi_validation_failed:expected_avg_price"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

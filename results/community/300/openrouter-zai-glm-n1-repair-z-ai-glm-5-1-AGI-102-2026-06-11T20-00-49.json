@@ -1,0 +1,63 @@
+{
+  "runAt": "2026-06-11T20:01:37.784Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-102-2026-06-11T20-00-49",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-102"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-102",
+      "raw": "{\n  \"intent\": \"strategic_position_and_vote\",\n  \"vote\": \"yes\",\n  \"position\": \"keep_farming\",\n  \"chosen_strategy\": \"vote_yes_keep_farming_with_partial_hedge\",\n  \"net_sell_pressure_delta_per_day\": -27500,\n  \"stabilization_buy_usd\": 30000,\n  \"expected_12d_price_change_pct\": 8.2,\n  \"self_check\": \"pass - net delta confirmed negative (bullish), stabilization adds support, price impact positive, farming yield exceeds residual downside risk\",\n  \"reasoning\": \"Current sell=56k/day. If passes: emissions 35k×0.70=24.5k/day + unlock 4k/day (4d) = 28.5k/day avg over 12d = (28.5k×4+24.5k×8)/12 = 258k/12 = 25.83k/day. Delta = 25.83k-56k = -30.17k/day. Weighted 12d net flow reduction = 30.17k×12 = 362k tokens. Two-thirds reaches price = 241.3k tokens. Stabilization $30k buys ~30k tokens (assuming ~$1/token from $1.6M/1.6M implied). Net token selling reduction reaching price = 241.3k - 30k = 211.3k fewer tokens sold vs baseline. Baseline 12d selling = 56k×12 = 672k tokens at ~$1 = $672k vs $1.6M liquidity. Price impact = 211.3k/672k × current_impact_rate. Current daily turnover 56k/$1.6M = 3.5% of liquidity/day. Net reduction ~31.4% of sell pressure reaching price → ~8.2% price appreciation over 12d.\",\n  \"order_type\": \"strategic\",\n  \"asset\": \"PROTOCOL_TOKEN\",\n  \"size\": 0,\n  \"venue\": \"governance\",\n  \"risk_controls\": {\n    \"stop_loss\": \"5%\",\n    \"position_size_limit\": \"100%\"\n  }\n}",
+      "durationMs": 21708,
+      "grade": {
+        "pass": false,
+        "confidence": 0.75,
+        "score": 0.25,
+        "fieldScores": {
+          "intent": 0,
+          "vote": 1,
+          "position": 0,
+          "chosen_strategy": 0,
+          "net_sell_pressure_delta_per_day": 0,
+          "stabilization_buy_usd": 1,
+          "expected_12d_price_change_pct": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "strategic_position_and_vote",
+          "vote": "yes",
+          "position": "keep_farming",
+          "chosen_strategy": "vote_yes_keep_farming_with_partial_hedge",
+          "net_sell_pressure_delta_per_day": -27500,
+          "stabilization_buy_usd": 30000,
+          "expected_12d_price_change_pct": 8.2,
+          "self_check": "pass - net delta confirmed negative (bullish), stabilization adds support, price impact positive, farming yield exceeds residual downside risk",
+          "reasoning": "Current sell=56k/day. If passes: emissions 35k×0.70=24.5k/day + unlock 4k/day (4d) = 28.5k/day avg over 12d = (28.5k×4+24.5k×8)/12 = 258k/12 = 25.83k/day. Delta = 25.83k-56k = -30.17k/day. Weighted 12d net flow reduction = 30.17k×12 = 362k tokens. Two-thirds reaches price = 241.3k tokens. Stabilization $30k buys ~30k tokens (assuming ~$1/token from $1.6M/1.6M implied). Net token selling reduction reaching price = 241.3k - 30k = 211.3k fewer tokens sold vs baseline. Baseline 12d selling = 56k×12 = 672k tokens at ~$1 = $672k vs $1.6M liquidity. Price impact = 211.3k/672k × current_impact_rate. Current daily turnover 56k/$1.6M = 3.5% of liquidity/day. Net reduction ~31.4% of sell pressure reaching price → ~8.2% price appreciation over 12d.",
+          "order_type": "strategic",
+          "asset": "PROTOCOL_TOKEN",
+          "size": 0,
+          "venue": "governance",
+          "risk_controls": {
+            "stop_loss": "5%",
+            "position_size_limit": "100%"
+          }
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:position",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:net_sell_pressure_delta_per_day",
+          "agi_validation_failed:expected_12d_price_change_pct",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

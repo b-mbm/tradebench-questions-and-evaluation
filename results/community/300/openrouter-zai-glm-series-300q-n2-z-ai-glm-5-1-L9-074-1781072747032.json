@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:26:18.301Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-074-1781072747032",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-074"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-074",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"expected_value\": 9.39,\n  \"reasoning\": \"Probabilities sum to 100% (65+25+10). Normal regime weighted fee: 0.65 × 8M × 0.70 × 0.00055 = $2,002. Stress regime weighted fee: 0.25 × 18M × 0.55 × 0.00075 = $1,856.25. Outage: $0. Total weighted eligible fee revenue = $3,858.25/day. After LP capture (84%) and protocol skim (10%): $3,858.25 × 0.84 × 0.90 = $2,916.837. Subtract daily overhead $550 = $2,366.837 net/day. Annualize: $2,366.837 × 365 = $863,895.51. APR = $863,895.51 / $9,200,000 = 9.39%. Excludes base pool fees, rewards, compounding, inventory PnL, and mark-to-market drift.\"\n}",
+      "durationMs": 30928,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "expected_value": 9.39,
+          "reasoning": "Probabilities sum to 100% (65+25+10). Normal regime weighted fee: 0.65 × 8M × 0.70 × 0.00055 = $2,002. Stress regime weighted fee: 0.25 × 18M × 0.55 × 0.00075 = $1,856.25. Outage: $0. Total weighted eligible fee revenue = $3,858.25/day. After LP capture (84%) and protocol skim (10%): $3,858.25 × 0.84 × 0.90 = $2,916.837. Subtract daily overhead $550 = $2,366.837 net/day. Annualize: $2,366.837 × 365 = $863,895.51. APR = $863,895.51 / $9,200,000 = 9.39%. Excludes base pool fees, rewards, compounding, inventory PnL, and mark-to-market drift."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

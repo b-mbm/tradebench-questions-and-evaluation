@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T00:07:03.097Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-059-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-059"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-059",
+      "raw": "{\n  \"intent\": \"calculate_rebalancing_value\",\n  \"expected_value\": 31884320,\n  \"reasoning\": \"Initial $32M basket requires selling $3.2M USDC (0.05%=$1.6k fee), buying $1.6M DAI (0.08%=$1.28k), selling $1.6M FRAX (0.35%=$5.6k), selling $4.8M TUSD (2.2%=$105.6k), and minting $8M T-bills (0.02%=$1.6k). Total execution costs sum to $115,680. Final basket value: $32,000,000 - $115,680 = $31,884,320.\"\n}",
+      "durationMs": 83155,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_rebalancing_value",
+          "expected_value": 31884320,
+          "reasoning": "Initial $32M basket requires selling $3.2M USDC (0.05%=$1.6k fee), buying $1.6M DAI (0.08%=$1.28k), selling $1.6M FRAX (0.35%=$5.6k), selling $4.8M TUSD (2.2%=$105.6k), and minting $8M T-bills (0.02%=$1.6k). Total execution costs sum to $115,680. Final basket value: $32,000,000 - $115,680 = $31,884,320."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-10T23:00:54.401Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L3-001-2026-06-10T23-00-35",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L3-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": \"1000\",\n  \"unit\": \"usd\",\n  \"venue\": \"arbitrum_bridge\",\n  \"venue_name\": \"Arbitrum Official Bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After bridge completion (~10-15 min), swap USDC for ARB on Arbitrum DEX (Camelot or Uniswap). Expected output: ~833 ARB at $1.20/ARB. Set slippage 1-2%.\",\n  \"reasoning\": \"Bridging USDC first via official Arbitrum bridge for L1->L2 transfer, then execute ARB purchase on-chain\",\n  \"follow_up\": \"monitor bridge status and execute ARB swap upon confirmation\"\n}",
+      "durationMs": 18839,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8492002442002443,
+        "score": 0.8045054945054946,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.05142857142857143,
+          "venue_name": 0.05,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "1000",
+          "unit": "usd",
+          "venue": "arbitrum_bridge",
+          "venue_name": "Arbitrum Official Bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "After bridge completion (~10-15 min), swap USDC for ARB on Arbitrum DEX (Camelot or Uniswap). Expected output: ~833 ARB at $1.20/ARB. Set slippage 1-2%.",
+          "reasoning": "Bridging USDC first via official Arbitrum bridge for L1->L2 transfer, then execute ARB purchase on-chain",
+          "follow_up": "monitor bridge status and execute ARB swap upon confirmation"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

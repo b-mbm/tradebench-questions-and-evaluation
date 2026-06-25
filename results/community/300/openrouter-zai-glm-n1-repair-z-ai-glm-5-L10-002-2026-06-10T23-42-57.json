@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:43:38.310Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-002-2026-06-10T23-42-57",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-002",
+      "raw": "{\n  \"intent\": \"execute 8-minute emergency deleveraging and hedging protocol to prevent Compound liquidation and protect LP exposure during oracle deviation spike\",\n  \"expected_value\": 1890000,\n  \"reasoning\": \"Oracle-sensitive exposure = $20M Compound + $15M LP = $35M. Expected loss avoided at current 5.4% deviation = 0.054 × $35,000,000 = $1,890,000. 8-minute plan: Min 0-2: Repay $5M debt on Compound to reduce LTV from 75% to 56%, creating 19% liquidation buffer. Min 2-5: Withdraw 50% LP position ($7.5M) to reduce oracle-sensitive exposure. Min 5-8: Deploy $5M stables as additional collateral if needed. This protects $35M exposure against the 5.4% oracle-to-spot deviation during the 43-minute correction window.\"\n}",
+      "durationMs": 40623,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute 8-minute emergency deleveraging and hedging protocol to prevent Compound liquidation and protect LP exposure during oracle deviation spike",
+          "expected_value": 1890000,
+          "reasoning": "Oracle-sensitive exposure = $20M Compound + $15M LP = $35M. Expected loss avoided at current 5.4% deviation = 0.054 × $35,000,000 = $1,890,000. 8-minute plan: Min 0-2: Repay $5M debt on Compound to reduce LTV from 75% to 56%, creating 19% liquidation buffer. Min 2-5: Withdraw 50% LP position ($7.5M) to reduce oracle-sensitive exposure. Min 5-8: Deploy $5M stables as additional collateral if needed. This protects $35M exposure against the 5.4% oracle-to-spot deviation during the 43-minute correction window."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

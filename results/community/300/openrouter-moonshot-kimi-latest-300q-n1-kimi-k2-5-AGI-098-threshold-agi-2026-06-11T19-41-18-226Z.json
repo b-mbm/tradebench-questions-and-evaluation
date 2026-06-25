@@ -1,0 +1,48 @@
+{
+  "runAt": "2026-06-11T19:41:18.225Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-098-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-098"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-098",
+      "raw": "{\"intent\": \"buy\", \"chosen_strategy\": \"iceberg_twap\", \"price_band\": \"61200-61300\", \"child_order_units\": 35, \"repricing_interval_sec\": 45, \"expected_avg_price\": 61255, \"reasoning\": \"Fair value inferred at 61242 from pre-impulse tape. Child orders sized at 35 BTC maintain total displayed interest below 140 BTC toxicity threshold. 45-second repricing aligns with hidden order refresh cycle to avoid detection. Price band set around fair value to capture liquidity without triggering momentum-based quote sweeps.\"}",
+      "durationMs": 69648,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "price_band": 0,
+          "child_order_units": 1,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 1
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "iceberg_twap",
+          "price_band": "61200-61300",
+          "child_order_units": 35,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": 61255,
+          "reasoning": "Fair value inferred at 61242 from pre-impulse tape. Child orders sized at 35 BTC maintain total displayed interest below 140 BTC toxicity threshold. 45-second repricing aligns with hidden order refresh cycle to avoid detection. Price band set around fair value to capture liquidity without triggering momentum-based quote sweeps."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:price_band"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

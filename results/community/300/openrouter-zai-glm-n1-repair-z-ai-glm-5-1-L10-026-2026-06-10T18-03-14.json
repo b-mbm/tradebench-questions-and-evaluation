@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T18:03:32.758Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-L10-026-2026-06-10T18-03-14",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-026"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-026",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"expected_value\": 4048910,\n  \"reasoning\": \"700k TOKEN on Coinbase via TWAP: 700,000 × $3.40 = $2,380,000 gross, minus 0.45% fee = $2,369,310 (32 slices of ~$75k over 18h, ~34min intervals). 500k TOKEN on Arbitrum via Camelot: 500,000 × $3.40 = $1,700,000 gross, minus 1.20% all-in impact = $1,679,600. Combined proceeds: $2,369,310 + $1,679,600 = $4,048,910. Binance excluded (deposits won't clear), Uniswap excluded (no inventory on Ethereum), bridging excluded (misses deadline).\"\n}",
+      "durationMs": 18142,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "expected_value": 4048910,
+          "reasoning": "700k TOKEN on Coinbase via TWAP: 700,000 × $3.40 = $2,380,000 gross, minus 0.45% fee = $2,369,310 (32 slices of ~$75k over 18h, ~34min intervals). 500k TOKEN on Arbitrum via Camelot: 500,000 × $3.40 = $1,700,000 gross, minus 1.20% all-in impact = $1,679,600. Combined proceeds: $2,369,310 + $1,679,600 = $4,048,910. Binance excluded (deposits won't clear), Uniswap excluded (no inventory on Ethereum), bridging excluded (misses deadline)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

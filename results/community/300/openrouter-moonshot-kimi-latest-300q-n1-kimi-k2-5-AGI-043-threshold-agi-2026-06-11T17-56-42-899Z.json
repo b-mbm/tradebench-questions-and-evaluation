@@ -1,0 +1,89 @@
+{
+  "runAt": "2026-06-11T17:56:42.898Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-043-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-043"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-043",
+      "raw": " {\n  \"intent\": \"Crisis neutralization of direct stablecoin exposure and correlated margin stress under constrained execution cadence\",\n  \"chosen_strategy\": \"Sequential unwinding prioritized by existential timing risk: Aave (earliest liquidation) first, Curve (withdrawal gate) second, SOL (margin instability) third\",\n  \"actions\": [\n    {\n      \"slot\": \"T+10m\",\n      \"operation\": \"unwind_aave_usdt_loop\",\n      \"principal_usd\": 380000,\n      \"cost_basis\": 0.0035,\n      \"cost_usd\": 1330,\n      \"deadline\": \"T+24m\",\n      \"buffer_min\": 14\n    },\n    {\n      \"slot\": \"T+20m\",\n      \"operation\": \"exit_curve_usdt_pool\",\n      \"principal_usd\": 460000,\n      \"cost_basis\": 0.0025,\n      \"cost_usd\": 1150,\n      \"deadline\": \"T+31m\",\n      \"buffer_min\": 11\n    },\n    {\n      \"slot\": \"T+30m\",\n      \"operation\": \"reduce_sol_perpetuals_half\",\n      \"notional_reduced_usd\": 250000,\n      \"cost_basis\": 0.0018,\n      \"cost_usd\": 450,\n      \"deadline\": \"T+40m\",\n      \"buffer_min\": 10\n    }\n  ],\n  \"priority_order\": [\"aave_unwind\", \"curve_exit\", \"sol_reduction\"],\n  \"direct_stablecoin_neutralized_usd\": 840000,\n  \"latest_direct_neutralization_min\": 20,\n  \"margin_notional_reduced_usd\": 250000,\n  \"expected_execution_cost_usd\": 2930,\n  \"self_check\": \"Sum of direct stablecoin matches 380k+460k=840k neutralized by T+20m before T+31m gate. Aave cleared at T+10m provides 14m buffer before T+24m oracle risk. SOL reduced at T+30m provides 10m buffer before T+40m instability. Costs: 1330+1150+450=2930 USD. BTC spot remains unencumbered as reserve. All timing, principal, and cost elements arithmetically consistent.\",\n  \"reasoning\": \"Prioritized by earliest hard deadline (Aave T+24m) using available 10m cadence slots starting T+10m. Stablecoin exposures ($840k) fully neutralized before Curve gate at T+31m. SOL half-reduction ($250k) scheduled after stablecoins secured to mitigate margin stress before T+40m window instability. Costs computed as percentage of respective principals/reductions.\"\n}",
+      "durationMs": 95252,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.3333333333333333,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "actions": 0,
+          "priority_order": 0,
+          "direct_stablecoin_neutralized_usd": 1,
+          "latest_direct_neutralization_min": 0,
+          "margin_notional_reduced_usd": 1,
+          "expected_execution_cost_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "Crisis neutralization of direct stablecoin exposure and correlated margin stress under constrained execution cadence",
+          "chosen_strategy": "Sequential unwinding prioritized by existential timing risk: Aave (earliest liquidation) first, Curve (withdrawal gate) second, SOL (margin instability) third",
+          "actions": [
+            {
+              "slot": "T+10m",
+              "operation": "unwind_aave_usdt_loop",
+              "principal_usd": 380000,
+              "cost_basis": 0.0035,
+              "cost_usd": 1330,
+              "deadline": "T+24m",
+              "buffer_min": 14
+            },
+            {
+              "slot": "T+20m",
+              "operation": "exit_curve_usdt_pool",
+              "principal_usd": 460000,
+              "cost_basis": 0.0025,
+              "cost_usd": 1150,
+              "deadline": "T+31m",
+              "buffer_min": 11
+            },
+            {
+              "slot": "T+30m",
+              "operation": "reduce_sol_perpetuals_half",
+              "notional_reduced_usd": 250000,
+              "cost_basis": 0.0018,
+              "cost_usd": 450,
+              "deadline": "T+40m",
+              "buffer_min": 10
+            }
+          ],
+          "priority_order": [
+            "aave_unwind",
+            "curve_exit",
+            "sol_reduction"
+          ],
+          "direct_stablecoin_neutralized_usd": 840000,
+          "latest_direct_neutralization_min": 20,
+          "margin_notional_reduced_usd": 250000,
+          "expected_execution_cost_usd": 2930,
+          "self_check": "Sum of direct stablecoin matches 380k+460k=840k neutralized by T+20m before T+31m gate. Aave cleared at T+10m provides 14m buffer before T+24m oracle risk. SOL reduced at T+30m provides 10m buffer before T+40m instability. Costs: 1330+1150+450=2930 USD. BTC spot remains unencumbered as reserve. All timing, principal, and cost elements arithmetically consistent.",
+          "reasoning": "Prioritized by earliest hard deadline (Aave T+24m) using available 10m cadence slots starting T+10m. Stablecoin exposures ($840k) fully neutralized before Curve gate at T+31m. SOL half-reduction ($250k) scheduled after stablecoins secured to mitigate margin stress before T+40m window instability. Costs computed as percentage of respective principals/reductions."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:actions",
+          "agi_validation_failed:priority_order",
+          "agi_validation_failed:latest_direct_neutralization_min",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

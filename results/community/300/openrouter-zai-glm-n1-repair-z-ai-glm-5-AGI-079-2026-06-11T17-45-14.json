@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T17:45:55.727Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-079-2026-06-11T17-45-14",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-079"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-079",
+      "raw": "{\"intent\":\"hedge\",\"chosen_strategy\":\"probability_weighted_optimal_hedge\",\"selected_hedges\":[\"put_spread_3400_3000\",\"stETH_discount_swap\"],\"premium_usd\":32000,\"worst_case_pnl_usd\":-44000,\"expected_pnl_usd\":-4360,\"self_check\":\"PASS: premium 32000 <= budget 38000; worst case -44000 > floor -115000; expected PnL -4360 maximized among valid packages\",\"reasoning\":\"Selected put_spread and stETH_swap for best probability-weighted PnL while respecting drawdown floor. Combined worst case: -220000+118000+76000-32000=-44000 > -115000. Expected PnL: 0.31*(-44000)+0.46*(-47000)+0.23*(45000)=-4360.\"}",
+      "durationMs": 4232,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7857142857142857,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "selected_hedges": 1,
+          "premium_usd": 1,
+          "worst_case_pnl_usd": 0,
+          "expected_pnl_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "probability_weighted_optimal_hedge",
+          "selected_hedges": [
+            "put_spread_3400_3000",
+            "stETH_discount_swap"
+          ],
+          "premium_usd": 32000,
+          "worst_case_pnl_usd": -44000,
+          "expected_pnl_usd": -4360,
+          "self_check": "PASS: premium 32000 <= budget 38000; worst case -44000 > floor -115000; expected PnL -4360 maximized among valid packages",
+          "reasoning": "Selected put_spread and stETH_swap for best probability-weighted PnL while respecting drawdown floor. Combined worst case: -220000+118000+76000-32000=-44000 > -115000. Expected PnL: 0.31*(-44000)+0.46*(-47000)+0.23*(45000)=-4360."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:worst_case_pnl_usd",
+          "agi_validation_failed:expected_pnl_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

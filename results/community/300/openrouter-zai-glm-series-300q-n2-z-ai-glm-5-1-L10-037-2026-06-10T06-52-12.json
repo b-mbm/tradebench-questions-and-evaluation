@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:52:43.927Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-037-2026-06-10T06-52-12",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-037"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-037",
+      "raw": "{\n  \"intent\": \"design_multi_leg_eth_upgrade_strategy\",\n  \"expected_value\": 19.13,\n  \"reasoning\": \"Weighted sum of four deterministic leg returns: (1) 35% spot × 28% = 9.8%, (2) 30% CME basis × 2.4% = 0.72%, (3) 20% perp funding × 11.0% APR × 60/365 = 0.36%, (4) 15% options convexity × 55% = 8.25%. Total = 9.8 + 0.72 + 0.36 + 8.25 = 19.13% over 60 days. Put spread in options leg caps portfolio drawdown below 14% in stress case.\"\n}",
+      "durationMs": 31228,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "design_multi_leg_eth_upgrade_strategy",
+          "expected_value": 19.13,
+          "reasoning": "Weighted sum of four deterministic leg returns: (1) 35% spot × 28% = 9.8%, (2) 30% CME basis × 2.4% = 0.72%, (3) 20% perp funding × 11.0% APR × 60/365 = 0.36%, (4) 15% options convexity × 55% = 8.25%. Total = 9.8 + 0.72 + 0.36 + 8.25 = 19.13% over 60 days. Put spread in options leg caps portfolio drawdown below 14% in stress case."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

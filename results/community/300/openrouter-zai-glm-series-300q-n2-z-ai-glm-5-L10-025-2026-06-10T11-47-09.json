@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T11:48:00.940Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-025-2026-06-10T11-47-09",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-025"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-025",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"expected_value\": -7200,\n  \"reasoning\": \"Option 2 (hedge on OKX) costs $7,200 and neutralizes the $96,000 exposure. Option 1 costs $4,500 but still loses $96,000 on inventory ($100,500 total). Option 3 costs $96,000. Hedging is optimal at $7,200.\"\n}",
+      "durationMs": 51266,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "expected_value": -7200,
+          "reasoning": "Option 2 (hedge on OKX) costs $7,200 and neutralizes the $96,000 exposure. Option 1 costs $4,500 but still loses $96,000 on inventory ($100,500 total). Option 3 costs $96,000. Hedging is optimal at $7,200."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

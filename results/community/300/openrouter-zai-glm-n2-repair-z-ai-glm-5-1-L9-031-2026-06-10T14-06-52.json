@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T14:07:06.478Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L9-031-2026-06-10T14-06-52",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-031"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-031",
+      "raw": "{\n  \"intent\": \"repay_usdc_debt\",\n  \"expected_value\": 373882,\n  \"reasoning\": \"Pre-repay HF = (1200*3300*0.83)/2900000 = 1.1334. After 6% stETH shock, max allowable debt for target HF 1.22 = 3960000*0.83*0.94/1.22 = 2532118",
+      "durationMs": 13407,
+      "grade": {
+        "pass": true,
+        "confidence": 0.6,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay_usdc_debt",
+          "expected_value": 373882,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

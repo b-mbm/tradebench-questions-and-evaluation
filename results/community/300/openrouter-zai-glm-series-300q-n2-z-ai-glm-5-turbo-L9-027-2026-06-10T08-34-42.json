@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T08:35:01.003Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-027-2026-06-10T08-34-42",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-027"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-027",
+      "raw": "{\n  \"intent\": \"vote\",\n  \"expected_value\": 497373.40,\n  \"reasoning\": \"Missing votes: 54,000 (<= 69,000 liquidity). EV = 0.58*1,450,000 - 54,000*5 - 54,000*118*0.22*(7/365) - 24,000 - 0.035*650,000 = 841,000 - 270,000 - 26,876.60 - 24,000 - 22,750 = 497,373.40. EV is positive, executing vote.\"\n}\n",
+      "durationMs": 18298,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "vote",
+          "expected_value": 497373.4,
+          "reasoning": "Missing votes: 54,000 (<= 69,000 liquidity). EV = 0.58*1,450,000 - 54,000*5 - 54,000*118*0.22*(7/365) - 24,000 - 0.035*650,000 = 841,000 - 270,000 - 26,876.60 - 24,000 - 22,750 = 497,373.40. EV is positive, executing vote."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-12T00:16:05.237Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-053-2026-06-12T00-15-27",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-053"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-053",
+      "raw": "{\n  \"intent\": \"deploy\",\n  \"expected_value\": 86200,\n  \"reasoning\": \"Allocated $5M to stETH (0.726% profit, 6 days) and $2M to cbETH (2.395% profit, 21 days). Weighted avg settlement = 10.29 days (under 14-day limit). Total expected profit = $36,300 + $49,900 = $86,200. cbETH capacity constraint binding; stETH absorbs remainder. rETH excluded as combining with cbETH would exceed time limit, and stETH+cbETH yields higher profit than stETH+rETH.\"\n}",
+      "durationMs": 37139,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "deploy",
+          "expected_value": 86200,
+          "reasoning": "Allocated $5M to stETH (0.726% profit, 6 days) and $2M to cbETH (2.395% profit, 21 days). Weighted avg settlement = 10.29 days (under 14-day limit). Total expected profit = $36,300 + $49,900 = $86,200. cbETH capacity constraint binding; stETH absorbs remainder. rETH excluded as combining with cbETH would exceed time limit, and stETH+cbETH yields higher profit than stETH+rETH."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

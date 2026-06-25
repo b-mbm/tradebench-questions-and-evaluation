@@ -1,0 +1,46 @@
+{
+  "runAt": "2026-06-10T07:12:30.035Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-009-2026-06-10T07-11-57",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-009"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-009",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"chosen_strategy\": \"Buy WLD on Ethereum L1 immediately then bridge WLD to Optimism\",\n  \"chosen_path\": \"Route 2\",\n  \"expected_wld\": 403.99,\n  \"completion_minutes\": 10,\n  \"reasoning\": \"Route 2 buys WLD immediately at $2.40 on Ethereum (no announcement premium), yielding 972/2.4024=404.60 WLD after 0.1% slippage, then 403.99 WLD after 0.15% bridge token fee, completing in 10 min. Route 1 delays 10 min buying at $2.541 (+5% premium) yielding only 384.47 WLD. Routes 3 and 4 are inexecutable due to unspecified second bridges per mandate.\"\n}",
+      "durationMs": 31811,
+      "grade": {
+        "pass": false,
+        "confidence": 0.9,
+        "score": 0.4,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "chosen_path": 0,
+          "expected_wld": 1,
+          "completion_minutes": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "chosen_strategy": "Buy WLD on Ethereum L1 immediately then bridge WLD to Optimism",
+          "chosen_path": "Route 2",
+          "expected_wld": 403.99,
+          "completion_minutes": 10,
+          "reasoning": "Route 2 buys WLD immediately at $2.40 on Ethereum (no announcement premium), yielding 972/2.4024=404.60 WLD after 0.1% slippage, then 403.99 WLD after 0.15% bridge token fee, completing in 10 min. Route 1 delays 10 min buying at $2.541 (+5% premium) yielding only 384.47 WLD. Routes 3 and 4 are inexecutable due to unspecified second bridges per mandate."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:chosen_path"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

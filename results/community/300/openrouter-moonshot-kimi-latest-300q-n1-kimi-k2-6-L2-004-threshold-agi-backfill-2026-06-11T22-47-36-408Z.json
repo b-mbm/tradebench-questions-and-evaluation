@@ -1,0 +1,56 @@
+{
+  "runAt": "2026-06-11T22:47:36.407Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L2-004-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L2-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L2-004",
+      "raw": "{\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"USDC\",\"size\":50000,\"unit\":\"usdc\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"assess price impact and confirm pool depth\",\"requires_follow_up\":true,\"follow_up_description\":\"Analyze USDC/WETH liquidity pools to ensure 50,000 USDC can be swapped without excessive slippage before signing transaction\",\"reasoning\":\"Pre-swap liquidity analysis required for 50k USDC to WETH given potential price impact; route through deepest available pool at current 30 gwei gas\"}",
+      "durationMs": 35960,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": 50000,
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "assess price impact and confirm pool depth",
+          "requires_follow_up": true,
+          "follow_up_description": "Analyze USDC/WETH liquidity pools to ensure 50,000 USDC can be swapped without excessive slippage before signing transaction",
+          "reasoning": "Pre-swap liquidity analysis required for 50k USDC to WETH given potential price impact; route through deepest available pool at current 30 gwei gas"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "runAt": "2026-06-09T04:12:44.012Z",
+  "label": "openrouter-mistral-family-300q-l2-n2-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "mistralai/mistral-medium-3-5",
+    "mistralai/mistral-small-2603"
+  ],
+  "questionIds": [
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L2-001",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"DAI\", \"size\": 5000, \"unit\": \"USDC\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"verify DAI balance and transaction receipt\", \"reasoning\": \"Direct USDC to DAI swap on Ethereum mainnet via Uniswap with minimal slippage and current gas price\", \"requires_follow_up\": true, \"follow_up_description\": \"Check wallet for DAI receipt and confirm transaction on Etherscan\"}",
+      "durationMs": 2986,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": 5000,
+          "unit": "USDC",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "verify DAI balance and transaction receipt",
+          "reasoning": "Direct USDC to DAI swap on Ethereum mainnet via Uniswap with minimal slippage and current gas price",
+          "requires_follow_up": true,
+          "follow_up_description": "Check wallet for DAI receipt and confirm transaction on Etherscan"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L2-002",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"PEPE\", \"size\": 100000, \"unit\": \"PEPE\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"15%\"}, \"follow_up\": \"verify execution price and fill size\", \"reasoning\": \"High-slippage market buy for immediate execution of 100,000 PEPE on a DEX\", \"requires_follow_up\": true, \"follow_up_description\": \"Confirm fill details due to high slippage tolerance\"}",
+      "durationMs": 1516,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9776068376068378,
+        "score": 0.9261538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "unit": "PEPE",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%"
+          },
+          "follow_up": "verify execution price and fill size",
+          "reasoning": "High-slippage market buy for immediate execution of 100,000 PEPE on a DEX",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm fill details due to high slippage tolerance"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L2-003",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"limit\", \"asset\": \"MATIC\", \"size\": 1000, \"unit\": \"MATIC\", \"price\": 0.8, \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"verify transaction confirmation\", \"reasoning\": \"Use DEX with low gas fees (30 gwei) and minimal slippage for MATIC purchase\", \"requires_follow_up\": true, \"follow_up_description\": \"Check transaction status and ensure fill at target price\"}",
+      "durationMs": 3425,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8181250000000001,
+        "score": 0.7700000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "MATIC",
+          "size": 1000,
+          "unit": "MATIC",
+          "price": 0.8,
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "verify transaction confirmation",
+          "reasoning": "Use DEX with low gas fees (30 gwei) and minimal slippage for MATIC purchase",
+          "requires_follow_up": true,
+          "follow_up_description": "Check transaction status and ensure fill at target price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L2-004",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"WETH\", \"size\": 50000, \"unit\": \"USDC\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap_v3\", \"risk_controls\": {\"slippage_tolerance\": \"0.3%\", \"max_gas\": \"35 gwei\", \"position_size_limit\": 50000}, \"follow_up\": \"verify liquidity depth and price impact\", \"reasoning\": \"Large swap requires liquidity analysis to avoid excessive slippage; Uniswap V3 offers concentrated liquidity for WETH/USDC pair\", \"requires_follow_up\": true, \"follow_up_description\": \"Check pool depth for 50,000 USDC swap to WETH and estimate price impact before execution\"}",
+      "durationMs": 1348,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6187586805555556,
+        "score": 0.5823611111111111,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.07777777777777778,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "WETH",
+          "size": 50000,
+          "unit": "USDC",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "35 gwei",
+            "position_size_limit": 50000
+          },
+          "follow_up": "verify liquidity depth and price impact",
+          "reasoning": "Large swap requires liquidity analysis to avoid excessive slippage; Uniswap V3 offers concentrated liquidity for WETH/USDC pair",
+          "requires_follow_up": true,
+          "follow_up_description": "Check pool depth for 50,000 USDC swap to WETH and estimate price impact before execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L2-001",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"USDC\", \"size\": \"5000\", \"unit\": \"usd\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor pool depth\", \"reasoning\": \"route via largest pool for optimal execution\"}",
+      "durationMs": 909,
+      "grade": {
+        "pass": false,
+        "confidence": 0.733125,
+        "score": 0.6900000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest pool for optimal execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L2-002",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"PEPE\", \"size\": 100000, \"unit\": \"pepe\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"15%\"}, \"follow_up\": \"confirm fill\", \"reasoning\": \"market order for immediate execution with high slippage tolerance due to asset volatility\"}",
+      "durationMs": 868,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9776068376068378,
+        "score": 0.9261538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "unit": "pepe",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution with high slippage tolerance due to asset volatility"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L2-003",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"MATIC\", \"size\": 1000, \"unit\": \"usd\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"confirm fill\", \"reasoning\": \"minimize gas fees by routing via Uniswap with low gas limit\"}",
+      "durationMs": 1178,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9775000000000001,
+        "score": 0.9200000000000002,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "unit": "usd",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "minimize gas fees by routing via Uniswap with low gas limit"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L2-004",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"WETH\", \"size\": \"50000\", \"unit\": \"usd\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap_v3\", \"risk_controls\": {\"slippage_tolerance\": \"0.3%\", \"max_gas\": \"45 gwei\"}, \"follow_up\": \"monitor pool depth and slippage\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify execution price and adjust slippage if necessary\", \"reasoning\": \"Large swap requires DEX routing via Uniswap V3 for best liquidity. Slippage tolerance set to 0.3% to balance execution quality and cost. Gas limit increased to 45 gwei to ensure timely inclusion.\"}",
+      "durationMs": 2246,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6187586805555556,
+        "score": 0.5823611111111111,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.07777777777777778,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "WETH",
+          "size": "50000",
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "45 gwei"
+          },
+          "follow_up": "monitor pool depth and slippage",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify execution price and adjust slippage if necessary",
+          "reasoning": "Large swap requires DEX routing via Uniswap V3 for best liquidity. Slippage tolerance set to 0.3% to balance execution quality and cost. Gas limit increased to 45 gwei to ensure timely inclusion."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

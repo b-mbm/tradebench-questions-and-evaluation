@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T10:51:15.961Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-021-2026-06-10T10-50-40",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-021"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-021",
+      "raw": "{\"intent\":\"execute\",\"expected_value\":180.9,\"reasoning\":\"Basis capture $7,920 (0.48% of $1.65M) plus funding $6,138 (0.062% × 6 periods) minus costs $3,465+$650, borrow drag $993 (11% APR × 2 days), and buffer $2,500 yields net $7,445 on $750K capital. Annualized: ($7,445/$750,000)×365/2 = 180.9% APR, exceeding 25% threshold. Slippage 0.21% within 0.35% limit.\"}",
+      "durationMs": 34916,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 180.9,
+          "reasoning": "Basis capture $7,920 (0.48% of $1.65M) plus funding $6,138 (0.062% × 6 periods) minus costs $3,465+$650, borrow drag $993 (11% APR × 2 days), and buffer $2,500 yields net $7,445 on $750K capital. Annualized: ($7,445/$750,000)×365/2 = 180.9% APR, exceeding 25% threshold. Slippage 0.21% within 0.35% limit."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

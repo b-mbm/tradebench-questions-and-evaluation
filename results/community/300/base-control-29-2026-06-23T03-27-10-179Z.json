@@ -1,0 +1,1213 @@
+{
+  "runAt": "2026-06-23T03:27:10.178Z",
+  "label": "base-control-29",
+  "suite": "r5e1-300q",
+  "models": [
+    "local-qwen36-27b-base"
+  ],
+  "questionIds": [
+    "L1-001",
+    "L1-002",
+    "L2-001",
+    "L2-002",
+    "L4-001",
+    "L6-002",
+    "L6-003",
+    "L9-001",
+    "L9-002",
+    "L9-003",
+    "L9-004",
+    "L9-006",
+    "L9-007",
+    "L9-008",
+    "L9-009",
+    "L10-001",
+    "L10-002",
+    "L10-003",
+    "L10-005",
+    "L10-007",
+    "L10-009",
+    "L10-010",
+    "L10-012",
+    "AGI-001",
+    "AGI-002",
+    "AGI-003",
+    "AGI-004",
+    "AGI-014",
+    "AGI-024"
+  ],
+  "evaluations": [
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "AGI-001",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"order_type\": \"perp_short\",\n  \"asset\": \"SOL\",\n  \"size\": \"180000\",\n  \"unit\": \"usd\",\n  \"venue\": \"perp_exchange\",\n  \"venue_name\": \"deribit\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.10%\",\n    \"max_gas\": \"0\",\n    \"position_size_limit\": \"400000\"\n  },\n  \"follow_up\": \"execute MATIC short clip\",\n  \"reasoning\": \"First clip SOL short $180k at 0.10% impact to reduce high beta exposure (SOL beta 1.50). Follow with MATIC short $220k at 0.22% impact (after SOL clip). Total notional $400k. Reduces crisis beta-dollar exposure by >50%. Worst-case residual PnL calculated across stress tapes after hedging.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute MATIC short clip after SOL clip to complete hedge basket within $400k limit.\"\n}",
+      "durationMs": 5914,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "shorts.MATIC.notional_usd": 0,
+          "shorts.MATIC.units": 0,
+          "shorts.SOL.notional_usd": 0,
+          "shorts.SOL.units": 0,
+          "expected_risk_reduction_pct": 0,
+          "worst_case_residual_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "order_type": "perp_short",
+          "asset": "SOL",
+          "size": "180000",
+          "unit": "usd",
+          "venue": "perp_exchange",
+          "venue_name": "deribit",
+          "risk_controls": {
+            "slippage_tolerance": "0.10%",
+            "max_gas": "0",
+            "position_size_limit": "400000"
+          },
+          "follow_up": "execute MATIC short clip",
+          "reasoning": "First clip SOL short $180k at 0.10% impact to reduce high beta exposure (SOL beta 1.50). Follow with MATIC short $220k at 0.22% impact (after SOL clip). Total notional $400k. Reduces crisis beta-dollar exposure by >50%. Worst-case residual PnL calculated across stress tapes after hedging.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute MATIC short clip after SOL clip to complete hedge basket within $400k limit."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "AGI-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"multi_venue\",\n  \"asset\": \"ALT\",\n  \"size\": \"25000\",\n  \"unit\": \"alt\",\n  \"venue\": \"multi\",\n  \"venue_name\": \"CEX-Y, Dark RFQ-B, RFQ-A\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"0\",\n    \"position_size_limit\": \"25000\"\n  },\n  \"follow_up\": \"confirm fills\",\n  \"reasoning\": \"Route 8000 ALT via CEX-Y at $2.468 + 0.12% fee = $2.4709736, 10000 ALT via Dark RFQ-B at $2.472, and 7000 ALT via RFQ-A at $2.474. Total cost = (8000 * 2.4709736) + (10000 * 2.472) + (7000 * 2.474) = 19767.7888 + 24720 + 17318 = 61805.7888. Avg price = 61805.7888 / 25000 = 2.472231552. Slippage vs mid $2.455 = (2.472231552 - 2.455) / 2.455 = 0.00701896 = 0.7019%. This avoids triggering the DEX-X bot which widens offers after 8000 ALT aggressive buying, keeping RFQ-A at $2.474 instead of $2.486.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify all child orders filled within 2 minutes and calculate final realized average price.\"\n}",
+      "durationMs": 10219,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "venue_fills.Dark_RFQ_B": 0,
+          "venue_fills.CEX_Y": 0,
+          "venue_fills.RFQ_A": 0,
+          "expected_avg_price": 0,
+          "expected_slippage_pct": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "multi_venue",
+          "asset": "ALT",
+          "size": "25000",
+          "unit": "alt",
+          "venue": "multi",
+          "venue_name": "CEX-Y, Dark RFQ-B, RFQ-A",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "0",
+            "position_size_limit": "25000"
+          },
+          "follow_up": "confirm fills",
+          "reasoning": "Route 8000 ALT via CEX-Y at $2.468 + 0.12% fee = $2.4709736, 10000 ALT via Dark RFQ-B at $2.472, and 7000 ALT via RFQ-A at $2.474. Total cost = (8000 * 2.4709736) + (10000 * 2.472) + (7000 * 2.474) = 19767.7888 + 24720 + 17318 = 61805.7888. Avg price = 61805.7888 / 25000 = 2.472231552. Slippage vs mid $2.455 = (2.472231552 - 2.455) / 2.455 = 0.00701896 = 0.7019%. This avoids triggering the DEX-X bot which widens offers after 8000 ALT aggressive buying, keeping RFQ-A at $2.474 instead of $2.486.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify all child orders filled within 2 minutes and calculate final realized average price."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "AGI-003",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"order_type\": \"private_tunnel\",\n  \"asset\": \"ETH\",\n  \"size\": \"60\",\n  \"unit\": \"eth\",\n  \"price\": \"2822\",\n  \"venue\": \"private_hedge_tunnel\",\n  \"venue_name\": \"private_hedge_tunnel\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.06%\",\n    \"max_gas\": \"0\",\n    \"position_size_limit\": \"60\"\n  },\n  \"follow_up\": \"monitor_sweep_and_funding\",\n  \"reasoning\": \"Hedge 60 ETH via private tunnel to reduce net exposure to 40 ETH, avoiding sweep threshold of 60 ETH. Execution cost 0.06% on 60 ETH at $2822 = $101.59. Residual 40 ETH long. Worst case sweep drawdown: if swept at $2700, loss on 60 ETH hedged is covered by tunnel, but residual 40 ETH drops from $2822 to $2700 = -$4880. Original margin = 100 ETH * $2850 / 5 = $57,000. Drawdown = $4880 / $57,000 = 8.56%. Funding window PnL: 40 ETH * $2822 * 0.08% = $90.30. Strategy preserves 40 ETH delta, avoids sweep, minimizes drawdown.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor sweep execution and funding payment at 42 minutes. Verify net exposure remains below 60 ETH threshold. Track post-sweep mark to $2880 for residual position PnL.\"\n}",
+      "durationMs": 9227,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "hedge_eth": 0,
+          "net_exposure_eth": 0,
+          "worst_case_margin_drawdown_pct": 0,
+          "funding_window_pnl_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "order_type": "private_tunnel",
+          "asset": "ETH",
+          "size": "60",
+          "unit": "eth",
+          "price": "2822",
+          "venue": "private_hedge_tunnel",
+          "venue_name": "private_hedge_tunnel",
+          "risk_controls": {
+            "slippage_tolerance": "0.06%",
+            "max_gas": "0",
+            "position_size_limit": "60"
+          },
+          "follow_up": "monitor_sweep_and_funding",
+          "reasoning": "Hedge 60 ETH via private tunnel to reduce net exposure to 40 ETH, avoiding sweep threshold of 60 ETH. Execution cost 0.06% on 60 ETH at $2822 = $101.59. Residual 40 ETH long. Worst case sweep drawdown: if swept at $2700, loss on 60 ETH hedged is covered by tunnel, but residual 40 ETH drops from $2822 to $2700 = -$4880. Original margin = 100 ETH * $2850 / 5 = $57,000. Drawdown = $4880 / $57,000 = 8.56%. Funding window PnL: 40 ETH * $2822 * 0.08% = $90.30. Strategy preserves 40 ETH delta, avoids sweep, minimizes drawdown.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor sweep execution and funding payment at 42 minutes. Verify net exposure remains below 60 ETH threshold. Track post-sweep mark to $2880 for residual position PnL."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "AGI-004",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"order_type\": \"yield\",\n  \"asset\": \"USDC\",\n  \"size\": \"100000\",\n  \"unit\": \"usd\",\n  \"venue\": \"multi\",\n  \"venue_name\": \"aave_curve_ethena_gmx\",\n  \"risk_controls\": {\n    \"stop_loss\": \"depeg_monitor\",\n    \"take_profit\": \"maturity\",\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"dynamic\",\n    \"position_size_limit\": \"30000\"\n  },\n  \"follow_up\": \"monitor_depeg_risk\",\n  \"reasoning\": \"liquid_barbell_capped_tail strategy: $30k Curve (8.1% APY, 1.5% 12% loss risk), $30k Aave (4.2% APY, liquid), $20k Ethena (15.2% APY, 3% 80% loss risk, 7-day exit, no queue), $20k GMX (18.7% APY - 9% hedge = 9.7% net, 5-day exit). Total $100k. 48h liquidity: $30k Aave + $30k Curve = $60k. Expected net APY: (30k*8.1% + 30k*4.2% + 20k*15.2% + 20k*9.7%) / 100k = (2430 + 1260 + 3040 + 1940) / 100k = 8670 / 100k = 8.67%. Adjust for tail risks: Curve 1.5% * 12% = 0.18% drag, Ethena 3% * 80% = 2.4% drag. Net APY = 8.67% - 0.18% - 2.4% = 6.09%. 90d profit = 100k * 6.09% * (90/365) = 1505.48 USD. Liquidity 48h = $60k.\"\n}",
+      "durationMs": 11382,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "allocation_usd.Curve_3pool": 0,
+          "allocation_usd.Aave_USDC": 0,
+          "allocation_usd.Ethena_USDe": 0,
+          "allocation_usd.GMX_GLP": 0,
+          "expected_net_apy_pct": 0,
+          "expected_90d_profit_usd": 0,
+          "liquidity_48h_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "yield",
+          "asset": "USDC",
+          "size": "100000",
+          "unit": "usd",
+          "venue": "multi",
+          "venue_name": "aave_curve_ethena_gmx",
+          "risk_controls": {
+            "stop_loss": "depeg_monitor",
+            "take_profit": "maturity",
+            "slippage_tolerance": "0.1%",
+            "max_gas": "dynamic",
+            "position_size_limit": "30000"
+          },
+          "follow_up": "monitor_depeg_risk",
+          "reasoning": "liquid_barbell_capped_tail strategy: $30k Curve (8.1% APY, 1.5% 12% loss risk), $30k Aave (4.2% APY, liquid), $20k Ethena (15.2% APY, 3% 80% loss risk, 7-day exit, no queue), $20k GMX (18.7% APY - 9% hedge = 9.7% net, 5-day exit). Total $100k. 48h liquidity: $30k Aave + $30k Curve = $60k. Expected net APY: (30k*8.1% + 30k*4.2% + 20k*15.2% + 20k*9.7%) / 100k = (2430 + 1260 + 3040 + 1940) / 100k = 8670 / 100k = 8.67%. Adjust for tail risks: Curve 1.5% * 12% = 0.18% drag, Ethena 3% * 80% = 2.4% drag. Net APY = 8.67% - 0.18% - 2.4% = 6.09%. 90d profit = 100k * 6.09% * (90/365) = 1505.48 USD. Liquidity 48h = $60k."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "AGI-014",
+      "raw": "{\n  \"intent\": \"delta-neutral short-perp carry\",\n  \"chosen_strategy\": \"maximize funding-plus-basis carry across venues within risk caps\",\n  \"perp_short_allocation_usd\": {\n    \"Binance\": 150000,\n    \"Bybit\": 100000,\n    \"Hyperliquid\": 100000,\n    \"OKX\": 100000,\n    \"dYdX\": 50000\n    },\n  \"leverage\": 5,\n  \"apr_pct\": 24.6,\n  \"pnl_30d_usd\": 20500,\n  \"survives_cascade\": true,\n  \"reasoning\": \"Allocated max allowed per venue: Binance $150k, Bybit $100k, OKX $100k, Hyperliquid $100k, dYdX $50k. Total short notional $500k. With 5x leverage, margin required is $100k, leaving $400k in spot ETH for delta neutrality. Weighted average funding rate: (150k*25% + 100k*28% + 100k*22% + 100k*30% + 50k*18%) / 500k = 24.6%. Basis carry ~0.6% annualized is negligible compared to funding. Net APR after 2.4% drag = 24.6% - 2.4% = 22.2%. 30-day PnL = $500k * 22.2% / 12 = $9,250. However, the prompt asks for funding-plus-basis carry, so using gross funding APR of 24.6% for 30 days: $500k * 24.6% / 12 = $10,250. But wait, the prompt says 'maximize resilient funding-plus-basis carry'. The basis is +0.6% premium, which compresses to +0.1%, so basis carry is 0.5% over the period? No, basis is quoted as annualized or spot? 'ETH perps trade at $3,018 (+0.6% premium)'. This is spot premium. If it compresses to +0.1%, the basis carry is 0.5% over the holding period? Or is the 0.6% annualized? Usually basis is quoted as annualized in these contexts, but here it says '+0.6% premium', implying spot. If spot premium is 0.6%, and it compresses to 0.1%, the basis carry is 0.5% absolute. But funding is annualized. Let's assume the 24.6% is the primary driver. The prompt asks for apr_pct. I will use the weighted average funding rate of 24.6% as the apr_pct. PnL 30d = $500k * 24.6% / 12 = $10,250. Survives cascade: With 5x leverage, a drop to $2,850 is a 5% drop. Margin is $100k. Loss on $500k notional is 5% * $500k = $25k. Remaining margin $75k. No forced deleveraging. So survives_cascade is true.\"\n}",
+      "durationMs": 16598,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5454545454545454,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "perp_short_allocation_usd.Binance": 1,
+          "perp_short_allocation_usd.Bybit": 1,
+          "perp_short_allocation_usd.Hyperliquid": 1,
+          "perp_short_allocation_usd.OKX": 1,
+          "perp_short_allocation_usd.dYdX": 1,
+          "leverage": 0,
+          "apr_pct": 0,
+          "pnl_30d_usd": 0,
+          "survives_cascade": 1
+        },
+        "normalizedResponse": {
+          "intent": "delta-neutral short-perp carry",
+          "chosen_strategy": "maximize funding-plus-basis carry across venues within risk caps",
+          "perp_short_allocation_usd": {
+            "Binance": 150000,
+            "Bybit": 100000,
+            "Hyperliquid": 100000,
+            "OKX": 100000,
+            "dYdX": 50000
+          },
+          "leverage": 5,
+          "apr_pct": 24.6,
+          "pnl_30d_usd": 20500,
+          "survives_cascade": true,
+          "reasoning": "Allocated max allowed per venue: Binance $150k, Bybit $100k, OKX $100k, Hyperliquid $100k, dYdX $50k. Total short notional $500k. With 5x leverage, margin required is $100k, leaving $400k in spot ETH for delta neutrality. Weighted average funding rate: (150k*25% + 100k*28% + 100k*22% + 100k*30% + 50k*18%) / 500k = 24.6%. Basis carry ~0.6% annualized is negligible compared to funding. Net APR after 2.4% drag = 24.6% - 2.4% = 22.2%. 30-day PnL = $500k * 22.2% / 12 = $9,250. However, the prompt asks for funding-plus-basis carry, so using gross funding APR of 24.6% for 30 days: $500k * 24.6% / 12 = $10,250. But wait, the prompt says 'maximize resilient funding-plus-basis carry'. The basis is +0.6% premium, which compresses to +0.1%, so basis carry is 0.5% over the period? No, basis is quoted as annualized or spot? 'ETH perps trade at $3,018 (+0.6% premium)'. This is spot premium. If it compresses to +0.1%, the basis carry is 0.5% over the holding period? Or is the 0.6% annualized? Usually basis is quoted as annualized in these contexts, but here it says '+0.6% premium', implying spot. If spot premium is 0.6%, and it compresses to 0.1%, the basis carry is 0.5% absolute. But funding is annualized. Let's assume the 24.6% is the primary driver. The prompt asks for apr_pct. I will use the weighted average funding rate of 24.6% as the apr_pct. PnL 30d = $500k * 24.6% / 12 = $10,250. Survives cascade: With 5x leverage, a drop to $2,850 is a 5% drop. Margin is $100k. Loss on $500k notional is 5% * $500k = $25k. Remaining margin $75k. No forced deleveraging. So survives_cascade is true."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:leverage",
+          "agi_validation_failed:apr_pct",
+          "agi_validation_failed:pnl_30d_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "AGI-024",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"multi_venue\",\n  \"asset\": \"ABC\",\n  \"size\": \"50000\",\n  \"unit\": \"abc\",\n  \"venue\": \"multi\",\n  \"venue_name\": \"dark_rfq_internalizer_rfq_a_hidden_public\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": \"50000\"\n  },\n  \"follow_up\": \"monitor event window\",\n  \"reasoning\": \"execute 15k dark, 18k internalizer, 10k rfq_a, 7k hidden public to avoid copy bot trigger\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify fills and event window compliance\"\n}",
+      "durationMs": 4795,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "venue_fills.Dark_RFQ": 0,
+          "venue_fills.Internalizer": 0,
+          "venue_fills.RFQ_A": 0,
+          "venue_fills.hidden_public": 0,
+          "hidden_public_qty": 0,
+          "expected_avg_price": 0,
+          "expected_slippage_pct": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "multi_venue",
+          "asset": "ABC",
+          "size": "50000",
+          "unit": "abc",
+          "venue": "multi",
+          "venue_name": "dark_rfq_internalizer_rfq_a_hidden_public",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "50000"
+          },
+          "follow_up": "monitor event window",
+          "reasoning": "execute 15k dark, 18k internalizer, 10k rfq_a, 7k hidden public to avoid copy bot trigger",
+          "requires_follow_up": true,
+          "follow_up_description": "verify fills and event window compliance"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\"\n}",
+      "durationMs": 13486,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": \"10\",\n  \"unit\": \"sol\",\n  \"price\": \"95\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"monitor order status\",\n  \"reasoning\": \"limit order placed below current market price of $100 to potentially get a better entry\"\n}",
+      "durationMs": 2925,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "unit": "sol",
+          "price": "95",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor order status",
+          "reasoning": "limit order placed below current market price of $100 to potentially get a better entry"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L10-001",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"order_type\": \"portfolio\",\n  \"asset\": \"USDC\",\n  \"size\": \"10000000\",\n  \"unit\": \"usd\",\n  \"venue\": \"defi\",\n  \"venue_name\": \"multi-protocol\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"3000000\",\n    \"slippage_tolerance\": \"0.1%\"\n  },\n  \"follow_up\": \"monitor yields\",\n  \"reasoning\": \"Optimal allocation: Aave 30%, Curve 30%, GMX 30%, Ethena 10%. Expected annualized yield: 7.15%. Downside risk: 1.5%. Liquid assets: 60% (Aave + Curve). Meets all constraints.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Rebalance if yields change or risk parameters breached\"\n}",
+      "durationMs": 4986,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "portfolio",
+          "asset": "USDC",
+          "size": "10000000",
+          "unit": "usd",
+          "venue": "defi",
+          "venue_name": "multi-protocol",
+          "risk_controls": {
+            "position_size_limit": "3000000",
+            "slippage_tolerance": "0.1%"
+          },
+          "follow_up": "monitor yields",
+          "reasoning": "Optimal allocation: Aave 30%, Curve 30%, GMX 30%, Ethena 10%. Expected annualized yield: 7.15%. Downside risk: 1.5%. Liquid assets: 60% (Aave + Curve). Meets all constraints.",
+          "requires_follow_up": true,
+          "follow_up_description": "Rebalance if yields change or risk parameters breached"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L10-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\"\n}",
+      "durationMs": 2257,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L10-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH\",\n  \"size\": \"10000000\",\n  \"unit\": \"usd\",\n  \"venue\": \"flashbots\",\n  \"venue_name\": \"flashbots private relay\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution via flashbots private relay to meet 48-hour constraint and minimize cost while maintaining non-custodial on-chain execution\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify transaction inclusion and address compliance\"\n}",
+      "durationMs": 4082,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": "10000000",
+          "unit": "usd",
+          "venue": "flashbots",
+          "venue_name": "flashbots private relay",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution via flashbots private relay to meet 48-hour constraint and minimize cost while maintaining non-custodial on-chain execution",
+          "requires_follow_up": true,
+          "follow_up_description": "verify transaction inclusion and address compliance"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L10-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"twap\",\n  \"asset\": \"ALT\",\n  \"size\": \"500000\",\n  \"unit\": \"alt\",\n  \"price\": \"8.20\",\n  \"venue\": \"binance\",\n  \"venue_name\": \"binance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.8%\",\n    \"position_size_limit\": \"300000\"\n  },\n  \"follow_up\": \"execute uniswap leg\",\n  \"reasoning\": \"sell 300k alt on binance via twap slices to minimize slippage within 24h, then sell 200k alt on uniswap with 2% impact haircut, total expected proceeds calculated as (300k * 8.20 * (1 - 0.008)) + (200k * 8.20 * (1 - 0.02)) = 2455680 + 1607200 = 4062880\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"execute uniswap leg for 200k alt\"\n}",
+      "durationMs": 6466,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ALT",
+          "size": "500000",
+          "unit": "alt",
+          "price": "8.20",
+          "venue": "binance",
+          "venue_name": "binance",
+          "risk_controls": {
+            "slippage_tolerance": "0.8%",
+            "position_size_limit": "300000"
+          },
+          "follow_up": "execute uniswap leg",
+          "reasoning": "sell 300k alt on binance via twap slices to minimize slippage within 24h, then sell 200k alt on uniswap with 2% impact haircut, total expected proceeds calculated as (300k * 8.20 * (1 - 0.008)) + (200k * 8.20 * (1 - 0.02)) = 2455680 + 1607200 = 4062880",
+          "requires_follow_up": true,
+          "follow_up_description": "execute uniswap leg for 200k alt"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L10-007",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"USDC\",\n  \"size\": \"2000000\",\n  \"unit\": \"usd\",\n  \"venue\": \"polygon\",\n  \"venue_name\": \"polygon\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor bridge settlement\",\n  \"reasoning\": \"buy discounted USDC on Polygon via bridge allocation based on expected value\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track bridge settlement and spread decay\"\n}",
+      "durationMs": 4391,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": "2000000",
+          "unit": "usd",
+          "venue": "polygon",
+          "venue_name": "polygon",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor bridge settlement",
+          "reasoning": "buy discounted USDC on Polygon via bridge allocation based on expected value",
+          "requires_follow_up": true,
+          "follow_up_description": "track bridge settlement and spread decay"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L10-009",
+      "raw": "{\n  \"intent\": \"bundle\",\n  \"order_type\": \"mev\",\n  \"asset\": \"ETH\",\n  \"size\": \"30000000\",\n  \"unit\": \"gas\",\n  \"venue\": \"flashbots\",\n  \"venue_name\": \"mev-boost\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"30M\"\n  },\n  \"follow_up\": \"monitor inclusion\",\n  \"reasoning\": \"Selected Sandwich (18M gas, $760k EV), Liquidation (5M gas, $270k EV), and NFT backrun (1M gas, $120k EV) for total 24M gas. Total EV = $1.15M. Builder profit = $1.15M * 10% - $12k = $103k. This maximizes profit within 30M gas limit while excluding the unethical frontrun.\",\n  \"requires_follow_up\": false,\n  \"follow_up_description\": \"none\"\n}",
+      "durationMs": 5935,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "bundle",
+          "order_type": "mev",
+          "asset": "ETH",
+          "size": "30000000",
+          "unit": "gas",
+          "venue": "flashbots",
+          "venue_name": "mev-boost",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30M"
+          },
+          "follow_up": "monitor inclusion",
+          "reasoning": "Selected Sandwich (18M gas, $760k EV), Liquidation (5M gas, $270k EV), and NFT backrun (1M gas, $120k EV) for total 24M gas. Total EV = $1.15M. Builder profit = $1.15M * 10% - $12k = $103k. This maximizes profit within 30M gas limit while excluding the unethical frontrun.",
+          "requires_follow_up": false,
+          "follow_up_description": "none"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L10-010",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"order_type\": \"scheduled\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"unit\": \"txns\",\n  \"price\": \"25 gwei\",\n  \"venue\": \"mainnet\",\n  \"venue_name\": \"ethereum\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0%\",\n    \"max_gas\": \"25 gwei\",\n    \"position_size_limit\": \"10 txns\"\n  },\n  \"follow_up\": \"monitor fill rate\",\n  \"reasoning\": \"execute all 10 transactions at 25 gwei in Low scenario to minimize cost; expected cost = 10 * 200,000 gas * 25 gwei * 1e-9 ETH/gwei * $3,000/ETH = $150\",\n  \"requires_follow_up\": false,\n  \"follow_up_description\": \"none\"\n}",
+      "durationMs": 5006,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "order_type": "scheduled",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "txns",
+          "price": "25 gwei",
+          "venue": "mainnet",
+          "venue_name": "ethereum",
+          "risk_controls": {
+            "slippage_tolerance": "0%",
+            "max_gas": "25 gwei",
+            "position_size_limit": "10 txns"
+          },
+          "follow_up": "monitor fill rate",
+          "reasoning": "execute all 10 transactions at 25 gwei in Low scenario to minimize cost; expected cost = 10 * 200,000 gas * 25 gwei * 1e-9 ETH/gwei * $3,000/ETH = $150",
+          "requires_follow_up": false,
+          "follow_up_description": "none"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L10-012",
+      "raw": "{\n  \"intent\": \"optimize_lightning_node\",\n  \"order_type\": \"strategy\",\n  \"asset\": \"BTC\",\n  \"size\": \"32\",\n  \"unit\": \"btc\",\n  \"venue\": \"lightning_network\",\n  \"venue_name\": \"routing_node\",\n  \"risk_controls\": {\n    \"stop_loss\": \"0\",\n    \"take_profit\": \"0\",\n    \"slippage_tolerance\": \"0\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"60 channels\"\n  },\n  \"follow_up\": \"monitor_success_rate\",\n  \"reasoning\": \"Current revenue: $18M * 0.15% = $27,000/month. Target: double to $54,000/month. Target volume: $36M/month at 0.15% fee. Strategy: Rebalance channels to fix 13% inbound imbalance (cost < $5k on-chain), open direct institutional channels to capture retry traffic and new flow, cap at 60 channels. Expected monthly revenue: $36M * 0.15% = $54,000.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify success rate reaches 95% and volume hits $36M/month\"\n}",
+      "durationMs": 6681,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "optimize_lightning_node",
+          "order_type": "strategy",
+          "asset": "BTC",
+          "size": "32",
+          "unit": "btc",
+          "venue": "lightning_network",
+          "venue_name": "routing_node",
+          "risk_controls": {
+            "stop_loss": "0",
+            "take_profit": "0",
+            "slippage_tolerance": "0",
+            "max_gas": "30 gwei",
+            "position_size_limit": "60 channels"
+          },
+          "follow_up": "monitor_success_rate",
+          "reasoning": "Current revenue: $18M * 0.15% = $27,000/month. Target: double to $54,000/month. Target volume: $36M/month at 0.15% fee. Strategy: Rebalance channels to fix 13% inbound imbalance (cost < $5k on-chain), open direct institutional channels to capture retry traffic and new flow, cap at 60 channels. Expected monthly revenue: $36M * 0.15% = $54,000.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify success rate reaches 95% and volume hits $36M/month"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"DAI\",\n  \"size\": \"5000\",\n  \"unit\": \"usdc\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"route via largest pool\"\n}",
+      "durationMs": 4500,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest pool"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"PEPE\",\n  \"size\": \"100000\",\n  \"unit\": \"tokens\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"15%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"buying 100,000 PEPE tokens with 15% slippage tolerance on mainnet via DEX\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify transaction confirmation and token receipt\"\n}",
+      "durationMs": 3698,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9776068376068378,
+        "score": 0.9261538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "tokens",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "buying 100,000 PEPE tokens with 15% slippage tolerance on mainnet via DEX",
+          "requires_follow_up": true,
+          "follow_up_description": "verify transaction confirmation and token receipt"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"portfolio_rebalance\",\n  \"asset\": \"BTC, ETH, USDC\",\n  \"size\": \"60/30/10\",\n  \"unit\": \"percent\",\n  \"venue\": \"multi_venue\",\n  \"venue_name\": \"portfolio_optimizer\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"60%\"\n  },\n  \"follow_up\": \"verify current holdings\",\n  \"reasoning\": \"portfolio rebalance to target weights requires current holdings data\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"current holdings not provided; need to fetch portfolio balances before executing rebalance\"\n}",
+      "durationMs": 4366,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9415555555555555,
+        "score": 0.8919999999999999,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0.011999999999999997,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "portfolio_rebalance",
+          "asset": "BTC, ETH, USDC",
+          "size": "60/30/10",
+          "unit": "percent",
+          "venue": "multi_venue",
+          "venue_name": "portfolio_optimizer",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "60%"
+          },
+          "follow_up": "verify current holdings",
+          "reasoning": "portfolio rebalance to target weights requires current holdings data",
+          "requires_follow_up": true,
+          "follow_up_description": "current holdings not provided; need to fetch portfolio balances before executing rebalance"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dca\",\n  \"asset\": \"BTC\",\n  \"size\": \"500\",\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": \"1500\"\n  },\n  \"follow_up\": \"confirm recurring schedule\",\n  \"reasoning\": \"DCA setup for weekly $500 BTC purchases over 3 months\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify recurring order schedule and total allocation\"\n}",
+      "durationMs": 5585,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "1500"
+          },
+          "follow_up": "confirm recurring schedule",
+          "reasoning": "DCA setup for weekly $500 BTC purchases over 3 months",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify recurring order schedule and total allocation"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.02222\",\n  \"unit\": \"btc\",\n  \"price\": \"40000\",\n  \"venue\": \"binance\",\n  \"venue_name\": \"Binance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"0.1111 btc\"\n  },\n  \"follow_up\": \"place remaining ladder orders at 41000, 42000, 43000, 44000, 45000\",\n  \"reasoning\": \"ladder buy orders every $1,000 from $40k to $45k for BTC, starting with lowest price level\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"execute remaining 4 limit orders at $41k, $42k, $43k, $44k, $45k with same size\"\n}",
+      "durationMs": 5779,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8326530612244898,
+        "score": 0.7771428571428571,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.02222",
+          "unit": "btc",
+          "price": "40000",
+          "venue": "binance",
+          "venue_name": "Binance",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "0.1111 btc"
+          },
+          "follow_up": "place remaining ladder orders at 41000, 42000, 43000, 44000, 45000",
+          "reasoning": "ladder buy orders every $1,000 from $40k to $45k for BTC, starting with lowest price level",
+          "requires_follow_up": true,
+          "follow_up_description": "execute remaining 4 limit orders at $41k, $42k, $43k, $44k, $45k with same size"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L9-001",
+      "raw": "{\n  \"intent\": \"delta-neutral funding-rate arbitrage\",\n  \"expected_value\": 18.525,\n  \"reasoning\": \"funding-only APR on unlevered notional: abs(-0.017%) × 3 × 365 × 100 = 0.017 × 3 × 365 × 100 = 18.525%\"\n}",
+      "durationMs": 4350,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "delta-neutral funding-rate arbitrage",
+          "expected_value": 18.525,
+          "reasoning": "funding-only APR on unlevered notional: abs(-0.017%) × 3 × 365 × 100 = 0.017 × 3 × 365 × 100 = 18.525%"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L9-002",
+      "raw": "{\n  \"intent\": \"provide_liquidity\",\n  \"order_type\": \"concentrated\",\n  \"asset\": \"RWA-T/USDC\",\n  \"size\": \"5000000\",\n  \"unit\": \"usd\",\n  \"venue\": \"uniswap_v3\",\n  \"venue_name\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"position_size_limit\": \"5000000\"\n  },\n  \"follow_up\": \"monitor_range\",\n  \"reasoning\": \"daily fee income = 0.3% * $2M * 80% * 59% = $2808\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"adjust range if vol exceeds 0.5%\"\n}",
+      "durationMs": 4374,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "provide_liquidity",
+          "order_type": "concentrated",
+          "asset": "RWA-T/USDC",
+          "size": "5000000",
+          "unit": "usd",
+          "venue": "uniswap_v3",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "position_size_limit": "5000000"
+          },
+          "follow_up": "monitor_range",
+          "reasoning": "daily fee income = 0.3% * $2M * 80% * 59% = $2808",
+          "requires_follow_up": true,
+          "follow_up_description": "adjust range if vol exceeds 0.5%"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L9-003",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"cross_chain\",\n  \"asset\": \"SOL\",\n  \"size\": \"10810.81\",\n  \"unit\": \"sol\",\n  \"price\": \"185.00\",\n  \"venue\": \"across\",\n  \"venue_name\": \"across_protocol\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.15%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm bridge settlement\",\n  \"reasoning\": \"Traditional route cost: $2,000,000 * 1.2% = $24,000. Across cost: $2,000,000 * 0.15% = $3,000. Cost delta: $21,000. Net SOL saved: $21,000 / $185.00 = 113.51 SOL. Total SOL received via Across: ($2,000,000 - $3,000) / $185.00 = 10,810.81 SOL.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify settlement on Solana mainnet and confirm final SOL balance.\"\n}",
+      "durationMs": 6759,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "cross_chain",
+          "asset": "SOL",
+          "size": "10810.81",
+          "unit": "sol",
+          "price": "185.00",
+          "venue": "across",
+          "venue_name": "across_protocol",
+          "risk_controls": {
+            "slippage_tolerance": "0.15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm bridge settlement",
+          "reasoning": "Traditional route cost: $2,000,000 * 1.2% = $24,000. Across cost: $2,000,000 * 0.15% = $3,000. Cost delta: $21,000. Net SOL saved: $21,000 / $185.00 = 113.51 SOL. Total SOL received via Across: ($2,000,000 - $3,000) / $185.00 = 10,810.81 SOL.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify settlement on Solana mainnet and confirm final SOL balance."
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L9-004",
+      "raw": "{\n  \"intent\": \"compute\",\n  \"order_type\": \"calculation\",\n  \"asset\": \"stETH\",\n  \"size\": \"10\",\n  \"unit\": \"eth\",\n  \"venue\": \"aave_v3\",\n  \"venue_name\": \"aave_v3\",\n  \"risk_controls\": {\n    \"stop_loss\": \"95%\",\n    \"take_profit\": \"3.4%\",\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"200\",\n    \"position_size_limit\": \"1.0526\"\n  },\n  \"follow_up\": \"verify liquidation threshold\",\n  \"reasoning\": \"safe leverage L = 1 / (1 - 0.95 * 0.945) = 1.0526\",\n  \"requires_follow_up\": false,\n  \"follow_up_description\": \"none\"\n}",
+      "durationMs": 6910,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "compute",
+          "order_type": "calculation",
+          "asset": "stETH",
+          "size": "10",
+          "unit": "eth",
+          "venue": "aave_v3",
+          "venue_name": "aave_v3",
+          "risk_controls": {
+            "stop_loss": "95%",
+            "take_profit": "3.4%",
+            "slippage_tolerance": "0.5%",
+            "max_gas": "200",
+            "position_size_limit": "1.0526"
+          },
+          "follow_up": "verify liquidation threshold",
+          "reasoning": "safe leverage L = 1 / (1 - 0.95 * 0.945) = 1.0526",
+          "requires_follow_up": false,
+          "follow_up_description": "none"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L9-006",
+      "raw": "{\n  \"intent\": \"execute_plan_b\",\n  \"order_type\": \"multi_leg\",\n  \"asset\": \"BTC\",\n  \"size\": \"50000000\",\n  \"unit\": \"usd\",\n  \"venue\": \"bybit\",\n  \"venue_name\": \"bybit\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor_funding_and_put_expiry\",\n  \"reasoning\": \"Plan B is the only feasible option with lower expected loss. Plan A incurs a 4% stress loss on $50M notional = $2M loss. Plan B involves: 1) Buying puts on 13% of notional ($6.5M) at 8% premium = $520k cost. 2) Paying 2 days of -80% annualized funding on $50M short. Daily funding rate = -80%/365 = -0.219%. 2 days = -0.438%. Funding cost = $50M * 0.00438 = $219k. 3) Transfer fee of 0.0005 BTC at $100k = $50. Total Plan B cost = $520k + $219k + $50 = $739,050. Plan A cost = $2M. Plan B is cheaper. Plan C is infeasible. Therefore, execute Plan B.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor Bybit funding rates and put option performance over the 2-day period. Prepare for BTC transfer from Coinbase once withdrawals reopen.\"\n}",
+      "durationMs": 8689,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_plan_b",
+          "order_type": "multi_leg",
+          "asset": "BTC",
+          "size": "50000000",
+          "unit": "usd",
+          "venue": "bybit",
+          "venue_name": "bybit",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor_funding_and_put_expiry",
+          "reasoning": "Plan B is the only feasible option with lower expected loss. Plan A incurs a 4% stress loss on $50M notional = $2M loss. Plan B involves: 1) Buying puts on 13% of notional ($6.5M) at 8% premium = $520k cost. 2) Paying 2 days of -80% annualized funding on $50M short. Daily funding rate = -80%/365 = -0.219%. 2 days = -0.438%. Funding cost = $50M * 0.00438 = $219k. 3) Transfer fee of 0.0005 BTC at $100k = $50. Total Plan B cost = $520k + $219k + $50 = $739,050. Plan A cost = $2M. Plan B is cheaper. Plan C is infeasible. Therefore, execute Plan B.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor Bybit funding rates and put option performance over the 2-day period. Prepare for BTC transfer from Coinbase once withdrawals reopen."
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L9-007",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"LP\",\n  \"size\": \"10000000\",\n  \"unit\": \"usd\",\n  \"venue\": \"uniswap_v4\",\n  \"venue_name\": \"custom_hook_pool\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0%\",\n    \"max_gas\": \"0\",\n    \"position_size_limit\": \"10000000\"\n  },\n  \"follow_up\": \"verify_hook_fee_capture\",\n  \"reasoning\": \"hook_fee_revenue = 50M * 0.8 * 0.0003 = 12000/day; annual = 12000 * 365 = 4380000; expected_value = 4380000 / 10000000 = 0.438\",\n  \"requires_follow_up\": false,\n  \"follow_up_description\": \"none\"\n}",
+      "durationMs": 5192,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analysis",
+          "asset": "LP",
+          "size": "10000000",
+          "unit": "usd",
+          "venue": "uniswap_v4",
+          "venue_name": "custom_hook_pool",
+          "risk_controls": {
+            "slippage_tolerance": "0%",
+            "max_gas": "0",
+            "position_size_limit": "10000000"
+          },
+          "follow_up": "verify_hook_fee_capture",
+          "reasoning": "hook_fee_revenue = 50M * 0.8 * 0.0003 = 12000/day; annual = 12000 * 365 = 4380000; expected_value = 4380000 / 10000000 = 0.438",
+          "requires_follow_up": false,
+          "follow_up_description": "none"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L9-008",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"YT\",\n  \"size\": \"500000\",\n  \"unit\": \"face_value\",\n  \"price\": \"0.031\",\n  \"venue\": \"lending_market\",\n  \"venue_name\": \"yield_token_market\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"close borrow\",\n  \"reasoning\": \"market_YT (0.031) > fair_YT (0.015863), arbitrage profitable\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"repay borrow and realize net profit\"\n}",
+      "durationMs": 4693,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "YT",
+          "size": "500000",
+          "unit": "face_value",
+          "price": "0.031",
+          "venue": "lending_market",
+          "venue_name": "yield_token_market",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "close borrow",
+          "reasoning": "market_YT (0.031) > fair_YT (0.015863), arbitrage profitable",
+          "requires_follow_up": true,
+          "follow_up_description": "repay borrow and realize net profit"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "local-qwen36-27b-base",
+      "modelLabel": "lmstudio:local-qwen36-27b-base",
+      "questionId": "L9-009",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"avs_selection\",\n  \"asset\": \"stETH\",\n  \"size\": \"100\",\n  \"unit\": \"stETH\",\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"eigenlayer\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"50 gwei\"\n  },\n  \"follow_up\": \"verify avs registration\",\n  \"reasoning\": \"calculated net scores: a1=7%, a2=9%, a3=5.9%, a4=5%, a5=8%; filtered by constraints: a1, a2, a5 eligible; selected top 3 by net score: a1, a2, a5\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"confirm avs registration and slashing parameters\"\n}",
+      "durationMs": 4672,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "avs_selection",
+          "asset": "stETH",
+          "size": "100",
+          "unit": "stETH",
+          "venue": "eigenlayer",
+          "venue_name": "eigenlayer",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "50 gwei"
+          },
+          "follow_up": "verify avs registration",
+          "reasoning": "calculated net scores: a1=7%, a2=9%, a3=5.9%, a4=5%, a5=8%; filtered by constraints: a1, a2, a5 eligible; selected top 3 by net score: a1, a2, a5",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm avs registration and slashing parameters"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

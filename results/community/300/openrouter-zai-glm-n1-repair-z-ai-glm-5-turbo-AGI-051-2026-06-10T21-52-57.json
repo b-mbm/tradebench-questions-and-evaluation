@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-10T21:53:47.655Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-AGI-051-2026-06-10T21-52-57",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-051"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-051",
+      "raw": "{\n  \"intent\": \"exit\",\n  \"decision\": \"exit\",\n  \"chosen_strategy\": \"private-first sequential exit\",\n  \"exit_sequence\": \"otc_block then dex_twap\",\n  \"private_sale_usd\": 178560,\n  \"expected_exit_value_usd\": 296760,\n  \"expected_stay_value_usd\": 189000,\n  \"self_check\": \"Private-first sequence avoids invalidating",
+      "durationMs": 25642,
+      "grade": {
+        "pass": false,
+        "confidence": 0.525,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "decision": 1,
+          "chosen_strategy": 0,
+          "exit_sequence": 0,
+          "private_sale_usd": 1,
+          "expected_exit_value_usd": 1,
+          "expected_stay_value_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit",
+          "decision": "exit",
+          "chosen_strategy": "private-first sequential exit",
+          "exit_sequence": "otc_block then dex_twap",
+          "private_sale_usd": 178560,
+          "expected_exit_value_usd": 296760,
+          "expected_stay_value_usd": 189000,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:exit_sequence",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

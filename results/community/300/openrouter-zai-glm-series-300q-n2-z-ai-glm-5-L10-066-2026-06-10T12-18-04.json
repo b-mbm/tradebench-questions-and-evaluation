@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T12:19:04.707Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-066-2026-06-10T12-18-04",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-066"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-066",
+      "raw": "{\n  \"intent\": \"calculate_deleveraging\",\n  \"expected_value\": 636608,\n  \"reasoning\": \"Stressed BAYC floor = 28 ETH × 0.78 = 21.84 ETH. Tranche A: 40 NFTs, 840 ETH debt vs 681.41 ETH max (873.6 × 0.78), needs 158.59 ETH. Tranche B: 35 NFTs, 665 ETH debt vs 596.23 ETH max (764.4 × 0.78), needs 68.77 ETH. Tranche C: 400/546 = 73.3% LTV, already compliant. Total 227.36 ETH × $2,800 = $636,608.\"\n}",
+      "durationMs": 59942,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_deleveraging",
+          "expected_value": 636608,
+          "reasoning": "Stressed BAYC floor = 28 ETH × 0.78 = 21.84 ETH. Tranche A: 40 NFTs, 840 ETH debt vs 681.41 ETH max (873.6 × 0.78), needs 158.59 ETH. Tranche B: 35 NFTs, 665 ETH debt vs 596.23 ETH max (764.4 × 0.78), needs 68.77 ETH. Tranche C: 400/546 = 73.3% LTV, already compliant. Total 227.36 ETH × $2,800 = $636,608."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

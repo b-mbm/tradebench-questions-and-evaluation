@@ -1,0 +1,64 @@
+{
+  "runAt": "2026-06-11T17:05:58.322Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-013-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-013"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-013",
+      "raw": "{\n  \"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"Harvest all available crypto loss lots, reinvest proceeds into non-identical replacements to preserve beta, and sequence liquidations from thinnest to deepest liquidity to minimize adversarial spread widening.\",\n  \"assets_to_sell\": [\n    \"SOL\",\n    \"LINK\",\n    \"MATIC\"\n  ],\n  \"sale_sequence\": [\n    \"LINK\",\n    \"SOL\",\n    \"MATIC\"\n  ],\n  \"replacement_assets\": {\n    \"SOL\": \"AVAX/NEAR basket\",\n    \"LINK\": \"UNI\",\n    \"MATIC\": \"ARB\"\n  },\n  \"net_tax_benefit\": 19560,\n  \"remaining_unoffset_gains\": 20000,\n  \"reasoning\": \"Harvestable losses total $60k ($30k LINK, $20k SOL, $10k MATIC), offsetting $60k of the $80k short-term gain and saving $22,200 in tax at 37%. Round-trip transaction costs are 0.6% on $440k notional traded ($2,640), yielding an after-fee benefit of $19,560. The remaining $20k of short-term gains is unoffset. Sale sequence prioritizes LINK first (thinnest liquidity), then SOL, then MATIC to avoid adversarial spread widening on later exits, while approved replacements maintain broad beta without repurchasing the same ticker within 30 days.\"\n}",
+      "durationMs": 127345,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "assets_to_sell": 1,
+          "sale_sequence": 1,
+          "replacement_assets.SOL": 0,
+          "replacement_assets.LINK": 1,
+          "replacement_assets.MATIC": 1,
+          "net_tax_benefit": 1,
+          "remaining_unoffset_gains": 1
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "Harvest all available crypto loss lots, reinvest proceeds into non-identical replacements to preserve beta, and sequence liquidations from thinnest to deepest liquidity to minimize adversarial spread widening.",
+          "assets_to_sell": [
+            "SOL",
+            "LINK",
+            "MATIC"
+          ],
+          "sale_sequence": [
+            "LINK",
+            "SOL",
+            "MATIC"
+          ],
+          "replacement_assets": {
+            "SOL": "AVAX/NEAR basket",
+            "LINK": "UNI",
+            "MATIC": "ARB"
+          },
+          "net_tax_benefit": 19560,
+          "remaining_unoffset_gains": 20000,
+          "reasoning": "Harvestable losses total $60k ($30k LINK, $20k SOL, $10k MATIC), offsetting $60k of the $80k short-term gain and saving $22,200 in tax at 37%. Round-trip transaction costs are 0.6% on $440k notional traded ($2,640), yielding an after-fee benefit of $19,560. The remaining $20k of short-term gains is unoffset. Sale sequence prioritizes LINK first (thinnest liquidity), then SOL, then MATIC to avoid adversarial spread widening on later exits, while approved replacements maintain broad beta without repurchasing the same ticker within 30 days."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:replacement_assets.SOL"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

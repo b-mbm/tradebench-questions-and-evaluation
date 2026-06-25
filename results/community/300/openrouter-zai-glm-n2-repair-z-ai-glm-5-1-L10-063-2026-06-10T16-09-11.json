@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T16:09:37.933Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L10-063-2026-06-10T16-09-11",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-063"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-063",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"expected_value\": 7621312.51,\n  \"reasoning\": \"Lit capacity at 12% cap per hour: 120k+192k+288k+240k+168k+96k=1,104k XYZ. Residual 96k XYZ goes to dark pool. Lit impact at 12% participation = 0.45%*(12/10)^2 = 0.648%. Total lit notional = 1,104,000*6.40 = $7,065,600. Lit impact cost = $7,065,600*0.00648 = $45,785.09. Lit net proceeds = $7,019,814.91. Dark pool proceeds = 96,000*6.40*(1-0.021) = 96,000*6.2656 = $601,497.60. Total = $7,019,814.91 + $601,497.60 = $7,621,312.51.\"\n}",
+      "durationMs": 26058,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "expected_value": 7621312.51,
+          "reasoning": "Lit capacity at 12% cap per hour: 120k+192k+288k+240k+168k+96k=1,104k XYZ. Residual 96k XYZ goes to dark pool. Lit impact at 12% participation = 0.45%*(12/10)^2 = 0.648%. Total lit notional = 1,104,000*6.40 = $7,065,600. Lit impact cost = $7,065,600*0.00648 = $45,785.09. Lit net proceeds = $7,019,814.91. Dark pool proceeds = 96,000*6.40*(1-0.021) = 96,000*6.2656 = $601,497.60. Total = $7,019,814.91 + $601,497.60 = $7,621,312.51."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

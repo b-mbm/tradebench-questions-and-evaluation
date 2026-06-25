@@ -1,0 +1,734 @@
+{
+  "runAt": "2026-06-09T06:36:19.333Z",
+  "label": "openrouter-zai-family-300q-l4-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1",
+    "z-ai/glm-5-turbo",
+    "z-ai/glm-5",
+    "z-ai/glm-5v-turbo"
+  ],
+  "questionIds": [
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"PORTFOLIO\",\n  \"size\": \"0\",\n  \"unit\": \"usd\",\n  \"venue\": \"multiple\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": \"100%\"\n  },\n  \"reasoning\": \"Cannot execute rebalance to 60% BTC, 30% ETH, 10% USDC without current holdings data. Target weights require knowing existing positions to calculate required trades (buys/sells) for each asset.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Provide current portfolio holdings including asset amounts and total portfolio value so that exact trade sizes can be calculated to match 60/30/10 target weights.\"\n}",
+      "durationMs": 6572,
+      "grade": {
+        "pass": true,
+        "confidence": 0.78,
+        "score": 0.72,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "PORTFOLIO",
+          "size": "0",
+          "unit": "usd",
+          "venue": "multiple",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "100%"
+          },
+          "reasoning": "Cannot execute rebalance to 60% BTC, 30% ETH, 10% USDC without current holdings data. Target weights require knowing existing positions to calculate required trades (buys/sells) for each asset.",
+          "requires_follow_up": true,
+          "follow_up_description": "Provide current portfolio holdings including asset amounts and total portfolio value so that exact trade sizes can be calculated to match 60/30/10 target weights."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"order_type\": \"market\",\n  \"asset\": \"USDC\",\n  \"size\": \"15\",\n  \"unit\": \"pct_of_portfolio\",\n  \"price\": \"1.00\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"25%\"\n  },\n  \"follow_up\": \"execute remaining rebalance tranches: reduce MATIC and SOL by 5% each, allocate 10% to GLD via tokenized gold, set BTC put hedge at 40000 strike\",\n  \"reasoning\": \"Portfolio correlation analysis: BTC-ETH correlation ~0.90, ETH-MATIC ~0.85, ETH-LINK ~0.80, SOL-BTC ~0.75. All five assets exhibit high co-movement with BTC dominance creating systemic drawdown risk. Immediate action: derisk 15% into USDC as correlation compression hedge. Follow-up: diversify 10% into GLD (inverse crypto correlation ~-0.30), reduce L2 exposure (MATIC highest beta to ETH), and implement tail-risk hedge via BTC puts. Net correlation score: 0.83 portfolio-wide - target reduction to <0.60 requires 25-30% non-crypto allocation.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute phased rebalancing: Tranche 2 (swap MATIC/SOL to GLD exposure), Tranche 3 (BTC put options at 40000 strike, 30-day expiry), then monitor 30-day rolling correlation matrix for convergence below 0.65 threshold\"\n}",
+      "durationMs": 22050,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.02,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": "15",
+          "unit": "pct_of_portfolio",
+          "price": "1.00",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "25%"
+          },
+          "follow_up": "execute remaining rebalance tranches: reduce MATIC and SOL by 5% each, allocate 10% to GLD via tokenized gold, set BTC put hedge at 40000 strike",
+          "reasoning": "Portfolio correlation analysis: BTC-ETH correlation ~0.90, ETH-MATIC ~0.85, ETH-LINK ~0.80, SOL-BTC ~0.75. All five assets exhibit high co-movement with BTC dominance creating systemic drawdown risk. Immediate action: derisk 15% into USDC as correlation compression hedge. Follow-up: diversify 10% into GLD (inverse crypto correlation ~-0.30), reduce L2 exposure (MATIC highest beta to ETH), and implement tail-risk hedge via BTC puts. Net correlation score: 0.83 portfolio-wide - target reduction to <0.60 requires 25-30% non-crypto allocation.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute phased rebalancing: Tranche 2 (swap MATIC/SOL to GLD exposure), Tranche 3 (BTC put options at 40000 strike, 30-day expiry), then monitor 30-day rolling correlation matrix for convergence below 0.65 threshold"
+        },
+        "failureReasons": [
+          "correlation_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L4-003",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"identification\",\n  \"asset\": \"PORTFOLIO\",\n  \"size\": \"full_portfolio\",\n  \"unit\": \"positions\",\n  \"venue\": \"internal\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"wash_sale_rule: 30-day repurchase restriction\"\n  },\n  \"follow_up\": \"Provide cost basis and acquisition dates for each position to calculate unrealized losses. Likely candidates based on current prices: MATIC (down from $2+ highs), ARB (down from $1.5+ launch), SOL (down from $200+ highs), PEPE (volatile with likely losses). Consider swapping into non-identical substitutes (e.g., MATIC→ARB, DAI→USDC) to avoid wash sale disqualification while maintaining exposure.\",\n  \"reasoning\": \"Tax loss harvesting requires cost basis data to identify positions with unrealized losses. Without portfolio holdings and acquisition prices, cannot quantify harvestable losses. Current market suggests several assets trading well below historical highs. Must comply with wash sale rules - cannot repurchase identical asset within 30 days.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Need user's complete portfolio with cost basis, acquisition dates, and position sizes for each asset to calculate specific unrealized losses and recommend optimal harvesting pairs\"\n}",
+      "durationMs": 19344,
+      "grade": {
+        "pass": false,
+        "confidence": 0.44514079670329676,
+        "score": 0.418956043956044,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.022857142857142864,
+          "asset": 0.12,
+          "size": 0.015384615384615385,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "identification",
+          "asset": "PORTFOLIO",
+          "size": "full_portfolio",
+          "unit": "positions",
+          "venue": "internal",
+          "risk_controls": {
+            "position_size_limit": "wash_sale_rule: 30-day repurchase restriction"
+          },
+          "follow_up": "Provide cost basis and acquisition dates for each position to calculate unrealized losses. Likely candidates based on current prices: MATIC (down from $2+ highs), ARB (down from $1.5+ launch), SOL (down from $200+ highs), PEPE (volatile with likely losses). Consider swapping into non-identical substitutes (e.g., MATIC→ARB, DAI→USDC) to avoid wash sale disqualification while maintaining exposure.",
+          "reasoning": "Tax loss harvesting requires cost basis data to identify positions with unrealized losses. Without portfolio holdings and acquisition prices, cannot quantify harvestable losses. Current market suggests several assets trading well below historical highs. Must comply with wash sale rules - cannot repurchase identical asset within 30 days.",
+          "requires_follow_up": true,
+          "follow_up_description": "Need user's complete portfolio with cost basis, acquisition dates, and position sizes for each asset to calculate specific unrealized losses and recommend optimal harvesting pairs"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"stress_test\",\n  \"order_type\": \"simulation\",\n  \"asset\": \"CRYPTO_PORTFOLIO\",\n  \"size\": \"-50%\",\n  \"unit\": \"crash_scenario\",\n  \"venue\": \"simulation\",\n  \"risk_controls\": {\n    \"stop_loss\": \"N/A\",\n    \"position_size_limit\": \"N/A\"\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Portfolio holdings not provided. Need current allocation (assets and quantities) to calculate stress test impact under -50% crypto crash scenario. Stablecoins (USDC/DAI) assumed flat; stETH assumed correlated with ETH; non-crypto assets (GLD/TLT) assumed uncorrelated.\",\n  \"reasoning\": \"Cannot execute stress test without portfolio composition. With prices provided, once holdings are known, can calculate: per-asset P&L under -50% crypto drawdown, portfolio-level impact, correlation assumptions for stETH/ETH, and stablecoin depeg risk scenarios.\"\n}",
+      "durationMs": 11060,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9535714285714287,
+        "score": 0.8900000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "CRYPTO_PORTFOLIO",
+          "size": "-50%",
+          "unit": "crash_scenario",
+          "venue": "simulation",
+          "risk_controls": {
+            "stop_loss": "N/A",
+            "position_size_limit": "N/A"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Portfolio holdings not provided. Need current allocation (assets and quantities) to calculate stress test impact under -50% crypto crash scenario. Stablecoins (USDC/DAI) assumed flat; stETH assumed correlated with ETH; non-crypto assets (GLD/TLT) assumed uncorrelated.",
+          "reasoning": "Cannot execute stress test without portfolio composition. With prices provided, once holdings are known, can calculate: per-asset P&L under -50% crypto drawdown, portfolio-level impact, correlation assumptions for stETH/ETH, and stablecoin depeg risk scenarios."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L4-005",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"calculation\",\n  \"asset\": \"PORTFOLIO\",\n  \"size\": 0,\n  \"venue\": \"internal\",\n  \"risk_controls\": {},\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Cannot calculate Sharpe ratio with provided context. Missing required data: portfolio holdings/allocation, historical return series, risk-free rate, and return period. Current context only provides spot prices, which are insufficient for Sharpe ratio calculation.\",\n  \"reasoning\": \"Sharpe ratio requires (mean_return - risk_free_rate) / std_dev_of_returns. The context only contains current spot prices and network parameters - no historical returns, portfolio composition, or risk-free rate data available to perform this calculation.\"\n}",
+      "durationMs": 4621,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3021,
+        "score": 0.2746363636363636,
+        "fieldScores": {
+          "intent": 0.03599999999999999,
+          "order_type": 0.04363636363636363,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "calculation",
+          "asset": "PORTFOLIO",
+          "size": 0,
+          "venue": "internal",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Cannot calculate Sharpe ratio with provided context. Missing required data: portfolio holdings/allocation, historical return series, risk-free rate, and return period. Current context only provides spot prices, which are insufficient for Sharpe ratio calculation.",
+          "reasoning": "Sharpe ratio requires (mean_return - risk_free_rate) / std_dev_of_returns. The context only contains current spot prices and network parameters - no historical returns, portfolio composition, or risk-free rate data available to perform this calculation."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC, ETH, USDC\",\n  \"size\": \"0\",\n  \"venue\": \"portfolio\",\n  \"risk_controls\": {},\n  \"reasoning\": \"Current portfolio holdings are missing from the provided context. Exact trade sizes to achieve the 60/30/10 target weights cannot be calculated without knowing the current balances.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Please provide current holdings (balances) for all assets in the portfolio to calculate the required rebalancing trades.\"\n}",
+      "durationMs": 11677,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5195384615384615,
+        "score": 0.47230769230769226,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.012307692307692299,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "limit",
+          "asset": "BTC, ETH, USDC",
+          "size": "0",
+          "venue": "portfolio",
+          "risk_controls": {},
+          "reasoning": "Current portfolio holdings are missing from the provided context. Exact trade sizes to achieve the 60/30/10 target weights cannot be calculated without knowing the current balances.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide current holdings (balances) for all assets in the portfolio to calculate the required rebalancing trades."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"none\",\n  \"asset\": \"BTC,ETH,SOL,MATIC,LINK\",\n  \"size\": \"0\",\n  \"venue\": \"portfolio\",\n  \"risk_controls\": {},\n  \"follow_up\": \"correlation_matrix_required\",\n  \"reasoning\": \"Correlation risk assessment requires historical price data (30-90 day returns) to compute pairwise correlations. Current context provides only spot prices, insufficient for correlation analysis. High correlation expected among BTC/ETH/SOL (L1 assets), moderate for MATIC (L2), lower for LINK (oracle). Diversification implication: consider non-crypto hedges (GLD, TLT available in context) or reduce concentrated crypto exposure.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Need historical return data to compute correlation matrix. Recommended actions pending analysis: 1) If correlation >0.8 across BTC/ETH/SOL, reduce to single L1 exposure, 2) Add GLD or TLT for uncorrelated hedge, 3) Consider LINK as partial diversifier due to different beta profile. Execute hedging trades once correlation coefficients are determined.\"\n}\n",
+      "durationMs": 13858,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.02,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.01333333333333334,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "none",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": "0",
+          "venue": "portfolio",
+          "risk_controls": {},
+          "follow_up": "correlation_matrix_required",
+          "reasoning": "Correlation risk assessment requires historical price data (30-90 day returns) to compute pairwise correlations. Current context provides only spot prices, insufficient for correlation analysis. High correlation expected among BTC/ETH/SOL (L1 assets), moderate for MATIC (L2), lower for LINK (oracle). Diversification implication: consider non-crypto hedges (GLD, TLT available in context) or reduce concentrated crypto exposure.",
+          "requires_follow_up": true,
+          "follow_up_description": "Need historical return data to compute correlation matrix. Recommended actions pending analysis: 1) If correlation >0.8 across BTC/ETH/SOL, reduce to single L1 exposure, 2) Add GLD or TLT for uncorrelated hedge, 3) Consider LINK as partial diversifier due to different beta profile. Execute hedging trades once correlation coefficients are determined."
+        },
+        "failureReasons": [
+          "correlation_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L4-003",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"none\",\n  \"asset\": \"portfolio\",\n  \"size\": \"0\",\n  \"venue\": \"none\",\n  \"risk_controls\": {},\n  \"follow_up\": \"request portfolio and cost basis data\",\n  \"reasoning\": \"Cannot identify tax loss harvesting opportunities without portfolio holdings and cost basis information. Current prices are provided but no position data or purchase prices are available to calculate unrealized losses.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Please provide your portfolio holdings including: (1) assets held and quantities, (2) cost basis or purchase price per asset, (3) purchase dates for wash sale rule consideration. With current prices (BTC: $45,000, ETH: $3,000, SOL: $100, MATIC: $0.80, ARB: $1.20, PEPE: $0.000001, stETH: $2,990), I can then identify positions with unrealized losses suitable for tax loss harvesting.\"\n}\n",
+      "durationMs": 7843,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3257738095238095,
+        "score": 0.3007142857142857,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "none",
+          "asset": "portfolio",
+          "size": "0",
+          "venue": "none",
+          "risk_controls": {},
+          "follow_up": "request portfolio and cost basis data",
+          "reasoning": "Cannot identify tax loss harvesting opportunities without portfolio holdings and cost basis information. Current prices are provided but no position data or purchase prices are available to calculate unrealized losses.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide your portfolio holdings including: (1) assets held and quantities, (2) cost basis or purchase price per asset, (3) purchase dates for wash sale rule consideration. With current prices (BTC: $45,000, ETH: $3,000, SOL: $100, MATIC: $0.80, ARB: $1.20, PEPE: $0.000001, stETH: $2,990), I can then identify positions with unrealized losses suitable for tax loss harvesting."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"stress_test\",\n  \"order_type\": \"simulation\",\n  \"asset\": \"CRYPTO\",\n  \"size\": \"-50%\",\n  \"unit\": \"percent\",\n  \"venue\": \"simulation\",\n  \"risk_controls\": {},\n  \"follow_up\": \"request_holdings\",\n  \"reasoning\": \"Cannot execute a portfolio stress test for a -50% crypto crash without knowing the actual portfolio holdings and position sizes.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Please provide your current portfolio allocation and position sizes to calculate the impact of a -50% crypto market crash.\"\n}",
+      "durationMs": 16049,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9214285714285715,
+        "score": 0.8600000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "CRYPTO",
+          "size": "-50%",
+          "unit": "percent",
+          "venue": "simulation",
+          "risk_controls": {},
+          "follow_up": "request_holdings",
+          "reasoning": "Cannot execute a portfolio stress test for a -50% crypto crash without knowing the actual portfolio holdings and position sizes.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide your current portfolio allocation and position sizes to calculate the impact of a -50% crypto market crash."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L4-005",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"n/a\",\n  \"asset\": \"portfolio\",\n  \"size\": \"0\",\n  \"venue\": \"n/a\",\n  \"risk_controls\": {},\n  \"follow_up\": \"request missing data\",\n  \"reasoning\": \"Cannot calculate Sharpe ratio with provided context. Sharpe ratio requires: (1) historical portfolio returns over a time period, (2) risk-free rate (e.g., 10-year Treasury yield), and (3) standard deviation of portfolio returns. The context only contains current spot prices for various assets, network info, and gas price - no historical return data, no portfolio allocation/weights, and no risk-free rate.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Please provide: 1) Your portfolio allocation (weights for each asset), 2) Historical return data (e.g., daily/weekly returns over past 12+ months), 3) Risk-free rate to use (or confirm use of current Treasury yield ~4.2%)\"\n}\n",
+      "durationMs": 12281,
+      "grade": {
+        "pass": false,
+        "confidence": 0.41491666666666666,
+        "score": 0.383,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "n/a",
+          "asset": "portfolio",
+          "size": "0",
+          "venue": "n/a",
+          "risk_controls": {},
+          "follow_up": "request missing data",
+          "reasoning": "Cannot calculate Sharpe ratio with provided context. Sharpe ratio requires: (1) historical portfolio returns over a time period, (2) risk-free rate (e.g., 10-year Treasury yield), and (3) standard deviation of portfolio returns. The context only contains current spot prices for various assets, network info, and gas price - no historical return data, no portfolio allocation/weights, and no risk-free rate.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide: 1) Your portfolio allocation (weights for each asset), 2) Historical return data (e.g., daily/weekly returns over past 12+ months), 3) Risk-free rate to use (or confirm use of current Treasury yield ~4.2%)"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L4-001",
+      "raw": "",
+      "durationMs": 4834,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"risk_assessment\",\n  \"asset\": \"BTC,ETH,SOL,MATIC,LINK\",\n  \"size\": \"portfolio\",\n  \"venue\": \"internal\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"reduce concentrated crypto exposure\"\n  },\n  \"reasoning\": \"Correlation matrix analysis: BTC-ETH correlation 0.85-0.92 (very high), BTC-SOL 0.72-0.80 (high), BTC-MATIC 0.65-0.75 (moderate-high), BTC-LINK 0.60-0.70 (moderate-high), ETH-SOL 0.78-0.85 (high). Portfolio-wide risk: 85%+ assets move in same direction during market stress (correlation convergence). Systemic crypto exposure with minimal diversification. All five assets are L1/L2 infrastructure plays with high beta to BTC.\",\n  \"follow_up\": \"Consider rebalancing: reduce BTC-ETH-SOL concentration, add GLD (negative correlation to risk assets), TLT (rates hedge), or stablecoins. Target max 60% high-correlation assets. Implement correlation-weighted position sizing.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute rebalance trades to reduce portfolio correlation coefficient below 0.70 average. Priority: reduce SOL and MATIC exposure first (highest beta), add 15-20% allocation to GLD or TLT for tail risk protection.\"\n}",
+      "durationMs": 17572,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.022857142857142864,
+          "asset": 0.026666666666666665,
+          "size": 0.009090909090909094,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "risk_assessment",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": "portfolio",
+          "venue": "internal",
+          "risk_controls": {
+            "position_size_limit": "reduce concentrated crypto exposure"
+          },
+          "reasoning": "Correlation matrix analysis: BTC-ETH correlation 0.85-0.92 (very high), BTC-SOL 0.72-0.80 (high), BTC-MATIC 0.65-0.75 (moderate-high), BTC-LINK 0.60-0.70 (moderate-high), ETH-SOL 0.78-0.85 (high). Portfolio-wide risk: 85%+ assets move in same direction during market stress (correlation convergence). Systemic crypto exposure with minimal diversification. All five assets are L1/L2 infrastructure plays with high beta to BTC.",
+          "follow_up": "Consider rebalancing: reduce BTC-ETH-SOL concentration, add GLD (negative correlation to risk assets), TLT (rates hedge), or stablecoins. Target max 60% high-correlation assets. Implement correlation-weighted position sizing.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute rebalance trades to reduce portfolio correlation coefficient below 0.70 average. Priority: reduce SOL and MATIC exposure first (highest beta), add 15-20% allocation to GLD or TLT for tail risk protection."
+        },
+        "failureReasons": [
+          "correlation_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L4-003",
+      "raw": "",
+      "durationMs": 5659,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L4-004",
+      "raw": "",
+      "durationMs": 2890,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L4-005",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"PORTFOLIO\",\n  \"size\": 0,\n  \"venue\": \"internal\",\n  \"risk_controls\": {},\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Cannot calculate Sharpe ratio: missing required data. Need portfolio returns history, risk-free rate, and portfolio allocation/weights. Context only provides current spot prices.\",\n  \"reasoning\": \"Sharpe ratio requires historical return data and standard deviation - current prices alone are insufficient\"\n}",
+      "durationMs": 9098,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5093,
+        "score": 0.463,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analysis",
+          "asset": "PORTFOLIO",
+          "size": 0,
+          "venue": "internal",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Cannot calculate Sharpe ratio: missing required data. Need portfolio returns history, risk-free rate, and portfolio allocation/weights. Context only provides current spot prices.",
+          "reasoning": "Sharpe ratio requires historical return data and standard deviation - current prices alone are insufficient"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"pending\",\n  \"asset\": \"portfolio\",\n  \"size\": \"60/30/10\",\n  \"unit\": \"allocation_percent\",\n  \"venue\": \"multi\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"request_current_holdings\",\n  \"reasoning\": \"Portfolio rebalance to 60% BTC / 30% ETH / 10% USDC requires knowledge of current holdings to calculate required trades. Current position data is missing from context.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Please provide current portfolio holdings (asset quantities) to calculate exact trade sizes needed for rebalancing to target weights: BTC=60%, ETH=30%, USDC=10%. Required inputs: current BTC balance, current ETH balance, current USDC balance, and any other assets currently held.\"\n}\n``*End of code block*",
+      "durationMs": 37374,
+      "grade": {
+        "pass": false,
+        "confidence": 0.36199999999999993,
+        "score": 0.5569230769230769,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03692307692307692,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "pending",
+          "asset": "portfolio",
+          "size": "60/30/10",
+          "unit": "allocation_percent",
+          "venue": "multi",
+          "slippage_tolerance": "0.5%",
+          "follow_up": "request_current_holdings",
+          "reasoning": "Portfolio rebalance to 60% BTC / 30% ETH / 10% USDC requires knowledge of current holdings to calculate required trades. Current position data is missing from context.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide current portfolio holdings (asset quantities) to calculate exact trade sizes needed for rebalancing to target weights: BTC=60%, ETH=30%, USDC=10%. Required inputs: current BTC balance, current ETH balance, current USDC balance, and any other assets currently held.",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"assess_correlation_risk\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"BTC,ETH,SOL,MATIC,LINK\",\n  \"size\": \"portfolio\",\n  \"venue\": \"multi\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"20% per asset\",\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"rebalance_to_reduce_concentration\",\n  \"reasoning\": \"CORRELATION RISK ASSESSMENT:\n\n**Current Correlation Matrix Analysis:**\n- BTC-ETH: ~0.85-0.95 (very high)\n- BTC-SOL: ~0.75-0.90 (high)\n- BTC-MATIC: ~0.70-0.85 (high) \n- BTC-LINK: ~0.65-0.80 (moderate-high)\n- ETH-altcoins: All >0.70\n\n**Key Findings:**\n1. All 5 assets exhibit POSITIVE correlation (0.65-0.95 range)\n2. Correlations INCREASE during market stress (tail risk convergence)\n3. True diversification benefit is minimal within this basket alone\n4. Portfolio beta to broad crypto market approaches 1.0x\n\n**Actionable Diversification Implications:**\n\nA) REDUCE CONCENTRATION:\n   - Cap individual asset allocation at 15-20%\n   - Trim highest-beta positions (SOL, MATIC) first\n   - Core-satellite: 60% BTC/ETH + 40% alts max\n\nB) ADD UNCORRELATED HEDGES:\n   - Stablecoins (USDC/DAI): 10-25% dry powder\n   - Consider GLD (gold) for macro hedge: corr ~0.1-0.3 with crypto\n   - TLT (bonds) provides negative correlation during risk-off\n\nC) HEDGING STRATEGIES:\n   - Options puts on BTC/ETH for tail protection\n   - Delta-neutral strategies on correlated pairs\n\nD) RECOMMENDED REBALANCE:\n   - Sell 30% of SOL/MATIC/LINK positions\n   - Rotate proceeds to USDC (40%) + GLD (60%)\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute rebalancing trades: reduce altcoin concentration by rotating to uncorrelated assets (USDC/GLD). Recommend specific sell orders for SOL, MATIC, LINK positions exceeding 15% allocation.\"\n}\n``*Note: This returns a correlation risk analysis rather than a direct trade order, as the prompt requests portfolio-level risk assessment. To execute the recommended diversification, follow-up orders would include market sells on concentrated altcoin positions and buys of USDC/GLD.*",
+      "durationMs": 37198,
+      "grade": {
+        "pass": false,
+        "confidence": 0.39798701298701306,
+        "score": 0.6190909090909091,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.009090909090909094,
+          "venue": 0.03,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess_correlation_risk",
+          "order_type": "analysis",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": "portfolio",
+          "venue": "multi",
+          "position_size_limit": "20% per asset",
+          "slippage_tolerance": "0.5%",
+          "follow_up": "rebalance_to_reduce_concentration",
+          "reasoning": "CORRELATION RISK ASSESSMENT:\n\n**Current Correlation Matrix Analysis:**\n- BTC-ETH: ~0.85-0.95 (very high)\n- BTC-SOL: ~0.75-0.90 (high)\n- BTC-MATIC: ~0.70-0.85 (high) \n- BTC-LINK: ~0.65-0.80 (moderate-high)\n- ETH-altcoins: All >0.70\n\n**Key Findings:**\n1. All 5 assets exhibit POSITIVE correlation (0.65-0.95 range)\n2. Correlations INCREASE during market stress (tail risk convergence)\n3. True diversification benefit is minimal within this basket alone\n4. Portfolio beta to broad crypto market approaches 1.0x\n\n**Actionable Diversification Implications:**\n\nA) REDUCE CONCENTRATION:\n   - Cap individual asset allocation at 15-20%\n   - Trim highest-beta positions (SOL, MATIC) first\n   - Core-satellite: 60% BTC/ETH + 40% alts max\n\nB) ADD UNCORRELATED HEDGES:\n   - Stablecoins (USDC/DAI): 10-25% dry powder\n   - Consider GLD (gold) for macro hedge: corr ~0.1-0.3 with crypto\n   - TLT (bonds) provides negative correlation during risk-off\n\nC) HEDGING STRATEGIES:\n   - Options puts on BTC/ETH for tail protection\n   - Delta-neutral strategies on correlated pairs\n\nD) RECOMMENDED REBALANCE:\n   - Sell 30% of SOL/MATIC/LINK positions\n   - Rotate proceeds to USDC (40%) + GLD (60%)",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute rebalancing trades: reduce altcoin concentration by rotating to uncorrelated assets (USDC/GLD). Recommend specific sell orders for SOL, MATIC, LINK positions exceeding 15% allocation.",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L4-003",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"none\",\n  \"asset\": \"portfolio\",\n  \"size\": 0,\n  \"venue\": \"none\",\n  \"risk_controls\": {},\n  \"follow_up\": \"request portfolio holdings and cost basis\",\n  \"reasoning\": \"Tax loss harvesting requires identifying positions with unrealized losses (current price < cost basis). Current prices are provided, but portfolio holdings and acquisition costs (cost basis) are needed to determine which assets qualify for tax loss harvesting.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Please provide your complete portfolio including: 1) Asset holdings (quantity of each token), 2) Cost basis per asset (average purchase price or FIFO basis), 3) Holding period (short-term vs long-term). With this information, I can identify all positions with unrealized losses and generate sell orders for tax optimization.\"\n}\n",
+      "durationMs": 19069,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3257738095238095,
+        "score": 0.3007142857142857,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "none",
+          "asset": "portfolio",
+          "size": 0,
+          "venue": "none",
+          "risk_controls": {},
+          "follow_up": "request portfolio holdings and cost basis",
+          "reasoning": "Tax loss harvesting requires identifying positions with unrealized losses (current price < cost basis). Current prices are provided, but portfolio holdings and acquisition costs (cost basis) are needed to determine which assets qualify for tax loss harvesting.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide your complete portfolio including: 1) Asset holdings (quantity of each token), 2) Cost basis per asset (average purchase price or FIFO basis), 3) Holding period (short-term vs long-term). With this information, I can identify all positions with unrealized losses and generate sell orders for tax optimization."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"n/a\",\n  \"asset\": \"portfolio\",\n  \"size\": \"stress_test\",\n  \"venue\": \"analysis\",\n  \"risk_controls\": {},\n  \"follow_up\": \"review hedge options\",\n  \"reasoning\": \"Stress test analysis for -50% crypto crash scenario:\n\n**Current Portfolio Values (pre-crash):**\n- BTC: $45,000 → $22,500 (-50%)\n- ETH: $3,000 → $1,500 (-50%)\n- SOL: $100 → $50 (-50%)\n- MATIC: $0.80 → $0.40 (-50%)\n- ARB: $1.20 → $0.60 (-50%)\n- PEPE: $0.000001 → $0.0000005 (-50%)\n- stETH: $2,990 → $1,495 (-50%)\n\n**Stable Assets (unchanged):**\n- USDC: $1.00\n- DAI: $0.999\n- GLD: $2,400 (may act as hedge)\n- TLT: $100 (may act as hedge)\n\n**Key Risk Observations:**\n1. Full correlation risk - all crypto assets would drop ~50%\n2. Stablecoins provide no yield but preserve capital\n3. GLD/TLT may appreciate in flight-to-safety scenario\n4. stETH has additional unstaking/depeg risk\n\n**Recommended Hedges:**\n- Increase stablecoin allocation\n- Add put options on BTC/ETH\n- Consider shorting high-beta assets (SOL, PEPE)\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Would you like to execute any protective trades? Options include: (1) convert volatile assets to USDC/DAI, (2) set stop-loss orders, (3) buy put options, or (4) rebalance into GLD/TLT for defensive positioning.\"\n}\n``Note: This is a portfolio analysis request rather than a direct trade execution. The stress test shows potential -50% losses across all crypto assets. Please specify if you'd like to execute any hedging trades to protect against this scenario.",
+      "durationMs": 30877,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.017999999999999995,
+          "order_type": 0.0225,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "n/a",
+          "asset": "portfolio",
+          "size": "stress_test",
+          "venue": "analysis",
+          "follow_up": "review hedge options",
+          "reasoning": "Stress test analysis for -50% crypto crash scenario:\n\n**Current Portfolio Values (pre-crash):**\n- BTC: $45,000 → $22,500 (-50%)\n- ETH: $3,000 → $1,500 (-50%)\n- SOL: $100 → $50 (-50%)\n- MATIC: $0.80 → $0.40 (-50%)\n- ARB: $1.20 → $0.60 (-50%)\n- PEPE: $0.000001 → $0.0000005 (-50%)\n- stETH: $2,990 → $1,495 (-50%)\n\n**Stable Assets (unchanged):**\n- USDC: $1.00\n- DAI: $0.999\n- GLD: $2,400 (may act as hedge)\n- TLT: $100 (may act as hedge)\n\n**Key Risk Observations:**\n1. Full correlation risk - all crypto assets would drop ~50%\n2. Stablecoins provide no yield but preserve capital\n3. GLD/TLT may appreciate in flight-to-safety scenario\n4. stETH has additional unstaking/depeg risk\n\n**Recommended Hedges:**\n- Increase stablecoin allocation\n- Add put options on BTC/ETH\n- Consider shorting high-beta assets (SOL, PEPE)",
+          "requires_follow_up": true,
+          "follow_up_description": "Would you like to execute any protective trades? Options include: (1) convert volatile assets to USDC/DAI, (2) set stop-loss orders, (3) buy put options, or (4) rebalance into GLD/TLT for defensive positioning.",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "stress_test_invalid_intent"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L4-005",
+      "raw": "{\"intent\":\"calculate\",\"order_type\":\"n/a\",\"asset\":\"portfolio\",\"size\":\"n/a\",\"venue\":\"n/a\",\"risk_controls\":{},\"follow_up\":\"request portfolio data\",\"reasoning\":\"Cannot calculate Sharpe ratio with current context. Missing required data: 1) User's portfolio holdings and weights, 2) Historical return series for each position (typically 12+ months), 3) Risk-free rate benchmark, 4) Time period for calculation. Current context only provides spot prices which are insufficient for Sharpe ratio computation.\",\"requires_follow_up\":true,\"follow_up_description\":\"Please provide: portfolio allocation/holdings, historical P&L or return data, preferred risk-free rate (e.g., US Treasury yield), and calculation timeframe to compute Sharpe ratio = (Portfolio Return - Risk-Free Rate) / Portfolio Standard Deviation\"}",
+      "durationMs": 13792,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4256632653061225,
+        "score": 0.3972857142857143,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0.01428571428571429,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "n/a",
+          "asset": "portfolio",
+          "size": "n/a",
+          "venue": "n/a",
+          "risk_controls": {},
+          "follow_up": "request portfolio data",
+          "reasoning": "Cannot calculate Sharpe ratio with current context. Missing required data: 1) User's portfolio holdings and weights, 2) Historical return series for each position (typically 12+ months), 3) Risk-free rate benchmark, 4) Time period for calculation. Current context only provides spot prices which are insufficient for Sharpe ratio computation.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide: portfolio allocation/holdings, historical P&L or return data, preferred risk-free rate (e.g., US Treasury yield), and calculation timeframe to compute Sharpe ratio = (Portfolio Return - Risk-Free Rate) / Portfolio Standard Deviation"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

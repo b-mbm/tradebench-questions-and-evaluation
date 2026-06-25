@@ -1,0 +1,56 @@
+{
+  "runAt": "2026-06-10T18:42:03.431Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-004-2026-06-10T18-40-50",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-004",
+      "raw": "{\n  \"intent\": \"allocate_yield\",\n  \"chosen_strategy\": \"liquid_barbell_capped_tail\",\n  \"allocation_usd\": {\n    \"Aave_USDC\": 20000,\n    \"Curve_3pool\": 30000,\n    \"Ethena_USDe\": 20000,\n    \"GMX_GLP\": 30000\n  },\n  \"expected_net_apy_pct\": 7.03,\n  \"expected_90d_profit_usd\": 1735,\n  \"liquidity_48h_usd\": 50000,\n  \"reasoning\": \"Aave $20k + Curve $30k = $50k liquid within 48h meeting constraint. Curve capped at $30k to avoid imbalance fees. Ethena capped at $20k to avoid adversarial queue; net APY 15.2%-3%*80%=9.2% tail-adjusted. GMX GLP $30k capped; net APY 18.7%-9%=9.7% after hedge drag. Pendle excluded as lowest risk-adjusted return at 3.8% with lockup. Risk-adjusted 90d yields: Aave 1.03%, Curve 1.81% (after 1.5%*12% tail), Ethena 1.35% (after 3%*80% tail), GMX 2.38%. Total expected 90d profit ~$1735, annualized ~7.03%.\"\n}",
+      "durationMs": 57460,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "allocation_usd.Curve_3pool": 1,
+          "allocation_usd.Aave_USDC": 1,
+          "allocation_usd.Ethena_USDe": 1,
+          "allocation_usd.GMX_GLP": 1,
+          "expected_net_apy_pct": 0,
+          "expected_90d_profit_usd": 0,
+          "liquidity_48h_usd": 1
+        },
+        "normalizedResponse": {
+          "intent": "allocate_yield",
+          "chosen_strategy": "liquid_barbell_capped_tail",
+          "allocation_usd": {
+            "Aave_USDC": 20000,
+            "Curve_3pool": 30000,
+            "Ethena_USDe": 20000,
+            "GMX_GLP": 30000
+          },
+          "expected_net_apy_pct": 7.03,
+          "expected_90d_profit_usd": 1735,
+          "liquidity_48h_usd": 50000,
+          "reasoning": "Aave $20k + Curve $30k = $50k liquid within 48h meeting constraint. Curve capped at $30k to avoid imbalance fees. Ethena capped at $20k to avoid adversarial queue; net APY 15.2%-3%*80%=9.2% tail-adjusted. GMX GLP $30k capped; net APY 18.7%-9%=9.7% after hedge drag. Pendle excluded as lowest risk-adjusted return at 3.8% with lockup. Risk-adjusted 90d yields: Aave 1.03%, Curve 1.81% (after 1.5%*12% tail), Ethena 1.35% (after 3%*80% tail), GMX 2.38%. Total expected 90d profit ~$1735, annualized ~7.03%."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:expected_net_apy_pct",
+          "agi_validation_failed:expected_90d_profit_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T10:46:40.840Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-012-2026-06-10T10-46-14",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-012"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-012",
+      "raw": "{\n  \"intent\": \"no_action\",\n  \"expected_value\": 0,\n  \"reasoning\": \"All three options rejected: R1 fails expected slashing (2.2% > 1.5% limit) and has negative EV (-$552); R2 fails expected slashing (3.0% > 1.5%) and withdrawal delay (10 days > 7 days) with negative EV (-$313); R3 fails oracle age (35 min > 20 min) with negative EV (-$229). No option meets all five criteria: positive net EV, slashing ≤1.5%, withdrawal ≤7 days, oracle age ≤20 min, capacity ≥100 stETH.\"\n}",
+      "durationMs": 25903,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "All three options rejected: R1 fails expected slashing (2.2% > 1.5% limit) and has negative EV (-$552); R2 fails expected slashing (3.0% > 1.5%) and withdrawal delay (10 days > 7 days) with negative EV (-$313); R3 fails oracle age (35 min > 20 min) with negative EV (-$229). No option meets all five criteria: positive net EV, slashing ≤1.5%, withdrawal ≤7 days, oracle age ≤20 min, capacity ≥100 stETH."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

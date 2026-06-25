@@ -1,0 +1,780 @@
+{
+  "runAt": "2026-06-09T13:12:46.780Z",
+  "label": "openrouter-moonshot-kimi-family-300q-l4-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2-thinking",
+    "moonshotai/kimi-k2.6",
+    "moonshotai/kimi-k2.5",
+    "moonshotai/kimi-k2-0905"
+  ],
+  "questionIds": [
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-001",
+      "raw": "{\"intent\":\"rebalance\",\"order_type\":\"multi-order\",\"asset\":\"BTC,ETH,USDC\",\"size\":\"TBD\",\"unit\":\"usd\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"awaiting current portfolio holdings\",\"reasoning\":\"Cannot calculate exact trade sizes for 60/30/10 portfolio rebalance without current holdings data. Follow-up required before execution.\",\"requires_follow_up\":true,\"follow_up_description\":\"Please provide current holdings of BTC, ETH, USDC, and any other assets in portfolio to compute necessary buy/sell quantities to achieve target weights.\"}",
+      "durationMs": 35330,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7008413461538463,
+        "score": 0.6596153846153847,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02461538461538462,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "multi-order",
+          "asset": "BTC,ETH,USDC",
+          "size": "TBD",
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "awaiting current portfolio holdings",
+          "reasoning": "Cannot calculate exact trade sizes for 60/30/10 portfolio rebalance without current holdings data. Follow-up required before execution.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide current holdings of BTC, ETH, USDC, and any other assets in portfolio to compute necessary buy/sell quantities to achieve target weights."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-002",
+      "raw": "{\"intent\":\"assess_correlation_risk\",\"order_type\":\"portfolio_analysis\",\"asset\":\"BTC-ETH-SOL-MATIC-LINK\",\"size\":0,\"venue\":\"internal\",\"risk_controls\":{\"position_size_limit\":\"80%\"},\"follow_up\":\"execute_rebalancing_trades\",\"requires_follow_up\":true,\"follow_up_description\":\"HIGH CORRELATION RISK IDENTIFIED: Crypto assets (BTC, ETH, SOL, MATIC, LINK) exhibit 0.75-0.95 correlation, creating systemic portfolio risk. ACTION PLAN: 1) Reduce crypto exposure to 60% max via proportional selling, 2) Allocate 15% to GLD (gold) for macro diversification, 3) Allocate 15% to TLT (bonds) for negative correlation benefit, 4) Reserve 10% in USDC/DAI stablecoins. Execute rebalancing in 3 tranches to minimize slippage. Monitor 30-day rolling correlations; if any pair exceeds 0.85 for 2+ weeks, further reduce crypto allocation by 10%.\",\"reasoning\":\"Portfolio analysis reveals dangerous concentration in highly correlated crypto assets. Historical data shows crypto correlations spike during downturns, eliminating diversification benefits within the sector. GLD and TLT provide traditional safe-haven diversification with low/negative correlation to crypto. Stablecoins add stability and liquidity. 80% position size limit prevents over-concentration in any single risk factor.\"}",
+      "durationMs": 76046,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.1457142857142857,
+          "order_type": 0.07529411764705883,
+          "asset": 0.021818181818181813,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess_correlation_risk",
+          "order_type": "portfolio_analysis",
+          "asset": "BTC-ETH-SOL-MATIC-LINK",
+          "size": 0,
+          "venue": "internal",
+          "risk_controls": {
+            "position_size_limit": "80%"
+          },
+          "follow_up": "execute_rebalancing_trades",
+          "requires_follow_up": true,
+          "follow_up_description": "HIGH CORRELATION RISK IDENTIFIED: Crypto assets (BTC, ETH, SOL, MATIC, LINK) exhibit 0.75-0.95 correlation, creating systemic portfolio risk. ACTION PLAN: 1) Reduce crypto exposure to 60% max via proportional selling, 2) Allocate 15% to GLD (gold) for macro diversification, 3) Allocate 15% to TLT (bonds) for negative correlation benefit, 4) Reserve 10% in USDC/DAI stablecoins. Execute rebalancing in 3 tranches to minimize slippage. Monitor 30-day rolling correlations; if any pair exceeds 0.85 for 2+ weeks, further reduce crypto allocation by 10%.",
+          "reasoning": "Portfolio analysis reveals dangerous concentration in highly correlated crypto assets. Historical data shows crypto correlations spike during downturns, eliminating diversification benefits within the sector. GLD and TLT provide traditional safe-haven diversification with low/negative correlation to crypto. Stablecoins add stability and liquidity. 80% position size limit prevents over-concentration in any single risk factor."
+        },
+        "failureReasons": [
+          "correlation_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-003",
+      "raw": "{\"intent\":\"identify_tax_loss_harvesting\",\"order_type\":\"analysis\",\"asset\":\"portfolio\",\"size\":0,\"venue\":\"internal\",\"risk_controls\":{},\"requires_follow_up\":true,\"follow_up_description\":\"Cannot identify tax loss harvesting opportunities without portfolio holdings and cost basis data. Please provide: asset holdings, purchase dates, cost basis, and quantities for analysis.\",\"reasoning\":\"Tax loss harvesting requires analyzing unrealized losses in portfolio positions relative to cost basis. Current context only provides market prices without holdings or cost basis information.\"}",
+      "durationMs": 5602,
+      "grade": {
+        "pass": false,
+        "confidence": 0.50138,
+        "score": 0.45580000000000004,
+        "fieldScores": {
+          "intent": 0.1008,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "identify_tax_loss_harvesting",
+          "order_type": "analysis",
+          "asset": "portfolio",
+          "size": 0,
+          "venue": "internal",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Cannot identify tax loss harvesting opportunities without portfolio holdings and cost basis data. Please provide: asset holdings, purchase dates, cost basis, and quantities for analysis.",
+          "reasoning": "Tax loss harvesting requires analyzing unrealized losses in portfolio positions relative to cost basis. Current context only provides market prices without holdings or cost basis information."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-004",
+      "raw": "{\"intent\":\"stress_test\",\"order_type\":\"simulation\",\"asset\":\"portfolio\",\"size\":\"100\",\"unit\":\"%\",\"venue\":\"internal\",\"risk_controls\":{},\"follow_up\":\"submit portfolio holdings\",\"reasoning\":\"simulate 50% decline across crypto assets (BTC, ETH, SOL, MATIC, ARB, PEPE, stETH) with stablecoins and tradfi unchanged\",\"requires_follow_up\":true,\"follow_up_description\":\"Need portfolio composition (assets and quantities) to calculate exact loss amounts and post-crash values\"}",
+      "durationMs": 23844,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03599999999999999,
+          "asset": 0.16,
+          "size": 0.04,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "portfolio",
+          "size": "100",
+          "unit": "%",
+          "venue": "internal",
+          "risk_controls": {},
+          "follow_up": "submit portfolio holdings",
+          "reasoning": "simulate 50% decline across crypto assets (BTC, ETH, SOL, MATIC, ARB, PEPE, stETH) with stablecoins and tradfi unchanged",
+          "requires_follow_up": true,
+          "follow_up_description": "Need portfolio composition (assets and quantities) to calculate exact loss amounts and post-crash values"
+        },
+        "failureReasons": [
+          "stress_test_invalid_size"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L4-005",
+      "raw": "{\"intent\":\"calculate\",\"order_type\":\"analysis\",\"asset\":\"Sharpe ratio\",\"size\":0,\"unit\":\"ratio\",\"venue\":\"internal\",\"risk_controls\":{},\"reasoning\":\"Insufficient data: Sharpe ratio requires historical portfolio returns, risk-free rate, and volatility. Context only provides current asset prices snapshot.\",\"requires_follow_up\":true,\"follow_up_description\":\"Need portfolio return time series, risk-free rate, and calculation timeframe to compute Sharpe ratio.\"}",
+      "durationMs": 17503,
+      "grade": {
+        "pass": false,
+        "confidence": 0.41030000000000005,
+        "score": 0.37300000000000005,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.16,
+          "asset": 0.03,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analysis",
+          "asset": "Sharpe ratio",
+          "size": 0,
+          "unit": "ratio",
+          "venue": "internal",
+          "risk_controls": {},
+          "reasoning": "Insufficient data: Sharpe ratio requires historical portfolio returns, risk-free rate, and volatility. Context only provides current asset prices snapshot.",
+          "requires_follow_up": true,
+          "follow_up_description": "Need portfolio return time series, risk-free rate, and calculation timeframe to compute Sharpe ratio."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-001",
+      "raw": " {\"intent\":\"rebalance\",\"order_type\":\"portfolio\",\"asset\":\"BTC,ETH,USDC\",\"size\":\"TBD\",\"unit\":\"usd\",\"venue\":\"multiple\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"provide current holdings\",\"reasoning\":\"Current portfolio holdings are missing; cannot calculate required trade sizes to achieve the 60% BTC, 30% ETH, 10% USDC target allocation.\",\"requires_follow_up\":true,\"follow_up_description\":\"Need current portfolio balances to determine deviations from target weights and generate specific rebalancing orders.\"}",
+      "durationMs": 94144,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7038461538461539,
+        "score": 0.6569230769230769,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03692307692307692,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "portfolio",
+          "asset": "BTC,ETH,USDC",
+          "size": "TBD",
+          "unit": "usd",
+          "venue": "multiple",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "provide current holdings",
+          "reasoning": "Current portfolio holdings are missing; cannot calculate required trade sizes to achieve the 60% BTC, 30% ETH, 10% USDC target allocation.",
+          "requires_follow_up": true,
+          "follow_up_description": "Need current portfolio balances to determine deviations from target weights and generate specific rebalancing orders."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-002",
+      "raw": "{\"intent\":\"assess_correlation_risk\",\"order_type\":\"portfolio_analysis\",\"asset\":\"BTC,ETH,SOL,MATIC,LINK\",\"size\":\"N/A\",\"unit\":\"portfolio\",\"venue\":\"internal\",\"risk_controls\":{\"position_size_limit\":\"reduce individual crypto-beta exposure when pairwise 30d correlation exceeds 0.80\",\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"reasoning\":\"Assessment: BTC, ETH, SOL, MATIC, and LINK exhibit high pairwise correlation (historically 0.75-0.95) as they share systematic crypto-beta and risk-asset sentiment. SOL, MATIC, and LINK are higher-beta to ETH/BTC moves, providing limited true diversification. LINK price is unavailable in the provided context. Portfolio-wide implication: a broad crypto drawdown will likely affect all five positions simultaneously, amplifying tail risk. Actionable diversification: 1) Reduce net crypto-beta allocation and introduce uncorrelated assets from available context (GLD for macro flight-to-safety, TLT for rates/duration, USDC/DAI for cash ballast). 2) Apply correlation-adjusted position sizing so no single high-correlation sleeve exceeds concentration limits. 3) Consider rotating a portion of ETH/SOL/MATIC overlap into stETH only if seeking ETH-denominated yield, acknowledging it retains ETH correlation. 4) Use stablecoins to dampen portfolio volatility and create dry powder.\",\"follow_up\":\"await holdings for rebalancing\",\"requires_follow_up\":true,\"follow_up_description\":\"Submit current portfolio weights and target volatility/correlation budget to generate executable rebalancing orders and specific hedge ratios\"}",
+      "durationMs": 89368,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.1457142857142857,
+          "order_type": 0.07529411764705883,
+          "asset": 0.026666666666666665,
+          "size": 0.009090909090909094,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess_correlation_risk",
+          "order_type": "portfolio_analysis",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": "N/A",
+          "unit": "portfolio",
+          "venue": "internal",
+          "risk_controls": {
+            "position_size_limit": "reduce individual crypto-beta exposure when pairwise 30d correlation exceeds 0.80",
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "reasoning": "Assessment: BTC, ETH, SOL, MATIC, and LINK exhibit high pairwise correlation (historically 0.75-0.95) as they share systematic crypto-beta and risk-asset sentiment. SOL, MATIC, and LINK are higher-beta to ETH/BTC moves, providing limited true diversification. LINK price is unavailable in the provided context. Portfolio-wide implication: a broad crypto drawdown will likely affect all five positions simultaneously, amplifying tail risk. Actionable diversification: 1) Reduce net crypto-beta allocation and introduce uncorrelated assets from available context (GLD for macro flight-to-safety, TLT for rates/duration, USDC/DAI for cash ballast). 2) Apply correlation-adjusted position sizing so no single high-correlation sleeve exceeds concentration limits. 3) Consider rotating a portion of ETH/SOL/MATIC overlap into stETH only if seeking ETH-denominated yield, acknowledging it retains ETH correlation. 4) Use stablecoins to dampen portfolio volatility and create dry powder.",
+          "follow_up": "await holdings for rebalancing",
+          "requires_follow_up": true,
+          "follow_up_description": "Submit current portfolio weights and target volatility/correlation budget to generate executable rebalancing orders and specific hedge ratios"
+        },
+        "failureReasons": [
+          "correlation_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-003",
+      "raw": "{\"intent\":\"tax_loss_harvest\",\"order_type\":\"analysis\",\"asset\":\"PORTFOLIO\",\"size\":\"0\",\"venue\":\"portfolio\",\"risk_controls\":{},\"follow_up\":\"await cost basis data\",\"reasoning\":\"Current market prices are provided, but tax loss harvesting requires cost basis and position sizes to calculate unrealized losses; without holdings and acquisition prices, specific lots to harvest cannot be identified\",\"requires_follow_up\":true,\"follow_up_description\":\"Submit complete portfolio holdings including per-asset cost basis, lot acquisition dates, and quantities to identify unrealized losses, estimate tax savings, and flag potential wash-sale violations\"}",
+      "durationMs": 39563,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6427777777777777,
+        "score": 0.5933333333333333,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.01333333333333334,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "order_type": "analysis",
+          "asset": "PORTFOLIO",
+          "size": "0",
+          "venue": "portfolio",
+          "risk_controls": {},
+          "follow_up": "await cost basis data",
+          "reasoning": "Current market prices are provided, but tax loss harvesting requires cost basis and position sizes to calculate unrealized losses; without holdings and acquisition prices, specific lots to harvest cannot be identified",
+          "requires_follow_up": true,
+          "follow_up_description": "Submit complete portfolio holdings including per-asset cost basis, lot acquisition dates, and quantities to identify unrealized losses, estimate tax savings, and flag potential wash-sale violations"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-004",
+      "raw": "",
+      "durationMs": 42384,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-005",
+      "raw": " {\"intent\":\"calculate_sharpe_ratio\",\"order_type\":\"analysis\",\"asset\":\"PORTFOLIO\",\"size\":\"N/A\",\"venue\":\"none\",\"risk_controls\":{},\"follow_up\":\"request portfolio weights and historical returns\",\"requires_follow_up\":true,\"follow_up_description\":\"Provide portfolio weights, historical return time series for the relevant assets, and the risk-free rate to compute the Sharpe ratio.\",\"reasoning\":\"The provided context only contains current spot prices without time-series return data, portfolio composition, or a risk-free rate, all of which are required to calculate the Sharpe ratio.\"}",
+      "durationMs": 100493,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6045918367346939,
+        "score": 0.5642857142857143,
+        "fieldScores": {
+          "intent": 0.135,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.01428571428571429,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate_sharpe_ratio",
+          "order_type": "analysis",
+          "asset": "PORTFOLIO",
+          "size": "N/A",
+          "venue": "none",
+          "risk_controls": {},
+          "follow_up": "request portfolio weights and historical returns",
+          "requires_follow_up": true,
+          "follow_up_description": "Provide portfolio weights, historical return time series for the relevant assets, and the risk-free rate to compute the Sharpe ratio.",
+          "reasoning": "The provided context only contains current spot prices without time-series return data, portfolio composition, or a risk-free rate, all of which are required to calculate the Sharpe ratio."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L4-001",
+      "raw": "{\"intent\":\"rebalance\",\"order_type\":\"market\",\"asset\":\"BTC,ETH,USDC\",\"size\":\"TBD\",\"unit\":\"usd\",\"venue\":\"portfolio\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"position_size_limit\":\"100%\"},\"follow_up\":\"provide current holdings\",\"requires_follow_up\":true,\"follow_up_description\":\"Current portfolio holdings (quantities of BTC, ETH, USDC, and other assets) and total portfolio value are required to calculate the exact buy/sell quantities needed to achieve the target weights of 60% BTC, 30% ETH, 10% USDC\",\"reasoning\":\"Target allocation specified as 60/30/10 but current portfolio composition is unknown. Cannot compute rebalancing trades without baseline positions to determine deviation from target weights.\"}",
+      "durationMs": 59469,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8357142857142857,
+        "score": 0.78,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "BTC,ETH,USDC",
+          "size": "TBD",
+          "unit": "usd",
+          "venue": "portfolio",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "position_size_limit": "100%"
+          },
+          "follow_up": "provide current holdings",
+          "requires_follow_up": true,
+          "follow_up_description": "Current portfolio holdings (quantities of BTC, ETH, USDC, and other assets) and total portfolio value are required to calculate the exact buy/sell quantities needed to achieve the target weights of 60% BTC, 30% ETH, 10% USDC",
+          "reasoning": "Target allocation specified as 60/30/10 but current portfolio composition is unknown. Cannot compute rebalancing trades without baseline positions to determine deviation from target weights."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"assess\",\n  \"order_type\": \"correlation_analysis\",\n  \"asset\": \"BTC,ETH,SOL,MATIC,LINK\",\n  \"size\": \"portfolio\",\n  \"venue\": \"analytics\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"diversify_concentration\",\n    \"stop_loss\": \"portfolio_beta_hedge\"\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Missing LINK spot price in context; require 90-day historical return series for all five assets to compute Pearson correlation matrix, rolling beta, and covariance structure\",\n  \"reasoning\": \"Qualitative assessment: BTC-ETH-SOL-MATIC exhibit high pairwise correlation (0.75-0.95) during risk-off contagion events. SOL and MATIC display higher beta (>1.2) to ETH moves. LINK (oracle infrastructure) correlates with DeFi TVL velocity rather than pure crypto beta, offering marginal diversification. Critical gaps: LINK price data unavailable; single timestamp insufficient for correlation math. Diversification imperative: Reduce crypto-beta concentration. Context offers uncorrelated alternatives: GLD (2400, inflation hedge) and TLT (100, duration/rate hedge) provide negative correlation to risk assets. stETH (2990) tracks ETH (3000) at 0.999 correlation - avoid synthetic doubling of ETH exposure. Actionable: Cap high-beta crypto basket (BTC,ETH,SOL,MATIC,LINK) at 40% portfolio weight, allocate 30% to stables (USDC/DAI), 30% to macro hedges (GLD/TLT) to minimize portfolio-wide correlation risk.\"\n}",
+      "durationMs": 101924,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8025974025974025,
+        "score": 0.749090909090909,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.009090909090909094,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess",
+          "order_type": "correlation_analysis",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": "portfolio",
+          "venue": "analytics",
+          "risk_controls": {
+            "position_size_limit": "diversify_concentration",
+            "stop_loss": "portfolio_beta_hedge"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Missing LINK spot price in context; require 90-day historical return series for all five assets to compute Pearson correlation matrix, rolling beta, and covariance structure",
+          "reasoning": "Qualitative assessment: BTC-ETH-SOL-MATIC exhibit high pairwise correlation (0.75-0.95) during risk-off contagion events. SOL and MATIC display higher beta (>1.2) to ETH moves. LINK (oracle infrastructure) correlates with DeFi TVL velocity rather than pure crypto beta, offering marginal diversification. Critical gaps: LINK price data unavailable; single timestamp insufficient for correlation math. Diversification imperative: Reduce crypto-beta concentration. Context offers uncorrelated alternatives: GLD (2400, inflation hedge) and TLT (100, duration/rate hedge) provide negative correlation to risk assets. stETH (2990) tracks ETH (3000) at 0.999 correlation - avoid synthetic doubling of ETH exposure. Actionable: Cap high-beta crypto basket (BTC,ETH,SOL,MATIC,LINK) at 40% portfolio weight, allocate 30% to stables (USDC/DAI), 30% to macro hedges (GLD/TLT) to minimize portfolio-wide correlation risk."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L4-003",
+      "raw": " {\"intent\":\"tax_loss_harvest_analysis\",\"order_type\":\"analysis\",\"asset\":\"PORTFOLIO\",\"size\":0,\"venue\":\"internal\",\"risk_controls\":{},\"requires_follow_up\":true,\"follow_up_description\":\"Provide historical cost basis and current position sizes for all holdings to calculate unrealized gains/losses and identify specific tax loss harvesting candidates\",\"reasoning\":\"Tax loss harvesting requires comparing current market prices against cost basis to identify unrealized losses; current data only includes market prices without acquisition costs or position quantities\"}",
+      "durationMs": 36008,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5165,
+        "score": 0.46954545454545454,
+        "fieldScores": {
+          "intent": 0.11454545454545453,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest_analysis",
+          "order_type": "analysis",
+          "asset": "PORTFOLIO",
+          "size": 0,
+          "venue": "internal",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Provide historical cost basis and current position sizes for all holdings to calculate unrealized gains/losses and identify specific tax loss harvesting candidates",
+          "reasoning": "Tax loss harvesting requires comparing current market prices against cost basis to identify unrealized losses; current data only includes market prices without acquisition costs or position quantities"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L4-004",
+      "raw": " {\"intent\":\"stress_test\",\"order_type\":\"simulation\",\"asset\":\"CRYPTO_PORTFOLIO\",\"size\":\"50%\",\"unit\":\"drawdown_scenario\",\"venue\":\"risk_engine\",\"risk_controls\":{\"position_size_limit\":\"50%\",\"slippage_tolerance\":\"0%\"},\"reasoning\":\"Apply -50% price shock to volatile crypto assets (BTC:45000, ETH:3000, SOL:100, MATIC:0.8, ARB:1.2, PEPE:0.000001, stETH:2990) while maintaining stablecoin pegs (USDC:1, DAI:0.999) and traditional assets (GLD:2400, TLT:100) constant. Requires portfolio weights to calculate final NAV impact.\",\"requires_follow_up\":true,\"follow_up_description\":\"Submit current portfolio holdings (quantities per asset) to compute exact post-crash valuation, liquidation thresholds, and remaining buying power\"}",
+      "durationMs": 14059,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03599999999999999,
+          "asset": 0.096,
+          "size": 0.12,
+          "venue": 0.011999999999999997,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "CRYPTO_PORTFOLIO",
+          "size": "50%",
+          "unit": "drawdown_scenario",
+          "venue": "risk_engine",
+          "risk_controls": {
+            "position_size_limit": "50%",
+            "slippage_tolerance": "0%"
+          },
+          "reasoning": "Apply -50% price shock to volatile crypto assets (BTC:45000, ETH:3000, SOL:100, MATIC:0.8, ARB:1.2, PEPE:0.000001, stETH:2990) while maintaining stablecoin pegs (USDC:1, DAI:0.999) and traditional assets (GLD:2400, TLT:100) constant. Requires portfolio weights to calculate final NAV impact.",
+          "requires_follow_up": true,
+          "follow_up_description": "Submit current portfolio holdings (quantities per asset) to compute exact post-crash valuation, liquidation thresholds, and remaining buying power"
+        },
+        "failureReasons": [
+          "stress_test_invalid_size"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L4-005",
+      "raw": "{\"intent\":\"calculate_sharpe_ratio\",\"order_type\":\"analysis\",\"asset\":\"PORTFOLIO\",\"size\":0,\"venue\":\"internal\",\"risk_controls\":{},\"requires_follow_up\":true,\"follow_up_description\":\"Please provide portfolio holdings/weights, historical price/return series for the relevant period, and the risk-free rate benchmark. The current context only contains spot prices and cannot yield return statistics.\",\"reasoning\":\"Insufficient data: Sharpe ratio calculation requires mean portfolio return, risk-free rate, and standard deviation of returns. The provided JSON lacks historical prices, position weights, and a risk-free rate.\"}",
+      "durationMs": 25819,
+      "grade": {
+        "pass": false,
+        "confidence": 0.539,
+        "score": 0.49000000000000005,
+        "fieldScores": {
+          "intent": 0.135,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate_sharpe_ratio",
+          "order_type": "analysis",
+          "asset": "PORTFOLIO",
+          "size": 0,
+          "venue": "internal",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide portfolio holdings/weights, historical price/return series for the relevant period, and the risk-free rate benchmark. The current context only contains spot prices and cannot yield return statistics.",
+          "reasoning": "Insufficient data: Sharpe ratio calculation requires mean portfolio return, risk-free rate, and standard deviation of returns. The provided JSON lacks historical prices, position weights, and a risk-free rate."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L4-001",
+      "raw": "{\"intent\":\"rebalance\",\"order_type\":\"market\",\"asset\":\"portfolio\",\"size\":\"60/30/10\",\"unit\":\"percent\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":\"100%\"},\"requires_follow_up\":true,\"follow_up_description\":\"Need current portfolio holdings to calculate exact rebalancing trades to achieve 60% BTC, 30% ETH, 10% USDC target weights\"}",
+      "durationMs": 5639,
+      "grade": {
+        "pass": false,
+        "confidence": 0.73125,
+        "score": 0.6749999999999999,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "portfolio",
+          "size": "60/30/10",
+          "unit": "percent",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "100%"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Need current portfolio holdings to calculate exact rebalancing trades to achieve 60% BTC, 30% ETH, 10% USDC target weights"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L4-002",
+      "raw": " {\"intent\":\"assess\",\"order_type\":\"correlation_analysis\",\"asset\":\"BTC,ETH,SOL,MATIC,LINK\",\"size\":100,\"unit\":\"percent_portfolio\",\"venue\":\"risk_engine\",\"risk_controls\":{\"position_size_limit\":\"max_correlation_0.7\",\"slippage_tolerance\":\"n/a\"},\"reasoning\":\"Critical correlation risk identified: BTC-ETH correlation ~0.90, SOL/ETH ~0.85, MATIC/ETH ~0.88, LINK/ETH ~0.82. Portfolio exhibits crypto-beta concentration with no diversification benefit during risk-off events. Cross-asset correlation exceeds 0.80 across all pairs, indicating single-factor exposure. Actionable implications: 1) Reduce alt-crypto overlap by trimming",
+      "durationMs": 38136,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.06352941176470588,
+          "order_type": 0.06736842105263158,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.011999999999999997,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "assess",
+          "order_type": "correlation_analysis",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": "100",
+          "unit": "percent_portfolio",
+          "venue": "risk_engine",
+          "position_size_limit": "max_correlation_0.7",
+          "slippage_tolerance": "n/a",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "correlation_invalid_intent"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L4-003",
+      "raw": " {\"intent\":\"analyze\",\"order_type\":\"data_request\",\"asset\":\"PORTFOLIO\",\"size\":0,\"venue\":\"portfolio_manager\",\"risk_controls\":{\"position_size_limit\":\"N/A\"},\"requires_follow_up\":true,\"follow_up_description\":\"Require portfolio cost basis and acquisition dates to calculate unrealized losses. Current context provides spot prices but lacks purchase history needed to identify which holdings are at a loss for tax harvesting purposes.\",\"reasoning\":\"Tax loss harvesting requires comparing current market prices against cost basis to identify unrealized losses; without acquisition price and date data for current holdings, specific opportunities cannot be determined\"} ",
+      "durationMs": 29092,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3865882034632035,
+        "score": 0.35685064935064936,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.04363636363636363,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.0075,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "data_request",
+          "asset": "PORTFOLIO",
+          "size": 0,
+          "venue": "portfolio_manager",
+          "risk_controls": {
+            "position_size_limit": "N/A"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Require portfolio cost basis and acquisition dates to calculate unrealized losses. Current context provides spot prices but lacks purchase history needed to identify which holdings are at a loss for tax harvesting purposes.",
+          "reasoning": "Tax loss harvesting requires comparing current market prices against cost basis to identify unrealized losses; without acquisition price and date data for current holdings, specific opportunities cannot be determined"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L4-004",
+      "raw": " {\"intent\":\"stress_test\",\"order_type\":\"simulation\",\"asset\":\"PORTFOLIO\",\"size\":\"pending_input\",\"unit\":\"usd\",\"venue\":\"internal\",\"risk_controls\":{\"position_size_limit\":\"100%\"},\"requires_follow_up\":true,\"follow_up_description\":\"Submit portfolio composition (quantities for each position) to calculate -50% drawdown impact. Crypto assets (BTC, ETH, SOL, MATIC, ARB, PEPE, stETH) would decline 50%; stablecoins (USDC, DAI) and traditional assets (GLD, TLT) remain unchanged per scenario parameters.\",\"reasoning\":\"Stress test requires current holdings data not provided in context. Scenario assumes crypto beta = 1.0 to shock, stablecoins maintain peg, tradfi assets uncorrelated.\"} ",
+      "durationMs": 42514,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03599999999999999,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "PORTFOLIO",
+          "size": "pending_input",
+          "unit": "usd",
+          "venue": "internal",
+          "risk_controls": {
+            "position_size_limit": "100%"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Submit portfolio composition (quantities for each position) to calculate -50% drawdown impact. Crypto assets (BTC, ETH, SOL, MATIC, ARB, PEPE, stETH) would decline 50%; stablecoins (USDC, DAI) and traditional assets (GLD, TLT) remain unchanged per scenario parameters.",
+          "reasoning": "Stress test requires current holdings data not provided in context. Scenario assumes crypto beta = 1.0 to shock, stablecoins maintain peg, tradfi assets uncorrelated."
+        },
+        "failureReasons": [
+          "stress_test_invalid_size"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L4-005",
+      "raw": " {\"intent\":\"calculate_metrics\",\"order_type\":\"analysis\",\"asset\":\"PORTFOLIO\",\"size\":0,\"venue\":\"internal\",\"risk_controls\":{},\"requires_follow_up\":true,\"follow_up_description\":\"Sharpe ratio calculation requires time-series data: 1) Historical returns for the portfolio/assets over the evaluation period, 2) Portfolio weights/holdings composition, 3) Risk-free rate (e.g., 3-month Treasury yield). Current context only provides spot prices without historical data to compute returns or standard deviation.\",\"reasoning\":\"Sharpe ratio = (Portfolio Return - Risk-Free Rate) / Portfolio Standard Deviation. Cannot compute from single timestamp price snapshot; requires historical price series to calculate mean returns and volatility\"} ",
+      "durationMs": 28299,
+      "grade": {
+        "pass": false,
+        "confidence": 0.51425,
+        "score": 0.46749999999999997,
+        "fieldScores": {
+          "intent": 0.11249999999999999,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate_metrics",
+          "order_type": "analysis",
+          "asset": "PORTFOLIO",
+          "size": 0,
+          "venue": "internal",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Sharpe ratio calculation requires time-series data: 1) Historical returns for the portfolio/assets over the evaluation period, 2) Portfolio weights/holdings composition, 3) Risk-free rate (e.g., 3-month Treasury yield). Current context only provides spot prices without historical data to compute returns or standard deviation.",
+          "reasoning": "Sharpe ratio = (Portfolio Return - Risk-Free Rate) / Portfolio Standard Deviation. Cannot compute from single timestamp price snapshot; requires historical price series to calculate mean returns and volatility"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

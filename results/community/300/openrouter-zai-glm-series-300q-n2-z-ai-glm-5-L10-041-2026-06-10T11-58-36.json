@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:58:49.702Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-041-2026-06-10T11-58-36",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-041"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-041",
+      "raw": "{\n  \"intent\": \"consolidate\",\n  \"expected_value\": 0.0167256,\n  \"reasoning\": \"Total vbytes = 3000 inputs × 68 vbytes + 150 outputs × 31 vbytes + 420 overhead = 204,000 + 4,650 + 420 = 209,070 vbytes. BTC cost = 209,070 × 8 sat/vB ÷ 100,000,000 = 0.0167256 BTC, which is below the 0.06 BTC limit.\"\n}",
+      "durationMs": 13291,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "consolidate",
+          "expected_value": 0.0167256,
+          "reasoning": "Total vbytes = 3000 inputs × 68 vbytes + 150 outputs × 31 vbytes + 420 overhead = 204,000 + 4,650 + 420 = 209,070 vbytes. BTC cost = 209,070 × 8 sat/vB ÷ 100,000,000 = 0.0167256 BTC, which is below the 0.06 BTC limit."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

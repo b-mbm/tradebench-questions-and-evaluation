@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T08:30:29.966Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-016-2026-06-10T08-30-08",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-016"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-016",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\n    \"A1\",\n    \"A3\",\n    \"A5\"\n  ],\n  \"reasoning\": \"A2 is rejected due to slashing multiplier > 3 (4 > 3), and A4 is rejected due to withdrawal delay > 7 days (10 > 7). A1, A3, and A5 pass all hard constraints (slashing multiplier <= 3, delay <= 7 days, oracle freshness <= 30 mins, capacity >= 100 stETH) and yield net scores of 7.3%, 7.5%, and 7.86% respectively, all exceeding the 5.5% minimum threshold.\"\n}",
+      "durationMs": 21500,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A1",
+            "A3",
+            "A5"
+          ],
+          "reasoning": "A2 is rejected due to slashing multiplier > 3 (4 > 3), and A4 is rejected due to withdrawal delay > 7 days (10 > 7). A1, A3, and A5 pass all hard constraints (slashing multiplier <= 3, delay <= 7 days, oracle freshness <= 30 mins, capacity >= 100 stETH) and yield net scores of 7.3%, 7.5%, and 7.86% respectively, all exceeding the 5.5% minimum threshold."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

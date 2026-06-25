@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T08:39:47.642Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-040-2026-06-10T08-39-27",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-040"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-040",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"A1\", \"A3\", \"A5\"],\n  \"reasoning\": \"A2 fails the slashing multiplier constraint (3.2 > 3) and A4 fails the capacity constraint (200 < 250). A1, A3, and A5 pass all hard constraints with net scores of 7.1%, 7.58%, and 8.08% respectively, making them the top 3 eligible AVSs.\"\n}",
+      "durationMs": 19273,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A1",
+            "A3",
+            "A5"
+          ],
+          "reasoning": "A2 fails the slashing multiplier constraint (3.2 > 3) and A4 fails the capacity constraint (200 < 250). A1, A3, and A5 pass all hard constraints with net scores of 7.1%, 7.58%, and 8.08% respectively, making them the top 3 eligible AVSs."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

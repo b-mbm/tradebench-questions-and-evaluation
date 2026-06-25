@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T18:00:27.685Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L10-047-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L10-047"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-047",
+      "raw": " {\n  \"intent\": \"optimize_validator_fleet\",\n  \"expected_value\": 15.0,\n  \"reasoning\": \"Phase 1: Deploy relay diversity automation ($40k) and DVT failover cluster ($55k) to restore uptime from 96.8% to 99.2%, generating $9,450 incremental six-month net profit. Phase 2: Add MEV-Boost tuning ($10k) for $6,300 incremental six-month net MEV profit. Total upgrade spend = $105,000. Total six-month incremental net profit = $15,750. Six-month ROI = $15,750 / $105,000 = 15.0%. Phase 3: Lower operator fee from 8% to 6% (no cost, delegation stabilization) and defer Premium RPC ($120k) as it is evaluated on year-one economics and excluded from the six-month ROI numerator. Budget remains under $180,000.\"\n}",
+      "durationMs": 1327,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "optimize_validator_fleet",
+          "expected_value": 15,
+          "reasoning": "Phase 1: Deploy relay diversity automation ($40k) and DVT failover cluster ($55k) to restore uptime from 96.8% to 99.2%, generating $9,450 incremental six-month net profit. Phase 2: Add MEV-Boost tuning ($10k) for $6,300 incremental six-month net MEV profit. Total upgrade spend = $105,000. Total six-month incremental net profit = $15,750. Six-month ROI = $15,750 / $105,000 = 15.0%. Phase 3: Lower operator fee from 8% to 6% (no cost, delegation stabilization) and defer Premium RPC ($120k) as it is evaluated on year-one economics and excluded from the six-month ROI numerator. Budget remains under $180,000."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T22:18:08.312Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-010-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-010",
+      "raw": "{\"intent\":\"execute_all_transactions_low_scenario\",\"expected_value\":150,\"reasoning\":\"Total gas required: 10 transactions × 200,000 gas = 2,000,000 gas. The Low scenario at 25 gwei is the only feasible option that guarantees 100% fill rate for all 10 transactions. Medium scenario (71 gwei) provides only 60% fill probability and High scenario leaves orders unfilled, both violating the requirement to execute the complete batch. Expected USD cost = 2,000,000 × 25×10⁻⁹ ETH × $3,000/ETH = $150.\"}",
+      "durationMs": 158304,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute_all_transactions_low_scenario",
+          "expected_value": 150,
+          "reasoning": "Total gas required: 10 transactions × 200,000 gas = 2,000,000 gas. The Low scenario at 25 gwei is the only feasible option that guarantees 100% fill rate for all 10 transactions. Medium scenario (71 gwei) provides only 60% fill probability and High scenario leaves orders unfilled, both violating the requirement to execute the complete batch. Expected USD cost = 2,000,000 × 25×10⁻⁹ ETH × $3,000/ETH = $150."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "runAt": "2026-06-10T16:12:11.171Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L10-026-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L10-026"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-026",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"TWAP\",\n  \"asset\": \"TOKEN\",\n  \"size\": 1200000,\n  \"unit\": \"TOKEN\",\n  \"price\": 3.40,\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"Coinbase + Camelot\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1.2%\",\n    \"position_size_limit\": 1200000\n  },\n  \"expected_value\": 3975960,\n  \"reasoning\": \"Sell 700,000 TOKEN on Coinbase via TWAP: 700,000 * $3.40 * (1 - 0.0045) = $2,389,300. Sell 500,000 TOKEN on Camelot: 500,000 * $3.40 * (1 - 0.012) = $1,679,600. Binance excluded due to deposit timing; Uniswap excluded due to no inventory. Total expected USD proceeds = $2,389,300 + $1,679,600 = $4,068,900. Wait, recalculating: 700,000*3.40=2,380,000; minus 0.45% = 2,380,000*0.9955 = 2,369,290. 500,000*3.40=1,700,000; minus 1.2% = 1,700,000*0.988 = 1,679,600. Sum = 4,048,890. Recheck: 2,380,000 * 0.9955 = 2,369,290. 1,700,000 * 0.988 = 1,679,600. Total = 4,048,890. Actually 2,380,000 * 0.9955 = 2,369,290 exactly? 2,380,000 * 0.9955 = 2,369,290. Yes. 1,700,000 * 0.988 = 1,679,600. Total = 4,048,890. Hmm but let me verify: 2,380,000 * 0.0045 = 10,710. 2,380,000 - 10,710 = 2,369,290. 1,700,000 * 0.012 = 20,400. 1,700,000 - 20,400 = 1,679,600. Sum = 4,048,890. So expected_value = 4048890.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Confirm TWAP slice completion on Coinbase and monitor Camelot fill within 18 hours before unlock.\"\n}",
+      "durationMs": 19650,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7,
+        "fieldScores": {
+          "expected_value": 0.7
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "TWAP",
+          "asset": "TOKEN",
+          "size": 1200000,
+          "unit": "TOKEN",
+          "price": 3.4,
+          "venue": "coinbase",
+          "venue_name": "Coinbase + Camelot",
+          "risk_controls": {
+            "slippage_tolerance": "1.2%",
+            "position_size_limit": 1200000
+          },
+          "expected_value": 3975960,
+          "reasoning": "Sell 700,000 TOKEN on Coinbase via TWAP: 700,000 * $3.40 * (1 - 0.0045) = $2,389,300. Sell 500,000 TOKEN on Camelot: 500,000 * $3.40 * (1 - 0.012) = $1,679,600. Binance excluded due to deposit timing; Uniswap excluded due to no inventory. Total expected USD proceeds = $2,389,300 + $1,679,600 = $4,068,900. Wait, recalculating: 700,000*3.40=2,380,000; minus 0.45% = 2,380,000*0.9955 = 2,369,290. 500,000*3.40=1,700,000; minus 1.2% = 1,700,000*0.988 = 1,679,600. Sum = 4,048,890. Recheck: 2,380,000 * 0.9955 = 2,369,290. 1,700,000 * 0.988 = 1,679,600. Total = 4,048,890. Actually 2,380,000 * 0.9955 = 2,369,290 exactly? 2,380,000 * 0.9955 = 2,369,290. Yes. 1,700,000 * 0.988 = 1,679,600. Total = 4,048,890. Hmm but let me verify: 2,380,000 * 0.0045 = 10,710. 2,380,000 - 10,710 = 2,369,290. 1,700,000 * 0.012 = 20,400. 1,700,000 - 20,400 = 1,679,600. Sum = 4,048,890. So expected_value = 4048890.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm TWAP slice completion on Coinbase and monitor Camelot fill within 18 hours before unlock."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

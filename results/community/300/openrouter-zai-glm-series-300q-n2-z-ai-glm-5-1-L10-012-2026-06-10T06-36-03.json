@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:37:02.838Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-012-2026-06-10T06-36-03",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-012"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-012",
+      "raw": "{\n  \"intent\": \"rebalance_and_expand\",\n  \"expected_value\": 54000,\n  \"reasoning\": \"Current revenue: $18M × 0.15% = $27K/mo. Target is double = $54K/mo. Strategy: (1) Circular rebalancing fixes the 13% inbound-imbalance failures, raising success from 87% to ≥95%; (2) Open up to 13 direct institutional channels using $560K off-chain capital (32 BTC in channels, $2M total managed) and ≤$5K on-chain budget for tx fees; (3) Higher success rate attracts retry traffic and institutional channels add new flow, reaching $36M monthly successful routed volume at 0.15% fee = $54K/mo. Rebalancing costs are one-time and excluded from monthly revenue per problem statement.\"\n}",
+      "durationMs": 58522,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "rebalance_and_expand",
+          "expected_value": 54000,
+          "reasoning": "Current revenue: $18M × 0.15% = $27K/mo. Target is double = $54K/mo. Strategy: (1) Circular rebalancing fixes the 13% inbound-imbalance failures, raising success from 87% to ≥95%; (2) Open up to 13 direct institutional channels using $560K off-chain capital (32 BTC in channels, $2M total managed) and ≤$5K on-chain budget for tx fees; (3) Higher success rate attracts retry traffic and institutional channels add new flow, reaching $36M monthly successful routed volume at 0.15% fee = $54K/mo. Rebalancing costs are one-time and excluded from monthly revenue per problem statement."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

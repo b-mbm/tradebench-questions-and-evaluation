@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T08:54:36.986Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-058-2026-06-10T08-54-04",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-058"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-058",
+      "raw": "{\n  \"intent\": \"calculate_incremental_apr\",\n  \"expected_value\": 1.9022,\n  \"reasoning\": \"Base-case incremental APR calculated as ((38000000 * 0.44 * 0.00028 * 0.82 * (1 - 0.10)) - 2100) * 365 / 26000000 = 1.9022%.\"\n}\n",
+      "durationMs": 31872,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_incremental_apr",
+          "expected_value": 1.9022,
+          "reasoning": "Base-case incremental APR calculated as ((38000000 * 0.44 * 0.00028 * 0.82 * (1 - 0.10)) - 2100) * 365 / 26000000 = 1.9022%."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:23:46.465Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-067-1781072612680",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-067"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-067",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 1061357,\n  \"reasoning\": \"Missing votes = 38000 - 21500 = 16500 MKR (≤ 19000 lendable, condition met). Bribe cost = 16500 × $24 = $396000. Borrow interest = 16500 × $1900 × 0.14 × (6/365) = $72143. Fixed costs = $28000. Expected delay loss = 0.035 × $1100000 = $38500. EV = 0.57 × $2800000 - $396000 - $72143 - $28000 - $38500 = $1596000 - $534643 = $1061357. Positive EV, execute.\"\n}",
+      "durationMs": 13423,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 1061357,
+          "reasoning": "Missing votes = 38000 - 21500 = 16500 MKR (≤ 19000 lendable, condition met). Bribe cost = 16500 × $24 = $396000. Borrow interest = 16500 × $1900 × 0.14 × (6/365) = $72143. Fixed costs = $28000. Expected delay loss = 0.035 × $1100000 = $38500. EV = 0.57 × $2800000 - $396000 - $72143 - $28000 - $38500 = $1596000 - $534643 = $1061357. Positive EV, execute."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T08:57:48.716Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-066-2026-06-10T08-57-27",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-066"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-066",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"expected_value\": 4.3793,\n  \"reasoning\": \"Bucket 1 daily fees: $24M * 0.44 * 0.00022 = $2,323.20. Bucket 2 daily fees: $6M * 0.80 * 0.0004 = $1,920.00. Total daily fees = $4,243.20. After 87% LP capture and 9% protocol skim: $4,243.20 * 0.87 * 0.91 = $3,359.64. Subtracting $1,200 daily overhead yields $2,159.64 net daily LP revenue. Annualized APR: ($2,159.64 * 365) / $18,000,000 = 4.3793%.\"\n}",
+      "durationMs": 20505,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "expected_value": 4.3793,
+          "reasoning": "Bucket 1 daily fees: $24M * 0.44 * 0.00022 = $2,323.20. Bucket 2 daily fees: $6M * 0.80 * 0.0004 = $1,920.00. Total daily fees = $4,243.20. After 87% LP capture and 9% protocol skim: $4,243.20 * 0.87 * 0.91 = $3,359.64. Subtracting $1,200 daily overhead yields $2,159.64 net daily LP revenue. Annualized APR: ($2,159.64 * 365) / $18,000,000 = 4.3793%."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "runAt": "2026-06-11T16:59:35.932Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-011-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-011"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-011",
+      "raw": "{\"intent\": \"withdraw\", \"decision\": \"withdraw\", \"chosen_strategy\": \"public_mempool_bluechip_first\", \"withdrawal_sequence\": [\"BlueChip\", \"RiskyCoin\", \"YieldFarm\"], \"ev_withdraw\": 375000, \"ev_stay\": 196250, \"reasoning\": \"EV_stay = (1/12)*2,355,000 + (11/12)*0 = 196,250. EV_withdraw = 375,000 (full principal recovery). Withdrawing BlueChip first in public mempool prevents attacker inference that would drain YieldFarm, completes in 45s under the 60s exploit window, and avoids the $600 relay cost.\"}",
+      "durationMs": 116682,
+      "grade": {
+        "pass": false,
+        "confidence": 0.9,
+        "score": 0.4,
+        "fieldScores": {
+          "decision": 1,
+          "chosen_strategy": 0,
+          "withdrawal_sequence": 0,
+          "ev_withdraw": 1,
+          "ev_stay": 0
+        },
+        "normalizedResponse": {
+          "intent": "withdraw",
+          "decision": "withdraw",
+          "chosen_strategy": "public_mempool_bluechip_first",
+          "withdrawal_sequence": [
+            "BlueChip",
+            "RiskyCoin",
+            "YieldFarm"
+          ],
+          "ev_withdraw": 375000,
+          "ev_stay": 196250,
+          "reasoning": "EV_stay = (1/12)*2,355,000 + (11/12)*0 = 196,250. EV_withdraw = 375,000 (full principal recovery). Withdrawing BlueChip first in public mempool prevents attacker inference that would drain YieldFarm, completes in 45s under the 60s exploit window, and avoids the $600 relay cost."
+        },
+        "failureReasons": [
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:withdrawal_sequence",
+          "agi_validation_failed:ev_stay"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

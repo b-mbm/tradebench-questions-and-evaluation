@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T21:59:16.148Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L1-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L1-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L1-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"SOL\",\"size\":\"10\",\"unit\":\"sol\",\"price\":\"95\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"position_size_limit\":\"10000\"},\"follow_up\":\"monitor fill\",\"reasoning\":\"limit buy order placed 5% below current spot price of $100 for entry execution\",\"requires_follow_up\":true,\"follow_up_description\":\"order will only execute if SOL price drops to $95; may remain unfilled\"}",
+      "durationMs": 53836,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "unit": "sol",
+          "price": "95",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "10000"
+          },
+          "follow_up": "monitor fill",
+          "reasoning": "limit buy order placed 5% below current spot price of $100 for entry execution",
+          "requires_follow_up": true,
+          "follow_up_description": "order will only execute if SOL price drops to $95; may remain unfilled"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T22:04:03.697Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-001-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-001",
+      "raw": "{\"intent\": \"optimal_deFi_yield_allocation\", \"expected_value\": 5.98, \"reasoning\": \"Maximized risk-adjusted yield by allocating 30% to Ethena (12% APR minus 5% tail loss = 7% risk-adjusted), 30% to Curve (6% APR minus 0.2% tail loss = 5.8% risk-adjusted), 20% to GMX (6% net APR), and 20% to Aave (4.7% scenario-weighted APR). This meets all constraints: 50% liquid capital in Aave/Curve, 30% max per protocol, pre-tail-loss APR of 7.54% (>7%), and expected catastrophic loss of 1.56% (<2%), resulting in 5.98% risk-adjusted annualized yield.\"}",
+      "durationMs": 91645,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "optimal_deFi_yield_allocation",
+          "expected_value": 5.98,
+          "reasoning": "Maximized risk-adjusted yield by allocating 30% to Ethena (12% APR minus 5% tail loss = 7% risk-adjusted), 30% to Curve (6% APR minus 0.2% tail loss = 5.8% risk-adjusted), 20% to GMX (6% net APR), and 20% to Aave (4.7% scenario-weighted APR). This meets all constraints: 50% liquid capital in Aave/Curve, 30% max per protocol, pre-tail-loss APR of 7.54% (>7%), and expected catastrophic loss of 1.56% (<2%), resulting in 5.98% risk-adjusted annualized yield."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

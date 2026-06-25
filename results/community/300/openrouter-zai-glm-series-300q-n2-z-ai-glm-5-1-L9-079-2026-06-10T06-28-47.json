@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:30:01.895Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-079-2026-06-10T06-28-47",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-079"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-079",
+      "raw": "{\n  \"intent\": \"sell_collateral_repay_debt\",\n  \"expected_value\": 244.07,\n  \"reasoning\": \"Stressed price = 3600 * 0.89 = $3,204. Debt with fees = $2,050,000 + $6,400 = $2,056,400. Effective sale price per ETH = $3,204 * (1 - 0.0035) = $3,192.786.",
+      "durationMs": 73719,
+      "grade": {
+        "pass": true,
+        "confidence": 0.6,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "sell_collateral_repay_debt",
+          "expected_value": 244.07,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T14:06:37.520Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L9-027-2026-06-10T14-06-21",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-027"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-027",
+      "raw": "{\n  \"intent\": \"governance_incentive_action\",\n  \"expected_value\": 540615.07,\n  \"reasoning\": \"Missing votes = 85000 - 31000 = 54000 AAVE, which is <= 69000 lendable liquidity so action is feasible. Borrowing is cheaper than bribing: borrow interest = 54000 * 118 * 0.22 * (7/365) = 26884.93 vs bribe cost = 54000 * 5 = 270000, so choose borrowing. Expected value = 0.58 * 1450000 - 26884.93 - 24000 - 0.035 * 650000 = 841000 - 26884.93 - 24000 - 22750 = 767365.07. Wait, let me recalculate: 0.58*1450000=841000, borrow interest=54000*118*0.22*7/365=26884.93, bridge/gas/delegation=24000, expected delay loss=0.035*650000=22750. EV=841000-26884.93-24000-22750=767365.07. But using bribe: EV=841000-270000-24000-22750=524250. The optimal is borrowing: EV=767365.07.\"\n}",
+      "durationMs": 16114,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "governance_incentive_action",
+          "expected_value": 540615.07,
+          "reasoning": "Missing votes = 85000 - 31000 = 54000 AAVE, which is <= 69000 lendable liquidity so action is feasible. Borrowing is cheaper than bribing: borrow interest = 54000 * 118 * 0.22 * (7/365) = 26884.93 vs bribe cost = 54000 * 5 = 270000, so choose borrowing. Expected value = 0.58 * 1450000 - 26884.93 - 24000 - 0.035 * 650000 = 841000 - 26884.93 - 24000 - 22750 = 767365.07. Wait, let me recalculate: 0.58*1450000=841000, borrow interest=54000*118*0.22*7/365=26884.93, bridge/gas/delegation=24000, expected delay loss=0.035*650000=22750. EV=841000-26884.93-24000-22750=767365.07. But using bribe: EV=841000-270000-24000-22750=524250. The optimal is borrowing: EV=767365.07."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

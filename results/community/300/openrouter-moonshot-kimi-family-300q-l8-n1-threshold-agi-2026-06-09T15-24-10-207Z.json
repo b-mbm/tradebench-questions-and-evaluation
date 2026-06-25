@@ -1,0 +1,1353 @@
+{
+  "runAt": "2026-06-09T15:24:10.206Z",
+  "label": "openrouter-moonshot-kimi-family-300q-l8-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2-thinking",
+    "moonshotai/kimi-k2.6",
+    "moonshotai/kimi-k2.5",
+    "moonshotai/kimi-k2-0905"
+  ],
+  "questionIds": [
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-001",
+      "raw": "",
+      "durationMs": 180004,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-002",
+      "raw": "{\"intent\":\"execute_mev_defense\",\"strategy\":\"A\",\"expected_total_cost\":514.42,\"cost_breakdown\":{\"gas\":1.82,\"fees\":182.60,\"expected_mev_loss\":330.00},\"reasoning\":\"Flashbots Protect reduces MEV loss to $330 (98.5% protection) vs $22,000 for direct DEX. Gas cost $1.82 vs $87.21, plus $180 setup fee and $2.60 expected retry cost (4% failure rate). Total expected cost $514.42 vs $22,087.21. Strategy A is optimal.\"}",
+      "durationMs": 73902,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.06666666666666665,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 514.42,
+          "cost_breakdown": {
+            "gas": 1.82,
+            "fees": 182.6,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Flashbots Protect reduces MEV loss to $330 (98.5% protection) vs $22,000 for direct DEX. Gas cost $1.82 vs $87.21, plus $180 setup fee and $2.60 expected retry cost (4% failure rate). Total expected cost $514.42 vs $22,087.21. Strategy A is optimal."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-003",
+      "raw": "",
+      "durationMs": 180003,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-004",
+      "raw": "{\"intent\":\"restake\",\"order_type\":\"strategy_selection\",\"asset\":\"stETH\",\"size\":100,\"venue\":\"eigenlayer\",\"venue_name\":\"EigenLayer AVS Restaking\",\"rationale\":\"Option A maximizes net APR at 4.25% while satisfying all constraints: slashing risk 3% (within 4% limit), 7-day lock (within 8-day collateral requirement), and outperforms baseline by 2.8%. Option B exceeds slashing risk and lock period constraints. Option C meets constraints but yields lower net APR.\",\"decision_factors\":\"Maximizes net APR (4.25%) while satisfying slashing risk (3% ≤ 4%), collateral timing (7 days ≤ 8 days), and liquidity requirements ($8.2B TVL). Outperforms baseline Option C by 2.8% APR.\",\"total_staking_apr\":7.0,\"borrow_rate\":5.5,\"effective_borrow_cost_on_portfolio\":2.75,\"net_apr_after_borrow\":4.25,\"meets_net_apr_target\":true,\"slashing_risk_pct\":3,\"within_risk_tolerance\":true,\"liquidity_days\":7,\"meets_collateral_timing\":true,\"option_c_net_apr_comparison\":1.45,\"option_a_outperformance\":2.8}",
+      "durationMs": 79667,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9415384615384613,
+        "score": 0.9066666666666665,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.06666666666666667,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "strategy_selection",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS Restaking",
+          "rationale": "Option A maximizes net APR at 4.25% while satisfying all constraints: slashing risk 3% (within 4% limit), 7-day lock (within 8-day collateral requirement), and outperforms baseline by 2.8%. Option B exceeds slashing risk and lock period constraints. Option C meets constraints but yields lower net APR.",
+          "decision_factors": "Maximizes net APR (4.25%) while satisfying slashing risk (3% ≤ 4%), collateral timing (7 days ≤ 8 days), and liquidity requirements ($8.2B TVL). Outperforms baseline Option C by 2.8% APR.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-005",
+      "raw": "",
+      "durationMs": 12586,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-006",
+      "raw": "{\"intent\":\"fixed_yield_allocation\",\"strategy\":\"fixed_yield\",\"asset\":\"PT-USDe\",\"allocation\":100000,\"venue\":\"pendle\",\"maturity\":\"90d\",\"expected_apy\":12.3,\"selected_strategy\":\"C\",\"reasoning\":\"PT-USDe offers highest 12.3% APY with zero leverage/liquidation risk, perfectly matching 90-day horizon. Fixed yield eliminates depeg concerns from leveraged loops while exceeding simple staking by 380 bps. $45M liquidity supports 100K size.\",\"risk_assessment\":\"low\",\"meets_constraints\":true,\"alternatives_rejected\":{\"B\":\"3x leveraged loop offers 11.9% APY but carries liquidation risk if USDe depegs >2%, violating medium risk tolerance preference for fixed yield\",\"D\":\"Hybrid 2x loop + PT yields 11.25% APY but underperforms pure PT strategy while retaining unnecessary leverage risk\",\"A\":\"Simple USDe staking at 8.5% APY is suboptimal compared to 12.3% fixed yield\"}}",
+      "durationMs": 45818,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "PT-USDe offers highest 12.3% APY with zero leverage/liquidation risk, perfectly matching 90-day horizon. Fixed yield eliminates depeg concerns from leveraged loops while exceeding simple staking by 380 bps. $45M liquidity supports 100K size.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "3x leveraged loop offers 11.9% APY but carries liquidation risk if USDe depegs >2%, violating medium risk tolerance preference for fixed yield",
+            "D": "Hybrid 2x loop + PT yields 11.25% APY but underperforms pure PT strategy while retaining unnecessary leverage risk",
+            "A": "Simple USDe staking at 8.5% APY is suboptimal compared to 12.3% fixed yield"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-007",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"dex\",\"asset\":\"stETH\",\"size\":2500,\"venue\":\"dex\",\"venue_name\":\"1inch Fusion\",\"expected_value\":-134363.13,\"unit\":\"USD_total_cost\",\"reasoning\":\"Total cost 1.7975% of $7.475M notional (0.25% spread + 0.35% impact + 0.7475% dynamic widening + 0.05% protocol fee + 0.4% MEV). 1inch Fusion meets 15-min deadline and has lowest cost.\",\"constraint_awareness\":true}",
+      "durationMs": 68582,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8127777777777778,
+        "score": 0.76,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0.05,
+          "venue_name": 0.5,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "dex",
+          "venue_name": "1inch Fusion",
+          "expected_value": -134363.13,
+          "unit": "USD_total_cost",
+          "reasoning": "Total cost 1.7975% of $7.475M notional (0.25% spread + 0.35% impact + 0.7475% dynamic widening + 0.05% protocol fee + 0.4% MEV). 1inch Fusion meets 15-min deadline and has lowest cost.",
+          "constraint_awareness": true
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-008",
+      "raw": "{\"intent\":\"risk_parity_rebalance\",\"strategy\":\"consolidated_lowest_fee_execution\",\"execution_plan\":[{\"asset\":\"BTC\",\"venue\":\"interactive_brokers\",\"notional\":22500,\"fee_rate\":0.001,\"fee_amount\":22.5},{\"asset\":\"ETH\",\"venue\":\"interactive_brokers\",\"notional\":22400,\"fee_rate\":0.001,\"fee_amount\":22.4},{\"asset\":\"GLD\",\"venue\":\"interactive_brokers\",\"notional\":222000,\"fee_rate\":0.001,\"fee_amount\":222},{\"asset\":\"TLT\",\"venue\":\"interactive_brokers\",\"notional\":228000,\"fee_rate\":0.001,\"fee_amount\":228}],\"fee_summary\":{\"total_fees\":494.9,\"total_notional\":494900,\"total_execution_cost\":495394.9},\"rationale\":\"IB's 0.1% fee beats Coinbase's 0.6% for crypto. All four legs via IB costs $494.90 total, under the $2,000 limit. Same-day execution possible despite T+2 settlement. Single venue simplifies monitoring while minimizing fees.\",\"constraints_met\":{\"same_day_execution\":true,\"total_fees_under_2000\":true,\"fee_minimization_achieved\":true}}",
+      "durationMs": 117356,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9624999999999999,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.4,
+          "execution_plan": 0.3,
+          "fee_summary": 0.15,
+          "rationale": 0.0125,
+          "constraints_met": 0.1
+        },
+        "normalizedResponse": {
+          "intent": "risk_parity_rebalance",
+          "strategy": "consolidated_lowest_fee_execution",
+          "execution_plan": [
+            {
+              "asset": "BTC",
+              "venue": "interactive_brokers",
+              "notional": 22500,
+              "fee_rate": 0.001,
+              "fee_amount": 22.5
+            },
+            {
+              "asset": "ETH",
+              "venue": "interactive_brokers",
+              "notional": 22400,
+              "fee_rate": 0.001,
+              "fee_amount": 22.4
+            },
+            {
+              "asset": "GLD",
+              "venue": "interactive_brokers",
+              "notional": 222000,
+              "fee_rate": 0.001,
+              "fee_amount": 222
+            },
+            {
+              "asset": "TLT",
+              "venue": "interactive_brokers",
+              "notional": 228000,
+              "fee_rate": 0.001,
+              "fee_amount": 228
+            }
+          ],
+          "fee_summary": {
+            "total_fees": 494.9,
+            "total_notional": 494900,
+            "total_execution_cost": 495394.9
+          },
+          "rationale": "IB's 0.1% fee beats Coinbase's 0.6% for crypto. All four legs via IB costs $494.90 total, under the $2,000 limit. Same-day execution possible despite T+2 settlement. Single venue simplifies monitoring while minimizing fees.",
+          "constraints_met": {
+            "same_day_execution": true,
+            "total_fees_under_2000": true,
+            "fee_minimization_achieved": true
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-009",
+      "raw": "{\"decision\":\"execute\",\"reasoning\":{\"capital_allocation\":{\"spot_usd\":49918.5,\"margin_usd\":50081.5},\"position_size_eth\":20.3749,\"perp_notional_usd\":50081.5,\"funding_revenue_daily\":120.24,\"costs_entry\":22.0,\"break_even_periods\":0.18,\"annualized_funding_rate_pct\":87.6,\"annual_roi_on_total_capital_pct\":43.89},\"execution\":{\"step_1\":\"transfer_50081.5_usdt_to_binance_for_margin\",\"step_2\":\"buy_20.3749_eth_spot_coinbase_maker\",\"step_3\":\"short_20.3749_eth_perp_binance_maker\",\"delta_neutral\":true,\"exit_trigger\":\"funding_rate_turns_negative_or_basis_converges\"}}",
+      "durationMs": 59208,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 49918.5,
+              "margin_usd": 50081.5
+            },
+            "position_size_eth": 20.3749,
+            "perp_notional_usd": 50081.5,
+            "funding_revenue_daily": 120.24,
+            "costs_entry": 22,
+            "break_even_periods": 0.18,
+            "annualized_funding_rate_pct": 87.6,
+            "annual_roi_on_total_capital_pct": 43.89
+          },
+          "execution": {
+            "step_1": "transfer_50081.5_usdt_to_binance_for_margin",
+            "step_2": "buy_20.3749_eth_spot_coinbase_maker",
+            "step_3": "short_20.3749_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding_rate_turns_negative_or_basis_converges"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L8-010",
+      "raw": "",
+      "durationMs": 23699,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-001",
+      "raw": "",
+      "durationMs": 180006,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 1041.36,\n  \"cost_breakdown\": {\n    \"gas\": 1.824,\n    \"fees\": 245,\n    \"expected_mev_loss\": 330\n  },\n  \"reasoning\": \"Strategy A (Flashbots Protect): Gas cost = 320,000 * 2 gwei * 1e-9 * 2850 = $1.824. Fees = $180 setup + (0.04 retry probability * $65) = $182.6, rounded to $183 in fees context plus setup fee total $245? Wait need to recalculate carefully. Actually fees should include setup fee and expected retry cost. Expected retry cost = 0.04 * 65 = $2.6. So total fees = 180 + 2.6 = 182.6. Residual MEV loss = 22000 * (1 - 0.985) * 0.96 + (22000 * 0.04 if retry fails? Actually if retry fails, still residual MEV on retry? Let's keep simple: expected MEV loss = 22000 * (1 - 0.985) = 330, but adjusted for success rate? Actually if it fails 4% of time, you pay retry and then what? The prompt says retry cost if failed: $65. It doesn't specify MEV protection on retry. Let's assume retry also uses Flashbots with same protection, so expected MEV loss is just 22000 * (1-0.985) = 330 regardless of retries, since eventually it succeeds. Or if 4% fail, maybe you suffer full sandwich on retry? No, retry would also be via Flashbots. So expected MEV loss = $330. Total expected cost = 1.824 + 182.6 + 330 = 514.424. Wait that's much lower than B. Strategy B: Gas = 180000 * (150+20) gwei * 1e-9 * 2850 = 180000 * 170 * 2.85e-6 = 180000 * 0.0004845 = $87.21. Fees = 0. Expected MEV loss = 22000. Total = 22087.21. So A is vastly better. But my cost_breakdown needs to sum to expected_total_cost. Let's compute precisely. Gas A: 320000 * 2e-9 * 2850 = 320000 * 0.0000057 = 1.824. Fees A: 180 + (0.04 * 65) = 182.6. Expected MEV loss A: 22000 * (1 - 0.985) = 330. But wait, if success rate is 96%, does that mean 4% of the time it fails and you need to retry? The expected cost should incorporate the retry cost. The expected MEV loss might also need to account for the 4% failure? Actually if it fails first attempt, you retry. The retry cost is $65. The MEV protection on retry is presumably also 98.5%. So expected MEV loss is still 1.5% of $22,000 = $330. Total expected cost = 1.824 + 182.6 + 330 = 514.424. Let's round to two decimals: 514.42. But the problem says 'Return a single JSON object with exactly these top-level keys: intent, strategy, expected_total_cost, cost_breakdown, reasoning.' and 'Use numeric JSON values (not quoted strings) for: expected_total_cost, cost_breakdown.gas, cost_breakdown.fees, cost_breakdown.expected_mev_loss.' So I need to provide exact numbers. Let's re-read the prompt carefully. 'Calculate total expected cost for each strategy and select the optimal one.' The context JSON provides all parameters. For Strategy A: Setup fee: $180. Gas: 320,000 units at 2 gwei priority fee. Execution: 2 blocks average. MEV protection: 98.5%. Success rate: 96% first attempt. Retry cost if failed: $65. For Strategy B: Gas: 180,000 units at 150 gwei base + 20 gwei priority. Expected sandwich loss: $22,000. Success rate: 100%. Note: Slippage (0.3%) is constant across both strategies. So slippage is constant and can be ignored for comparison. But the question asks for total expected cost. Should slippage be included? The note says constant across both, so it doesn't affect the choice, but if they ask for total expected cost, maybe we should include it? However the output schema only has gas, fees, expected_mev_loss. It doesn't have slippage. So we probably shouldn't include slippage in the cost breakdown since it's not a key. But expected_total_cost might need to include it? The example structure only shows those three in cost_breakdown. The prompt says 'Provide numeric USD amounts for gas, fees, and expected MEV loss inside cost_breakdown.' It doesn't mention slippage. So expected_total_cost should be the sum of those three. Let's calculate accurately. Strategy A: Gas cost: 320,000 gas * 2 gwei * (1 ETH / 1e9 gwei) * $2850/ETH = 320,000 * 2 * 2850 / 1e9 = 640,000 * 2850 / 1e9 = 1,824,000,000 / 1e9 = $1.824. Fees: Setup fee $180 + expected retry cost. Expected retry cost = probability of failure * retry cost = (1 - 0.96) * $65 = 0.04 * 65 = $2.60. So total fees = $182.60. Expected MEV loss: With 98.5% protection, residual exposure is 1.5% of $22,000 = $330. But wait, if the first attempt fails (4%), do we incur the full $22,000 MEV loss on that failed attempt? Or does failure mean the tx didn't land, so no MEV loss? The prompt says 'Success rate: 96% first attempt'. If it fails, you retry. The retry cost is $65. It doesn't say MEV loss on failure. I think failure means the bundle wasn't included, so no execution, thus no MEV loss. Then on retry, you again have 98.5% protection. So expected MEV loss is just $330. However, maybe the expected MEV loss should be conditional on execution: 96% chance of success with 1.5% residual loss, and 4% chance of failure then retry with 1.5% residual loss. But since retry eventually succeeds (presumably), the expected number of attempts is 1 / 0.96 ≈ 1.0417. But the MEV loss per successful attempt is $330. So expected MEV loss is still ~$330 (actually slightly higher if you consider multiple attempts? No, the MEV loss is per executed trade, not per attempt. You only trade once. So it's $330). So total expected cost A = 1.824 + 182.60 + 330 = $514.424. Strategy B: Gas cost: 180,000 * (150 + 20) gwei * $2850 / 1e9 = 180,000 * 170 * 2850 / 1e9 = 180,000 * 484.5 / 1e6? Wait 170 * 2850 = 484,500. Then 180,000 * 484,500 = 87,210,000,000. Divide by 1e9 = $87.21. Fees: $0. Expected MEV loss: $22,000. Total = $22,087.21. So A is optimal. But wait, is there any base fee for Strategy A? The prompt says 'Gas: 320,000 units at 2 gwei priority fee'. It doesn't mention base fee. In EIP-1559, total gas fee = base fee + priority fee. But Flashbots Protect might require paying base fee as well? Actually on Ethereum, any transaction pays base fee + priority fee. The prompt says 'Gas: 320,000 units at 2 gwei priority fee'. It might be implying that the total fee per gas is 2 gwei? Or just the priority fee? But the context says 'base_fee: 150 gwei'. If Strategy A also pays base fee, then gas cost would be 320,000 * (150 + 2) gwei * $2850 / 1e9 = 320,000 * 152 * 2850 / 1e9 = 320,000 * 433,200 / 1e9? Wait 152 * 2850 = 433,200. Then 320,000 * 433,200 = 138,624,000,000. /1e9 = $138.624. That would change things. But the prompt explicitly says 'Gas: 320,000 units at 2 gwei priority fee'. It doesn't say 'total fee'. However, in Ethereum, base fee is burned and priority fee goes to miner/validator. Flashbots bundles typically specify priority fee and also pay base fee. But maybe the problem intends for Strategy A to only cost 2 gwei per gas because it's a private mempool and doesn't compete? No, base fee is mandatory. But the problem might be simplifying and only counting the priority fee for Flashbots because the base fee is the same for both and thus cancels out? Let's check. If base fee is included for both, then Strategy B gas cost = 180,000 * (150 + 20) = as above $87.21. Strategy A gas cost = 320,000 * (150 + 2) = $138.62. Then A total = 138.62 + 182.6 + 330 = 651.22. B total = 87.21 + 0 + 22000 = 22087.21. A is still optimal. But the difference is smaller in gas terms. However, the problem says 'Gas: 320,000 units at",
+      "durationMs": 120649,
+      "grade": {
+        "pass": false,
+        "confidence": 0.2957142857142857,
+        "score": 0.6571428571428571,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.05714285714285716,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 1041.36,
+          "gas": 1.824,
+          "fees": 245,
+          "expected_mev_loss": 330,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-003",
+      "raw": "",
+      "durationMs": 11895,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-004",
+      "raw": "",
+      "durationMs": 103263,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-005",
+      "raw": " {\"action\":\"B\",\"action_name\":\"deleverage_to_2x\",\"liquidation_probabilities\":{\"maintain_3x\":0.0081,\"deleverage_2x\":0.0013,\"deleverage_1_5x\":0.00002},\"expected_values\":{\"maintain_3x\":45.75,\"deleverage_2x\":41.01,\"deleverage_1_5x\":36.52,\"close\":0},\"reasoning\":\"Using GBM with zero drift and weekly volatility 13.17%, the barrier-hitting probability to liquidation price L from current price S is P(hit) = 2 * N(-ln(S/L)/(sigma*sqrt(T))). For 3x (L=1400): ln(2000/1400)=0.3567, d=-0.3567/0.1317=-2.709, P=2*N(-2.709)=2*0.00337=0.00674≈0.81% after adjusting for continuous monitoring (barrier hitting doubles endpoint probability). For 2x (L=1200): ln(2000/1200)=0.5108, d=-3.881, P=2*N(-3.881)=2*0.000052=0.000104≈0.013%. For 1.5x (L=1000): ln(2)=0.6931, d=-5.263, P≈0.00002. Only 2x and 1.5x satisfy the 0.5% weekly threshold. EV = weekly_carry - P(liquidation)*$1,000. 3x: 53.85 - 8.1 = 45.75. 2x: 42.31 - 1.3 = 41.01. 1.5x: 36.54 - 0.02 = 36.52. Close: 0. Highest EV among compliant actions (prob≤0.5%) is 2x at $41.01.\",\"calculation_method\":\"barrier_hitting\"}",
+      "durationMs": 3624,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.0013,
+            "deleverage_1_5x": 0.00002
+          },
+          "expected_values": {
+            "maintain_3x": 45.75,
+            "deleverage_2x": 41.01,
+            "deleverage_1_5x": 36.52,
+            "close": 0
+          },
+          "reasoning": "Using GBM with zero drift and weekly volatility 13.17%, the barrier-hitting probability to liquidation price L from current price S is P(hit) = 2 * N(-ln(S/L)/(sigma*sqrt(T))). For 3x (L=1400): ln(2000/1400)=0.3567, d=-0.3567/0.1317=-2.709, P=2*N(-2.709)=2*0.00337=0.00674≈0.81% after adjusting for continuous monitoring (barrier hitting doubles endpoint probability). For 2x (L=1200): ln(2000/1200)=0.5108, d=-3.881, P=2*N(-3.881)=2*0.000052=0.000104≈0.013%. For 1.5x (L=1000): ln(2)=0.6931, d=-5.263, P≈0.00002. Only 2x and 1.5x satisfy the 0.5% weekly threshold. EV = weekly_carry - P(liquidation)*$1,000. 3x: 53.85 - 8.1 = 45.75. 2x: 42.31 - 1.3 = 41.01. 1.5x: 36.54 - 0.02 = 36.52. Close: 0. Highest EV among compliant actions (prob≤0.5%) is 2x at $41.01.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-006",
+      "raw": "{\"intent\":\"fixed_yield_allocation\",\"strategy\":\"fixed_yield\",\"asset\":\"PT-USDe\",\"allocation\":100000,\"venue\":\"pendle\",\"maturity\":\"90d\",\"expected_apy\":12.3,\"selected_strategy\":\"C\",\"reasoning\":\"Under medium risk tolerance and a 90-day horizon, Strategy C (Pendle PT-USDe) offers the highest fixed yield at 12.3% APY with no liquidation or depeg risk beyond the 3% tolerance, unlike the leveraged loop (B) which exposes the portfolio to liquidation if USDe depegs >2% and incurs gas costs per loop iteration. Simple staking (A) yields only 8.5% with no fixed term benefit, and the hybrid (D) dilutes the 12.3% fixed yield to 11.25% while still carrying partial leverage risk. The 90-day maturity aligns perfectly with the investment horizon, locking in a known return without active management or slippage concerns beyond the 0.15% entry cost.\",\"risk_assessment\":\"low\",\"meets_constraints\":true,\"alternatives_rejected\":{\"A\":\"8.5% APY is inferior to fixed 12.3% and offers no term certainty.\",\"B\":\"3x leverage generates 11.9% but violates the medium risk tolerance due to liquidation risk if USDe depegs >2% and ongoing gas costs.\",\"D\":\"11.25% blended APY is lower than the pure Pendle fixed rate and introduces unnecessary leverage exposure on half the capital.\"}}",
+      "durationMs": 21167,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Under medium risk tolerance and a 90-day horizon, Strategy C (Pendle PT-USDe) offers the highest fixed yield at 12.3% APY with no liquidation or depeg risk beyond the 3% tolerance, unlike the leveraged loop (B) which exposes the portfolio to liquidation if USDe depegs >2% and incurs gas costs per loop iteration. Simple staking (A) yields only 8.5% with no fixed term benefit, and the hybrid (D) dilutes the 12.3% fixed yield to 11.25% while still carrying partial leverage risk. The 90-day maturity aligns perfectly with the investment horizon, locking in a known return without active management or slippage concerns beyond the 0.15% entry cost.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "A": "8.5% APY is inferior to fixed 12.3% and offers no term certainty.",
+            "B": "3x leverage generates 11.9% but violates the medium risk tolerance due to liquidation risk if USDe depegs >2% and ongoing gas costs.",
+            "D": "11.25% blended APY is lower than the pure Pendle fixed rate and introduces unnecessary leverage exposure on half the capital."
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-007",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"market\",\"asset\":\"stETH\",\"size\":2500,\"venue\":\"dex\",\"venue_name\":\"1inch Fusion\",\"expected_value\":-47250,\"unit\":\"USD_total_cost\",\"reasoning\":\"Calculated total execution cost for each venue on $4.5M notional: common costs are base spread 0.25% ($11,250), price impact 0.35% ($15,750), and dynamic widening 0.05% * 9 increments of $500k = 0.45% ($20,250), summing to $47,250. Venue-specific additions: CowSwap adds 0.15% protocol fee ($6,750) but capacity is only 2,000 stETH per batch, so 2,500 stETH would overflow to next batch (+12 min), violating the 15-minute hard deadline; total would be $54,000 and fails constraint. Uniswap V3 adds 0.30% pool fee ($13,500) plus 0.8% MEV extraction ($36,000), total $96,750. 1inch Fusion adds 0.05% protocol fee ($2,250) plus 0.4% residual MEV ($18,000), total $67,500. Among feasible venues meeting the 15-minute deadline and 2,500 stETH single-execution capacity, 1inch Fusion has the lowest total cost at $67,500. However, the prompt requires expected_value to be negative USD_total_cost of execution, and the common cost component of $47,250 applies to all venues. Re-reading the schema requirement: expected_value is the negative USD_total_cost of execution. For 1inch Fusion, total cost = $47,250 + $2,250 + $18,000 = $67,500. Therefore expected_value = -67500. Wait, let me re-verify: common costs are $47,250. 1inch Fusion: protocol fee 0.05% of $4.5M = $2,250. MEV extraction after protection 0.4% of $4.5M = $18,000. Total = $47,250 + $2,250 + $18,000 = $67,500. expected_value = -67500.\",\"constraint_awareness\":\"Settlement within 15 minutes is a hard deadline; CowSwap cannot settle 2,500 stETH in a single batch within 15 minutes due to 2,000 stETH per batch capacity and overflow queuing to next batch (+12 min, total 24 min). Uniswap V3 has no MEV protection and higher total cost. 1inch Fusion meets the 15-minute deadline, has sufficient 5,000 stETH capacity, and offers the lowest total cost among feasible options.\"}",
+      "durationMs": 36965,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8127777777777778,
+        "score": 0.76,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0.05,
+          "venue_name": 0.5,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "dex",
+          "venue_name": "1inch Fusion",
+          "expected_value": -47250,
+          "unit": "USD_total_cost",
+          "reasoning": "Calculated total execution cost for each venue on $4.5M notional: common costs are base spread 0.25% ($11,250), price impact 0.35% ($15,750), and dynamic widening 0.05% * 9 increments of $500k = 0.45% ($20,250), summing to $47,250. Venue-specific additions: CowSwap adds 0.15% protocol fee ($6,750) but capacity is only 2,000 stETH per batch, so 2,500 stETH would overflow to next batch (+12 min), violating the 15-minute hard deadline; total would be $54,000 and fails constraint. Uniswap V3 adds 0.30% pool fee ($13,500) plus 0.8% MEV extraction ($36,000), total $96,750. 1inch Fusion adds 0.05% protocol fee ($2,250) plus 0.4% residual MEV ($18,000), total $67,500. Among feasible venues meeting the 15-minute deadline and 2,500 stETH single-execution capacity, 1inch Fusion has the lowest total cost at $67,500. However, the prompt requires expected_value to be negative USD_total_cost of execution, and the common cost component of $47,250 applies to all venues. Re-reading the schema requirement: expected_value is the negative USD_total_cost of execution. For 1inch Fusion, total cost = $47,250 + $2,250 + $18,000 = $67,500. Therefore expected_value = -67500. Wait, let me re-verify: common costs are $47,250. 1inch Fusion: protocol fee 0.05% of $4.5M = $2,250. MEV extraction after protection 0.4% of $4.5M = $18,000. Total = $47,250 + $2,250 + $18,000 = $67,500. expected_value = -67500.",
+          "constraint_awareness": "Settlement within 15 minutes is a hard deadline; CowSwap cannot settle 2,500 stETH in a single batch within 15 minutes due to 2,000 stETH per batch capacity and overflow queuing to next batch (+12 min, total 24 min). Uniswap V3 has no MEV protection and higher total cost. 1inch Fusion meets the 15-minute deadline, has sufficient 5,000 stETH capacity, and offers the lowest total cost among feasible options."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-008",
+      "raw": "",
+      "durationMs": 498,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-009",
+      "raw": "",
+      "durationMs": 163815,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-010",
+      "raw": "",
+      "durationMs": 40453,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-001",
+      "raw": "",
+      "durationMs": 48920,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 651.22,\n  \"cost_breakdown\": {\n    \"gas\": 138.62,\n    \"fees\": 182.60,\n    \"expected_mev_loss\": 330.00\n  },\n  \"reasoning\": \"Strategy A (Flashbots Protect) total cost is $651.22 vs Strategy B $22,087.21. Breakdown: Gas cost = 320,000 units * 152 gwei (150 base + 2 priority) * $2850/ETH / 1e9 = $138.62. Fees = $180 setup + (4% failure * $65 retry) = $182.60. Residual MEV loss = 1.5% of $22,000 = $330. Strategy B incurs full $22,000 sandwich loss despite lower gas ($87.21), making Flashbots optimal.\"\n}",
+      "durationMs": 44528,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.8,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.2,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 651.22,
+          "cost_breakdown": {
+            "gas": 138.62,
+            "fees": 182.6,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Strategy A (Flashbots Protect) total cost is $651.22 vs Strategy B $22,087.21. Breakdown: Gas cost = 320,000 units * 152 gwei (150 base + 2 priority) * $2850/ETH / 1e9 = $138.62. Fees = $180 setup + (4% failure * $65 retry) = $182.60. Residual MEV loss = 1.5% of $22,000 = $330. Strategy B incurs full $22,000 sandwich loss despite lower gas ($87.21), making Flashbots optimal."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-003",
+      "raw": "",
+      "durationMs": 179997,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-004",
+      "raw": "",
+      "durationMs": 58676,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.0081,\n    \"deleverage_2x\": 0.00014,\n    \"deleverage_1_5x\": 0.000001\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 45.75,\n    \"deleverage_2x\": 42.17,\n    \"deleverage_1_5x\": 36.54,\n    \"close\": 0\n  },\n  \"reasoning\": \"Using GBM barrier-hitting probabilities with weekly volatility 13.17% and zero drift: Option A (3x) has 0.81% liquidation probability exceeding the 0.5% institutional limit, yielding EV of $45.75 but violating risk constraints. Option B (2x) has 0.014% probability (well below 0.5% threshold) with EV $42.17. Option C (1.5x) has negligible risk (~0.0001%) but lower EV $36.54. Option D yields $0. Among compliant actions (B, C, D), B provides highest risk-adjusted expected value while satisfying the weekly liquidation probability ≤0.5% constraint.\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 67632,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.00014,
+            "deleverage_1_5x": 0.000001
+          },
+          "expected_values": {
+            "maintain_3x": 45.75,
+            "deleverage_2x": 42.17,
+            "deleverage_1_5x": 36.54,
+            "close": 0
+          },
+          "reasoning": "Using GBM barrier-hitting probabilities with weekly volatility 13.17% and zero drift: Option A (3x) has 0.81% liquidation probability exceeding the 0.5% institutional limit, yielding EV of $45.75 but violating risk constraints. Option B (2x) has 0.014% probability (well below 0.5% threshold) with EV $42.17. Option C (1.5x) has negligible risk (~0.0001%) but lower EV $36.54. Option D yields $0. Among compliant actions (B, C, D), B provides highest risk-adjusted expected value while satisfying the weekly liquidation probability ≤0.5% constraint.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"pendle_pt\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Selected Strategy C for optimal APY (12.3%) exceeding leveraged alternatives (B: 11.9%, D: 11.25%) without liquidation or depeg risk. Fixed 90-day maturity matches horizon exactly; $45M liquidity supports size with 0.15% slippage. Avoided B due to 2% depeg liquidation threshold and D due to lower blended yield with residual leverage risk.\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\": {\n    \"B\": \"3x leverage exposes position to liquidation at 2% depeg, violating medium risk tolerance despite 11.9% APY being lower than Pendle's 12.3%\",\n    \"D\": \"Hybrid 2x loop carries unnecessary leverage risk for lower blended APY (11.25%) compared to pure Pendle exposure\",\n    \"A\": \"Suboptimal 8.5% APY significantly below available fixed rate opportunities\"\n  }\n}",
+      "durationMs": 117137,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9952727272727273,
+        "score": 0.9520000000000001,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.011999999999999997,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "pendle_pt",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Selected Strategy C for optimal APY (12.3%) exceeding leveraged alternatives (B: 11.9%, D: 11.25%) without liquidation or depeg risk. Fixed 90-day maturity matches horizon exactly; $45M liquidity supports size with 0.15% slippage. Avoided B due to 2% depeg liquidation threshold and D due to lower blended yield with residual leverage risk.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "3x leverage exposes position to liquidation at 2% depeg, violating medium risk tolerance despite 11.9% APY being lower than Pendle's 12.3%",
+            "D": "Hybrid 2x loop carries unnecessary leverage risk for lower blended APY (11.25%) compared to pure Pendle exposure",
+            "A": "Suboptimal 8.5% APY significantly below available fixed rate opportunities"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-007",
+      "raw": "",
+      "durationMs": 34190,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"risk_parity_rebalance\",\n  \"strategy\": \"consolidated_low_cost_execution\",\n  \"execution_plan\": [\n    {\n      \"asset\": \"BTC\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 22500,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 22.5\n    },\n    {\n      \"asset\": \"ETH\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 22400,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 22.4\n    },\n    {\n      \"asset\": \"GLD\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 222000,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 222.0\n    },\n    {\n      \"asset\": \"TLT\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 228000,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 228.0\n    }\n  ],\n  \"fee_summary\": {\n    \"total_fees\": 494.9,\n    \"total_notional\": 494900,\n    \"total_execution_cost\": 495394.9\n  },\n  \"rationale\": \"Executing all four legs via Interactive Brokers minimizes fees at 0.1% across all asset classes, compared to 0.6% for crypto assets on Coinbase. Total fees of $494.90 are well below the $2,000 constraint. Alternative venue splitting would increase fees to $719.40 by routing crypto through Coinbase.\",\n  \"constraints_met\": true\n}",
+      "durationMs": 91904,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9624999999999999,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.4,
+          "execution_plan": 0.3,
+          "fee_summary": 0.15,
+          "rationale": 0.0125,
+          "constraints_met": 0.1
+        },
+        "normalizedResponse": {
+          "intent": "risk_parity_rebalance",
+          "strategy": "consolidated_low_cost_execution",
+          "execution_plan": [
+            {
+              "asset": "BTC",
+              "venue": "interactive_brokers",
+              "notional": 22500,
+              "fee_rate": 0.001,
+              "fee_amount": 22.5
+            },
+            {
+              "asset": "ETH",
+              "venue": "interactive_brokers",
+              "notional": 22400,
+              "fee_rate": 0.001,
+              "fee_amount": 22.4
+            },
+            {
+              "asset": "GLD",
+              "venue": "interactive_brokers",
+              "notional": 222000,
+              "fee_rate": 0.001,
+              "fee_amount": 222
+            },
+            {
+              "asset": "TLT",
+              "venue": "interactive_brokers",
+              "notional": 228000,
+              "fee_rate": 0.001,
+              "fee_amount": 228
+            }
+          ],
+          "fee_summary": {
+            "total_fees": 494.9,
+            "total_notional": 494900,
+            "total_execution_cost": 495394.9
+          },
+          "rationale": "Executing all four legs via Interactive Brokers minimizes fees at 0.1% across all asset classes, compared to 0.6% for crypto assets on Coinbase. Total fees of $494.90 are well below the $2,000 constraint. Alternative venue splitting would increase fees to $719.40 by routing crypto through Coinbase.",
+          "constraints_met": true
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-009",
+      "raw": "",
+      "durationMs": 28423,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-010",
+      "raw": "",
+      "durationMs": 180005,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-001",
+      "raw": "",
+      "durationMs": 180004,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 1754.39,\n  \"unit\": \"eth\",\n  \"price\": 2850,\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"320000\"\n  },\n  \"follow_up\": \"monitor fill via Flashbots Protect\",\n  \"reasoning\": \"Strategy A (Flashbots Protect) has lower expected total cost: $1,041 vs Strategy B's $24,124. Calculated as: Strategy A gas cost = 320k gas * (150+2)gwei * 1e-9 * $2850 = $138; fees = $180; expected MEV loss = $22k * (1-0.985) * 0.96 = $330; total = $648. Strategy B gas = 180k * (150+20)gwei * 1e-9 * $2850 = $87; MEV loss = $22k; total = $22,087. Strategy A is 97% cheaper despite retry risk.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Track Flashbots bundle inclusion and retry if needed\"\n}",
+      "durationMs": 1475,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "expected_total_cost": 0,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 1754.39,
+          "unit": "eth",
+          "price": 2850,
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "320000"
+          },
+          "follow_up": "monitor fill via Flashbots Protect",
+          "reasoning": "Strategy A (Flashbots Protect) has lower expected total cost: $1,041 vs Strategy B's $24,124. Calculated as: Strategy A gas cost = 320k gas * (150+2)gwei * 1e-9 * $2850 = $138; fees = $180; expected MEV loss = $22k * (1-0.985) * 0.96 = $330; total = $648. Strategy B gas = 180k * (150+20)gwei * 1e-9 * $2850 = $87; MEV loss = $22k; total = $22,087. Strategy A is 97% cheaper despite retry risk.",
+          "requires_follow_up": true,
+          "follow_up_description": "Track Flashbots bundle inclusion and retry if needed"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-003",
+      "raw": "{\"intent\":\"rebalance\",\"order_type\":\"market\",\"asset\":\"portfolio\",\"size\":1000000,\"venue\":\"multi-venue\",\"portfolio_volatility\":0.1492,\"risk_contributions\":{\"btc\":0.411,\"eth\":0.456,\"bonds\":0.133},\"btc_contribution_pct\":41.1,\"eth_contribution_pct\":45.6,\"bonds_contribution_pct\":13.3,\"rebalancing_required\":true,\"target_allocations_usd\":{\"btc\":288000,\"eth\":216000,\"bonds\":496000},\"target_btc_usd\":288000,\"target_eth_usd\":216000,\"target_bonds_usd\":496000,\"transactions\":[{\"asset\":\"BTC\",\"action\":\"sell\",\"gross_usd\":112000,\"net_usd\":111440},{\"asset\":\"ETH\",\"action\":\"sell\",\"gross_usd\":134000,\"net_usd\":133330},{\"asset\":\"Bonds\",\"action\":\"buy\",\"gross_usd\":246000,\"net_usd\":245754}],\"btc_sell_amount\":112000,\"eth_sell_amount\":134000,\"bonds_buy_amount\":246000,\"btc_post_slippage\":111440,\"eth_post_slippage\":133330,\"bonds_post_slippage\":245754,\"reasoning\":\"BTC 41.1% and ETH 45.6% risk contributions exceed 38.33% band; solving equal-risk-contribution with correlations yields target weights 28.8% BTC, 21.6% ETH, 49.6% Bonds; rounded trades net of 0.5% crypto / 0.1% bond slippage.\"}",
+      "durationMs": 1511,
+      "grade": {
+        "pass": true,
+        "confidence": 0.834125874125874,
+        "score": 0.8068181818181818,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "portfolio",
+          "size": 1000000,
+          "venue": "multi-venue",
+          "portfolio_volatility": 0.1492,
+          "risk_contributions": {
+            "btc": 0.411,
+            "eth": 0.456,
+            "bonds": 0.133
+          },
+          "btc_contribution_pct": 41.1,
+          "eth_contribution_pct": 45.6,
+          "bonds_contribution_pct": 13.3,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 288000,
+            "eth": 216000,
+            "bonds": 496000
+          },
+          "target_btc_usd": 288000,
+          "target_eth_usd": 216000,
+          "target_bonds_usd": 496000,
+          "transactions": [
+            {
+              "asset": "BTC",
+              "action": "sell",
+              "gross_usd": 112000,
+              "net_usd": 111440
+            },
+            {
+              "asset": "ETH",
+              "action": "sell",
+              "gross_usd": 134000,
+              "net_usd": 133330
+            },
+            {
+              "asset": "Bonds",
+              "action": "buy",
+              "gross_usd": 246000,
+              "net_usd": 245754
+            }
+          ],
+          "btc_sell_amount": 112000,
+          "eth_sell_amount": 134000,
+          "bonds_buy_amount": 246000,
+          "btc_post_slippage": 111440,
+          "eth_post_slippage": 133330,
+          "bonds_post_slippage": 245754,
+          "reasoning": "BTC 41.1% and ETH 45.6% risk contributions exceed 38.33% band; solving equal-risk-contribution with correlations yields target weights 28.8% BTC, 21.6% ETH, 49.6% Bonds; rounded trades net of 0.5% crypto / 0.1% bond slippage."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-004",
+      "raw": "",
+      "durationMs": 113302,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-005",
+      "raw": "{\"action\":\"B\",\"action_name\":\"deleverage_to_2x\",\"liquidation_probabilities\":{\"maintain_3x\":0.0081,\"deleverage_2x\":0.0014,\"deleverage_1_5x\":0.0001},\"expected_values\":{\"maintain_3x\":45.75,\"deleverage_2x\":40.85,\"deleverage_1_5x\":36.44,\"close\":0},\"reasoning\":\"Weekly barrier-hitting probabilities computed via log-normal model (σ=0.1317, zero drift). Only 2× leverage keeps liquidation risk ≤0.5% while maximizing expected value (carry minus expected penalty).\",\"calculation_method\":\"barrier_hitting\"}",
+      "durationMs": 7990,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.0014,
+            "deleverage_1_5x": 0.0001
+          },
+          "expected_values": {
+            "maintain_3x": 45.75,
+            "deleverage_2x": 40.85,
+            "deleverage_1_5x": 36.44,
+            "close": 0
+          },
+          "reasoning": "Weekly barrier-hitting probabilities computed via log-normal model (σ=0.1317, zero drift). Only 2× leverage keeps liquidation risk ≤0.5% while maximizing expected value (carry minus expected penalty).",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-006",
+      "raw": "{\"intent\":\"fixed_yield_allocation\",\"strategy\":\"fixed_yield\",\"asset\":\"PT-USDe\",\"allocation\":100000,\"venue\":\"pendle\",\"maturity\":\"90d\",\"expected_apy\":12.3,\"selected_strategy\":\"C\",\"reasoning\":\"Pendle PT-USDe offers 12.3% fixed APY, highest among strategies while respecting 3% max depeg constraint; 90-day lock aligns with horizon; avoids 2% depeg risk of 3x loop and 11.9% APY of strategy B.\",\"risk_assessment\":\"low\",\"meets_constraints\":true,\"alternatives_rejected\":{\"B\":\"3x loop yields 11.9% but carries 2% USDe depeg liquidation risk exceeding medium tolerance\",\"D\":\"Hybrid 11.25% APY underperforms PT's 12.3% and still exposes 50% to loop risk\"}}",
+      "durationMs": 8191,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Pendle PT-USDe offers 12.3% fixed APY, highest among strategies while respecting 3% max depeg constraint; 90-day lock aligns with horizon; avoids 2% depeg risk of 3x loop and 11.9% APY of strategy B.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "3x loop yields 11.9% but carries 2% USDe depeg liquidation risk exceeding medium tolerance",
+            "D": "Hybrid 11.25% APY underperforms PT's 12.3% and still exposes 50% to loop risk"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-007",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"market\",\"asset\":\"stETH\",\"size\":2500,\"venue\":\"cowswap\",\"venue_name\":\"CowSwap\",\"expected_value\":-47250,\"unit\":\"USD_total_cost\",\"reasoning\":\"CowSwap total cost: 0.25% spread + 0.35% impact + 0.15% fee + 0.45% dynamic widening (4.5M/500k=9 increments) = 1.2% of $4.5M = $54k minus 0.15% saved vs 1inch = $47250 net cost. 12min settlement meets 15min deadline with full MEV protection.\",\"constraint_awareness\":\"Single venue execution within 15min with full MEV protection and minimal total cost\"}",
+      "durationMs": 7551,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3485714285714286,
+        "score": 0.32,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "cowswap",
+          "venue_name": "CowSwap",
+          "expected_value": -47250,
+          "unit": "USD_total_cost",
+          "reasoning": "CowSwap total cost: 0.25% spread + 0.35% impact + 0.15% fee + 0.45% dynamic widening (4.5M/500k=9 increments) = 1.2% of $4.5M = $54k minus 0.15% saved vs 1inch = $47250 net cost. 12min settlement meets 15min deadline with full MEV protection.",
+          "constraint_awareness": "Single venue execution within 15min with full MEV protection and minimal total cost"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-008",
+      "raw": "{\"intent\":\"risk-parity rebalance\",\"order_type\":\"market\",\"asset\":\"multi-asset\",\"size\":1,\"unit\":\"portfolio\",\"venue\":\"interactive_brokers\",\"risk_controls\":{\"position_size_limit\":494900},\"follow_up\":\"confirm all fills by EOD\",\"reasoning\":\"All four legs routed to Interactive Brokers to minimize fees: 0.1% vs 0.6% on Coinbase saves $1,234.40 while still meeting same-day execution requirement via T+2 settlement that counts as same trading day for institutional accounts.\",\"requires_follow_up\":true,\"follow_up_description\":\"Monitor fills and settlement status for all four positions\"}",
+      "durationMs": 5922,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "execution_plan": 0,
+          "fee_summary": 0,
+          "rationale": 0,
+          "constraints_met": 0
+        },
+        "normalizedResponse": {
+          "intent": "risk-parity rebalance",
+          "order_type": "market",
+          "asset": "multi-asset",
+          "size": 1,
+          "unit": "portfolio",
+          "venue": "interactive_brokers",
+          "risk_controls": {
+            "position_size_limit": 494900
+          },
+          "follow_up": "confirm all fills by EOD",
+          "reasoning": "All four legs routed to Interactive Brokers to minimize fees: 0.1% vs 0.6% on Coinbase saves $1,234.40 while still meeting same-day execution requirement via T+2 settlement that counts as same trading day for institutional accounts.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor fills and settlement status for all four positions"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "l8_008_missing_execution_plan"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-009",
+      "raw": "{\"decision\":\"execute\",\"reasoning\":\"Perp premium 0.326% vs spot; funding 0.08% per 8h = 0.24% daily = 87.6% annualized. Split capital 50/50: $50k spot, $50k margin. Position size = 50k/2450 = 20.408 ETH. Daily funding revenue = 20.408×2458×0.0024 = $120.4. Entry costs = 2×0.0002×50k + 2 = $22. Break-even after 22/120.4 ≈ 0.18 periods (5.5 hours). Annual ROI on $100k = 120.4×365/100k = 43.9%.\",\"execution\":{\"step_1\":\"transfer_50000_usdt_to_binance_for_margin\",\"step_2\":\"buy_20.408_eth_spot_coinbase_maker\",\"step_3\":\"short_20.408_eth_perp_binance_maker\",\"delta_neutral\":true,\"exit_trigger\":\"funding_rate_turns_negative_or_perp_discount_exceeds_costs\"}}",
+      "durationMs": 10709,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5431034482758621,
+        "score": 0.4655172413793104,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.015517241379310365,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": "Perp premium 0.326% vs spot; funding 0.08% per 8h = 0.24% daily = 87.6% annualized. Split capital 50/50: $50k spot, $50k margin. Position size = 50k/2450 = 20.408 ETH. Daily funding revenue = 20.408×2458×0.0024 = $120.4. Entry costs = 2×0.0002×50k + 2 = $22. Break-even after 22/120.4 ≈ 0.18 periods (5.5 hours). Annual ROI on $100k = 120.4×365/100k = 43.9%.",
+          "execution": {
+            "step_1": "transfer_50000_usdt_to_binance_for_margin",
+            "step_2": "buy_20.408_eth_spot_coinbase_maker",
+            "step_3": "short_20.408_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding_rate_turns_negative_or_perp_discount_exceeds_costs"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-010",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"order_type\": \"collar\",\n  \"asset\": \"BTC\",\n  \"size\": 10,\n  \"call_strike\": 49500,\n  \"put_strike\": 42750,\n  \"net_cost_per_btc\": -70,\n  \"venue\": \"deribit\",\n  \"venue_name\": \"Deribit\",\n  \"expiry_days\": 30,\n  \"reasoning\": \"Sell 10% OTM call (+420) and buy 5% OTM put (-920) for net debit -500; adjust to -70/BTC after factoring 80% upside capture and skew cost\"\n}",
+      "durationMs": 745,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6450000000000002,
+        "score": 0.6020000000000002,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.08000000000000002,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "order_type": "collar",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 42750,
+          "net_cost_per_btc": -70,
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "expiry_days": 30,
+          "reasoning": "Sell 10% OTM call (+420) and buy 5% OTM put (-920) for net debit -500; adjust to -70/BTC after factoring 80% upside capture and skew cost"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

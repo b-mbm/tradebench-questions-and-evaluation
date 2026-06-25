@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T23:56:42.995Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-020-2026-06-11T23-56-28",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-020"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-020",
+      "raw": "{\n  \"intent\": \"defend against oracle deviation liquidation risk\",\n  \"expected_value\": 1200000,\n  \"reasoning\": \"Oracle-sensitive exposure totals $25M ($12M Aave stETH + $8M Compound + $5M Uniswap LP). With 4.8% deviation, expected loss avoided = 4.8% × $25M = $1,200,000. Six-minute defense: add collateral to Aave and Compound positions, withdraw Uniswap LP to eliminate oracle-sensitive exposure before liquidation risk spike at 6-minute mark.\"\n}",
+      "durationMs": 14244,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "defend against oracle deviation liquidation risk",
+          "expected_value": 1200000,
+          "reasoning": "Oracle-sensitive exposure totals $25M ($12M Aave stETH + $8M Compound + $5M Uniswap LP). With 4.8% deviation, expected loss avoided = 4.8% × $25M = $1,200,000. Six-minute defense: add collateral to Aave and Compound positions, withdraw Uniswap LP to eliminate oracle-sensitive exposure before liquidation risk spike at 6-minute mark."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

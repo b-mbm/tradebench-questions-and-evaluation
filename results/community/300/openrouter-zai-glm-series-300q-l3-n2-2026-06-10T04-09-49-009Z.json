@@ -1,0 +1,396 @@
+{
+  "runAt": "2026-06-10T04:09:49.009Z",
+  "label": "openrouter-zai-glm-series-300q-l3-n2",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1",
+    "z-ai/glm-5-turbo",
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L3-001",
+    "L3-002",
+    "L3-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": \"1000\",\n  \"unit\": \"usd\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"stargate\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"swap 1000 USDC for ARB on Arbitrum DEX\",\n  \"reasoning\": \"Bridge USDC to Arbitrum first as prerequisite. At ARB price of $1.2, 1000 USDC yields approximately 833 ARB. Using Stargate for reliable L1-to-L2 bridging with good liquidity.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After bridge confirmation, execute swap of 1000 USDC to ARB on Arbitrum via Uniswap V3 or Camelot\"\n}",
+      "durationMs": 18676,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8856923076923078,
+        "score": 0.8390769230769232,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.015999999999999997,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "1000",
+          "unit": "usd",
+          "venue": "bridge",
+          "venue_name": "stargate",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "swap 1000 USDC for ARB on Arbitrum DEX",
+          "reasoning": "Bridge USDC to Arbitrum first as prerequisite. At ARB price of $1.2, 1000 USDC yields approximately 833 ARB. Using Stargate for reliable L1-to-L2 bridging with good liquidity.",
+          "requires_follow_up": true,
+          "follow_up_description": "After bridge confirmation, execute swap of 1000 USDC to ARB on Arbitrum via Uniswap V3 or Camelot"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L3-002",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": \"3333\",\n  \"unit\": \"usdc\",\n  \"price\": \"1\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"across\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"bridge 3333 USDC to Optimism via Across, retain remaining 3334 USDC on Ethereum\",\n  \"reasoning\": \"Splitting 10000 USDC equally across 3 chains: first bridge 3333 USDC to Arbitrum, then 3333 USDC to Optimism, keeping 3334 USDC on Ethereum\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute second bridge of 3333 USDC to Optimism after Arbitrum bridge confirms\"\n}",
+      "durationMs": 9040,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7083333333333334,
+        "score": 0.6666666666666667,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.00666666666666667,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "3333",
+          "unit": "usdc",
+          "price": "1",
+          "venue": "bridge",
+          "venue_name": "across",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "bridge 3333 USDC to Optimism via Across, retain remaining 3334 USDC on Ethereum",
+          "reasoning": "Splitting 10000 USDC equally across 3 chains: first bridge 3333 USDC to Arbitrum, then 3333 USDC to Optimism, keeping 3334 USDC on Ethereum",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute second bridge of 3333 USDC to Optimism after Arbitrum bridge confirms"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"price\": \"3000\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"polygon_pos_bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"6000\"\n  },\n  \"follow_up\": \"swap ETH for MATIC on QuickSwap after bridge completion\",\n  \"reasoning\": \"Bridge 2 ETH ($6000) from Ethereum to Polygon via native PoS bridge, then swap for approximately 7500 MATIC on QuickSwap. Bridge typically takes 7-8 minutes for checkpoint finality.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute swap of bridged ETH to MATIC on Polygon DEX (QuickSwap/SushiSwap) once bridge completes and ETH is available on Polygon\"\n}",
+      "durationMs": 44323,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9163034188034189,
+        "score": 0.8680769230769232,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.045,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": "3000",
+          "venue": "bridge",
+          "venue_name": "polygon_pos_bridge",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "6000"
+          },
+          "follow_up": "swap ETH for MATIC on QuickSwap after bridge completion",
+          "reasoning": "Bridge 2 ETH ($6000) from Ethereum to Polygon via native PoS bridge, then swap for approximately 7500 MATIC on QuickSwap. Bridge typically takes 7-8 minutes for checkpoint finality.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute swap of bridged ETH to MATIC on Polygon DEX (QuickSwap/SushiSwap) once bridge completes and ETH is available on Polygon"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": 1000,\n  \"unit\": \"usd\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"arbitrum\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"swap USDC for ARB\",\n  \"reasoning\": \"Step 1 of 2: Bridge 1000 USDC to Arbitrum network to prepare for ARB purchase.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Once USDC arrives on Arbitrum, execute a DEX swap for 833.33 ARB (at 1.2 USDC/ARB).\"\n}\n",
+      "durationMs": 41874,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9138404558404559,
+        "score": 0.8657435897435898,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.042666666666666665,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": 1000,
+          "unit": "usd",
+          "venue": "bridge",
+          "venue_name": "arbitrum",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "swap USDC for ARB",
+          "reasoning": "Step 1 of 2: Bridge 1000 USDC to Arbitrum network to prepare for ARB purchase.",
+          "requires_follow_up": true,
+          "follow_up_description": "Once USDC arrives on Arbitrum, execute a DEX swap for 833.33 ARB (at 1.2 USDC/ARB)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L3-002",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": \"3333.33\",\n  \"unit\": \"usd\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"l2-bridges\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute remaining two bridge transactions of 3333.33 USDC each to Arbitrum and Optimism\",\n  \"reasoning\": \"Splitting 10,000 USDC equally across 3 networks results in 3,333.33 USDC per network. Handled as sequential bridge operations due to single-execution interface constraints.\"\n}",
+      "durationMs": 32222,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7142857142857142,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.04666666666666666,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "3333.33",
+          "unit": "usd",
+          "venue": "bridge",
+          "venue_name": "l2-bridges",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Execute remaining two bridge transactions of 3333.33 USDC each to Arbitrum and Optimism",
+          "reasoning": "Splitting 10,000 USDC equally across 3 networks results in 3,333.33 USDC per network. Handled as sequential bridge operations due to single-execution interface constraints."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"MATIC\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm bridge and swap fill\",\n  \"reasoning\": \"Bridge 2 ETH from Ethereum to Polygon and swap for MATIC via cross-chain DEX router\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor cross-chain bridge transaction and subsequent DEX swap execution.\"\n}",
+      "durationMs": 21891,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4827308987308987,
+        "score": 0.4573240093240093,
+        "fieldScores": {
+          "intent": 0.055384615384615386,
+          "order_type": 0.02666666666666666,
+          "asset": 0.027999999999999997,
+          "size": 0.14,
+          "venue": 0.019999999999999993,
+          "venue_name": 0.007272727272727275,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "MATIC",
+          "size": "2",
+          "unit": "eth",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm bridge and swap fill",
+          "reasoning": "Bridge 2 ETH from Ethereum to Polygon and swap for MATIC via cross-chain DEX router",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor cross-chain bridge transaction and subsequent DEX swap execution."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": \"1000\",\n  \"unit\": \"usd\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"arbitrum_official_bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After bridge completes (~10-15 min), swap 1000 USDC for approximately 833 ARB on Arbitrum DEX (Camelot/Uniswap)\",\n  \"reasoning\": \"Two-step operation: bridge USDC to Arbitrum L2 first, then execute ARB purchase. Using official Arbitrum bridge for security. ARB price ~$1.20, expect ~833 ARB minus slippage.\"\n}",
+      "durationMs": 14070,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8861101398601399,
+        "score": 0.833986013986014,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.05090909090909091,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "1000",
+          "unit": "usd",
+          "venue": "bridge",
+          "venue_name": "arbitrum_official_bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "After bridge completes (~10-15 min), swap 1000 USDC for approximately 833 ARB on Arbitrum DEX (Camelot/Uniswap)",
+          "reasoning": "Two-step operation: bridge USDC to Arbitrum L2 first, then execute ARB purchase. Using official Arbitrum bridge for security. ARB price ~$1.20, expect ~833 ARB minus slippage."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L3-002",
+      "raw": "{\n  \"intent\": \"bridge\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"USDC\",\n  \"size\": \"3333.33\",\n  \"unit\": \"usd\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"arbitrum_official_bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"bridge 3333.33 USDC to Optimism\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Complete equal distribution by bridging 3,333.33 USDC to Optimism via official Optimism Bridge. Final state: ~3,333 USDC on each of Ethereum, Arbitrum, and Optimism.\",\n  \"reasoning\": \"Equal split of 10,000 USDC across three networks requires two bridge operations. First bridge to Arbitrum, then to Optimism, leaving remainder on Ethereum mainnet.\"\n}",
+      "durationMs": 23226,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7321590909090909,
+        "score": 0.6890909090909091,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.02909090909090909,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "3333.33",
+          "unit": "usd",
+          "venue": "bridge",
+          "venue_name": "arbitrum_official_bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "bridge 3333.33 USDC to Optimism",
+          "requires_follow_up": true,
+          "follow_up_description": "Complete equal distribution by bridging 3,333.33 USDC to Optimism via official Optimism Bridge. Final state: ~3,333 USDC on each of Ethereum, Arbitrum, and Optimism.",
+          "reasoning": "Equal split of 10,000 USDC across three networks requires two bridge operations. First bridge to Arbitrum, then to Optimism, leaving remainder on Ethereum mainnet."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L3-003",
+      "raw": "{\n  \"intent\": \"bridge_and_swap\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"price\": \"bridge rate\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"polygon_bridge\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"100 gwei\"\n  },\n  \"follow_up\": \"swap bridged ETH for MATIC on Polygon DEX\",\n  \"reasoning\": \"bridge ETH to Polygon then swap for MATIC via DEX\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After bridging 2 ETH to Polygon, swap the received ETH for MATIC on a Polygon DEX (e.g., QuickSwap or Uniswap).\"\n}",
+      "durationMs": 2165,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9630769230769232,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.043076923076923075,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_swap",
+          "order_type": "bridge",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": "bridge rate",
+          "venue": "bridge",
+          "venue_name": "polygon_bridge",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "100 gwei"
+          },
+          "follow_up": "swap bridged ETH for MATIC on Polygon DEX",
+          "reasoning": "bridge ETH to Polygon then swap for MATIC via DEX",
+          "requires_follow_up": true,
+          "follow_up_description": "After bridging 2 ETH to Polygon, swap the received ETH for MATIC on a Polygon DEX (e.g., QuickSwap or Uniswap)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

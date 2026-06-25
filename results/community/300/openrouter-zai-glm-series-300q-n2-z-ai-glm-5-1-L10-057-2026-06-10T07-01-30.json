@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T07:02:29.259Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-057-2026-06-10T07-01-30",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-057"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-057",
+      "raw": "{\n  \"intent\": \"liquidation_bundle\",\n  \"expected_value\": 69984,\n  \"reasoning\": \"Expected bonus = gross × success prob. Keeper retains 60%. A: 42000×0.9×0.6=22680 (2M gas). B: 35000×0.95×0.6=19950 (4M gas). C: 24000×0.8×0.6=11520 (1.5M gas). D: 60000×0.7×0.6=25200 (7M gas). E: 18000×0.98×0.6=10584 (1M gas). Optimal bundle A+C+D+E uses 11.5M gas (≤12M limit) and yields 22680+11520+25200+10584=69984 retained profit. Adding B would exceed gas limit.\"\n}",
+      "durationMs": 58280,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "liquidation_bundle",
+          "expected_value": 69984,
+          "reasoning": "Expected bonus = gross × success prob. Keeper retains 60%. A: 42000×0.9×0.6=22680 (2M gas). B: 35000×0.95×0.6=19950 (4M gas). C: 24000×0.8×0.6=11520 (1.5M gas). D: 60000×0.7×0.6=25200 (7M gas). E: 18000×0.98×0.6=10584 (1M gas). Optimal bundle A+C+D+E uses 11.5M gas (≤12M limit) and yields 22680+11520+25200+10584=69984 retained profit. Adding B would exceed gas limit."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

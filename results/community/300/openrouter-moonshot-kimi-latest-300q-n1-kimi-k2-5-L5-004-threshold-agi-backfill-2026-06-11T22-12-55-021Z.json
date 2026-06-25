@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-11T22:12:55.020Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L5-004-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L5-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L5-004",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"defi\",\n  \"asset\": \"USDC\",\n  \"size\": 5000,\n  \"unit\": \"usdc\",\n  \"venue\": \"aave\",\n  \"venue_name\": \"aave_v3\",\n  \"risk_controls\": {\n    \"max_gas\": \"50 gwei\",\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"monitor health factor\",\n  \"reasoning\": \"Borrow 5000 USDC against 2 ETH collateral ($6000). LTV is 83.3%, exceeding typical 80% liquidation thresholds. Liquidation risk if ETH price drops below $3125.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Critical: High LTV (83.3%) leaves minimal buffer. Monitor ETH price and health factor to prevent liquidation.\"\n}",
+      "durationMs": 24197,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8892857142857143,
+        "score": 0.8300000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "defi",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "usdc",
+          "venue": "aave",
+          "venue_name": "aave_v3",
+          "risk_controls": {
+            "max_gas": "50 gwei",
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor health factor",
+          "reasoning": "Borrow 5000 USDC against 2 ETH collateral ($6000). LTV is 83.3%, exceeding typical 80% liquidation thresholds. Liquidation risk if ETH price drops below $3125.",
+          "requires_follow_up": true,
+          "follow_up_description": "Critical: High LTV (83.3%) leaves minimal buffer. Monitor ETH price and health factor to prevent liquidation."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

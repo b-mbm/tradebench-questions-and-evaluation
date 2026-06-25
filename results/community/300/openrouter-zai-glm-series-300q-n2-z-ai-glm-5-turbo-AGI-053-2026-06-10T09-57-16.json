@@ -1,0 +1,51 @@
+{
+  "runAt": "2026-06-10T09:57:39.352Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-AGI-053-2026-06-10T09-57-16",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-053"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-053",
+      "raw": "{\n  \"intent\": \"exit\",\n  \"decision\": \"exit\",\n  \"chosen_strategy\": \"sequential_private_then_public\",\n  \"exit_sequence\": [\n    \"private_mm\",\n    \"dex_slice\"\n  ],\n  \"private_sale_usd\": 99300",
+      "durationMs": 22619,
+      "grade": {
+        "pass": false,
+        "confidence": 0.22499999999999998,
+        "score": 0.25,
+        "fieldScores": {
+          "intent": 0,
+          "decision": 1,
+          "chosen_strategy": 0,
+          "exit_sequence": 0,
+          "private_sale_usd": 1,
+          "expected_exit_value_usd": 0,
+          "expected_stay_value_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit",
+          "decision": "exit",
+          "chosen_strategy": "sequential_private_then_public",
+          "private_sale_usd": 99300,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

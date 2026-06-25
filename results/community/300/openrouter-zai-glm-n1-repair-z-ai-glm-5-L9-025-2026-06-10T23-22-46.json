@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:23:01.644Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L9-025-2026-06-10T23-22-46",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-025"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-025",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 247320,\n  \"reasoning\": \"Hard constraints pass (oracle age 35s <= 45s, liquidity $900k >= $640k). Success EV: 0.68 × ($620k - $7.2k flash fee - $52k gas - $76k slippage - $65k MEV) = 0.68 × $419.8k = $285.46k. Failure EV: 0.32 × (-$7.2k - $52k - $60k) = 0.32 × -$119.2k = -$38.14k. Combined EV = $247.32k > 0, execute.\"\n}",
+      "durationMs": 15266,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 247320,
+          "reasoning": "Hard constraints pass (oracle age 35s <= 45s, liquidity $900k >= $640k). Success EV: 0.68 × ($620k - $7.2k flash fee - $52k gas - $76k slippage - $65k MEV) = 0.68 × $419.8k = $285.46k. Failure EV: 0.32 × (-$7.2k - $52k - $60k) = 0.32 × -$119.2k = -$38.14k. Combined EV = $247.32k > 0, execute."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

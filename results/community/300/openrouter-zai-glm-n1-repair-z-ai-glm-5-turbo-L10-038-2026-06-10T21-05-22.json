@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T21:07:18.763Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-L10-038-2026-06-10T21-05-22",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L10-038"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L10-038",
+      "raw": "{\n  \"intent\": \"evaluate_strategy\",\n  \"expected_value\": 20.9356,\n  \"reasoning\": \"Weighted sum of deterministic legs: 30% * 22% (spot) + 25% * (8.0% * 75/365) (JitoSOL) + 25% * (18.0% * 75/365) (perp funding) + 20% * 65% (options) = 6.6% + 0.411% + 0.925% + 13.0% = 20.9356%.\"\n}",
+      "durationMs": 32083,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "evaluate_strategy",
+          "expected_value": 20.9356,
+          "reasoning": "Weighted sum of deterministic legs: 30% * 22% (spot) + 25% * (8.0% * 75/365) (JitoSOL) + 25% * (18.0% * 75/365) (perp funding) + 20% * 65% (options) = 6.6% + 0.411% + 0.925% + 13.0% = 20.9356%."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

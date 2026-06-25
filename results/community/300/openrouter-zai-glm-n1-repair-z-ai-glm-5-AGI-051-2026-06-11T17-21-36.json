@@ -1,0 +1,66 @@
+{
+  "runAt": "2026-06-11T17:21:45.696Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-051-2026-06-11T17-21-36",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-051"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-051",
+      "raw": "{\n  \"intent\": \"exit\",\n  \"decision\": \"exit\",\n  \"chosen_strategy\": \"private_first_then_public_twap\",\n  \"exit_sequence\": \"otc_block_first_then_dex_twap\",\n  \"private_sale_usd\": 178560,\n  \"expected_exit_value_usd\": 296760,\n  \"expected_stay_value_usd\": 189000,\n  \"self_check\": \"sequence_validated_private_before_public_preserves_liquidity_no_self_invalidation\",\n  \"reasoning\": \"Private OTC block at 99.2% yields $178,560; remaining $121,440 via DEX TWAP at 98.5% yields $119,618.56; total exit $298,178.56 exceeds expected stay value of $189,000 (45% × $420,000).\",\n  \"order_type\": \"otc_block\",\n  \"asset\": \"USD\",\n  \"size\": 180000,\n  \"unit\": \"usd\",\n  \"price\": \"99.2%\",\n  \"venue\": \"otc\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.8%\",\n    \"position_size_limit\": 180000\n  },\n  \"follow_up\": \"execute_dex_twap_for_remaining_121440\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"After OTC block fills, execute DEX TWAP for remaining $121,440 at 98.5% mark\"\n}",
+      "durationMs": 8587,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "decision": 1,
+          "chosen_strategy": 0,
+          "exit_sequence": 0,
+          "private_sale_usd": 1,
+          "expected_exit_value_usd": 1,
+          "expected_stay_value_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit",
+          "decision": "exit",
+          "chosen_strategy": "private_first_then_public_twap",
+          "exit_sequence": "otc_block_first_then_dex_twap",
+          "private_sale_usd": 178560,
+          "expected_exit_value_usd": 296760,
+          "expected_stay_value_usd": 189000,
+          "self_check": "sequence_validated_private_before_public_preserves_liquidity_no_self_invalidation",
+          "reasoning": "Private OTC block at 99.2% yields $178,560; remaining $121,440 via DEX TWAP at 98.5% yields $119,618.56; total exit $298,178.56 exceeds expected stay value of $189,000 (45% × $420,000).",
+          "order_type": "otc_block",
+          "asset": "USD",
+          "size": 180000,
+          "unit": "usd",
+          "price": "99.2%",
+          "venue": "otc",
+          "risk_controls": {
+            "slippage_tolerance": "0.8%",
+            "position_size_limit": 180000
+          },
+          "follow_up": "execute_dex_twap_for_remaining_121440",
+          "requires_follow_up": true,
+          "follow_up_description": "After OTC block fills, execute DEX TWAP for remaining $121,440 at 98.5% mark"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:exit_sequence",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

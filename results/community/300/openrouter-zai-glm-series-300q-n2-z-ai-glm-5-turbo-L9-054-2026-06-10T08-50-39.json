@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T08:51:33.586Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-054-2026-06-10T08-50-39",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-054"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-054",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 650,\n  \"reasoning\": \"Route A cost: $21,250. Route B cost: $19,150. Route C cost: $19,800. All routes meet constraints (settlement <= 20m, oracle <= 60s, capacity >= $4.5M). Best is Route B, saving $650 vs second-best Route C, yielding 0.203125 extra stETH.\"\n}\n",
+      "durationMs": 53612,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 650,
+          "reasoning": "Route A cost: $21,250. Route B cost: $19,150. Route C cost: $19,800. All routes meet constraints (settlement <= 20m, oracle <= 60s, capacity >= $4.5M). Best is Route B, saving $650 vs second-best Route C, yielding 0.203125 extra stETH."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

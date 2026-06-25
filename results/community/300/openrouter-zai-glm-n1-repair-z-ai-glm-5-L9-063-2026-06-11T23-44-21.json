@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T23:45:30.770Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L9-063-2026-06-11T23-44-21",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-063"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-063",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"expected_value\": 81618.18,\n  \"reasoning\": \"Pre-repay stressed HF = 0.98 (liquidatable). After 16% AAVE price shock to $105, collateral = $441K. To maintain HF >= 1.32, max sustainable debt = $299,880/1.32 = $227,182. Min debt reduction = $305,000 + $3,800 fees - $227,182 = $81,618 USDC.\"\n}",
+      "durationMs": 33132,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "expected_value": 81618.18,
+          "reasoning": "Pre-repay stressed HF = 0.98 (liquidatable). After 16% AAVE price shock to $105, collateral = $441K. To maintain HF >= 1.32, max sustainable debt = $299,880/1.32 = $227,182. Min debt reduction = $305,000 + $3,800 fees - $227,182 = $81,618 USDC."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

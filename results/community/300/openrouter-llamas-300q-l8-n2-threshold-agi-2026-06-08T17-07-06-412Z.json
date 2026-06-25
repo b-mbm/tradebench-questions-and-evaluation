@@ -1,0 +1,1955 @@
+{
+  "runAt": "2026-06-08T17:07:06.410Z",
+  "label": "openrouter-llamas-300q-l8-n2-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "meta-llama/llama-3.1-8b-instruct"
+  ],
+  "questionIds": [
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-001",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"order_type\": \"optimization\",\n  \"asset\": \"USDC\",\n  \"size\": 5000000,\n  \"venue\": \"defi\",\n  \"venue_name\": \"pendle and convex\",\n  \"expected_value\": 5064150.0,\n  \"unit\": \"usd\",\n  \"allocation\": {\n    \"pendle_pt_steth\": 3500000.0,\n    \"convex_curve_3pool\": 1500000.0\n  },\n  \"reasoning\": \"optimized allocation respecting 35% min Curve and 70% max Pendle, considering discount and yield\"\n}",
+      "durationMs": 5325,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.01391304347826087,
+          "order_type": 0.007894736842105265,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.03,
+          "venue_name": 0.03,
+          "expected_value": 0,
+          "unit": 0.001428571428571428,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "optimization",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "defi",
+          "venue_name": "pendle and convex",
+          "expected_value": 5064150,
+          "unit": "usd",
+          "allocation": {
+            "pendle_pt_steth": 3500000,
+            "convex_curve_3pool": 1500000
+          },
+          "reasoning": "optimized allocation respecting 35% min Curve and 70% max Pendle, considering discount and yield"
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range",
+          "multi_protocol_liquidity_constraint"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 346180,\n  \"cost_breakdown\": {\n    \"gas\": 1280000,\n    \"fees\": 180,\n    \"expected_mev_loss\": 31100\n  },\n  \"reasoning\": \"Calculated expected total cost for Strategy A by adding gas cost (320,000 units * 2 gwei * 12 seconds * $2850 / 1e9), setup fee ($180), and residual MEV loss (1.5% of $5,000,000), then compared with Strategy B's expected total cost ($5,000,000 * 0.3% slippage + $22,000 MEV loss + 180,000 units * 170 gwei * $2850 / 1e9) to select optimal strategy.\"\n}",
+      "durationMs": 7793,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.06666666666666665,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 346180,
+          "cost_breakdown": {
+            "gas": 1280000,
+            "fees": 180,
+            "expected_mev_loss": 31100
+          },
+          "reasoning": "Calculated expected total cost for Strategy A by adding gas cost (320,000 units * 2 gwei * 12 seconds * $2850 / 1e9), setup fee ($180), and residual MEV loss (1.5% of $5,000,000), then compared with Strategy B's expected total cost ($5,000,000 * 0.3% slippage + $22,000 MEV loss + 180,000 units * 170 gwei * $2850 / 1e9) to select optimal strategy."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-003",
+      "raw": "```json\n{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 30000,\n  \"venue\": \"coinbase\",\n  \"portfolio_volatility\": 0.4615,\n  \"risk_contributions\": {\n    \"btc\": 0.5132,\n    \"eth\": 0.3419,\n    \"bonds\": 0.1449\n  },\n  \"btc_contribution_pct\": 51.32,\n  \"eth_contribution_pct\": 34.19,\n  \"bonds_contribution_pct\": 14.49,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"btc\": 266667,\n    \"eth\": 266667,\n    \"bonds\": 466667\n  },\n  \"target_btc_usd\": 266667,\n  \"target_eth_usd\": 266667,\n  \"target_bonds_usd\": 466667,\n  \"transactions\": [\n    {\n      \"asset\": \"BTC\",\n      \"size\": -30000,\n      \"venue\": \"coinbase\"\n    },\n    {\n      \"asset\": \"ETH\",\n      \"size\": -8333,\n      \"venue\": \"uniswap\"\n    },\n    {\n      \"asset\": \"Bonds\",\n      \"size\": 116667,\n      \"venue\": \"treasurydirect\"\n    }\n  ],\n  \"btc_sell_amount\": 30000,\n  \"eth_sell_amount\": 8333,\n  \"bonds_buy_amount\": 116667,\n  \"btc_post_slippage\": 28500,\n  \"eth_post_slippage\": 7917,\n  \"bonds_post_slippage\": 115917,\n  \"reasoning\": \"Computed current risk contributions, checked trigger band, calculated target allocations, and constructed rounded transactions with post-slippage amounts using correlation-aware risk-parity optimization.\"\n}\n```",
+      "durationMs": 15648,
+      "grade": {
+        "pass": true,
+        "confidence": 0.6673006993006992,
+        "score": 0.8068181818181818,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 30000,
+          "venue": "coinbase",
+          "portfolio_volatility": 0.4615,
+          "risk_contributions": {
+            "btc": 0.5132,
+            "eth": 0.3419,
+            "bonds": 0.1449
+          },
+          "btc_contribution_pct": 51.32,
+          "eth_contribution_pct": 34.19,
+          "bonds_contribution_pct": 14.49,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 266667,
+            "eth": 266667,
+            "bonds": 466667
+          },
+          "target_btc_usd": 266667,
+          "target_eth_usd": 266667,
+          "target_bonds_usd": 466667,
+          "transactions": [
+            {
+              "asset": "BTC",
+              "size": -30000,
+              "venue": "coinbase"
+            },
+            {
+              "asset": "ETH",
+              "size": -8333,
+              "venue": "uniswap"
+            },
+            {
+              "asset": "Bonds",
+              "size": 116667,
+              "venue": "treasurydirect"
+            }
+          ],
+          "btc_sell_amount": 30000,
+          "eth_sell_amount": 8333,
+          "bonds_buy_amount": 116667,
+          "btc_post_slippage": 28500,
+          "eth_post_slippage": 7917,
+          "bonds_post_slippage": 115917,
+          "reasoning": "Computed current risk contributions, checked trigger band, calculated target allocations, and constructed rounded transactions with post-slippage amounts using correlation-aware risk-parity optimization."
+        },
+        "failureReasons": [],
+        "parsingMethod": "fenced_json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"re-staking\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer AVS\",\n  \"rationale\": \"EigenLayer AVS offers the highest net APR after borrowing costs while satisfying all constraints, including collateral timing and slashing risk tolerance.\",\n  \"decision_factors\": \"Total staking APR, borrow rate, effective borrow cost, net APR after borrow, slashing risk, liquidity days, and option comparisons.\",\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 4.25,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 3.25,\n  \"option_a_outperformance\": 1.0\n}",
+      "durationMs": 9776,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "re-staking",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS",
+          "rationale": "EigenLayer AVS offers the highest net APR after borrowing costs while satisfying all constraints, including collateral timing and slashing risk tolerance.",
+          "decision_factors": "Total staking APR, borrow rate, effective borrow cost, net APR after borrow, slashing risk, liquidity days, and option comparisons.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 3.25,
+          "option_a_outperformance": 1
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.0103,\n    \"deleverage_2x\": 0.0021,\n    \"deleverage_1_5x\": 0.0004\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 26.49,\n    \"deleverage_2x\": 40.11,\n    \"deleverage_1_5x\": 35.79,\n    \"close\": 0\n  },\n  \"reasoning\": \"Derived using log-normal barrier probabilities with σ_weekly ≈ 0.1317, zero drift, and including liquidation penalty in EV calculations\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 7489,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0103,
+            "deleverage_2x": 0.0021,
+            "deleverage_1_5x": 0.0004
+          },
+          "expected_values": {
+            "maintain_3x": 26.49,
+            "deleverage_2x": 40.11,
+            "deleverage_1_5x": 35.79,
+            "close": 0
+          },
+          "reasoning": "Derived using log-normal barrier probabilities with σ_weekly ≈ 0.1317, zero drift, and including liquidation penalty in EV calculations",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"order_type\": \"market\",\n  \"asset\": \"USDe\",\n  \"size\": 100000,\n  \"venue\": \"pendle\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.15%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"Optimizing for APY while managing leverage and depeg risk within the 90-day horizon, Pendle PT-USDe offers the highest fixed yield at 12.3% APY, aligning with the medium risk tolerance and avoiding excessive depeg exposure.\"\n}",
+      "durationMs": 5008,
+      "grade": {
+        "pass": false,
+        "confidence": 0.12535714285714286,
+        "score": 0.2785714285714286,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0,
+          "asset": 0.02857142857142857,
+          "allocation": 0,
+          "venue": 0.05,
+          "maturity": 0,
+          "expected_apy": 0,
+          "selected_strategy": 0,
+          "reasoning": 0.12,
+          "risk_assessment": 0,
+          "meets_constraints": 0,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "order_type": "market",
+          "asset": "USDe",
+          "size": 100000,
+          "venue": "pendle",
+          "risk_controls": {
+            "slippage_tolerance": "0.15%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "Optimizing for APY while managing leverage and depeg risk within the 90-day horizon, Pendle PT-USDe offers the highest fixed yield at 12.3% APY, aligning with the medium risk tolerance and avoiding excessive depeg exposure."
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-007",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"stETH\",\n  \"size\": 2500,\n  \"venue\": \"CowSwap\",\n  \"venue_name\": \"CowSwap MEV-Protected\",\n  \"expected_value\": -11750,\n  \"unit\": \"USD_total_cost\",\n  \"reasoning\": \"Selected CowSwap for full MEV protection, despite higher protocol fee, due to significant MEV extraction risk on other venues and settlement within 15-minute deadline\",\n  \"constraint_awareness\": \"Total cost minimized considering fees, MEV, spread, and settlement time constraints\"\n}",
+      "durationMs": 5687,
+      "grade": {
+        "pass": false,
+        "confidence": 0.36553571428571435,
+        "score": 0.3390476190476191,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0.023809523809523836,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "CowSwap",
+          "venue_name": "CowSwap MEV-Protected",
+          "expected_value": -11750,
+          "unit": "USD_total_cost",
+          "reasoning": "Selected CowSwap for full MEV protection, despite higher protocol fee, due to significant MEV extraction risk on other venues and settlement within 15-minute deadline",
+          "constraint_awareness": "Total cost minimized considering fees, MEV, spread, and settlement time constraints"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"execute risk-parity rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"multi-asset\",\n  \"size\": \"variable\",\n  \"venue\": \"multi-venue\",\n  \"risk_controls\": {\n    \"max_total_fees\": 2000\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"minimize fees by splitting trades between Coinbase and Interactive Brokers\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify execution and fees\"\n}",
+      "durationMs": 2427,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "execution_plan": 0,
+          "fee_summary": 0,
+          "rationale": 0,
+          "constraints_met": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute risk-parity rebalance",
+          "order_type": "market",
+          "asset": "multi-asset",
+          "size": "variable",
+          "venue": "multi-venue",
+          "risk_controls": {
+            "max_total_fees": 2000
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "minimize fees by splitting trades between Coinbase and Interactive Brokers",
+          "requires_follow_up": true,
+          "follow_up_description": "verify execution and fees"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "l8_008_missing_execution_plan"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-009",
+      "raw": "{\n  \"decision\": \"execute\",\n  \"reasoning\": \"To derive the numbers, we calculated the capital allocation to split $100,000 USDC between spot ETH purchase and perp margin, considering the initial margin requirement of 1x for ETH-PERP on Binance. We determined the position size in ETH based on the allocated capital for the spot purchase and the price of ETH on Coinbase. The perp notional in USD was calculated based on the position size and the price of ETH-PERP on Binance. Daily funding revenue was calculated using the funding rate and the perp notional. Entry costs include the maker fees for both spot and perp trades, as well as the network transfer fee. Break-even periods were calculated by dividing the entry costs by the daily funding revenue. Annualized funding rate and ROI on total capital were calculated based on the daily funding revenue and the total capital allocated.\",\n  \"execution\": {\n    \"step_1\": \"transfer 50000 USDT to Binance for margin\",\n    \"step_2\": \"buy 20.408 ETH spot on Coinbase maker\",\n    \"step_3\": \"short 20.408 ETH perp on Binance maker\",\n    \"delta_neutral\": true,\n    \"exit_trigger\": \"funding rate changes or significant price movement\"\n  }\n}",
+      "durationMs": 4641,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5334328952608522,
+        "score": 0.45722819593787334,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.007228195937873345,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": "To derive the numbers, we calculated the capital allocation to split $100,000 USDC between spot ETH purchase and perp margin, considering the initial margin requirement of 1x for ETH-PERP on Binance. We determined the position size in ETH based on the allocated capital for the spot purchase and the price of ETH on Coinbase. The perp notional in USD was calculated based on the position size and the price of ETH-PERP on Binance. Daily funding revenue was calculated using the funding rate and the perp notional. Entry costs include the maker fees for both spot and perp trades, as well as the network transfer fee. Break-even periods were calculated by dividing the entry costs by the daily funding revenue. Annualized funding rate and ROI on total capital were calculated based on the daily funding revenue and the total capital allocated.",
+          "execution": {
+            "step_1": "transfer 50000 USDT to Binance for margin",
+            "step_2": "buy 20.408 ETH spot on Coinbase maker",
+            "step_3": "short 20.408 ETH perp on Binance maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding rate changes or significant price movement"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L8-010",
+      "raw": "{\n  \"intent\": \"collar\",\n  \"order_type\": \"option\",\n  \"asset\": \"BTC\",\n  \"size\": 10,\n  \"call_strike\": 49500,\n  \"put_strike\": 42750,\n  \"net_cost_per_btc\": -60,\n  \"venue\": \"deribit\",\n  \"venue_name\": \"Deribit Exchange\",\n  \"expiry_days\": 30,\n  \"reasoning\": \"Selected 10% OTM call and 5% OTM put to balance upside participation and downside protection while minimizing total economic cost\"\n}",
+      "durationMs": 7492,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8723789682539684,
+        "score": 0.8264642857142859,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.08571428571428573,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.08000000000000002,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.00875,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "collar",
+          "order_type": "option",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 42750,
+          "net_cost_per_btc": -60,
+          "venue": "deribit",
+          "venue_name": "Deribit Exchange",
+          "expiry_days": 30,
+          "reasoning": "Selected 10% OTM call and 5% OTM put to balance upside participation and downside protection while minimizing total economic cost"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-001",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"order_type\": \"strategy\",\n  \"asset\": \"USDC\",\n  \"size\": 5000000,\n  \"venue\": \"pendle_convex\",\n  \"venue_name\": \"pendle_convex_curve\",\n  \"expected_value\": 5000000,\n  \"unit\": \"USDC\",\n  \"allocation\": {\n    \"pendle_pt_steth\": 3250000,\n    \"convex_curve_3pool\": 1750000\n  },\n  \"reasoning\": \"Optimal allocation: 65% Pendle PT-stETH ($3,250,000) and 35% Convex-Boosted Curve 3pool ($1,750,000), respecting constraints and maximizing yield.\"\n}",
+      "durationMs": 1427,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.01391304347826087,
+          "order_type": 0.005263157894736842,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.002500000000000001,
+          "venue_name": 0.02117647058823529,
+          "expected_value": 0,
+          "unit": 0.002142857142857142,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "strategy",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "pendle_convex",
+          "venue_name": "pendle_convex_curve",
+          "expected_value": 5000000,
+          "unit": "USDC",
+          "allocation": {
+            "pendle_pt_steth": 3250000,
+            "convex_curve_3pool": 1750000
+          },
+          "reasoning": "Optimal allocation: 65% Pendle PT-stETH ($3,250,000) and 35% Convex-Boosted Curve 3pool ($1,750,000), respecting constraints and maximizing yield."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 244.16,\n  \"cost_breakdown\": {\n    \"gas\": 54.16,\n    \"fees\": 245,\n    \"expected_mev_loss\": 330\n  },\n  \"reasoning\": \"Strategy A: $180 setup fee + $65*0.04 retry cost = $182.6 fees; 320,000 * (150+2) gwei = $54.16 gas; $22,000 * (1-0.985) = $330 MEV loss. Strategy B: $22,000 MEV loss + $40.5 gas = $22,040.5 total cost. Strategy A is cheaper.\"\n}",
+      "durationMs": 1973,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.06666666666666665,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 244.16,
+          "cost_breakdown": {
+            "gas": 54.16,
+            "fees": 245,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Strategy A: $180 setup fee + $65*0.04 retry cost = $182.6 fees; 320,000 * (150+2) gwei = $54.16 gas; $22,000 * (1-0.985) = $330 MEV loss. Strategy B: $22,000 MEV loss + $40.5 gas = $22,040.5 total cost. Strategy A is cheaper."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-003",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"multi-leg\",\n  \"asset\": \"portfolio\",\n  \"size\": \"1000000\",\n  \"venue\": \"multi\",\n  \"portfolio_volatility\": 0.3739,\n  \"risk_contributions\": {\n    \"btc\": 41.29,\n    \"eth\": 52.44,\n    \"bonds\": 6.27\n  },\n  \"btc_contribution_pct\": 41.29,\n  \"eth_contribution_pct\": 52.44,\n  \"bonds_contribution_pct\": 6.27,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"btc\": 298000,\n    \"eth\": 261000,\n    \"bonds\": 441000\n  },\n  \"target_btc_usd\": 298000,\n  \"target_eth_usd\": 261000,\n  \"target_bonds_usd\": 441000,\n  \"transactions\": [\n    {\n      \"intent\": \"sell\",\n      \"order_type\": \"market\",\n      \"asset\": \"BTC\",\n      \"size\": \"102000\",\n      \"venue\": \"coinbase\"\n    },\n    {\n      \"intent\": \"sell\",\n      \"order_type\": \"market\",\n      \"asset\": \"ETH\",\n      \"size\": \"89000\",\n      \"venue\": \"coinbase\"\n    },\n    {\n      \"intent\": \"buy\",\n      \"order_type\": \"market\",\n      \"asset\": \"TLT\",\n      \"size\": \"191000\",\n      \"venue\": \"NYSE\"\n    }\n  ],\n  \"btc_sell_amount\": 102000,\n  \"eth_sell_amount\": 89000,\n  \"bonds_buy_amount\": 191000,\n  \"btc_post_slippage\": 101490,\n  \"eth_post_slippage\": 88555,\n  \"bonds_post_slippage\": 190809,\n  \"reasoning\": \"Rebalanced to achieve equal risk contributions within ±5pp tolerance\"\n}",
+      "durationMs": 3520,
+      "grade": {
+        "pass": true,
+        "confidence": 0.834125874125874,
+        "score": 0.8068181818181818,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "multi-leg",
+          "asset": "portfolio",
+          "size": "1000000",
+          "venue": "multi",
+          "portfolio_volatility": 0.3739,
+          "risk_contributions": {
+            "btc": 41.29,
+            "eth": 52.44,
+            "bonds": 6.27
+          },
+          "btc_contribution_pct": 41.29,
+          "eth_contribution_pct": 52.44,
+          "bonds_contribution_pct": 6.27,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 298000,
+            "eth": 261000,
+            "bonds": 441000
+          },
+          "target_btc_usd": 298000,
+          "target_eth_usd": 261000,
+          "target_bonds_usd": 441000,
+          "transactions": [
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "BTC",
+              "size": "102000",
+              "venue": "coinbase"
+            },
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "ETH",
+              "size": "89000",
+              "venue": "coinbase"
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "TLT",
+              "size": "191000",
+              "venue": "NYSE"
+            }
+          ],
+          "btc_sell_amount": 102000,
+          "eth_sell_amount": 89000,
+          "bonds_buy_amount": 191000,
+          "btc_post_slippage": 101490,
+          "eth_post_slippage": 88555,
+          "bonds_post_slippage": 190809,
+          "reasoning": "Rebalanced to achieve equal risk contributions within ±5pp tolerance"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"eigenlayer\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer AVS Restaking\",\n  \"rationale\": \"EigenLayer provides highest net APR after borrowing costs while meeting all constraints\",\n  \"decision_factors\": \"APR boost, slashing risk, liquidity requirements\",\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 1.8333333333333333,\n  \"net_apr_after_borrow\": 5.166666666666667,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 2.383333333333333,\n  \"option_a_outperformance\": 0\n}",
+      "durationMs": 2274,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6802424242424242,
+        "score": 0.6506666666666666,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.06666666666666667,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0,
+          "net_apr_after_borrow": 0,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "eigenlayer",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS Restaking",
+          "rationale": "EigenLayer provides highest net APR after borrowing costs while meeting all constraints",
+          "decision_factors": "APR boost, slashing risk, liquidity requirements",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 1.8333333333333333,
+          "net_apr_after_borrow": 5.166666666666667,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 2.383333333333333,
+          "option_a_outperformance": 0
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.0081,\n    \"deleverage_2x\": 0.00032,\n    \"deleverage_1_5x\": 0.000012\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 52.85,\n    \"deleverage_2x\": 41.31,\n    \"deleverage_1_5x\": 35.54,\n    \"close\": 0\n  },\n  \"reasoning\": \"Deleverage to 2× satisfies risk threshold while maximizing expected value\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 2155,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.00032,
+            "deleverage_1_5x": 0.000012
+          },
+          "expected_values": {
+            "maintain_3x": 52.85,
+            "deleverage_2x": 41.31,
+            "deleverage_1_5x": 35.54,
+            "close": 0
+          },
+          "reasoning": "Deleverage to 2× satisfies risk threshold while maximizing expected value",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"yield_optimization\",\n  \"order_type\": \"complex\",\n  \"asset\": \"USDe\",\n  \"size\": 100000,\n  \"unit\": \"usd\",\n  \"venue\": \"pendle\",\n  \"venue_name\": \"pendle\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": 0.15\n  },\n  \"follow_up\": \"monitor pendle position\",\n  \"reasoning\": \"maximize yield within risk constraints\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track pendle pt-usde maturity\"\n}",
+      "durationMs": 1664,
+      "grade": {
+        "pass": false,
+        "confidence": 0.10375714285714287,
+        "score": 0.23057142857142857,
+        "fieldScores": {
+          "intent": 0.032,
+          "strategy": 0,
+          "asset": 0.02857142857142857,
+          "allocation": 0,
+          "venue": 0.05,
+          "maturity": 0,
+          "expected_apy": 0,
+          "selected_strategy": 0,
+          "reasoning": 0.12,
+          "risk_assessment": 0,
+          "meets_constraints": 0,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "yield_optimization",
+          "order_type": "complex",
+          "asset": "USDe",
+          "size": 100000,
+          "unit": "usd",
+          "venue": "pendle",
+          "venue_name": "pendle",
+          "risk_controls": {
+            "slippage_tolerance": 0.15
+          },
+          "follow_up": "monitor pendle position",
+          "reasoning": "maximize yield within risk constraints",
+          "requires_follow_up": true,
+          "follow_up_description": "track pendle pt-usde maturity"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-007",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"batch auction\", \"asset\": \"stETH\", \"size\": 2500, \"venue\": \"cowswap\", \"venue_name\": \"CowSwap\", \"expected_value\": -113625, \"unit\": \"USD_total_cost\", \"reasoning\": \"Selected CowSwap for MEV protection despite capacity constraint; calculated total cost including fees, spread, price impact, and dynamic widening\", \"constraint_awareness\": \"Overflow handling queued to next batch (+12 min) not used due to hard deadline\"}",
+      "durationMs": 1709,
+      "grade": {
+        "pass": false,
+        "confidence": 0.30916666666666665,
+        "score": 0.27999999999999997,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "batch auction",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "cowswap",
+          "venue_name": "CowSwap",
+          "expected_value": -113625,
+          "unit": "USD_total_cost",
+          "reasoning": "Selected CowSwap for MEV protection despite capacity constraint; calculated total cost including fees, spread, price impact, and dynamic widening",
+          "constraint_awareness": "Overflow handling queued to next batch (+12 min) not used due to hard deadline"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"multi-asset\",\n  \"asset\": \"multi\",\n  \"size\": \"multiple\",\n  \"unit\": \"usd\",\n  \"venue\": \"split\",\n  \"venue_name\": \"coinbase, interactive_brokers\",\n  \"risk_controls\": {\n    \"max_gas\": 30\n  },\n  \"follow_up\": \"monitor fills\",\n  \"reasoning\": \"split venue to minimize fees while meeting same-day execution constraint\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"confirm all trades executed within same trading day\"\n}",
+      "durationMs": 2963,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "execution_plan": 0,
+          "fee_summary": 0,
+          "rationale": 0,
+          "constraints_met": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "multi-asset",
+          "asset": "multi",
+          "size": "multiple",
+          "unit": "usd",
+          "venue": "split",
+          "venue_name": "coinbase, interactive_brokers",
+          "risk_controls": {
+            "max_gas": 30
+          },
+          "follow_up": "monitor fills",
+          "reasoning": "split venue to minimize fees while meeting same-day execution constraint",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm all trades executed within same trading day"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "l8_008_missing_execution_plan"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-009",
+      "raw": "{\n  \"decision\": \"execute\",\n  \"reasoning\": {\n    \"capital_allocation\": {\n      \"spot_usd\": 50000,\n      \"margin_usd\": 50000\n    },\n    \"position_size_eth\": 20.40816326530612,\n    \"perp_notional_usd\": 50166.32653061224,\n    \"funding_revenue_daily\": 12.039918367346938,\n    \"costs_entry\": 22.03326530612245,\n    \"break_even_periods\": 1.8297872340425532,\n    \"annualized_funding_rate_pct\": 109.5,\n    \"annual_roi_on_total_capital_pct\": 13.178571428571428,\n    \"reasoning\": \"Capital allocated to spot and margin to maximize funding revenue while covering costs. Position size calculated based on margin and perp price. Funding revenue calculated based on perp notional and funding rate. Entry costs include maker fees and network transfer fee. Break-even periods calculated based on entry costs and daily funding revenue. Annualized metrics derived from daily funding rate and total capital.\"\n  },\n  \"execution\": {\n    \"step_1\": \"transfer_50000_usdt_to_binance_for_margin\",\n    \"step_2\": \"buy_20.40816326530612_eth_spot_coinbase_maker\",\n    \"step_3\": \"short_20.40816326530612_eth_perp_binance_maker\",\n    \"delta_neutral\": true,\n    \"exit_trigger\": \"funding rate becomes negative or position becomes unprofitable\"\n  }\n}",
+      "durationMs": 4781,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 50000,
+              "margin_usd": 50000
+            },
+            "position_size_eth": 20.40816326530612,
+            "perp_notional_usd": 50166.32653061224,
+            "funding_revenue_daily": 12.039918367346939,
+            "costs_entry": 22.03326530612245,
+            "break_even_periods": 1.8297872340425532,
+            "annualized_funding_rate_pct": 109.5,
+            "annual_roi_on_total_capital_pct": 13.178571428571429,
+            "reasoning": "Capital allocated to spot and margin to maximize funding revenue while covering costs. Position size calculated based on margin and perp price. Funding revenue calculated based on perp notional and funding rate. Entry costs include maker fees and network transfer fee. Break-even periods calculated based on entry costs and daily funding revenue. Annualized metrics derived from daily funding rate and total capital."
+          },
+          "execution": {
+            "step_1": "transfer_50000_usdt_to_binance_for_margin",
+            "step_2": "buy_20.40816326530612_eth_spot_coinbase_maker",
+            "step_3": "short_20.40816326530612_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding rate becomes negative or position becomes unprofitable"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L8-010",
+      "raw": "{\n  \"intent\": \"collar\",\n  \"order_type\": \"options\",\n  \"asset\": \"BTC\",\n  \"size\": 10,\n  \"call_strike\": 47250,\n  \"put_strike\": 42750,\n  \"net_cost_per_btc\": -70,\n  \"venue\": \"deribit\",\n  \"venue_name\": \"deribit\",\n  \"expiry_days\": 30,\n  \"reasoning\": \"Sold 5% OTM call at $47,250 strike for $850, bought 5% OTM put at $42,750 strike for -$920, resulting in net cost of -$70/BTC\"\n}",
+      "durationMs": 1792,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7726666666666668,
+        "score": 0.7320000000000002,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.1,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.08000000000000002,
+          "put_strike": 0.08000000000000002,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "collar",
+          "order_type": "options",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 47250,
+          "put_strike": 42750,
+          "net_cost_per_btc": -70,
+          "venue": "deribit",
+          "venue_name": "deribit",
+          "expiry_days": 30,
+          "reasoning": "Sold 5% OTM call at $47,250 strike for $850, bought 5% OTM put at $42,750 strike for -$920, resulting in net cost of -$70/BTC"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-001",
+      "raw": "{\n\"intent\": \"deploy\",\n  \"order_type\": \"yield\",\n  \"asset\": \"USDC\",\n  \"size\": 5000000,\n  \"venue\": \"Pendle, Convex\",\n  \"venue_name\": \"Pendle PT-stETH, Convex-Boosted Curve 3pool\",\n  \"expected_value\": 5225000,\n  \"unit\": \"USDC\",\n  \"allocation\": {\n    \"pendle_pt_steth\": 3500000,\n    \"convex_curve_3pool\": 1500000\n  },\n  \"reasoning\": \"Optimized for yield while respecting constraints: 70% max in Pendle PT-stETH ($3,500,000) and ≥35% in Curve 3pool ($1,750,000), resulting in $5,225,000 expected value.\"\n}",
+      "durationMs": 1130,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.010434782608695655,
+          "order_type": 0.002631578947368424,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.004615384615384616,
+          "venue_name": 0.00857142857142857,
+          "expected_value": 0,
+          "unit": 0.002142857142857142,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "deploy",
+          "order_type": "yield",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "Pendle, Convex",
+          "venue_name": "Pendle PT-stETH, Convex-Boosted Curve 3pool",
+          "expected_value": 5225000,
+          "unit": "USDC",
+          "allocation": {
+            "pendle_pt_steth": 3500000,
+            "convex_curve_3pool": 1500000
+          },
+          "reasoning": "Optimized for yield while respecting constraints: 70% max in Pendle PT-stETH ($3,500,000) and ≥35% in Curve 3pool ($1,750,000), resulting in $5,225,000 expected value."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range",
+          "multi_protocol_liquidity_constraint"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-002",
+      "raw": "{\n\"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 234220,\n  \"cost_breakdown\": {\n    \"gas\": 640,\n    \"fees\": 180,\n    \"expected_mev_loss\": 330\n  },\n  \"reasoning\": \"Calculated total expected cost for Flashbots Protect (Strategy A) as $5,000,000 * 0.003 (slippage) + 320,000 * 2 * 1e-9 * $2850 + $180 (setup) + $65 * (1 - 0.96) = $234,220, considering 96% success rate.\"\n}",
+      "durationMs": 525,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8999999999999999,
+        "score": 0.6,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 234220,
+          "cost_breakdown": {
+            "gas": 640,
+            "fees": 180,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Calculated total expected cost for Flashbots Protect (Strategy A) as $5,000,000 * 0.003 (slippage) + 320,000 * 2 * 1e-9 * $2850 + $180 (setup) + $65 * (1 - 0.96) = $234,220, considering 96% success rate."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-003",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"\",\n  \"size\": \"\",\n  \"venue\": \"\",\n  \"portfolio_volatility\": 0.3327,\n  \"risk_contributions\": {\n    \"btc\": 0.4634,\n    \"eth\": 0.5166,\n    \"bonds\": 0.0199\n  },\n  \"btc_contribution_pct\": 46.34,\n  \"eth_contribution_pct\": 51.66,\n  \"bonds_contribution_pct\": 1.99,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"btc\": 333333,\n    \"eth\": 333333,\n    \"bonds\": 333333\n  },\n  \"target_btc_usd\": 333333,\n  \"target_eth_usd\": 333333,\n  \"target_bonds_usd\": 333333,\n  \"transactions\": [\n    {\n      \"intent\": \"sell\",\n      \"order_type\": \"market\",\n      \"asset\": \"BTC\",\n      \"size\": 66667,\n      \"unit\": \"usd\",\n      \"venue\": \"coinbase\",\n      \"reasoning\": \"\"\n    },\n    {\n      \"intent\": \"sell\",\n      \"order_type\": \"market\",\n      \"asset\": \"ETH\",\n      \"size\": 16667,\n      \"unit\": \"usd\",\n      \"venue\": \"coinbase\",\n      \"reasoning\": \"\"\n    },\n    {\n      \"intent\": \"buy\",\n      \"order_type\": \"market\",\n      \"asset\": \"bonds\",\n      \"size\": 83333,\n      \"unit\": \"usd\",\n      \"venue\": \"treasury\",\n      \"reasoning\": \"\"\n    }\n  ],\n  \"btc_sell_amount\": 66667,\n  \"eth_sell_amount\": 16667,\n  \"bonds_buy_amount\": 83333,\n  \"btc_post_slippage\": 66366.5,\n  \"eth_post_slippage\": 16566.5,\n  \"bonds_post_slippage\": 83216.7,\n  \"reasoning\": \"Risk-parity optimization deviated from target contributions. BTC and ETH contributions were 46.34% and 51.66%, respectively. Rebalancing transactions were constructed to achieve equal risk contributions.\"\n}",
+      "durationMs": 12675,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7507132867132866,
+        "score": 0.8068181818181818,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "",
+          "size": "",
+          "venue": "",
+          "portfolio_volatility": 0.3327,
+          "risk_contributions": {
+            "btc": 0.4634,
+            "eth": 0.5166,
+            "bonds": 0.0199
+          },
+          "btc_contribution_pct": 46.34,
+          "eth_contribution_pct": 51.66,
+          "bonds_contribution_pct": 1.99,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 333333,
+            "eth": 333333,
+            "bonds": 333333
+          },
+          "target_btc_usd": 333333,
+          "target_eth_usd": 333333,
+          "target_bonds_usd": 333333,
+          "transactions": [
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "BTC",
+              "size": 66667,
+              "unit": "usd",
+              "venue": "coinbase",
+              "reasoning": ""
+            },
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "ETH",
+              "size": 16667,
+              "unit": "usd",
+              "venue": "coinbase",
+              "reasoning": ""
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "bonds",
+              "size": 83333,
+              "unit": "usd",
+              "venue": "treasury",
+              "reasoning": ""
+            }
+          ],
+          "btc_sell_amount": 66667,
+          "eth_sell_amount": 16667,
+          "bonds_buy_amount": 83333,
+          "btc_post_slippage": 66366.5,
+          "eth_post_slippage": 16566.5,
+          "bonds_post_slippage": 83216.7,
+          "reasoning": "Risk-parity optimization deviated from target contributions. BTC and ETH contributions were 46.34% and 51.66%, respectively. Rebalancing transactions were constructed to achieve equal risk contributions."
+        },
+        "failureReasons": [
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"restaking\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer AVS Restaking\",\n  \"rationale\": \"Maximizes net return while meeting constraints\",\n  \"decision_factors\": \"Evaluated net APR, slashing risk, and collateral timing\",\n  \"total_staking_apr\": 7,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 0.44,\n  \"net_apr_after_borrow\": 6.56,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 4.2,\n  \"option_a_outperformance\": 2.8\n}",
+      "durationMs": 6787,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6802424242424242,
+        "score": 0.6506666666666666,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.06666666666666667,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0,
+          "net_apr_after_borrow": 0,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "restaking",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS Restaking",
+          "rationale": "Maximizes net return while meeting constraints",
+          "decision_factors": "Evaluated net APR, slashing risk, and collateral timing",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 0.44,
+          "net_apr_after_borrow": 6.56,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 4.2,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.0081,\n    \"deleverage_2x\": 0.0025,\n    \"deleverage_1_5x\": 0.0008,\n    \"close\": 0\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 376.65,\n    \"deleverage_2x\": 415.91,\n    \"deleverage_1_5x\": 431.19,\n    \"close\": 0\n  },\n  \"reasoning\": \"Calculated liquidation probabilities and expected values for each action using barrier hitting model with 7-day volatility, then selected action B as optimal\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 4072,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.0025,
+            "deleverage_1_5x": 0.0008,
+            "close": 0
+          },
+          "expected_values": {
+            "maintain_3x": 376.65,
+            "deleverage_2x": 415.91,
+            "deleverage_1_5x": 431.19,
+            "close": 0
+          },
+          "reasoning": "Calculated liquidation probabilities and expected values for each action using barrier hitting model with 7-day volatility, then selected action B as optimal",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"fixed_yield\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Pendle PT offers the highest APY (12.3%) with a fixed yield for 90 days, aligning with the horizon and risk tolerance. Leveraged loops exceed depeg risk thresholds.\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\": {\n    \"B\": \"Exceeds 3% depeg exposure threshold\",\n    \"D\": \"Lower APY (11.25%) compared to Pendle PT\"\n  }\n}",
+      "durationMs": 4079,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Pendle PT offers the highest APY (12.3%) with a fixed yield for 90 days, aligning with the horizon and risk tolerance. Leveraged loops exceed depeg risk thresholds.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "Exceeds 3% depeg exposure threshold",
+            "D": "Lower APY (11.25%) compared to Pendle PT"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-007",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"swap\",\n  \"asset\": \"stETH\",\n  \"size\": 2500,\n  \"unit\": \"stETH\",\n  \"venue\": \"CowSwap\",\n  \"venue_name\": \"CowSwap\",\n  \"expected_value\": -118.125,\n  \"unit\": \"USD_total_cost\",\n  \"reasoning\": \"Selected CowSwap for MEV protection and low fees; calculated total cost: 0.25% spread + 0.35% price impact + 0.15% protocol fee = 0.75%, plus 0.05% dynamic widening for $4.5M notional, totaling 0.8% or $36k, then added 12min batch delay cost\",\n  \"constraint_awareness\": \"Ensured settlement within 15 minutes and sold 2,500 stETH in a single execution window\"\n}",
+      "durationMs": 4387,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3485714285714286,
+        "score": 0.32,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "swap",
+          "asset": "stETH",
+          "size": 2500,
+          "unit": "USD_total_cost",
+          "venue": "CowSwap",
+          "venue_name": "CowSwap",
+          "expected_value": -118.125,
+          "reasoning": "Selected CowSwap for MEV protection and low fees; calculated total cost: 0.25% spread + 0.35% price impact + 0.15% protocol fee = 0.75%, plus 0.05% dynamic widening for $4.5M notional, totaling 0.8% or $36k, then added 12min batch delay cost",
+          "constraint_awareness": "Ensured settlement within 15 minutes and sold 2,500 stETH in a single execution window"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"risk-parity rebalance\",\n  \"strategy\": \"venue optimization\",\n  \"execution_plan\": [\n    {\n      \"asset\": \"BTC\",\n      \"venue\": \"coinbase\",\n      \"notional\": 22500,\n      \"fee_rate\": 0.006,\n      \"fee_amount\": 135\n    },\n    {\n      \"asset\": \"ETH\",\n      \"venue\": \"coinbase\",\n      \"notional\": 22400,\n      \"fee_rate\": 0.006,\n      \"fee_amount\": 134.4\n    },\n    {\n      \"asset\": \"GLD\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 222000,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 222\n    },\n    {\n      \"asset\": \"TLT\",\n      \"venue\": \"interactive_brokers\",\n      \"notional\": 228000,\n      \"fee_rate\": 0.001,\n      \"fee_amount\": 228\n    }\n  ],\n  \"fee_summary\": {\n    \"total_fees\": 719.4,\n    \"total_notional\": 493900,\n    \"total_execution_cost\": 494619.4\n  },\n  \"rationale\": \"Coinbase used for BTC/ETH due to instant execution, IB for GLD/TLT for lower fees\",\n  \"constraints_met\": true\n}",
+      "durationMs": 6553,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8015625000000001,
+        "score": 0.7125,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.30000000000000004,
+          "execution_plan": 0.3,
+          "fee_summary": 0,
+          "rationale": 0.0125,
+          "constraints_met": 0.1
+        },
+        "normalizedResponse": {
+          "intent": "risk-parity rebalance",
+          "strategy": "venue optimization",
+          "execution_plan": [
+            {
+              "asset": "BTC",
+              "venue": "coinbase",
+              "notional": 22500,
+              "fee_rate": 0.006,
+              "fee_amount": 135
+            },
+            {
+              "asset": "ETH",
+              "venue": "coinbase",
+              "notional": 22400,
+              "fee_rate": 0.006,
+              "fee_amount": 134.4
+            },
+            {
+              "asset": "GLD",
+              "venue": "interactive_brokers",
+              "notional": 222000,
+              "fee_rate": 0.001,
+              "fee_amount": 222
+            },
+            {
+              "asset": "TLT",
+              "venue": "interactive_brokers",
+              "notional": 228000,
+              "fee_rate": 0.001,
+              "fee_amount": 228
+            }
+          ],
+          "fee_summary": {
+            "total_fees": 719.4,
+            "total_notional": 493900,
+            "total_execution_cost": 494619.4
+          },
+          "rationale": "Coinbase used for BTC/ETH due to instant execution, IB for GLD/TLT for lower fees",
+          "constraints_met": true
+        },
+        "failureReasons": [
+          "l8_008_total_notional_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-009",
+      "raw": "{\n  \"decision\": \"execute\",\n  \"reasoning\": {\n    \"capital_allocation\": {\"spot_usd\": 50000, \"margin_usd\": 50000},\n    \"position_size_eth\": 20.408163265306122,\n    \"perp_notional_usd\": 50000,\n    \"funding_revenue_daily\": 7.2,\n    \"costs_entry\": 10,\n    \"break_even_periods\": 694.44,\n    \"annualized_funding_rate_pct\": 7.2,\n    \"annual_roi_on_total_capital_pct\": 7.29\n  },\n  \"execution\": {\n    \"step_1\": \"transfer_50000_usdt_to_binance_for_margin\",\n    \"step_2\": \"buy_20.408163265306122_eth_spot_coinbase_maker\",\n    \"step_3\": \"short_20.408163265306122_eth_perp_binance_maker\",\n    \"delta_neutral\": true,\n    \"exit_trigger\": \"manual\"\n  }\n}",
+      "durationMs": 4960,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 50000,
+              "margin_usd": 50000
+            },
+            "position_size_eth": 20.408163265306122,
+            "perp_notional_usd": 50000,
+            "funding_revenue_daily": 7.2,
+            "costs_entry": 10,
+            "break_even_periods": 694.44,
+            "annualized_funding_rate_pct": 7.2,
+            "annual_roi_on_total_capital_pct": 7.29
+          },
+          "execution": {
+            "step_1": "transfer_50000_usdt_to_binance_for_margin",
+            "step_2": "buy_20.408163265306122_eth_spot_coinbase_maker",
+            "step_3": "short_20.408163265306122_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "manual"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L8-010",
+      "raw": "{\n  \"intent\": \"create collar\",\n  \"order_type\": \"options\",\n  \"asset\": \"BTC\",\n  \"size\": 10,\n  \"call_strike\": 47250,\n  \"put_strike\": 40500,\n  \"net_cost_per_btc\": -65,\n  \"venue\": \"deribit\",\n  \"venue_name\": \"Deribit\",\n  \"expiry_days\": 30,\n  \"reasoning\": \"Sold 10 BTC calls at 5% OTM ($47,250) for +$850, bought 10 BTC puts at 10% OTM ($40,500) for -$480, net cost -$65 per BTC, balancing protection and upside\"\n}",
+      "durationMs": 3421,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8140769230769233,
+        "score": 0.7712307692307694,
+        "fieldScores": {
+          "intent": 0.06923076923076923,
+          "order_type": 0.1,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.08000000000000002,
+          "put_strike": 0.2,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "create collar",
+          "order_type": "options",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 47250,
+          "put_strike": 40500,
+          "net_cost_per_btc": -65,
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "expiry_days": 30,
+          "reasoning": "Sold 10 BTC calls at 5% OTM ($47,250) for +$850, bought 10 BTC puts at 10% OTM ($40,500) for -$480, net cost -$65 per BTC, balancing protection and upside"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-001",
+      "raw": "{\n  \"intent\": \"deploy\",\n  \"order_type\": \"swap\",\n  \"asset\": \"USDC\",\n  \"size\": 5000000,\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"expected_value\": 0.054,\n  \"unit\": \"annualized net yield\",\n  \"allocation\": {\n    \"pendle_pt_steth\": 0.35,\n    \"convex_curve_3pool\": 0.65\n  },\n  \"reasoning\": \"Optimal allocation balances Pendle PT discount accrual with Convex boosted yield, respecting minimum Curve liquidity and maximum Pendle exposure.\"\n}",
+      "durationMs": 3646,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.010434782608695655,
+          "order_type": 0.002631578947368424,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.006666666666666666,
+          "venue_name": 0.002500000000000001,
+          "expected_value": 0,
+          "unit": 0.011428571428571429,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "deploy",
+          "order_type": "swap",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "expected_value": 0.054,
+          "unit": "annualized net yield",
+          "allocation": {
+            "pendle_pt_steth": 0.35,
+            "convex_curve_3pool": 0.65
+          },
+          "reasoning": "Optimal allocation balances Pendle PT discount accrual with Convex boosted yield, respecting minimum Curve liquidity and maximum Pendle exposure."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 0,\n  \"cost_breakdown\": {\n    \"gas\": 0,\n    \"fees\": 0,\n    \"expected_mev_loss\": 0\n  },\n  \"reasoning\": \"Strategy A has a 96% success rate, so we assume it will succeed. The expected total cost is the setup fee plus the expected MEV loss, which is 0 since the MEV protection is 98.5%. Strategy B has a 100% success rate, but it has a 0% MEV protection, so we choose Strategy A.\"\n}",
+      "durationMs": 3295,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8999999999999999,
+        "score": 0.6,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 0,
+          "cost_breakdown": {
+            "gas": 0,
+            "fees": 0,
+            "expected_mev_loss": 0
+          },
+          "reasoning": "Strategy A has a 96% success rate, so we assume it will succeed. The expected total cost is the setup fee plus the expected MEV loss, which is 0 since the MEV protection is 98.5%. Strategy B has a 100% success rate, but it has a 0% MEV protection, so we choose Strategy A."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-003",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 0,\n  \"venue\": \"coinbase\",\n  \"portfolio_volatility\": 0.2,\n  \"risk_contributions\": {\n    \"BTC\": 0.4,\n    \"ETH\": 0.35,\n    \"Bonds\": 0.25\n  },\n  \"btc_contribution_pct\": 40,\n  \"eth_contribution_pct\": 35,\n  \"bonds_contribution_pct\": 25,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"BTC\": 333333.33,\n    \"ETH\": 333333.33,\n    \"Bonds\": 333333.33\n  },\n  \"target_btc_usd\": 333333.33,\n  \"target_eth_usd\": 333333.33,\n  \"target_bonds_usd\": 333333.33,\n  \"transactions\": [\n    {\n      \"intent\": \"sell\",\n      \"order_type\": \"market\",\n      \"asset\": \"BTC\",\n      \"size\": 100000,\n      \"venue\": \"coinbase\",\n      \"reasoning\": \"Sell BTC to rebalance portfolio\"\n    },\n    {\n      \"intent\": \"buy\",\n      \"order_type\": \"market\",\n      \"asset\": \"ETH\",\n      \"size\": 100000,\n      \"venue\": \"coinbase\",\n      \"reasoning\": \"Buy ETH to rebalance portfolio\"\n    },\n    {\n      \"intent\": \"buy\",\n      \"order_type\": \"market\",\n      \"asset\": \"Bonds\",\n      \"size\": 100000,\n      \"venue\": \"coinbase\",\n      \"reasoning\": \"Buy Bonds to rebalance portfolio\"\n    }\n  ],\n  \"btc_sell_amount\": 100000,\n  \"eth_sell_amount\": 0,\n  \"bonds_buy_amount\": 100000,\n  \"btc_post_slippage\": 95000,\n  \"eth_post_slippage\": 99000,\n  \"bonds_post_slippage\": 99000,\n  \"reasoning\": \"Rebalance portfolio to achieve equal risk contributions\"\n}",
+      "durationMs": 8965,
+      "grade": {
+        "pass": true,
+        "confidence": 0.834125874125874,
+        "score": 0.8068181818181818,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0,
+          "venue": "coinbase",
+          "portfolio_volatility": 0.2,
+          "risk_contributions": {
+            "BTC": 0.4,
+            "ETH": 0.35,
+            "Bonds": 0.25
+          },
+          "btc_contribution_pct": 40,
+          "eth_contribution_pct": 35,
+          "bonds_contribution_pct": 25,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "BTC": 333333.33,
+            "ETH": 333333.33,
+            "Bonds": 333333.33
+          },
+          "target_btc_usd": 333333.33,
+          "target_eth_usd": 333333.33,
+          "target_bonds_usd": 333333.33,
+          "transactions": [
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "BTC",
+              "size": 100000,
+              "venue": "coinbase",
+              "reasoning": "Sell BTC to rebalance portfolio"
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "ETH",
+              "size": 100000,
+              "venue": "coinbase",
+              "reasoning": "Buy ETH to rebalance portfolio"
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "Bonds",
+              "size": 100000,
+              "venue": "coinbase",
+              "reasoning": "Buy Bonds to rebalance portfolio"
+            }
+          ],
+          "btc_sell_amount": 100000,
+          "eth_sell_amount": 0,
+          "bonds_buy_amount": 100000,
+          "btc_post_slippage": 95000,
+          "eth_post_slippage": 99000,
+          "bonds_post_slippage": 99000,
+          "reasoning": "Rebalance portfolio to achieve equal risk contributions"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"re-stake\",\n  \"order_type\": \"restake\",\n  \"asset\": \"ETH\",\n  \"size\": \"100\",\n  \"venue\": \"lido\",\n  \"venue_name\": \"Lido Staking\",\n  \"rationale\": \"Maximize net return while satisfying constraints\",\n  \"decision_factors\": {\n    \"total_staking_apr\": 6.2,\n    \"borrow_rate\": 5.5,\n    \"effective_borrow_cost_on_portfolio\": 0.55,\n    \"net_apr_after_borrow\": 5.65,\n    \"meets_net_apr_target\": true,\n    \"slashing_risk_pct\": 3,\n    \"within_risk_tolerance\": false,\n    \"liquidity_days\": 7,\n    \"meets_collateral_timing\": true,\n    \"option_c_net_apr_comparison\": 4.2,\n    \"option_a_outperformance\": 1.35\n  }\n}",
+      "durationMs": 2108,
+      "grade": {
+        "pass": false,
+        "confidence": 0.043500000000000004,
+        "score": 0.12566666666666668,
+        "fieldScores": {
+          "intent": 0.035,
+          "order_type": 0,
+          "asset": 0.024,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.02666666666666666,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0,
+          "borrow_rate": 0,
+          "effective_borrow_cost_on_portfolio": 0,
+          "net_apr_after_borrow": 0,
+          "meets_net_apr_target": 0,
+          "slashing_risk_pct": 0,
+          "within_risk_tolerance": 0,
+          "liquidity_days": 0,
+          "meets_collateral_timing": 0,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "re-stake",
+          "order_type": "restake",
+          "asset": "ETH",
+          "size": "100",
+          "venue": "lido",
+          "venue_name": "Lido Staking",
+          "rationale": "Maximize net return while satisfying constraints",
+          "decision_factors": {
+            "total_staking_apr": 6.2,
+            "borrow_rate": 5.5,
+            "effective_borrow_cost_on_portfolio": 0.55,
+            "net_apr_after_borrow": 5.65,
+            "meets_net_apr_target": true,
+            "slashing_risk_pct": 3,
+            "within_risk_tolerance": false,
+            "liquidity_days": 7,
+            "meets_collateral_timing": true,
+            "option_c_net_apr_comparison": 4.2,
+            "option_a_outperformance": 1.35
+          }
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.0081,\n    \"deleverage_2x\": 0.0063,\n    \"deleverage_1_5x\": 0.0045,\n    \"close\": 0\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 53.85,\n    \"deleverage_2x\": 42.31,\n    \"deleverage_1_5x\": 36.54,\n    \"close\": 0\n  },\n  \"reasoning\": \"Deleveraging to 2x reduces liquidation probability and maintains positive expected value.\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 3502,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.0063,
+            "deleverage_1_5x": 0.0045,
+            "close": 0
+          },
+          "expected_values": {
+            "maintain_3x": 53.85,
+            "deleverage_2x": 42.31,
+            "deleverage_1_5x": 36.54,
+            "close": 0
+          },
+          "reasoning": "Deleveraging to 2x reduces liquidation probability and maintains positive expected value.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"C\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Optimized for APY, leveraging Pendle's fixed yield for 90 days aligns with risk tolerance and horizon.\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\": {\n    \"B\": \"Leverage-based strategy exceeds max depeg exposure risk\",\n    \"D\": \"Hybrid strategy does not meet APY optimization goal\"\n  }\n}",
+      "durationMs": 3137,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9870000000000001,
+        "score": 0.9400000000000001,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "C",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Optimized for APY, leveraging Pendle's fixed yield for 90 days aligns with risk tolerance and horizon.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "Leverage-based strategy exceeds max depeg exposure risk",
+            "D": "Hybrid strategy does not meet APY optimization goal"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-007",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"stETH\",\n  \"size\": 2500,\n  \"venue\": \"B\",\n  \"venue_name\": \"1inch Fusion\",\n  \"expected_value\": -1234.5,\n  \"unit\": \"USD_total_cost\",\n  \"reasoning\": \"Minimize total cost by choosing 1inch Fusion with partial MEV protection and instant settlement\",\n  \"constraint_awareness\": true\n}",
+      "durationMs": 2113,
+      "grade": {
+        "pass": true,
+        "confidence": 0.77625,
+        "score": 0.72,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0.5,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "B",
+          "venue_name": "1inch Fusion",
+          "expected_value": -1234.5,
+          "unit": "USD_total_cost",
+          "reasoning": "Minimize total cost by choosing 1inch Fusion with partial MEV protection and instant settlement",
+          "constraint_awareness": true
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-008",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 0.5,\n  \"unit\": \"BTC\",\n  \"price\": 45000,\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"Coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"Market order for immediate execution\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify trade execution on Coinbase\"\n}",
+      "durationMs": 3069,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "execution_plan": 0,
+          "fee_summary": 0,
+          "rationale": 0,
+          "constraints_met": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "BTC",
+          "price": 45000,
+          "venue": "coinbase",
+          "venue_name": "Coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "Market order for immediate execution",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify trade execution on Coinbase"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "l8_008_missing_execution_plan"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-009",
+      "raw": "{\n  \"decision\": \"execute\",\n  \"reasoning\": {\n    \"capital_allocation\": {\n      \"spot_usd\": 100000,\n      \"margin_usd\": 0\n    },\n    \"position_size_eth\": 20.4,\n    \"perp_notional_usd\": 50000,\n    \"funding_revenue_daily\": 0.5,\n    \"costs_entry\": 2,\n    \"break_even_periods\": 10,\n    \"annualized_funding_rate_pct\": 0.96,\n    \"annual_roi_on_total_capital_pct\": 0.48\n  },\n  \"execution\": {\n    \"step_1\": \"transfer_50000_usdt_to_binance_for_margin\",\n    \"step_2\": \"buy_20.4_eth_spot_coinbase_maker\",\n    \"step_3\": \"short_20.4_eth_perp_binance_maker\",\n    \"delta_neutral\": true,\n    \"exit_trigger\": \"funding rate > 0.1%\"\n  }\n}",
+      "durationMs": 4165,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 100000,
+              "margin_usd": 0
+            },
+            "position_size_eth": 20.4,
+            "perp_notional_usd": 50000,
+            "funding_revenue_daily": 0.5,
+            "costs_entry": 2,
+            "break_even_periods": 10,
+            "annualized_funding_rate_pct": 0.96,
+            "annual_roi_on_total_capital_pct": 0.48
+          },
+          "execution": {
+            "step_1": "transfer_50000_usdt_to_binance_for_margin",
+            "step_2": "buy_20.4_eth_spot_coinbase_maker",
+            "step_3": "short_20.4_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding rate > 0.1%"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L8-010",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"collar\",\n  \"asset\": \"BTC\",\n  \"size\": 10,\n  \"call_strike\": 49500,\n  \"put_strike\": 42750,\n  \"net_cost_per_btc\": -60,\n  \"venue\": \"exchange\",\n  \"venue_name\": \"default\",\n  \"expiry_days\": 30,\n  \"reasoning\": \"Selected 10% OTM call and 5% OTM put to balance downside protection and upside participation while minimizing total economic cost\"\n}",
+      "durationMs": 2722,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6954821428571429,
+        "score": 0.6545714285714287,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.08000000000000002,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.016,
+          "venue_name": 0.008571428571428572,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "collar",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 42750,
+          "net_cost_per_btc": -60,
+          "venue": "exchange",
+          "venue_name": "default",
+          "expiry_days": 30,
+          "reasoning": "Selected 10% OTM call and 5% OTM put to balance downside protection and upside participation while minimizing total economic cost"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

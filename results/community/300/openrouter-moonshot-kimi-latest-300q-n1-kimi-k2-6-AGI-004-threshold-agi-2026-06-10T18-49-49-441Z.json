@@ -1,0 +1,64 @@
+{
+  "runAt": "2026-06-10T18:49:49.440Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-004-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-004",
+      "raw": "{\"intent\":\"allocate_yield\",\"order_type\":\"strategy\",\"asset\":\"USDC\",\"size\":100000,\"unit\":\"usd\",\"venue\":\"multi\",\"risk_controls\":{\"position_size_limit\":30000,\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"rebalance at day 45\",\"reasoning\":\"Barbell strategy: max liquid venues within 48h ($50k), cap tail-risk venues at $30k each, avoid adversarial queue by capping Ethena at $20k and Curve at $30k. GMX GLP capped at $30k with hedge drag net 9.7% APY. Pendle excluded due to lockup violating 48h liquidity floor. Expected APY weighted by allocation: Aave 4.2% on 20k, Curve 8.1% on 30k, Ethena 15.2% on 20k, GMX 9.7% net on 30k. Tail loss adjustments: Curve 1.5%*12%=0.18% expected loss, Ethena 3%*80%=2.4% expected loss, GMX hedge drag already applied. Net expected 90d profit computed on risk-adjusted blended APY.\",\"requires_follow_up\":true,\"follow_up_description\":\"rebalance at day 45 and monitor Curve imbalance fees and Ethena queue depth\"}",
+      "durationMs": 1755,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "allocation_usd.Curve_3pool": 0,
+          "allocation_usd.Aave_USDC": 0,
+          "allocation_usd.Ethena_USDe": 0,
+          "allocation_usd.GMX_GLP": 0,
+          "expected_net_apy_pct": 0,
+          "expected_90d_profit_usd": 0,
+          "liquidity_48h_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate_yield",
+          "order_type": "strategy",
+          "asset": "USDC",
+          "size": 100000,
+          "unit": "usd",
+          "venue": "multi",
+          "risk_controls": {
+            "position_size_limit": 30000,
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "rebalance at day 45",
+          "reasoning": "Barbell strategy: max liquid venues within 48h ($50k), cap tail-risk venues at $30k each, avoid adversarial queue by capping Ethena at $20k and Curve at $30k. GMX GLP capped at $30k with hedge drag net 9.7% APY. Pendle excluded due to lockup violating 48h liquidity floor. Expected APY weighted by allocation: Aave 4.2% on 20k, Curve 8.1% on 30k, Ethena 15.2% on 20k, GMX 9.7% net on 30k. Tail loss adjustments: Curve 1.5%*12%=0.18% expected loss, Ethena 3%*80%=2.4% expected loss, GMX hedge drag already applied. Net expected 90d profit computed on risk-adjusted blended APY.",
+          "requires_follow_up": true,
+          "follow_up_description": "rebalance at day 45 and monitor Curve imbalance fees and Ethena queue depth"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

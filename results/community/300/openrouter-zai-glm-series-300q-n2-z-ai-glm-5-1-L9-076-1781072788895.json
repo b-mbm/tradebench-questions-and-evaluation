@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:26:35.745Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-076-1781072788895",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-076"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-076",
+      "raw": "{\n  \"intent\": \"no_action\",\n  \"expected_value\": 0,\n  \"reasoning\": \"Option A fails slippage (0.27%>0.25%). Option B fails settlement (15min>12min). Option C fails oracle age (45s>40s). Option D passes all hard constraints but net EV = 22000 - 7600 - 1680 - 18200 = -5480 < 0. No option is both positive-EV and feasible, so abstain with expected_value=0.\"\n}",
+      "durationMs": 6503,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "Option A fails slippage (0.27%>0.25%). Option B fails settlement (15min>12min). Option C fails oracle age (45s>40s). Option D passes all hard constraints but net EV = 22000 - 7600 - 1680 - 18200 = -5480 < 0. No option is both positive-EV and feasible, so abstain with expected_value=0."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

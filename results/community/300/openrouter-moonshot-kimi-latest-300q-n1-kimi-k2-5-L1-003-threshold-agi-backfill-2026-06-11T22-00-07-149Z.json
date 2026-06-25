@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-11T22:00:07.148Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L1-003-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L1-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L1-003",
+      "raw": "{\"intent\":\"stop_loss\",\"order_type\":\"stop\",\"asset\":\"ETH\",\"size\":\"2\",\"unit\":\"eth\",\"price\":\"2800\",\"venue\":\"unspecified\",\"risk_controls\":{\"stop_loss\":\"2800\"},\"requires_follow_up\":true,\"follow_up_description\":\"specify trading venue where ETH position is held\",\"follow_up\":\"confirm venue\",\"reasoning\":\"stop loss set 6.7% below current ETH price of $3000 to limit downside risk on 2 ETH long position\"}",
+      "durationMs": 48526,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9116161616161618,
+        "score": 0.8636363636363638,
+        "fieldScores": {
+          "intent": 0.14545454545454548,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.018181818181818177,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "stop_loss",
+          "order_type": "stop",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": "2800",
+          "venue": "unspecified",
+          "risk_controls": {
+            "stop_loss": "2800"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "specify trading venue where ETH position is held",
+          "follow_up": "confirm venue",
+          "reasoning": "stop loss set 6.7% below current ETH price of $3000 to limit downside risk on 2 ETH long position"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

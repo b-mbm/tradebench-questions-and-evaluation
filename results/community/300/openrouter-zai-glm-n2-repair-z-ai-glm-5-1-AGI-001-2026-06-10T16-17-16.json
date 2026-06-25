@@ -1,0 +1,65 @@
+{
+  "runAt": "2026-06-10T16:20:41.583Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-AGI-001-2026-06-10T16-17-16",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-001",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"chosen_strategy\": \"Short SOL and MATIC perps to reduce crisis beta-dollar exposure by >50%\",\n  \"execution_sequence\": [\"SOL\", \"MATIC\"],\n  \"shorts\": {\n    \"SOL\": {\n      \"notional_usd\": 180000,\n      \"units\": 1285.71\n    },\n    \"MATIC\": {\n      \"notional_usd\": 220000,\n      \"units\": 244444.44\n    }\n  },\n  \"expected_risk_reduction_pct\": 52.2,\n  \"worst_case_residual_pnl_usd\": -75496,\n  \"reasoning\": \"Only SOL+MATIC combo ($400K notional) achieves >50% beta-dollar reduction: 556K/1,007,850=55.2%. SOL+LINK and MATIC+LINK fall short at 414K and 430K beta-dollars respectively. Execute SOL first (0.10% impact) then MATIC (0.22% after SOL) for 0.32% total impact vs 0.33% reversed. Worst-case tape is Yen unwind: unhedged loss -157,950 + short gains 39,780+43,340 - impact 666 = -75,496. Risk reduction vs unhedged Yen: 1-75,496/157,950=52.2%.\"\n}",
+      "durationMs": 37646,
+      "grade": {
+        "pass": false,
+        "confidence": 0.9444444444444444,
+        "score": 0.4444444444444444,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "shorts.MATIC.notional_usd": 1,
+          "shorts.MATIC.units": 1,
+          "shorts.SOL.notional_usd": 1,
+          "shorts.SOL.units": 1,
+          "expected_risk_reduction_pct": 0,
+          "worst_case_residual_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "Short SOL and MATIC perps to reduce crisis beta-dollar exposure by >50%",
+          "execution_sequence": [
+            "SOL",
+            "MATIC"
+          ],
+          "shorts": {
+            "SOL": {
+              "notional_usd": 180000,
+              "units": 1285.71
+            },
+            "MATIC": {
+              "notional_usd": 220000,
+              "units": 244444.44
+            }
+          },
+          "expected_risk_reduction_pct": 52.2,
+          "worst_case_residual_pnl_usd": -75496,
+          "reasoning": "Only SOL+MATIC combo ($400K notional) achieves >50% beta-dollar reduction: 556K/1,007,850=55.2%. SOL+LINK and MATIC+LINK fall short at 414K and 430K beta-dollars respectively. Execute SOL first (0.10% impact) then MATIC (0.22% after SOL) for 0.32% total impact vs 0.33% reversed. Worst-case tape is Yen unwind: unhedged loss -157,950 + short gains 39,780+43,340 - impact 666 = -75,496. Risk reduction vs unhedged Yen: 1-75,496/157,950=52.2%."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:execution_sequence",
+          "agi_validation_failed:expected_risk_reduction_pct",
+          "agi_validation_failed:worst_case_residual_pnl_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

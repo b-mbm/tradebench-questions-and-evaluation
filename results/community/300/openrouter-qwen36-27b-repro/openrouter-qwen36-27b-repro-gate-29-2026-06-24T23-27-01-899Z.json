@@ -1,0 +1,791 @@
+{
+  "runAt": "2026-06-24T23:27:01.899Z",
+  "label": "openrouter-qwen36-27b-repro-gate-29",
+  "suite": "r5e1-300q",
+  "models": [
+    "qwen/qwen3.6-27b"
+  ],
+  "questionIds": [
+    "L1-001",
+    "L1-002",
+    "L2-001",
+    "L2-002",
+    "L4-001",
+    "L6-002",
+    "L6-003",
+    "L9-001",
+    "L9-002",
+    "L9-003",
+    "L9-004",
+    "L9-006",
+    "L9-007",
+    "L9-008",
+    "L9-009",
+    "L10-001",
+    "L10-002",
+    "L10-003",
+    "L10-005",
+    "L10-007",
+    "L10-009",
+    "L10-010",
+    "L10-012",
+    "AGI-001",
+    "AGI-002",
+    "AGI-003",
+    "AGI-004",
+    "AGI-014",
+    "AGI-024"
+  ],
+  "evaluations": [
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "AGI-001",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"chosen_strategy\": \"Deploy full $400k notional limit on SOL and MATIC short clips to target highest beta-dollar exposures, satisfying the ≥50% crisis beta reduction mandate while minimizing market impact via optimal execution sequencing.\",\n  \"execution_sequence\": [\"SOL\", \"MATIC\"],\n  \"shorts\": {\n    \"SOL\": {\n      \"notional_usd\": 180000,\n      \"units\": 1285.71\n    },\n    \"MATIC\": {\n      \"notional_usd\": 220000,\n      \"units\": 244444.44\n    }\n  },\n  \"expected_risk_reduction_pct\": 55.2,\n  \"worst_case_residual_pnl_usd\": -72846.5,\n  \"reasoning\": \"Total portfolio beta-dollar exposure is $1.008M. Shorting SOL ($180k, β=1.5) and MATIC ($220k, β=1.3) reduces exposure by $556k (55.2%), meeting the ≥50% threshold within the $400k notional cap. Executing SOL first then MATIC costs 0.32% impact vs 0.33% for the reverse order. Under the worst-case Yen unwind tape, spot losses of -$155.97k are offset by hedge gains of +$83.12k, leaving a residual PnL of -$72.85k.\"\n}",
+      "durationMs": 115566,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5555555555555556,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "shorts.MATIC.notional_usd": 1,
+          "shorts.MATIC.units": 1,
+          "shorts.SOL.notional_usd": 1,
+          "shorts.SOL.units": 1,
+          "expected_risk_reduction_pct": 1,
+          "worst_case_residual_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "Deploy full $400k notional limit on SOL and MATIC short clips to target highest beta-dollar exposures, satisfying the ≥50% crisis beta reduction mandate while minimizing market impact via optimal execution sequencing.",
+          "execution_sequence": [
+            "SOL",
+            "MATIC"
+          ],
+          "shorts": {
+            "SOL": {
+              "notional_usd": 180000,
+              "units": 1285.71
+            },
+            "MATIC": {
+              "notional_usd": 220000,
+              "units": 244444.44
+            }
+          },
+          "expected_risk_reduction_pct": 55.2,
+          "worst_case_residual_pnl_usd": -72846.5,
+          "reasoning": "Total portfolio beta-dollar exposure is $1.008M. Shorting SOL ($180k, β=1.5) and MATIC ($220k, β=1.3) reduces exposure by $556k (55.2%), meeting the ≥50% threshold within the $400k notional cap. Executing SOL first then MATIC costs 0.32% impact vs 0.33% for the reverse order. Under the worst-case Yen unwind tape, spot losses of -$155.97k are offset by hedge gains of +$83.12k, leaving a residual PnL of -$72.85k."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:execution_sequence",
+          "agi_validation_failed:worst_case_residual_pnl_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "AGI-002",
+      "raw": "",
+      "durationMs": 29404,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "AGI-003",
+      "raw": "",
+      "durationMs": 63052,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "AGI-004",
+      "raw": "",
+      "durationMs": 39729,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "AGI-014",
+      "raw": "{\n  \"intent\": \"delta-neutral cash-and-carry\",\n  \"chosen_strategy\": \"maximize weighted funding carry across venue caps with spot hedge\",\n  \"perp_short_allocation_usd\": {\n    \"Binance\": 150000,\n    \"Bybit\": 100000,\n    \"Hyperliquid\": 100000,\n    \"OKX\": 100000,\n    \"dYdX\": 50000\n  },\n  \"leverage\": 5,\n  \"apr_pct\": 25.98,\n  \"pnl_30d_usd\": 10655,\n  \"survives_cascade\": true,\n  \"reasoning\": \"Allocated short notional to venue caps prioritizing highest funding rates (Hyperliquid 30%, Bybit 28%, Binance 25%, OKX 22%, dYdX 18%), yielding a weighted average funding APR of 22.3%. Added ~6.1% APR from basis compression (0.6% to 0.1%) and subtracted 2.4% operational drag for a net resilient APR of ~25.98%. Used 5x leverage on the $500k short leg ($100k margin) with $400k spot ETH long leg to maintain delta neutrality. The 5% price drop to $2,850 is fully hedged by the spot long, and funding receipts plus basis carry provide ample margin buffer, ensuring survival without deleveraging.\"\n}",
+      "durationMs": 69683,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5454545454545454,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "perp_short_allocation_usd.Binance": 1,
+          "perp_short_allocation_usd.Bybit": 1,
+          "perp_short_allocation_usd.Hyperliquid": 1,
+          "perp_short_allocation_usd.OKX": 1,
+          "perp_short_allocation_usd.dYdX": 1,
+          "leverage": 0,
+          "apr_pct": 0,
+          "pnl_30d_usd": 0,
+          "survives_cascade": 1
+        },
+        "normalizedResponse": {
+          "intent": "delta-neutral cash-and-carry",
+          "chosen_strategy": "maximize weighted funding carry across venue caps with spot hedge",
+          "perp_short_allocation_usd": {
+            "Binance": 150000,
+            "Bybit": 100000,
+            "Hyperliquid": 100000,
+            "OKX": 100000,
+            "dYdX": 50000
+          },
+          "leverage": 5,
+          "apr_pct": 25.98,
+          "pnl_30d_usd": 10655,
+          "survives_cascade": true,
+          "reasoning": "Allocated short notional to venue caps prioritizing highest funding rates (Hyperliquid 30%, Bybit 28%, Binance 25%, OKX 22%, dYdX 18%), yielding a weighted average funding APR of 22.3%. Added ~6.1% APR from basis compression (0.6% to 0.1%) and subtracted 2.4% operational drag for a net resilient APR of ~25.98%. Used 5x leverage on the $500k short leg ($100k margin) with $400k spot ETH long leg to maintain delta neutrality. The 5% price drop to $2,850 is fully hedged by the spot long, and funding receipts plus basis carry provide ample margin buffer, ensuring survival without deleveraging."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:leverage",
+          "agi_validation_failed:apr_pct",
+          "agi_validation_failed:pnl_30d_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "AGI-024",
+      "raw": "",
+      "durationMs": 114843,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": 0.5,\n  \"unit\": \"btc\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"reasoning\": \"Executing market buy for 0.5 BTC\"\n}",
+      "durationMs": 7726,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9040178571428572,
+        "score": 0.84375,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "reasoning": "Executing market buy for 0.5 BTC"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": 10,\n  \"unit\": \"sol\",\n  \"price\": 95,\n  \"venue\": \"binance\",\n  \"risk_controls\": {},\n  \"reasoning\": \"Limit order placed at $95 to acquire 10 SOL below the current market price of $100.\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 100589,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8969387755102042,
+        "score": 0.8371428571428572,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "sol",
+          "price": 95,
+          "venue": "binance",
+          "risk_controls": {},
+          "reasoning": "Limit order placed at $95 to acquire 10 SOL below the current market price of $100.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L10-001",
+      "raw": "",
+      "durationMs": 25256,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L10-002",
+      "raw": "",
+      "durationMs": 28845,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L10-003",
+      "raw": "{\"intent\":\"execute routing plan: Flashbots private relay followed by CowSwap batch auction\",\"expected_value\":0.175,\"reasoning\":\"Sequential routing: Flashbots (90% success, 0.15% fee) first, then CowSwap (75% success, 0.25% fee) on failure. Combined success = 0.90 + 0.10 * 0.75 = 97.5% (meets >=97% target). Expected cost = 0.15% + 0.10 * 0.25% = 0.175%. This minimizes cost while satisfying success and latency constraints.\"}",
+      "durationMs": 57647,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute routing plan: Flashbots private relay followed by CowSwap batch auction",
+          "expected_value": 0.175,
+          "reasoning": "Sequential routing: Flashbots (90% success, 0.15% fee) first, then CowSwap (75% success, 0.25% fee) on failure. Combined success = 0.90 + 0.10 * 0.75 = 97.5% (meets >=97% target). Expected cost = 0.15% + 0.10 * 0.25% = 0.175%. This minimizes cost while satisfying success and latency constraints."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L10-005",
+      "raw": "",
+      "durationMs": 43580,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L10-007",
+      "raw": "",
+      "durationMs": 27592,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L10-009",
+      "raw": "",
+      "durationMs": 26662,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L10-010",
+      "raw": "{\n  \"intent\": \"execute_low_gas\",\n  \"expected_value\": 150,\n  \"reasoning\": \"Execute all 10 transactions at the Low scenario gas price of 25 gwei to guarantee 100% fill rate as required. Total gas = 2,000,000. ETH cost = 0.05 ETH. At $3,000/ETH, total USD cost = $150. Medium/High scenarios are excluded due to fill rate constraints.\"\n}",
+      "durationMs": 56169,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute_low_gas",
+          "expected_value": 150,
+          "reasoning": "Execute all 10 transactions at the Low scenario gas price of 25 gwei to guarantee 100% fill rate as required. Total gas = 2,000,000. ETH cost = 0.05 ETH. At $3,000/ETH, total USD cost = $150. Medium/High scenarios are excluded due to fill rate constraints."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L10-012",
+      "raw": "",
+      "durationMs": 29812,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"DAI\",\n  \"size\": \"5000\",\n  \"unit\": \"usdc\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"stablecoin swap on Ethereum mainnet via largest liquidity pool\",\n  \"requires_follow_up\": false,\n  \"follow_up_description\": \"verify DAI balance update\"\n}",
+      "durationMs": 108208,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "stablecoin swap on Ethereum mainnet via largest liquidity pool",
+          "requires_follow_up": false,
+          "follow_up_description": "verify DAI balance update"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"PEPE\",\n  \"size\": 100000,\n  \"unit\": \"pepe\",\n  \"venue\": \"binance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"15%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution with specified high slippage tolerance\"\n}",
+      "durationMs": 30933,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8357142857142859,
+        "score": 0.7800000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "unit": "pepe",
+          "venue": "binance",
+          "risk_controls": {
+            "slippage_tolerance": "15%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution with specified high slippage tolerance"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"portfolio\",\n  \"asset\": \"BTC, ETH, USDC\",\n  \"size\": \"100%\",\n  \"unit\": \"portfolio\",\n  \"venue\": \"multi\",\n  \"risk_controls\": {},\n  \"follow_up\": \"request_holdings\",\n  \"reasoning\": \"Context lacks current portfolio balances. Cannot calculate exact trade sizes to hit 60/30/10 targets without knowing starting positions.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Please provide current portfolio balances and total value to compute precise buy/sell orders for the 60% BTC, 30% ETH, 10% USDC rebalance.\"\n}",
+      "durationMs": 33478,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6033333333333333,
+        "score": 0.5569230769230769,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03692307692307692,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "portfolio",
+          "asset": "BTC, ETH, USDC",
+          "size": "100%",
+          "unit": "portfolio",
+          "venue": "multi",
+          "risk_controls": {},
+          "follow_up": "request_holdings",
+          "reasoning": "Context lacks current portfolio balances. Cannot calculate exact trade sizes to hit 60/30/10 targets without knowing starting positions.",
+          "requires_follow_up": true,
+          "follow_up_description": "Please provide current portfolio balances and total value to compute precise buy/sell orders for the 60% BTC, 30% ETH, 10% USDC rebalance."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dca\",\n  \"asset\": \"BTC\",\n  \"size\": 500,\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm schedule\",\n  \"reasoning\": \"Configure weekly $500 BTC purchases for 3 months\"\n}",
+      "durationMs": 12660,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8303571428571429,
+        "score": 0.775,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm schedule",
+          "reasoning": "Configure weekly $500 BTC purchases for 3 months"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L6-003",
+      "raw": "",
+      "durationMs": 40978,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L9-001",
+      "raw": "",
+      "durationMs": 31387,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L9-002",
+      "raw": "{\n  \"intent\": \"compute_daily_fee_income\",\n  \"expected_value\": 2832,\n  \"reasoning\": \"Captured volume is 80% of $2M daily vol = $1.6M. Total fees at 0.3% tier = $1.6M * 0.003 = $4,800. Your 59% liquidity share yields $4,800 * 0.59 = $2,832 daily fee income.\"\n}",
+      "durationMs": 30232,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "compute_daily_fee_income",
+          "expected_value": 2832,
+          "reasoning": "Captured volume is 80% of $2M daily vol = $1.6M. Total fees at 0.3% tier = $1.6M * 0.003 = $4,800. Your 59% liquidity share yields $4,800 * 0.59 = $2,832 daily fee income."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L9-003",
+      "raw": "",
+      "durationMs": 84253,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L9-004",
+      "raw": "",
+      "durationMs": 27687,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L9-006",
+      "raw": "",
+      "durationMs": 41208,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L9-007",
+      "raw": "",
+      "durationMs": 27672,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L9-008",
+      "raw": "{\n  \"intent\": \"arbitrage\",\n  \"expected_value\": 5963.01,\n  \"reasoning\": \"Market YT (0.031) > Fair YT (0.0158). Spread profit $7,609.59 minus borrow cost $1,146.58 and fee $500 yields net $5,963.01.\"\n}",
+      "durationMs": 82966,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "expected_value": 5963.01,
+          "reasoning": "Market YT (0.031) > Fair YT (0.0158). Spread profit $7,609.59 minus borrow cost $1,146.58 and fee $500 yields net $5,963.01."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "qwen/qwen3.6-27b",
+      "modelLabel": "openrouter:qwen/qwen3.6-27b",
+      "questionId": "L9-009",
+      "raw": "{\n  \"intent\": \"select_avs\",\n  \"expected_value\": [\n    \"A1\",\n    \"A2\",\n    \"A5\"\n  ],\n  \"reasoning\": \"Calculated net scores: A1 (7%), A2 (9%), A3 (5.9%), A4 (5%), A5 (8%). Applied eligibility constraints (Net>=6%, Mult<=3, Delay<=7d, Oracle<=30m). A1, A2, and A5 passed all checks. A3 failed net score. A4 failed net score, multiplier, and delay.\"\n}",
+      "durationMs": 81939,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "select_avs",
+          "expected_value": [
+            "A1",
+            "A2",
+            "A5"
+          ],
+          "reasoning": "Calculated net scores: A1 (7%), A2 (9%), A3 (5.9%), A4 (5%), A5 (8%). Applied eligibility constraints (Net>=6%, Mult<=3, Delay<=7d, Oracle<=30m). A1, A2, and A5 passed all checks. A3 failed net score. A4 failed net score, multiplier, and delay."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

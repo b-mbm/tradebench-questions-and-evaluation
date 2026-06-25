@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-10T10:31:58.161Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-AGI-104-2026-06-10T10-31-34",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-104"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-104",
+      "raw": "{\n  \"intent\": \"make_market\",\n  \"chosen_strategy\": \"selective_wide_defensive_quoting\",\n  \"half_spread_bps\": 25,\n  \"update_ms\": 50,\n  \"max_inventory_usd\": 22000,\n  \"expected_1h_pnl_usd\": 358,\n  \"toxic_defense\": \"Widen half-spread to 25 bps to exceed the 24 bps toxic burst move, preventing adverse selection while remaining within the 20-35 bps",
+      "durationMs": 23761,
+      "grade": {
+        "pass": false,
+        "confidence": 0.33749999999999997,
+        "score": 0.25,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "half_spread_bps": 0,
+          "update_ms": 0,
+          "max_inventory_usd": 1,
+          "expected_1h_pnl_usd": 0,
+          "toxic_defense": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "make_market",
+          "chosen_strategy": "selective_wide_defensive_quoting",
+          "half_spread_bps": 25,
+          "update_ms": 50,
+          "max_inventory_usd": 22000,
+          "expected_1h_pnl_usd": 358,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:half_spread_bps",
+          "agi_validation_failed:update_ms",
+          "agi_validation_failed:expected_1h_pnl_usd",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

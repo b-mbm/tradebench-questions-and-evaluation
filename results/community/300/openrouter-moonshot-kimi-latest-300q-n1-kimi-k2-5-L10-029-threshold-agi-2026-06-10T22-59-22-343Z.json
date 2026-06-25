@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T22:59:22.342Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-029-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-029"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-029",
+      "raw": "{\"intent\": \"strategy_3\", \"expected_value\": 1260000, \"reasoning\": \"Strategy 3 maximizes expected profit at $1.26M (70% probability × 30% FXTL pump × $6M principal). Strategy 1 yields ~$283k bribes but expects $840k loss from veFXS (70% × 20% drop), netting -$557k. Strategy 2 yields ~$199k bribes with same $840k expected loss, netting -$641k. Bribes calculated as principal×((1+APR/52)^10−1); price impact as probability-weighted change on full $6M exposure.\"}",
+      "durationMs": 70366,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 0.3
+        },
+        "normalizedResponse": {
+          "intent": "strategy_3",
+          "expected_value": 1260000,
+          "reasoning": "Strategy 3 maximizes expected profit at $1.26M (70% probability × 30% FXTL pump × $6M principal). Strategy 1 yields ~$283k bribes but expects $840k loss from veFXS (70% × 20% drop), netting -$557k. Strategy 2 yields ~$199k bribes with same $840k expected loss, netting -$641k. Bribes calculated as principal×((1+APR/52)^10−1); price impact as probability-weighted change on full $6M exposure."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "runAt": "2026-06-10T20:01:05.462Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-083-2026-06-10T20-00-37",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-083"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-083",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"chosen_strategy\": \"Private-first fill with public clips capped below $640k to avoid searcher copying\",\n  \"venue_allocation_usd\": {\n    \"Jupiter_Solana\": 700000,\n    \"Binance\": 640000,\n    \"OKX\": 500000,\n    \"Wintermute_RFQ\": 550000,\n    \"Orca\": 300000,\n    \"Coinbase\": 160000\n  },\n  \"largest_visible_clip_usd\": 640000,\n  \"expected_asset_received\": 3118497,\n  \"effective_price\": 0.9139,\n  \"self_check\": \"All public clips ≤ $640k; total allocation = $2,850,000; no spot inventory used; private venues used at full clip; Binance capped from $650k to $640k to avoid repricing threshold\",\n  \"reasoning\": \"Private venues (Jupiter_Solana $700k, Wintermute_RFQ $550k, Orca $300k) can use full clips since they don't expose pre-fill graph. Public venues must stay ≤ $640k: Binance capped from $650k to $640k, OKX at $500k is safe, Coinbase at $160k is safe. Total = 700k+640k+500k+550k+300k+160k = $2,850k. JUP received: Jupiter 700000/0.91*(1-0.001)-90/0.91 = 768596.7; Binance 640000/0.91*(1-0.0006)-35/0.91 = 703019.2; OKX 500000/0.92*(1-0.0007)-30/0.92 = 543151.7; Wintermute 550000/0.92*(1-0.0003)-20/0.92 = 597630.4; Orca 300000/0.93*(1-0.0014)-80/0.93 = 322129.0; Coinbase 160000/0.93*(1-0.0008)-35/0.93 = 171970.1. Total JUP ≈ 3,106,497. Effective price = 2850000/3106497 ≈ 0.9173. Recalculating more carefully: Jupiter net JUP = (700000 - 90) / 0.91 * 0.999 = 768,596; Binance net JUP = (640000 - 35) / 0.91 * 0.9994 = 703,019; OKX net JUP = (500000 - 30) / 0.92 * 0.9993 = 543,152; Wintermute net JUP = (550000 - 20) / 0.92 * 0.9997 = 597,630; Orca net JUP = (300000 - 80) / 0.93 * 0.9986 = 322,129; Coinbase net JUP = (160000 - 35) / 0.93 * 0.9992 = 171,970. Total ≈ 3,106,497. Effective price ≈ 0.9173.\"\n}",
+      "durationMs": 27292,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5833333333333334,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "venue_allocation_usd.Jupiter_Solana": 1,
+          "venue_allocation_usd.Binance": 1,
+          "venue_allocation_usd.OKX": 1,
+          "venue_allocation_usd.Wintermute_RFQ": 1,
+          "venue_allocation_usd.Orca": 1,
+          "venue_allocation_usd.Coinbase": 1,
+          "largest_visible_clip_usd": 1,
+          "expected_asset_received": 0,
+          "effective_price": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "chosen_strategy": "Private-first fill with public clips capped below $640k to avoid searcher copying",
+          "venue_allocation_usd": {
+            "Jupiter_Solana": 700000,
+            "Binance": 640000,
+            "OKX": 500000,
+            "Wintermute_RFQ": 550000,
+            "Orca": 300000,
+            "Coinbase": 160000
+          },
+          "largest_visible_clip_usd": 640000,
+          "expected_asset_received": 3118497,
+          "effective_price": 0.9139,
+          "self_check": "All public clips ≤ $640k; total allocation = $2,850,000; no spot inventory used; private venues used at full clip; Binance capped from $650k to $640k to avoid repricing threshold",
+          "reasoning": "Private venues (Jupiter_Solana $700k, Wintermute_RFQ $550k, Orca $300k) can use full clips since they don't expose pre-fill graph. Public venues must stay ≤ $640k: Binance capped from $650k to $640k, OKX at $500k is safe, Coinbase at $160k is safe. Total = 700k+640k+500k+550k+300k+160k = $2,850k. JUP received: Jupiter 700000/0.91*(1-0.001)-90/0.91 = 768596.7; Binance 640000/0.91*(1-0.0006)-35/0.91 = 703019.2; OKX 500000/0.92*(1-0.0007)-30/0.92 = 543151.7; Wintermute 550000/0.92*(1-0.0003)-20/0.92 = 597630.4; Orca 300000/0.93*(1-0.0014)-80/0.93 = 322129.0; Coinbase 160000/0.93*(1-0.0008)-35/0.93 = 171970.1. Total JUP ≈ 3,106,497. Effective price = 2850000/3106497 ≈ 0.9173. Recalculating more carefully: Jupiter net JUP = (700000 - 90) / 0.91 * 0.999 = 768,596; Binance net JUP = (640000 - 35) / 0.91 * 0.9994 = 703,019; OKX net JUP = (500000 - 30) / 0.92 * 0.9993 = 543,152; Wintermute net JUP = (550000 - 20) / 0.92 * 0.9997 = 597,630; Orca net JUP = (300000 - 80) / 0.93 * 0.9986 = 322,129; Coinbase net JUP = (160000 - 35) / 0.93 * 0.9992 = 171,970. Total ≈ 3,106,497. Effective price ≈ 0.9173."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:expected_asset_received",
+          "agi_validation_failed:effective_price",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

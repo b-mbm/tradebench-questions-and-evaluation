@@ -1,0 +1,75 @@
+{
+  "runAt": "2026-06-19T15:30:54.503Z",
+  "label": "smoke-aix-fast-sft1500-fixed",
+  "suite": "r5e1-300q",
+  "models": [
+    "bradley_21b0/Qwen3.5-9B-coinbench-sft1500-qwen3p5-9b-6913bd85-4008a86f"
+  ],
+  "questionIds": [
+    "L1-001",
+    "L9-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "bradley_21b0/Qwen3.5-9B-coinbench-sft1500-qwen3p5-9b-6913bd85-4008a86f",
+      "modelLabel": "together:bradley_21b0/Qwen3.5-9B-coinbench-sft1500-qwen3p5-9b-6913bd85-4008a86f",
+      "questionId": "L1-001",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"BTC\", \"size\": 0.5, \"venue\": \"cex\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"confirm fill\", \"reasoning\": \"market order for immediate execution at current market price\"}",
+      "durationMs": 2831,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.15,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "venue": "cex",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution at current market price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "bradley_21b0/Qwen3.5-9B-coinbench-sft1500-qwen3p5-9b-6913bd85-4008a86f",
+      "modelLabel": "together:bradley_21b0/Qwen3.5-9B-coinbench-sft1500-qwen3p5-9b-6913bd85-4008a86f",
+      "questionId": "L9-001",
+      "raw": "{\"intent\":\"carry_arb\",\"expected_value\":1861.5,\"reasoning\":\"Short HYPE-PERP at $28.50, long spot HYPE at $28.20 on Base. Funding rate -0.017%/8h means longs pay shorts, so short perp earns funding. APR = 0.017*3*365*100 = 1,861.5%. Delta neutral via spot hedge. Rebalance once per year. Gas $0.02/tx de minimis at this APR precision.\"}",
+      "durationMs": 4497,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "carry_arb",
+          "expected_value": 1861.5,
+          "reasoning": "Short HYPE-PERP at $28.50, long spot HYPE at $28.20 on Base. Funding rate -0.017%/8h means longs pay shorts, so short perp earns funding. APR = 0.017*3*365*100 = 1,861.5%. Delta neutral via spot hedge. Rebalance once per year. Gas $0.02/tx de minimis at this APR precision."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

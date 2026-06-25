@@ -1,0 +1,56 @@
+{
+  "runAt": "2026-06-11T20:16:58.203Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-004-threshold-agi-repair",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-004",
+      "raw": " {\n  \"intent\": \"allocate_yield\",\n  \"chosen_strategy\": \"liquid_barbell_capped_tail\",\n  \"allocation_usd\": {\n    \"Curve_3pool\": 30000,\n    \"Aave_USDC\": 20000,\n    \"Ethena_USDe\": 20000,\n    \"GMX_GLP\": 30000\n  },\n  \"expected_net_apy_pct\": 7.05,\n  \"expected_90d_profit_usd\": 1739.42,\n  \"liquidity_48h_usd\": 50000,\n  \"reasoning\": \"Maximized risk-adjusted return by allocating $30k to Curve (highest liquid APY net of 1.5%×12% tail risk) and $20k to Aave to meet the $50k 48h liquidity requirement. Remaining $50k allocated to GMX ($30k cap, 9.7% net APY after 9% hedge cost) and Ethena ($20k cap to avoid adversarial queue, net of 3%×80% shutdown risk). All allocations respect $30k venue caps and 48h liquidity constraints.\"\n}",
+      "durationMs": 94858,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "allocation_usd.Curve_3pool": 1,
+          "allocation_usd.Aave_USDC": 1,
+          "allocation_usd.Ethena_USDe": 1,
+          "allocation_usd.GMX_GLP": 1,
+          "expected_net_apy_pct": 0,
+          "expected_90d_profit_usd": 0,
+          "liquidity_48h_usd": 1
+        },
+        "normalizedResponse": {
+          "intent": "allocate_yield",
+          "chosen_strategy": "liquid_barbell_capped_tail",
+          "allocation_usd": {
+            "Curve_3pool": 30000,
+            "Aave_USDC": 20000,
+            "Ethena_USDe": 20000,
+            "GMX_GLP": 30000
+          },
+          "expected_net_apy_pct": 7.05,
+          "expected_90d_profit_usd": 1739.42,
+          "liquidity_48h_usd": 50000,
+          "reasoning": "Maximized risk-adjusted return by allocating $30k to Curve (highest liquid APY net of 1.5%×12% tail risk) and $20k to Aave to meet the $50k 48h liquidity requirement. Remaining $50k allocated to GMX ($30k cap, 9.7% net APY after 9% hedge cost) and Ethena ($20k cap to avoid adversarial queue, net of 3%×80% shutdown risk). All allocations respect $30k venue caps and 48h liquidity constraints."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:expected_net_apy_pct",
+          "agi_validation_failed:expected_90d_profit_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

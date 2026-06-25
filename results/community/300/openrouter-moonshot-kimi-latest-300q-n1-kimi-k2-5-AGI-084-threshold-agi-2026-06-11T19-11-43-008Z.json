@@ -1,0 +1,62 @@
+{
+  "runAt": "2026-06-11T19:11:43.007Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-084-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-084"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-084",
+      "raw": "{\"intent\": \"acquire\", \"chosen_strategy\": \"Private-First Route with Capped Public Exposure\", \"venue_allocation_usd\": {\"Binance\": 760000, \"OTC_Block\": 900000, \"Kraken\": 500000, \"Bybit\": 650000, \"CoW_RFQ\": 450000, \"Uniswap_Base\": 300000}, \"largest_visible_clip_usd\": 760000, \"expected_asset_received\": 6849.44, \"effective_price\": 519.75, \"self_check\": \"All public clips ≤760k (Binance capped at 760k, Kraken 500k, Bybit 650k); total allocation 3,560,000 USD; no inventory offset used.\", \"reasoning\": \"Maximized private venue usage (OTC_Block, CoW_RFQ, Uniswap_Base) to avoid MEV/copying, filled remainder with public venues capped at 760k to prevent front-running. Allocated Binance 760k (best price) despite visibility cap, used Kraken 500k and Bybit 650k for residual public capacity.\"}",
+      "durationMs": 144021,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.75,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "venue_allocation_usd.Binance": 1,
+          "venue_allocation_usd.OTC_Block": 1,
+          "venue_allocation_usd.Kraken": 1,
+          "venue_allocation_usd.Bybit": 1,
+          "venue_allocation_usd.CoW_RFQ": 1,
+          "venue_allocation_usd.Uniswap_Base": 1,
+          "largest_visible_clip_usd": 1,
+          "expected_asset_received": 1,
+          "effective_price": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "acquire",
+          "chosen_strategy": "Private-First Route with Capped Public Exposure",
+          "venue_allocation_usd": {
+            "Binance": 760000,
+            "OTC_Block": 900000,
+            "Kraken": 500000,
+            "Bybit": 650000,
+            "CoW_RFQ": 450000,
+            "Uniswap_Base": 300000
+          },
+          "largest_visible_clip_usd": 760000,
+          "expected_asset_received": 6849.44,
+          "effective_price": 519.75,
+          "self_check": "All public clips ≤760k (Binance capped at 760k, Kraken 500k, Bybit 650k); total allocation 3,560,000 USD; no inventory offset used.",
+          "reasoning": "Maximized private venue usage (OTC_Block, CoW_RFQ, Uniswap_Base) to avoid MEV/copying, filled remainder with public venues capped at 760k to prevent front-running. Allocated Binance 760k (best price) despite visibility cap, used Kraken 500k and Bybit 650k for residual public capacity."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

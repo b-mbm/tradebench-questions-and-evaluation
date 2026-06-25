@@ -1,0 +1,66 @@
+{
+  "runAt": "2026-06-11T22:09:05.709Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-AGI-059-2026-06-11T22-08-40",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-059"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-059",
+      "raw": "{\n  \"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"sequential_full_harvest\",\n  \"assets_to_sell\": [\n    \"FTM\",\n    \"MATIC\",\n    \"UNI\"\n  ],\n  \"sale_sequence\": [\n    \"FTM\",\n    \"MATIC\",\n    \"UNI\"\n  ],\n  \"replacement_assets\": {\n    \"FTM\": \"L1_alt_basket\",\n    \"MATIC\": \"ARB_OP_basket\",\n    \"UNI\": \"AAVE_COMP_basket\"\n  },\n  \"net_tax_benefit\": 24910,\n  \"remaining_unoffset_gains\": 22000,\n  \"self_check\": \"Wash sale rule satisfied via non-identical replacement baskets; fully invested status maintained; thinnest lot (FTM) sold first to minimize market maker spread widening on subsequent exits.\",\n  \"reasoning\": \"Sold all three lots totaling $73,000 in losses to offset $95,000 in ST gains. Ordered by ascending exit-depth score (FTM, MATIC, UNI) to prevent market maker widening. Net benefit is ($73k * 37%) - ($350k * 0.6%) = $24,910. Remaining gains are $22,000.\"\n}",
+      "durationMs": 24820,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "assets_to_sell": 1,
+          "sale_sequence": 1,
+          "replacement_assets.FTM": 1,
+          "replacement_assets.MATIC": 1,
+          "replacement_assets.UNI": 1,
+          "net_tax_benefit": 1,
+          "remaining_unoffset_gains": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "sequential_full_harvest",
+          "assets_to_sell": [
+            "FTM",
+            "MATIC",
+            "UNI"
+          ],
+          "sale_sequence": [
+            "FTM",
+            "MATIC",
+            "UNI"
+          ],
+          "replacement_assets": {
+            "FTM": "L1_alt_basket",
+            "MATIC": "ARB_OP_basket",
+            "UNI": "AAVE_COMP_basket"
+          },
+          "net_tax_benefit": 24910,
+          "remaining_unoffset_gains": 22000,
+          "self_check": "Wash sale rule satisfied via non-identical replacement baskets; fully invested status maintained; thinnest lot (FTM) sold first to minimize market maker spread widening on subsequent exits.",
+          "reasoning": "Sold all three lots totaling $73,000 in losses to offset $95,000 in ST gains. Ordered by ascending exit-depth score (FTM, MATIC, UNI) to prevent market maker widening. Net benefit is ($73k * 37%) - ($350k * 0.6%) = $24,910. Remaining gains are $22,000."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

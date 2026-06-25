@@ -1,0 +1,241 @@
+{
+  "runAt": "2026-06-10T06:02:08.388Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-011-L9-020-1781071127433",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-011",
+    "L9-012",
+    "L9-013",
+    "L9-014",
+    "L9-015",
+    "L9-016",
+    "L9-017",
+    "L9-018",
+    "L9-019",
+    "L9-020"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-011",
+      "raw": "{\n  \"intent\": \"no_action\",\n  \"expected_value\": 0,\n  \"reasoning\": \"Route A: net EV = 11200 - 1600 - 3000 - 5500 (0.55% slippage on $1M) - 3200 (40%×8000 MEV) = -$2100; fails slippage constraint (0.55% > 0.40%). Route B: net EV = 18000 - 2000 - 1500 - 20000 (5%×400000 default) = -$5500; fails settlement constraint (18min > 12min). Route C: net EV = 9500 - 2200 - 1800 - 6000 (2%×300000 exploit) = -$500; fails oracle age constraint (75s > 60s). All routes violate at least one hard constraint and none have positive net EV, so abstain with expected_value = 0.\"\n}",
+      "durationMs": 31116,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "Route A: net EV = 11200 - 1600 - 3000 - 5500 (0.55% slippage on $1M) - 3200 (40%×8000 MEV) = -$2100; fails slippage constraint (0.55% > 0.40%). Route B: net EV = 18000 - 2000 - 1500 - 20000 (5%×400000 default) = -$5500; fails settlement constraint (18min > 12min). Route C: net EV = 9500 - 2200 - 1800 - 6000 (2%×300000 exploit) = -$500; fails oracle age constraint (75s > 60s). All routes violate at least one hard constraint and none have positive net EV, so abstain with expected_value = 0."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-012",
+      "raw": "",
+      "durationMs": 3518,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-013",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 223.06,\n  \"reasoning\": \"Basis capture 0.64% × $2.88M = $18,432; funding 0.045% × 9 periods × $2.88M = $11,664; percent costs 0.18% × $2.88M = $5,184; fixed $420; borrow drag 7% APR × $1.2M × 3/365 = $692; buffer $1,800. Net = $18,432 + $11,664 - $5,184 - $420 - $692 - $1,800 = $21,996. APR = ($21,996 / $1,200,000) × 365/3 = 223.06%. Slippage 0.18% total ≤ 0.35%, all thresholds met, execute.\"\n}",
+      "durationMs": 21947,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 223.06,
+          "reasoning": "Basis capture 0.64% × $2.88M = $18,432; funding 0.045% × 9 periods × $2.88M = $11,664; percent costs 0.18% × $2.88M = $5,184; fixed $420; borrow drag 7% APR × $1.2M × 3/365 = $692; buffer $1,800. Net = $18,432 + $11,664 - $5,184 - $420 - $692 - $1,800 = $21,996. APR = ($21,996 / $1,200,000) × 365/3 = 223.06%. Slippage 0.18% total ≤ 0.35%, all thresholds met, execute."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-014",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 2580,\n  \"reasoning\": \"All three routes meet hard constraints (settlement ≤20min, oracle age ≤60sec, capacity ≥$2.4M). Route A cost = 0.62%×2.4M + $2,600 + 0%×2.4M = $17,480. Route B cost = 0.18%×2.4M + $3,100 + 0.03%×2.4M = $4,320 + $3,100 + $720 = $8,140. Route C cost = 0.26%×2.4M + $1,600 + 0.12%×2.4M = $6,240 + $1,600 + $2,880 = $10,720. Best is Route B at $8,140; second-best is Route C at $10,720. Savings = $10,720 - $8,140 = $2,580. Extra SOL = $2,580 / $150 = 17.2 SOL.\"\n}",
+      "durationMs": 12824,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 2580,
+          "reasoning": "All three routes meet hard constraints (settlement ≤20min, oracle age ≤60sec, capacity ≥$2.4M). Route A cost = 0.62%×2.4M + $2,600 + 0%×2.4M = $17,480. Route B cost = 0.18%×2.4M + $3,100 + 0.03%×2.4M = $4,320 + $3,100 + $720 = $8,140. Route C cost = 0.26%×2.4M + $1,600 + 0.12%×2.4M = $6,240 + $1,600 + $2,880 = $10,720. Best is Route B at $8,140; second-best is Route C at $10,720. Savings = $10,720 - $8,140 = $2,580. Extra SOL = $2,580 / $150 = 17.2 SOL."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-015",
+      "raw": "",
+      "durationMs": 11214,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-016",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"A1\", \"A3\", \"A5\"],\n  \"reasoning\": \"A2 rejected (slashing multiplier 4 > 3). A4 rejected (withdrawal delay 10 days > 7). Remaining eligible: A1 net=9-0.5-2×0.6=7.3%, A3 net=8.5-0.4-1.5×0.4=7.5%, A5 net=10-0.6-2.2×0.7=7.86%. All three pass all hard constraints and are the top 3 by risk-adjusted APR.\"\n}",
+      "durationMs": 19462,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A1",
+            "A3",
+            "A5"
+          ],
+          "reasoning": "A2 rejected (slashing multiplier 4 > 3). A4 rejected (withdrawal delay 10 days > 7). Remaining eligible: A1 net=9-0.5-2×0.6=7.3%, A3 net=8.5-0.4-1.5×0.4=7.5%, A5 net=10-0.6-2.2×0.7=7.86%. All three pass all hard constraints and are the top 3 by risk-adjusted APR."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-017",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 458100,\n  \"reasoning\": \"Success net profit = $980,000 - ($7,500 flash fee + $65,000 gas + $120,000 slippage + $90,000 MEV) = $697,500. Failure loss = $7,500 flash fee + $65,000 gas + $85,000 protection = $157,500. EV = 0.72 × $697,500 - 0.28 × $157,500 = $502,200 - $44,100 = $458,100. Oracle age 28s ≤ 45s ✓, liquidity $1.6M ≥ $1.2M ✓, EV > 0 ✓. All constraints pass, execute.\"\n}",
+      "durationMs": 9467,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 458100,
+          "reasoning": "Success net profit = $980,000 - ($7,500 flash fee + $65,000 gas + $120,000 slippage + $90,000 MEV) = $697,500. Failure loss = $7,500 flash fee + $65,000 gas + $85,000 protection = $157,500. EV = 0.72 × $697,500 - 0.28 × $157,500 = $502,200 - $44,100 = $458,100. Oracle age 28s ≤ 45s ✓, liquidity $1.6M ≥ $1.2M ✓, EV > 0 ✓. All constraints pass, execute."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-018",
+      "raw": "",
+      "durationMs": 44379,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-019",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 1074141.37,\n  \"reasoning\": \"Missing votes = 120,000 -",
+      "durationMs": 24879,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 1074141.37,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-020",
+      "raw": "{\n\"intent\": \"no_action\",\n\"expected_value\": 0,\n\"reasoning\": \"All three options fail hard constraints: Option A slippage 0.52% > 0.40% max; Option B settlement 18 min > 12 min max; Option C oracle age 72s > 60s max. Additionally all have negative net EV: A=$14200-$4100-$5200-$7000=-$2100, B=$26000-$5200-$1500-$25200=-$5900, C=$11800-$4600-$2000-$9000=-$3800. No option is both positive-EV and feasible.\"\n}",
+      "durationMs": 17185,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "All three options fail hard constraints: Option A slippage 0.52% > 0.40% max; Option B settlement 18 min > 12 min max; Option C oracle age 72s > 60s max. Additionally all have negative net EV: A=$14200-$4100-$5200-$7000=-$2100, B=$26000-$5200-$1500-$25200=-$5900, C=$11800-$4600-$2000-$9000=-$3800. No option is both positive-EV and feasible."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "runAt": "2026-06-10T08:12:58.678Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-098-2026-06-10T08-12-33",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-098"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-098",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"hidden_child_repricing_below_toxicity_threshold\",\n  \"price_band\": \"61200-61350\",\n  \"child_order_units\": 35,\n  \"repricing_interval_sec\": 45,\n  \"expected_avg_price\": 61300,\n  \"reasoning\": \"Sell impulses fully recovered but buy impulse had abnormal impact, implying informed flow shifted fair value above pre-impulse 61242 to ~61300. Keep each child at 35 BTC (well below 140 BTC toxicity classifier threshold) and reprice every 45s to sweep stale quotes post-momentum without triggering the fade logic.\"\n}",
+      "durationMs": 24964,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "price_band": 0,
+          "child_order_units": 1,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 1
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "hidden_child_repricing_below_toxicity_threshold",
+          "price_band": "61200-61350",
+          "child_order_units": 35,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": 61300,
+          "reasoning": "Sell impulses fully recovered but buy impulse had abnormal impact, implying informed flow shifted fair value above pre-impulse 61242 to ~61300. Keep each child at 35 BTC (well below 140 BTC toxicity classifier threshold) and reprice every 45s to sweep stale quotes post-momentum without triggering the fade logic."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:price_band"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

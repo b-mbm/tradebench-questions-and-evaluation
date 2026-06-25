@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-11T23:46:28.688Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L9-077-2026-06-11T23-46-25",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-077"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-077",
+      "raw": "{\"intent\":\"no-action\",\"expected_value\":0,\"reasoning\":\"Basis capture 0.26% ($3,640) plus funding 0.071%×3×2.25=$4,794 (three 8h periods over 2.25 days) totals $8,434 gain. Costs: 0.29% of notional=$4,060 plus $620 fixed=$4,680. Borrow drag: 15%×$500k×2.25/365=$4,623. Reserve buffer $2,100. Net: $8,434-$4,680-$4,623-$2,100=-$2,969. Annualized: -$2,969/$500k×365/2.25=-96.5% APR. Negative return fails >25% threshold. Slippage and bridge constraints met but economics invalid.\"}",
+      "durationMs": 3064,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "no-action",
+          "expected_value": 0,
+          "reasoning": "Basis capture 0.26% ($3,640) plus funding 0.071%×3×2.25=$4,794 (three 8h periods over 2.25 days) totals $8,434 gain. Costs: 0.29% of notional=$4,060 plus $620 fixed=$4,680. Borrow drag: 15%×$500k×2.25/365=$4,623. Reserve buffer $2,100. Net: $8,434-$4,680-$4,623-$2,100=-$2,969. Annualized: -$2,969/$500k×365/2.25=-96.5% APR. Negative return fails >25% threshold. Slippage and bridge constraints met but economics invalid."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

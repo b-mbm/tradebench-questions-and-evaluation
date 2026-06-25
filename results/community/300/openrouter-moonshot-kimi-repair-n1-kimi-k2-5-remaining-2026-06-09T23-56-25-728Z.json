@@ -1,0 +1,174 @@
+{
+  "runAt": "2026-06-09T23:56:25.728Z",
+  "label": "openrouter-moonshot-kimi-repair-n1-kimi-k2-5-remaining",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L5-003",
+    "L8-003",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L5-003",
+      "raw": "{\n  \"intent\": \"yield_farm\",\n  \"order_type\": \"deposit\",\n  \"asset\": \"ETH\",\n  \"size\": 5,\n  \"unit\": \"eth\",\n  \"venue\": \"aave\",\n  \"venue_name\": \"Aave V3\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\",\n    \"slippage_tolerance\": \"0.5%\",\n    \"liquidation_threshold\": \"82.5%\",\n    \"position_size_limit\": 5\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Open 5 ETH short perpetual futures position on GMX or dYdX to hedge price exposure and achieve delta neutrality, or borrow USDC against collateral to farm stablecoin yields\",\n  \"reasoning\": \"Deposit 5 ETH as collateral to earn supply APY (~2-3%). Delta-neutral strategy requires hedging the 5 ETH long exposure via perpetual short or converting borrowed funds to offsetting positions to isolate yield from price risk.\"\n}",
+      "durationMs": 66990,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5429411764705883,
+        "score": 0.5011764705882353,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "yield_farm",
+          "order_type": "deposit",
+          "asset": "ETH",
+          "size": 5,
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "slippage_tolerance": "0.5%",
+            "liquidation_threshold": "82.5%",
+            "position_size_limit": 5
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Open 5 ETH short perpetual futures position on GMX or dYdX to hedge price exposure and achieve delta neutrality, or borrow USDC against collateral to farm stablecoin yields",
+          "reasoning": "Deposit 5 ETH as collateral to earn supply APY (~2-3%). Delta-neutral strategy requires hedging the 5 ETH long exposure via perpetual short or converting borrowed funds to offsetting positions to isolate yield from price risk."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-003",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"portfolio\",\n  \"size\": 1000000,\n  \"venue\": \"multi_venue\",\n  \"portfolio_volatility\": 0.5019,\n  \"risk_contributions\": {\n    \"btc\": 0.4567,\n    \"eth\": 0.5388,\n    \"bonds\": 0.0045\n  },\n  \"btc_contribution_pct\": 45.67,\n  \"eth_contribution_pct\": 53.88,\n  \"bonds_contribution_pct\": 0.45,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"btc\": 181000,\n    \"eth\": 136000,\n    \"bonds\": 683000\n  },\n  \"target_btc_usd\": 181000,\n  \"target_eth_usd\": 136000,\n  \"target_bonds_usd\": 683000,\n  \"transactions\": [\n    {\n      \"intent\": \"sell\",\n      \"order_type\": \"market\",\n      \"asset\": \"BTC\",\n      \"size\": 219000,\n      \"venue\": \"coinbase\",\n      \"reasoning\": \"reduce btc position from 400k to 181k target\"\n    },\n    {\n      \"intent\": \"sell\",\n      \"order_type\": \"market\",\n      \"asset\": \"ETH\",\n      \"size\": 214000,\n      \"venue\": \"coinbase\",\n      \"reasoning\": \"reduce eth position from 350k to 136k target\"\n    },\n    {\n      \"intent\": \"buy\",\n      \"order_type\": \"market\",\n      \"asset\": \"TLT\",\n      \"size\": 433000,\n      \"venue\": \"ibkr\",\n      \"reasoning\": \"increase bonds from 250k to 683k target\"\n    }\n  ],\n  \"btc_sell_amount\": 219000,\n  \"eth_sell_amount\": 214000,\n  \"bonds_buy_amount\": 433000,\n  \"btc_post_slippage\": 217905,\n  \"eth_post_slippage\": 212930,\n  \"bonds_post_slippage\": 432567,\n  \"reasoning\": \"calculated covariance matrix from volatilities and correlations, computed current risk contributions (BTC 45.7%, ETH 53.9%, Bonds 0.5%), found all outside 28.3-38.3% band, solved for equal risk contribution targets using inverse volatility weighting adjusted for correlations, resulting targets: BTC $181k, ETH $136k, Bonds $683k. Constructed sell orders for BTC ($219k) and ETH ($214k), buy order for Bonds ($433k), rounded to nearest $1k. Applied slippage: 0.5% to crypto sells (reducing proceeds), 0.1% to bond buy (increasing cost).\"\n}",
+      "durationMs": 83332,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9376623376623376,
+        "score": 0.9090909090909091,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0.09,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "portfolio",
+          "size": 1000000,
+          "venue": "multi_venue",
+          "portfolio_volatility": 0.5019,
+          "risk_contributions": {
+            "btc": 0.4567,
+            "eth": 0.5388,
+            "bonds": 0.0045
+          },
+          "btc_contribution_pct": 45.67,
+          "eth_contribution_pct": 53.88,
+          "bonds_contribution_pct": 0.45,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 181000,
+            "eth": 136000,
+            "bonds": 683000
+          },
+          "target_btc_usd": 181000,
+          "target_eth_usd": 136000,
+          "target_bonds_usd": 683000,
+          "transactions": [
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "BTC",
+              "size": 219000,
+              "venue": "coinbase",
+              "reasoning": "reduce btc position from 400k to 181k target"
+            },
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "ETH",
+              "size": 214000,
+              "venue": "coinbase",
+              "reasoning": "reduce eth position from 350k to 136k target"
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "TLT",
+              "size": 433000,
+              "venue": "ibkr",
+              "reasoning": "increase bonds from 250k to 683k target"
+            }
+          ],
+          "btc_sell_amount": 219000,
+          "eth_sell_amount": 214000,
+          "bonds_buy_amount": 433000,
+          "btc_post_slippage": 217905,
+          "eth_post_slippage": 212930,
+          "bonds_post_slippage": 432567,
+          "reasoning": "calculated covariance matrix from volatilities and correlations, computed current risk contributions (BTC 45.7%, ETH 53.9%, Bonds 0.5%), found all outside 28.3-38.3% band, solved for equal risk contribution targets using inverse volatility weighting adjusted for correlations, resulting targets: BTC $181k, ETH $136k, Bonds $683k. Constructed sell orders for BTC ($219k) and ETH ($214k), buy order for Bonds ($433k), rounded to nearest $1k. Applied slippage: 0.5% to crypto sells (reducing proceeds), 0.1% to bond buy (increasing cost)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-010",
+      "raw": "",
+      "durationMs": 27602,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

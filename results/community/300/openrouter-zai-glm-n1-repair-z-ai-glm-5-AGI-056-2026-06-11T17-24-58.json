@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T17:25:00.885Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-056-2026-06-11T17-24-58",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-056"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-056",
+      "raw": "{\"intent\":\"hedge\",\"chosen_strategy\":\"BTC_short_with_ETH_put_spread_convexity\",\"hedge_legs\":{\"BTC_short\":{\"notional_usd\":420000},\"ETH_put_spread\":{\"notional_usd\":650000}},\"expected_vol_reduction_pct\":48,\"residual_1d_var_usd\":125000,\"reasoning\":\"Max BTC short at 420k before crowding tripwire; ETH put-spread adds convexity without spot sales; combined cuts crisis vol ~50%\"}",
+      "durationMs": 1612,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.3333333333333333,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "hedge_legs.BTC_short.notional_usd": 1,
+          "hedge_legs.ETH_put_spread.notional_usd": 1,
+          "expected_vol_reduction_pct": 0,
+          "residual_1d_var_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "BTC_short_with_ETH_put_spread_convexity",
+          "hedge_legs": {
+            "BTC_short": {
+              "notional_usd": 420000
+            },
+            "ETH_put_spread": {
+              "notional_usd": 650000
+            }
+          },
+          "expected_vol_reduction_pct": 48,
+          "residual_1d_var_usd": 125000,
+          "reasoning": "Max BTC short at 420k before crowding tripwire; ETH put-spread adds convexity without spot sales; combined cuts crisis vol ~50%"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:expected_vol_reduction_pct",
+          "agi_validation_failed:residual_1d_var_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

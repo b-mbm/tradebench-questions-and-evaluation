@@ -1,0 +1,48 @@
+{
+  "runAt": "2026-06-11T16:49:56.995Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-007-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-007"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-007",
+      "raw": "{\"intent\":\"exit_and_vote\",\"vote\":\"for\",\"position\":\"exit\",\"chosen_strategy\":\"Support emission cut to prevent strategic farmer exodus, but exit $100k farm position immediately to avoid asymmetric downside from TVL flight exceeding DEX absorption capacity\",\"expected_12d_price_change_pct\":-45,\"reasoning\":\"Vote failure triggers 38% TVL withdrawal ($17.1M) against $800k DEX liquidity, implying >20x daily sell pressure vs capacity and -80%+ price collapse. Vote success halves sell pressure and adds $40k buy support, stabilizing price near current levels. Probability-weighted expectation is -45%, justifying immediate exit to preserve capital while voting FOR to mitigate systemic risk.\"}",
+      "durationMs": 135843,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "vote": 0,
+          "position": 0,
+          "chosen_strategy": 0,
+          "expected_12d_price_change_pct": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit_and_vote",
+          "vote": "for",
+          "position": "exit",
+          "chosen_strategy": "Support emission cut to prevent strategic farmer exodus, but exit $100k farm position immediately to avoid asymmetric downside from TVL flight exceeding DEX absorption capacity",
+          "expected_12d_price_change_pct": -45,
+          "reasoning": "Vote failure triggers 38% TVL withdrawal ($17.1M) against $800k DEX liquidity, implying >20x daily sell pressure vs capacity and -80%+ price collapse. Vote success halves sell pressure and adds $40k buy support, stabilizing price near current levels. Probability-weighted expectation is -45%, justifying immediate exit to preserve capital while voting FOR to mitigate systemic risk."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:vote",
+          "agi_validation_failed:position",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:expected_12d_price_change_pct"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

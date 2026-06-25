@@ -1,0 +1,57 @@
+{
+  "runAt": "2026-06-12T01:33:36.076Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-040-2026-06-12T01-33-31",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-040"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-040",
+      "raw": "{\"intent\":\"analyze\",\"vote\":\"no\",\"position\":\"exit\",\"chosen_strategy\":\"exit_before_vote\",\"net_sell_pressure_delta_per_day\":-21000,\"stabilization_buy_usd\":0,\"expected_12d_price_change_pct\":-13.1,\"self_check\":\"Vote no to avoid emissions cut; exit position before vote as price will decline regardless; net sell pressure delta is -21k tokens/day (reduction) but price still falls ~13% over 12 days due to persistent net flow reaching price\",\"reasoning\":\"Current: 56k sell/day. If vote passes: 35k emissions × 70% sold = 24.5k + 4k unlock = 28.5k/day. Delta = 28.5k - 56k = -27.5k reduction. But 2/3 of net flow reaches price: -27.5k × 2/3 = -18.3k effective reduction. Over 12 days: 56k × 12 = 672k baseline vs 28.5k × 12 = 342k if passed. Net reduction = 330k tokens. At $1.6M liquidity, 330k tokens × 2/3 flow = 220k effective. Price impact ≈ 220k / 1.6M = 13.75% decline. Treasury buy $30k provides ~1.9% support. Net: ~13% decline. Vote no to preserve emissions, exit to avoid drawdown.\"}",
+      "durationMs": 4430,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "vote": 0,
+          "position": 0,
+          "chosen_strategy": 0,
+          "net_sell_pressure_delta_per_day": 0,
+          "stabilization_buy_usd": 0,
+          "expected_12d_price_change_pct": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "vote": "no",
+          "position": "exit",
+          "chosen_strategy": "exit_before_vote",
+          "net_sell_pressure_delta_per_day": -21000,
+          "stabilization_buy_usd": 0,
+          "expected_12d_price_change_pct": -13.1,
+          "self_check": "Vote no to avoid emissions cut; exit position before vote as price will decline regardless; net sell pressure delta is -21k tokens/day (reduction) but price still falls ~13% over 12 days due to persistent net flow reaching price",
+          "reasoning": "Current: 56k sell/day. If vote passes: 35k emissions × 70% sold = 24.5k + 4k unlock = 28.5k/day. Delta = 28.5k - 56k = -27.5k reduction. But 2/3 of net flow reaches price: -27.5k × 2/3 = -18.3k effective reduction. Over 12 days: 56k × 12 = 672k baseline vs 28.5k × 12 = 342k if passed. Net reduction = 330k tokens. At $1.6M liquidity, 330k tokens × 2/3 flow = 220k effective. Price impact ≈ 220k / 1.6M = 13.75% decline. Treasury buy $30k provides ~1.9% support. Net: ~13% decline. Vote no to preserve emissions, exit to avoid drawdown."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:vote",
+          "agi_validation_failed:position",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:net_sell_pressure_delta_per_day",
+          "agi_validation_failed:stabilization_buy_usd",
+          "agi_validation_failed:expected_12d_price_change_pct",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

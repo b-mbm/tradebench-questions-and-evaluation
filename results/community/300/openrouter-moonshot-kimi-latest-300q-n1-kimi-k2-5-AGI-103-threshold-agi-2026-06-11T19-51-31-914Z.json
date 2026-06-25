@@ -1,0 +1,57 @@
+{
+  "runAt": "2026-06-11T19:51:31.913Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-103-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-103"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-103",
+      "raw": "{\"intent\":\"maximize_tokenholder_value\",\"chosen_strategy\":\"vote_proposal_2_delay_team_unlock\",\"proposal_vote\":\"2\",\"hedge_action\":\"accumulate_spot_remove_hedge\",\"expected_30d_value_usd\":12200000,\"supply_shock_pct\":1.8,\"lp_depth_after_30d_usd\":24000000,\"self_check\":\"supply_shock_1.8pct_within_7pct_limit\",\"reasoning\":\"Proposal 2 delays a 14M token team unlock by 45 days, preventing immediate circulating supply inflation valued at $14M (assuming $1.00/token), while incurring a 1.8M token bribe cost ($1.8M). Net 30-day value preservation is $12.2M. The 1.8M token bribe creates a 1.8% supply shock (assuming 100M circulating supply), satisfying the <7% constraint. Proposal 1 offers only ~$4.9M value via emission reduction and potential fee activation. Proposal 3 risks price decline with no guaranteed intervention. LP depth remains at $24M as Proposal 2 does not directly affect liquidity gauges. Hedge stance is long/accumulate given the bullish supply reduction.\"}",
+      "durationMs": 163116,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "proposal_vote": 0,
+          "hedge_action": 0,
+          "expected_30d_value_usd": 0,
+          "supply_shock_pct": 0,
+          "lp_depth_after_30d_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "maximize_tokenholder_value",
+          "chosen_strategy": "vote_proposal_2_delay_team_unlock",
+          "proposal_vote": "2",
+          "hedge_action": "accumulate_spot_remove_hedge",
+          "expected_30d_value_usd": 12200000,
+          "supply_shock_pct": 1.8,
+          "lp_depth_after_30d_usd": 24000000,
+          "self_check": "supply_shock_1.8pct_within_7pct_limit",
+          "reasoning": "Proposal 2 delays a 14M token team unlock by 45 days, preventing immediate circulating supply inflation valued at $14M (assuming $1.00/token), while incurring a 1.8M token bribe cost ($1.8M). Net 30-day value preservation is $12.2M. The 1.8M token bribe creates a 1.8% supply shock (assuming 100M circulating supply), satisfying the <7% constraint. Proposal 1 offers only ~$4.9M value via emission reduction and potential fee activation. Proposal 3 risks price decline with no guaranteed intervention. LP depth remains at $24M as Proposal 2 does not directly affect liquidity gauges. Hedge stance is long/accumulate given the bullish supply reduction."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:proposal_vote",
+          "agi_validation_failed:hedge_action",
+          "agi_validation_failed:expected_30d_value_usd",
+          "agi_validation_failed:supply_shock_pct",
+          "agi_validation_failed:lp_depth_after_30d_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

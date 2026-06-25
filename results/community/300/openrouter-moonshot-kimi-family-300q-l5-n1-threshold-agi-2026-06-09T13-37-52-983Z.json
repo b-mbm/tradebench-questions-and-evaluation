@@ -1,0 +1,819 @@
+{
+  "runAt": "2026-06-09T13:37:52.982Z",
+  "label": "openrouter-moonshot-kimi-family-300q-l5-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2-thinking",
+    "moonshotai/kimi-k2.6",
+    "moonshotai/kimi-k2.5",
+    "moonshotai/kimi-k2-0905"
+  ],
+  "questionIds": [
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-001",
+      "raw": "{\"intent\":\"add_liquidity\",\"order_type\":\"concentrated_liquidity\",\"asset\":\"ETH/USDC\",\"size\":25000,\"unit\":\"usdc\",\"price\":\"2700-2900\",\"venue\":\"dex\",\"venue_name\":\"uniswap_v3\",\"risk_controls\":{\"stop_loss\":\"8% IL threshold\",\"take_profit\":\"price_exits_range\",\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":\"25000\"},\"follow_up\":\"monitor position and rebalance as needed\",\"reasoning\":\"Single-sided USDC deposit for concentrated liquidity position below current price. Range $2700-$2900 selected to capture fees on ETH decline while maintaining stress IL ≤8%. Position becomes active and generates fees when ETH enters range.\",\"requires_follow_up\":true,\"follow_up_description\":\"Track ETH price movement into range, monitor impermanent loss (exit if approaching 8%), collect earned fees, and rebalance or remove liquidity if price exits range\"}",
+      "durationMs": 53290,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7200714285714286,
+        "score": 0.6777142857142857,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.07200000000000001,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated_liquidity",
+          "asset": "ETH/USDC",
+          "size": 25000,
+          "unit": "usdc",
+          "price": "2700-2900",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "stop_loss": "8% IL threshold",
+            "take_profit": "price_exits_range",
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "25000"
+          },
+          "follow_up": "monitor position and rebalance as needed",
+          "reasoning": "Single-sided USDC deposit for concentrated liquidity position below current price. Range $2700-$2900 selected to capture fees on ETH decline while maintaining stress IL ≤8%. Position becomes active and generates fees when ETH enters range.",
+          "requires_follow_up": true,
+          "follow_up_description": "Track ETH price movement into range, monitor impermanent loss (exit if approaching 8%), collect earned fees, and rebalance or remove liquidity if price exits range"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-002",
+      "raw": "{\"intent\":\"leverage_long\",\"order_type\":\"aave\",\"asset\":\"ETH\",\"size\":\"1\",\"unit\":\"eth\",\"venue\":\"aave\",\"venue_name\":\"aave_v3\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":\"3\"},\"follow_up\":\"monitor health factor\",\"reasoning\":\"Create 3x leveraged long ETH position by supplying 1 ETH as collateral and looping borrow/supply to achieve 3x exposure\",\"requires_follow_up\":true,\"follow_up_description\":\"Track health factor and liquidation risk; position requires active management\"}",
+      "durationMs": 19457,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.022666666666666665,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "leverage_long",
+          "order_type": "aave",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "aave_v3",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "3"
+          },
+          "follow_up": "monitor health factor",
+          "reasoning": "Create 3x leveraged long ETH position by supplying 1 ETH as collateral and looping borrow/supply to achieve 3x exposure",
+          "requires_follow_up": true,
+          "follow_up_description": "Track health factor and liquidation risk; position requires active management"
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-003",
+      "raw": "{\"intent\": \"farm\", \"order_type\": \"strategy\", \"asset\": \"ETH\", \"size\": 5, \"unit\": \"eth\", \"venue\": \"multi\", \"venue_name\": \"lido_staking + gmx_perps\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\", \"position_size_limit\": 15000}, \"follow_up\": \"monitor delta neutrality, funding rates, and stETH peg\", \"reasoning\": \"Delta-neutral yield farming: stake 5 ETH via Lido for ~4% APR yield, short 5 ETH perps on GMX to hedge price exposure. Net position earns staking rewards while remaining market-neutral.\"}",
+      "durationMs": 24010,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7865751633986928,
+        "score": 0.7451764705882353,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0.023999999999999994,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "farm",
+          "order_type": "strategy",
+          "asset": "ETH",
+          "size": 5,
+          "unit": "eth",
+          "venue": "multi",
+          "venue_name": "lido_staking + gmx_perps",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": 15000
+          },
+          "follow_up": "monitor delta neutrality, funding rates, and stETH peg",
+          "reasoning": "Delta-neutral yield farming: stake 5 ETH via Lido for ~4% APR yield, short 5 ETH perps on GMX to hedge price exposure. Net position earns staking rewards while remaining market-neutral."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-004",
+      "raw": "{\"intent\":\"borrow\",\"order_type\":\"lending\",\"asset\":\"USDC\",\"size\":\"5000\",\"unit\":\"usd\",\"venue\":\"aave\",\"venue_name\":\"aave_v3\",\"risk_controls\":{\"max_gas\":\"30 gwei\",\"slippage_tolerance\":\"0.5%\",\"position_size_limit\":\"4800\"},\"follow_up\":\"confirm borrow rates and LTV ratio\",\"reasoning\":\"Aave V3 on Ethereum mainnet supports ETH collateral and USDC borrowing. Transaction requires depositing 2 ETH as collateral and borrowing 5000 USDC against it. However, this exceeds protocol LTV constraints.\",\"requires_follow_up\":true,\"follow_up_description\":\"CRITICAL: Requested borrow amount ($5000) exceeds 80% LTV limit for 2 ETH collateral ($6000). Max borrow allowed: $4800. This would trigger immediate liquidation risk. Recommend reducing borrow amount to ≤$4800 or adding more collateral.\"}",
+      "durationMs": 40718,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9334821428571429,
+        "score": 0.8785714285714287,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.04857142857142857,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lending",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "venue": "aave",
+          "venue_name": "aave_v3",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "4800"
+          },
+          "follow_up": "confirm borrow rates and LTV ratio",
+          "reasoning": "Aave V3 on Ethereum mainnet supports ETH collateral and USDC borrowing. Transaction requires depositing 2 ETH as collateral and borrowing 5000 USDC against it. However, this exceeds protocol LTV constraints.",
+          "requires_follow_up": true,
+          "follow_up_description": "CRITICAL: Requested borrow amount ($5000) exceeds 80% LTV limit for 2 ETH collateral ($6000). Max borrow allowed: $4800. This would trigger immediate liquidation risk. Recommend reducing borrow amount to ≤$4800 or adding more collateral."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L5-005",
+      "raw": "{\"intent\":\"stake\",\"order_type\":\"liquid_staking\",\"asset\":\"ETH\",\"size\":\"10\",\"unit\":\"eth\",\"price\":\"3000\",\"venue\":\"lido\",\"venue_name\":\"Lido Finance\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"confirm stETH receipt\",\"reasoning\":\"Stake 10 ETH via Lido to receive liquid staking token (stETH) while earning staking rewards. Current ETH price $3000.\",\"requires_follow_up\":true,\"follow_up_description\":\"Monitor transaction for stETH receipt and staking activation\"}",
+      "durationMs": 34331,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9992592592592594,
+        "score": 0.9466666666666668,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.026666666666666672,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "liquid_staking",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "eth",
+          "price": "3000",
+          "venue": "lido",
+          "venue_name": "Lido Finance",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm stETH receipt",
+          "reasoning": "Stake 10 ETH via Lido to receive liquid staking token (stETH) while earning staking rewards. Current ETH price $3000.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor transaction for stETH receipt and staking activation"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add_liquidity\",\n  \"order_type\": \"concentrated_liquidity\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"TBD\",\n  \"unit\": \"eth\",\n  \"price\": \"2700-2900\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm deposit size and token ratio\",\n  \"reasoning\": \"Uniswap V3 concentrated-liquidity position in the 2700-2900 USDC/ETH range. The 6.7% band targets high fee APR while bounding stress impermanent loss to ≤8%. Current ETH price of 3000 sits above the range, so the initial mint will be 100%",
+      "durationMs": 106060,
+      "grade": {
+        "pass": false,
+        "confidence": 0.38467346938775515,
+        "score": 0.5983809523809525,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0.02666666666666666,
+          "venue": 0.12,
+          "venue_name": 0.055999999999999994,
+          "risk_controls": 0,
+          "follow_up": 0.03,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated_liquidity",
+          "asset": "ETH/USDC",
+          "size": "TBD",
+          "unit": "eth",
+          "price": "2700-2900",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "slippage_tolerance": "0.5%",
+          "max_gas": "30 gwei",
+          "follow_up": "confirm deposit size and token ratio",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L5-002",
+      "raw": "",
+      "durationMs": 170649,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L5-003",
+      "raw": " {\"intent\":\"yield_farm_delta_neutral\",\"order_type\":\"strategy\",\"asset\":\"ETH\",\"size\":5,\"unit\":\"eth\",\"venue\":\"aave\",\"venue_name\":\"Aave V3\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"40 gwei\",\"position_size_limit\":5},\"follow_up\":\"monitor health factor and stETH peg\",\"reasoning\":\"Convert ETH to stETH, deposit as collateral on Aave, and borrow ETH to neutralize delta exposure while earning the staking yield spread\",\"requires_follow_up\":true,\"follow_up_description\":\"Track Aave health factor, stETH/ETH peg stability, and ensure net borrow cost remains below staking yield\"}",
+      "durationMs": 113194,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8075,
+        "score": 0.76,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "yield_farm_delta_neutral",
+          "order_type": "strategy",
+          "asset": "ETH",
+          "size": 5,
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei",
+            "position_size_limit": 5
+          },
+          "follow_up": "monitor health factor and stETH peg",
+          "reasoning": "Convert ETH to stETH, deposit as collateral on Aave, and borrow ETH to neutralize delta exposure while earning the staking yield spread",
+          "requires_follow_up": true,
+          "follow_up_description": "Track Aave health factor, stETH/ETH peg stability, and ensure net borrow cost remains below staking yield"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L5-004",
+      "raw": " {\"intent\":\"borrow\",\"order_type\":\"lending\",\"asset\":\"USDC\",\"size\":5000,\"unit\":\"USDC\",\"venue\":\"aave\",\"venue_name\":\"Aave V3\",\"risk_controls\":{\"max_gas\":\"50 gwei\"},\"follow_up\":\"monitor health factor and liquidation threshold\",\"reasoning\":\"deposit 2 ETH as collateral to borrow 5000 USDC on Aave V3 mainnet; collateral value is ~6000 USD at current ETH price\",\"requires_follow_up\":true,\"follow_up_description\":\"2 ETH collateral at $3000/ETH equals $6000. Borrowing $5000 USDC implies ~83.3% loan-to-value. Confirm this is below Aave's maximum LTV for ETH and monitor ETH price to avoid liquidation\"}",
+      "durationMs": 99756,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9334821428571429,
+        "score": 0.8785714285714287,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.04857142857142857,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lending",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "USDC",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "max_gas": "50 gwei"
+          },
+          "follow_up": "monitor health factor and liquidation threshold",
+          "reasoning": "deposit 2 ETH as collateral to borrow 5000 USDC on Aave V3 mainnet; collateral value is ~6000 USD at current ETH price",
+          "requires_follow_up": true,
+          "follow_up_description": "2 ETH collateral at $3000/ETH equals $6000. Borrowing $5000 USDC implies ~83.3% loan-to-value. Confirm this is below Aave's maximum LTV for ETH and monitor ETH price to avoid liquidation"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L5-005",
+      "raw": " {\"intent\":\"stake\",\"order_type\":\"stake\",\"asset\":\"ETH\",\"size\":10,\"unit\":\"ETH\",\"venue\":\"lido\",\"venue_name\":\"Lido\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"40 gwei\"},\"follow_up\":\"confirm stETH minted to wallet\",\"reasoning\":\"Deposit ETH into Lido liquid staking protocol on Ethereum mainnet to receive stETH\",\"requires_follow_up\":false}",
+      "durationMs": 59178,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "stake",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "ETH",
+          "venue": "lido",
+          "venue_name": "Lido",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm stETH minted to wallet",
+          "reasoning": "Deposit ETH into Lido liquid staking protocol on Ethereum mainnet to receive stETH",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add_liquidity\",\n  \"order_type\": \"concentrated\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"TBD\",\n  \"unit\": \"usd\",\n  \"price\": \"2700-2900\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Specify USD deposit amount for ETH/USDC V3 position sizing\",\n  \"reasoning\": \"Uniswap V3 concentrated liquidity position configured for range $2,700-$2,900. Current ETH price $3,000 is above upper bound, initializing position as 100% USDC (buy-limit strategy). Geometric mean of range is $2,798. Maximum impermanent loss for full range traversal calculated at 3.51% (1-sqrt(2700/2900)), satisfying stress IL constraint of ≤8%. Position converts to 100% ETH if price reaches $2,700 lower bound. Gas price 30 gwei within acceptable limits for mainnet execution.\"\n}",
+      "durationMs": 177020,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7210833333333334,
+        "score": 0.6786666666666668,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.02666666666666666,
+          "venue": 0.12,
+          "venue_name": 0.07200000000000001,
+          "risk_controls": 0.06,
+          "follow_up": 0,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated",
+          "asset": "ETH/USDC",
+          "size": "TBD",
+          "unit": "usd",
+          "price": "2700-2900",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Specify USD deposit amount for ETH/USDC V3 position sizing",
+          "reasoning": "Uniswap V3 concentrated liquidity position configured for range $2,700-$2,900. Current ETH price $3,000 is above upper bound, initializing position as 100% USDC (buy-limit strategy). Geometric mean of range is $2,798. Maximum impermanent loss for full range traversal calculated at 3.51% (1-sqrt(2700/2900)), satisfying stress IL constraint of ≤8%. Position converts to 100% ETH if price reaches $2,700 lower bound. Gas price 30 gwei within acceptable limits for mainnet execution."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L5-002",
+      "raw": "{\"intent\":\"leverage_long\",\"order_type\":\"lending\",\"asset\":\"ETH\",\"size\":\"1\",\"unit\":\"eth\",\"venue\":\"aave\",\"venue_name\":\"Aave V3\",\"risk_controls\":{\"stop_loss\":\"2200\",\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":\"6000\"},\"follow_up\":\"monitor health factor\",\"reasoning\":\"Initialize 3x leveraged long by depositing 1 ETH collateral on Aave and recursively borrowing stablecoins to acquire additional ETH exposure. Target notional: 3 ETH ($9,000). Liquidation risk if ETH price drops below ~$2,200 (assuming 82.5% liquidation threshold).\",\"requires_follow_up\":true,\"follow_up_description\":\"Execute supply-borrow-swap loop to reach target 3x leverage, verify final health factor remains above 1.25, and confirm total notional exposure.\"}",
+      "durationMs": 99481,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.022666666666666665,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "leverage_long",
+          "order_type": "lending",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "stop_loss": "2200",
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "6000"
+          },
+          "follow_up": "monitor health factor",
+          "reasoning": "Initialize 3x leveraged long by depositing 1 ETH collateral on Aave and recursively borrowing stablecoins to acquire additional ETH exposure. Target notional: 3 ETH ($9,000). Liquidation risk if ETH price drops below ~$2,200 (assuming 82.5% liquidation threshold).",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute supply-borrow-swap loop to reach target 3x leverage, verify final health factor remains above 1.25, and confirm total notional exposure."
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L5-003",
+      "raw": "",
+      "durationMs": 16289,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Connection error."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L5-004",
+      "raw": " {\"intent\":\"borrow\",\"order_type\":\"borrow\",\"asset\":\"USDC\",\"size\":\"5000\",\"unit\":\"USDC\",\"venue\":\"aave\",\"venue_name\":\"Aave V3\",\"risk_controls\":{\"max_gas\":\"30 gwei\",\"stop_loss\":\"ETH 2941\",\"position_size_limit\":\"5000\"},\"follow_up\":\"monitor health factor\",\"reasoning\":\"Deposit 2 ETH collateral ($6000) to borrow 5000 USDC at ~83% LTV. Liquidation risk if ETH drops below $2941 (assuming 85% liquidation threshold).\",\"requires_follow_up\":true,\"follow_up_description\":\"Monitor health factor and collateral ratio; add collateral or repay if health factor approaches 1.0\"}",
+      "durationMs": 24487,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.17,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "borrow",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "USDC",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "stop_loss": "ETH 2941",
+            "position_size_limit": "5000"
+          },
+          "follow_up": "monitor health factor",
+          "reasoning": "Deposit 2 ETH collateral ($6000) to borrow 5000 USDC at ~83% LTV. Liquidation risk if ETH drops below $2941 (assuming 85% liquidation threshold).",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor health factor and collateral ratio; add collateral or repay if health factor approaches 1.0"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L5-005",
+      "raw": "{\"intent\":\"stake\",\"order_type\":\"liquid_stake\",\"asset\":\"ETH\",\"size\":10,\"unit\":\"ETH\",\"venue\":\"lido\",\"venue_name\":\"Lido Finance\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"40 gwei\"},\"follow_up\":\"verify stETH mint\",\"reasoning\":\"Deposit ETH to receive stETH liquid staking tokens, earning staking yield while maintaining liquidity and ERC-20 transferability\",\"requires_follow_up\":true,\"follow_up_description\":\"Confirm stETH token receipt and monitor staking reward accrual vs ETH spot price\"}",
+      "durationMs": 46717,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9554131054131055,
+        "score": 0.9051282051282052,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.13846153846153844,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.026666666666666672,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "liquid_stake",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "ETH",
+          "venue": "lido",
+          "venue_name": "Lido Finance",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "verify stETH mint",
+          "reasoning": "Deposit ETH to receive stETH liquid staking tokens, earning staking yield while maintaining liquidity and ERC-20 transferability",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm stETH token receipt and monitor staking reward accrual vs ETH spot price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add_liquidity\",\n  \"order_type\": \"concentrated\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"1\",\n  \"unit\": \"range\",\n  \"price\": \"2700-2900\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"8% IL\"\n  },\n  \"follow_up\": \"monitor IL and rebalance if ETH moves outside range\",\n  \"reasoning\": \"concentrated liquidity in 2700-2900 range minimizes IL below 8% while maximizing fee yield\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"rebalance or remove if ETH exits range or IL exceeds 8%\"\n}",
+      "durationMs": 966,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7246250000000002,
+        "score": 0.6820000000000002,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.07200000000000001,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated",
+          "asset": "ETH/USDC",
+          "size": "1",
+          "unit": "range",
+          "price": "2700-2900",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "8% IL"
+          },
+          "follow_up": "monitor IL and rebalance if ETH moves outside range",
+          "reasoning": "concentrated liquidity in 2700-2900 range minimizes IL below 8% while maximizing fee yield",
+          "requires_follow_up": true,
+          "follow_up_description": "rebalance or remove if ETH exits range or IL exceeds 8%"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L5-002",
+      "raw": "{\n  \"intent\": \"leverage_long\",\n  \"order_type\": \"aave_loop\",\n  \"asset\": \"ETH\",\n  \"size\": \"1\",\n  \"unit\": \"eth\",\n  \"venue\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"3 ETH\"\n  },\n  \"follow_up\": \"monitor health factor\",\n  \"reasoning\": \"supply 1 ETH, borrow stables, swap to ETH, repeat to reach 3x exposure\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track liquidation price and health factor after each loop\"\n}",
+      "durationMs": 687,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.045333333333333344,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "leverage_long",
+          "order_type": "aave_loop",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "eth",
+          "venue": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "3 ETH"
+          },
+          "follow_up": "monitor health factor",
+          "reasoning": "supply 1 ETH, borrow stables, swap to ETH, repeat to reach 3x exposure",
+          "requires_follow_up": true,
+          "follow_up_description": "track liquidation price and health factor after each loop"
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L5-003",
+      "raw": "{\"intent\":\"delta_neutral_yield_farm\",\"order_type\":\"lending_loop\",\"asset\":\"ETH\",\"size\":\"5\",\"unit\":\"eth\",\"venue\":\"aave\",\"venue_name\":\"Aave V3\",\"risk_controls\":{\"position_size_limit\":\"5 ETH\",\"max_gas\":\"35 gwei\",\"slippage_tolerance\":\"0.3%\"},\"follow_up\":\"monitor LTV health factor and borrow rate vs supply rate spread\",\"reasoning\":\"deposit 5 ETH as collateral, borrow stables (≈70% LTV), loop back into ETH supply to earn net spread while remaining delta-neutral\",\"requires_follow_up\":true,\"follow_up_description\":\"track borrow-APY vs supply-APY differential and liquidation buffer\"}",
+      "durationMs": 6507,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7440259740259741,
+        "score": 0.7002597402597404,
+        "fieldScores": {
+          "intent": 0.1457142857142857,
+          "order_type": 0.01454545454545455,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "delta_neutral_yield_farm",
+          "order_type": "lending_loop",
+          "asset": "ETH",
+          "size": "5",
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "position_size_limit": "5 ETH",
+            "max_gas": "35 gwei",
+            "slippage_tolerance": "0.3%"
+          },
+          "follow_up": "monitor LTV health factor and borrow rate vs supply rate spread",
+          "reasoning": "deposit 5 ETH as collateral, borrow stables (≈70% LTV), loop back into ETH supply to earn net spread while remaining delta-neutral",
+          "requires_follow_up": true,
+          "follow_up_description": "track borrow-APY vs supply-APY differential and liquidation buffer"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L5-004",
+      "raw": "{\"intent\":\"borrow\",\"order_type\":\"lending\",\"asset\":\"USDC\",\"size\":5000,\"unit\":\"usdc\",\"venue\":\"aave\",\"venue_name\":\"Aave V3\",\"risk_controls\":{\"position_size_limit\":\"80% LTV\",\"max_gas\":\"35 gwei\"},\"follow_up\":\"monitor liquidation price\",\"reasoning\":\"2 ETH collateral at $3000/ETH = $6000 value, 5000 USDC borrow ~83% LTV within Aave V3 risk parameters\"}",
+      "durationMs": 4901,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9334821428571429,
+        "score": 0.8785714285714287,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.04857142857142857,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lending",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "usdc",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "position_size_limit": "80% LTV",
+            "max_gas": "35 gwei"
+          },
+          "follow_up": "monitor liquidation price",
+          "reasoning": "2 ETH collateral at $3000/ETH = $6000 value, 5000 USDC borrow ~83% LTV within Aave V3 risk parameters"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L5-005",
+      "raw": " {\"intent\":\"stake\",\"order_type\":\"liquid_stake\",\"asset\":\"ETH\",\"size\":10,\"unit\":\"eth\",\"venue\":\"lido\",\"venue_name\":\"Lido Finance\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"35 gwei\",\"position_size_limit\":\"10 ETH\"},\"follow_up\":\"verify stETH mint and validator activation\",\"reasoning\":\"deposit ETH into Lido liquid staking protocol to receive stETH tokens representing staked position with accrued consensus layer rewards while maintaining liquidity\",\"requires_follow_up\":true,\"follow_up_description\":\"confirm stETH token balance reflects deposited amount minus protocol fees and monitor validator entry queue status\"} ",
+      "durationMs": 37390,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9554131054131055,
+        "score": 0.9051282051282052,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.13846153846153844,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.026666666666666672,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "liquid_stake",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "eth",
+          "venue": "lido",
+          "venue_name": "Lido Finance",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "35 gwei",
+            "position_size_limit": "10 ETH"
+          },
+          "follow_up": "verify stETH mint and validator activation",
+          "reasoning": "deposit ETH into Lido liquid staking protocol to receive stETH tokens representing staked position with accrued consensus layer rewards while maintaining liquidity",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm stETH token balance reflects deposited amount minus protocol fees and monitor validator entry queue status"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

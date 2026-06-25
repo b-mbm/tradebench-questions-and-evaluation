@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T06:30:27.169Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-080-2026-06-10T06-30-03",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-080"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-080",
+      "raw": "{\n  \"intent\": \"select\",\n  \"expected_value\": [\"V1\", \"V2\", \"V3\"],\n  \"reasoning\": \"Computed net scores: V1=7.3-0.3-(1.1*0.5)=6.45%, V2=9.8-0.7-(2.4*0.8)=7.18%, V3=8.9-0.5-(1.8*0.7)=7.14%, V4=11.6-0.9-(2.9*1)=7.8% but slashing multiplier 2.9>2.7 fails, V5=6.6-0.2-(0.7*0.4)=6.12% but capacity 80<90 fails, V6=8.1-0.4-(1.5*0.6)=6.8% but oracle age 20>18 fails. Exactly 3 AVSs pass all hard constraints: V1, V2, V3.\"\n}",
+      "durationMs": 23144,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "select",
+          "expected_value": [
+            "V1",
+            "V2",
+            "V3"
+          ],
+          "reasoning": "Computed net scores: V1=7.3-0.3-(1.1*0.5)=6.45%, V2=9.8-0.7-(2.4*0.8)=7.18%, V3=8.9-0.5-(1.8*0.7)=7.14%, V4=11.6-0.9-(2.9*1)=7.8% but slashing multiplier 2.9>2.7 fails, V5=6.6-0.2-(0.7*0.4)=6.12% but capacity 80<90 fails, V6=8.1-0.4-(1.5*0.6)=6.8% but oracle age 20>18 fails. Exactly 3 AVSs pass all hard constraints: V1, V2, V3."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

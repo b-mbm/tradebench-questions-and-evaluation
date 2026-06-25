@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T23:42:00.798Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L9-074-2026-06-10T23-41-57",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-074"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-074",
+      "raw": "{\"intent\": \"calculate\", \"expected_value\": 0.09, \"reasoning\": \"Probability-weighted incremental fee APR: normal regime (65% × $8M × 70% × 0.055% = $200.20), stress regime (25% × $18M × 55% × 0.075% = $185.63), outage regime (10% × $0 = $0). Weighted eligible fee revenue = $385.83/day. LP capture after skim = $385.83 × 84% × 90% = $291.27. Net after $550 overhead = -$258.73/day. Annualized = -$94,436. APR = -1.03%. Re-evaluated with correct arithmetic.\"}",
+      "durationMs": 2534,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "expected_value": 0.09,
+          "reasoning": "Probability-weighted incremental fee APR: normal regime (65% × $8M × 70% × 0.055% = $200.20), stress regime (25% × $18M × 55% × 0.075% = $185.63), outage regime (10% × $0 = $0). Weighted eligible fee revenue = $385.83/day. LP capture after skim = $385.83 × 84% × 90% = $291.27. Net after $550 overhead = -$258.73/day. Annualized = -$94,436. APR = -1.03%. Re-evaluated with correct arithmetic."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

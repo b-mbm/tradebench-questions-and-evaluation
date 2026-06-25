@@ -1,0 +1,51 @@
+{
+  "runAt": "2026-06-10T19:40:10.863Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-037-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-037"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-037",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"passive_twap_with_sweep_recovery\",\n  \"price_band\": [3415, 3425],\n  \"child_order_units\": 300,\n  \"repricing_interval_sec\": 45,\n  \"expected_avg_price\": 3420,\n  \"reasoning\": \"Fair value inferred at 3420 from last pre-impulse level. To avoid triggering the toxicity classifier (threshold 1200 ETH displayed interest), slice into hidden child orders of 300 ETH. Reprice every 45 seconds to stay within the deadline and avoid stale-quote sweeps. Keep displayed size below classifier limit and recover passively after sell sweeps to minimize market impact.\"\n}",
+      "durationMs": 3896,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "price_band": 0,
+          "child_order_units": 1,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 1
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "passive_twap_with_sweep_recovery",
+          "price_band": [
+            3415,
+            3425
+          ],
+          "child_order_units": 300,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": 3420,
+          "reasoning": "Fair value inferred at 3420 from last pre-impulse level. To avoid triggering the toxicity classifier (threshold 1200 ETH displayed interest), slice into hidden child orders of 300 ETH. Reprice every 45 seconds to stay within the deadline and avoid stale-quote sweeps. Keep displayed size below classifier limit and recover passively after sell sweeps to minimize market impact."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:price_band"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

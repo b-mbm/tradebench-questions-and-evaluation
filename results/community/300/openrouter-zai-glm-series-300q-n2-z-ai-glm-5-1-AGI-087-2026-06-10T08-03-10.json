@@ -1,0 +1,94 @@
+{
+  "runAt": "2026-06-10T08:03:44.450Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-087-2026-06-10T08-03-10",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-087"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-087",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"dark-first-then-hidden-public\",\n  \"execution_sequence\": [\"CEX_Y\", \"Dark_RFQ\", \"RFQ_A\", \"hidden_public\"],\n  \"venue_fills\": {\n    \"CEX_Y\": {\"qty\": 22000, \"price\": 0.8218, \"deadline\": \"T+20s\"},\n    \"Dark_RFQ\": {\"qty\": 25000, \"price\": 0.8229, \"deadline\": \"T+45s\"},\n    \"RFQ_A\": {\"qty\": 24000, \"price\": 0.8242, \"deadline\": \"T+70s\"},\n    \"hidden_public\": {\"qty\": 9000, \"price\": 0.8205, \"deadline\": \"pre-event\"}\n  },\n  \"hidden_public_qty\": 9000,\n  \"expected_avg_price\": 0.82272,\n  \"expected_slippage_pct\": 0.454,\n  \"self_check\": \"Copy-bot trigger NOT activated: all dark/RFQ fills (71,000 RHO total) are invisible to the copy bot with no public footprint. The hidden-public iceberg is capped at 9,000 RHO, well below the 18,000 RHO aggressive-parent threshold, so no visible parent order exceeds 18,000 RHO and the copy bot never detects or front-runs the flow.\",\n  \"reasoning\": \"Commit all three dark venues first (71,000 RHO) since they are invisible to the copy bot and have escalating time deadlines. The remaining 9,000 RHO fits exactly within the hidden-public iceberg's 9,000 RHO absorption limit, staying below the 18,000 RHO visibility trigger. Weighted avg = (22000×0.8218 + 25000×0.8229 + 24000×0.8242 + 9000×0.8205) / 80000 = 65817.4 / 80000 = 0.82272. Slippage = (0.82272 - 0.819) / 0.819 = 0.454%.\",\n  \"order_type\": \"multi-venue\",\n  \"asset\": \"RHO\",\n  \"size\": 80000,\n  \"unit\": \"RHO\",\n  \"venue\": \"multi\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": 80000\n  }\n}",
+      "durationMs": 33744,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8636363636363636,
+        "score": 0.36363636363636365,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 1,
+          "venue_fills.CEX_Y": 0,
+          "venue_fills.Dark_RFQ": 0,
+          "venue_fills.RFQ_A": 0,
+          "venue_fills.hidden_public": 0,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "dark-first-then-hidden-public",
+          "execution_sequence": [
+            "CEX_Y",
+            "Dark_RFQ",
+            "RFQ_A",
+            "hidden_public"
+          ],
+          "venue_fills": {
+            "CEX_Y": {
+              "qty": 22000,
+              "price": 0.8218,
+              "deadline": "T+20s"
+            },
+            "Dark_RFQ": {
+              "qty": 25000,
+              "price": 0.8229,
+              "deadline": "T+45s"
+            },
+            "RFQ_A": {
+              "qty": 24000,
+              "price": 0.8242,
+              "deadline": "T+70s"
+            },
+            "hidden_public": {
+              "qty": 9000,
+              "price": 0.8205,
+              "deadline": "pre-event"
+            }
+          },
+          "hidden_public_qty": 9000,
+          "expected_avg_price": 0.82272,
+          "expected_slippage_pct": 0.454,
+          "self_check": "Copy-bot trigger NOT activated: all dark/RFQ fills (71,000 RHO total) are invisible to the copy bot with no public footprint. The hidden-public iceberg is capped at 9,000 RHO, well below the 18,000 RHO aggressive-parent threshold, so no visible parent order exceeds 18,000 RHO and the copy bot never detects or front-runs the flow.",
+          "reasoning": "Commit all three dark venues first (71,000 RHO) since they are invisible to the copy bot and have escalating time deadlines. The remaining 9,000 RHO fits exactly within the hidden-public iceberg's 9,000 RHO absorption limit, staying below the 18,000 RHO visibility trigger. Weighted avg = (22000×0.8218 + 25000×0.8229 + 24000×0.8242 + 9000×0.8205) / 80000 = 65817.4 / 80000 = 0.82272. Slippage = (0.82272 - 0.819) / 0.819 = 0.454%.",
+          "order_type": "multi-venue",
+          "asset": "RHO",
+          "size": 80000,
+          "unit": "RHO",
+          "venue": "multi",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": 80000
+          }
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:venue_fills.CEX_Y",
+          "agi_validation_failed:venue_fills.Dark_RFQ",
+          "agi_validation_failed:venue_fills.RFQ_A",
+          "agi_validation_failed:venue_fills.hidden_public",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

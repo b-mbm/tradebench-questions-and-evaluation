@@ -1,0 +1,57 @@
+{
+  "runAt": "2026-06-11T22:14:03.425Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L6-001-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L6-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L6-001",
+      "raw": " {\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"ETH-CALL-3500-30D\", \"size\": 2, \"unit\": \"contracts\", \"venue\": \"premia\", \"venue_name\": \"Premia Finance\", \"risk_controls\": {\"slippage_tolerance\": \"1%\", \"max_gas\": \"35 gwei\"}, \"follow_up\": \"monitor expiry and greeks\", \"reasoning\": \"long OTM ETH call option for leveraged upside exposure with defined risk\", \"requires_follow_up\": true, \"follow_up_description\": \"Assess rolling position or taking profit before 30-day expiry; manage theta decay\"}",
+      "durationMs": 45013,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0,
+          "asset": 0.028235294117647067,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.019999999999999997,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "ETH-CALL-3500-30D",
+          "size": 2,
+          "unit": "contracts",
+          "venue": "premia",
+          "venue_name": "Premia Finance",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "35 gwei"
+          },
+          "follow_up": "monitor expiry and greeks",
+          "reasoning": "long OTM ETH call option for leveraged upside exposure with defined risk",
+          "requires_follow_up": true,
+          "follow_up_description": "Assess rolling position or taking profit before 30-day expiry; manage theta decay"
+        },
+        "failureReasons": [
+          "options_asset_encoded"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

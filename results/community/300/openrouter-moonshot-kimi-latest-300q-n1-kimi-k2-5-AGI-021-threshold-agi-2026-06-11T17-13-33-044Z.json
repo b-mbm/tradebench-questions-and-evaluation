@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-06-11T17:13:33.044Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-021-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-021"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-021",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"chosen_strategy\": \"SOL_first_LINK_second\",\n  \"execution_sequence\": [\"SOL\", \"LINK\"],\n  \"hedge_legs\": {\n    \"LINK\": {\n      \"notional_usd\": 190000\n    },\n    \"SOL\": {\n      \"notional_usd\": 210000\n    }\n  },\n  \"risk_reduction_pct\": 54.8,\n  \"worst_case_residual_pnl_usd\": -28470,\n  \"reasoning\": \"SOL+LINK provides 31.24%+23.56%=54.8% beta relief, satisfying the >50% cut requirement while the diversifier pairings fall short. Executing SOL first (0.12% cost) then LINK (0.22% cost) yields total execution costs of $670 vs $822 for the reverse order, minimizing transaction drag. The worst-case residual PnL across the three stress tapes is minimized by this pairing because the combined beta coverage (110,368 beta-dollars) most closely offsets the book's crisis exposure, leaving residual risk dominated by idiosyncratic basis rather than systematic beta. The diversifier's lower correlation and smaller size provide insufficient relief to meet the 50% threshold when paired with either leg.\"\n}",
+      "durationMs": 61584,
+      "grade": {
+        "pass": false,
+        "confidence": 0.9285714285714286,
+        "score": 0.42857142857142855,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "hedge_legs.LINK.notional_usd": 1,
+          "hedge_legs.SOL.notional_usd": 1,
+          "risk_reduction_pct": 1,
+          "worst_case_residual_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "SOL_first_LINK_second",
+          "execution_sequence": [
+            "SOL",
+            "LINK"
+          ],
+          "hedge_legs": {
+            "LINK": {
+              "notional_usd": 190000
+            },
+            "SOL": {
+              "notional_usd": 210000
+            }
+          },
+          "risk_reduction_pct": 54.8,
+          "worst_case_residual_pnl_usd": -28470,
+          "reasoning": "SOL+LINK provides 31.24%+23.56%=54.8% beta relief, satisfying the >50% cut requirement while the diversifier pairings fall short. Executing SOL first (0.12% cost) then LINK (0.22% cost) yields total execution costs of $670 vs $822 for the reverse order, minimizing transaction drag. The worst-case residual PnL across the three stress tapes is minimized by this pairing because the combined beta coverage (110,368 beta-dollars) most closely offsets the book's crisis exposure, leaving residual risk dominated by idiosyncratic basis rather than systematic beta. The diversifier's lower correlation and smaller size provide insufficient relief to meet the 50% threshold when paired with either leg."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:execution_sequence",
+          "agi_validation_failed:worst_case_residual_pnl_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

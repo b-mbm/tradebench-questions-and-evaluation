@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:56:11.255Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-038-2026-06-10T11-55-33",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-038"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-038",
+      "raw": "{\n  \"intent\": \"multi-leg catalyst strategy\",\n  \"expected_value\": 20.94,\n  \"reasoning\": \"Weighted sum of four legs: 30% spot SOL (+22% = 6.60%), 25% JitoSOL carry (8% APR × 75/365 = 1.64%, weighted = 0.41%), 25% perp funding (18% APR × 75/365 = 3.70%, weighted = 0.92%), 20% options call-spread (+65% = 13.00%). Total = 20.94% over 75 days.\"\n}",
+      "durationMs": 37838,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "multi-leg catalyst strategy",
+          "expected_value": 20.94,
+          "reasoning": "Weighted sum of four legs: 30% spot SOL (+22% = 6.60%), 25% JitoSOL carry (8% APR × 75/365 = 1.64%, weighted = 0.41%), 25% perp funding (18% APR × 75/365 = 3.70%, weighted = 0.92%), 20% options call-spread (+65% = 13.00%). Total = 20.94% over 75 days."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

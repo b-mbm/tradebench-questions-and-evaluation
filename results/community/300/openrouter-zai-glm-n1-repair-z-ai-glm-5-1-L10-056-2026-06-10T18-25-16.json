@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T18:26:55.235Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-L10-056-2026-06-10T18-25-16",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-056"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-056",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"expected_value\": 7.7,\n  \"reasoning\": \"Risk-adjusted APRs: Native=4.2%, AVS A=8.0%-0.12%=7.88%, AVS B=11.0%-0.30%=10.70%, AVS C=15.0%-1.00%=14.00%. Slash loss constraint: 0.0012a+0.003b+0.01c≤0.0045. To maximize portfolio risk-adjusted APR, prioritize highest risk-adjusted yield: AVS C (14%) > AVS B (10.7%) > AVS A (7.88%) > Native (4.2%). Set c=0.20 (cap), b=0.30 (cap), a=0.15 (remaining to hit 35% native). Check: n=0.35, a=0.15, b=0.30, c=0.20. Slash loss=0.15×0.0012+0.30×0.003+0.20×0.01=0.00018+0.0009+0.002=0.00308=0.308%<0.45%. Portfolio APR=0.35×4.2+0.15×7.88+0.30×10.70+0.20×14.00=1.47+1.182+3.21+2.80=8.662%. But slash loss constraint has slack; can shift from native to AVS A. Set a=0.25, n=0.25... but n≥0.35. So n=0.35 is binding. With n=0.35 fixed, maximize a+b+c=0.65 with caps a≤0.40, b≤0.30, c≤0.20. Set c=0.20, b=0.30, a=0.15. Slash=0.308%<0.45%. Can increase a to 0.25 (n stays 0.35, but total exceeds 1). Actually a+b+c=0.65 already. Portfolio risk-adjusted APR=0.35×4.2+0.15×7.88+0.30×10.70+0.20×14.00=8.662%. Wait—rechecking: the question asks for the optimal allocation's risk-adjusted APR. With n=0.35, c=0.20, b=0.30, a=0.15: APR=8.662%. But can we use slash slack? Increase a: if a=0.25, need n=0.25 which violates n≥0.35. So 8.662% ≈ 8.66%. Hmm, re-reading the question—it says 'report the portfolio risk-adjusted APR percentage.' Let me verify: 0.35×4.2+0.15×7.88+0.30×10.70+0.20×14.00 = 1.47+1.182+3.21+2.80 = 8.662%. But wait, maybe I should reconsider whether the slash constraint allows more AVS C. If c=0.20, b=0.30, a=0.15, slash=0.308%. If I try c=0.20, b=0.30, a=0.40, that's 0.90 total, n=0.10 violates 35%. So n=0.35 is binding. Final: 8.662% ≈ 8.66%.\"\n}",
+      "durationMs": 29608,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6000000000000001,
+        "score": 0.4,
+        "fieldScores": {
+          "expected_value": 0.4
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "expected_value": 7.7,
+          "reasoning": "Risk-adjusted APRs: Native=4.2%, AVS A=8.0%-0.12%=7.88%, AVS B=11.0%-0.30%=10.70%, AVS C=15.0%-1.00%=14.00%. Slash loss constraint: 0.0012a+0.003b+0.01c≤0.0045. To maximize portfolio risk-adjusted APR, prioritize highest risk-adjusted yield: AVS C (14%) > AVS B (10.7%) > AVS A (7.88%) > Native (4.2%). Set c=0.20 (cap), b=0.30 (cap), a=0.15 (remaining to hit 35% native). Check: n=0.35, a=0.15, b=0.30, c=0.20. Slash loss=0.15×0.0012+0.30×0.003+0.20×0.01=0.00018+0.0009+0.002=0.00308=0.308%<0.45%. Portfolio APR=0.35×4.2+0.15×7.88+0.30×10.70+0.20×14.00=1.47+1.182+3.21+2.80=8.662%. But slash loss constraint has slack; can shift from native to AVS A. Set a=0.25, n=0.25... but n≥0.35. So n=0.35 is binding. With n=0.35 fixed, maximize a+b+c=0.65 with caps a≤0.40, b≤0.30, c≤0.20. Set c=0.20, b=0.30, a=0.15. Slash=0.308%<0.45%. Can increase a to 0.25 (n stays 0.35, but total exceeds 1). Actually a+b+c=0.65 already. Portfolio risk-adjusted APR=0.35×4.2+0.15×7.88+0.30×10.70+0.20×14.00=8.662%. Wait—rechecking: the question asks for the optimal allocation's risk-adjusted APR. With n=0.35, c=0.20, b=0.30, a=0.15: APR=8.662%. But can we use slash slack? Increase a: if a=0.25, need n=0.25 which violates n≥0.35. So 8.662% ≈ 8.66%. Hmm, re-reading the question—it says 'report the portfolio risk-adjusted APR percentage.' Let me verify: 0.35×4.2+0.15×7.88+0.30×10.70+0.20×14.00 = 1.47+1.182+3.21+2.80 = 8.662%. But wait, maybe I should reconsider whether the slash constraint allows more AVS C. If c=0.20, b=0.30, a=0.15, slash=0.308%. If I try c=0.20, b=0.30, a=0.40, that's 0.90 total, n=0.10 violates 35%. So n=0.35 is binding. Final: 8.662% ≈ 8.66%."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

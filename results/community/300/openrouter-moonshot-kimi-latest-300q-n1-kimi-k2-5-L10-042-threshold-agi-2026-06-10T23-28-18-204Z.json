@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:28:18.203Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-042-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-042"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-042",
+      "raw": "{\"intent\":\"consolidate\",\"expected_value\":0.0133764,\"reasoning\":\"Total vbytes = 1850 inputs × 58 vbytes + 90 outputs × 43 vbytes + 300 vbytes overhead = 111,470 vbytes. At 12 sat/vB, cost = 111,470 × 12 / 100,000,000 = 0.0133764 BTC.\"}",
+      "durationMs": 66917,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "consolidate",
+          "expected_value": 0.0133764,
+          "reasoning": "Total vbytes = 1850 inputs × 58 vbytes + 90 outputs × 43 vbytes + 300 vbytes overhead = 111,470 vbytes. At 12 sat/vB, cost = 111,470 × 12 / 100,000,000 = 0.0133764 BTC."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

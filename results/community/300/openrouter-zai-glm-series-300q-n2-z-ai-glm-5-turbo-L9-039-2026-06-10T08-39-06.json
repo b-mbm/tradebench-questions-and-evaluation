@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T08:39:26.753Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-039-2026-06-10T08-39-06",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-039"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-039",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"expected_value\": 245075,\n  \"reasoning\": \"Pre-repay HF is 1.089 (1,764,000 / 1,620,000), below target 1.28. Required debt reduction is max(0, 1,623,200 - 1,378,125) = 245,075 USDC.\"\n}",
+      "durationMs": 19683,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "expected_value": 245075,
+          "reasoning": "Pre-repay HF is 1.089 (1,764,000 / 1,620,000), below target 1.28. Required debt reduction is max(0, 1,623,200 - 1,378,125) = 245,075 USDC."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:32:39.426Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-005-2026-06-10T11-32-07",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"expected_value\": 4047520,\n  \"reasoning\": \"TWAP over 24h: 300K ALT on Binance (0.8% fee) nets $2,440,320 after $19,680 fees; 200K ALT on Uniswap (2.0% all-in impact) nets $1,607,200 after $32,800 impact. Binance executes in ~50 slices at $50K depth/slice; Uniswap in ~14 slices at $120K depth. Total proceeds $4,047,520 before 40% pump. No bridging needed per settlement constraints.\"\n}",
+      "durationMs": 31092,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "expected_value": 4047520,
+          "reasoning": "TWAP over 24h: 300K ALT on Binance (0.8% fee) nets $2,440,320 after $19,680 fees; 200K ALT on Uniswap (2.0% all-in impact) nets $1,607,200 after $32,800 impact. Binance executes in ~50 slices at $50K depth/slice; Uniswap in ~14 slices at $120K depth. Total proceeds $4,047,520 before 40% pump. No bridging needed per settlement constraints."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

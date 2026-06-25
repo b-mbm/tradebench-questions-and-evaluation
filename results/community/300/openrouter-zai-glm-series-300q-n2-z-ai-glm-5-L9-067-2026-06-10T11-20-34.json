@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:20:54.262Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-067-2026-06-10T11-20-34",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-067"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-067",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 1061352,\n  \"reasoning\": \"Missing votes: 16,500 MKR (38,000 target - 21,500 treasury). Bribe cost: 16,500 × $24 = $396,000. Borrow interest: 16,500 × $1900 × 14% × 6/365 = $72,148. Fixed costs: $28,000. Expected delay loss: 3.5% × $1,100,000 = $38,500. Expected benefit: 57% × $2,800,000 = $1,596,000. EV = $1,596,000 - $396,000 - $72,148 - $28,000 - $38,500 = $1,061,352. Positive EV and 16,500 MKR ≤ 19,000 MKR liquidity check passes.\"\n}",
+      "durationMs": 19305,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 1061352,
+          "reasoning": "Missing votes: 16,500 MKR (38,000 target - 21,500 treasury). Bribe cost: 16,500 × $24 = $396,000. Borrow interest: 16,500 × $1900 × 14% × 6/365 = $72,148. Fixed costs: $28,000. Expected delay loss: 3.5% × $1,100,000 = $38,500. Expected benefit: 57% × $2,800,000 = $1,596,000. EV = $1,596,000 - $396,000 - $72,148 - $28,000 - $38,500 = $1,061,352. Positive EV and 16,500 MKR ≤ 19,000 MKR liquidity check passes."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

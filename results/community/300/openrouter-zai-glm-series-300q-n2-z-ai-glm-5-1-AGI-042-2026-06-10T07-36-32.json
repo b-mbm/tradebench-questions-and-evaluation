@@ -1,0 +1,81 @@
+{
+  "runAt": "2026-06-10T07:36:54.160Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-042-2026-06-10T07-36-32",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-042"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-042",
+      "raw": "{\n  \"intent\": \"crisis_sequence\",\n  \"chosen_strategy\": \"neutralize_timeboxed_stables_then_margin\",\n  \"actions\": [\n    {\"seat\": \"T+5m\", \"action\": \"exit Curve FRAX LP\", \"principal\": 420000, \"cost_pct\": 0.003, \"deadline\": \"T+27m\"},\n    {\"seat\": \"T+15m\", \"action\": \"unwind Fraxlend FRAX loop\", \"principal\": 340000, \"cost_pct\": 0.0045, \"deadline\": \"T+32m\"},\n    {\"seat\": \"T+25m\", \"action\": \"reduce ETH perps 50%\", \"notional\": 300000, \"cost_pct\": 0.0012, \"deadline\": \"T+40m\"}\n  ],\n  \"priority_order\": [\"curve_frax_lp_exit\", \"fraxlend_frax_unwind\", \"eth_perps_half_reduction\"],\n  \"direct_stablecoin_neutralized_usd\": 760000,\n  \"latest_direct_neutralization_min\": 15,\n  \"margin_notional_reduced_usd\": 300000,\n  \"expected_execution_cost_usd\": 3150,\n  \"self_check\": \"Curve exit at T+5m beats T+27m gate by 22m; Fraxlend unwind at T+15m beats T+32m oracle push by 17m; ETH perp half-reduction at T+25m beats T+40m margin instability by 15m; stablecoin neutralized=420k+340k=760k; margin reduced=600k*0.5=300k; costs=420000*0.003+340000*0.0045+300000*0.0012=1260+1530+360=3150; BTC untouched as unencumbered non-stablecoin asset; all timing cost and priority fields consistent\",\n  \"reasoning\": \"Stablecoin positions have earlier hard deadlines (T+27m gate, T+32m oracle) and thinning depth demands early exit; neutralize both stablecoin exposures at T+5m and T+15m before gates close, then halve perp margin at T+25m before T+40m instability; BTC left alone as it carries no stablecoin or margin risk; costs sum 1260+1530+360=3150\"\n}",
+      "durationMs": 21430,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5555555555555556,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "actions": 0,
+          "priority_order": 0,
+          "direct_stablecoin_neutralized_usd": 1,
+          "latest_direct_neutralization_min": 1,
+          "margin_notional_reduced_usd": 1,
+          "expected_execution_cost_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "crisis_sequence",
+          "chosen_strategy": "neutralize_timeboxed_stables_then_margin",
+          "actions": [
+            {
+              "seat": "T+5m",
+              "action": "exit Curve FRAX LP",
+              "principal": 420000,
+              "cost_pct": 0.003,
+              "deadline": "T+27m"
+            },
+            {
+              "seat": "T+15m",
+              "action": "unwind Fraxlend FRAX loop",
+              "principal": 340000,
+              "cost_pct": 0.0045,
+              "deadline": "T+32m"
+            },
+            {
+              "seat": "T+25m",
+              "action": "reduce ETH perps 50%",
+              "notional": 300000,
+              "cost_pct": 0.0012,
+              "deadline": "T+40m"
+            }
+          ],
+          "priority_order": [
+            "curve_frax_lp_exit",
+            "fraxlend_frax_unwind",
+            "eth_perps_half_reduction"
+          ],
+          "direct_stablecoin_neutralized_usd": 760000,
+          "latest_direct_neutralization_min": 15,
+          "margin_notional_reduced_usd": 300000,
+          "expected_execution_cost_usd": 3150,
+          "self_check": "Curve exit at T+5m beats T+27m gate by 22m; Fraxlend unwind at T+15m beats T+32m oracle push by 17m; ETH perp half-reduction at T+25m beats T+40m margin instability by 15m; stablecoin neutralized=420k+340k=760k; margin reduced=600k*0.5=300k; costs=420000*0.003+340000*0.0045+300000*0.0012=1260+1530+360=3150; BTC untouched as unencumbered non-stablecoin asset; all timing cost and priority fields consistent",
+          "reasoning": "Stablecoin positions have earlier hard deadlines (T+27m gate, T+32m oracle) and thinning depth demands early exit; neutralize both stablecoin exposures at T+5m and T+15m before gates close, then halve perp margin at T+25m before T+40m instability; BTC left alone as it carries no stablecoin or margin risk; costs sum 1260+1530+360=3150"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:actions",
+          "agi_validation_failed:priority_order",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

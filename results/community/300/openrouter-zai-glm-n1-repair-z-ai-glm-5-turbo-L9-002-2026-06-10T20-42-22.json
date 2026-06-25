@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T20:43:33.123Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-L9-002-2026-06-10T20-42-22",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-002",
+      "raw": "{\n  \"intent\": \"calculate_daily_fee_income\",\n  \"expected_value\": 2832,\n  \"reasoning\": \"Daily fee income is computed by multiplying the daily volume ($2,000,000) by the captured volume share (80%), the fee tier (0.3%), and the active liquidity share (59%): 2,000,000 * 0.80 * 0.003 * 0.59 = $2,832.\"\n}",
+      "durationMs": 18800,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_daily_fee_income",
+          "expected_value": 2832,
+          "reasoning": "Daily fee income is computed by multiplying the daily volume ($2,000,000) by the captured volume share (80%), the fee tier (0.3%), and the active liquidity share (59%): 2,000,000 * 0.80 * 0.003 * 0.59 = $2,832."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

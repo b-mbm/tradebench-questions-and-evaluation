@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:31:00.280Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-002-2026-06-10T11-30-29",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-002",
+      "raw": "{\n  \"intent\": \"Reduce Compound LTV from 75% to 55% by repaying $4M debt using stables; partially unwind BTC/ETH LP to stablecoins; total oracle-sensitive exposure protected: $35M\",\n  \"expected_value\": 1890000,\n  \"reasoning\": \"Oracle-sensitive exposure is $35M ($20M Compound + $15M LP). Current deviation is 5.4%. Expected loss avoided = 0.054 × $35,000,000 = $1,890,000. Reducing LTV creates buffer against oracle correction; unwinding LP eliminates exposure to mispriced on-chain BTC.\"\n}",
+      "durationMs": 30314,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "Reduce Compound LTV from 75% to 55% by repaying $4M debt using stables; partially unwind BTC/ETH LP to stablecoins; total oracle-sensitive exposure protected: $35M",
+          "expected_value": 1890000,
+          "reasoning": "Oracle-sensitive exposure is $35M ($20M Compound + $15M LP). Current deviation is 5.4%. Expected loss avoided = 0.054 × $35,000,000 = $1,890,000. Reducing LTV creates buffer against oracle correction; unwinding LP eliminates exposure to mispriced on-chain BTC."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

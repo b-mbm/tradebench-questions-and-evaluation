@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T23:48:03.944Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-001-2026-06-11T23-46-58",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-001",
+      "raw": "{\"intent\":\"yield_optimization\",\"expected_value\":5.61,\"reasoning\":\"Optimal allocation: 30% Aave (4.7% weighted APR), 20% Curve (6% APR), 20% GMX (6% net APR), 30% Ethena (12% APR). Pre-tail-loss nominal APR = 7.31% (exceeds 7% target). Portfolio expected loss = 1.7% (Curve 0.04% + Ethena 1.5%, below 2% limit). Risk-adjusted annualized yield = 7.31% - 1.7% = 5.61%. Constraints satisfied: max 30% per protocol, 50% liquid (Aave+Curve), liquid within 24h requirement met.\"}",
+      "durationMs": 64680,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7,
+        "fieldScores": {
+          "expected_value": 0.7
+        },
+        "normalizedResponse": {
+          "intent": "yield_optimization",
+          "expected_value": 5.61,
+          "reasoning": "Optimal allocation: 30% Aave (4.7% weighted APR), 20% Curve (6% APR), 20% GMX (6% net APR), 30% Ethena (12% APR). Pre-tail-loss nominal APR = 7.31% (exceeds 7% target). Portfolio expected loss = 1.7% (Curve 0.04% + Ethena 1.5%, below 2% limit). Risk-adjusted annualized yield = 7.31% - 1.7% = 5.61%. Constraints satisfied: max 30% per protocol, 50% liquid (Aave+Curve), liquid within 24h requirement met."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

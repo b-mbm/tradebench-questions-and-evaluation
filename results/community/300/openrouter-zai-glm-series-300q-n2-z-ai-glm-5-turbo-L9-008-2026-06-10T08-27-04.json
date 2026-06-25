@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T08:27:31.484Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-008-2026-06-10T08-27-04",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-008"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-008",
+      "raw": "{\n  \"intent\": \"arbitrage\",\n  \"expected_value\": 5962.81,\n  \"reasoning\": \"Fair YT = 3.2% * 180/365 = 0.01578. Market YT = 0.031 > fair YT. Sale proceeds = 0.031 * 500k = 15500. Borrow cost = 15% * 15500 * 180/365 = 1146.78. Fee = 0.1% * 500k = 500. Net profit = (0.031 - 0.01578) * 500k - 1146.78 - 500 = 5962.81.\"\n}\n",
+      "durationMs": 26207,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "expected_value": 5962.81,
+          "reasoning": "Fair YT = 3.2% * 180/365 = 0.01578. Market YT = 0.031 > fair YT. Sale proceeds = 0.031 * 500k = 15500. Borrow cost = 15% * 15500 * 180/365 = 1146.78. Fee = 0.1% * 500k = 500. Net profit = (0.031 - 0.01578) * 500k - 1146.78 - 500 = 5962.81."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

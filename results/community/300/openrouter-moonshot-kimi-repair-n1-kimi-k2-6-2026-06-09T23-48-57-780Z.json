@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-09T23:48:57.779Z",
+  "label": "openrouter-moonshot-kimi-repair-n1-kimi-k2-6",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L2-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L2-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"PEPE\",\"size\":100000,\"unit\":\"pepe\",\"venue\":\"dex\",\"risk_controls\":{\"slippage_tolerance\":\"15%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"market buy of 100,000 PEPE with specified 15% slippage tolerance on mainnet\",\"requires_follow_up\":false}",
+      "durationMs": 52024,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9775000000000001,
+        "score": 0.9200000000000002,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "unit": "pepe",
+          "venue": "dex",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market buy of 100,000 PEPE with specified 15% slippage tolerance on mainnet",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T22:03:00.927Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L2-004-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L2-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L2-004",
+      "raw": "{\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"WETH\",\"size\":\"50000\",\"unit\":\"usdc\",\"venue\":\"dex\",\"venue_name\":\"uniswap_v3\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"requires_follow_up\":true,\"follow_up_description\":\"Analyze liquidity depth and price impact across USDC/WETH pools before executing 50,000 USDC conversion\",\"reasoning\":\"Large swap size requires pre-execution liquidity analysis to verify sufficient pool depth and minimize slippage below tolerance threshold\",\"follow_up\":\"assess pool depth and routing\"}",
+      "durationMs": 28084,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6187586805555556,
+        "score": 0.5823611111111111,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.07777777777777778,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "WETH",
+          "size": "50000",
+          "unit": "usdc",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Analyze liquidity depth and price impact across USDC/WETH pools before executing 50,000 USDC conversion",
+          "reasoning": "Large swap size requires pre-execution liquidity analysis to verify sufficient pool depth and minimize slippage below tolerance threshold",
+          "follow_up": "assess pool depth and routing"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

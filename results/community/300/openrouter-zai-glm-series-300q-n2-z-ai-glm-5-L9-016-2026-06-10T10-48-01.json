@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T10:48:14.586Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-016-2026-06-10T10-48-01",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-016"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-016",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"A1\", \"A3\", \"A5\"],\n  \"reasoning\": \"Calculated net scores: A1=7.3% (9-0.5-2×0.6), A2=6.5% but rejected (slashing multiplier 4>3), A3=7.5% (8.5-0.4-1.5×0.4), A4=6.0% but rejected (withdrawal delay 10>7 days), A5=7.86% (10-0.6-2.2×0.7). Only A1, A3, A5 pass all hard constraints; selecting all three as highest risk-adjusted APR eligible AVSs.\"\n}",
+      "durationMs": 12904,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A1",
+            "A3",
+            "A5"
+          ],
+          "reasoning": "Calculated net scores: A1=7.3% (9-0.5-2×0.6), A2=6.5% but rejected (slashing multiplier 4>3), A3=7.5% (8.5-0.4-1.5×0.4), A4=6.0% but rejected (withdrawal delay 10>7 days), A5=7.86% (10-0.6-2.2×0.7). Only A1, A3, A5 pass all hard constraints; selecting all three as highest risk-adjusted APR eligible AVSs."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

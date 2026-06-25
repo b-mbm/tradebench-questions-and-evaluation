@@ -1,0 +1,120 @@
+{
+  "runAt": "2026-06-10T14:03:41.487Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-l9-from31-chunk1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L9-031",
+    "L9-032",
+    "L9-033",
+    "L9-034",
+    "L9-035"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-031",
+      "raw": "",
+      "durationMs": 110792,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-032",
+      "raw": "",
+      "durationMs": 31028,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-033",
+      "raw": "",
+      "durationMs": 73228,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-034",
+      "raw": " {\"intent\": \"calculate_incremental_apr\", \"expected_value\": 1.5669, \"reasoning\": \"Applied the specified formula: ((42,000,000 * 0.48 * 0.00012 * 0.92 * (1-0.12) - 1,100) * 365) / 20,000,000 = 1.5669%. Verified positive yield under 20% daily volume stress (reducing volume to $33.6M yields ~0.85% APR) and confirmed oracle age constraint (≤30 min) is satisfied; base-case APR excludes compounding, drift, base fees, and rewards per instructions.\"}",
+      "durationMs": 93260,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_incremental_apr",
+          "expected_value": 1.5669,
+          "reasoning": "Applied the specified formula: ((42,000,000 * 0.48 * 0.00012 * 0.92 * (1-0.12) - 1,100) * 365) / 20,000,000 = 1.5669%. Verified positive yield under 20% daily volume stress (reducing volume to $33.6M yields ~0.85% APR) and confirmed oracle age constraint (≤30 min) is satisfied; base-case APR excludes compounding, drift, base fees, and rewards per instructions."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-035",
+      "raw": " {\"intent\": \"execute\", \"expected_value\": 1132788, \"reasoning\": \"Missing votes: 68,000. Cheapest acquisition via borrowing costs $29,212 (68,000 COMP × $70 × 16% × 14/365), versus $204,000 bribe. Total costs $115,212 (borrow interest + bridge/gas/delegation $31,000 + expected delay loss $55,000 [5% × $1.1M]). Expected benefit $1,248,000 (52% × $2.4M). Net EV $1,132,788 positive and 68,000 ≤ 83,000 lendable liquidity; execute.\"}",
+      "durationMs": 71079,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 1132788,
+          "reasoning": "Missing votes: 68,000. Cheapest acquisition via borrowing costs $29,212 (68,000 COMP × $70 × 16% × 14/365), versus $204,000 bribe. Total costs $115,212 (borrow interest + bridge/gas/delegation $31,000 + expected delay loss $55,000 [5% × $1.1M]). Expected benefit $1,248,000 (52% × $2.4M). Net EV $1,132,788 positive and 68,000 ≤ 83,000 lendable liquidity; execute."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

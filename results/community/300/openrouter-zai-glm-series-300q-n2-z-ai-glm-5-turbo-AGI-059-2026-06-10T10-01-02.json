@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-10T10:01:27.693Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-AGI-059-2026-06-10T10-01-02",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-059"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-059",
+      "raw": "{\n  \"answer\": \"Chosen strategy: Sell all three lots (FTM, MATIC, UNI) to harvest $73,000 in losses. Sale sequence: FTM first (to avoid market maker widening on the thinnest lot), then MATIC, then UNI. Replacements: L1_alt_basket for FTM, ARB_OP_basket for MATIC, AAVE_COMP_basket for UNI. Net tax benefit: $27,010 (tax savings) - $2,100 (0.6% round-trip on $350k notional) = $24,910. Remaining unoffset gains: $95,000 - $73,000 = $22,000. Self-check: Replacements are not identical tickers, satisfying wash sale rules; sequence minimizes market impact.\"\n}\n",
+      "durationMs": 24379,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "assets_to_sell": 0,
+          "sale_sequence": 0,
+          "replacement_assets.FTM": 0,
+          "replacement_assets.MATIC": 0,
+          "replacement_assets.UNI": 0,
+          "net_tax_benefit": 0,
+          "remaining_unoffset_gains": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "answer": "Chosen strategy: Sell all three lots (FTM, MATIC, UNI) to harvest $73,000 in losses. Sale sequence: FTM first (to avoid market maker widening on the thinnest lot), then MATIC, then UNI. Replacements: L1_alt_basket for FTM, ARB_OP_basket for MATIC, AAVE_COMP_basket for UNI. Net tax benefit: $27,010 (tax savings) - $2,100 (0.6% round-trip on $350k notional) = $24,910. Remaining unoffset gains: $95,000 - $73,000 = $22,000. Self-check: Replacements are not identical tickers, satisfying wash sale rules; sequence minimizes market impact."
+        },
+        "failureReasons": [
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

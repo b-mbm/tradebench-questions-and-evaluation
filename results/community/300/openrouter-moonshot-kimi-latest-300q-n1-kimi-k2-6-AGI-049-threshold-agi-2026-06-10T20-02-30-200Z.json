@@ -1,0 +1,65 @@
+{
+  "runAt": "2026-06-10T20:02:30.198Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-049-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-049"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-049",
+      "raw": "{\n  \"intent\": \"market_making\",\n  \"order_type\": \"limit\",\n  \"asset\": \"new_listing\",\n  \"size\": \"160000\",\n  \"unit\": \"usd\",\n  \"venue\": \"exchange\",\n  \"venue_name\": \"primary\",\n  \"risk_controls\": {\n    \"stop_loss\": \"19 bps\",\n    \"take_profit\": \"32 bps\",\n    \"slippage_tolerance\": \"19 bps\",\n    \"position_size_limit\": 18000\n  },\n  \"follow_up\": \"monitor toxic bursts and inventory skew\",\n  \"reasoning\": \"chosen_strategy: selective_wide_defensive_quoting; half_spread_bps: 26 (midpoint of 20-32 bps band to retain benign flow while defending against 19 bps toxic moves); update_ms: 80 (2x cancel latency to ensure quotes refresh before staleness); max_inventory_usd: 18000 (hedge desk nonlinear threshold); expected_1h_pnl_usd: 90 (benign flow capture of ~160k at 26 bps half-spread yields ~83 gross, minus ~70 toxic drag); toxic_defense: quote at 26 bps half-spread, refresh every 80 ms, cancel on 19 bps mark moves, cap inventory at 18000; self_check: verify cancel latency < update_ms, spread inside benign band, inventory within warehouse limit, and PnL covers toxic drag.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"reassess spread and update cadence if cancel latency or toxic burst size changes\"\n}",
+      "durationMs": 10233,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "half_spread_bps": 0,
+          "update_ms": 0,
+          "max_inventory_usd": 0,
+          "expected_1h_pnl_usd": 0,
+          "toxic_defense": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "market_making",
+          "order_type": "limit",
+          "asset": "new_listing",
+          "size": "160000",
+          "unit": "usd",
+          "venue": "exchange",
+          "venue_name": "primary",
+          "risk_controls": {
+            "stop_loss": "19 bps",
+            "take_profit": "32 bps",
+            "slippage_tolerance": "19 bps",
+            "position_size_limit": 18000
+          },
+          "follow_up": "monitor toxic bursts and inventory skew",
+          "reasoning": "chosen_strategy: selective_wide_defensive_quoting; half_spread_bps: 26 (midpoint of 20-32 bps band to retain benign flow while defending against 19 bps toxic moves); update_ms: 80 (2x cancel latency to ensure quotes refresh before staleness); max_inventory_usd: 18000 (hedge desk nonlinear threshold); expected_1h_pnl_usd: 90 (benign flow capture of ~160k at 26 bps half-spread yields ~83 gross, minus ~70 toxic drag); toxic_defense: quote at 26 bps half-spread, refresh every 80 ms, cancel on 19 bps mark moves, cap inventory at 18000; self_check: verify cancel latency < update_ms, spread inside benign band, inventory within warehouse limit, and PnL covers toxic drag.",
+          "requires_follow_up": true,
+          "follow_up_description": "reassess spread and update cadence if cancel latency or toxic burst size changes"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

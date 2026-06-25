@@ -1,0 +1,257 @@
+{
+  "runAt": "2026-06-09T04:12:23.147Z",
+  "label": "openrouter-mistral-family-300q-l1-n2-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "mistralai/mistral-medium-3-5",
+    "mistralai/mistral-small-2603"
+  ],
+  "questionIds": [
+    "L1-001",
+    "L1-002",
+    "L1-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L1-001",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"BTC\", \"size\": 0.5, \"unit\": \"btc\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase Pro\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\"}, \"follow_up\": \"confirm fill\", \"reasoning\": \"market order for immediate execution of 0.5 BTC at current market price\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify execution price and fill quantity\"}",
+      "durationMs": 1418,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "venue": "coinbase",
+          "venue_name": "Coinbase Pro",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution of 0.5 BTC at current market price",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify execution price and fill quantity"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L1-002",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"limit\", \"asset\": \"SOL\", \"size\": 10, \"unit\": \"SOL\", \"price\": 95, \"venue\": \"centralized\", \"venue_name\": \"coinbase\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\"}, \"follow_up\": \"monitor order book for fill\", \"reasoning\": \"limit order at specified price of $95 for 10 SOL\", \"requires_follow_up\": true, \"follow_up_description\": \"Check if order is filled or adjust price if market moves away\"}",
+      "durationMs": 1509,
+      "grade": {
+        "pass": true,
+        "confidence": 0.951919191919192,
+        "score": 0.901818181818182,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.021818181818181813,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "SOL",
+          "price": 95,
+          "venue": "centralized",
+          "venue_name": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%"
+          },
+          "follow_up": "monitor order book for fill",
+          "reasoning": "limit order at specified price of $95 for 10 SOL",
+          "requires_follow_up": true,
+          "follow_up_description": "Check if order is filled or adjust price if market moves away"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L1-003",
+      "raw": "{\"intent\": \"stop_loss\", \"order_type\": \"stop_market\", \"asset\": \"ETH\", \"size\": 2, \"unit\": \"eth\", \"price\": 2800, \"venue\": \"exchange\", \"venue_name\": \"coinbase\", \"risk_controls\": {\"stop_loss\": 2800, \"slippage_tolerance\": \"0.5%\"}, \"follow_up\": \"verify stop order activation\", \"reasoning\": \"stop loss order for existing ETH position at specified price\", \"requires_follow_up\": true, \"follow_up_description\": \"Confirm stop order is active and monitor for execution\"}",
+      "durationMs": 3464,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8839797979797981,
+        "score": 0.8374545454545456,
+        "fieldScores": {
+          "intent": 0.14545454545454548,
+          "order_type": 0.072,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "stop_loss",
+          "order_type": "stop_market",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "price": 2800,
+          "venue": "exchange",
+          "venue_name": "coinbase",
+          "risk_controls": {
+            "stop_loss": 2800,
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "verify stop order activation",
+          "reasoning": "stop loss order for existing ETH position at specified price",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm stop order is active and monitor for execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L1-001",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"BTC\", \"size\": \"0.5\", \"unit\": \"btc\", \"venue\": \"coinbase\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\"}, \"follow_up\": \"confirm fill\", \"reasoning\": \"market order for immediate execution\"}",
+      "durationMs": 791,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L1-002",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"limit\", \"asset\": \"SOL\", \"size\": 10, \"unit\": \"usd\", \"price\": 95, \"venue\": \"dex\", \"venue_name\": \"binance\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor fill\", \"reasoning\": \"limit order to buy SOL at $95 with tight slippage control\"}",
+      "durationMs": 1417,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9600000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "usd",
+          "price": 95,
+          "venue": "dex",
+          "venue_name": "binance",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor fill",
+          "reasoning": "limit order to buy SOL at $95 with tight slippage control"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L1-003",
+      "raw": "{\"intent\": \"set_stop_loss\", \"order_type\": \"limit\", \"asset\": \"ETH\", \"size\": \"2\", \"unit\": \"eth\", \"price\": \"2800\", \"venue\": \"exchange\", \"venue_name\": \"mainnet\", \"risk_controls\": {}, \"follow_up\": \"monitor execution\", \"reasoning\": \"stop loss set at $2,800 for 2 ETH position\"}",
+      "durationMs": 902,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8250000000000001,
+        "score": 0.77,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "limit",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": "2800",
+          "venue": "exchange",
+          "venue_name": "mainnet",
+          "risk_controls": {},
+          "follow_up": "monitor execution",
+          "reasoning": "stop loss set at $2,800 for 2 ETH position"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

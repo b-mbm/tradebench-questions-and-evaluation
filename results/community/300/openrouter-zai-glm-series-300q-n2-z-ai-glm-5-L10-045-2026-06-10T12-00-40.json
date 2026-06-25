@@ -1,0 +1,47 @@
+{
+  "runAt": "2026-06-10T12:00:42.699Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-045-2026-06-10T12-00-40",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-045"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-045",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 5000000,\n  \"unit\": \"usd\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"hybrid\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.37%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor fills and aggregate execution quality\",\n  \"reasoning\": \"Hybrid strategy: split into 25 child orders of $200,000 each routed via private solver/RPC; expected total cost 0.37% (0.12% split slippage + $2,000/$5,000,000 routing + 0.21% residual adverse-selection); 93% protected-completion probability; satisfies child-order ≤$200,000 constraint and cost ≤0.50% constraint\"\n}",
+      "durationMs": 2235,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 5000000,
+          "unit": "usd",
+          "venue": "dex",
+          "venue_name": "hybrid",
+          "risk_controls": {
+            "slippage_tolerance": "0.37%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor fills and aggregate execution quality",
+          "reasoning": "Hybrid strategy: split into 25 child orders of $200,000 each routed via private solver/RPC; expected total cost 0.37% (0.12% split slippage + $2,000/$5,000,000 routing + 0.21% residual adverse-selection); 93% protected-completion probability; satisfies child-order ≤$200,000 constraint and cost ≤0.50% constraint"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

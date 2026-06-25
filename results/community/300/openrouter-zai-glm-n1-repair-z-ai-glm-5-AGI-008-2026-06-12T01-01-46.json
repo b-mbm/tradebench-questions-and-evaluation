@@ -1,0 +1,86 @@
+{
+  "runAt": "2026-06-12T01:02:52.957Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-008-2026-06-12T01-01-46",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-008"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-008",
+      "raw": "{\n  \"intent\": \"crisis_risk_mitigation\",\n  \"chosen_strategy\": \"neutralize_timeboxed_usdt_then_margin\",\n  \"actions\": [\n    {\n      \"time\": \"T+10m\",\n      \"action\": \"exit_curve_3pool\",\n      \"asset\": \"USDT_stableswap\",\n      \"size\": 500000,\n      \"cost_pct\": 0.25,\n      \"reasoning\": \"Exit before withdrawal gates trigger at 65% pool imbalance (~T+23m)\"\n    },\n    {\n      \"time\": \"T+20m\",\n      \"action\": \"unwind_aave_loop\",\n      \"asset\": \"USDT_lending\",\n      \"size\": 300000,\n      \"cost_pct\": 0.40,\n      \"reasoning\": \"Unwind before T+28m oracle push; USDT at 0.998, liquidation triggers below 0.985\"\n    },\n    {\n      \"time\": \"T+30m\",\n      \"action\": \"reduce_perps_notional\",\n      \"asset\": \"ETH_perpetuals\",\n      \"size\": 400000,\n      \"cost_pct\": 0.15,\n      \"reasoning\": \"Reduce margin risk after USDT principal secured; precedes T+40m funding update\"\n    }\n  ],\n  \"priority_order\": [\"curve_3pool_exit\", \"aave_loop_unwind\", \"perps_reduction\"],\n  \"direct_usdt_neutralized_usd\": 800000,\n  \"latest_direct_neutralization_min\": 20,\n  \"margin_notional_reduced_usd\": 400000,\n  \"expected_execution_cost_usd\": 3050,\n  \"self_check\": \"Timing verified: Curve T+10m exit precedes T+23m gate trigger (62% + 1.1 periods * 1.3%/period < 65%). Aave T+20m unwind precedes T+28m oracle push. Perps T+30m reduction precedes T+40m funding risk. Cost arithmetic: $500000*0.0025 + $300000*0.004 + $400000*0.0015 = $1250 + $1200 + $600 = $3050. All USDT principal ($800k) neutralized; margin reduced post-neutralization.\",\n  \"reasoning\": \"neutralize_timeboxed_usdt_then_margin is optimal: Curve exit at T+10m (0.25%, before gates at ~T+23m), Aave unwind at T+20m (0.40%, before oracle at T+28m with 7% liquidation penalty risk), perps reduction at T+30m (0.15%, before T+40m margin gap risk). BTC sale rejected as non-USDT exposure. Waiting risks gate lockout and liquidation. Perps-first delays USDT neutralization past critical thresholds.\"\n}",
+      "durationMs": 66234,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.3333333333333333,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "actions": 0,
+          "priority_order": 0,
+          "direct_usdt_neutralized_usd": 1,
+          "latest_direct_neutralization_min": 1,
+          "margin_notional_reduced_usd": 0,
+          "expected_execution_cost_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "crisis_risk_mitigation",
+          "chosen_strategy": "neutralize_timeboxed_usdt_then_margin",
+          "actions": [
+            {
+              "time": "T+10m",
+              "action": "exit_curve_3pool",
+              "asset": "USDT_stableswap",
+              "size": 500000,
+              "cost_pct": 0.25,
+              "reasoning": "Exit before withdrawal gates trigger at 65% pool imbalance (~T+23m)"
+            },
+            {
+              "time": "T+20m",
+              "action": "unwind_aave_loop",
+              "asset": "USDT_lending",
+              "size": 300000,
+              "cost_pct": 0.4,
+              "reasoning": "Unwind before T+28m oracle push; USDT at 0.998, liquidation triggers below 0.985"
+            },
+            {
+              "time": "T+30m",
+              "action": "reduce_perps_notional",
+              "asset": "ETH_perpetuals",
+              "size": 400000,
+              "cost_pct": 0.15,
+              "reasoning": "Reduce margin risk after USDT principal secured; precedes T+40m funding update"
+            }
+          ],
+          "priority_order": [
+            "curve_3pool_exit",
+            "aave_loop_unwind",
+            "perps_reduction"
+          ],
+          "direct_usdt_neutralized_usd": 800000,
+          "latest_direct_neutralization_min": 20,
+          "margin_notional_reduced_usd": 400000,
+          "expected_execution_cost_usd": 3050,
+          "self_check": "Timing verified: Curve T+10m exit precedes T+23m gate trigger (62% + 1.1 periods * 1.3%/period < 65%). Aave T+20m unwind precedes T+28m oracle push. Perps T+30m reduction precedes T+40m funding risk. Cost arithmetic: $500000*0.0025 + $300000*0.004 + $400000*0.0015 = $1250 + $1200 + $600 = $3050. All USDT principal ($800k) neutralized; margin reduced post-neutralization.",
+          "reasoning": "neutralize_timeboxed_usdt_then_margin is optimal: Curve exit at T+10m (0.25%, before gates at ~T+23m), Aave unwind at T+20m (0.40%, before oracle at T+28m with 7% liquidation penalty risk), perps reduction at T+30m (0.15%, before T+40m margin gap risk). BTC sale rejected as non-USDT exposure. Waiting risks gate lockout and liquidation. Perps-first delays USDT neutralization past critical thresholds."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:actions",
+          "agi_validation_failed:priority_order",
+          "agi_validation_failed:margin_notional_reduced_usd",
+          "agi_validation_failed:expected_execution_cost_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "runAt": "2026-06-11T22:17:09.543Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L6-005-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L6-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L6-005",
+      "raw": "{\"intent\":\"sell\",\"order_type\":\"twap\",\"asset\":\"ETH\",\"size\":10,\"venue\":\"coinbase\",\"duration\":\"4h\",\"reasoning\":\"10 ETH sold via TWAP over 4 hours slices into roughly 2.5 ETH per hour to minimize market impact and achieve a time-weighted average price.\"}",
+      "durationMs": 24111,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8477083333333334,
+        "score": 0.7825000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "coinbase",
+          "duration": "4h",
+          "reasoning": "10 ETH sold via TWAP over 4 hours slices into roughly 2.5 ETH per hour to minimize market impact and achieve a time-weighted average price."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

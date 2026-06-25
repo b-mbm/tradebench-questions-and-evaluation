@@ -1,0 +1,849 @@
+{
+  "runAt": "2026-06-08T16:59:58.572Z",
+  "label": "openrouter-llamas-300q-l5-n2-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "meta-llama/llama-3.1-8b-instruct"
+  ],
+  "questionIds": [
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add_liquidity\",\n  \"order_type\": \"concentrated_liquidity\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"1000 usd\",\n  \"unit\": \"usd\",\n  \"price\": \"2700-2900\",\n  \"venue\": \"uniswap_v3\",\n  \"venue_name\": \"Uniswap V3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\",\n    \"impermanent_loss_tolerance\": \"8%\"\n  },\n  \"follow_up\": \"monitor pool depth and impermanent loss\",\n  \"reasoning\": \"optimize for concentrated liquidity position with minimal impermanent loss\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"rebalance or remove liquidity if impermanent loss exceeds 8% or pool depth changes significantly\"\n}",
+      "durationMs": 7261,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6152380952380954,
+        "score": 0.5790476190476191,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0.01333333333333334,
+          "venue": 0,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated_liquidity",
+          "asset": "ETH/USDC",
+          "size": "1000 usd",
+          "unit": "usd",
+          "price": "2700-2900",
+          "venue": "uniswap_v3",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei",
+            "impermanent_loss_tolerance": "8%"
+          },
+          "follow_up": "monitor pool depth and impermanent loss",
+          "reasoning": "optimize for concentrated liquidity position with minimal impermanent loss",
+          "requires_follow_up": true,
+          "follow_up_description": "rebalance or remove liquidity if impermanent loss exceeds 8% or pool depth changes significantly"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L5-002",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"isolated\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"venue\": \"lending\",\n  \"venue_name\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm borrow and collateralize\",\n  \"reasoning\": \"create 3x leveraged long ETH position using 1 ETH as collateral\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"once borrow is confirmed, use borrowed ETH to collateralize and increase position size to 3x\"\n}",
+      "durationMs": 8115,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.03076923076923077,
+          "order_type": 0.011333333333333332,
+          "asset": 0.15,
+          "size": 0,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "isolated",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "venue": "lending",
+          "venue_name": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm borrow and collateralize",
+          "reasoning": "create 3x leveraged long ETH position using 1 ETH as collateral",
+          "requires_follow_up": true,
+          "follow_up_description": "once borrow is confirmed, use borrowed ETH to collateralize and increase position size to 3x"
+        },
+        "failureReasons": [
+          "leverage_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L5-003",
+      "raw": "{\n  \"intent\": \"enter delta-neutral yield farm\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH\",\n  \"size\": \"5\",\n  \"unit\": \"eth\",\n  \"venue\": \"lending protocol\",\n  \"venue_name\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\",\n    \"position_size_limit\": \"10 eth\"\n  },\n  \"follow_up\": \"monitor yield and rebalance\",\n  \"reasoning\": \"enter delta-neutral yield farm to generate yield on ETH holdings\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"rebalance portfolio to maintain delta-neutral position\"\n}",
+      "durationMs": 2567,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7146111111111112,
+        "score": 0.677,
+        "fieldScores": {
+          "intent": 0.102,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "enter delta-neutral yield farm",
+          "order_type": "limit",
+          "asset": "ETH",
+          "size": "5",
+          "unit": "eth",
+          "venue": "lending protocol",
+          "venue_name": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei",
+            "position_size_limit": "10 eth"
+          },
+          "follow_up": "monitor yield and rebalance",
+          "reasoning": "enter delta-neutral yield farm to generate yield on ETH holdings",
+          "requires_follow_up": true,
+          "follow_up_description": "rebalance portfolio to maintain delta-neutral position"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L5-004",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"lending_protocol\",\n  \"asset\": \"USDC\",\n  \"size\": \"5000\",\n  \"unit\": \"usd\",\n  \"venue\": \"lending_protocol\",\n  \"venue_name\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0%\",\n    \"position_size_limit\": \"100% of collateral value\"\n  },\n  \"follow_up\": \"monitor loan health factor\",\n  \"reasoning\": \"borrow against ETH collateral to access liquidity\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check loan status and adjust as needed\"\n}",
+      "durationMs": 9414,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9059583333333334,
+        "score": 0.8526666666666668,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.022666666666666665,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lending_protocol",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "venue": "lending_protocol",
+          "venue_name": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0%",
+            "position_size_limit": "100% of collateral value"
+          },
+          "follow_up": "monitor loan health factor",
+          "reasoning": "borrow against ETH collateral to access liquidity",
+          "requires_follow_up": true,
+          "follow_up_description": "check loan status and adjust as needed"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L5-005",
+      "raw": "{\n  \"intent\": \"stake\",\n  \"order_type\": \"liquid_staking\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"unit\": \"eth\",\n  \"venue\": \"lido\",\n  \"venue_name\": \"Lido Finance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm staking\",\n  \"reasoning\": \"stake ETH for liquid staking tokens\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify staking transaction and receipt of liquid staking tokens\"\n}",
+      "durationMs": 16642,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9992592592592594,
+        "score": 0.9466666666666668,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.026666666666666672,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "liquid_staking",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "eth",
+          "venue": "lido",
+          "venue_name": "Lido Finance",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm staking",
+          "reasoning": "stake ETH for liquid staking tokens",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify staking transaction and receipt of liquid staking tokens"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add liquidity\",\n  \"order_type\": \"concentrated liquidity\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"10000\",\n  \"unit\": \"usd\",\n  \"price\": {\n    \"lower\": 2700,\n    \"upper\": 2900\n  },\n  \"venue\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"impermanent_loss_tolerance\": \"8%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor IL\",\n  \"reasoning\": \"concentrated liquidity position within specified range to optimize capital efficiency while managing IL risk\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track impermanent loss and adjust position as needed\"\n}",
+      "durationMs": 7155,
+      "grade": {
+        "pass": false,
+        "confidence": 0.45179924242424235,
+        "score": 0.4170454545454545,
+        "fieldScores": {
+          "intent": 0.11249999999999999,
+          "order_type": 0.024545454545454544,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add liquidity",
+          "order_type": "concentrated liquidity",
+          "asset": "ETH/USDC",
+          "size": "10000",
+          "unit": "usd",
+          "price": {
+            "lower": 2700,
+            "upper": 2900
+          },
+          "venue": "uniswap_v3",
+          "risk_controls": {
+            "impermanent_loss_tolerance": "8%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor IL",
+          "reasoning": "concentrated liquidity position within specified range to optimize capital efficiency while managing IL risk",
+          "requires_follow_up": true,
+          "follow_up_description": "track impermanent loss and adjust position as needed"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L5-002",
+      "raw": "{\n  \"intent\": \"borrow_and_long\",\n  \"order_type\": \"lend_and_leverage\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"ETH\",\n  \"price\": \"3000\",\n  \"venue\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\",\n    \"position_size_limit\": \"3 ETH\"\n  },\n",
+      "durationMs": 2018,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07692307692307693,
+          "order_type": 0.033999999999999996,
+          "asset": 0.15,
+          "size": 0,
+          "venue": 0.12,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "borrow_and_long",
+          "order_type": "lend_and_leverage",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "ETH",
+          "price": "3000",
+          "venue": "aave",
+          "slippage_tolerance": "1%",
+          "max_gas": "40 gwei",
+          "position_size_limit": "3 ETH",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "leverage_invalid_intent"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L5-003",
+      "raw": "{\n  \"intent\": \"yield_farming\",\n  \"order_type\": \"delta_neutral\",\n  \"asset\": \"ETH\",\n  \"size\": \"5\",\n  \"unit\": \"eth\",\n  \"venue\": \"lido\",\n  \"venue_name\": \"lido_finance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor_farm_performance\",\n  \"reasoning\": \"entering delta-neutral position with stETH on Lido\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"track yield and adjust as necessary\"\n}",
+      "durationMs": 4042,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6358333333333333,
+        "score": 0.5984313725490196,
+        "fieldScores": {
+          "intent": 0.031764705882352945,
+          "order_type": 0.02666666666666666,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "yield_farming",
+          "order_type": "delta_neutral",
+          "asset": "ETH",
+          "size": "5",
+          "unit": "eth",
+          "venue": "lido",
+          "venue_name": "lido_finance",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor_farm_performance",
+          "reasoning": "entering delta-neutral position with stETH on Lido",
+          "requires_follow_up": true,
+          "follow_up_description": "track yield and adjust as necessary"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L5-004",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"lend\",\n  \"asset\": \"USDC\",\n  \"size\": \"5000\",\n  \"unit\": \"usd\",\n  \"venue\": \"aave\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\",\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"monitor collateral ratio\",\n  \"reasoning\": \"using ETH as collateral\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check collateral ratio and liquidate if necessary\"\n}",
+      "durationMs": 1589,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9270312500000001,
+        "score": 0.8725,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.0425,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lend",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "venue": "aave",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor collateral ratio",
+          "reasoning": "using ETH as collateral",
+          "requires_follow_up": true,
+          "follow_up_description": "check collateral ratio and liquidate if necessary"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L5-005",
+      "raw": "{\n  \"intent\": \"stake\",\n  \"order_type\": \"liquid staking\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"venue\": \"lido\",\n  \"venue_name\": \"Lido Finance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm stETH receipt\",\n  \"reasoning\": \"using Lido for liquid staking to get stETH\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify stETH is received in wallet\"\n}",
+      "durationMs": 2040,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9856878306878307,
+        "score": 0.9338095238095239,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16714285714285715,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.026666666666666672,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "liquid staking",
+          "asset": "ETH",
+          "size": "10",
+          "venue": "lido",
+          "venue_name": "Lido Finance",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm stETH receipt",
+          "reasoning": "using Lido for liquid staking to get stETH",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify stETH is received in wallet"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L5-001",
+      "raw": "{\n\"intent\": \"add_liquidity\",\n  \"order_type\": \"concentrated_liquidity\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"1000\",\n  \"unit\": \"usdc\",\n  \"price\": \"2700-2900\",\n  \"venue\": \"uniswap_v3\",\n  \"venue_name\": \"Uniswap V3\",\n  \"risk_controls\": {\n    \"impermanent_loss_tolerance\": \"8%\"\n  },\n  \"follow_up\": \"monitor_pool_concentration\",\n  \"reasoning\": \"Optimize for concentrated liquidity position within specified price range\"\n}",
+      "durationMs": 624,
+      "grade": {
+        "pass": false,
+        "confidence": 0.606122448979592,
+        "score": 0.5657142857142858,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated_liquidity",
+          "asset": "ETH/USDC",
+          "size": "1000",
+          "unit": "usdc",
+          "price": "2700-2900",
+          "venue": "uniswap_v3",
+          "venue_name": "Uniswap V3",
+          "risk_controls": {
+            "impermanent_loss_tolerance": "8%"
+          },
+          "follow_up": "monitor_pool_concentration",
+          "reasoning": "Optimize for concentrated liquidity position within specified price range"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L5-002",
+      "raw": "{\n  \"intent\": \"leverage\",\n  \"order_type\": \"lend\",\n  \"asset\": \"ETH\",\n  \"size\": \"1\",\n  \"unit\": \"ETH\",\n  \"venue\": \"aave\",\n  \"risk_controls\": {\n    \"stop_loss\": \"80%\",\n    \"slippage_tolerance\": \"2%\"\n  },\n  \"follow_up\": \"monitor liquidation threshold\",\n  \"reasoning\": \"leverage 3x long ETH using 1 ETH collateral on Aave\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check liquidation threshold and collateralization ratio\"\n}",
+      "durationMs": 3528,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.011333333333333332,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "leverage",
+          "order_type": "lend",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "ETH",
+          "venue": "aave",
+          "risk_controls": {
+            "stop_loss": "80%",
+            "slippage_tolerance": "2%"
+          },
+          "follow_up": "monitor liquidation threshold",
+          "reasoning": "leverage 3x long ETH using 1 ETH collateral on Aave",
+          "requires_follow_up": true,
+          "follow_up_description": "check liquidation threshold and collateralization ratio"
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L5-003",
+      "raw": "{\n\"intent\": \"farm\",\n  \"order_type\": \"yield\",\n  \"asset\": \"stETH\",\n  \"size\": \"5\",\n  \"unit\": \"ETH\",\n  \"venue\": \"curve\",\n  \"venue_name\": \"Curve Finance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor APY\",\n  \"reasoning\": \"delta-neutral strategy with stETH for yield\"\n}",
+      "durationMs": 1248,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5665,
+        "score": 0.5331764705882353,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.02,
+          "asset": 0.072,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "farm",
+          "order_type": "yield",
+          "asset": "stETH",
+          "size": "5",
+          "unit": "ETH",
+          "venue": "curve",
+          "venue_name": "Curve Finance",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor APY",
+          "reasoning": "delta-neutral strategy with stETH for yield"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L5-004",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"lending\",\n  \"asset\": \"USDC\",\n  \"size\": \"5000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"lending protocol\",\n  \"venue_name\": \"makerdao\",\n  \"risk_controls\": {\n    \"liquidation_threshold\": \"170%\"\n  },\n  \"follow_up\": \"monitor collateral ratio\",\n  \"reasoning\": \"borrow against ETH collateral\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check collateralization ratio\"\n}",
+      "durationMs": 4530,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9255133928571428,
+        "score": 0.8710714285714286,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.04857142857142857,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.11249999999999999,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lending",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usdc",
+          "venue": "lending protocol",
+          "venue_name": "makerdao",
+          "risk_controls": {
+            "liquidation_threshold": "170%"
+          },
+          "follow_up": "monitor collateral ratio",
+          "reasoning": "borrow against ETH collateral",
+          "requires_follow_up": true,
+          "follow_up_description": "check collateralization ratio"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L5-005",
+      "raw": "{\n  \"intent\": \"stake\",\n  \"order_type\": \"staking\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"unit\": \"ETH\",\n  \"venue\": \"staking pool\",\n  \"venue_name\": \"Lido\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"monitor staking rewards\",\n  \"reasoning\": \"earn liquid staking tokens for ETH\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check staking rewards and token value\"\n}",
+      "durationMs": 4266,
+      "grade": {
+        "pass": true,
+        "confidence": 0.91508547008547,
+        "score": 0.8669230769230769,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.09692307692307692,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.06999999999999999,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "staking",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "ETH",
+          "venue": "staking pool",
+          "venue_name": "Lido",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor staking rewards",
+          "reasoning": "earn liquid staking tokens for ETH",
+          "requires_follow_up": true,
+          "follow_up_description": "check staking rewards and token value"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add liquidity\",\n  \"order_type\": \"concentrated liquidity\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"200000\",\n  \"unit\": \"usd\",\n  \"price\": \"2700\",\n  \"venue\": \"uniswap v3\",\n  \"venue_name\": \"uniswap v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.08\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor position\",\n  \"reasoning\": \"optimized for uniswap v3 concentrated liquidity position\"\n}",
+      "durationMs": 3028,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5325487012987014,
+        "score": 0.49704545454545457,
+        "fieldScores": {
+          "intent": 0.11249999999999999,
+          "order_type": 0.024545454545454544,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add liquidity",
+          "order_type": "concentrated liquidity",
+          "asset": "ETH/USDC",
+          "size": "200000",
+          "unit": "usd",
+          "price": "2700",
+          "venue": "uniswap v3",
+          "venue_name": "uniswap v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.08",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor position",
+          "reasoning": "optimized for uniswap v3 concentrated liquidity position"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L5-002",
+      "raw": "{\n  \"intent\": \"long\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH\",\n  \"size\": \"3\",\n  \"unit\": \"ETH\",\n  \"price\": \"3000\",\n  \"venue\": \"aave\",\n  \"venue_name\": \"aave\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor position\",\n  \"reasoning\": \"3x leveraged long ETH position using 1 ETH on Aave\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor position for potential liquidation\"\n}",
+      "durationMs": 3071,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.06153846153846154,
+          "order_type": 0.011333333333333332,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "long",
+          "order_type": "limit",
+          "asset": "ETH",
+          "size": "3",
+          "unit": "ETH",
+          "price": "3000",
+          "venue": "aave",
+          "venue_name": "aave",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor position",
+          "reasoning": "3x leveraged long ETH position using 1 ETH on Aave",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor position for potential liquidation"
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L5-003",
+      "raw": "{\n  \"intent\": \"delta-neutral yield farming\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH\",\n  \"size\": \"5\",\n  \"unit\": \"eth\",\n  \"price\": \"3000\",\n  \"venue\": \"uniswap\",\n  \"venue_name\": \"uniswap v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor yield and adjust\",\n  \"reasoning\": \"delta-neutral yield farming with 5 ETH\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"adjust position as needed to maintain delta-neutrality\"\n}",
+      "durationMs": 2481,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7154166666666667,
+        "score": 0.6733333333333333,
+        "fieldScores": {
+          "intent": 0.11333333333333333,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "delta-neutral yield farming",
+          "order_type": "limit",
+          "asset": "ETH",
+          "size": "5",
+          "unit": "eth",
+          "price": "3000",
+          "venue": "uniswap",
+          "venue_name": "uniswap v3",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor yield and adjust",
+          "reasoning": "delta-neutral yield farming with 5 ETH",
+          "requires_follow_up": true,
+          "follow_up_description": "adjust position as needed to maintain delta-neutrality"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L5-004",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"margin\",\n  \"asset\": \"USDC\",\n  \"size\": \"5000\",\n  \"unit\": \"usd\",\n  \"price\": \"collateral\",\n  \"venue\": \"aave\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"2 ETH\"\n  },\n  \"follow_up\": \"monitor collateral value\",\n  \"reasoning\": \"borrow against 2 ETH collateral\"\n}",
+      "durationMs": 2373,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9119791666666668,
+        "score": 0.8583333333333334,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.02833333333333333,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "margin",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "price": "collateral",
+          "venue": "aave",
+          "risk_controls": {
+            "position_size_limit": "2 ETH"
+          },
+          "follow_up": "monitor collateral value",
+          "reasoning": "borrow against 2 ETH collateral"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L5-005",
+      "raw": "{\n  \"intent\": \"stake\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"unit\": \"eth\",\n  \"price\": \"stETH\",\n  \"venue\": \"lido\",\n  \"venue_name\": \"lido staking\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor staking rewards\",\n  \"reasoning\": \"liquid staking for ETH via Lido\"\n}",
+      "durationMs": 2767,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8677207977207979,
+        "score": 0.8220512820512822,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.055384615384615386,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.026666666666666672,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "limit",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "eth",
+          "price": "stETH",
+          "venue": "lido",
+          "venue_name": "lido staking",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor staking rewards",
+          "reasoning": "liquid staking for ETH via Lido"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

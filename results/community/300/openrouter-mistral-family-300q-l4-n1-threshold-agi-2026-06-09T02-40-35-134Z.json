@@ -1,0 +1,432 @@
+{
+  "runAt": "2026-06-09T02:40:35.133Z",
+  "label": "openrouter-mistral-family-300q-l4-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "mistralai/mistral-medium-3-5",
+    "mistralai/mistral-small-2603"
+  ],
+  "questionIds": [
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L4-001",
+      "raw": "{\"intent\": \"rebalance\", \"order_type\": \"multi_leg\", \"asset\": \"BTC, ETH, USDC\", \"size\": \"portfolio_total\", \"unit\": \"usd\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase Pro\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"verify current holdings and calculate exact trade sizes\", \"reasoning\": \"Rebalancing requires current portfolio holdings to compute exact trade sizes for 60/30/10 target weights. Missing context on existing positions.\", \"requires_follow_up\": true, \"follow_up_description\": \"Provide current holdings of BTC, ETH, USDC, and other assets to compute exact rebalancing trades.\"}",
+      "durationMs": 2043,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222222,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "multi_leg",
+          "asset": "BTC, ETH, USDC",
+          "size": "portfolio_total",
+          "unit": "usd",
+          "venue": "coinbase",
+          "venue_name": "Coinbase Pro",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "verify current holdings and calculate exact trade sizes",
+          "reasoning": "Rebalancing requires current portfolio holdings to compute exact trade sizes for 60/30/10 target weights. Missing context on existing positions.",
+          "requires_follow_up": true,
+          "follow_up_description": "Provide current holdings of BTC, ETH, USDC, and other assets to compute exact rebalancing trades."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L4-002",
+      "raw": "{\"intent\": \"hedge\", \"order_type\": \"limit\", \"asset\": \"GLD\", \"size\": 10, \"unit\": \"usd\", \"price\": 2400, \"venue\": \"tradfi\", \"venue_name\": \"interactive_brokers\", \"risk_controls\": {\"position_size_limit\": \"5%\", \"slippage_tolerance\": \"0.2%\"}, \"follow_up\": \"monitor correlation matrix and rebalance if BTC-ETH correlation > 0.85\", \"reasoning\": \"GLD (gold) exhibits low correlation with crypto assets (BTC, ETH, SOL, MATIC, LINK) historically, providing diversification. Allocate 5% of portfolio to GLD to mitigate crypto-wide systemic risk.\", \"requires_follow_up\": true, \"follow_up_description\": \"Track rolling 30-day correlation coefficients between all asset pairs. If BTC-ETH correlation exceeds 0.85, trigger rebalancing to reduce crypto exposure or increase GLD allocation.\"}",
+      "durationMs": 1697,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.04,
+          "asset": 0.01333333333333334,
+          "size": 0,
+          "venue": 0.03,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "order_type": "limit",
+          "asset": "GLD",
+          "size": 10,
+          "unit": "usd",
+          "price": 2400,
+          "venue": "tradfi",
+          "venue_name": "interactive_brokers",
+          "risk_controls": {
+            "position_size_limit": "5%",
+            "slippage_tolerance": "0.2%"
+          },
+          "follow_up": "monitor correlation matrix and rebalance if BTC-ETH correlation > 0.85",
+          "reasoning": "GLD (gold) exhibits low correlation with crypto assets (BTC, ETH, SOL, MATIC, LINK) historically, providing diversification. Allocate 5% of portfolio to GLD to mitigate crypto-wide systemic risk.",
+          "requires_follow_up": true,
+          "follow_up_description": "Track rolling 30-day correlation coefficients between all asset pairs. If BTC-ETH correlation exceeds 0.85, trigger rebalancing to reduce crypto exposure or increase GLD allocation."
+        },
+        "failureReasons": [
+          "correlation_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L4-003",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"limit\", \"asset\": \"PEPE\", \"size\": \"100%\", \"unit\": \"position\", \"price\": 0.000001, \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"2%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"realize capital loss for tax harvesting\", \"reasoning\": \"PEPE is at a significant unrealized loss; selling to offset gains elsewhere in portfolio\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify realized loss amount and ensure compliance with wash sale rules\"}",
+      "durationMs": 2915,
+      "grade": {
+        "pass": false,
+        "confidence": 0.42755102040816334,
+        "score": 0.3990476190476191,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.04,
+          "asset": 0.01333333333333334,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "limit",
+          "asset": "PEPE",
+          "size": "100%",
+          "unit": "position",
+          "price": 0.000001,
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "2%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "realize capital loss for tax harvesting",
+          "reasoning": "PEPE is at a significant unrealized loss; selling to offset gains elsewhere in portfolio",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify realized loss amount and ensure compliance with wash sale rules"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L4-004",
+      "raw": "{\"intent\": \"stress_test\", \"order_type\": \"simulation\", \"asset\": \"portfolio\", \"size\": \"100%\", \"unit\": \"portfolio_value\", \"venue\": \"local\", \"venue_name\": \"portfolio_simulator\", \"risk_controls\": {\"stop_loss\": \"-50%\", \"position_size_limit\": \"100%\"}, \"follow_up\": \"generate liquidation report\", \"reasoning\": \"simulate -50% crash across all crypto assets to assess portfolio resilience and liquidation risk\", \"requires_follow_up\": true, \"follow_up_description\": \"Review liquidation thresholds, margin calls, and rebalancing needs after stress test\"}",
+      "durationMs": 1275,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03599999999999999,
+          "asset": 0.16,
+          "size": 0.08,
+          "venue": 0.015,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "portfolio",
+          "size": "100%",
+          "unit": "portfolio_value",
+          "venue": "local",
+          "venue_name": "portfolio_simulator",
+          "risk_controls": {
+            "stop_loss": "-50%",
+            "position_size_limit": "100%"
+          },
+          "follow_up": "generate liquidation report",
+          "reasoning": "simulate -50% crash across all crypto assets to assess portfolio resilience and liquidation risk",
+          "requires_follow_up": true,
+          "follow_up_description": "Review liquidation thresholds, margin calls, and rebalancing needs after stress test"
+        },
+        "failureReasons": [
+          "stress_test_invalid_size"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L4-005",
+      "raw": "{\"intent\": \"calculate\", \"order_type\": \"metric\", \"asset\": \"portfolio\", \"size\": 0, \"venue\": \"local\", \"risk_controls\": {}, \"follow_up\": \"provide portfolio returns and risk-free rate for Sharpe ratio calculation\", \"reasoning\": \"Sharpe ratio requires excess return and volatility data, which are not provided in the context\", \"requires_follow_up\": true, \"follow_up_description\": \"Need historical returns, standard deviation of returns, and risk-free rate to compute Sharpe ratio\"}",
+      "durationMs": 2072,
+      "grade": {
+        "pass": false,
+        "confidence": 0.41491666666666666,
+        "score": 0.383,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "metric",
+          "asset": "portfolio",
+          "size": 0,
+          "venue": "local",
+          "risk_controls": {},
+          "follow_up": "provide portfolio returns and risk-free rate for Sharpe ratio calculation",
+          "reasoning": "Sharpe ratio requires excess return and volatility data, which are not provided in the context",
+          "requires_follow_up": true,
+          "follow_up_description": "Need historical returns, standard deviation of returns, and risk-free rate to compute Sharpe ratio"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L4-001",
+      "raw": "{\"intent\": \"rebalance\", \"order_type\": \"market\", \"asset\": \"portfolio\", \"size\": \"100%\", \"unit\": \"usd\", \"venue\": \"exchange\", \"venue_name\": \"binance\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"verify current holdings\", \"requires_follow_up\": true, \"follow_up_description\": \"Check current portfolio composition to ensure exact 60/30/10 allocation before execution. Missing holdings detected in target assets.\"}",
+      "durationMs": 1353,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.09,
+          "order_type": 0.012307692307692299,
+          "asset": 0.026666666666666665,
+          "size": 0.025,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "portfolio",
+          "size": "100%",
+          "unit": "usd",
+          "venue": "exchange",
+          "venue_name": "binance",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "verify current holdings",
+          "requires_follow_up": true,
+          "follow_up_description": "Check current portfolio composition to ensure exact 60/30/10 allocation before execution. Missing holdings detected in target assets."
+        },
+        "failureReasons": [
+          "rebalance_missing_assets"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L4-002",
+      "raw": "{\"intent\": \"analyze\", \"order_type\": \"correlation\", \"asset\": \"BTC,ETH,SOL,MATIC,LINK\", \"size\": \"portfolio\", \"venue\": \"analytics\", \"risk_controls\": {\"slippage_tolerance\": \"0%\"}, \"follow_up\": \"diversification report\", \"reasoning\": \"Portfolio-wide correlation risk assessment required for BTC, ETH, SOL, MATIC, LINK to identify diversification opportunities and systemic exposure.\", \"requires_follow_up\": true, \"follow_up_description\": \"Generate diversification report with correlation matrix, risk metrics, and recommended adjustments to reduce systemic risk.\"}",
+      "durationMs": 1408,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.021176470588235297,
+          "order_type": 0.029090909090909084,
+          "asset": 0.026666666666666665,
+          "size": 0.009090909090909094,
+          "venue": 0.09333333333333334,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "correlation",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": "portfolio",
+          "venue": "analytics",
+          "risk_controls": {
+            "slippage_tolerance": "0%"
+          },
+          "follow_up": "diversification report",
+          "reasoning": "Portfolio-wide correlation risk assessment required for BTC, ETH, SOL, MATIC, LINK to identify diversification opportunities and systemic exposure.",
+          "requires_follow_up": true,
+          "follow_up_description": "Generate diversification report with correlation matrix, risk metrics, and recommended adjustments to reduce systemic risk."
+        },
+        "failureReasons": [
+          "correlation_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L4-003",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"market\", \"asset\": \"PEPE\", \"size\": \"1000000000\", \"unit\": \"PEPE\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor fill and rebalance\", \"reasoning\": \"PEPE shows significant unrealized loss; tax loss harvesting opportunity with minimal market impact due to low price and high supply\", \"requires_follow_up\": true, \"follow_up_description\": \"Rebalance proceeds into stablecoins or other assets to maintain market exposure while realizing tax benefits\"}",
+      "durationMs": 1664,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4061224489795919,
+        "score": 0.3790476190476191,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.02,
+          "asset": 0.01333333333333334,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": "1000000000",
+          "unit": "PEPE",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor fill and rebalance",
+          "reasoning": "PEPE shows significant unrealized loss; tax loss harvesting opportunity with minimal market impact due to low price and high supply",
+          "requires_follow_up": true,
+          "follow_up_description": "Rebalance proceeds into stablecoins or other assets to maintain market exposure while realizing tax benefits"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L4-004",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"market\", \"asset\": \"BTC\", \"size\": \"100%\", \"venue\": \"exchange\", \"risk_controls\": {\"slippage_tolerance\": \"1%\", \"position_size_limit\": \"100%\"}, \"follow_up\": \"monitor execution\", \"reasoning\": \"stress test for -50% crypto crash; liquidate BTC position to assess portfolio impact\"}",
+      "durationMs": 962,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.03599999999999999,
+          "order_type": 0.0225,
+          "asset": 0.017777777777777785,
+          "size": 0.08,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "100%",
+          "venue": "exchange",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "position_size_limit": "100%"
+          },
+          "follow_up": "monitor execution",
+          "reasoning": "stress test for -50% crypto crash; liquidate BTC position to assess portfolio impact"
+        },
+        "failureReasons": [
+          "stress_test_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L4-005",
+      "raw": "{\"intent\": \"query\", \"order_type\": \"data\", \"asset\": \"portfolio_metrics\", \"size\": 1, \"venue\": \"execute@1\", \"risk_controls\": {}, \"follow_up\": \"calculate Sharpe ratio\", \"reasoning\": \"Sharpe ratio calculation requires historical returns data, which is not provided in the context. Additional data (e.g., portfolio returns, risk-free rate, time period) is needed to compute the Sharpe ratio.\", \"requires_follow_up\": true, \"follow_up_description\": \"Provide historical returns data and risk-free rate for Sharpe ratio calculation.\"}",
+      "durationMs": 1286,
+      "grade": {
+        "pass": false,
+        "confidence": 0.26785,
+        "score": 0.2435,
+        "fieldScores": {
+          "intent": 0.03599999999999999,
+          "order_type": 0.02,
+          "asset": 0.0675,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "query",
+          "order_type": "data",
+          "asset": "portfolio_metrics",
+          "size": 1,
+          "venue": "execute@1",
+          "risk_controls": {},
+          "follow_up": "calculate Sharpe ratio",
+          "reasoning": "Sharpe ratio calculation requires historical returns data, which is not provided in the context. Additional data (e.g., portfolio returns, risk-free rate, time period) is needed to compute the Sharpe ratio.",
+          "requires_follow_up": true,
+          "follow_up_description": "Provide historical returns data and risk-free rate for Sharpe ratio calculation."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

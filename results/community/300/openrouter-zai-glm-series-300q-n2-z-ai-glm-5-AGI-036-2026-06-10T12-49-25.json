@@ -1,0 +1,49 @@
+{
+  "runAt": "2026-06-10T12:50:03.117Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-AGI-036-2026-06-10T12-49-25",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-036"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-036",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"hidden_child_orders_below_toxicity_threshold\",\n  \"price_band\": \"61250-61400\",\n  \"child_order_units\": 35,\n  \"repricing_interval_sec\": 45,\n  \"expected_avg_price\": 61325,\n  \"reasoning\": \"Sell impulses recovered (spoofed), buy impulse had abnormal impact indicating real demand; fair value inferred at ~61325 above pre-impulse 61242; 35 BTC child orders stay below 140 BTC toxicity classifier threshold to avoid triggering fades\"\n}",
+      "durationMs": 36890,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.3333333333333333,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "price_band": 0,
+          "child_order_units": 1,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "hidden_child_orders_below_toxicity_threshold",
+          "price_band": "61250-61400",
+          "child_order_units": 35,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": 61325,
+          "reasoning": "Sell impulses recovered (spoofed), buy impulse had abnormal impact indicating real demand; fair value inferred at ~61325 above pre-impulse 61242; 35 BTC child orders stay below 140 BTC toxicity classifier threshold to avoid triggering fades"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:price_band",
+          "agi_validation_failed:expected_avg_price"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

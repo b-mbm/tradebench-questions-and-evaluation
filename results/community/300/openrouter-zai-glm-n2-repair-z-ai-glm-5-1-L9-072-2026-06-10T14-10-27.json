@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T14:11:18.607Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L9-072-2026-06-10T14-10-27",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-072"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-072",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"N1\", \"N2\", \"N3\"],\n  \"reasoning\": \"Evaluated all 6 AVSs against hard constraints (net score>=6%, slashing multiplier<=3.2, withdrawal delay<=8 days, oracle freshness<=22 min, capacity>=200 cbETH). N4 fails capacity (180<200). N5 fails slashing multiplier (3.6>3.2). N6 fails withdrawal delay (9>8 days). N1 net=8.6-0.5-1.05=7.05%, N2 net=12.8-1-3=8.8%, N3 net=10.4-0.6-1.68=8.12%. All three pass every constraint; exactly 3 eligible AVSs selected by highest risk-adjusted APR.\"\n}",
+      "durationMs": 50346,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "N1",
+            "N2",
+            "N3"
+          ],
+          "reasoning": "Evaluated all 6 AVSs against hard constraints (net score>=6%, slashing multiplier<=3.2, withdrawal delay<=8 days, oracle freshness<=22 min, capacity>=200 cbETH). N4 fails capacity (180<200). N5 fails slashing multiplier (3.6>3.2). N6 fails withdrawal delay (9>8 days). N1 net=8.6-0.5-1.05=7.05%, N2 net=12.8-1-3=8.8%, N3 net=10.4-0.6-1.68=8.12%. All three pass every constraint; exactly 3 eligible AVSs selected by highest risk-adjusted APR."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

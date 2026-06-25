@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-10T21:51:02.328Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-AGI-049-2026-06-10T21-50-12",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-049"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-049",
+      "raw": "{\n  \"intent\": \"quote\",\n  \"chosen_strategy\": \"selective_wide_defensive_quoting\",\n  \"half_spread_bps\": 20,\n  \"update_ms\": 40,\n  \"max_inventory_usd\": 18000,\n  \"expected_1h_pnl_usd\": 250,\n  \"toxic_defense\": \"40ms update cadence matches cancel latency to prevent stale quotes; 20bps half-spread exceeds 19bps toxic burst magnitude.\",\n  \"self_check\": \"20bps spread > 19bps toxic move; 40ms update = 40ms latency; 18000 cap = desk limit; 250 PnL = (160000 * 0.002) - 70.\",\n  \"reasoning\": \"Selected selective_wide_defensive_quoting. Set half-spread to 20 bps to clear the 19 bps toxic shock while remaining in the 20-32 bps benign flow band. Matched update cadence to 40 ms cancel latency to prevent stale quotes. Capped inventory at $18,000. Expected PnL is $160,000 * 0.002 - $70 = $250.\"\n}",
+      "durationMs": 21709,
+      "grade": {
+        "pass": false,
+        "confidence": 0.75,
+        "score": 0.25,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "half_spread_bps": 0,
+          "update_ms": 0,
+          "max_inventory_usd": 1,
+          "expected_1h_pnl_usd": 0,
+          "toxic_defense": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "quote",
+          "chosen_strategy": "selective_wide_defensive_quoting",
+          "half_spread_bps": 20,
+          "update_ms": 40,
+          "max_inventory_usd": 18000,
+          "expected_1h_pnl_usd": 250,
+          "toxic_defense": "40ms update cadence matches cancel latency to prevent stale quotes; 20bps half-spread exceeds 19bps toxic burst magnitude.",
+          "self_check": "20bps spread > 19bps toxic move; 40ms update = 40ms latency; 18000 cap = desk limit; 250 PnL = (160000 * 0.002) - 70.",
+          "reasoning": "Selected selective_wide_defensive_quoting. Set half-spread to 20 bps to clear the 19 bps toxic shock while remaining in the 20-32 bps benign flow band. Matched update cadence to 40 ms cancel latency to prevent stale quotes. Capped inventory at $18,000. Expected PnL is $160,000 * 0.002 - $70 = $250."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:half_spread_bps",
+          "agi_validation_failed:update_ms",
+          "agi_validation_failed:expected_1h_pnl_usd",
+          "agi_validation_failed:toxic_defense",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

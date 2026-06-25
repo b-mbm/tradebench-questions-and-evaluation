@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T07:06:15.358Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-067-2026-06-10T07-05-51",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-067"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-067",
+      "raw": "{\n  \"intent\": \"calculate_optimal_profit\",\n  \"expected_value\": 47880.58,\n  \"reasoning\": \"Baseline: revenue=24M×$0.035=$840,000; data cost=24M×42bytes×16gas×22gwei×$3100/10^9=$1,099,929.60; net=-$259,929.60. Brotli only: bytes×0.72→cost=$791,949.31; net=$840,000-$791,949.31-$65,000=-$16,949.31. Blob only: gas cost×0.38→cost=$417,973.25; revenue×0.96=$806,400; net=$806,400-$417,973.25-$90,000=$298,426.75. Both: bytes×0.72 then gas×0.38→cost=$300,980.74; revenue×0.96=$806,400; net=$806,400-$300,980.74-$65,000-$90,000=$350,419.26. Best is both upgrades: $350,419.26.\"\n}",
+      "durationMs": 23830,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "calculate_optimal_profit",
+          "expected_value": 47880.58,
+          "reasoning": "Baseline: revenue=24M×$0.035=$840,000; data cost=24M×42bytes×16gas×22gwei×$3100/10^9=$1,099,929.60; net=-$259,929.60. Brotli only: bytes×0.72→cost=$791,949.31; net=$840,000-$791,949.31-$65,000=-$16,949.31. Blob only: gas cost×0.38→cost=$417,973.25; revenue×0.96=$806,400; net=$806,400-$417,973.25-$90,000=$298,426.75. Both: bytes×0.72 then gas×0.38→cost=$300,980.74; revenue×0.96=$806,400; net=$806,400-$300,980.74-$65,000-$90,000=$350,419.26. Best is both upgrades: $350,419.26."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "runAt": "2026-06-12T01:33:01.063Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-039-2026-06-12T01-30-27",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-039"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-039",
+      "raw": "{\n  \"intent\": \"vote_and_position\",\n  \"vote\": \"for\",\n  \"position\": \"keep_farming\",\n  \"chosen_strategy\": \"maintain_and_accumulate\",\n  \"net_sell_pressure_delta_per_day\": -28750,\n  \"stabilization_buy_usd\": 45000,\n  \"expected_12d_price_change_pct\": 18,\n  \"self_check\": \"Vote FOR verified: emissions 40K×60%=24K/day + unlock 5K×3d = avg 25.25K/day vs 54K current. Delta -28.75K/day correct. $45K stabilization confirmed. 12d sell reduction ~345K tokens ≈ $345K + $45K = $390K net positive flow; 2/3 impacts $1.25M liquidity → 18-21% upside. Keep_farming aligns with bullish thesis.\",\n  \"reasoning\": \"Emissions reduced to 40K/day with 60% sell rate = 24K/day, plus 5K/day unlock for first 3 days, averaging 25.25K/day vs current 54K/day. Delta -28.75K/day. $45K stabilization adds support. Net positive flow with 2/3 price impact yields ~18% 12-day appreciation.\"\n}",
+      "durationMs": 153295,
+      "grade": {
+        "pass": false,
+        "confidence": 0.625,
+        "score": 0.125,
+        "fieldScores": {
+          "intent": 0,
+          "vote": 0,
+          "position": 0,
+          "chosen_strategy": 0,
+          "net_sell_pressure_delta_per_day": 0,
+          "stabilization_buy_usd": 1,
+          "expected_12d_price_change_pct": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "vote_and_position",
+          "vote": "for",
+          "position": "keep_farming",
+          "chosen_strategy": "maintain_and_accumulate",
+          "net_sell_pressure_delta_per_day": -28750,
+          "stabilization_buy_usd": 45000,
+          "expected_12d_price_change_pct": 18,
+          "self_check": "Vote FOR verified: emissions 40K×60%=24K/day + unlock 5K×3d = avg 25.25K/day vs 54K current. Delta -28.75K/day correct. $45K stabilization confirmed. 12d sell reduction ~345K tokens ≈ $345K + $45K = $390K net positive flow; 2/3 impacts $1.25M liquidity → 18-21% upside. Keep_farming aligns with bullish thesis.",
+          "reasoning": "Emissions reduced to 40K/day with 60% sell rate = 24K/day, plus 5K/day unlock for first 3 days, averaging 25.25K/day vs current 54K/day. Delta -28.75K/day. $45K stabilization adds support. Net positive flow with 2/3 price impact yields ~18% 12-day appreciation."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:vote",
+          "agi_validation_failed:position",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:net_sell_pressure_delta_per_day",
+          "agi_validation_failed:expected_12d_price_change_pct",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

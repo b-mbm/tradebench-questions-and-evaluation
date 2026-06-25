@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T14:56:51.085Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L10-034-2026-06-10T14-55-26",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-034"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-034",
+      "raw": "{\n  \"intent\": \"maximize_builder_profit\",\n  \"expected_value\": 138360,\n  \"reasoning\": \"Calculated expected builder profit per opportunity as value × success_prob × 8% keep rate. Ranked by efficiency and solved knapsack with 30M gas constraint. Optimal bundle: CEX-DEX (7M gas, $48,160) + Liquidation (9M gas, $36,608) + Oracle backrun (3M gas, $19,344) + NFT backrun (2M gas, $11,760) + Intent solver (8M gas, $31,488) = 29M gas, total $147,360 gross profit. Subtract $9,000 fixed cost = $138,360 net",
+      "durationMs": 27759,
+      "grade": {
+        "pass": true,
+        "confidence": 0.6,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "maximize_builder_profit",
+          "expected_value": 138360,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

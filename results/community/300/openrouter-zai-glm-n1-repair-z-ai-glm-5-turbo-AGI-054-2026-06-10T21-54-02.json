@@ -1,0 +1,58 @@
+{
+  "runAt": "2026-06-10T21:54:27.198Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-AGI-054-2026-06-10T21-54-02",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-054"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-054",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"chosen_strategy\": \"SOL short and BTC put-spread combination\",\n  \"hedge_legs\": {\n    \"SOL_short\": {\n      \"notional_usd\": 310000\n    },\n    \"BTC_put_spread\": {\n      \"notional_usd\": 750000\n    }\n  },\n  \"expected_vol_reduction_pct\": 55.0,\n  \"residual_1d_var_usd\": 90000,\n  \"self_check\": \"SOL short notional is exactly $310,000 to avoid triggering the dealer margin jump; BTC put-spread is sized at $750,000 to maximize crash offset without short-crowding; ETH is excluded to prevent larger residual tail; combined strategy removes >50% of one-day VaR.\",\n  \"reasoning\": \"To remove roughly half the one-day VaR without tripping the crowding margin rule, the SOL short is capped at the $310,000 threshold, and the BTC put-spread is fully utilized at $750,000 to hedge the systemic crash tape, while ETH is avoided due to adverse dealer repricing.\"\n}",
+      "durationMs": 24003,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7857142857142857,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "hedge_legs.SOL_short.notional_usd": 1,
+          "hedge_legs.BTC_put_spread.notional_usd": 1,
+          "expected_vol_reduction_pct": 0,
+          "residual_1d_var_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "SOL short and BTC put-spread combination",
+          "hedge_legs": {
+            "SOL_short": {
+              "notional_usd": 310000
+            },
+            "BTC_put_spread": {
+              "notional_usd": 750000
+            }
+          },
+          "expected_vol_reduction_pct": 55,
+          "residual_1d_var_usd": 90000,
+          "self_check": "SOL short notional is exactly $310,000 to avoid triggering the dealer margin jump; BTC put-spread is sized at $750,000 to maximize crash offset without short-crowding; ETH is excluded to prevent larger residual tail; combined strategy removes >50% of one-day VaR.",
+          "reasoning": "To remove roughly half the one-day VaR without tripping the crowding margin rule, the SOL short is capped at the $310,000 threshold, and the BTC put-spread is fully utilized at $750,000 to hedge the systemic crash tape, while ETH is avoided due to adverse dealer repricing."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:expected_vol_reduction_pct",
+          "agi_validation_failed:residual_1d_var_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "runAt": "2026-06-11T22:53:04.305Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L4-005-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L4-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-005",
+      "raw": "{\"intent\":\"calculate\",\"order_type\":\"analytics\",\"asset\":\"portfolio\",\"size\":\"N/A\",\"venue\":\"internal\",\"risk_controls\":{},\"requires_follow_up\":true,\"follow_up_description\":\"Provide historical returns, risk-free rate, and portfolio weights or individual asset return series to compute Sharpe ratio.\",\"reasoning\":\"Sharpe ratio requires mean excess return and standard deviation of returns over a period. Context only provides current prices, no time series, returns, risk-free rate, or portfolio composition. Cannot calculate with given data.\"}",
+      "durationMs": 2309,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4785410052910053,
+        "score": 0.44173015873015875,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.12444444444444445,
+          "asset": 0.12,
+          "size": 0.01428571428571429,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analytics",
+          "asset": "portfolio",
+          "size": "N/A",
+          "venue": "internal",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Provide historical returns, risk-free rate, and portfolio weights or individual asset return series to compute Sharpe ratio.",
+          "reasoning": "Sharpe ratio requires mean excess return and standard deviation of returns over a period. Context only provides current prices, no time series, returns, risk-free rate, or portfolio composition. Cannot calculate with given data."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T06:37:49.179Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-014-2026-06-10T06-37-38",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-014"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-014",
+      "raw": "{\n  \"intent\": \"cross_chain_arbitrage\",\n  \"expected_value\": 10,\n  \"reasoning\": \"Gross spread = (3043.20/3000) - 1 = 1.44%. Total all-in costs = 0.44% (0.09% flash loan + 0.15% omnichain bridge + 0.17% swap slippage/LP fees + 0.03% MEV protection). Net profit = 1.44% - 0.44% = 1.00% of 1,000 ETH notional = 10 ETH ($30,000). Strategy: atomic Chainflip/Across intent borrows 1,000 ETH on Ethereum via flash loan, sells into Base pool at $3,043.20/ETH, sources replacement ETH through Arbitrum/Optimism liquidity at $3,000/ETH, and settles back to Ethereum within the 8-minute window, avoiding the unprofitable 7-day native bridge finality of the reference loop.\"\n}",
+      "durationMs": 10078,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "cross_chain_arbitrage",
+          "expected_value": 10,
+          "reasoning": "Gross spread = (3043.20/3000) - 1 = 1.44%. Total all-in costs = 0.44% (0.09% flash loan + 0.15% omnichain bridge + 0.17% swap slippage/LP fees + 0.03% MEV protection). Net profit = 1.44% - 0.44% = 1.00% of 1,000 ETH notional = 10 ETH ($30,000). Strategy: atomic Chainflip/Across intent borrows 1,000 ETH on Ethereum via flash loan, sells into Base pool at $3,043.20/ETH, sources replacement ETH through Arbitrum/Optimism liquidity at $3,000/ETH, and settles back to Ethereum within the 8-minute window, avoiding the unprofitable 7-day native bridge finality of the reference loop."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

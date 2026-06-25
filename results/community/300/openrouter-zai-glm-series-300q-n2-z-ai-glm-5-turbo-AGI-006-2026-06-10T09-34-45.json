@@ -1,0 +1,48 @@
+{
+  "runAt": "2026-06-10T09:35:09.255Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-AGI-006-2026-06-10T09-34-45",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-006"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-006",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"reactive_iceberg_limits\",\n  \"price_band\": \"$58,530 - $58,550\",\n  \"child_order_btc\": 40,\n  \"repricing_interval_sec\": 45,\n  \"expected_avg_price\": 58542,\n  \"reasoning\": \"Using 40 BTC hidden child orders avoids the toxicity classifier's 150 BTC display fade and stays under the 40 BTC detection limit. Repricing every 45 seconds prevents bids from becoming stale and being swept after momentum bursts, ensuring completion within the 10-minute window.\"\n}\n",
+      "durationMs": 23314,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "price_band": 0,
+          "child_order_btc": 1,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "reactive_iceberg_limits",
+          "price_band": "$58,530 - $58,550",
+          "child_order_btc": 40,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": 58542,
+          "reasoning": "Using 40 BTC hidden child orders avoids the toxicity classifier's 150 BTC display fade and stays under the 40 BTC detection limit. Repricing every 45 seconds prevents bids from becoming stale and being swept after momentum bursts, ensuring completion within the 10-minute window."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:price_band",
+          "agi_validation_failed:expected_avg_price"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

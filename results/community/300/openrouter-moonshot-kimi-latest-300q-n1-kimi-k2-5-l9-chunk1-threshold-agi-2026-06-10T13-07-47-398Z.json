@@ -1,0 +1,224 @@
+{
+  "runAt": "2026-06-10T13:07:47.398Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-l9-chunk1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L9-001",
+    "L9-002",
+    "L9-003",
+    "L9-004",
+    "L9-005",
+    "L9-006",
+    "L9-007",
+    "L9-008",
+    "L9-009",
+    "L9-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-001",
+      "raw": "{\n  \"intent\": \"delta_neutral_funding_arbitrage\",\n  \"expected_value\": 18.615,\n  \"reasoning\": \"Short HYPE-PERP earns abs(-0.017%)=0.017% per 8h funding. With 3 funding periods daily: 0.017%×3×365=18.615% APR unlevered. Long spot HYPE on Base hedges delta. Excludes leverage multiplier, basis PnL, and execution costs per instructions.\"\n}",
+      "durationMs": 65013,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "delta_neutral_funding_arbitrage",
+          "expected_value": 18.615,
+          "reasoning": "Short HYPE-PERP earns abs(-0.017%)=0.017% per 8h funding. With 3 funding periods daily: 0.017%×3×365=18.615% APR unlevered. Long spot HYPE on Base hedges delta. Excludes leverage multiplier, basis PnL, and execution costs per instructions."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-002",
+      "raw": "{\"intent\":\"calculate_fee_income\",\"expected_value\":2832,\"reasoning\":\"Daily fees are derived from $2M volume × 80% capture rate × 0.3% fee tier × 59% liquidity share, resulting in $2,832.\"}",
+      "durationMs": 77472,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_fee_income",
+          "expected_value": 2832,
+          "reasoning": "Daily fees are derived from $2M volume × 80% capture rate × 0.3% fee tier × 59% liquidity share, resulting in $2,832."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-003",
+      "raw": "{\n  \"intent\": \"compare_swap_routes\",\n  \"expected_value\": 113.51351351351351,\n  \"reasoning\": \"Traditional route cost: $2,000,000 * 1.2% = $24,000. Across route cost: $2,000,000 * 0.15% = $3,000. USD savings delta: $21,000. Converting to SOL at $185.00/SOL: $21,000 / 185 = 113.51 SOL saved.\"\n}",
+      "durationMs": 48051,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "compare_swap_routes",
+          "expected_value": 113.51351351351352,
+          "reasoning": "Traditional route cost: $2,000,000 * 1.2% = $24,000. Across route cost: $2,000,000 * 0.15% = $3,000. USD savings delta: $21,000. Converting to SOL at $185.00/SOL: $21,000 / 185 = 113.51 SOL saved."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-004",
+      "raw": "",
+      "durationMs": 15943,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-005",
+      "raw": "",
+      "durationMs": 180004,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-006",
+      "raw": "",
+      "durationMs": 166451,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-007",
+      "raw": "",
+      "durationMs": 22982,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-008",
+      "raw": "",
+      "durationMs": 35419,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-009",
+      "raw": "",
+      "durationMs": 21599,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L9-010",
+      "raw": "{\"intent\": \"calculate_expected_value\", \"expected_value\": 502500, \"reasoning\": \"Success scenario (70% probability): $850k liquidation profit minus $85k costs equals $765k net gain. Failure scenario (30% frontrun risk): $110k total loss. Expected value = (0.7 × 765,000) + (0.3 × -110,000) = 535,500 - 33,000 = $502,500.\"}",
+      "durationMs": 66608,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_expected_value",
+          "expected_value": 502500,
+          "reasoning": "Success scenario (70% probability): $850k liquidation profit minus $85k costs equals $765k net gain. Failure scenario (30% frontrun risk): $110k total loss. Expected value = (0.7 × 765,000) + (0.3 × -110,000) = 535,500 - 33,000 = $502,500."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-06-12T00:59:14.183Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-004-2026-06-12T00-58-30",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-004",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"chosen_strategy\": \"liquid_barbell_capped_tail\",\n  \"allocation_usd\": {\n    \"Aave_USDC\": 50000,\n    \"Curve_3pool\": 30000,\n    \"Ethena_USDe\": 20000,\n    \"GMX_GLP\": 0,\n    \"Pendle_PT_stETH\": 0\n  },\n  \"expected_net_apy_pct\": 5.7,\n  \"expected_90d_profit_usd\": 1402,\n  \"liquidity_48h_usd\": 80000,\n  \"reasoning\": \"Barbell: $50k Aave (4.2% APY, liquid 1d) + $30k Curve 3pool (8.1% APY, liquid 1d, capped at $30k) + $20k Ethena USDe (15.2% APY, 7d exit, capped at $20k to avoid adversarial queue). 48h liquidity: $80k (Aave + Curve). Expected 90d profit: $50k×4.2%×90/365 + $30k×8.1%×90/365×(1-1.5%×12%) + $20k×15.2%×90/365×(1-3%×80%) = $518 + $592 + $292 = $1402. Net APY: $1402 / $100k / (90/365) = 5.7%.\"\n}",
+      "durationMs": 3629,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8333333333333333,
+        "score": 0.3333333333333333,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "allocation_usd.Curve_3pool": 1,
+          "allocation_usd.Aave_USDC": 0,
+          "allocation_usd.Ethena_USDe": 1,
+          "allocation_usd.GMX_GLP": 0,
+          "expected_net_apy_pct": 0,
+          "expected_90d_profit_usd": 0,
+          "liquidity_48h_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "chosen_strategy": "liquid_barbell_capped_tail",
+          "allocation_usd": {
+            "Aave_USDC": 50000,
+            "Curve_3pool": 30000,
+            "Ethena_USDe": 20000,
+            "GMX_GLP": 0,
+            "Pendle_PT_stETH": 0
+          },
+          "expected_net_apy_pct": 5.7,
+          "expected_90d_profit_usd": 1402,
+          "liquidity_48h_usd": 80000,
+          "reasoning": "Barbell: $50k Aave (4.2% APY, liquid 1d) + $30k Curve 3pool (8.1% APY, liquid 1d, capped at $30k) + $20k Ethena USDe (15.2% APY, 7d exit, capped at $20k to avoid adversarial queue). 48h liquidity: $80k (Aave + Curve). Expected 90d profit: $50k×4.2%×90/365 + $30k×8.1%×90/365×(1-1.5%×12%) + $20k×15.2%×90/365×(1-3%×80%) = $518 + $592 + $292 = $1402. Net APY: $1402 / $100k / (90/365) = 5.7%."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:allocation_usd.Aave_USDC",
+          "agi_validation_failed:allocation_usd.GMX_GLP",
+          "agi_validation_failed:expected_net_apy_pct",
+          "agi_validation_failed:expected_90d_profit_usd",
+          "agi_validation_failed:liquidity_48h_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

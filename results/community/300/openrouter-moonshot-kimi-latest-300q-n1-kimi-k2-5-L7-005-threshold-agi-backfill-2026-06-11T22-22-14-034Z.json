@@ -1,0 +1,91 @@
+{
+  "runAt": "2026-06-11T22:22:14.033Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L7-005-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L7-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.5167,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.7583,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"CowSwap\",\n  \"worst_option\": \"Uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"dex\",\n  \"venue_name\": \"CowSwap\",\n  \"reasoning\": \"Calculated costs for selling 100 ETH ($300k gross): Uniswap total cost $4,550 (1.52%) from 0.3% slippage ($900) + $50 gas + 1.2% MEV ($3,600), netting $295,450. CowSwap total cost $1,200 (0.4%) from 0.4% slippage ($1,200) + $0 gas + $0 MEV, netting $298,800. 1inch total cost $2,275 (0.76%) from 0.35% slippage ($1,050) + $25 gas + 0.4% MEV ($1,200), netting $297,725. CowSwap maximizes proceeds by avoiding MEV and gas costs despite higher slippage, saving $3,350 versus Uniswap.\"\n}",
+      "durationMs": 67625,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.983713811942409,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.002105263157894737,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.0002589928057553957
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5167,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "dex",
+          "venue_name": "CowSwap",
+          "reasoning": "Calculated costs for selling 100 ETH ($300k gross): Uniswap total cost $4,550 (1.52%) from 0.3% slippage ($900) + $50 gas + 1.2% MEV ($3,600), netting $295,450. CowSwap total cost $1,200 (0.4%) from 0.4% slippage ($1,200) + $0 gas + $0 MEV, netting $298,800. 1inch total cost $2,275 (0.76%) from 0.35% slippage ($1,050) + $25 gas + 0.4% MEV ($1,200), netting $297,725. CowSwap maximizes proceeds by avoiding MEV and gas costs despite higher slippage, saving $3,350 versus Uniswap."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

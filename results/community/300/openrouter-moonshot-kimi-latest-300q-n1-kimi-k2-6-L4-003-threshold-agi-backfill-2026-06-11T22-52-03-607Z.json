@@ -1,0 +1,49 @@
+{
+  "runAt": "2026-06-11T22:52:03.606Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L4-003-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L4-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-003",
+      "raw": " {\"intent\":\"tax_loss_harvest_analysis\",\"order_type\":\"analysis\",\"asset\":\"portfolio\",\"size\":0,\"venue\":\"internal\",\"risk_controls\":{},\"requires_follow_up\":true,\"follow_up_description\":\"Provide current portfolio holdings, quantities, and cost basis per asset to calculate unrealized losses and identify tax loss harvesting candidates.\",\"reasoning\":\"Current context only contains market prices for BTC, ETH, SOL, MATIC, USDC, DAI, ARB, PEPE, stETH, GLD, and TLT. Tax loss harvesting requires cost basis and position data to determine which holdings have unrealized losses.\"}",
+      "durationMs": 23837,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5165,
+        "score": 0.46954545454545454,
+        "fieldScores": {
+          "intent": 0.11454545454545453,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest_analysis",
+          "order_type": "analysis",
+          "asset": "portfolio",
+          "size": 0,
+          "venue": "internal",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Provide current portfolio holdings, quantities, and cost basis per asset to calculate unrealized losses and identify tax loss harvesting candidates.",
+          "reasoning": "Current context only contains market prices for BTC, ETH, SOL, MATIC, USDC, DAI, ARB, PEPE, stETH, GLD, and TLT. Tax loss harvesting requires cost basis and position data to determine which holdings have unrealized losses."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

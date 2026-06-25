@@ -1,0 +1,48 @@
+{
+  "runAt": "2026-06-12T01:07:46.326Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-011-2026-06-12T01-05-22",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-011"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-011",
+      "raw": "{\n  \"intent\": \"withdraw\",\n  \"decision\": \"withdraw_all_via_private_relay\",\n  \"chosen_strategy\": \"Use private relay ($600) to withdraw all positions before exploit executes\",\n  \"withdrawal_sequence\": \"RiskyCoin (8s) → BlueChip (12s) → YieldFarm (25s) = 45s total\",\n  \"ev_withdraw\": \"$374,400\",\n  \"ev_stay\": \"$52,167\",\n  \"reasoning\": \"Exploit 90% likely to drain all funds. Private relay ($600) enables safe 45s withdrawal before 60s exploit. EV_withdraw = $375,000 - $600 = $374,400. EV_stay = 10% × [(11/12)×$355,000 + (1/12)×$2,355,000] = $52,167.\"\n}",
+      "durationMs": 143743,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7,
+        "score": 0.2,
+        "fieldScores": {
+          "decision": 0,
+          "chosen_strategy": 0,
+          "withdrawal_sequence": 0,
+          "ev_withdraw": 1,
+          "ev_stay": 0
+        },
+        "normalizedResponse": {
+          "intent": "withdraw",
+          "decision": "withdraw_all_via_private_relay",
+          "chosen_strategy": "Use private relay ($600) to withdraw all positions before exploit executes",
+          "withdrawal_sequence": "RiskyCoin (8s) → BlueChip (12s) → YieldFarm (25s) = 45s total",
+          "ev_withdraw": "$374,400",
+          "ev_stay": "$52,167",
+          "reasoning": "Exploit 90% likely to drain all funds. Private relay ($600) enables safe 45s withdrawal before 60s exploit. EV_withdraw = $375,000 - $600 = $374,400. EV_stay = 10% × [(11/12)×$355,000 + (1/12)×$2,355,000] = $52,167."
+        },
+        "failureReasons": [
+          "agi_validation_failed:decision",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:withdrawal_sequence",
+          "agi_validation_failed:ev_stay"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

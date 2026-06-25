@@ -1,0 +1,56 @@
+{
+  "runAt": "2026-06-09T23:51:50.978Z",
+  "label": "openrouter-moonshot-kimi-repair-n1-kimi-k2-0905",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2-0905"
+  ],
+  "questionIds": [
+    "L8-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L8-001",
+      "raw": "{\"intent\":\"deploy_yield_strategy\",\"order_type\":\"multi_venue_allocation\",\"asset\":\"USDC\",\"size\":5000000,\"venue\":\"pendle+convex\",\"venue_name\":\"Pendle PT-stETH + Convex Curve 3pool\",\"expected_value\":0.0894,\"unit\":\"annualized_net_yield\",\"allocation\":{\"pendle_pt_steth\":3250000,\"convex_curve_3pool\":1750000},\"reasoning\":\"Max 70% to Pendle PT ($3.25M) captures 3% discount over 90 days → 12.37% annualized. Min 35% to Convex 3pool ($1.75M) earns 10.5% boosted yield. Net yield blends to 8.94% after $150 gas and vlCVX opportunity cost.\"}",
+      "durationMs": 10087,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.024347826086956525,
+          "order_type": 0.004999999999999999,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.002500000000000001,
+          "venue_name": 0.010588235294117645,
+          "expected_value": 0,
+          "unit": 0.012857142857142857,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "deploy_yield_strategy",
+          "order_type": "multi_venue_allocation",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "pendle+convex",
+          "venue_name": "Pendle PT-stETH + Convex Curve 3pool",
+          "expected_value": 0.0894,
+          "unit": "annualized_net_yield",
+          "allocation": {
+            "pendle_pt_steth": 3250000,
+            "convex_curve_3pool": 1750000
+          },
+          "reasoning": "Max 70% to Pendle PT ($3.25M) captures 3% discount over 90 days → 12.37% annualized. Min 35% to Convex 3pool ($1.75M) earns 10.5% boosted yield. Net yield blends to 8.94% after $150 gas and vlCVX opportunity cost."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

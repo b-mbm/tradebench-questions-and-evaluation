@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:16:31.819Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-047-1781072176652",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-047"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-047",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"expected_value\": 242981.48,\n  \"reasoning\": \"Collateral value = 70000*62 = $4,340,000. Post-shock collateral = $4,340,000*(1-0.20) = $3,472,000. Post-shock max borrow = $3,472,000*0.55 = $1,909,600. Target HF requires debt <= $1,909,600/1.35 = $1,414,518.52. Debt after fees = $1,650,000+$7,500 = $1,657,500. Min repay = max(0, 1,657,500 - 1,414,518.52) = $242,981.48. Pre-repay HF = (4,340,000*0.55)/1,650,000 = 1.4497. Borrow-more rejected per constraint.\"\n}",
+      "durationMs": 14824,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "expected_value": 242981.48,
+          "reasoning": "Collateral value = 70000*62 = $4,340,000. Post-shock collateral = $4,340,000*(1-0.20) = $3,472,000. Post-shock max borrow = $3,472,000*0.55 = $1,909,600. Target HF requires debt <= $1,909,600/1.35 = $1,414,518.52. Debt after fees = $1,650,000+$7,500 = $1,657,500. Min repay = max(0, 1,657,500 - 1,414,518.52) = $242,981.48. Pre-repay HF = (4,340,000*0.55)/1,650,000 = 1.4497. Borrow-more rejected per constraint."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "runAt": "2026-06-10T05:58:47.321Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-001-L9-010-1781070875380",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-001",
+    "L9-002",
+    "L9-003",
+    "L9-004",
+    "L9-005",
+    "L9-006",
+    "L9-007",
+    "L9-008",
+    "L9-009",
+    "L9-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-001",
+      "raw": "{\n  \"intent\": \"delta-neutral funding-rate arbitrage: short HYPE-PERP on Hyperliquid, long spot HYPE on Base\",\n  \"expected_value\": 18.615,\n  \"reasoning\": \"Short-perp leg earns |F| = 0.017% per 8h. APR on unlevered notional = abs(0.00017) × 3 × 365 × 100 = 18.615%. Leverage not applied per instructions; basis PnL, bridge, slippage-cap, liquidation-buffer excluded; gas de minimis.\"\n}",
+      "durationMs": 50514,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "delta-neutral funding-rate arbitrage: short HYPE-PERP on Hyperliquid, long spot HYPE on Base",
+          "expected_value": 18.615,
+          "reasoning": "Short-perp leg earns |F| = 0.017% per 8h. APR on unlevered notional = abs(0.00017) × 3 × 365 × 100 = 18.615%. Leverage not applied per instructions; basis PnL, bridge, slippage-cap, liquidation-buffer excluded; gas de minimis."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-002",
+      "raw": "{\n  \"intent\": \"provide_liquidity\",\n  \"expected_value\": 2832,\n  \"reasoning\": \"Daily fee income = Daily Volume × Volume Capture Rate × Fee Tier × Active Liquidity Share = $2,000,000 × 0.80 × 0.003 × 0.59 = $2,832. The 80% captured volume ($1.6M) flows through our concentrated position generating $4,800 in total fees at the 0.3% tier, of which we claim 59% as our active-liquidity share, yielding $2,832 daily.\"\n}",
+      "durationMs": 26770,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "provide_liquidity",
+          "expected_value": 2832,
+          "reasoning": "Daily fee income = Daily Volume × Volume Capture Rate × Fee Tier × Active Liquidity Share = $2,000,000 × 0.80 × 0.003 × 0.59 = $2,832. The 80% captured volume ($1.6M) flows through our concentrated position generating $4,800 in total fees at the 0.3% tier, of which we claim 59% as our active-liquidity share, yielding $2,832 daily."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-003",
+      "raw": "{\n  \"intent\": \"compute net SOL saved by Across vs traditional cross-chain route\",\n  \"expected_value\": 113.51,\n  \"reasoning\": \"Traditional route cost = 1.2% × $2M = $24,000. Across solver cost = 0.15% × $2M = $3,000. USD cost delta = $24,000 - $3,000 = $21,000. Convert to SOL at $185.00/SOL = $21,000 / $185 = 113.51 SOL saved.\"\n}",
+      "durationMs": 27523,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "compute net SOL saved by Across vs traditional cross-chain route",
+          "expected_value": 113.51,
+          "reasoning": "Traditional route cost = 1.2% × $2M = $24,000. Across solver cost = 0.15% × $2M = $3,000. USD cost delta = $24,000 - $3,000 = $21,000. Convert to SOL at $185.00/SOL = $21,000 / $185 = 113.51 SOL saved."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-004",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"expected_value\": 9.78,\n  \"reasoning\": \"Safe leverage L is found by requiring post-shock LTV ≤ 95%. Post-shock LTV = (L-1)/(0.945×L). Setting equal to 0.95: (L-1) = 0.89775L → 0.10225L = 1 → L = 1/0.10225 ≈ 9.78. At this leverage, a simultaneous 5% depeg and 0.5% slashing event (5.5% total collateral reduction) brings LTV exactly to the 95% E-mode limit without breaching it.\"\n}",
+      "durationMs": 43245,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "expected_value": 9.78,
+          "reasoning": "Safe leverage L is found by requiring post-shock LTV ≤ 95%. Post-shock LTV = (L-1)/(0.945×L). Setting equal to 0.95: (L-1) = 0.89775L → 0.10225L = 1 → L = 1/0.10225 ≈ 9.78. At this leverage, a simultaneous 5% depeg and 0.5% slashing event (5.5% total collateral reduction) brings LTV exactly to the 95% E-mode limit without breaching it."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-005",
+      "raw": "",
+      "durationMs": 14029,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-006",
+      "raw": "",
+      "durationMs": 26910,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-007",
+      "raw": "{\n  \"intent\": \"compute_hook_fee_apr_boost\",\n  \"expected_value\": 0.438,\n  \"reasoning\": \"Arb-bot daily volume = $50M × 80% = $40M. Daily hook fee revenue = $40M × 0.03% = $12,000. Annual hook fee revenue = $12,000 × 365 = $4,380,000. Incremental APR boost = $4,380,000 / $10,000,000 = 0.438 (43.8%). Verified as hook_fee_revenue / active_LP_liquidity.\"\n}",
+      "durationMs": 13236,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "compute_hook_fee_apr_boost",
+          "expected_value": 0.438,
+          "reasoning": "Arb-bot daily volume = $50M × 80% = $40M. Daily hook fee revenue = $40M × 0.03% = $12,000. Annual hook fee revenue = $12,000 × 365 = $4,380,000. Incremental APR boost = $4,380,000 / $10,000,000 = 0.438 (43.8%). Verified as hook_fee_revenue / active_LP_liquidity."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-008",
+      "raw": "{\n  \"intent\": \"YT overpricing arbitrage\",\n  \"expected_value\": 5963.01,\n  \"reasoning\": \"fair_YT = 3.2% × 180/365 = 0.01578. Market YT = 0.031 > fair_YT, so YT is overpriced. Gross spread = (0.031 - 0.01578) × 500000 = 7609.59. YT sale proceeds = 0.031 × 500000 = 15500. Borrow cost = 15% × 15500 × 180/365 = 1146.58. Fee = 0.1% × 500000 = 500. Net profit = 7609.59 - 1146.58 - 500 = 5963.01.\"\n}",
+      "durationMs": 12607,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "YT overpricing arbitrage",
+          "expected_value": 5963.01,
+          "reasoning": "fair_YT = 3.2% × 180/365 = 0.01578. Market YT = 0.031 > fair_YT, so YT is overpriced. Gross spread = (0.031 - 0.01578) × 500000 = 7609.59. YT sale proceeds = 0.031 × 500000 = 15500. Borrow cost = 15% × 15500 × 180/365 = 1146.58. Fee = 0.1% × 500000 = 500. Net profit = 7609.59 - 1146.58 - 500 = 5963.01."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-009",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"A1\", \"A2\", \"A5\"],\n  \"reasoning\": \"Computed net scores: A1=8-2×0.5=7%, A2=12-3×1=9%, A3=6-0.5×0.2=5.9% (fails ≥6% threshold), A4=15-5×2=5% (fails multiplier≤3, delay≤7, net≥6%), A5=10-2.5×0.8=8%. Only A1, A2, A5 pass all eligibility constraints (net≥6%, multiplier≤3, delay≤7d, oracle≤30min). Exactly 3 eligible AVSs exist, so select all: A1, A2, A5 ranked by net score A2(9%)>A5(8%)>A1(7%).\"\n}",
+      "durationMs": 16871,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A1",
+            "A2",
+            "A5"
+          ],
+          "reasoning": "Computed net scores: A1=8-2×0.5=7%, A2=12-3×1=9%, A3=6-0.5×0.2=5.9% (fails ≥6% threshold), A4=15-5×2=5% (fails multiplier≤3, delay≤7, net≥6%), A5=10-2.5×0.8=8%. Only A1, A2, A5 pass all eligibility constraints (net≥6%, multiplier≤3, delay≤7d, oracle≤30min). Exactly 3 eligible AVSs exist, so select all: A1, A2, A5 ranked by net score A2(9%)>A5(8%)>A1(7%)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-010",
+      "raw": "{\n  \"intent\": \"calculate_ev\",\n  \"expected_value\": 502500,\n  \"reasoning\": \"Success scenario (70%): liquidation profit $850k minus total costs $85k = $765k net. Frontrun scenario (30%): total loss $110k. EV = 0.70 × $765,000 + 0.30 × (-$110,000) = $535,500 - $33,000 = $502,500.\"\n}",
+      "durationMs": 15308,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_ev",
+          "expected_value": 502500,
+          "reasoning": "Success scenario (70%): liquidation profit $850k minus total costs $85k = $765k net. Frontrun scenario (30%): total loss $110k. EV = 0.70 × $765,000 + 0.30 × (-$110,000) = $535,500 - $33,000 = $502,500."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

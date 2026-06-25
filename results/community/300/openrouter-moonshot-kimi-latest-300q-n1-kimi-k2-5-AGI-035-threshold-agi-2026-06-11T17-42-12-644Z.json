@@ -1,0 +1,59 @@
+{
+  "runAt": "2026-06-11T17:42:12.643Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-035-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-035"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-035",
+      "raw": " {\n  \"intent\": \"time_critical_bridge_transfer\",\n  \"chosen_strategy\": \"split_private_relayer_minimize_exposure\",\n  \"route_allocation_usd\": {\n    \"Alpha\": 250000,\n    \"Sigma\": 200000\n  },\n  \"observable_largest_clip_usd\": 200000,\n  \"expected_loss_usd\": 2335,\n  \"expected_arrival_minutes\": 60,\n  \"self_check\": {\n    \"deadline_constraint\": \"60 minute settlement < 80 minute auction deadline satisfied\",\n    \"focal_target_risk\": \"Alpha private-attestation hides $250k; Sigma exposes max $200k, avoiding largest-clip targeting\",\n    \"liquidity_repair\": \"Joint settlement probability 99.0% ensures full $450k spendable before auction\",\n    \"cost_reconciliation\": \"Tolls $185 plus expected capital risk $2150 (0.3%×250k + 0.7%×200k) totals $2335 deadweight loss\"\n  },\n  \"reasoning\": \"Allocated full capacity across both routes to move $450k: Alpha for $250k using private attestation (60min, 99.7% reliability) to hide from exploit searchers, and Sigma for $200k via relayer (45min, 99.3% reliability). Latest settlement determines 60-minute arrival. Keeping the larger portion private limits observable clip to $200k. Expected loss sums $185 in tolls with $2150 in probability-weighted settlement failure risk.\"\n}",
+      "durationMs": 118032,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.625,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_allocation_usd.Alpha": 1,
+          "route_allocation_usd.Sigma": 1,
+          "observable_largest_clip_usd": 1,
+          "expected_loss_usd": 1,
+          "expected_arrival_minutes": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "time_critical_bridge_transfer",
+          "chosen_strategy": "split_private_relayer_minimize_exposure",
+          "route_allocation_usd": {
+            "Alpha": 250000,
+            "Sigma": 200000
+          },
+          "observable_largest_clip_usd": 200000,
+          "expected_loss_usd": 2335,
+          "expected_arrival_minutes": 60,
+          "self_check": {
+            "deadline_constraint": "60 minute settlement < 80 minute auction deadline satisfied",
+            "focal_target_risk": "Alpha private-attestation hides $250k; Sigma exposes max $200k, avoiding largest-clip targeting",
+            "liquidity_repair": "Joint settlement probability 99.0% ensures full $450k spendable before auction",
+            "cost_reconciliation": "Tolls $185 plus expected capital risk $2150 (0.3%×250k + 0.7%×200k) totals $2335 deadweight loss"
+          },
+          "reasoning": "Allocated full capacity across both routes to move $450k: Alpha for $250k using private attestation (60min, 99.7% reliability) to hide from exploit searchers, and Sigma for $200k via relayer (45min, 99.3% reliability). Latest settlement determines 60-minute arrival. Keeping the larger portion private limits observable clip to $200k. Expected loss sums $185 in tolls with $2150 in probability-weighted settlement failure risk."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

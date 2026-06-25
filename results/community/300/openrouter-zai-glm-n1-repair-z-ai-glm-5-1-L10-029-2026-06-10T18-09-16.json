@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T18:09:37.111Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-L10-029-2026-06-10T18-09-16",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-029"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-029",
+      "raw": "{\n  \"intent\": \"convert_to_fxtl\",\n  \"expected_value\": 1260000,\n  \"reasoning\": \"Option 1: 24% APR compounded weekly for 10 weeks yields 6M*((1+0.24/52)^10-1)=$283,020 in bribes, minus expected price loss of 0.7*0.20*6M=$840,000, net=-$556,980. Option 2: 17% APR yields 6M*((1+0.17/52)^10-1)=$199,200 in rewards, minus same $840,000 expected loss, net=-$640,800. Option 3: Forfeit all bribes but gain probability-weighted FXTL move: 0.7*0.30*6M=$1,260,000 expected gain, no downside if vote fails. Option 3 maximizes expected profit at $1,260,000.\"\n}",
+      "durationMs": 19992,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 0.3
+        },
+        "normalizedResponse": {
+          "intent": "convert_to_fxtl",
+          "expected_value": 1260000,
+          "reasoning": "Option 1: 24% APR compounded weekly for 10 weeks yields 6M*((1+0.24/52)^10-1)=$283,020 in bribes, minus expected price loss of 0.7*0.20*6M=$840,000, net=-$556,980. Option 2: 17% APR yields 6M*((1+0.17/52)^10-1)=$199,200 in rewards, minus same $840,000 expected loss, net=-$640,800. Option 3: Forfeit all bribes but gain probability-weighted FXTL move: 0.7*0.30*6M=$1,260,000 expected gain, no downside if vote fails. Option 3 maximizes expected profit at $1,260,000."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

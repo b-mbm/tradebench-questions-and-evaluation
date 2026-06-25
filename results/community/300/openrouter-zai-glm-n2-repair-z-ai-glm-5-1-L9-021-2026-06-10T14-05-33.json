@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T14:06:05.817Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L9-021-2026-06-10T14-05-33",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-021"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-021",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 168.15,\n  \"reasoning\": \"Basis capture 0.48%×1.65M=$7,920; funding 0.062%×6 periods×1.65M=$6,138; percent costs 0.21%×1.65M=$3,465; fixed $650; borrow drag 11% APR on $900K for 2 days=$542.47; buffer $2,500. Net=$6,900.53. APR=($6,900.53/$750K)×(365/2)=168.15%. Slippage 0.21%<=0.35%, bridge<=16h assumed met, APR>25% so execute.\"\n}",
+      "durationMs": 32009,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 168.15,
+          "reasoning": "Basis capture 0.48%×1.65M=$7,920; funding 0.062%×6 periods×1.65M=$6,138; percent costs 0.21%×1.65M=$3,465; fixed $650; borrow drag 11% APR on $900K for 2 days=$542.47; buffer $2,500. Net=$6,900.53. APR=($6,900.53/$750K)×(365/2)=168.15%. Slippage 0.21%<=0.35%, bridge<=16h assumed met, APR>25% so execute."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-06-10T07:37:17.470Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-043-2026-06-10T07-36-55",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-043"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-043",
+      "raw": "{\n  \"intent\": \"crisis_unwind\",\n  \"chosen_strategy\": \"deadline-prioritized sequential neutralization\",\n  \"actions\": [\n    {\"slot\": \"T+4m\", \"action\": \"Unwind Aave USDT lending loop\", \"principal\": 380000, \"cost_pct\": 0.35, \"deadline\": \"T+24m\"},\n    {\"slot\": \"T+14m\", \"action\": \"Exit Curve USDT pool\", \"principal\": 460000, \"cost_pct\": 0.25, \"deadline\": \"T+31m\"},\n    {\"slot\": \"T+24m\", \"action\": \"Reduce SOL perps 50%\", \"notional\": 250000, \"cost_pct\": 0.18, \"deadline\": \"T+40m\"}\n  ],\n  \"priority_order\": [\"Aave USDT loop\", \"Curve USDT pool\", \"SOL perps half-reduce\"],\n  \"direct_stablecoin_neutralized_usd\": 840000,\n  \"latest_direct_neutralization_min\": 14,\n  \"margin_notional_reduced_usd\": 250000,\n  \"expected_execution_cost_usd\": 2930,\n  \"self_check\": \"Aave T+4m < T+24m deadline OK; Curve T+14m < T+31m deadline OK; SOL T+24m < T+40m deadline OK; stablecoin neutralized $380k+$460k=$840k; margin reduced $500k*0.5=$250k; costs $1330+$1150+$450=$2930; BTC $220k held as unencumbered reserve; all ops slots non-overlapping at 10min intervals\",\n  \"reasoning\": \"Prioritize by deadline urgency: Aave (T+24m deadline) first at T+4m slot,",
+      "durationMs": 21145,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4407407407407407,
+        "score": 0.4444444444444444,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "actions": 0,
+          "priority_order": 0,
+          "direct_stablecoin_neutralized_usd": 1,
+          "latest_direct_neutralization_min": 1,
+          "margin_notional_reduced_usd": 1,
+          "expected_execution_cost_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "crisis_unwind",
+          "chosen_strategy": "deadline-prioritized sequential neutralization",
+          "slot": "T+4m",
+          "action": "Unwind Aave USDT lending loop",
+          "principal": 380000,
+          "cost_pct": 0.35,
+          "deadline": "T+24m",
+          "notional": 250000,
+          "direct_stablecoin_neutralized_usd": 840000,
+          "latest_direct_neutralization_min": 14,
+          "margin_notional_reduced_usd": 250000,
+          "expected_execution_cost_usd": 2930,
+          "self_check": "Aave T+4m < T+24m deadline OK; Curve T+14m < T+31m deadline OK; SOL T+24m < T+40m deadline OK; stablecoin neutralized $380k+$460k=$840k; margin reduced $500k*0.5=$250k; costs $1330+$1150+$450=$2930; BTC $220k held as unencumbered reserve; all ops slots non-overlapping at 10min intervals",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

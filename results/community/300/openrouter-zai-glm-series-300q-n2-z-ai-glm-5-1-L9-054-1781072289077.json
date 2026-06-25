@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:18:36.461Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-054-1781072289077",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-054"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-054",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 650,\n  \"reasoning\": \"Notional=$4.5M. Route A cost=0.38%×4.5M+2800+0.03%×4.5M=17100+2800+1350=$21,250. Route B cost=0.29%×4.5M+4300+0.04%×4.5M=13050+4300+1800=$19,150. Route C cost=0.22%×4.5M+9000+0.02%×4.5M=9900+9000+900=$19,800. All routes feasible (settlement≤20min, oracle≤60s, capacity≥notional). Best=Route B at $19,150; second-best=Route C at $19,800. USD saved=$650. Extra stETH=650/3200≈0.203 stETH.\"\n}",
+      "durationMs": 26986,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 650,
+          "reasoning": "Notional=$4.5M. Route A cost=0.38%×4.5M+2800+0.03%×4.5M=17100+2800+1350=$21,250. Route B cost=0.29%×4.5M+4300+0.04%×4.5M=13050+4300+1800=$19,150. Route C cost=0.22%×4.5M+9000+0.02%×4.5M=9900+9000+900=$19,800. All routes feasible (settlement≤20min, oracle≤60s, capacity≥notional). Best=Route B at $19,150; second-best=Route C at $19,800. USD saved=$650. Extra stETH=650/3200≈0.203 stETH."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

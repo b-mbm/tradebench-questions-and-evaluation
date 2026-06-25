@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-11T18:16:17.174Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-056-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-056"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-056",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"chosen_strategy\": \"BTC_short_plus_ETH_put_spread\",\n  \"hedge_legs\": {\n    \"BTC_short\": {\n      \"notional_usd\": 420000\n    },\n    \"ETH_put_spread\": {\n      \"notional_usd\": 650000\n    }\n  },\n  \"expected_vol_reduction_pct\": 50,\n  \"residual_1d_var_usd\": 540800,\n  \"reasoning\": \"With crisis correlations approaching 1, the portfolio behaves as a single risk factor. The BTC short uses the maximum 420k notional allowed before the crowding tripwire, while the ETH put-spread deploys the full 650k convexity budget. Combined 1.07M notional hedge against a ~2.14M implied portfolio exposure achieves 50% vol reduction via linear scaling under unit correlation. Residual variance calculated as (0.5)^2 of original 1d variance ~2.16M USD-squared, yielding ~540k USD-squared residual.\"\n}",
+      "durationMs": 65715,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "hedge_legs.BTC_short.notional_usd": 1,
+          "hedge_legs.ETH_put_spread.notional_usd": 1,
+          "expected_vol_reduction_pct": 1,
+          "residual_1d_var_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "BTC_short_plus_ETH_put_spread",
+          "hedge_legs": {
+            "BTC_short": {
+              "notional_usd": 420000
+            },
+            "ETH_put_spread": {
+              "notional_usd": 650000
+            }
+          },
+          "expected_vol_reduction_pct": 50,
+          "residual_1d_var_usd": 540800,
+          "reasoning": "With crisis correlations approaching 1, the portfolio behaves as a single risk factor. The BTC short uses the maximum 420k notional allowed before the crowding tripwire, while the ETH put-spread deploys the full 650k convexity budget. Combined 1.07M notional hedge against a ~2.14M implied portfolio exposure achieves 50% vol reduction via linear scaling under unit correlation. Residual variance calculated as (0.5)^2 of original 1d variance ~2.16M USD-squared, yielding ~540k USD-squared residual."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:residual_1d_var_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

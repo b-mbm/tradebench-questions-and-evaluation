@@ -1,0 +1,86 @@
+{
+  "runAt": "2026-06-11T17:27:53.849Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-026-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-026"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-026",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"time-priority_private_sweep_with_hidden_iceberg\",\n  \"execution_sequence\": [\n    {\n      \"venue\": \"Internalizer\",\n      \"qty\": 42000,\n      \"price\": 4.925,\n      \"deadline\": \"T+20s\"\n    },\n    {\n      \"venue\": \"Dark_RFQ\",\n      \"qty\": 35000,\n      \"price\": 4.931,\n      \"deadline\": \"T+45s\"\n    },\n    {\n      \"venue\": \"CEX_Y\",\n      \"qty\": 30000,\n      \"price\": 4.936,\n      \"deadline\": \"T+70s\"\n    },\n    {\n      \"venue\": \"hidden_public\",\n      \"qty\": 13000,\n      \"price\": 4.918,\n      \"type\": \"iceberg\"\n    }\n  ],\n  \"venue_fills\": {\n    \"Internalizer\": 42000,\n    \"Dark_RFQ\": 35000,\n    \"CEX_Y\": 30000,\n    \"hidden_public\": 13000\n  },\n  \"hidden_public_qty\": 13000,\n  \"expected_avg_price\": 4.928742,\n  \"expected_slippage_pct\": 0.3817,\n  \"self_check\": \"Verified copy-bot safety: Private fills (Internalizer, Dark_RFQ, CEX_Y) produce no public footprint. Hidden iceberg fill is exactly 13,000 KAP, remaining within the 13,000 KAP invisible limit and below the 25,000 KAP bot trigger threshold. No visible aggressive parent order exceeds 25,000 KAP. Total filled: 120,000 KAP.\",\n  \"reasoning\": \"Routed 107,000 KAP through private venues (invisible, deadline-ordered) and residual 13,000 KAP through hidden iceberg (best price $4.918, stays hidden). VWAP calculation: (42000×4.925 + 35000×4.931 + 30000×4.936 + 13000×4.918)/120000 = $4.928742. Slippage vs $4.91 mid is 0.3817%.\"\n}",
+      "durationMs": 136452,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6363636363636364,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "venue_fills.Internalizer": 1,
+          "venue_fills.Dark_RFQ": 1,
+          "venue_fills.CEX_Y": 1,
+          "venue_fills.hidden_public": 1,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "time-priority_private_sweep_with_hidden_iceberg",
+          "execution_sequence": [
+            {
+              "venue": "Internalizer",
+              "qty": 42000,
+              "price": 4.925,
+              "deadline": "T+20s"
+            },
+            {
+              "venue": "Dark_RFQ",
+              "qty": 35000,
+              "price": 4.931,
+              "deadline": "T+45s"
+            },
+            {
+              "venue": "CEX_Y",
+              "qty": 30000,
+              "price": 4.936,
+              "deadline": "T+70s"
+            },
+            {
+              "venue": "hidden_public",
+              "qty": 13000,
+              "price": 4.918,
+              "type": "iceberg"
+            }
+          ],
+          "venue_fills": {
+            "Internalizer": 42000,
+            "Dark_RFQ": 35000,
+            "CEX_Y": 30000,
+            "hidden_public": 13000
+          },
+          "hidden_public_qty": 13000,
+          "expected_avg_price": 4.928742,
+          "expected_slippage_pct": 0.3817,
+          "self_check": "Verified copy-bot safety: Private fills (Internalizer, Dark_RFQ, CEX_Y) produce no public footprint. Hidden iceberg fill is exactly 13,000 KAP, remaining within the 13,000 KAP invisible limit and below the 25,000 KAP bot trigger threshold. No visible aggressive parent order exceeds 25,000 KAP. Total filled: 120,000 KAP.",
+          "reasoning": "Routed 107,000 KAP through private venues (invisible, deadline-ordered) and residual 13,000 KAP through hidden iceberg (best price $4.918, stays hidden). VWAP calculation: (42000×4.925 + 35000×4.931 + 30000×4.936 + 13000×4.918)/120000 = $4.928742. Slippage vs $4.91 mid is 0.3817%."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:execution_sequence",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

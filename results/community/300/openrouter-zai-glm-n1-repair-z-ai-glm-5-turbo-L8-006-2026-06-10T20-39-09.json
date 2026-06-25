@@ -1,0 +1,59 @@
+{
+  "runAt": "2026-06-10T20:39:35.608Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-L8-006-2026-06-10T20-39-09",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L8-006"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"strategy\": \"fixed_yield\",\n  \"asset\": \"PT-USDe\",\n  \"allocation\": 100000,\n  \"venue\": \"pendle\",\n  \"maturity\": \"90d\",\n  \"expected_apy\": 12.3,\n  \"selected_strategy\": \"C\",\n  \"reasoning\": \"Strategy C maximizes APY at 12.3% without utilizing leverage, perfectly aligning with the 90-day fixed horizon and entirely avoiding the depeg liquidation risks associated with leveraged strategies.\",\n  \"risk_assessment\": \"low\",\n  \"meets_constraints\": true,\n  \"alternatives_rejected\": {\n    \"B\": \"Rejected because 3x leverage triggers liquidation at a >2% USDe depeg, violating the medium risk constraint to avoid >3% depeg exposure.\",\n    \"D\": \"Rejected as its 11.25% weighted APY is inferior to Strategy C's 12.3%, while still introducing unnecessary leverage complexity and depeg exposure.\",\n    \"A\": \"Rejected because 8.5% APY is significantly suboptimal compared to the higher fixed yield available via Pendle.\"\n  }\n}",
+      "durationMs": 25413,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Strategy C maximizes APY at 12.3% without utilizing leverage, perfectly aligning with the 90-day fixed horizon and entirely avoiding the depeg liquidation risks associated with leveraged strategies.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "Rejected because 3x leverage triggers liquidation at a >2% USDe depeg, violating the medium risk constraint to avoid >3% depeg exposure.",
+            "D": "Rejected as its 11.25% weighted APY is inferior to Strategy C's 12.3%, while still introducing unnecessary leverage complexity and depeg exposure.",
+            "A": "Rejected because 8.5% APY is significantly suboptimal compared to the higher fixed yield available via Pendle."
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

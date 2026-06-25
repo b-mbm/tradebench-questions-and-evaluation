@@ -1,0 +1,444 @@
+{
+  "runAt": "2026-06-09T12:33:17.840Z",
+  "label": "openrouter-moonshot-kimi-family-300q-l1-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2-thinking",
+    "moonshotai/kimi-k2.6",
+    "moonshotai/kimi-k2.5",
+    "moonshotai/kimi-k2-0905"
+  ],
+  "questionIds": [
+    "L1-001",
+    "L1-002",
+    "L1-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L1-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"BTC\",\"size\":\"0.5\",\"unit\":\"btc\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"market order for immediate execution\"}",
+      "durationMs": 19451,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L1-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"SOL\",\"size\":\"10\",\"unit\":\"sol\",\"price\":\"95\",\"venue\":\"coinbase\",\"venue_name\":\"Coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"Limit buy order for SOL at specified price point below current market\",\"requires_follow_up\":false}",
+      "durationMs": 8187,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "unit": "sol",
+          "price": "95",
+          "venue": "coinbase",
+          "venue_name": "Coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "Limit buy order for SOL at specified price point below current market",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L1-003",
+      "raw": "{\"intent\": \"set_stop_loss\", \"order_type\": \"stop_loss\", \"asset\": \"ETH\", \"size\": \"2\", \"unit\": \"eth\", \"price\": \"2800\", \"venue\": \"coinbase\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\"}, \"follow_up\": \"confirm order active\", \"reasoning\": \"Setting stop loss on 2 ETH at $2,800 to protect position from downside\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify stop loss order is placed and will trigger at $2,800\"}",
+      "durationMs": 8897,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9631944444444446,
+        "score": 0.9125000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": "2800",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm order active",
+          "reasoning": "Setting stop loss on 2 ETH at $2,800 to protect position from downside",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify stop loss order is placed and will trigger at $2,800"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L1-001",
+      "raw": " {\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"BTC\",\"size\":\"0.5\",\"unit\":\"btc\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"market order for immediate execution\"}",
+      "durationMs": 32865,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L1-002",
+      "raw": " {\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"SOL\",\"size\":10,\"unit\":\"sol\",\"price\":95,\"venue\":\"coinbase\",\"risk_controls\":{},\"follow_up\":\"monitor fill status\",\"reasoning\":\"Buy SOL via limit order at discount to current $100 spot\",\"requires_follow_up\":true,\"follow_up_description\":\"Limit price is below market; execution is not guaranteed immediately\"}",
+      "durationMs": 37070,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9084375000000001,
+        "score": 0.8550000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "sol",
+          "price": 95,
+          "venue": "coinbase",
+          "risk_controls": {},
+          "follow_up": "monitor fill status",
+          "reasoning": "Buy SOL via limit order at discount to current $100 spot",
+          "requires_follow_up": true,
+          "follow_up_description": "Limit price is below market; execution is not guaranteed immediately"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L1-003",
+      "raw": "",
+      "durationMs": 80525,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L1-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"BTC\",\"size\":\"0.5\",\"unit\":\"btc\",\"venue\":\"exchange\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"market order for immediate execution\"}",
+      "durationMs": 16237,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.15,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "exchange",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L1-002",
+      "raw": " {\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"SOL\",\"size\":10,\"unit\":\"SOL\",\"price\":95,\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"monitor for fill\",\"reasoning\":\"Limit order placed below current market price ($100) to acquire SOL at target entry of $95\",\"requires_follow_up\":true}",
+      "durationMs": 27027,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "SOL",
+          "price": 95,
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor for fill",
+          "reasoning": "Limit order placed below current market price ($100) to acquire SOL at target entry of $95",
+          "requires_follow_up": true
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L1-003",
+      "raw": "",
+      "durationMs": 180007,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L1-001",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"BTC\",\"size\":0.5,\"unit\":\"btc\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"market order for immediate execution\"}",
+      "durationMs": 3831,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": 0.5,
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L1-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"limit\",\"asset\":\"SOL\",\"size\":10,\"unit\":\"sol\",\"price\":95,\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"limit order at $95, below current spot of $100\"}",
+      "durationMs": 4334,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "sol",
+          "price": 95,
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "limit order at $95, below current spot of $100"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L1-003",
+      "raw": " {\"intent\":\"stop_loss\",\"order_type\":\"stop\",\"asset\":\"ETH\",\"size\":2,\"unit\":\"eth\",\"price\":2800,\"venue\":\"unspecified\",\"risk_controls\":{\"stop_loss\":2800},\"requires_follow_up\":true,\"follow_up_description\":\"Specify exchange or venue where ETH position is held to execute stop loss order\",\"reasoning\":\"Setting stop loss 6.67% below current ETH price of $3000 to limit downside risk on 2 ETH position\"} ",
+      "durationMs": 47324,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8910511363636364,
+        "score": 0.8386363636363637,
+        "fieldScores": {
+          "intent": 0.14545454545454548,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.018181818181818177,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "stop_loss",
+          "order_type": "stop",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "price": 2800,
+          "venue": "unspecified",
+          "risk_controls": {
+            "stop_loss": 2800
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Specify exchange or venue where ETH position is held to execute stop loss order",
+          "reasoning": "Setting stop loss 6.67% below current ETH price of $3000 to limit downside risk on 2 ETH position"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-10T07:43:13.202Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-052-2026-06-10T07-42-43",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-052"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-052",
+      "raw": "{\n\"intent\": \"exit\",\n\"decision\": \"exit\",\n\"chosen_strategy\": \"private_first_then_public\",\n\"exit_sequence\": [\"rfq_block\", \"cex_twap\"],\n\"private_sale_usd\": 297300,\n\"expected_exit_value_usd\": 493700,\n\"expected_stay_value_usd\": 227500,\n\"self_check\": \"Private-first sequence preserves both liquidity sources; public-first would cancel rfq_block bid losing $297,300 of recoverable capital. Exit value $493,700 >> stay value $227,500, confirming exit decision. Sequence constraint satisfied: private clip fills before any visible flow reveals remaining slice.\",\n\"reasoning\": \"rfq_block first absorbs $300,000 at 99.1% = $297,300 (private, no visible flow). Then cex_twap absorbs remaining $200,000 at 98.2% = $196,400. Total exit = $493,700. Expected stay = 0.35 × $650,000 = $227,500. Exit dominates by $266,200. Reversing sequence would cancel the private bid, stranding $300,000 at full exploit risk.\"\n}",
+      "durationMs": 29001,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.625,
+        "fieldScores": {
+          "intent": 0,
+          "decision": 1,
+          "chosen_strategy": 0,
+          "exit_sequence": 1,
+          "private_sale_usd": 1,
+          "expected_exit_value_usd": 1,
+          "expected_stay_value_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit",
+          "decision": "exit",
+          "chosen_strategy": "private_first_then_public",
+          "exit_sequence": [
+            "rfq_block",
+            "cex_twap"
+          ],
+          "private_sale_usd": 297300,
+          "expected_exit_value_usd": 493700,
+          "expected_stay_value_usd": 227500,
+          "self_check": "Private-first sequence preserves both liquidity sources; public-first would cancel rfq_block bid losing $297,300 of recoverable capital. Exit value $493,700 >> stay value $227,500, confirming exit decision. Sequence constraint satisfied: private clip fills before any visible flow reveals remaining slice.",
+          "reasoning": "rfq_block first absorbs $300,000 at 99.1% = $297,300 (private, no visible flow). Then cex_twap absorbs remaining $200,000 at 98.2% = $196,400. Total exit = $493,700. Expected stay = 0.35 × $650,000 = $227,500. Exit dominates by $266,200. Reversing sequence would cancel the private bid, stranding $300,000 at full exploit risk."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

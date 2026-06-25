@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-11T23:50:32.084Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-004-2026-06-11T23-50-03",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-004",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"expected_value\": -12000,\n  \"reasoning\": \"Option 2 (hedge on CEX) is optimal: $12,000 slippage cost neutralizes the $180,000 oracle-skewed inventory exposure. Option 1 costs $8,000 but still exposes to $180,000 loss. Option 4 accepts full $180,000 loss. Hedge minimizes total cost at $12,000.\"\n}",
+      "durationMs": 28267,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "expected_value": -12000,
+          "reasoning": "Option 2 (hedge on CEX) is optimal: $12,000 slippage cost neutralizes the $180,000 oracle-skewed inventory exposure. Option 1 costs $8,000 but still exposes to $180,000 loss. Option 4 accepts full $180,000 loss. Hedge minimizes total cost at $12,000."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

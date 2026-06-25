@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T23:55:58.053Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-012-2026-06-11T23-54-46",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-012"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-012",
+      "raw": "```json\n{\n  \"intent\": \"rebalance_and_expand\",\n  \"expected_value\": 54000,\n  \"reasoning\": \"Current revenue: $18M × 0.15% = $27K/month. Target: $36M × 0.15% = $54K/month (doubled). Strategy: (1) Circular rebalancing via splice operations to fix 13% inbound imbalance failures, raising success from 87% to 95%+ (~$1,500 on-chain cost). (2) Add 8 direct institutional channels (total 55, under 60 cap) allocating 15 BTC from reserves for high-volume flow (~$1,000 opens). (3) Higher success rate attracts retry traffic from routing nodes. Total on-chain spend ~$2,500, well under $5K budget. Result: 95% success, $36M monthly routed volume, $54K monthly revenue.\"\n}\n```",
+      "durationMs": 31441,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "rebalance_and_expand",
+          "expected_value": 54000,
+          "reasoning": "Current revenue: $18M × 0.15% = $27K/month. Target: $36M × 0.15% = $54K/month (doubled). Strategy: (1) Circular rebalancing via splice operations to fix 13% inbound imbalance failures, raising success from 87% to 95%+ (~$1,500 on-chain cost). (2) Add 8 direct institutional channels (total 55, under 60 cap) allocating 15 BTC from reserves for high-volume flow (~$1,000 opens). (3) Higher success rate attracts retry traffic from routing nodes. Total on-chain spend ~$2,500, well under $5K budget. Result: 95% success, $36M monthly routed volume, $54K monthly revenue."
+        },
+        "failureReasons": [],
+        "parsingMethod": "fenced_json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "runAt": "2026-06-11T22:49:16.864Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L3-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L3-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L3-002",
+      "raw": " {\"intent\":\"bridge\",\"order_type\":\"cross-chain transfer\",\"asset\":\"USDC\",\"size\":\"3333.33\",\"unit\":\"usd\",\"venue\":\"multi-chain\",\"venue_name\":\"ethereum, arbitrum, optimism\",\"risk_controls\":{\"slippage_tolerance\":\"0.1%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":\"3333.33\"},\"follow_up\":\"confirm balances on all three chains\",\"reasoning\":\"split 10,000 USDC equally across three chains (~3,333.33 each) to diversify chain exposure\",\"requires_follow_up\":true,\"follow_up_description\":\"verify USDC balances on Ethereum, Arbitrum, and Optimism after bridging\"}",
+      "durationMs": 1653,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4539178321678322,
+        "score": 0.42721678321678325,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.024000000000000004,
+          "asset": 0.14,
+          "size": 0,
+          "venue": 0.010909090909090912,
+          "venue_name": 0.01230769230769231,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "cross-chain transfer",
+          "asset": "USDC",
+          "size": "3333.33",
+          "unit": "usd",
+          "venue": "multi-chain",
+          "venue_name": "ethereum, arbitrum, optimism",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "3333.33"
+          },
+          "follow_up": "confirm balances on all three chains",
+          "reasoning": "split 10,000 USDC equally across three chains (~3,333.33 each) to diversify chain exposure",
+          "requires_follow_up": true,
+          "follow_up_description": "verify USDC balances on Ethereum, Arbitrum, and Optimism after bridging"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

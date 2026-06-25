@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:44:48.457Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-021-2026-06-10T11-44-15",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-021"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-021",
+      "raw": "{\n  \"intent\": \"defend\",\n  \"expected_value\": 5550000,\n  \"reasoning\": \"Oracle-sensitive exposure totals $60M ($30M Kamino + $18M Drift + $12M Orca LP). USDC reserves excluded as non-sensitive. Expected loss avoided = 9.25% deviation × $60M = $5,550,000. Defense: unwind leveraged positions or over-collateralize before oracle correction triggers liquidations in ~5 minutes.\"\n}",
+      "durationMs": 32861,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "defend",
+          "expected_value": 5550000,
+          "reasoning": "Oracle-sensitive exposure totals $60M ($30M Kamino + $18M Drift + $12M Orca LP). USDC reserves excluded as non-sensitive. Expected loss avoided = 9.25% deviation × $60M = $5,550,000. Defense: unwind leveraged positions or over-collateralize before oracle correction triggers liquidations in ~5 minutes."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

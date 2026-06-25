@@ -1,0 +1,58 @@
+{
+  "runAt": "2026-06-10T13:38:43.649Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-AGI-100-2026-06-10T13-38-39",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-100"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-100",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": 30000,\n  \"unit\": \"SOL\",\n  \"price\": \"146.86-147.25\",\n  \"venue\": \"exchange\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.3%\",\n    \"position_size_limit\": 30000\n  },\n  \"reasoning\": \"Hidden layered limits at recovered fair value ($146.86-146.91) avoid toxicity classifier detection. 12 child orders of 2,500 SOL each stay below detection threshold. Repricing every 45s aligns with exchange rules. Expected avg price $146.88 based on recovery levels. Self-check: 12×2,500=30,000 SOL, 45s cadence, price band $146.86-147.25, strategy hidden_layered_limits_at_recovered_fair - all consistent.\"\n}",
+      "durationMs": 3824,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "price_band": 0,
+          "child_order_units": 0,
+          "repricing_interval_sec": 0,
+          "expected_avg_price": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 30000,
+          "unit": "SOL",
+          "price": "146.86-147.25",
+          "venue": "exchange",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "position_size_limit": 30000
+          },
+          "reasoning": "Hidden layered limits at recovered fair value ($146.86-146.91) avoid toxicity classifier detection. 12 child orders of 2,500 SOL each stay below detection threshold. Repricing every 45s aligns with exchange rules. Expected avg price $146.88 based on recovery levels. Self-check: 12×2,500=30,000 SOL, 45s cadence, price band $146.86-147.25, strategy hidden_layered_limits_at_recovered_fair - all consistent."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

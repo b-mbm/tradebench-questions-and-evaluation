@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T10:50:25.369Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-020-2026-06-10T10-50-05",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-020"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-020",
+      "raw": "{\n  \"intent\": \"no_action\",\n  \"expected_value\": 0,\n  \"reasoning\": \"All three options failed hard constraints: Option A slippage 0.52% exceeds 0.40% max (also net EV -$2,100); Option B settlement 18 min exceeds 12 min max (also net EV -$5,900); Option C oracle age 72s exceeds 60s max (also net EV -$3,800). No option is both positive-EV and feasible.\"\n}",
+      "durationMs": 18939,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "All three options failed hard constraints: Option A slippage 0.52% exceeds 0.40% max (also net EV -$2,100); Option B settlement 18 min exceeds 12 min max (also net EV -$5,900); Option C oracle age 72s exceeds 60s max (also net EV -$3,800). No option is both positive-EV and feasible."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

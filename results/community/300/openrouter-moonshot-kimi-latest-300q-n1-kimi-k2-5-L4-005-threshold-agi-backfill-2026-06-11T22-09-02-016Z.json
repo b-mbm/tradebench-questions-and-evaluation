@@ -1,0 +1,49 @@
+{
+  "runAt": "2026-06-11T22:09:02.015Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L4-005-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L4-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L4-005",
+      "raw": "{\"intent\":\"calculate\",\"order_type\":\"analytics\",\"asset\":\"PORTFOLIO\",\"size\":0,\"venue\":\"analytics_engine\",\"risk_controls\":{},\"requires_follow_up\":true,\"follow_up_description\":\"Sharpe ratio calculation requires portfolio holdings, historical returns, and risk-free rate. Provide: 1) Portfolio weights or positions in each asset, 2) Historical price series or returns for volatility calculation, 3) Risk-free rate (e.g., 3-month Treasury yield)\",\"reasoning\":\"Current price data only provides spot prices; Sharpe ratio requires portfolio composition, historical return standard deviation, and risk-free benchmark to compute (return - risk_free) / volatility\"}",
+      "durationMs": 38275,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5152888888888889,
+        "score": 0.46844444444444444,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.12444444444444445,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.056,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analytics",
+          "asset": "PORTFOLIO",
+          "size": 0,
+          "venue": "analytics_engine",
+          "risk_controls": {},
+          "requires_follow_up": true,
+          "follow_up_description": "Sharpe ratio calculation requires portfolio holdings, historical returns, and risk-free rate. Provide: 1) Portfolio weights or positions in each asset, 2) Historical price series or returns for volatility calculation, 3) Risk-free rate (e.g., 3-month Treasury yield)",
+          "reasoning": "Current price data only provides spot prices; Sharpe ratio requires portfolio composition, historical return standard deviation, and risk-free benchmark to compute (return - risk_free) / volatility"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

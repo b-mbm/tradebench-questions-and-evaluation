@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:50:34.880Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-010-2026-06-10T23-50-08",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-010",
+      "raw": "{\n  \"intent\": \"batch_execute\",\n  \"expected_value\": 150,\n  \"reasoning\": \"Low scenario at 25 gwei with 100% fill probability is the only viable option since Medium (60% fill) and High scenarios cannot guarantee all 10 transactions execute. Total gas: 10 × 200,000 = 2,000,000 gas units. Cost: 2,000,000 × 25 gwei = 50,000,000 gwei = 0.05 ETH. At $3,000/ETH, expected USD cost = $150.\"\n}",
+      "durationMs": 10430,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "batch_execute",
+          "expected_value": 150,
+          "reasoning": "Low scenario at 25 gwei with 100% fill probability is the only viable option since Medium (60% fill) and High scenarios cannot guarantee all 10 transactions execute. Total gas: 10 × 200,000 = 2,000,000 gas units. Cost: 2,000,000 × 25 gwei = 50,000,000 gwei = 0.05 ETH. At $3,000/ETH, expected USD cost = $150."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

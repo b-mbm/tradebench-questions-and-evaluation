@@ -1,0 +1,83 @@
+{
+  "runAt": "2026-06-11T22:28:23.665Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L8-004-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L8-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L8-004",
+      "raw": " {\n  \"intent\": \"restake\",\n  \"order_type\": \"restake\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer AVS\",\n  \"reasoning\": \"Selected EigenLayer to maximize net portfolio yield while satisfying all hard constraints. Total staking APR of 7.0% (4.2% Lido base + 2.8% AVS) less effective borrow cost of 2.75% (50% leverage at 5.5%) yields 4.25% net APR, exceeding the 1.0% minimum target. The 7-day lock satisfies the 8-day collateral deadline, and 3% slashing risk is within the 4% tolerance. Symbiotic eliminated due to 14-day lock exceeding deadline and 5% slashing exceeding risk limit. Option A outperforms Option C baseline by 2.8 percentage points.\",\n  \"decision_factors\": {\n    \"constraint_satisfaction\": {\n      \"collateral_timing\": \"7-day lock period <= 8-day requirement\",\n      \"slashing_risk\": \"3% annual risk <= 4% maximum tolerance\",\n      \"net_yield\": \"4.25% portfolio APR >= 1.0% target\"\n    },\n    \"eliminated_options\": {\n      \"symbiotic\": \"Fails 8-day liquidity requirement (14-day lock) and exceeds 4% risk tolerance (5% slashing)\",\n      \"lido_only\": \"Suboptimal 1.45% net APR provides no yield arbitrage\"\n    },\n    \"economic_analysis\": {\n      \"arbitrage_spread\": \"1.5% positive spread on leveraged portion (7.0% yield vs 5.5% cost)\",\n      \"expected_value_adjustment\": \"2.8% premium vs 3% tail risk creates favorable risk-adjusted return\"\n    }\n  },\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 4.25,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3.0,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 1.45,\n  \"option_a_outperformance\": 2.8\n}",
+      "durationMs": 150360,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "restake",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS",
+          "reasoning": "Selected EigenLayer to maximize net portfolio yield while satisfying all hard constraints. Total staking APR of 7.0% (4.2% Lido base + 2.8% AVS) less effective borrow cost of 2.75% (50% leverage at 5.5%) yields 4.25% net APR, exceeding the 1.0% minimum target. The 7-day lock satisfies the 8-day collateral deadline, and 3% slashing risk is within the 4% tolerance. Symbiotic eliminated due to 14-day lock exceeding deadline and 5% slashing exceeding risk limit. Option A outperforms Option C baseline by 2.8 percentage points.",
+          "decision_factors": {
+            "constraint_satisfaction": {
+              "collateral_timing": "7-day lock period <= 8-day requirement",
+              "slashing_risk": "3% annual risk <= 4% maximum tolerance",
+              "net_yield": "4.25% portfolio APR >= 1.0% target"
+            },
+            "eliminated_options": {
+              "symbiotic": "Fails 8-day liquidity requirement (14-day lock) and exceeds 4% risk tolerance (5% slashing)",
+              "lido_only": "Suboptimal 1.45% net APR provides no yield arbitrage"
+            },
+            "economic_analysis": {
+              "arbitrage_spread": "1.5% positive spread on leveraged portion (7.0% yield vs 5.5% cost)",
+              "expected_value_adjustment": "2.8% premium vs 3% tail risk creates favorable risk-adjusted return"
+            }
+          },
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

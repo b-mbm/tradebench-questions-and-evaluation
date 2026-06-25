@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-11T22:06:17.607Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L4-001-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L4-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L4-001",
+      "raw": " {\"intent\": \"rebalance\", \"order_type\": \"portfolio\", \"asset\": \"BTC,ETH,USDC\", \"size\": \"unknown\", \"unit\": \"portfolio_percentage\", \"venue\": \"multiple\", \"risk_controls\": {\"slippage_tolerance\": \"1%\", \"position_size_limit\": \"100% portfolio\"}, \"requires_follow_up\": true, \"follow_up_description\": \"Current portfolio holdings required: provide exact quantities and current USD values of all held assets (including BTC, ETH, USDC, and any others) to calculate precise trade sizes needed to achieve 60% BTC / 30% ETH / 10% USDC target weights\", \"reasoning\": \"Cannot compute rebalance trades without current portfolio composition and total NAV; target weights 60/30/10 require delta calculation against existing positions\"}",
+      "durationMs": 30006,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6466666666666666,
+        "score": 0.5969230769230769,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03692307692307692,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "portfolio",
+          "asset": "BTC,ETH,USDC",
+          "size": "unknown",
+          "unit": "portfolio_percentage",
+          "venue": "multiple",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "position_size_limit": "100% portfolio"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Current portfolio holdings required: provide exact quantities and current USD values of all held assets (including BTC, ETH, USDC, and any others) to calculate precise trade sizes needed to achieve 60% BTC / 30% ETH / 10% USDC target weights",
+          "reasoning": "Cannot compute rebalance trades without current portfolio composition and total NAV; target weights 60/30/10 require delta calculation against existing positions"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

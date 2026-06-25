@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T08:24:39.326Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-002-2026-06-10T08-24-07",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-002",
+      "raw": "{\n  \"intent\": \"compute_fee_income\",\n  \"expected_value\": 2832,\n  \"reasoning\": \"Captured volume is $2M * 80% = $1.6M. Total fees on captured volume at the 0.3% tier are $4,800. With a 59% active liquidity share, the daily fee income is $4,800 * 59% = $2,832.\"\n}",
+      "durationMs": 31210,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "compute_fee_income",
+          "expected_value": 2832,
+          "reasoning": "Captured volume is $2M * 80% = $1.6M. Total fees on captured volume at the 0.3% tier are $4,800. With a 59% active liquidity share, the daily fee income is $4,800 * 59% = $2,832."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

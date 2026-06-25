@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:16:16.500Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-046-1781072157677",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-046"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-046",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 1050,\n  \"reasoning\": \"Route A cost=$4,050+$900+$450=$5,400; Route B cost=$1,890+$1,800+$180=$3,870; Route C cost=$1,710+$2,400+$810=$4,920. All routes meet constraints (settlement≤12min, oracle≤60s, capacity≥$900k). Best is Route B at $3,870; second-best is Route C at $4,920. Savings=$1,050. Extra HYPE=$1,050/$28=37.5 HYPE.\"\n}",
+      "durationMs": 18426,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 1050,
+          "reasoning": "Route A cost=$4,050+$900+$450=$5,400; Route B cost=$1,890+$1,800+$180=$3,870; Route C cost=$1,710+$2,400+$810=$4,920. All routes meet constraints (settlement≤12min, oracle≤60s, capacity≥$900k). Best is Route B at $3,870; second-best is Route C at $4,920. Savings=$1,050. Extra HYPE=$1,050/$28=37.5 HYPE."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

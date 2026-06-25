@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T09:03:07.940Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-081-2026-06-10T09-02-41",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-081"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-081",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 572360,\n  \"reasoning\": \"Success (54%): 1.9M - 532K costs = 1.368M. Partial (18%): -442K costs. Fail (28%): -310K costs. EV = 0.54*1.368M - 0.18*442K - 0.28*310K = 572,360. Constraints met (oracle 29s <= 38s, liq 3.1M >= 2.2M, probs sum 100%). EV > 0, execute.\"\n}",
+      "durationMs": 25901,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 572360,
+          "reasoning": "Success (54%): 1.9M - 532K costs = 1.368M. Partial (18%): -442K costs. Fail (28%): -310K costs. EV = 0.54*1.368M - 0.18*442K - 0.28*310K = 572,360. Constraints met (oracle 29s <= 38s, liq 3.1M >= 2.2M, probs sum 100%). EV > 0, execute."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

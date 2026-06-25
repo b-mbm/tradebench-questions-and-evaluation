@@ -1,0 +1,57 @@
+{
+  "runAt": "2026-06-12T02:33:54.030Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-103-2026-06-12T02-33-48",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-103"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-103",
+      "raw": "{\n  \"intent\": \"governance_vote_with_hedge\",\n  \"chosen_strategy\": \"Vote for team unlock delay proposal (Proposal B) with protective hedge\",\n  \"proposal_vote\": \"Proposal B - Delay 14M team unlock by 45 days, pay 1.8M token bribe\",\n  \"hedge_action\": \"Short hedge via perpetuals equal to 3.2% of circulating supply to offset residual supply shock risk\",\n  \"expected_30d_value_usd\": 8920000,\n  \"supply_shock_pct\": 4.1,\n  \"lp_depth_after_30d_usd\": 25800000,\n  \"self_check\": \"Proposal B creates 1.8M token bribe supply shock (1.8M/43.9M circulating = 4.1%) which is below 7% threshold. Team unlock delay prevents 14M token dump. Combined with hedge, net exposure controlled. LP depth grows from $24M to $25.8M as emissions continue unchanged and borrow incentives remain active.\",\n  \"reasoning\": \"Proposal B delays 14M team unlock (preventing major dump) while only adding 1.8M bribe tokens = 4.1% supply shock (under 7% limit). Proposal A would cut emissions but redirect to locked LP, reducing sell pressure but not addressing unlock. Proposal C risks buyback trigger if depth falls. Proposal B maximizes value by preventing largest supply shock while staying within constraints.\"\n}",
+      "durationMs": 5119,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "proposal_vote": 0,
+          "hedge_action": 0,
+          "expected_30d_value_usd": 0,
+          "supply_shock_pct": 0,
+          "lp_depth_after_30d_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "governance_vote_with_hedge",
+          "chosen_strategy": "Vote for team unlock delay proposal (Proposal B) with protective hedge",
+          "proposal_vote": "Proposal B - Delay 14M team unlock by 45 days, pay 1.8M token bribe",
+          "hedge_action": "Short hedge via perpetuals equal to 3.2% of circulating supply to offset residual supply shock risk",
+          "expected_30d_value_usd": 8920000,
+          "supply_shock_pct": 4.1,
+          "lp_depth_after_30d_usd": 25800000,
+          "self_check": "Proposal B creates 1.8M token bribe supply shock (1.8M/43.9M circulating = 4.1%) which is below 7% threshold. Team unlock delay prevents 14M token dump. Combined with hedge, net exposure controlled. LP depth grows from $24M to $25.8M as emissions continue unchanged and borrow incentives remain active.",
+          "reasoning": "Proposal B delays 14M team unlock (preventing major dump) while only adding 1.8M bribe tokens = 4.1% supply shock (under 7% limit). Proposal A would cut emissions but redirect to locked LP, reducing sell pressure but not addressing unlock. Proposal C risks buyback trigger if depth falls. Proposal B maximizes value by preventing largest supply shock while staying within constraints."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:proposal_vote",
+          "agi_validation_failed:hedge_action",
+          "agi_validation_failed:expected_30d_value_usd",
+          "agi_validation_failed:supply_shock_pct",
+          "agi_validation_failed:lp_depth_after_30d_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

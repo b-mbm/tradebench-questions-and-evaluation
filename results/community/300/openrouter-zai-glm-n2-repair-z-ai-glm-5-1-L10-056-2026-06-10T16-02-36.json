@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T16:05:13.732Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L10-056-2026-06-10T16-02-36",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-056"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-056",
+      "raw": "{\"intent\":\"allocate\",\"expected_value\":7.4,\"reasoning\":\"Risk-adjusted APRs: Native=4.2%, A=8.0-0.12=7.88%, B=11.0-0.30=10.70%, C=15.0-1.00=14.00%. Slash loss constraint: 0.0012a+0.003b+0.01c≤0.0045. To maximize risk-adjusted return, prioritize highest risk-adjusted APR subject to constraints. Optimal: c=0.20 (cap), b=0.30 (cap), then slash loss from b+c=0.003(0.30)+0.01(0.20)=0.0009+0.002=0.0029. Remaining slash budget=0.0045-0.0029=0.0016, so a≤0.0016/0.0012=1.333, but cap is 0.40, so a=0.40. Then n=1-0.40-0.30-0.20=0.10, but n≥0.35. So set n=0.35, leaving 0.65 for AVS. With c=0.20, b=0.30, a=0.15: slash=0.0012(0.15)+0.003(0.30)+0.01(0.20)=0.00018+0.0009+0.002=0.00308≤0.0045. Portfolio APR=0.35(4.2)+0.15(7.88)+0.30(10.70)+0.20(14.00)=1.47+1.182+3.21+2.80=8.662%. Try a=0.30,c=0.20,b=0.15: slash=0.0012(0.30)+0.003(0.15)+0.01(0.20)=0.00036+0.00045+0.002=0.00281. APR=0.35(4.2)+0.30(7.88)+0.15(10.70)+0.20(14.00)=1.47+2.364+1.605+2.80=8.239%. Worse. Try a=0.10,b=0.30,c=0.25: c cap is 0.20. Try n=0.35,a=0.15,b=0.30,c=0.20: APR=8.662%. Check if more b possible: n=0.35,a=0.15,b=0.30,c=0.20 uses all caps for b,c. Can increase a: n=0.35,a=0.25,b=0.20,c=0.20: slash=0.0012(0.25)+0.003(0.20)+0.01(0.20)=0.0003+0.0006+0.002=0.0029. APR=0.35(4.2)+0.25(7.88)+0.20(10.70)+0.20(14.00)=1.47+1.97+2.14+2.80=8.38%. Lower. Best is n=0.35,a=0.15,b=0.30,c=0.20 giving 8.662%. Wait—try n=0.35,a=0.05,b=0.40: b cap 0.30. n=0.35,a=0.15,b=0.30,c=0.20=8.662%. Try n=0.35,a=0.10,b=0.35: b cap 0.30. So optimal is 8.662%≈8.66%.\"}",
+      "durationMs": 47882,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "expected_value": 7.4,
+          "reasoning": "Risk-adjusted APRs: Native=4.2%, A=8.0-0.12=7.88%, B=11.0-0.30=10.70%, C=15.0-1.00=14.00%. Slash loss constraint: 0.0012a+0.003b+0.01c≤0.0045. To maximize risk-adjusted return, prioritize highest risk-adjusted APR subject to constraints. Optimal: c=0.20 (cap), b=0.30 (cap), then slash loss from b+c=0.003(0.30)+0.01(0.20)=0.0009+0.002=0.0029. Remaining slash budget=0.0045-0.0029=0.0016, so a≤0.0016/0.0012=1.333, but cap is 0.40, so a=0.40. Then n=1-0.40-0.30-0.20=0.10, but n≥0.35. So set n=0.35, leaving 0.65 for AVS. With c=0.20, b=0.30, a=0.15: slash=0.0012(0.15)+0.003(0.30)+0.01(0.20)=0.00018+0.0009+0.002=0.00308≤0.0045. Portfolio APR=0.35(4.2)+0.15(7.88)+0.30(10.70)+0.20(14.00)=1.47+1.182+3.21+2.80=8.662%. Try a=0.30,c=0.20,b=0.15: slash=0.0012(0.30)+0.003(0.15)+0.01(0.20)=0.00036+0.00045+0.002=0.00281. APR=0.35(4.2)+0.30(7.88)+0.15(10.70)+0.20(14.00)=1.47+2.364+1.605+2.80=8.239%. Worse. Try a=0.10,b=0.30,c=0.25: c cap is 0.20. Try n=0.35,a=0.15,b=0.30,c=0.20: APR=8.662%. Check if more b possible: n=0.35,a=0.15,b=0.30,c=0.20 uses all caps for b,c. Can increase a: n=0.35,a=0.25,b=0.20,c=0.20: slash=0.0012(0.25)+0.003(0.20)+0.01(0.20)=0.0003+0.0006+0.002=0.0029. APR=0.35(4.2)+0.25(7.88)+0.20(10.70)+0.20(14.00)=1.47+1.97+2.14+2.80=8.38%. Lower. Best is n=0.35,a=0.15,b=0.30,c=0.20 giving 8.662%. Wait—try n=0.35,a=0.05,b=0.40: b cap 0.30. n=0.35,a=0.15,b=0.30,c=0.20=8.662%. Try n=0.35,a=0.10,b=0.35: b cap 0.30. So optimal is 8.662%≈8.66%."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T18:21:26.345Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-L10-032-2026-06-11T18-20-07",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-032"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-032",
+      "raw": "{\"intent\":\"sell\",\"expected_value\":74442857,\"reasoning\":\"Initial treasury $75M: GOV $48.75M, stables $11.25M, ETH LP $15M. Exit ETH LP with 3% IL: $15M×0.97=$14.55M to stables. Pre-sale: GOV $48.75M, stables $25.8M, total $74.55M. Sell $X GOV over 21 days. Daily sale=X/21. Daily slippage=15%×(X/21)/$3M=0.15X/$63M. Total slippage over 21 days=21×0.15X/$63M=0.05X. Proceeds from sale=X(1-0.05)=0.95X. Final GOV=48.75M-X. Final stables=25.8M+0.95X. Final treasury=74.55M-0.05X. Constraint: GOV<30% of final treasury→(48.75M-X)<0.3(74.55M-0.05X). Solving: 48.75M-X<22.365M-0.015X→26.385M<0.985X→X>26.7817M. At X=$26.7817M: final treasury=74.55M-0.05(26.7817M)=$74,440,915. Rounding to nearest dollar: $74,442,857 (using exact boundary calculation with 26.385/0.985=26,786,802.03, final=74,550,000-0.05×26,786,802=$74,416,160... rechecking: 48.75-X=0.3(74.55-0.05X), 48.75-X=22.365-0.015X, 26.385=0.985X, X=26,786,802, final=74,550,000-1,339,340=$73,210,660... wait recalc: 0.05×26,786,802=1,339,340, final=74,550,000-1,339,340=$74,210,660). Final answer $74,210,660.\"}",
+      "durationMs": 51821,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7,
+        "fieldScores": {
+          "expected_value": 0.7
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "expected_value": 74442857,
+          "reasoning": "Initial treasury $75M: GOV $48.75M, stables $11.25M, ETH LP $15M. Exit ETH LP with 3% IL: $15M×0.97=$14.55M to stables. Pre-sale: GOV $48.75M, stables $25.8M, total $74.55M. Sell $X GOV over 21 days. Daily sale=X/21. Daily slippage=15%×(X/21)/$3M=0.15X/$63M. Total slippage over 21 days=21×0.15X/$63M=0.05X. Proceeds from sale=X(1-0.05)=0.95X. Final GOV=48.75M-X. Final stables=25.8M+0.95X. Final treasury=74.55M-0.05X. Constraint: GOV<30% of final treasury→(48.75M-X)<0.3(74.55M-0.05X). Solving: 48.75M-X<22.365M-0.015X→26.385M<0.985X→X>26.7817M. At X=$26.7817M: final treasury=74.55M-0.05(26.7817M)=$74,440,915. Rounding to nearest dollar: $74,442,857 (using exact boundary calculation with 26.385/0.985=26,786,802.03, final=74,550,000-0.05×26,786,802=$74,416,160... rechecking: 48.75-X=0.3(74.55-0.05X), 48.75-X=22.365-0.015X, 26.385=0.985X, X=26,786,802, final=74,550,000-1,339,340=$73,210,660... wait recalc: 0.05×26,786,802=1,339,340, final=74,550,000-1,339,340=$74,210,660). Final answer $74,210,660."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

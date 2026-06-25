@@ -1,0 +1,63 @@
+{
+  "runAt": "2026-06-11T16:35:30.843Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-001-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-001",
+      "raw": " {\"intent\": \"hedge\", \"chosen_strategy\": \"short_matic_then_sol\", \"execution_sequence\": [\"MATIC\", \"SOL\"], \"shorts\": {\"MATIC\": {\"notional_usd\": 220000, \"units\": 244444.44}, \"SOL\": {\"notional_usd\": 180000, \"units\": 1285.71}}, \"expected_risk_reduction_pct\": 55.17, \"worst_case_residual_pnl_usd\": -73472.5, \"reasoning\": \"Selected MATIC ($220k) and SOL ($180k) clips to achieve $556k beta-dollar reduction (55.2% of $1.0079M exposure), satisfying the >50% requirement while respecting the $400k notional limit. Executing MATIC first (0.08% impact) then SOL (0.25% impact) minimizes total execution cost ($626 vs $664 if reversed). This sequence yields worst-case portfolio PnL of -$73,472.50 under the Yen unwind stress scenario after accounting for execution slippage and hedge gains, superior to the alternative order and the only combination meeting the beta-reduction constraint.\"}",
+      "durationMs": 138991,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "shorts.MATIC.notional_usd": 1,
+          "shorts.MATIC.units": 1,
+          "shorts.SOL.notional_usd": 1,
+          "shorts.SOL.units": 1,
+          "expected_risk_reduction_pct": 1,
+          "worst_case_residual_pnl_usd": 1
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "short_matic_then_sol",
+          "execution_sequence": [
+            "MATIC",
+            "SOL"
+          ],
+          "shorts": {
+            "MATIC": {
+              "notional_usd": 220000,
+              "units": 244444.44
+            },
+            "SOL": {
+              "notional_usd": 180000,
+              "units": 1285.71
+            }
+          },
+          "expected_risk_reduction_pct": 55.17,
+          "worst_case_residual_pnl_usd": -73472.5,
+          "reasoning": "Selected MATIC ($220k) and SOL ($180k) clips to achieve $556k beta-dollar reduction (55.2% of $1.0079M exposure), satisfying the >50% requirement while respecting the $400k notional limit. Executing MATIC first (0.08% impact) then SOL (0.25% impact) minimizes total execution cost ($626 vs $664 if reversed). This sequence yields worst-case portfolio PnL of -$73,472.50 under the Yen unwind stress scenario after accounting for execution slippage and hedge gains, superior to the alternative order and the only combination meeting the beta-reduction constraint."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:execution_sequence"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

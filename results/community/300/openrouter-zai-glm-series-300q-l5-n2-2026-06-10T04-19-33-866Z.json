@@ -1,0 +1,585 @@
+{
+  "runAt": "2026-06-10T04:19:33.865Z",
+  "label": "openrouter-zai-glm-series-300q-l5-n2",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1",
+    "z-ai/glm-5-turbo",
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add_liquidity\",\n  \"order_type\": \"concentrated_liquidity\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"10\",\n  \"unit\": \"eth\",\n  \"price\": \"2700-2900\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"stop_loss\": \"8%\",\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"30000 usd\"\n  },\n  \"follow_up\": \"monitor ETH price relative to tick range; position is currently out-of-range (ETH at $3,000 > $2,900 upper tick) and will be 100% ETH until price enters range. Rebalance or withdraw if IL approaches 8% threshold.\",\n  \"reasoning\": \"Current ETH price ($3,000) is above the specified $2,700–$2,900 range, so this position starts entirely in ETH with zero liquidity active until price drops into range. The ~7.4% range width provides capital efficiency but amplifies IL; at 8% max IL tolerance, position should be monitored closely if ETH approaches $2,700 lower bound. Concentrated leverage factor for this narrow range increases IL exposure vs full-range LP.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Track IL as price moves within or below range; set alert at 6% IL for proactive management. Consider adjusting ticks if ETH trends significantly below $2,700.\"\n}",
+      "durationMs": 20515,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7200714285714286,
+        "score": 0.6777142857142857,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.07200000000000001,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated_liquidity",
+          "asset": "ETH/USDC",
+          "size": "10",
+          "unit": "eth",
+          "price": "2700-2900",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "stop_loss": "8%",
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "30000 usd"
+          },
+          "follow_up": "monitor ETH price relative to tick range; position is currently out-of-range (ETH at $3,000 > $2,900 upper tick) and will be 100% ETH until price enters range. Rebalance or withdraw if IL approaches 8% threshold.",
+          "reasoning": "Current ETH price ($3,000) is above the specified $2,700–$2,900 range, so this position starts entirely in ETH with zero liquidity active until price drops into range. The ~7.4% range width provides capital efficiency but amplifies IL; at 8% max IL tolerance, position should be monitored closely if ETH approaches $2,700 lower bound. Concentrated leverage factor for this narrow range increases IL exposure vs full-range LP.",
+          "requires_follow_up": true,
+          "follow_up_description": "Track IL as price moves within or below range; set alert at 6% IL for proactive management. Consider adjusting ticks if ETH trends significantly below $2,700."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L5-002",
+      "raw": "{\n  \"intent\": \"leverage_long\",\n  \"order_type\": \"supply_and_borrow\",\n  \"asset\": \"ETH\",\n  \"size\": \"1\",\n  \"unit\": \"eth\",\n  \"venue\": \"aave\",\n  \"venue_name\": \"Aave V3\",\n  \"risk_controls\": {\n    \"stop_loss\": 2400,\n    \"take_profit\": 4500,\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"3 ETH exposure\"\n  },\n  \"follow_up\": \"1) Supply 1 ETH as collateral on Aave, 2) Borrow 6000 USDC (2 ETH worth at $3000), 3) Swap 6000 USDC to ~2 ETH on DEX, 4) Re-supply 2 ETH to Aave as additional collateral. Repeat loop if higher leverage desired. Monitor health factor - liquidation threshold ~80% LTV for ETH. Current LTV after full execution: ~66.7%. ETH must not drop below ~$2400 or position approaches liquidation.\",\n  \"reasoning\": \"3x leveraged long requires supplying 1 ETH collateral, borrowing 2 ETH equivalent in USDC ($6000), swapping to ETH, and re-supplying. Net exposure: 3 ETH. Health factor starts ~1.2. Stop at $2400 ETH preserves margin before liquidation.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute recursive supply-borrow-swap loop to achieve full 3x leverage, then monitor health factor continuously\"\n}",
+      "durationMs": 17393,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.068,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "leverage_long",
+          "order_type": "supply_and_borrow",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "stop_loss": 2400,
+            "take_profit": 4500,
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "3 ETH exposure"
+          },
+          "follow_up": "1) Supply 1 ETH as collateral on Aave, 2) Borrow 6000 USDC (2 ETH worth at $3000), 3) Swap 6000 USDC to ~2 ETH on DEX, 4) Re-supply 2 ETH to Aave as additional collateral. Repeat loop if higher leverage desired. Monitor health factor - liquidation threshold ~80% LTV for ETH. Current LTV after full execution: ~66.7%. ETH must not drop below ~$2400 or position approaches liquidation.",
+          "reasoning": "3x leveraged long requires supplying 1 ETH collateral, borrowing 2 ETH equivalent in USDC ($6000), swapping to ETH, and re-supplying. Net exposure: 3 ETH. Health factor starts ~1.2. Stop at $2400 ETH preserves margin before liquidation.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute recursive supply-borrow-swap loop to achieve full 3x leverage, then monitor health factor continuously"
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L5-003",
+      "raw": "{\n\"intent\": \"swap\",\n\"order_type\": \"dex\",\n\"asset\": \"USDC\",\n\"size\": \"2.5\",\n\"unit\": \"eth\",\n\"price\": \"pool spot\",\n\"venue\": \"dex\",\n\"venue_name\": \"uniswap-v3\",\n\"risk_controls\": {\n\"slippage_tolerance\": \"0.5%\",\n\"max_gas\": \"30 gwei\"\n},\n\"follow_up\": \"provide liquidity to ETH/USDC pool with 2.5 ETH + 7500 USDC, then short 2.5 ETH on perpetual to achieve delta-neutral hedge\",\n\"reasoning\": \"delta-neutral yield farming requires splitting 5 ETH: swap half to USDC for LP pairing, then provide liquidity and hedge ETH exposure via short position to remain delta-neutral while earning fees\",\n\"requires_follow_up\": true,\n\"follow_up_description\": \"multi-step strategy: (1) swap 2.5 ETH→USDC, (2) provide LP on ETH/USDC pool, (3) short 2.5 ETH on perp exchange for delta-neutral position\"\n}",
+      "durationMs": 18611,
+      "grade": {
+        "pass": false,
+        "confidence": 0.47166666666666673,
+        "score": 0.443921568627451,
+        "fieldScores": {
+          "intent": 0.010588235294117648,
+          "order_type": 0.02,
+          "asset": 0,
+          "size": 0.03333333333333334,
+          "venue": 0.06,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "2.5",
+          "unit": "eth",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap-v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "provide liquidity to ETH/USDC pool with 2.5 ETH + 7500 USDC, then short 2.5 ETH on perpetual to achieve delta-neutral hedge",
+          "reasoning": "delta-neutral yield farming requires splitting 5 ETH: swap half to USDC for LP pairing, then provide liquidity and hedge ETH exposure via short position to remain delta-neutral while earning fees",
+          "requires_follow_up": true,
+          "follow_up_description": "multi-step strategy: (1) swap 2.5 ETH→USDC, (2) provide LP on ETH/USDC pool, (3) short 2.5 ETH on perp exchange for delta-neutral position"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L5-004",
+      "raw": "{\n\"intent\": \"borrow\",\n\"order_type\": \"lend\",\n\"asset\": \"USDC\",\n\"size\": \"5000\",\n\"unit\": \"usd\",\n\"venue\": \"lending\",\n\"venue_name\": \"aave-v3\",\n\"risk_controls\": {\n\"stop_loss\": \"75% LTV liquidation threshold\",\n\"slippage_tolerance\": \"0.5%\",\n\"max_gas\": \"30 gwei\",\n\"position_size_limit\": \"4800\"\n},\n\"follow_up\": \"verify borrow capacity against protocol LTV limits\",\n\"reasoning\": \"2 ETH collateral at $3000 = $6000. Requested 5000 USDC borrow yields 83.3% LTV, which exceeds Aave V3's typical 80% max LTV for ETH. Maximum borrowable is approximately 4800 USDC. Position would be dangerously close to liquidation threshold (~82.5%) even at reduced amount.\",\n\"requires_follow_up\": true,\n\"follow_up_description\": \"Confirm adjusted borrow amount within protocol limits; user may need to supply additional collateral or accept reduced borrow of ~4800 USDC to stay under 80% LTV\"\n}",
+      "durationMs": 14134,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9270312500000001,
+        "score": 0.8725,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.0425,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lend",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "venue": "lending",
+          "venue_name": "aave-v3",
+          "risk_controls": {
+            "stop_loss": "75% LTV liquidation threshold",
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "4800"
+          },
+          "follow_up": "verify borrow capacity against protocol LTV limits",
+          "reasoning": "2 ETH collateral at $3000 = $6000. Requested 5000 USDC borrow yields 83.3% LTV, which exceeds Aave V3's typical 80% max LTV for ETH. Maximum borrowable is approximately 4800 USDC. Position would be dangerously close to liquidation threshold (~82.5%) even at reduced amount.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm adjusted borrow amount within protocol limits; user may need to supply additional collateral or accept reduced borrow of ~4800 USDC to stay under 80% LTV"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L5-005",
+      "raw": "{\n  \"intent\": \"stake\",\n  \"order_type\": \"stake\",\n  \"asset\": \"stETH\",\n  \"size\": 10,\n  \"unit\": \"eth\",\n  \"price\": \"1:1 mint rate\",\n  \"venue\": \"lido\",\n  \"venue_name\": \"Lido\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": 10\n  },\n  \"follow_up\": \"confirm stETH mint received\",\n  \"reasoning\": \"Staking 10 ETH via Lido on mainnet for liquid staking tokens (stETH). Lido is the largest and most battle-tested liquid staking protocol. Mint rate is 1:1 minus protocol fee. Gas at 30 gwei is reasonable for staking transaction.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify stETH balance credited and monitor for validator entry queue delays\"\n}",
+      "durationMs": 10739,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "stake",
+          "asset": "stETH",
+          "size": 10,
+          "unit": "eth",
+          "price": "1:1 mint rate",
+          "venue": "lido",
+          "venue_name": "Lido",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": 10
+          },
+          "follow_up": "confirm stETH mint received",
+          "reasoning": "Staking 10 ETH via Lido on mainnet for liquid staking tokens (stETH). Lido is the largest and most battle-tested liquid staking protocol. Mint rate is 1:1 minus protocol fee. Gas at 30 gwei is reasonable for staking transaction.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify stETH balance credited and monitor for validator entry queue delays"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L5-001",
+      "raw": "{\n  \"intent\": \"add_liquidity\",\n  \"order_type\": \"concentrated_liquidity\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": \"unspecified\",\n  \"unit\": \"usd\",\n  \"price\": \"2700-2900\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"8% of portfolio\"\n  },\n  \"follow_up\": \"monitor_range_breach\",\n  \"reasoning\": \"",
+      "durationMs": 31818,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4035306122448979,
+        "score": 0.6277142857142857,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0.04,
+          "venue": 0.12,
+          "venue_name": 0.07200000000000001,
+          "risk_controls": 0,
+          "follow_up": 0.03,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated_liquidity",
+          "asset": "ETH/USDC",
+          "size": "unspecified",
+          "unit": "usd",
+          "price": "2700-2900",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "slippage_tolerance": "0.5%",
+          "max_gas": "30 gwei",
+          "position_size_limit": "8% of portfolio",
+          "follow_up": "monitor_range_breach",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L5-002",
+      "raw": "{\n  \"intent\": \"leverage_long\",\n  \"order_type\": \"defi\",\n  \"asset\": \"ETH\",\n  \"size\": \"3\",\n  \"unit\": \"eth\",\n  \"venue\": \"aave\",\n  \"venue_name\": \"aave v3\",\n  \"risk_controls\": {\n    \"stop_loss\": \"2400\",\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor health factor\",\n  \"reasoning\": \"Supply 1 ETH as collateral, borrow 6000 USDC (2x collateral value), swap for 2 ETH to achieve 3x long exposure.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute DEX swap for borrowed USDC and monitor Aave health factor.\"\n}",
+      "durationMs": 24536,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.022666666666666665,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "leverage_long",
+          "order_type": "defi",
+          "asset": "ETH",
+          "size": "3",
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "aave v3",
+          "risk_controls": {
+            "stop_loss": "2400",
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor health factor",
+          "reasoning": "Supply 1 ETH as collateral, borrow 6000 USDC (2x collateral value), swap for 2 ETH to achieve 3x long exposure.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute DEX swap for borrowed USDC and monitor Aave health factor."
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L5-003",
+      "raw": "{\n  \"intent\": \"delta_neutral_yield_farm\",\n  \"order_type\": \"lp\",\n  \"asset\": \"ETH/stETH\",\n  \"size\": \"5\",\n  \"unit\": \"eth\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"curve\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"open 5 ETH short perp\",\n  \"reasoning\": \"Entering ETH/stETH LP with 5 ETH to earn yield, requires shorting 5 ETH to achieve delta neutrality.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute a short order for 5 ETH on a perpetual swap venue (e.g., dYdX) to hedge the long ETH exposure from the liquidity pool.\"\n}",
+      "durationMs": 24221,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7073214285714285,
+        "score": 0.6657142857142857,
+        "fieldScores": {
+          "intent": 0.1457142857142857,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.1,
+          "venue": 0.06,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "delta_neutral_yield_farm",
+          "order_type": "lp",
+          "asset": "ETH/stETH",
+          "size": "5",
+          "unit": "eth",
+          "venue": "dex",
+          "venue_name": "curve",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "open 5 ETH short perp",
+          "reasoning": "Entering ETH/stETH LP with 5 ETH to earn yield, requires shorting 5 ETH to achieve delta neutrality.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute a short order for 5 ETH on a perpetual swap venue (e.g., dYdX) to hedge the long ETH exposure from the liquidity pool."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L5-004",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"defi_loan\",\n  \"asset\": \"USDC\",\n  \"size\": \"5000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"defi\",\n  \"venue_name\": \"aave\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm liquidation risk\",\n  \"reasoning\": \"2 ETH collateral is valued at $6000. Borrowing 5000 USDC results in an 83.3% Loan-to-Value (LTV) ratio, which exceeds standard safe limits and risks immediate liquidation.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"LTV is 83.3%, which is dangerously close to or above typical liquidation thresholds (e.g., 80-85% on Aave). Please confirm awareness of liquidation risk or adjust borrow amount.\"\n}",
+      "durationMs": 18602,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9721875000000002,
+        "score": 0.9150000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.085,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "defi_loan",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usdc",
+          "venue": "defi",
+          "venue_name": "aave",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm liquidation risk",
+          "reasoning": "2 ETH collateral is valued at $6000. Borrowing 5000 USDC results in an 83.3% Loan-to-Value (LTV) ratio, which exceeds standard safe limits and risks immediate liquidation.",
+          "requires_follow_up": true,
+          "follow_up_description": "LTV is 83.3%, which is dangerously close to or above typical liquidation thresholds (e.g., 80-85% on Aave). Please confirm awareness of liquidation risk or adjust borrow amount."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L5-005",
+      "raw": "{\n  \"intent\": \"stake\",\n  \"order_type\": \"dex\",\n  \"asset\": \"stETH\",\n  \"size\": \"10\",\n  \"unit\": \"eth\",\n  \"price\": \"1:1 mint rate\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"lido\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm staking transaction\",\n  \"reasoning\": \"Staking 10 ETH via Lido protocol to receive stETH liquid staking tokens.\"\n}",
+      "durationMs": 17029,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8801709401709402,
+        "score": 0.8338461538461539,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.013846153846153836,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "dex",
+          "asset": "stETH",
+          "size": "10",
+          "unit": "eth",
+          "price": "1:1 mint rate",
+          "venue": "dex",
+          "venue_name": "lido",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm staking transaction",
+          "reasoning": "Staking 10 ETH via Lido protocol to receive stETH liquid staking tokens."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L5-001",
+      "raw": "",
+      "durationMs": 42801,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L5-002",
+      "raw": "",
+      "durationMs": 3946,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L5-003",
+      "raw": "",
+      "durationMs": 3795,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L5-004",
+      "raw": "{\n  \"intent\": \"borrow\",\n  \"order_type\": \"lending\",\n  \"asset\": \"USDC\",\n  \"size\": \"5000\",\n  \"unit\": \"USDC\",\n  \"venue\": \"aave\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"5000\"\n  },\n  \"follow_up\": \"monitor health factor\",\n  \"reasoning\": \"deposit 2 ETH ($6000) as collateral and borrow 5000 USDC via Aave; resulting LTV ~83% is aggressive and near liquidation threshold\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"monitor health factor closely; maintain above 1.1 to avoid liquidation\"\n}",
+      "durationMs": 60830,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9334821428571429,
+        "score": 0.8785714285714287,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.04857142857142857,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "lending",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "USDC",
+          "venue": "aave",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "position_size_limit": "5000"
+          },
+          "follow_up": "monitor health factor",
+          "reasoning": "deposit 2 ETH ($6000) as collateral and borrow 5000 USDC via Aave; resulting LTV ~83% is aggressive and near liquidation threshold",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor health factor closely; maintain above 1.1 to avoid liquidation"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L5-005",
+      "raw": "{\n  \"intent\": \"stake\",\n  \"order_type\": \"stake\",\n  \"asset\": \"stETH\",\n  \"size\": \"10\",\n  \"unit\": \"eth\",\n  \"price\": \"1:1\",\n  \"venue\": \"lido\",\n  \"venue_name\": \"Lido\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm stETH mint and verify receipt\",\n  \"reasoning\": \"stake 10 ETH via Lido liquid staking protocol to receive stETH tokens\"\n}",
+      "durationMs": 16570,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "stake",
+          "asset": "stETH",
+          "size": "10",
+          "unit": "eth",
+          "price": "1:1",
+          "venue": "lido",
+          "venue_name": "Lido",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm stETH mint and verify receipt",
+          "reasoning": "stake 10 ETH via Lido liquid staking protocol to receive stETH tokens"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

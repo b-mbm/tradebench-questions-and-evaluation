@@ -1,0 +1,266 @@
+{
+  "runAt": "2026-06-09T02:40:10.008Z",
+  "label": "openrouter-mistral-family-300q-l3-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "mistralai/mistral-medium-3-5",
+    "mistralai/mistral-small-2603"
+  ],
+  "questionIds": [
+    "L3-001",
+    "L3-002",
+    "L3-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L3-001",
+      "raw": "{\"intent\": \"bridge_and_buy\", \"order_type\": \"bridge\", \"asset\": \"USDC\", \"size\": 1000, \"unit\": \"usd\", \"venue\": \"bridge\", \"venue_name\": \"arbitrum_bridge\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"execute ARB buy on Arbitrum\", \"reasoning\": \"Bridge 1000 USDC to Arbitrum first, then proceed with ARB purchase\", \"requires_follow_up\": true, \"follow_up_description\": \"After bridge completion, place market buy order for ARB with bridged USDC\"}",
+      "durationMs": 1484,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9914643874643875,
+        "score": 0.9392820512820513,
+        "fieldScores": {
+          "intent": 0.12461538461538461,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.07466666666666667,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_buy",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": 1000,
+          "unit": "usd",
+          "venue": "bridge",
+          "venue_name": "arbitrum_bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "execute ARB buy on Arbitrum",
+          "reasoning": "Bridge 1000 USDC to Arbitrum first, then proceed with ARB purchase",
+          "requires_follow_up": true,
+          "follow_up_description": "After bridge completion, place market buy order for ARB with bridged USDC"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L3-002",
+      "raw": "{\"intent\": \"transfer\", \"order_type\": \"bridge\", \"asset\": \"USDC\", \"size\": \"3333.33\", \"unit\": \"USDC\", \"venue\": \"bridge\", \"venue_name\": \"across\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"verify bridge transactions on all three networks\", \"reasoning\": \"Split 10,000 USDC into three equal parts (3333.33 USDC each) for bridging to Ethereum, Arbitrum, and Optimism\", \"requires_follow_up\": true, \"follow_up_description\": \"Confirm successful bridging of 3333.33 USDC to each of Ethereum, Arbitrum, and Optimism\"}",
+      "durationMs": 1561,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6658333333333335,
+        "score": 0.6266666666666668,
+        "fieldScores": {
+          "intent": 0.020000000000000007,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.00666666666666667,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "transfer",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "3333.33",
+          "unit": "USDC",
+          "venue": "bridge",
+          "venue_name": "across",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "verify bridge transactions on all three networks",
+          "reasoning": "Split 10,000 USDC into three equal parts (3333.33 USDC each) for bridging to Ethereum, Arbitrum, and Optimism",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm successful bridging of 3333.33 USDC to each of Ethereum, Arbitrum, and Optimism"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L3-003",
+      "raw": "{\"intent\": \"bridge_and_swap\", \"order_type\": \"bridge\", \"asset\": \"ETH\", \"size\": 2, \"unit\": \"eth\", \"venue\": \"polygon_bridge\", \"venue_name\": \"Polygon PoS Bridge\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"swap ETH for MATIC on Polygon\", \"reasoning\": \"Bridge 2 ETH from Ethereum to Polygon, then swap for MATIC using the largest available pool\", \"requires_follow_up\": true, \"follow_up_description\": \"Execute swap of bridged ETH to MATIC on Polygon DEX (e.g., QuickSwap or Uniswap Polygon)\"}",
+      "durationMs": 2806,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9545109211775878,
+        "score": 0.9042735042735043,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.055384615384615386,
+          "venue_name": 0.04888888888888889,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_swap",
+          "order_type": "bridge",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "venue": "polygon_bridge",
+          "venue_name": "Polygon PoS Bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "swap ETH for MATIC on Polygon",
+          "reasoning": "Bridge 2 ETH from Ethereum to Polygon, then swap for MATIC using the largest available pool",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute swap of bridged ETH to MATIC on Polygon DEX (e.g., QuickSwap or Uniswap Polygon)"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L3-001",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"ARB\", \"size\": \"833.333333\", \"unit\": \"usd\", \"price\": \"pool spot\", \"venue\": \"bridge\", \"venue_name\": \"arbitrum bridge\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor bridge completion and ARB receipt\", \"requires_follow_up\": true, \"follow_up_description\": \"confirm ARB tokens received on Arbitrum and execute buy order\"}",
+      "durationMs": 1159,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4572222222222222,
+        "score": 0.422051282051282,
+        "fieldScores": {
+          "intent": 0.055384615384615386,
+          "order_type": 0.02666666666666666,
+          "asset": 0,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "ARB",
+          "size": "833.333333",
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "bridge",
+          "venue_name": "arbitrum bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor bridge completion and ARB receipt",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm ARB tokens received on Arbitrum and execute buy order"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L3-002",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"USDC\", \"size\": \"3333.33\", \"unit\": \"usd\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"0.3%\"}, \"follow_up\": \"route to Ethereum\", \"requires_follow_up\": true, \"follow_up_description\": \"split remaining 6666.67 USDC across Arbitrum and Optimism\"}",
+      "durationMs": 940,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3611111111111111,
+        "score": 0.3333333333333333,
+        "fieldScores": {
+          "intent": 0.020000000000000007,
+          "order_type": 0,
+          "asset": 0.14,
+          "size": 0,
+          "venue": 0.019999999999999993,
+          "venue_name": 0.01333333333333333,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": "3333.33",
+          "unit": "usd",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%"
+          },
+          "follow_up": "route to Ethereum",
+          "requires_follow_up": true,
+          "follow_up_description": "split remaining 6666.67 USDC across Arbitrum and Optimism"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L3-003",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"ETH\", \"size\": \"2\", \"unit\": \"eth\", \"price\": \"pool spot\", \"venue\": \"bridge\", \"venue_name\": \"polygon bridge\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor bridge completion and swap execution\", \"requires_follow_up\": true, \"follow_up_description\": \"execute MATIC swap post-bridge completion\"}",
+      "durationMs": 1109,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7095009157509158,
+        "score": 0.6677655677655678,
+        "fieldScores": {
+          "intent": 0.055384615384615386,
+          "order_type": 0.02666666666666666,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.045714285714285714,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": "pool spot",
+          "venue": "bridge",
+          "venue_name": "polygon bridge",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor bridge completion and swap execution",
+          "requires_follow_up": true,
+          "follow_up_description": "execute MATIC swap post-bridge completion"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

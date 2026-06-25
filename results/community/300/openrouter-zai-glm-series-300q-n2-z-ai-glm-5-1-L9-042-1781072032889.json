@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:14:36.679Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-042-1781072032889",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-042"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-042",
+      "raw": "{\n  \"intent\": \"calculate_incremental_apr\",\n  \"expected_value\": 4.32,\n  \"reasoning\": \"Incremental APR = ((24M × 0.63 × 0.0003 × 0.80 × 0.92 - 1500) × 365) / 15.5M. Daily eligible volume = $15.12M; daily fee revenue = $4,536; LP capture = $3,628.80; after skim = $3,338.50; net daily = $1,838.50; annualized = $670,062; APR = 4.32%. Stress at 80% volume yields $1,170.80 daily net (positive), oracle age ≤30min satisfied, so base-case APR retained.\"\n}",
+      "durationMs": 43449,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_incremental_apr",
+          "expected_value": 4.32,
+          "reasoning": "Incremental APR = ((24M × 0.63 × 0.0003 × 0.80 × 0.92 - 1500) × 365) / 15.5M. Daily eligible volume = $15.12M; daily fee revenue = $4,536; LP capture = $3,628.80; after skim = $3,338.50; net daily = $1,838.50; annualized = $670,062; APR = 4.32%. Stress at 80% volume yields $1,170.80 daily net (positive), oracle age ≤30min satisfied, so base-case APR retained."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

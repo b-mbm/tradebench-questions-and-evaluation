@@ -1,0 +1,56 @@
+{
+  "runAt": "2026-06-11T22:51:37.414Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L4-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L4-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-002",
+      "raw": " {\"intent\":\"assess_correlation\",\"order_type\":\"portfolio_risk\",\"asset\":\"BTC,ETH,SOL,MATIC,LINK\",\"size\":5,\"unit\":\"assets\",\"venue\":\"internal\",\"risk_controls\":{\"position_size_limit\":\"50% max correlated crypto bucket\",\"stop_loss\":\"correlation spike >0.90\",\"take_profit\":\"correlation breakdown <0.60\"},\"reasoning\":\"BTC, ETH, SOL, MATIC, and LINK share high systematic beta to crypto risk-off regimes on mainnet. SOL and MATIC exhibit particularly tight correlation to ETH. LINK provides only modest idiosyncratic decorrelation. Actionable diversification: reduce layer-1 overlap, rotate 30-40% into uncorrelated GLD and TLT, maintain USDC/DAI buffer.\",\"requires_follow_up\":true,\"follow_up_description\":\"Execute rebalancing trades to reduce correlated alt exposure and increase GLD/TLT/stablecoin weights.\"}",
+      "durationMs": 26971,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03692307692307692,
+          "asset": 0.026666666666666665,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess_correlation",
+          "order_type": "portfolio_risk",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": 5,
+          "unit": "assets",
+          "venue": "internal",
+          "risk_controls": {
+            "position_size_limit": "50% max correlated crypto bucket",
+            "stop_loss": "correlation spike >0.90",
+            "take_profit": "correlation breakdown <0.60"
+          },
+          "reasoning": "BTC, ETH, SOL, MATIC, and LINK share high systematic beta to crypto risk-off regimes on mainnet. SOL and MATIC exhibit particularly tight correlation to ETH. LINK provides only modest idiosyncratic decorrelation. Actionable diversification: reduce layer-1 overlap, rotate 30-40% into uncorrelated GLD and TLT, maintain USDC/DAI buffer.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute rebalancing trades to reduce correlated alt exposure and increase GLD/TLT/stablecoin weights."
+        },
+        "failureReasons": [
+          "correlation_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

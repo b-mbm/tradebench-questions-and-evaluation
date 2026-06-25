@@ -1,0 +1,66 @@
+{
+  "runAt": "2026-06-10T07:47:02.285Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-057-2026-06-10T07-46-17",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-057"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-057",
+      "raw": "{\n  \"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"Harvest all three loss lots, selling thinnest first to avoid market-maker spread widening, then immediately replace with correlated baskets to stay invested and avoid wash-sale disallowance\",\n  \"assets_to_sell\": [\"LINK\", \"ARB\", \"SOL\"],\n  \"sale_sequence\": [\"LINK\", \"ARB\", \"SOL\"],\n  \"replacement_assets\": {\n    \"LINK\": \"LST_beta_basket\",\n    \"ARB\": \"OP_IMX_basket\",\n    \"SOL\": \"JTO_PYTH_basket\"\n  },\n  \"net_tax_benefit\": 18190,\n  \"remaining_unoffset_gains\": 15000,\n  \"self_check\": \"Total losses harvested $55000 at 37% = $20350 gross savings. Round-trip costs: LINK $110000×0.60%=$660, ARB $90000×0.60%=$540, SOL $160000×0.60%=$960, total $2160. Net benefit $20350-$2160=$18190. Remaining gains $70000-$55000=$15000. Sale sequence thinnest-first (1.1→1.8→4) avoids spread widening. Replacement baskets are non-identical tickers so no wash-sale violation. All lots sold to maximize offset.\",\n  \"reasoning\": \"Harvest all $55k in losses (22k+15k+18k) to offset short-term gains at 37%, yielding $20,350 gross tax savings minus $2,160 round-trip costs on $360k total notional (110k+90k+160k at 0.60%) = $18,190 net benefit. Sell LINK first (exit-depth 1.1, thinnest), then ARB (1.8), then SOL (4) to prevent market-maker spread widening on later exits. Replace immediately with non-identical baskets to maintain exposure and comply with 30-day wash-sale rule. $15k in gains remain unoffset.\"\n}",
+      "durationMs": 44493,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "assets_to_sell": 1,
+          "sale_sequence": 1,
+          "replacement_assets.LINK": 1,
+          "replacement_assets.ARB": 1,
+          "replacement_assets.SOL": 1,
+          "net_tax_benefit": 1,
+          "remaining_unoffset_gains": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "Harvest all three loss lots, selling thinnest first to avoid market-maker spread widening, then immediately replace with correlated baskets to stay invested and avoid wash-sale disallowance",
+          "assets_to_sell": [
+            "LINK",
+            "ARB",
+            "SOL"
+          ],
+          "sale_sequence": [
+            "LINK",
+            "ARB",
+            "SOL"
+          ],
+          "replacement_assets": {
+            "LINK": "LST_beta_basket",
+            "ARB": "OP_IMX_basket",
+            "SOL": "JTO_PYTH_basket"
+          },
+          "net_tax_benefit": 18190,
+          "remaining_unoffset_gains": 15000,
+          "self_check": "Total losses harvested $55000 at 37% = $20350 gross savings. Round-trip costs: LINK $110000×0.60%=$660, ARB $90000×0.60%=$540, SOL $160000×0.60%=$960, total $2160. Net benefit $20350-$2160=$18190. Remaining gains $70000-$55000=$15000. Sale sequence thinnest-first (1.1→1.8→4) avoids spread widening. Replacement baskets are non-identical tickers so no wash-sale violation. All lots sold to maximize offset.",
+          "reasoning": "Harvest all $55k in losses (22k+15k+18k) to offset short-term gains at 37%, yielding $20,350 gross tax savings minus $2,160 round-trip costs on $360k total notional (110k+90k+160k at 0.60%) = $18,190 net benefit. Sell LINK first (exit-depth 1.1, thinnest), then ARB (1.8), then SOL (4) to prevent market-maker spread widening on later exits. Replace immediately with non-identical baskets to maintain exposure and comply with 30-day wash-sale rule. $15k in gains remain unoffset."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

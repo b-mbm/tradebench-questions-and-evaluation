@@ -1,0 +1,45 @@
+{
+  "runAt": "2026-06-10T18:04:27.483Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L10-049-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L10-049"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-049",
+      "raw": " {\n  \"intent\": \"allocate_treasury\",\n  \"order_type\": \"portfolio\",\n  \"asset\": \"USDC\",\n  \"size\": 18000000,\n  \"unit\": \"usd\",\n  \"venue\": \"multi\",\n  \"venue_name\": \"Tokenized Treasury repo, FraxBP LP, Maple senior loan, Ethena sUSDe\",\n  \"risk_controls\": {\n    \"position_size_limit\": 5400000,\n    \"slippage_tolerance\": \"1.0%\"\n  },\n  \"follow_up\": \"rebalance at 30-day mark\",\n  \"reasoning\": \"Maximize risk-adjusted yield: repo 5.4%, FraxBP 9.8%-0.27%=9.53%, Maple 13%-0.7%=12.3%, Ethena 16.5%-0.66%=15.84%. Constraints: max 30% per venue, >=55% liquid within 7 days, <=25% liquid later than 7 days, tail loss <1.0%, target APR >10%. Liquidity: repo 2-day, FraxBP 5-day, Ethena 7-day (within 7), Maple 45-day (>7). So Maple <=25% (4.5M). To hit >10% target with max 30% each, we need high-yield venues. Setting repo=30% (5.4M), FraxBP=30% (5.4M), Ethena=25% (4.5M), Maple=15% (2.7M) gives 55% within 7 days (repo+FraxBP+Ethena=85%... wait that's 85%). Actually need >=55% within 7 days and <=25% beyond 7 days. Let's check: repo 2d, FraxBP 5d, Ethena 7d are within 7 days. Maple 45d is beyond 7 days. So beyond 7 days = Maple only, must be <=25%. Within 7 days = 100%-Maple >=75%, which satisfies >=55%. Tail loss = 0.30*0 + 0.30*(0.015*0.18) + 0.15*(0.02*0.35) + 0.25*(0.03*0.22) = 0 + 0.00081 + 0.00105 + 0.00165 = 0.00351 = 0.351% < 1.0%. Nominal APR before tail = 0.30*5.4 + 0.30*9.8 + 0.15*13.0 + 0.25*16.5 = 1.62 + 2.94 + 1.95 + 4.125 = 10.635% > 10%. Risk-adjusted APR = 0.30*5.4 + 0.30*9.53 + 0.15*12.3 + 0.25*15.84 = 1.62 + 2.859 + 1.845 + 3.96 = 10.284%. But can we do better? Try repo=25%, FraxBP=30%, Ethena=30%, Maple=15%: within 7 = 85%, beyond=15%<=25%. Tail loss = 0 + 0.30*0.0027 + 0.15*0.007 + 0.30*0.0066 = 0 + 0.00081 + 0.00105 + 0.00198 = 0.00384 < 1%. Nominal = 0.25*5.4 + 0.30*9.8 + 0.15*13 + 0.30*16.5 = 1.35 + 2.94 + 1.95 + 4.95 = 11.19%. Risk-adj = 0.25*5.4 + 0.30*9.53 + 0.15*12.3 + 0.30*15.84 = 1.35 + 2.859 + 1.845 + 4.752 = 10.806%. Try repo=20%, FraxBP=30%, Ethena=30%, Maple=20%: beyond=20%<=25%. Tail=0.30*0.0027+0.20*0.007+0.30*0.0066=0.00081+0.0014+0.00198=0.00419<1%. Nominal=0.2*5.4+0.3*9.8+0.2*13+0.3*16.5=1.08+2.94+2.6+4.95=11.57%. Risk-adj=1.08+2.859+2.46+4.752=11.151%. Try repo=15%, FraxBP=30%, Ethena=30%, Maple=25%: beyond=25%<=25%. Tail=0.30*0.0027+0.25*0.007+0.30*0.0066=0.00081+0.00175+0.00198=0.00454<1%. Nominal=0.15*5.4+0.3*9.8+0.25*13+0.3*16.5=0.81+2.94+3.25+4.95=11.95%. Risk-adj=0.81+2.859+3.075+4.752=11.496%. Try repo=10%, FraxBP=30%, Ethena=30%, Maple=30%: beyond=30%>25% violates. Try repo=15%, FraxBP=25%, Ethena=30%, Maple=30%: beyond=30%>25% violates. So max Maple is 25%. With Maple=25%, we need repo+FraxBP+Ethena=75%. To maximize risk-adj, minimize repo (lowest risk-adj 5.4) and maximize Ethena (15.84) and FraxBP (9.53). So set repo as low as possible while keeping FraxBP<=30% and Ethena<=30%. If Ethena=30%, FraxBP=30%, repo=15%, Maple=25%: risk-adj=11.496%. Can we increase Ethena beyond 30%? No, max 30%. Can we increase FraxBP beyond 30%? No. So best is repo=15%, FraxBP=30%, Ethena=30%, Maple=25%. Check all constraints: per venue <=30%: repo 15%, FraxBP 30%, Ethena 30%, Maple 25% OK. >=55% within 7 days: 15+30+30=75% >=55% OK. <=25% beyond 7 days: Maple 25% OK. Tail loss: 15%*0 + 30%*(1.5%*18%) + 25%*(2%*35%) + 30%*(3%*22%) = 0 + 0.30*0.0027 + 0.25*0.007 + 0.30*0.0066 = 0.00081 + 0.00175 + 0.00198 = 0.00454 = 0.454% < 1.0% OK. Target nominal APR: 0.15*5.4 + 0.30*9.8 + 0.25*13 + 0.30*16.5 = 0.81 + 2.94 + 3.25 + 4.95 = 11.95% > 10% OK. Risk-adjusted APR = 0.15*5.4 + 0.30*(9.8-0.27) + 0.25*(13-0.7) + 0.30*(16.5-0.66) = 0.81 + 2.859 + 3.075 + 4.752 = 11.496%. Wait, is there any combination with repo=10%, FraxBP=30%, Ethena=35%? No, max 30%. What about repo=10%, FraxBP=35%? No. So 11.496% is optimal. But wait, the prompt says 'report risk-adjusted annualized yield by subtracting probability times severity from each venue's APR as percentage points, without annualizing tail losses.' So risk-adjusted APR for each venue: repo: 5.4 - 0 = 5.4. FraxBP: 9.8 - (1.5% * 18%) = 9.8 - 0.27 = 9.53. Maple: 13 - (2% * 35%) = 13 - 0.7 = 12.3. Ethena: 16.5 - (3% * 22%) = 16.5 - 0.66 = 15.84. Portfolio risk-adjusted = 0.15*5.4 + 0.30*9.53 + 0.25*12.3 + 0.30*15.84 = 0.81 + 2.859 + 3.075 + 4.752 = 11.496%. Rounding: probably 11.50% or keep as 11.496. The expected_value should be the APR percentage. Let's use 11.50 or 11.496. The prompt says 'report the APR percentage'. I'll use 11.50 if rounding to 2 decimals, but maybe exact is better. Let's provide 11.50. Actually let's compute more precisely: 0.15*5.4 = 0.81. 0.30*9.53 = 2.859. 0.25*12.3 = 3.075. 0.30*15.84 = 4.752. Sum = 11.496. So 11.496%. I'll put 11.50 or",
+      "durationMs": 19822,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate_treasury",
+          "order_type": "portfolio",
+          "asset": "USDC",
+          "size": "18000000",
+          "unit": "usd",
+          "venue": "multi",
+          "venue_name": "Tokenized Treasury repo, FraxBP LP, Maple senior loan, Ethena sUSDe",
+          "position_size_limit": 5400000,
+          "slippage_tolerance": "1.0%",
+          "follow_up": "rebalance at 30-day mark",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

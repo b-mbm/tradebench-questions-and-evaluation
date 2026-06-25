@@ -1,0 +1,65 @@
+{
+  "runAt": "2026-06-11T20:04:43.768Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-111-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-111"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-111",
+      "raw": "{\n  \"intent\": \"execute_delta_neutral_basis\",\n  \"chosen_strategy\": \"resilient_funding_basis_ladder\",\n  \"perp_short_allocation_usd\": {\n    \"Binance\": 120000,\n    \"Bybit\": 120000,\n    \"OKX\": 110000,\n    \"Hyperliquid\": 90000,\n    \"dYdX\": 60000\n  },\n  \"leverage\": 1,\n  \"apr_pct\": 30.9,\n  \"pnl_30d_usd\": 12698.63,\n  \"cascade_buffer_pct\": 0,\n  \"survives_cascade\": true,\n  \"self_check\": \"Delta-neutral verification: $500k spot SOL fully hedged by $500k perp short across five venues. Per-venue allocations exactly match resilient capacities (Binance 120k, Bybit 120k, OKX 110k, Hyperliquid 90k, dYdX 60k) without exceedance. Weighted APR 30.9% and 30-day PnL $12,698.63 computed from funding accrual. Cascade buffer is 0% indicating operation at the resilient threshold but not beyond, ensuring no forced deleveraging.\",\n  \"reasoning\": \"To achieve 1x delta-neutral against $500k spot custody while surviving an exchange cascade, the ladder allocates the full resilient short capacity of each venue (totaling $500k). This maximizes carry (weighted APR 30.9%) without exceeding ADL thresholds. The 30-day PnL assumes linear funding accrual. Leverage is set to 1x to avoid liquidation risk. Cascade buffer is 0% because utilization equals resilient capacity, satisfying the non-negative constraint for cascade survival.\"\n}",
+      "durationMs": 72277,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6923076923076923,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "perp_short_allocation_usd.Binance": 1,
+          "perp_short_allocation_usd.Bybit": 1,
+          "perp_short_allocation_usd.OKX": 1,
+          "perp_short_allocation_usd.Hyperliquid": 1,
+          "perp_short_allocation_usd.dYdX": 1,
+          "leverage": 1,
+          "apr_pct": 1,
+          "pnl_30d_usd": 1,
+          "cascade_buffer_pct": 0,
+          "survives_cascade": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_delta_neutral_basis",
+          "chosen_strategy": "resilient_funding_basis_ladder",
+          "perp_short_allocation_usd": {
+            "Binance": 120000,
+            "Bybit": 120000,
+            "OKX": 110000,
+            "Hyperliquid": 90000,
+            "dYdX": 60000
+          },
+          "leverage": 1,
+          "apr_pct": 30.9,
+          "pnl_30d_usd": 12698.63,
+          "cascade_buffer_pct": 0,
+          "survives_cascade": true,
+          "self_check": "Delta-neutral verification: $500k spot SOL fully hedged by $500k perp short across five venues. Per-venue allocations exactly match resilient capacities (Binance 120k, Bybit 120k, OKX 110k, Hyperliquid 90k, dYdX 60k) without exceedance. Weighted APR 30.9% and 30-day PnL $12,698.63 computed from funding accrual. Cascade buffer is 0% indicating operation at the resilient threshold but not beyond, ensuring no forced deleveraging.",
+          "reasoning": "To achieve 1x delta-neutral against $500k spot custody while surviving an exchange cascade, the ladder allocates the full resilient short capacity of each venue (totaling $500k). This maximizes carry (weighted APR 30.9%) without exceeding ADL thresholds. The 30-day PnL assumes linear funding accrual. Leverage is set to 1x to avoid liquidation risk. Cascade buffer is 0% because utilization equals resilient capacity, satisfying the non-negative constraint for cascade survival."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:cascade_buffer_pct",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

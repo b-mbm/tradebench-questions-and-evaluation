@@ -1,0 +1,77 @@
+{
+  "runAt": "2026-06-10T07:37:55.956Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-044-2026-06-10T07-37-19",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-044"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-044",
+      "raw": "{\n  \"intent\": \"crisis_desequence\",\n  \"chosen_strategy\": \"time-gated sequential neutralization prioritizing stablecoin exit before withdrawal gates, then margin reduction before window instability\",\n  \"actions\": [\n    \"T+2m: Exit USDC/USDT LP ($310,000) before T+22m withdrawal gate\",\n    \"T+12m: Unwind USDC lending loop ($520,000) before T+26m oracle/liquidation push\",\n    \"T+22m: Reduce AVAX perps by half ($200,000 notional) before T+34m margin instability\",\n    \"BTC spot ($160,000): Hold — unencumbered, no stablecoin-collateral risk\"\n  ],\n  \"priority_order\": [\"USDC/USDT LP exit\", \"USDC lending loop unwind\", \"AVAX perps half-reduction\", \"BTC spot hold\"],\n  \"direct_stablecoin_neutralized_usd\": 830000,\n  \"latest_direct_neutralization_min\": 12,\n  \"margin_notional_reduced_usd\": 200000,\n  \"expected_execution_cost_usd\": 2538,\n  \"self_check\": \"LP exit at T+2m < T+22m gate ✓; Lending unwind at T+12m < T+26m push ✓; AVAX reduction at T+22m < T+34m instability ✓; One op per 10-min window ✓; Costs: 310000×0.0022=682 + 520000×0.0028=1456 + 200000×0.0020=400 = 2538 ✓; Stablecoin neutralized: 310000+520000=830000 ✓; BTC unencumbered and non-stablecoin, no action needed ✓\",\n  \"reasoning\": \"Sequenced by deadline urgency: LP exit first (gate T+22m, seat T+2m), lending loop second (push T+26m, seat T+12m), AVAX perps third (instability T+34m, seat T+22m). Direct stablecoin neutralized = 310k+520k = 830k. Latest direct stablecoin action at T+12m. Margin reduced = 200k (half of 400k AVAX). Total cost = 682+1456+400 = 2538. BTC held as non-stablecoin unencumbered asset.\",\n  \"order_type\": \"market\",\n  \"asset\": \"multi-asset\",\n  \"size\": 830000,\n  \"unit\": \"usd\",\n  \"venue\": \"multi-venue\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": 520000\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor stablecoin depth and queue status; confirm each fill before committing next seat; reassess BTC if margin stress propagates\"\n}",
+      "durationMs": 36068,
+      "grade": {
+        "pass": false,
+        "confidence": 0.9444444444444444,
+        "score": 0.4444444444444444,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "actions": 0,
+          "priority_order": 0,
+          "direct_stablecoin_neutralized_usd": 1,
+          "latest_direct_neutralization_min": 1,
+          "margin_notional_reduced_usd": 1,
+          "expected_execution_cost_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "crisis_desequence",
+          "chosen_strategy": "time-gated sequential neutralization prioritizing stablecoin exit before withdrawal gates, then margin reduction before window instability",
+          "actions": [
+            "T+2m: Exit USDC/USDT LP ($310,000) before T+22m withdrawal gate",
+            "T+12m: Unwind USDC lending loop ($520,000) before T+26m oracle/liquidation push",
+            "T+22m: Reduce AVAX perps by half ($200,000 notional) before T+34m margin instability",
+            "BTC spot ($160,000): Hold — unencumbered, no stablecoin-collateral risk"
+          ],
+          "priority_order": [
+            "USDC/USDT LP exit",
+            "USDC lending loop unwind",
+            "AVAX perps half-reduction",
+            "BTC spot hold"
+          ],
+          "direct_stablecoin_neutralized_usd": 830000,
+          "latest_direct_neutralization_min": 12,
+          "margin_notional_reduced_usd": 200000,
+          "expected_execution_cost_usd": 2538,
+          "self_check": "LP exit at T+2m < T+22m gate ✓; Lending unwind at T+12m < T+26m push ✓; AVAX reduction at T+22m < T+34m instability ✓; One op per 10-min window ✓; Costs: 310000×0.0022=682 + 520000×0.0028=1456 + 200000×0.0020=400 = 2538 ✓; Stablecoin neutralized: 310000+520000=830000 ✓; BTC unencumbered and non-stablecoin, no action needed ✓",
+          "reasoning": "Sequenced by deadline urgency: LP exit first (gate T+22m, seat T+2m), lending loop second (push T+26m, seat T+12m), AVAX perps third (instability T+34m, seat T+22m). Direct stablecoin neutralized = 310k+520k = 830k. Latest direct stablecoin action at T+12m. Margin reduced = 200k (half of 400k AVAX). Total cost = 682+1456+400 = 2538. BTC held as non-stablecoin unencumbered asset.",
+          "order_type": "market",
+          "asset": "multi-asset",
+          "size": 830000,
+          "unit": "usd",
+          "venue": "multi-venue",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": 520000
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor stablecoin depth and queue status; confirm each fill before committing next seat; reassess BTC if margin stress propagates"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:actions",
+          "agi_validation_failed:priority_order",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

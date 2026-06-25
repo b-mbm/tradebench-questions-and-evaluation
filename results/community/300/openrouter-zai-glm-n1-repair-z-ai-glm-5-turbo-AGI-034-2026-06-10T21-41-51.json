@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-10T21:42:17.359Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-AGI-034-2026-06-10T21-41-51",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-034"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-034",
+      "raw": "{\n  \"intent\": \"transfer\",\n  \"chosen_strategy\": \"max_split_private_relayer\",\n  \"route_allocation_usd\": {\n    \"Gamma\": 300000,\n    \"Sigma\": 200000\n  },\n  \"observable_largest_clip_usd\": 200000,\n  \"expected_loss_usd\": 1820,\n  \"expected_arrival_minutes\": 70,\n  \"self_check\": \"Gamma (70m) and Sigma (55m) both settle within the 100m deadline. Gamma is private-attested",
+      "durationMs": 25403,
+      "grade": {
+        "pass": false,
+        "confidence": 0.328125,
+        "score": 0.375,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_allocation_usd.Gamma": 0,
+          "route_allocation_usd.Sigma": 0,
+          "observable_largest_clip_usd": 1,
+          "expected_loss_usd": 1,
+          "expected_arrival_minutes": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "transfer",
+          "chosen_strategy": "max_split_private_relayer",
+          "Gamma": 300000,
+          "Sigma": 200000,
+          "observable_largest_clip_usd": 200000,
+          "expected_loss_usd": 1820,
+          "expected_arrival_minutes": 70,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:52:56.815Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-038-2026-06-10T06-52-46",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-038"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-038",
+      "raw": "{\n  \"intent\": \"structure_multi_leg_catalyst_strategy\",\n  \"expected_value\": 20.94,\n  \"reasoning\": \"Weighted 75-day returns: Spot SOL 30%×22%=6.60%, JitoSOL carry 25%×(8.0%×75/365)=25%×1.644%=0.41%, Perp funding 25%×(18.0%×75/365)=25%×3.699%=0.92%, Options call-spread 20%×65%=13.00%. Sum=6.60+0.41+0.92+13.00=20.94% total portfolio return over 75 days.\"\n}",
+      "durationMs": 10429,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "structure_multi_leg_catalyst_strategy",
+          "expected_value": 20.94,
+          "reasoning": "Weighted 75-day returns: Spot SOL 30%×22%=6.60%, JitoSOL carry 25%×(8.0%×75/365)=25%×1.644%=0.41%, Perp funding 25%×(18.0%×75/365)=25%×3.699%=0.92%, Options call-spread 20%×65%=13.00%. Sum=6.60+0.41+0.92+13.00=20.94% total portfolio return over 75 days."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

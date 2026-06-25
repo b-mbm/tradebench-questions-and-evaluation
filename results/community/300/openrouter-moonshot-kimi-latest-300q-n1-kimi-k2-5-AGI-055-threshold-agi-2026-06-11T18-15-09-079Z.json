@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-11T18:15:09.078Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-055-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-055"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-055",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"chosen_strategy\": \"ETH_short_plus_BTC_put_spread\",\n  \"hedge_legs\": {\n    \"ETH_short\": {\n      \"notional_usd\": 360000\n    },\n    \"BTC_put_spread\": {\n      \"notional_usd\": 700000\n    }\n  },\n  \"expected_vol_reduction_pct\": 50,\n  \"residual_1d_var_usd\": 250000,\n  \"reasoning\": \"Maxed ETH short at 359999 (just under 360k tripwire) to hedge largest marginal vol contributor; added full 700k BTC put-spread convexity to capture crisis-correlation tail risk. Combined linear short + convex protection cuts crisis-regime vol by half without spot sales. Residual 1d variance assumes original ~1M var reduced 75% (vol halved) leaves 250k var.\"\n}",
+      "durationMs": 62921,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "hedge_legs.ETH_short.notional_usd": 1,
+          "hedge_legs.BTC_put_spread.notional_usd": 1,
+          "expected_vol_reduction_pct": 1,
+          "residual_1d_var_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "ETH_short_plus_BTC_put_spread",
+          "hedge_legs": {
+            "ETH_short": {
+              "notional_usd": 360000
+            },
+            "BTC_put_spread": {
+              "notional_usd": 700000
+            }
+          },
+          "expected_vol_reduction_pct": 50,
+          "residual_1d_var_usd": 250000,
+          "reasoning": "Maxed ETH short at 359999 (just under 360k tripwire) to hedge largest marginal vol contributor; added full 700k BTC put-spread convexity to capture crisis-correlation tail risk. Combined linear short + convex protection cuts crisis-regime vol by half without spot sales. Residual 1d variance assumes original ~1M var reduced 75% (vol halved) leaves 250k var."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:residual_1d_var_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

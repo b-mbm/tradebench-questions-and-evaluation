@@ -1,0 +1,132 @@
+{
+  "runAt": "2026-06-10T14:49:11.756Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-l10-from1-chunk3-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L10-011",
+    "L10-012",
+    "L10-013",
+    "L10-014",
+    "L10-015"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-011",
+      "raw": "",
+      "durationMs": 168655,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-012",
+      "raw": " {\n  \"intent\": \"rebalance_and_resize_lightning_channels\",\n  \"order_type\": \"strategy\",\n  \"asset\": \"BTC\",\n  \"size\": 32,\n  \"unit\": \"btc\",\n  \"venue\": \"lightning_network\",\n  \"venue_name\": \"custom_routing_node\",\n  \"risk_controls\": {\n    \"position_size_limit\": 60,\n    \"max_gas\": 5000,\n    \"slippage_tolerance\": 0.13\n  },\n  \"expected_value\": 54000,\n  \"reasoning\": \"Current monthly revenue is $18M * 0.15% = $27,000. To double revenue to $54,000 while keeping 0.15% fee rate, successful routed volume must double to $36M/month. 13% failures due to inbound imbalance (≈2.7M failed volume) plus 8% other failures; fixing imbalance and adding 13 direct institutional channels (capped at 60 total channels) raises success rate to 95%. Rebalancing 8 BTC of the 32 BTC across existing channels costs ~$3,200 on-chain (well under $5,000 cap). The doubled $36M successful volume at 0.15% yields $54,000 monthly revenue.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor channel liquidity skew weekly and rebalance if imbalance exceeds 10% of capacity; track institutional channel uptime and retry traffic growth.\",\n  \"follow_up\": \"confirm channel rebalancing and institutional channel onboarding\"\n}",
+      "durationMs": 2337,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "rebalance_and_resize_lightning_channels",
+          "order_type": "strategy",
+          "asset": "BTC",
+          "size": 32,
+          "unit": "btc",
+          "venue": "lightning_network",
+          "venue_name": "custom_routing_node",
+          "risk_controls": {
+            "position_size_limit": 60,
+            "max_gas": 5000,
+            "slippage_tolerance": 0.13
+          },
+          "expected_value": 54000,
+          "reasoning": "Current monthly revenue is $18M * 0.15% = $27,000. To double revenue to $54,000 while keeping 0.15% fee rate, successful routed volume must double to $36M/month. 13% failures due to inbound imbalance (≈2.7M failed volume) plus 8% other failures; fixing imbalance and adding 13 direct institutional channels (capped at 60 total channels) raises success rate to 95%. Rebalancing 8 BTC of the 32 BTC across existing channels costs ~$3,200 on-chain (well under $5,000 cap). The doubled $36M successful volume at 0.15% yields $54,000 monthly revenue.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor channel liquidity skew weekly and rebalance if imbalance exceeds 10% of capacity; track institutional channel uptime and retry traffic growth.",
+          "follow_up": "confirm channel rebalancing and institutional channel onboarding"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-013",
+      "raw": " {\n  \"intent\": \"consolidate_utxos\",\n  \"expected_value\": 0.02492,\n  \"reasoning\": \"Consolidate 2,200 smallest UTXOs into 120 equal outputs across 3 low-fee windows at 10 sat/vB. Each window handles ~733 inputs and 40 outputs. Per-batch vbytes: 733*68 + 40*31 + 350 = 52,174 vbytes. Total vbytes: 3 * 52,174 = 156,522 vbytes. Total sats: 156,522 * 10 = 1,565,220 sats = 0.0156522 BTC. Wait, need to recalculate carefully. 2200 inputs / 3 = 733.333, so maybe 734, 733, 733. Outputs: 120 / 3 = 40 each. Batch overhead: 350 each. Total vbytes = 3 * (734*68 + 40*31 + 350) approximately. Let's compute: 734*68 = 49,912. 40*31 = 1,240. +350 = 51,502. For two batches with 733: 733*68 = 49,844. +1,240 +350 = 51,434. Total vbytes = 51,502 + 51,434 + 51,434 = 154,370 vbytes. Total sats = 1,543,700 sats = 0.015437 BTC. Hmm, but the problem says 350 total vbytes of batch overhead, not per batch. Let me re-read: '350 total vbytes of batch overhead'. So total overhead across all batches is 350 vbytes. Then per batch overhead is not specified, but total is 350. So total vbytes = 2200*68 + 120*31 + 350 = 149,600 + 3,720 + 350 = 153,670 vbytes. Total sats = 1,536,700 sats = 0.015367 BTC. But wait, the problem says 'Use native SegWit inputs at 68 vbytes each, consolidation outputs at 31 vbytes each, and 350 total vbytes of batch overhead.' This likely means for the entire consolidation plan. So total tx size = 2200*68 + 120*31 + 350 = 149,600 + 3,720 + 350 = 153,670 vbytes. At 10 sat/vB, total sats = 1,536,700 sats = 0.015367 BTC. But the user asks to report expected BTC transaction cost for the specified consolidation plan. The expected_value should be the cost in BTC. Let me double-check: 153,670 vbytes * 10 sat/vbyte = 1,536,700 sat = 0.015367 BTC. But the problem also says 'total transaction costs below 0.05 BTC'. 0.015367 is below 0.05. However, I need to check if there are multiple transactions or one transaction. With 2200 inputs, that's a huge transaction. Bitcoin has limits on transaction size (100k vbytes standardness limit? Actually standardness limit is 100,000 vbytes for non-witness data, but with SegWit, the limit is on weight units. 2200 inputs would be very large. But the problem says 'three low-fee windows', implying three separate transactions/batches. So the 350 total overhead is across three batches? Or per batch? The wording: '350 total vbytes of batch overhead' suggests total across all batches. But if we have three batches, each batch has overhead. Maybe the 350 is per batch? Or total? Let me reconsider. If total overhead is 350 for all batches, and we have 3 batches, then each batch has overhead of ~116.67 vbytes, which seems low. Typically overhead includes version, locktime, etc. For a transaction, overhead is about 10.5 vbytes (4 version + 1 vin count + 1 vout count + 4 locktime) plus maybe witness marker and flag (2 vbytes for SegWit). So ~11-12 vbytes per transaction. For 3 transactions, that's ~36 vbytes. 350 seems like a lot for total overhead, but maybe it includes other things like change outputs or metadata. Actually, maybe the 350 is per batch. Let me re-read: 'and 350 total vbytes of batch overhead.' The word 'total' suggests across all batches. But then 'batch overhead' might mean per batch. This is ambiguous. However, if it's total across all batches, then total vbytes = 2200*68 + 120*31 + 350 = 153,670. If it's per batch, then total vbytes = 2200*68 + 120*31 + 3*350 = 153,670 + 700 = 154,370? Wait, 3*350 = 1050. So 149,600 + 3,720 + 1050 = 154,370. Then cost = 1,543,700 sat = 0.015437 BTC. Actually, the difference is small. But the problem says '350 total vbytes of batch overhead'. I think 'total' modifies the entire consolidation plan. So I'll use 153,670 vbytes. But wait, maybe the 350 is the overhead per batch, and 'total' refers to the total overhead of a batch? No, 'total vbytes of batch overhead' likely means the total overhead across all batches is 350 vbytes. Let me check typical numbers. A Bitcoin transaction has overhead of about 10.5 vbytes non-SegWit, plus 2 vbytes for SegWit marker/flag, so ~12.5 vbytes. For 3 transactions, that's 37.5 vbytes. 350 is much larger. Maybe overhead includes the size of the varint for input and output counts? For 733 inputs, the input count varint is 3 bytes (since >252). For 40 outputs, output count varint is 1 byte. So per transaction overhead: 4 (version) + 3 (input count) + 1 (output count) + 4 (locktime) + 2 (SegWit) = 14 vbytes. For 3 transactions: 42 vbytes. Still not 350. Maybe 350 includes some other fixed costs or is just a given parameter. So I'll just use the given parameter: 350 total vbytes of batch overhead. So total vbytes = 2200*68 + 120*31 + 350 = 153,670. Total cost = 153,670 * 10 = 1,536,700 sat = 0.015367 BTC. Rounding to maybe 0.0154 BTC. But the user might expect a specific number. Let me see if there's any other interpretation. Maybe the 2,200 UTXOs are consolidated into 120 outputs, but across three windows, so each window has its own transaction. The problem says '350 total vbytes of batch overhead'. If total means across all three batches, then each batch has 350/3 ≈ 116.67 vbytes overhead. But that's weird. Alternatively, maybe 'batch overhead' means the overhead per batch, and 'total' is just descriptive. But then it would say '350 vbytes of batch overhead per batch' or '350 vbytes total batch overhead'. I think the safest is to treat 350 as the total overhead for the entire plan. So total vbytes = inputs + outputs + overhead = 2200*68 + 120*31 + 350 = 153,670. Cost = 153,670 * 10 sats = 1,536,700 sats = 0.015367 BTC. Let me compute precisely: 153,670 * 10 = 1,536,700. 1,536,700 / 100,000,000 = 0.015367 BTC. So expected_value = 0.015367. But maybe they want it rounded to 5 decimal places: 0.01537. Or maybe the overhead is per batch. Let's calculate both: Per batch overhead 350: total vbytes = 2200*68 + 120*31 + 1050 = 154,370. Cost = 0.015437 BTC. The difference is 0.00007 BTC (~$3). Not huge. But which is more likely? The phrase '350 total vbytes of batch overhead' strongly suggests total. I'll go with total. However, I need to check if the question expects me to calculate the cost for the specified plan. The plan is: 2,200 smallest UTXOs into 120 equal-sized outputs across three windows. So three transactions. Each transaction has overhead. If total overhead is 350, that's 350 for all three. So total vbytes = sum of all inputs + sum of all outputs + total overhead = 2200*68 + 120*31 + 350. Yes. So expected_value = 0.015367. But maybe they want the answer in BTC with 8 decimal places: 0.01536700. I'll provide 0.015367. Wait, but the problem says 'native SegWit inputs at 68 vbytes each'. A native SegWit input (P2WPKH) is actually about 67.5 vbytes: 32 prev_txid + 4 vout + 1 scriptSig len + 0 scriptSig + 4 sequence + 1 witness count + 1 sig len + 72 sig + 1 pubkey len + 33 pubkey = 32+4+1+0+4+1+1+72+1+33 = 149 bytes? Wait, vbytes for SegWit is different. For P2WPKH, the non-witness part is 41 bytes (outpoint + scriptSig len + sequence) and witness part is about 107 bytes (1+72+1+33). Weight = 41*4 + 107 = 164 + 107 = 271 weight units = 67.75 vbytes. So 68 vbytes is a rounded number. Outputs: P2WPKH output is 31 bytes? Actually, output value",
+      "durationMs": 12579,
+      "grade": {
+        "pass": false,
+        "confidence": 0.36000000000000004,
+        "score": 0.4,
+        "fieldScores": {
+          "expected_value": 0.4
+        },
+        "normalizedResponse": {
+          "intent": "consolidate_utxos",
+          "expected_value": 0.02492,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-014",
+      "raw": "",
+      "durationMs": 112134,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-015",
+      "raw": "",
+      "durationMs": 180005,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    }
+  ]
+}

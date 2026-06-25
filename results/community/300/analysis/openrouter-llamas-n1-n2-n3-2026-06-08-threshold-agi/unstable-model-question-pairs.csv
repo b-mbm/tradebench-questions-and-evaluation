@@ -1,0 +1,997 @@
+question_id,level,rubric_id,prompt,model,pass_count_3,majority_pass,pass_bits_n1_n2_n3,scores_n1_n2_n3,avg_score,median_score,avg_duration_ms
+L1-001,L1,market_buy,Buy 0.5 BTC at market price,meta-llama/llama-4-scout,2,1,0|1|1,0.419|0.869|0.869,0.719,0.869,1682
+L1-003,L1,stop_loss,"Set stop loss on my 2 ETH at $2,800",meta-llama/llama-4-scout,1,0,0|0|1,0.637|0.637|0.722,0.665,0.637,2520
+L1-003,L1,stop_loss,"Set stop loss on my 2 ETH at $2,800",meta-llama/llama-3.1-8b-instruct,2,1,0|1|1,0.589|0.704|0.704,0.665,0.704,3048
+L2-001,L2,dex_swap,Swap 5000 USDC for DAI on Ethereum,meta-llama/llama-4-maverick,1,0,0|1|0,0.69|0.85|0.69,0.743,0.690,2857
+L2-003,L2,dex_swap,Buy 1000 MATIC with minimal gas fees,meta-llama/llama-4-scout,1,0,1|0|0,0.821|0.681|0.641,0.714,0.681,3329
+L2-004,L2,arbitrage,"Analyze liquidity before swapping 50,000 USDC for WETH",meta-llama/llama-4-maverick,1,0,0|0|1,0.605|0.605|0.684,0.631,0.605,2445
+L4-001,L4,arbitrage,"Rebalance my portfolio to 60% BTC, 30% ETH, 10% USDC. Optimize for matching the 60/30/10 target weights exactly; if current holdings are missing, require follow-up before execution.",meta-llama/llama-3.3-70b-instruct,1,0,1|0|0,0.78|0.632|0.645,0.686,0.645,6172
+L4-002,L4,arbitrage,"Assess correlation risk across BTC, ETH, SOL, MATIC, LINK. Optimize for identifying portfolio-wide correlation risk across all five listed assets and actionable diversification implications.",meta-llama/llama-3.3-70b-instruct,2,1,1|1|0,0.704|0.804|0,0.503,0.704,4966
+L4-002,L4,arbitrage,"Assess correlation risk across BTC, ETH, SOL, MATIC, LINK. Optimize for identifying portfolio-wide correlation risk across all five listed assets and actionable diversification implications.",meta-llama/llama-4-maverick,1,0,0|1|0,0|0.83|0,0.277,0.000,2287
+L4-004,L4,arbitrage_stress_test,Stress test my portfolio for a -50% crypto crash,meta-llama/llama-4-scout,1,0,0|0|1,0|0|0.92,0.307,0.000,2401
+L5-003,L5,arbitrage,Enter delta-neutral yield farming with 5 ETH,meta-llama/llama-3.1-8b-instruct,1,0,0|0|1,0.673|0.673|0.733,0.693,0.673,4826
+L6-002,L6,futures_trade,Set up DCA — buy $500 of BTC weekly for 3 months,meta-llama/llama-4-scout,2,1,1|1|0,0.76|0.76|0.68,0.733,0.760,2542
+L6-003,L6,futures_trade,"Create ladder buy orders every $1,000 from $40k to $45k for BTC",meta-llama/llama-3.3-70b-instruct,2,1,1|0|1,0.775|0.688|0.775,0.746,0.775,5497
+L6-003,L6,futures_trade,"Create ladder buy orders every $1,000 from $40k to $45k for BTC",meta-llama/llama-4-scout,1,0,0|0|1,0.673|0.3|0.777,0.583,0.673,4515
+L6-003,L6,futures_trade,"Create ladder buy orders every $1,000 from $40k to $45k for BTC",meta-llama/llama-3.1-8b-instruct,1,0,0|1|0,0.657|0.76|0.657,0.691,0.657,2354
+L6-004,L6,stop_loss,Set a trailing stop 5% below market on my 0.5 BTC,meta-llama/llama-3.3-70b-instruct,1,0,0|0|1,0.576|0.609|0.743,0.643,0.609,3675
+L6-004,L6,stop_loss,Set a trailing stop 5% below market on my 0.5 BTC,meta-llama/llama-3.1-8b-instruct,2,1,1|0|1,0.856|0.633|0.856,0.782,0.856,2155
+L6-005,L6,twap_order,Execute a TWAP order to sell 10 ETH over the next 4 hours,meta-llama/llama-4-maverick,2,1,1|0|1,0.779|0|0.779,0.519,0.779,1389
+L7-004,L7,portfolio_efficiency_analysis,"I have $100,000 USDC allocated across three DeFi protocols:
+
+50% ($50,000) → Aave USDC Lending
+- APY: 4.2%
+- Risk Score: 1.0
+
+30% ($30,000) → Curve 3pool (USDC/USDT/DAI)
+- APY: 6.8%
+- Risk Score: 2.0
+
+20% ($20,000) → Yearn USDC Vault
+- APY: 8.1%
+- Risk Score: 3.0
+
+The current risk-free rate (US T-Bills) is 5.0%.
+
+Calculate: (1) the portfolio's blended APY, (2) the portfolio's weighted-average risk score, (3) the portfolio's excess return over the risk-free rate, (4) the portfolio's risk-adjusted return ratio (excess return divided by weighted risk), and (5) the expected annual yield in USD.",meta-llama/llama-4-maverick,2,1,0|1|1,0|0.917|0.917,0.611,0.917,5073
+L7-005,L7,mev_protection_cost_benefit,"I want to sell 100 ETH for USDC. I have three execution options:
+
+**Option A: Uniswap (No MEV Protection)**
+- Expected slippage: 0.3%
+- Gas cost: $50
+- MEV risk: 1.2% (average frontrun/sandwich loss)
+
+**Option B: CowSwap (MEV Protected)**
+- Expected slippage: 0.4%
+- Gas cost: $0 (gasless)
+- MEV risk: 0%
+
+**Option C: 1inch Fusion (Partial MEV Protection)**
+- Expected slippage: 0.35%
+- Gas cost: $25
+- MEV risk: 0.4% (reduced via private RPC)
+
+Current ETH price: $3,000
+
+Calculate: (1) the total cost percentage for each option (slippage + gas + MEV as % of gross value), (2) the expected net proceeds in USDC for each option, (3) which option maximizes net proceeds, and (4) the dollar amount saved by choosing the best option versus the worst option.
+
+Schema hint: Return JSON covering intent, order_type, asset, size, eth_price, gross_value, per-option slippage/gas/mev costs, total_cost, total_cost_pct, net_proceeds, best_option, worst_option, savings_vs_worst, venue, venue_name, reasoning.",meta-llama/llama-3.1-8b-instruct,2,1,1|0|1,0.854|0.593|0.725,0.724,0.725,11566
+L8-004,L8,restaking_optimization,"Optimal Re-staking Strategy with Loan Arbitrage
+
+You have 100 ETH currently staked via Lido (earning 4.2% APR as stETH). You're considering re-staking strategies to boost yield. In 8 days, you plan to use this position as collateral to borrow 50 ETH at 5.5% APR for a profitable farming opportunity. Analyze these three options:
+
+**Option A: EigenLayer AVS Restaking**
+- Additional APR: 2.8% (from AVS rewards)
+- Slashing risk: 3% of staked amount (annual probability)
+- Minimum lock period: 7 days
+- Current TVL: $8.2B (highly liquid)
+- Accepts stETH as collateral: Yes
+
+**Option B: Symbiotic Protocol Restaking**
+- Additional APR: 4.1% (from operator fees)
+- Slashing risk: 5% of staked amount (annual probability)
+- Minimum lock period: 14 days
+- Current TVL: $890M (lower liquidity)
+- Accepts stETH as collateral: Yes
+
+**Option C: Maintain Lido stETH Only**
+- Additional APR: 0% (baseline)
+- Slashing risk: 0% (no additional risk)
+- Minimum lock period: 0 days
+- Liquid staking token (instant liquidity)
+- Accepts stETH as collateral: Yes
+
+**Constraints**
+1. Position must be available as collateral within 8 days for the loan (hard requirement)
+2. Target minimum net APR after borrowing costs: 1.0%
+3. Maximum acceptable slashing risk: 4% of principal
+
+**Task**
+Determine which strategy maximizes net return while satisfying all constraints. Consider the arbitrage spread between staking yield and borrow costs. Respond with JSON including core execution fields plus decision rationale and detailed factors.
+
+Schema hint: Provide top-level keys intent, order_type, asset, size, venue, venue_name, rationale, decision_factors along with flattened numeric mirrors (total_staking_apr, borrow_rate, effective_borrow_cost_on_portfolio, net_apr_after_borrow, meets_net_apr_target, slashing_risk_pct, within_risk_tolerance, liquidity_days, meets_collateral_timing, option_c_net_apr_comparison, option_a_outperformance).",meta-llama/llama-4-maverick,2,1,1|0|1,0.744|0.651|0.744,0.713,0.744,3421
+L8-004,L8,restaking_optimization,"Optimal Re-staking Strategy with Loan Arbitrage
+
+You have 100 ETH currently staked via Lido (earning 4.2% APR as stETH). You're considering re-staking strategies to boost yield. In 8 days, you plan to use this position as collateral to borrow 50 ETH at 5.5% APR for a profitable farming opportunity. Analyze these three options:
+
+**Option A: EigenLayer AVS Restaking**
+- Additional APR: 2.8% (from AVS rewards)
+- Slashing risk: 3% of staked amount (annual probability)
+- Minimum lock period: 7 days
+- Current TVL: $8.2B (highly liquid)
+- Accepts stETH as collateral: Yes
+
+**Option B: Symbiotic Protocol Restaking**
+- Additional APR: 4.1% (from operator fees)
+- Slashing risk: 5% of staked amount (annual probability)
+- Minimum lock period: 14 days
+- Current TVL: $890M (lower liquidity)
+- Accepts stETH as collateral: Yes
+
+**Option C: Maintain Lido stETH Only**
+- Additional APR: 0% (baseline)
+- Slashing risk: 0% (no additional risk)
+- Minimum lock period: 0 days
+- Liquid staking token (instant liquidity)
+- Accepts stETH as collateral: Yes
+
+**Constraints**
+1. Position must be available as collateral within 8 days for the loan (hard requirement)
+2. Target minimum net APR after borrowing costs: 1.0%
+3. Maximum acceptable slashing risk: 4% of principal
+
+**Task**
+Determine which strategy maximizes net return while satisfying all constraints. Consider the arbitrage spread between staking yield and borrow costs. Respond with JSON including core execution fields plus decision rationale and detailed factors.
+
+Schema hint: Provide top-level keys intent, order_type, asset, size, venue, venue_name, rationale, decision_factors along with flattened numeric mirrors (total_staking_apr, borrow_rate, effective_borrow_cost_on_portfolio, net_apr_after_borrow, meets_net_apr_target, slashing_risk_pct, within_risk_tolerance, liquidity_days, meets_collateral_timing, option_c_net_apr_comparison, option_a_outperformance).",meta-llama/llama-4-scout,2,1,1|0|1,0.907|0.651|0.907,0.821,0.907,4390
+L8-006,L8,fixed_yield_allocation,"You have 100,000 USDC to deploy into USDe yield strategies.
+
+**Current market conditions:**
+
+Base Rates:
+- USDe staking APY: 8.5%
+- Aave USDC supply APY: 4.2%
+- Aave USDe borrow APY: 6.8%
+
+Pendle Market (PT-USDe expiring in 90 days):
+- Implied APY: 12.3%
+- Liquidity depth: $45M
+- Fixed yield lock until maturity
+
+Loop Parameters:
+- Max safe leverage on Aave: 3x (LTV 75%, liquidation threshold 80%)
+- Gas costs per loop iteration: ~$8
+- Pendle PT purchase slippage on 100K: 0.15%
+
+**Strategy Options:**
+
+A) Simple Stake: Convert to USDe, stake directly (8.5% APY).
+B) Leveraged Loop: 3x loop USDe on Aave, stake multiplied amount ((3 × 8.5%) − (2 × 6.8%) = 11.9% APY), risk: liquidation if USDe depegs >2%.
+C) Pendle PT: Convert to USDe, buy PT-USDe at 12.3% fixed for 90 days (capital locked).
+D) Hybrid: 2x loop on Aave (50K) + Pendle PT (50K) → 11.25% weighted APY, medium diversification.
+
+**Constraints:** medium risk tolerance (avoid >3% depeg exposure), 90-day horizon, priority is maximize APY while staying under 3x leverage.
+
+Which strategy should you execute? Return JSON following the schema hint.",meta-llama/llama-3.3-70b-instruct,1,0,0|0|1,0.279|0.279|1,0.519,0.279,7784
+L8-006,L8,fixed_yield_allocation,"You have 100,000 USDC to deploy into USDe yield strategies.
+
+**Current market conditions:**
+
+Base Rates:
+- USDe staking APY: 8.5%
+- Aave USDC supply APY: 4.2%
+- Aave USDe borrow APY: 6.8%
+
+Pendle Market (PT-USDe expiring in 90 days):
+- Implied APY: 12.3%
+- Liquidity depth: $45M
+- Fixed yield lock until maturity
+
+Loop Parameters:
+- Max safe leverage on Aave: 3x (LTV 75%, liquidation threshold 80%)
+- Gas costs per loop iteration: ~$8
+- Pendle PT purchase slippage on 100K: 0.15%
+
+**Strategy Options:**
+
+A) Simple Stake: Convert to USDe, stake directly (8.5% APY).
+B) Leveraged Loop: 3x loop USDe on Aave, stake multiplied amount ((3 × 8.5%) − (2 × 6.8%) = 11.9% APY), risk: liquidation if USDe depegs >2%.
+C) Pendle PT: Convert to USDe, buy PT-USDe at 12.3% fixed for 90 days (capital locked).
+D) Hybrid: 2x loop on Aave (50K) + Pendle PT (50K) → 11.25% weighted APY, medium diversification.
+
+**Constraints:** medium risk tolerance (avoid >3% depeg exposure), 90-day horizon, priority is maximize APY while staying under 3x leverage.
+
+Which strategy should you execute? Return JSON following the schema hint.",meta-llama/llama-4-maverick,2,1,1|0|1,0.891|0.231|0.939,0.687,0.891,3486
+L8-007,L8,mev_resilient_unwind,"Execute an MEV-resilient emergency unwind: sell 2,500 stETH to ETH with minimal extraction.
+
+MARKET CONDITIONS:
+- Current stETH/ETH spread: 0.25% (stETH trading at discount)
+- Recent MEV extraction on unprotected swaps: average 0.8% per trade
+- Requirement: Settlement within 15 minutes to meet margin call
+
+VENUE OPTIONS:
+
+[A] CowSwap (MEV-Protected)
+- Protocol fee: 0.15%
+- Settlement time: 12 minutes (batch auction)
+- MEV protection: Full (batch auction mechanism)
+- Available liquidity: 2,000 stETH per 12-min batch
+- Overflow handling: Queued to next batch (+12 minutes)
+
+[B] 1inch Fusion (Partial Protection)
+- Protocol fee: 0.05%
+- Settlement time: Instant
+- MEV protection: Partial (~50% reduction via intent routing)
+- Available liquidity: 5,000 stETH
+- MEV extraction after protection: ~0.4% expected
+
+[C] Uniswap V3 (No Protection)
+- Pool fee: 0.30%
+- Settlement time: Instant
+- MEV protection: None
+- Available liquidity: 10,000 stETH
+- Full MEV exposure: 0.8% expected
+
+CONSTRAINTS:
+1. Total cost (fees + MEV + spread) must be minimized
+2. Settlement MUST occur within 15 minutes (hard deadline)
+3. All 2,500 stETH must be sold in single execution window
+4. Cannot split across multiple venues
+
+DYNAMIC FACTORS:
+- stETH discount widens by 0.05% per $500k sell pressure
+- Your 2,500 stETH ≈ $4.5M at current price (~$1,800/stETH)
+- Additional price impact: ~0.35% for this size
+
+COST CALCULATION METHODOLOGY (provide your own calculations):
+
+Common Market Cost Components (apply to all venues, compute on notional):
+1. Base spread: 0.25% of notional
+2. Price impact: 0.35% of notional
+3. Dynamic widening: 0.05% per $500k sell pressure (use order notional to compute increments)
+
+Venue Parameters (you must combine with common costs to get totals):
+[A] CowSwap: protocol fee 0.15%, settlement 12 min batch, MEV protection full, capacity 2,000 stETH per batch; overflow queued to next batch (+12 min).
+[B] 1inch Fusion: protocol fee 0.05%, settlement instant, MEV protection partial (~0.4% expected extraction), capacity 5,000 stETH.
+[C] Uniswap V3: pool fee 0.30%, settlement instant, MEV protection none (~0.8% expected extraction), capacity 10,000 stETH.
+
+Select the optimal venue considering total execution cost, settlement time, capacity, and MEV protection quality. Respond with raw JSON (no code fences) where `expected_value` is the negative USD_total_cost of execution (e.g., -12345) and `unit` MUST be `""USD_total_cost""`. Do not report net proceeds or positive numbers in `expected_value`.",meta-llama/llama-3.3-70b-instruct,1,0,0|0|1,0.232|0.339|0.76,0.444,0.339,7611
+L8-007,L8,mev_resilient_unwind,"Execute an MEV-resilient emergency unwind: sell 2,500 stETH to ETH with minimal extraction.
+
+MARKET CONDITIONS:
+- Current stETH/ETH spread: 0.25% (stETH trading at discount)
+- Recent MEV extraction on unprotected swaps: average 0.8% per trade
+- Requirement: Settlement within 15 minutes to meet margin call
+
+VENUE OPTIONS:
+
+[A] CowSwap (MEV-Protected)
+- Protocol fee: 0.15%
+- Settlement time: 12 minutes (batch auction)
+- MEV protection: Full (batch auction mechanism)
+- Available liquidity: 2,000 stETH per 12-min batch
+- Overflow handling: Queued to next batch (+12 minutes)
+
+[B] 1inch Fusion (Partial Protection)
+- Protocol fee: 0.05%
+- Settlement time: Instant
+- MEV protection: Partial (~50% reduction via intent routing)
+- Available liquidity: 5,000 stETH
+- MEV extraction after protection: ~0.4% expected
+
+[C] Uniswap V3 (No Protection)
+- Pool fee: 0.30%
+- Settlement time: Instant
+- MEV protection: None
+- Available liquidity: 10,000 stETH
+- Full MEV exposure: 0.8% expected
+
+CONSTRAINTS:
+1. Total cost (fees + MEV + spread) must be minimized
+2. Settlement MUST occur within 15 minutes (hard deadline)
+3. All 2,500 stETH must be sold in single execution window
+4. Cannot split across multiple venues
+
+DYNAMIC FACTORS:
+- stETH discount widens by 0.05% per $500k sell pressure
+- Your 2,500 stETH ≈ $4.5M at current price (~$1,800/stETH)
+- Additional price impact: ~0.35% for this size
+
+COST CALCULATION METHODOLOGY (provide your own calculations):
+
+Common Market Cost Components (apply to all venues, compute on notional):
+1. Base spread: 0.25% of notional
+2. Price impact: 0.35% of notional
+3. Dynamic widening: 0.05% per $500k sell pressure (use order notional to compute increments)
+
+Venue Parameters (you must combine with common costs to get totals):
+[A] CowSwap: protocol fee 0.15%, settlement 12 min batch, MEV protection full, capacity 2,000 stETH per batch; overflow queued to next batch (+12 min).
+[B] 1inch Fusion: protocol fee 0.05%, settlement instant, MEV protection partial (~0.4% expected extraction), capacity 5,000 stETH.
+[C] Uniswap V3: pool fee 0.30%, settlement instant, MEV protection none (~0.8% expected extraction), capacity 10,000 stETH.
+
+Select the optimal venue considering total execution cost, settlement time, capacity, and MEV protection quality. Respond with raw JSON (no code fences) where `expected_value` is the negative USD_total_cost of execution (e.g., -12345) and `unit` MUST be `""USD_total_cost""`. Do not report net proceeds or positive numbers in `expected_value`.",meta-llama/llama-3.1-8b-instruct,2,1,0|1|1,0.32|0.72|0.72,0.587,0.720,5103
+L8-008,L8,risk_parity_execution,"You're executing a risk-parity rebalance (buy side only) across BTC, ETH, GLD, and TLT. Calculate the optimal execution strategy.
+
+Required trades:
+- Buy 0.5 BTC ($22,500)
+- Buy 8 ETH ($22,400)
+- Buy 1,200 GLD ($222,000)
+- Buy 2,400 TLT ($228,000)
+
+Venue options:
+- Coinbase: Crypto only (BTC/ETH), 0.6% fee, instant execution
+- Interactive Brokers: All assets including crypto, 0.1% fee, T+2 settlement
+- You may use one venue or split across both
+
+Constraints:
+- Must execute all 4 legs within same trading day
+- Total fees must not exceed $2,000
+- Minimize total fees while executing all positions
+
+Assumptions: Fees are charged as a percentage of notional with no minimums. Ignore spreads, slippage, and market impact.
+
+Output your execution plan with:
+1. Venue for each asset
+2. Fee calculation per trade
+3. Total fees
+4. Total execution cost (notional + fees)
+5. Reasoning for strategy choice",meta-llama/llama-3.3-70b-instruct,2,1,1|0|1,0.713|0|0.713,0.475,0.713,24358
+L8-009,L8,cash_and_carry_arbitrage,"ETH perpetual funding rate: +0.08% per 8 hours
+ETH spot (Coinbase): $2,450
+ETH-PERP (Binance): $2,458
+
+You have $100,000 USDC available.
+Binance ETH-PERP is USDT-margined and requires 1x initial margin (no leverage).
+Trading fees: 0.02% maker on both venues
+Network transfer fee: $2
+
+Should you execute a cash-and-carry arbitrage? If yes, provide your decision, reasoning, and execution approach. Respond in JSON format.",meta-llama/llama-3.3-70b-instruct,1,0,0|0|1,0.484|0.457|1,0.647,0.484,4341
+L8-010,L8,collar_min_cost,"You hold 10 BTC currently worth $45,000 each. Construct a 30-day collar that balances downside protection with upside participation under the following market conditions:
+
+Market conditions:
+- 30-day ATM implied volatility: 65%
+- Recent 30-day realized volatility: 55%
+- Put skew is 20-30% more expensive than calls
+
+Available 30-day strikes (per BTC premium, positive = credit received, negative = debit paid):
+- Calls: 5% OTM ($47,250) +$850 | 10% OTM ($49,500) +$420
+- Puts: 5% OTM ($42,750) -$920 | 10% OTM ($40,500) -$480
+
+Portfolio context:
+- Portfolio historically captures ~80% of BTC upside moves
+- Historical 30-day BTC move distribution: median +8%, 90th percentile +18%
+- Holding period: full 30 days
+
+Objective: choose the collar that minimizes total economic cost (option premium plus opportunity cost from capped upside) while satisfying:
+- Avoid overpaying for overpriced puts
+- Maintain meaningful downside protection
+- Preserve reasonable upside potential
+
+Respond with a JSON object detailing the selected collar.",meta-llama/llama-3.3-70b-instruct,2,1,1|1|0,0.826|0.826|0.471,0.708,0.826,9793
+L9-009,L9,l9-L9-009,"Restake 100 stETH across 5 AVSs and pick exactly 3 eligible AVSs by max risk-adjusted return. Net score = headline yield - multiplier × slashing_loss, with all terms in APR percentage points. Eligibility constraints: net score must be at least 6%, slashing multiplier must be ≤3, withdrawal delay must be ≤7 days, and oracle freshness must be ≤30 minutes. Data: A1 yield 8%, slashing 2 × 0.5%, delay 2 days, oracle age 10 minutes; A2 yield 12%, slashing 3 × 1%, delay 7 days, oracle age 25 minutes; A3 yield 6%, slashing 0.5 × 0.2%, delay 1 day, oracle age 5 minutes; A4 yield 15%, slashing 5 × 2%, delay 14 days, oracle age 10 minutes; A5 yield 10%, slashing 2.5 × 0.8%, delay 3 days, oracle age 15 minutes. Return only the unordered set of selected AVS IDs; do not allocate weights across the 100 stETH.",meta-llama/llama-4-maverick,1,0,0|0|1,0|0|1,0.333,0.000,2848
+L9-018,L9,l9-L9-018,"Fee APR annualization, bot-only fee capture. A Uniswap V4 hook RWA-T/USDC pool/hook strategy has $12,000,000 active liquidity, $28,000,000 daily volume, and 55% of volume eligible for the incremental fee. Incremental fee is 0.025%; LP capture is 90%, protocol skim is 10%, and keeper/gas/solver overhead is $900 per day. Compare the incremental design vs vanilla Uniswap/Pendle base fees, but expected_value must be only the incremental simple APR percentage: ((daily volume * eligible share * incremental fee * capture * (1 - skim) - daily fixed overhead) * 365) / active liquidity. Check whether incremental APR is positive after a 20% daily-volume stress and oracle age <= 30 minutes; expected_value remains the base-case incremental APR. Exclude compounding, LP-token price drift, base pool fees, and rewards.",meta-llama/llama-4-maverick,1,0,0|0|1,0|0|1,0.333,0.000,1665
+L9-020,L9,l9-L9-020,"Refuse-to-trade decision, liquidation backrun during stale oracle window. Evaluate a $1,000,000 USDC opportunity across Uniswap/Aave/Compound, CEX hedge, bridge, oracle, solver, and MEV routes. Execute only if an option has net expected USD profit > 0 and all hard constraints pass: max slippage 0.40%, oracle age <= 60 seconds, settlement <= 12 minutes, and required capital <= $1,000,000. Option A Uniswap v3 ETH to Arb backrun: gross edge $14,200, fixed costs $4,100, slippage 0.52% of notional, expected risk 25.0% * $28,000, oracle age 45 seconds, settlement 9 minutes, required capital $900,000; Option B RFQ solver bridge: gross edge $26,000, fixed costs $5,200, slippage 0.15% of notional, expected risk 6.0% * $420,000, oracle age 38 seconds, settlement 18 minutes, required capital $950,000; Option C CEX hedge plus bridge unwind: gross edge $11,800, fixed costs $4,600, slippage 0.20% of notional, expected risk 3.0% * $300,000, oracle age 72 seconds, settlement 10 minutes, required capital $980,000. For each option, net EV = gross edge - fixed costs - slippage dollars - expected risk loss. Reject hard-constraint violations even if net EV is positive. Return no_action if no option is both positive-EV and feasible.",meta-llama/llama-3.1-8b-instruct,1,0,0|1|0,0|1|0,0.333,0.000,1647
+L9-025,L9,l9-L9-025,"Flash-loan exploit EV triage, thin liquidation book with high loan fee. A white-hat simulation considers a $8,000,000 USDC flash loan through Uniswap/Aave, with oracle manipulation, liquidations, MEV auction risk, and CEX hedge unwind. Gross liquidation profit if the bundle lands is $620,000. Costs on success: flash loan fee 0.09% of loan, gas $52,000, slippage $76,000, MEV payment $65,000. Success probability is 68%; if it fails or is frontrun, realized loss is flash-loan fee + gas + extra protection cost $60,000 and no liquidation profit. Hard constraints: oracle age <= 45 seconds, liquidation liquidity >= $640,000, and expected EV must be > 0 to execute. Current oracle age 35 seconds and liquidation liquidity $900,000. Compute expected_value as probability-weighted USD EV after all costs; abstain only if EV <= 0 or a hard constraint fails.",meta-llama/llama-4-maverick,2,1,1|0|1,1|0|1,0.667,1.000,3501
+L9-025,L9,l9-L9-025,"Flash-loan exploit EV triage, thin liquidation book with high loan fee. A white-hat simulation considers a $8,000,000 USDC flash loan through Uniswap/Aave, with oracle manipulation, liquidations, MEV auction risk, and CEX hedge unwind. Gross liquidation profit if the bundle lands is $620,000. Costs on success: flash loan fee 0.09% of loan, gas $52,000, slippage $76,000, MEV payment $65,000. Success probability is 68%; if it fails or is frontrun, realized loss is flash-loan fee + gas + extra protection cost $60,000 and no liquidation profit. Hard constraints: oracle age <= 45 seconds, liquidation liquidity >= $640,000, and expected EV must be > 0 to execute. Current oracle age 35 seconds and liquidation liquidity $900,000. Compute expected_value as probability-weighted USD EV after all costs; abstain only if EV <= 0 or a hard constraint fails.",meta-llama/llama-4-scout,1,0,1|0|0,1|0|0,0.333,0.000,1806
+L9-028,L9,l9-L9-028,"Refuse-to-trade decision, basis unwind while bridge queue is congested. Evaluate a $650,000 ETH opportunity across Uniswap/Aave/Compound, CEX hedge, bridge, oracle, solver, and MEV routes. Execute only if an option has net expected USD profit > 0 and all hard constraints pass: max slippage 0.35%, oracle age <= 45 seconds, settlement <= 10 minutes, and required capital <= $650,000. Option A Across solver hedge: gross edge $9,800, fixed costs $2,100, slippage 0.41% of notional, expected risk 8.0% * $90,000, oracle age 32 seconds, settlement 8 minutes, required capital $640,000; Option B CEX spot sale then bridge repay: gross edge $16,200, fixed costs $4,200, slippage 0.18% of notional, expected risk 4.0% * $360,000, oracle age 40 seconds, settlement 13 minutes, required capital $610,000; Option C Uniswap pool exit: gross edge $7,200, fixed costs $2,500, slippage 0.26% of notional, expected risk 10.0% * $70,000, oracle age 51 seconds, settlement 9 minutes, required capital $620,000. For each option, net EV = gross edge - fixed costs - slippage dollars - expected risk loss. Reject hard-constraint violations even if net EV is positive. Return no_action if no option is both positive-EV and feasible.",meta-llama/llama-3.1-8b-instruct,1,0,1|0|0,1|0|0,0.333,0.000,1511
+L9-032,L9,l9-L9-032,"Staking/restaking risk selection, low-risk ETH AVS filter. Restake 80 ETH across EigenLayer/Symbiotic-style AVSs and pick exactly 3 eligible AVSs by highest risk-adjusted APR. Net score = headline yield - operator fee - slashing multiplier * expected slashing loss, all in APR percentage points. Eligibility constraints: net score >= 4.8%, slashing multiplier <= 2.8, withdrawal delay <= 6 days, oracle freshness <= 20 minutes, and capacity >= 80 ETH. Data: A1 yield 6.8%, operator fee 0.2%, slashing 1.2 x 0.5%, delay 2 days, oracle age 8 minutes, capacity 90 ETH; A2 yield 9.6%, operator fee 0.6%, slashing 3 x 0.7%, delay 5 days, oracle age 12 minutes, capacity 120 ETH; A3 yield 7.2%, operator fee 0.4%, slashing 1.5 x 0.4%, delay 4 days, oracle age 18 minutes, capacity 100 ETH; A4 yield 11%, operator fee 0.9%, slashing 2.4 x 1.1%, delay 7 days, oracle age 15 minutes, capacity 200 ETH; A5 yield 5.9%, operator fee 0.1%, slashing 0.8 x 0.4%, delay 1 days, oracle age 10 minutes, capacity 85 ETH. Return only the unordered set of selected AVS IDs; do not allocate weights, and reject any AVS that fails a hard constraint even if its yield is high.",meta-llama/llama-4-scout,2,1,0|1|1,0|1|1,0.667,1.000,1539
+L9-037,L9,l9-L9-037,"Carry basis funding arbitrage, very high funding but thin spot. Compare execute vs no-action for a delta-neutral HYPE trade across Base spot inventory vs Hyperliquid HYPE-PERP, with USDC collateral on Base/ETH and a bridge unwind through Arb. Capital $400,000, trade notional $1,000,000, horizon 1.5 days. The perp is richer than spot by 0.28%; positive funding means the short perp receives 0.078% per 8 hours. Fees and slippage across spot, perp, bridge, gas, and solver are 0.32% of notional plus $120 fixed. Borrow drag is 14.0% APR for the horizon and liquidation buffer reserve is $1,900. Execute only if net annualized return on equity is > 25%, slippage stays <= 0.35%, and the bridge window is <= 12 hours; otherwise return no_action. Compute expected_value as annualized APR percentage for the best feasible action: (basis capture + funding - percent costs - fixed costs - borrow drag - buffer reserve) / capital * 365 / days.",meta-llama/llama-4-scout,1,0,0|0|1,0|0|1,0.333,0.000,1338
+L9-040,L9,l9-L9-040,"Staking/restaking risk selection, capacity-constrained large restake. Restake 250 stETH across EigenLayer/Symbiotic-style AVSs and pick exactly 3 eligible AVSs by highest risk-adjusted APR. Net score = headline yield - operator fee - slashing multiplier * expected slashing loss, all in APR percentage points. Eligibility constraints: net score >= 6.2%, slashing multiplier <= 3, withdrawal delay <= 10 days, oracle freshness <= 30 minutes, and capacity >= 250 stETH. Data: A1 yield 8.8%, operator fee 0.5%, slashing 2 x 0.6%, delay 8 days, oracle age 14 minutes, capacity 300 stETH; A2 yield 14%, operator fee 1.2%, slashing 3.2 x 1.2%, delay 9 days, oracle age 20 minutes, capacity 500 stETH; A3 yield 9.1%, operator fee 0.4%, slashing 1.6 x 0.7%, delay 5 days, oracle age 24 minutes, capacity 260 stETH; A4 yield 7.5%, operator fee 0.3%, slashing 1.1 x 0.5%, delay 4 days, oracle age 12 minutes, capacity 200 stETH; A5 yield 10.8%, operator fee 0.8%, slashing 2.4 x 0.8%, delay 6 days, oracle age 18 minutes, capacity 350 stETH. Return only the unordered set of selected AVS IDs; do not allocate weights, and reject any AVS that fails a hard constraint even if its yield is high.",meta-llama/llama-4-scout,2,1,1|1|0,1|1|0,0.667,1.000,2964
+L9-042,L9,l9-L9-042,"Fee APR annualization, liquidation-flow surcharge. A Aave liquidation hook pool ETH/USDC pool/hook strategy has $15,500,000 active liquidity, $24,000,000 daily volume, and 63% of volume eligible for the incremental fee. Incremental fee is 0.030%; LP capture is 80%, protocol skim is 8%, and keeper/gas/solver overhead is $1,500 per day. Compare the incremental design vs vanilla Uniswap/Pendle base fees, but expected_value must be only the incremental simple APR percentage: ((daily volume * eligible share * incremental fee * capture * (1 - skim) - daily fixed overhead) * 365) / active liquidity. Check whether incremental APR is positive after a 20% daily-volume stress and oracle age <= 30 minutes; expected_value remains the base-case incremental APR. Exclude compounding, LP-token price drift, base pool fees, and rewards.",meta-llama/llama-3.3-70b-instruct,1,0,0|0|1,0|0|1,0.333,0.000,1355
+L9-043,L9,l9-L9-043,"Governance incentive capital action, L2 incentive extension. A DAO vote spans Compound/Aave style lending, Base and Arb bridge snapshots, and CEX liquidity. Proposal benefit if passed is $820,000, but probability of passage after incentives is 67%. Quorum/control target is 2,200,000 ARB votes; treasury already controls 1,250,000 ARB. Missing votes can be rented with bribes at $0 per ARB vote or borrowed at $1 spot price with 12.0% APR for 5 days. Bridge, gas, delegation, and solver costs are $22,000. There is a 6.0% chance of an adverse governance delay costing $380,000. Execute only if net expected USD profit is positive and missing votes <= on-chain lendable liquidity; lendable liquidity is 965,000 ARB. Compute expected_value = pass probability*benefit - bribe cost - borrow interest - bridge/gas/delegation costs - expected delay loss. Also state missing votes and reject no_action if EV is positive.",meta-llama/llama-4-scout,1,0,0|1|0,0|1|0,0.333,0.000,1088
+L9-044,L9,l9-L9-044,"Refuse-to-trade decision, RFQ route during exchange halt. Evaluate a $1,200,000 SOL opportunity across Uniswap/Aave/Compound, CEX hedge, bridge, oracle, solver, and MEV routes. Execute only if an option has net expected USD profit > 0 and all hard constraints pass: max slippage 0.45%, oracle age <= 55 seconds, settlement <= 11 minutes, and required capital <= $1,200,000. Option A CEX hedge route: gross edge $18,500, fixed costs $6,200, slippage 0.19% of notional, expected risk 5.0% * $260,000, oracle age 44 seconds, settlement 14 minutes, required capital $1,180,000; Option B Uniswap bridge route: gross edge $13,600, fixed costs $3,900, slippage 0.51% of notional, expected risk 6.0% * $120,000, oracle age 49 seconds, settlement 9 minutes, required capital $1,100,000; Option C solver route: gross edge $21,000, fixed costs $4,800, slippage 0.22% of notional, expected risk 7.0% * $260,000, oracle age 63 seconds, settlement 8 minutes, required capital $1,190,000. For each option, net EV = gross edge - fixed costs - slippage dollars - expected risk loss. Reject hard-constraint violations even if net EV is positive. Return no_action if no option is both positive-EV and feasible.",meta-llama/llama-3.1-8b-instruct,1,0,0|0|1,0|0|1,0.333,0.000,1655
+L9-047,L9,l9-L9-047,"Collateral leverage liquidation control, governance-token collateral haircut. A Aave isolated market position on Base/ETH uses 70,000 COMP collateral at $62 and $1,650,000 USDC debt, with Aave/Compound oracle cross-check and bridge unwind available. Liquidation threshold is 55.0%. Stress branch: if COMP depegs or falls 20.0%, maintain target health factor >= 1.35; if the post-shock HF would be below target, repay USDC rather than add collateral. Closing loops adds $7,500 gas, slippage, and solver fees to debt before repay. Compute expected_value as the minimum USDC debt reduction required after fees. Formula: max(0, current debt + fees - collateral value * LT * (1 - shock) / target HF). Also report pre-repay HF and reject any borrow-more action.",meta-llama/llama-4-maverick,1,0,1|0|0,1|0|0,0.333,0.000,1290
+L9-048,L9,l9-L9-048,"Staking/restaking risk selection, fast-withdrawal AVS basket. Restake 60 ETH across EigenLayer/Symbiotic-style AVSs and pick exactly 3 eligible AVSs by highest risk-adjusted APR. Net score = headline yield - operator fee - slashing multiplier * expected slashing loss, all in APR percentage points. Eligibility constraints: net score >= 5%, slashing multiplier <= 2.5, withdrawal delay <= 5 days, oracle freshness <= 18 minutes, and capacity >= 60 ETH. Data: A1 yield 6.4%, operator fee 0.2%, slashing 1 x 0.5%, delay 2 days, oracle age 8 minutes, capacity 80 ETH; A2 yield 8.9%, operator fee 0.5%, slashing 2.1 x 0.7%, delay 4 days, oracle age 15 minutes, capacity 100 ETH; A3 yield 10.2%, operator fee 0.8%, slashing 2.7 x 0.8%, delay 4 days, oracle age 12 minutes, capacity 120 ETH; A4 yield 7.1%, operator fee 0.3%, slashing 1.6 x 0.6%, delay 6 days, oracle age 10 minutes, capacity 70 ETH; A5 yield 7.8%, operator fee 0.4%, slashing 1.8 x 0.5%, delay 3 days, oracle age 16 minutes, capacity 65 ETH. Return only the unordered set of selected AVS IDs; do not allocate weights, and reject any AVS that fails a hard constraint even if its yield is high.",meta-llama/llama-4-maverick,2,1,1|1|0,1|1|0,0.667,1.000,1454
+L9-051,L9,l9-L9-051,"Governance incentive capital action, perp listing incentive. A DAO vote spans Compound/Aave style lending, Base and Arb bridge snapshots, and CEX liquidity. Proposal benefit if passed is $640,000, but probability of passage after incentives is 61%. Quorum/control target is 240,000 HYPE votes; treasury already controls 96,000 HYPE. Missing votes can be rented with bribes at $1 per HYPE vote or borrowed at $28 spot price with 28.0% APR for 3 days. Bridge, gas, delegation, and solver costs are $9,000. There is a 4.5% chance of an adverse governance delay costing $240,000. Execute only if net expected USD profit is positive and missing votes <= on-chain lendable liquidity; lendable liquidity is 159,000 HYPE. Compute expected_value = pass probability*benefit - bribe cost - borrow interest - bridge/gas/delegation costs - expected delay loss. Also state missing votes and reject no_action if EV is positive.",meta-llama/llama-3.3-70b-instruct,2,1,1|0|1,1|0|1,0.667,1.000,1617
+L9-056,L9,l9-L9-056,"Staking/restaking risk selection, post-incident conservative restake. Restake 180 stETH across EigenLayer/Symbiotic-style AVSs and pick exactly 3 eligible AVSs by highest risk-adjusted APR. Net score = headline yield - operator fee - slashing multiplier * expected slashing loss, all in APR percentage points. Eligibility constraints: net score >= 6.5%, slashing multiplier <= 3, withdrawal delay <= 7 days, oracle freshness <= 22 minutes, and capacity >= 180 stETH. Data: A1 yield 8.2%, operator fee 0.4%, slashing 1.8 x 0.7%, delay 5 days, oracle age 12 minutes, capacity 220 stETH; A2 yield 12.5%, operator fee 0.9%, slashing 3.1 x 1%, delay 6 days, oracle age 20 minutes, capacity 260 stETH; A3 yield 9.7%, operator fee 0.6%, slashing 2 x 0.8%, delay 4 days, oracle age 18 minutes, capacity 200 stETH; A4 yield 7.8%, operator fee 0.3%, slashing 1.2 x 0.5%, delay 3 days, oracle age 10 minutes, capacity 190 stETH; A5 yield 10.9%, operator fee 0.7%, slashing 2.4 x 0.9%, delay 8 days, oracle age 16 minutes, capacity 300 stETH. Return only the unordered set of selected AVS IDs; do not allocate weights, and reject any AVS that fails a hard constraint even if its yield is high.",meta-llama/llama-4-scout,2,1,0|1|1,0|1|1,0.667,1.000,4020
+L9-060,L9,l9-L9-060,"Refuse-to-trade decision, restaking incident unwind abstention. Evaluate a $2,200,000 stETH opportunity across Uniswap/Aave/Compound, CEX hedge, bridge, oracle, solver, and MEV routes. Execute only if an option has net expected USD profit > 0 and all hard constraints pass: max slippage 0.30%, oracle age <= 35 seconds, settlement <= 14 minutes, and required capital <= $2,200,000. Option A Aave repay via Uniswap: gross edge $31,000, fixed costs $8,400, slippage 0.36% of notional, expected risk 5.0% * $360,000, oracle age 28 seconds, settlement 12 minutes, required capital $2,100,000; Option B CEX hedge bridge unwind: gross edge $52,000, fixed costs $14,200, slippage 0.15% of notional, expected risk 9.0% * $430,000, oracle age 30 seconds, settlement 17 minutes, required capital $2,050,000; Option C solver liquidation fill: gross edge $38,000, fixed costs $9,300, slippage 0.22% of notional, expected risk 6.0% * $390,000, oracle age 41 seconds, settlement 11 minutes, required capital $2,150,000. For each option, net EV = gross edge - fixed costs - slippage dollars - expected risk loss. Reject hard-constraint violations even if net EV is positive. Return no_action if no option is both positive-EV and feasible.",meta-llama/llama-3.1-8b-instruct,2,1,0|1|1,0|1|1,0.667,1.000,1247
+L9-072,L9,l9-L9-072,"Staking/restaking risk selection, capacity-constrained cbETH restake after operator migration. Restake 200 cbETH across EigenLayer/Symbiotic-style AVSs and pick exactly 3 eligible AVSs by highest risk-adjusted APR. Net score = headline yield - operator fee - slashing multiplier * expected slashing loss, all in APR percentage points. Eligibility constraints: net score >= 6%, slashing multiplier <= 3.2, withdrawal delay <= 8 days, oracle freshness <= 22 minutes, and capacity >= 200 cbETH. Data: N1 yield 8.6%, operator fee 0.5%, slashing 1.5 x 0.7%, delay 5 days, oracle age 10 minutes, capacity 240 cbETH; N2 yield 12.8%, operator fee 1%, slashing 3 x 1%, delay 8 days, oracle age 21 minutes, capacity 300 cbETH; N3 yield 10.4%, operator fee 0.6%, slashing 2.1 x 0.8%, delay 6 days, oracle age 18 minutes, capacity 230 cbETH; N4 yield 9.1%, operator fee 0.4%, slashing 1.2 x 0.6%, delay 4 days, oracle age 9 minutes, capacity 180 cbETH; N5 yield 14.2%, operator fee 1.1%, slashing 3.6 x 1.2%, delay 7 days, oracle age 20 minutes, capacity 420 cbETH; N6 yield 7.4%, operator fee 0.2%, slashing 0.8 x 0.5%, delay 9 days, oracle age 8 minutes, capacity 220 cbETH. Return only the unordered set of selected AVS IDs; do not allocate weights, and reject any AVS that fails a hard constraint even if its yield is high.",meta-llama/llama-4-scout,2,1,0|1|1,0|1|1,0.667,1.000,2810
+L9-080,L9,l9-L9-080,"Staking/restaking risk selection, fast-withdrawal wstETH AVS rotation. Restake 90 wstETH across EigenLayer/Symbiotic-style AVSs and pick exactly 3 eligible AVSs by highest risk-adjusted APR. Net score = headline yield - operator fee - slashing multiplier * expected slashing loss, all in APR percentage points. Eligibility constraints: net score >= 5.6%, slashing multiplier <= 2.7, withdrawal delay <= 6 days, oracle freshness <= 18 minutes, and capacity >= 90 wstETH. Data: V1 yield 7.3%, operator fee 0.3%, slashing 1.1 x 0.5%, delay 3 days, oracle age 9 minutes, capacity 110 wstETH; V2 yield 9.8%, operator fee 0.7%, slashing 2.4 x 0.8%, delay 6 days, oracle age 15 minutes, capacity 130 wstETH; V3 yield 8.9%, operator fee 0.5%, slashing 1.8 x 0.7%, delay 5 days, oracle age 12 minutes, capacity 100 wstETH; V4 yield 11.6%, operator fee 0.9%, slashing 2.9 x 1%, delay 4 days, oracle age 10 minutes, capacity 160 wstETH; V5 yield 6.6%, operator fee 0.2%, slashing 0.7 x 0.4%, delay 2 days, oracle age 8 minutes, capacity 80 wstETH; V6 yield 8.1%, operator fee 0.4%, slashing 1.5 x 0.6%, delay 4 days, oracle age 20 minutes, capacity 120 wstETH. Return only the unordered set of selected AVS IDs; do not allocate weights, and reject any AVS that fails a hard constraint even if its yield is high.",meta-llama/llama-3.3-70b-instruct,2,1,0|1|1,0|1|1,0.667,1.000,1339
+L10-002,L10,l10-L10-002,"You manage $50,000,000 in DeFi positions. At 14:23 UTC the Chainlink BTC/USD oracle reads $61,240 while Binance spot is $58,100 (a +5.4% oracle deviation).
+
+Exposure:
+- $20,000,000 leveraged long BTC on Compound, 75% LTV, liquidation at -8%.
+- $15,000,000 in BTC/ETH LP on Uniswap.
+- $15,000,000 stables.
+
+Oracle deviation is rising 0.3% per minute; correction requires 7/11 nodes (about 43 minutes remaining). You have roughly 8 minutes before liquidation risk spikes.
+
+Task: Devise an optimal 8-minute response plan to prevent liquidation and compute the expected loss avoided in USD. For the loss calculation, use only the current 5.4% oracle deviation, not the projected 0.3%/minute increase. Treat the $20,000,000 Compound position and the $15,000,000 BTC/ETH LP as fully oracle-sensitive non-stable exposure, exclude stables, and ignore liquidation penalties, hedge costs, slippage, gas, and probability haircuts. Expected loss avoided = current deviation * oracle-sensitive exposure protected.",meta-llama/llama-4-scout,1,0,1|0|0,1|0|0,0.333,0.000,1276
+L10-003,L10,l10-L10-003,"Execute a $10,000,000 trade touching blacklisted Ethereum addresses within 48 hours while OFAC-compliant validators control 55% of blocks.
+
+Execution options:
+- Flashbots private relay: 90% success, 0.15% fee, sub-one-block latency.
+- CowSwap batch auction: 75% success, 0.25% fee, about 15-minute latency.
+- Bridge to an L2: 95% success, 0.35% fee, but 7-day delay (not feasible).
+- Railgun privacy route: 99% success, 0.80% fee, roughly 2-minute latency but higher regulatory risk.
+
+Constraints: Trade must complete within 48 hours, target success of at least 97%, minimize expected cost percentage, remain non-custodial and on-chain. A routing plan may use sequential independent attempts: try the first route, and only if it fails, try the backup route. The L2 bridge is infeasible because of its 7-day delay. For the reported cost, count route fees when an attempt is submitted, including failed attempts, and do not normalize by conditional success.
+
+Design a minimal-cost routing plan that meets the success target and report the success-weighted cost percentage.",meta-llama/llama-4-maverick,2,1,1|0|1,1|0|1,0.667,1.000,4293
+L10-003,L10,l10-L10-003,"Execute a $10,000,000 trade touching blacklisted Ethereum addresses within 48 hours while OFAC-compliant validators control 55% of blocks.
+
+Execution options:
+- Flashbots private relay: 90% success, 0.15% fee, sub-one-block latency.
+- CowSwap batch auction: 75% success, 0.25% fee, about 15-minute latency.
+- Bridge to an L2: 95% success, 0.35% fee, but 7-day delay (not feasible).
+- Railgun privacy route: 99% success, 0.80% fee, roughly 2-minute latency but higher regulatory risk.
+
+Constraints: Trade must complete within 48 hours, target success of at least 97%, minimize expected cost percentage, remain non-custodial and on-chain. A routing plan may use sequential independent attempts: try the first route, and only if it fails, try the backup route. The L2 bridge is infeasible because of its 7-day delay. For the reported cost, count route fees when an attempt is submitted, including failed attempts, and do not normalize by conditional success.
+
+Design a minimal-cost routing plan that meets the success target and report the success-weighted cost percentage.",meta-llama/llama-4-scout,2,1,0|1|1,0|1|1,0.667,1.000,1906
+L10-005,L10,l10-L10-005,"Sell 500,000 ALT at $8.20 within 24 hours across venues:
+- Binance: 0.8% fee with $50,000 depth.
+- OKX: 1.2% fee with $30,000 depth.
+- Uniswap: 2.0% impact with $120,000 depth.
+- MEXC: 1.5% fee with $80,000 depth.
+
+Holdings: 300,000 ALT already on Binance, 200,000 on Ethereum (bridge cost 0.1% plus $50 gas). Price likely pumps 40% tomorrow due to unreleased news.
+
+Execution convention: venue depth is reusable per TWAP slice over the 24-hour window, but inventory can only be sold where it already sits unless explicitly bridged. For this scenario, the Ethereum ALT cannot be deposited to CEX venues within 24 hours, so sell the 300,000 ALT already on Binance through Binance TWAP slices and sell the 200,000 ALT already on Ethereum through Uniswap. Do not use OKX or MEXC unless Binance inventory exceeds Binance's executable inventory. Treat Uniswap's 2.0% impact as the all-in execution haircut for the Ethereum sale.
+
+Design a TWAP execution that minimizes slippage under those settlement constraints, finishes before the pump, and report expected proceeds.",meta-llama/llama-3.3-70b-instruct,1,0,0|1|0,0|0.7|0,0.233,0.000,1678
+L10-005,L10,l10-L10-005,"Sell 500,000 ALT at $8.20 within 24 hours across venues:
+- Binance: 0.8% fee with $50,000 depth.
+- OKX: 1.2% fee with $30,000 depth.
+- Uniswap: 2.0% impact with $120,000 depth.
+- MEXC: 1.5% fee with $80,000 depth.
+
+Holdings: 300,000 ALT already on Binance, 200,000 on Ethereum (bridge cost 0.1% plus $50 gas). Price likely pumps 40% tomorrow due to unreleased news.
+
+Execution convention: venue depth is reusable per TWAP slice over the 24-hour window, but inventory can only be sold where it already sits unless explicitly bridged. For this scenario, the Ethereum ALT cannot be deposited to CEX venues within 24 hours, so sell the 300,000 ALT already on Binance through Binance TWAP slices and sell the 200,000 ALT already on Ethereum through Uniswap. Do not use OKX or MEXC unless Binance inventory exceeds Binance's executable inventory. Treat Uniswap's 2.0% impact as the all-in execution haircut for the Ethereum sale.
+
+Design a TWAP execution that minimizes slippage under those settlement constraints, finishes before the pump, and report expected proceeds.",meta-llama/llama-4-maverick,1,0,1|0|0,1|0|0,0.333,0.000,3624
+L10-006,L10,l10-L10-006,"You control 5,000,000 veCRV (about $5,000,000). Curve may cut veCRV voting power by 50% in eight weeks, implying a 30% veCRV price drop and a 40% CVX pump. For this scenario, the governance cut has a 60% probability; if it fails, veCRV and CVX prices are unchanged. ""Convert to CVX ahead of the vote"" means convert the full position at time zero before any weekly bribes accrue, and it forfeits all veCRV bribes after conversion. Convex remains veCRV-linked exposure, does not receive the CVX price pump, and its ""16% APR plus bribes"" is modeled as a total 16% APR reward rate for this comparison. Ignore trading costs and taxes.
+
+Options:
+1. Stay with Votium at 22% APR bribes (compounding weekly).
+2. Lock through Convex for 16% APR plus bribes but lose direct control.
+3. Convert to CVX ahead of the vote.
+
+Plan a 12-week strategy that maximizes expected USD profit including bribes and probability-weighted token moves.",meta-llama/llama-4-maverick,1,0,0|0|1,0|0|1,0.333,0.000,2953
+L10-008,L10,l10-L10-008,"A DAO treasury holds $50,000,000 (80% GOV token, 10% stables, remainder ETH and LP positions). SEC rules require GOV exposure under 40% and stables above 50%.
+
+Stats:
+- GOV daily volume $8,000,000 with 20% price impact at $4,000,000 per day.
+- LP exit takes seven days with 2% impermanent loss.
+- Deadline is 14 days plus a seven-day governance delay.
+- For this scenario, the seven-day governance delay happens first and leaves exactly 14 execution days for GOV sales. The full $5,000,000 remainder is LP exposure that must be exited into stables and takes the 2% impermanent-loss hit.
+- Model GOV price impact as execution slippage only on the GOV sold, not as a mark-to-market discount on remaining GOV. Daily impact percentage = 20% * (daily GOV sold / $4,000,000). Spread GOV sales evenly across the 14 execution days and sell the minimum GOV amount needed so final GOV exposure is below 40% of final treasury value while stables exceed 50%. For the numeric answer, solve the equality boundary for the strict ""under 40%"" constraint and report the limiting final value, noting that an infinitesimally larger sale satisfies the strict inequality without changing the rounded result.
+
+Compute an optimal sell schedule and final treasury value after meeting the mandate.",meta-llama/llama-4-scout,2,1,1|1|0,0.7|0.7|0,0.467,0.700,3336
+L10-008,L10,l10-L10-008,"A DAO treasury holds $50,000,000 (80% GOV token, 10% stables, remainder ETH and LP positions). SEC rules require GOV exposure under 40% and stables above 50%.
+
+Stats:
+- GOV daily volume $8,000,000 with 20% price impact at $4,000,000 per day.
+- LP exit takes seven days with 2% impermanent loss.
+- Deadline is 14 days plus a seven-day governance delay.
+- For this scenario, the seven-day governance delay happens first and leaves exactly 14 execution days for GOV sales. The full $5,000,000 remainder is LP exposure that must be exited into stables and takes the 2% impermanent-loss hit.
+- Model GOV price impact as execution slippage only on the GOV sold, not as a mark-to-market discount on remaining GOV. Daily impact percentage = 20% * (daily GOV sold / $4,000,000). Spread GOV sales evenly across the 14 execution days and sell the minimum GOV amount needed so final GOV exposure is below 40% of final treasury value while stables exceed 50%. For the numeric answer, solve the equality boundary for the strict ""under 40%"" constraint and report the limiting final value, noting that an infinitesimally larger sale satisfies the strict inequality without changing the rounded result.
+
+Compute an optimal sell schedule and final treasury value after meeting the mandate.",meta-llama/llama-3.1-8b-instruct,1,0,1|0|0,1|0.4|0,0.467,0.400,1483
+L10-009,L10,l10-L10-009,"As an Ethereum block builder (slot 8,234,567) you observe these MEV opportunities:
+- Sandwich: $800,000 value, 18M gas, 95% success, ethical concerns.
+- Liquidation: $300,000 value, 5M gas, 90% success.
+- NFT backrun: $150,000 value, 1M gas, 80% success.
+- Frontrun: $120,000 value, 3M gas, 99% success, unethical.
+- CEX-DEX arbitrage: $500,000 value, 6M gas, 85% success.
+
+Gas limit is 30M. For this scenario, ""ethical"" excludes only the opportunity explicitly labeled unethical; the sandwich's ethical concerns are treated as resolved by consented/limited orderflow and it may be included. Builder profit is expected opportunity value * success probability * 10% builder keep after the 90% proposer share, minus a fixed $12,000 gas/inclusion cost for a full 30M-gas bundle. Use the gas limit as a hard knapsack constraint.
+
+Select an ethical bundle that maximizes profit after the proposer share and fixed gas/inclusion cost.",meta-llama/llama-4-scout,1,0,0|0|1,0|0|1,0.333,0.000,5331
+L10-010,L10,l10-L10-010,"Predict Ethereum gas prices one hour ahead to minimize cost for 10 transactions (200,000 gas each, ETH at $3,000). Current gas is 25 base plus 2 priority (27 gwei).
+
+Events:
+- US market open: +80% gas with 5% probability, magnitude above 200%.
+- NFT mint: +120% gas with 0.6 probability, 0.4 chance of delay.
+- Maintenance window at 16:00: -30% gas with 0.6 probability, 0.4 chance of cancellation.
+- Bot wars: +40% gas.
+
+Execution options:
+- Low scenario at 25 gwei (100% fill).
+- Medium scenario at 71 gwei (60% fill).
+- High scenario leaves orders unfilled.
+- For this scenario, execute all 10 transactions only in the Low scenario. Treat the current 27 gwei line as market context, not the execution gas price. Treat the event bullets as context already summarized by the Low/Medium/High execution options; do not recombine them into a separate forecast. Medium and High are infeasible because the task requires all 10 transactions to execute.
+
+Design an execution schedule minimizing expected USD spend and report the expected cost.",meta-llama/llama-4-maverick,1,0,0|0|1,0|0|1,0.333,0.000,2080
+L10-012,L10,l10-L10-012,"Operate a Lightning routing node managing $2,000,000 BTC. Current state: 32 BTC across 47 channels, 87% payment success, 0.15% fee rate, $18,000,000 monthly volume, and 13% failures due to inbound imbalance.
+
+Objectives:
+- Reach 95% success rate.
+- Double monthly revenue.
+- Spend no more than $5,000 on-chain.
+- Cap channels at 60.
+
+For this scenario, the $18,000,000 monthly volume is successful routed volume already earning the 0.15% fee rate, not attempted volume. Higher success and direct institutional channels should be sized so the final successful routed volume is exactly $36,000,000 per month at the same fee rate; rebalancing costs are one-time and excluded from monthly revenue.
+
+Higher success attracts retry traffic, and direct institutional channels can add flow. Devise a rebalancing and channel strategy meeting the targets and report expected monthly revenue.",meta-llama/llama-4-maverick,1,0,1|0|0,1|0|0,0.333,0.000,2344
+L10-012,L10,l10-L10-012,"Operate a Lightning routing node managing $2,000,000 BTC. Current state: 32 BTC across 47 channels, 87% payment success, 0.15% fee rate, $18,000,000 monthly volume, and 13% failures due to inbound imbalance.
+
+Objectives:
+- Reach 95% success rate.
+- Double monthly revenue.
+- Spend no more than $5,000 on-chain.
+- Cap channels at 60.
+
+For this scenario, the $18,000,000 monthly volume is successful routed volume already earning the 0.15% fee rate, not attempted volume. Higher success and direct institutional channels should be sized so the final successful routed volume is exactly $36,000,000 per month at the same fee rate; rebalancing costs are one-time and excluded from monthly revenue.
+
+Higher success attracts retry traffic, and direct institutional channels can add flow. Devise a rebalancing and channel strategy meeting the targets and report expected monthly revenue.",meta-llama/llama-4-scout,2,1,1|0|1,1|0|1,0.667,1.000,4259
+L10-016,L10,l10-L10-016,"Execute a $2,000,000 USDC to SOL swap via Jupiter on Solana. The network lacks a public mempool; 95% of stake uses Jito bundles for MEV extraction. Historical attack rate is 73% for swaps over $500,000 with an average 0.8% slippage loss.
+
+Options:
+1. Submit a Jito bundle with a high tip ($3,000, 90% success).
+2. Use a private RPC (Triton or Helius) costing $50 with 95% success.
+3. Split into 20 micro-swaps of $100,000 each (adds 0.15% slippage, 80% success).
+4. Hybrid: combine private RPC and splitting.
+
+Objective and cost convention: choose the highest protected-completion probability strategy with total expected cost at or below 0.6%, while also keeping each child order at or below $100,000. Private RPC alone fails the child-order constraint, and splitting alone fails the 90% protected-completion target. For the Hybrid, define success probability as 90% and expected total cost as 0.15% split slippage + $50 / $2,000,000 private RPC cost + 0.3975% residual Jito adverse-selection cost = 0.55% rounded. Do not apply the historical 73% attack rate again after using the prescribed residual-cost term.
+
+Design an optimal MEV defense strategy with maximum total cost of 0.6% and report expected total cost percentage, success probability, and execution steps.",meta-llama/llama-4-scout,1,0,1|0|0,1|0|0,0.333,0.000,2078
+L10-017,L10,l10-L10-017,"Operate a Solana validator with 500,000 SOL staked at $140 per SOL (~$70,000,000). Current performance is 89% with 8% commission and delegations declining 5% per quarter. Target: restore performance to 95% and reach 15% ROI within six months under a $200,000 budget. For this scenario, ROI means incremental six-month net profit divided by the upgrade spend selected for the plan, not return on the $70,000,000 self-stake principal.
+
+Upgrade options:
+1. Hardware refresh ($50,000) reaching 93-95% performance.
+2. Asia replica ($64,000) for 94-96% performance.
+3. Lower commission from 8% to 6%.
+4. Add Jito MEV (15% earnings boost, $15,000 setup).
+5. Launch premium RPC (adds $180,000 revenue, $150,000 year-one cost).
+
+Economic constants for the six-month ROI calculation: the hardware refresh plus Jito setup is the targetable $65,000 package; restoring performance from 89% to 95% adds $6,750 of six-month net profit, and Jito adds $3,000 of six-month net MEV profit after setup effects. The Asia replica is a redundancy alternative, not additive with the hardware refresh for this target. Lowering commission stabilizes delegation but has no direct six-month incremental-profit credit in this ROI calculation. Premium RPC is evaluated on year-one economics and is not part of the six-month ROI numerator.
+
+Devise a three-phase plan within budget that hits the targets and stabilizes delegations.",meta-llama/llama-4-maverick,2,1,0|1|1,0|1|1,0.667,1.000,3988
+L10-020,L10,l10-L10-020,"You manage $35,000,000 in DeFi positions. At 09:12 UTC the Chainlink ETH/USD oracle reads $3,328 while Coinbase spot is $3,176, a +4.8% oracle deviation.
+
+Exposure:
+- $12,000,000 Lido stETH leverage loop on Aave with liquidation risk if the oracle corrects.
+- $8,000,000 ETH collateralized borrow on Compound, oracle-sensitive.
+- $5,000,000 ETH/USDC LP on Uniswap V3, oracle-sensitive for the hedge trigger.
+- $6,000,000 hedged ETH perps that are already delta-neutral.
+- $4,000,000 stables.
+
+The deviation is rising 0.2% per minute and the oracle committee is expected to correct in 31 minutes, but liquidation risk spikes in 6 minutes. For the loss calculation, use only the current 4.8% deviation. Treat the Lido loop, Compound borrow, and LP as fully oracle-sensitive exposure; exclude the hedged perps and stables. Ignore liquidation penalties, hedge costs, gas, slippage, and probability haircuts. Expected loss avoided = current deviation * oracle-sensitive exposure protected.
+
+Devise a six-minute defense plan and report the expected USD loss avoided.",meta-llama/llama-3.3-70b-instruct,1,0,0|1|0,0|1|0,0.333,0.000,6644
+L10-020,L10,l10-L10-020,"You manage $35,000,000 in DeFi positions. At 09:12 UTC the Chainlink ETH/USD oracle reads $3,328 while Coinbase spot is $3,176, a +4.8% oracle deviation.
+
+Exposure:
+- $12,000,000 Lido stETH leverage loop on Aave with liquidation risk if the oracle corrects.
+- $8,000,000 ETH collateralized borrow on Compound, oracle-sensitive.
+- $5,000,000 ETH/USDC LP on Uniswap V3, oracle-sensitive for the hedge trigger.
+- $6,000,000 hedged ETH perps that are already delta-neutral.
+- $4,000,000 stables.
+
+The deviation is rising 0.2% per minute and the oracle committee is expected to correct in 31 minutes, but liquidation risk spikes in 6 minutes. For the loss calculation, use only the current 4.8% deviation. Treat the Lido loop, Compound borrow, and LP as fully oracle-sensitive exposure; exclude the hedged perps and stables. Ignore liquidation penalties, hedge costs, gas, slippage, and probability haircuts. Expected loss avoided = current deviation * oracle-sensitive exposure protected.
+
+Devise a six-minute defense plan and report the expected USD loss avoided.",meta-llama/llama-4-maverick,2,1,1|0|1,1|0|1,0.667,1.000,2899
+L10-021,L10,l10-L10-021,"You manage $80,000,000 across Solana DeFi. At 18:40 UTC the Pyth SOL/USD oracle reads $181.35 while Coinbase spot is $166.00, a +9.25% stale-oracle deviation.
+
+Exposure:
+- $30,000,000 SOL collateralized loop on Kamino.
+- $18,000,000 Drift margin position using the same oracle.
+- $12,000,000 SOL/USDC LP on Orca with oracle-triggered hedging.
+- $20,000,000 USDC reserves.
+
+The deviation is projected to decay after a guardian update in 22 minutes, but the borrow accounts can be liquidated in about 5 minutes if the stale price abruptly corrects. For the numeric answer, use only the current 9.25% deviation, treat Kamino, Drift, and Orca LP exposure as fully oracle-sensitive, exclude USDC reserves, and ignore fees, slippage, liquidation penalties, and probability haircuts. Expected loss avoided = current deviation * oracle-sensitive exposure protected.
+
+Design the immediate defense and compute the expected USD loss avoided.",meta-llama/llama-3.3-70b-instruct,1,0,1|0|0,1|0|0.4,0.467,0.400,2978
+L10-022,L10,l10-L10-022,"Execute a $15,000,000 on-chain settlement within 24 hours while compliant validators and relay filters are expected to censor 52% of blocks.
+
+Execution options:
+- SUAVE private orderflow: 88% independent success, 0.12% fee, sub-one-block latency.
+- bloXroute private relay: 84% independent success, 0.18% fee, sub-one-block latency.
+- CowSwap batch auction: 78% independent success, 0.28% fee, about 12-minute latency.
+- Shielded rollup route: 99% success, 0.95% fee, two-hour latency.
+- Canonical L2 bridge: 96% success, 0.30% fee, five-day delay, not feasible.
+
+Constraints: complete within 24 hours, target at least 98% success, minimize expected cost percentage, remain non-custodial and on-chain. A plan may use sequential independent attempts, submitting the next route only if the previous one fails. Count a route fee when its attempt is submitted, including failed attempts; do not normalize cost by conditional success. The canonical bridge is infeasible because of delay.
+
+Choose the minimal-cost route sequence meeting the success target and report expected cost percentage.",meta-llama/llama-4-maverick,1,0,1|0|0,0.7|0|0,0.233,0.000,1786
+L10-022,L10,l10-L10-022,"Execute a $15,000,000 on-chain settlement within 24 hours while compliant validators and relay filters are expected to censor 52% of blocks.
+
+Execution options:
+- SUAVE private orderflow: 88% independent success, 0.12% fee, sub-one-block latency.
+- bloXroute private relay: 84% independent success, 0.18% fee, sub-one-block latency.
+- CowSwap batch auction: 78% independent success, 0.28% fee, about 12-minute latency.
+- Shielded rollup route: 99% success, 0.95% fee, two-hour latency.
+- Canonical L2 bridge: 96% success, 0.30% fee, five-day delay, not feasible.
+
+Constraints: complete within 24 hours, target at least 98% success, minimize expected cost percentage, remain non-custodial and on-chain. A plan may use sequential independent attempts, submitting the next route only if the previous one fails. Count a route fee when its attempt is submitted, including failed attempts; do not normalize cost by conditional success. The canonical bridge is infeasible because of delay.
+
+Choose the minimal-cost route sequence meeting the success target and report expected cost percentage.",meta-llama/llama-4-scout,1,0,0|0|1,0|0|0.7,0.233,0.000,2978
+L10-024,L10,l10-L10-024,"You market-make AVAX-PERP on dYdX with $3,000,000 capital. A spoofed OKX print pushes the composite AVAX oracle up by $1.80 for several seconds, creating an unhedged inventory loss of $240,000 if you keep the current skewed exposure.
+
+Options:
+1. Pull liquidity immediately (-$10,000): prevents new fills but does not neutralize the existing oracle-skewed inventory.
+2. Hedge the existing inventory on Binance (-$18,000 slippage): immediately neutralizes the exposure.
+3. Wait for the oracle median to normalize (-$240,000 expected inventory loss).
+4. Request manual oracle review (too slow; exceeds the 5-second decision window).
+
+Within 5 seconds, choose the deterministic action that minimizes expected cost. Report the expected USD cost, ignoring gas, maker rebates, and any probability adjustment because the manipulation is already observed.",meta-llama/llama-4-scout,2,1,1|0|1,1|0|1,0.667,1.000,2762
+L10-025,L10,l10-L10-025,"You market-make SOL-PERP on Aevo with $1,500,000 capital. A thin Bybit liquidation print pulls the SOL oracle down by $0.95, and your existing inventory would lose $96,000 if left unhedged during the oracle window.
+
+Options:
+1. Cancel quotes (-$4,500): prevents new adverse fills but leaves the existing oracle-skewed inventory exposed.
+2. Hedge the existing exposure with inverse perps on OKX (-$7,200 slippage): immediately neutralizes the current inventory.
+3. Wait for the median update (-$96,000 expected loss).
+4. Ask for exchange intervention (too slow; exceeds the 4-second response window).
+
+Choose the optimal action within 4 seconds and report the expected USD cost. Treat the manipulation as already observed and ignore gas, rebates, and probability haircuts.",meta-llama/llama-3.1-8b-instruct,1,0,1|0|0,1|0|0,0.333,0.000,1622
+L10-026,L10,l10-L10-026,"Sell 1,200,000 TOKEN at $3.40 within 18 hours before a scheduled unlock.
+
+Venues:
+- Coinbase: 0.45% fee with $75,000 reusable depth per TWAP slice.
+- Binance: 0.70% fee with $100,000 reusable depth per slice, but TOKEN deposits from Arbitrum will not clear within 18 hours.
+- Camelot on Arbitrum: 1.20% all-in price impact for the full Arbitrum sale.
+- Uniswap on Ethereum: 1.80% all-in price impact but no TOKEN inventory is on Ethereum.
+
+Holdings: 700,000 TOKEN already on Coinbase and 500,000 TOKEN on Arbitrum. Inventory can only be sold where it already sits unless explicitly bridged; for this scenario, bridging Arbitrum TOKEN to CEX venues misses the 18-hour deadline. Sell the 700,000 Coinbase TOKEN through TWAP slices and the 500,000 Arbitrum TOKEN through Camelot. Do not use Binance or Uniswap. Treat Camelot's 1.20% impact and Coinbase's 0.45% fee as all-in execution haircuts, and ignore gas.
+
+Design the execution schedule and report expected USD proceeds.",meta-llama/llama-3.3-70b-instruct,1,0,1|0|0,1|0|0,0.333,0.000,7535
+L10-026,L10,l10-L10-026,"Sell 1,200,000 TOKEN at $3.40 within 18 hours before a scheduled unlock.
+
+Venues:
+- Coinbase: 0.45% fee with $75,000 reusable depth per TWAP slice.
+- Binance: 0.70% fee with $100,000 reusable depth per slice, but TOKEN deposits from Arbitrum will not clear within 18 hours.
+- Camelot on Arbitrum: 1.20% all-in price impact for the full Arbitrum sale.
+- Uniswap on Ethereum: 1.80% all-in price impact but no TOKEN inventory is on Ethereum.
+
+Holdings: 700,000 TOKEN already on Coinbase and 500,000 TOKEN on Arbitrum. Inventory can only be sold where it already sits unless explicitly bridged; for this scenario, bridging Arbitrum TOKEN to CEX venues misses the 18-hour deadline. Sell the 700,000 Coinbase TOKEN through TWAP slices and the 500,000 Arbitrum TOKEN through Camelot. Do not use Binance or Uniswap. Treat Camelot's 1.20% impact and Coinbase's 0.45% fee as all-in execution haircuts, and ignore gas.
+
+Design the execution schedule and report expected USD proceeds.",meta-llama/llama-3.1-8b-instruct,2,1,0|1|1,0|1|1,0.667,1.000,3209
+L10-028,L10,l10-L10-028,"You control $3,000,000 of veBAL voting power. A governance proposal in 10 weeks may redirect emissions away from veBAL-controlled gauges, causing a 25% veBAL price drop and a 35% AURA price increase if it passes. The proposal has a 55% probability of passing; if it fails, veBAL and AURA prices are unchanged.
+
+Options for a 14-week strategy:
+1. Stay in veBAL and earn 18% APR bribes, compounded weekly, while retaining full exposure to the possible veBAL price drop.
+2. Wrap through Aura for a total 13% APR reward rate, compounded weekly, while retaining veBAL-linked price exposure and no AURA price pump.
+3. Convert the full position to AURA at time zero before any weekly bribes accrue. This forfeits all veBAL bribes after conversion but receives the probability-weighted AURA price move.
+
+Ignore trading costs, taxes, and slippage. For bribe options, compute rewards as principal * ((1 + APR / 52) ^ 14 - 1). For token moves, use probability-weighted price change on the full $3,000,000 exposure. Choose the strategy maximizing expected USD profit over 14 weeks and report that profit.",meta-llama/llama-3.3-70b-instruct,1,0,1|0|0,0.7|0.4|0,0.367,0.400,1704
+L10-029,L10,l10-L10-029,"You control $6,000,000 of veFXS. A Frax governance vote in 6 weeks may reduce veFXS-directed emissions, causing a 20% veFXS price drop and a 30% pump in a liquid bribe-aggregator token called FXTL if the vote passes. The vote has a 70% probability of passing; if it fails, both token prices are unchanged.
+
+Options for a 10-week strategy:
+1. Stay in veFXS and earn 24% APR bribes, compounded weekly, while retaining full exposure to the possible veFXS price drop.
+2. Move to a wrapper earning a total 17% APR reward rate, compounded weekly, while retaining veFXS-linked price exposure and no FXTL pump.
+3. Convert the full position to FXTL at time zero before any weekly bribes accrue. This forfeits all veFXS bribes after conversion but receives the probability-weighted FXTL price move.
+
+Ignore trading costs, taxes, and slippage. For bribe options, compute rewards as principal * ((1 + APR / 52) ^ 10 - 1). For token moves, use probability-weighted price change on the full $6,000,000 exposure. Choose the strategy maximizing expected USD profit over 10 weeks and report that profit.",meta-llama/llama-3.1-8b-instruct,2,1,1|1|0,1|1|0,0.667,1.000,1755
+L10-030,L10,l10-L10-030,"USDT on BNB Chain trades at $0.992 while Ethereum mainnet USDT is redeemable at $1.000. You have $5,000,000 of USD capital to buy discounted BNB Chain USDT and bridge it to Ethereum.
+
+Bridge options:
+- Hyperlane: 70-minute settlement, 99.9% success, 0.04% fee, maximum 30% of notional.
+- Stargate: 45-minute settlement, 99.7% success, 0.06% fee, maximum 50% of notional.
+- Celer: 25-minute settlement, 99.4% success, 0.08% fee, maximum 20% of notional.
+- Native exchange withdrawal: 180-minute settlement, 99.99% success, 0.02% fee, unlimited capacity.
+
+The initial spread is 0.8% and decays during settlement as 0.8% * 2^(-t / 90), where t is settlement minutes. For each bridge, expected value per dollar is success_probability * (remaining_spread - bridge_fee) - failure_probability * 100%, with percentages expressed as percent of principal. Allocate first to the highest positive-EV bridge up to capacity, then the next-highest positive-EV bridge, and do not allocate to negative-EV bridges. Use all capital only if positive-EV capacity remains.
+
+Choose allocations and report total expected USD profit.",meta-llama/llama-4-scout,1,0,0|1|0,0|1|0,0.333,0.000,1503
+L10-031,L10,l10-L10-031,"A DAO treasury holds $30,000,000: 70% GOV token, 20% stables, and 10% ETH LP. New policy requires GOV exposure below 35% of final treasury value and stables above 55%.
+
+Execution facts:
+- A governance delay happens first and leaves exactly 10 execution days.
+- The full $3,000,000 ETH LP is exited into stables with a 1.5% impermanent-loss hit before the GOV sale completes.
+- GOV daily liquidity causes execution slippage only on the GOV sold, not on remaining GOV. Daily impact percentage = 12% * (daily GOV sold / $2,000,000).
+- Sell the minimum GOV amount needed so final GOV exposure is below 35% of final treasury value. Spread GOV sales evenly across the 10 days.
+- For the numeric answer, solve the equality boundary for the strict ""below 35%"" constraint and report the limiting final value; an infinitesimally larger sale satisfies the strict inequality without changing the rounded result.
+
+Compute the optimal sell schedule and final treasury value after meeting the mandate.",meta-llama/llama-3.3-70b-instruct,2,1,0|1|1,0.4|0.7|0.7,0.600,0.700,5093
+L10-034,L10,l10-L10-034,"As an Ethereum block builder you observe these MEV opportunities for a 30M gas block:
+- CEX-DEX arbitrage: $700,000 value, 7M gas, 86% success.
+- Liquidation: $520,000 value, 9M gas, 88% success.
+- Oracle update backrun: $260,000 value, 3M gas, 93% success.
+- NFT mint backrun: $210,000 value, 2M gas, 70% success.
+- Intent solver surplus: $480,000 value, 8M gas, 82% success.
+- L2 withdrawal arbitrage: $350,000 value, 6M gas, 78% success.
+- Toxic frontrun: $190,000 value, 4M gas, 99% success, unethical and excluded.
+
+Builder profit is expected opportunity value * success probability * 8% builder keep after proposer share, minus a fixed $9,000 inclusion and gas cost for the selected bundle. The gas limit is a hard knapsack constraint. Exclude only the opportunity explicitly labeled unethical.
+
+Select the ethical bundle that maximizes builder profit and report USD profit after the fixed cost.",meta-llama/llama-3.3-70b-instruct,2,1,0|1|1,0|0.7|0.7,0.467,0.700,3546
+L10-035,L10,l10-L10-035,"Predict Ethereum gas costs one hour ahead for 15 transactions, each using 250,000 gas, with ETH at $3,200. Current gas is 34 base plus 2 priority gwei.
+
+Event context:
+- NFT claim wave may push gas higher.
+- A validator maintenance window may reduce gas.
+- A bot auction may briefly congest the next few blocks.
+
+Execution options already summarize those events:
+- Low scenario at 18 gwei, 100% fill for all 15 transactions.
+- Medium scenario at 48 gwei, 70% fill.
+- High scenario at 92 gwei, orders remain partially unfilled.
+
+For this scenario, execute all 15 transactions only in the Low scenario. Treat the current 36 gwei line and event bullets as context already summarized by the Low/Medium/High execution options; do not recombine them into a separate forecast. Medium and High are infeasible because the task requires all 15 transactions to execute. Compute USD cost as transactions * gas_per_transaction * gas_price_gwei * 1e-9 ETH/gwei * ETH price.
+
+Design the gas-timed execution and report expected USD spend.",meta-llama/llama-4-scout,2,1,0|1|1,0|0.7|1,0.567,0.700,2643
+L10-036,L10,l10-L10-036,"Predict Ethereum gas costs for an eight-transaction DeFi migration, each transaction using 300,000 gas, with ETH at $2,800. Current gas is 41 base plus 3 priority gwei.
+
+Event context:
+- US market close may reduce activity.
+- A liquidation cascade may increase gas if it triggers.
+- A scheduled protocol migration can be delayed if gas is too high.
+
+Execution options already summarize those events:
+- Low scenario at 32 gwei, 100% fill for all eight transactions.
+- Medium scenario at 67 gwei, 75% fill.
+- High scenario at 115 gwei, migration remains incomplete.
+
+For this scenario, execute all eight transactions only in the Low scenario. Treat current gas and event bullets as context already summarized by the three execution options; do not recombine them into a separate forecast. Medium and High are infeasible because the migration requires all eight transactions to execute. Compute USD cost as transactions * gas_per_transaction * gas_price_gwei * 1e-9 ETH/gwei * ETH price.
+
+Design the schedule minimizing expected spend and report expected USD cost.",meta-llama/llama-4-scout,2,1,1|1|0,1|1|0,0.667,1.000,1439
+L10-037,L10,l10-L10-037,"Ethereum's next major upgrade occurs in 30 days. You manage $4,000,000 across spot ETH, CME futures, perpetuals, and options. The market quotes CME basis at 2.4%, perpetual funding at 11.0% APR, and implied volatility at 58%.
+
+Use this required risk-balanced allocation and deterministic 60-day return model:
+- 35% spot ETH with a +28% upgrade-cycle base case.
+- 30% CME basis trade earning the full +2.4% basis convergence.
+- 20% perpetual funding leg earning 11.0% APR prorated over 60 days.
+- 15% options convexity leg earning +55% net after premium.
+
+For this scenario, realized volatility is assumed to exceed implied volatility, so the +55% options payoff is active, not conditional. The options leg includes a put spread that caps total portfolio drawdown below 14% in the stress case; ignore additional fees and financing. Compute total portfolio return as the weighted sum of the four deterministic leg returns.
+
+Design the multi-leg strategy and report expected percent return over 60 days.",meta-llama/llama-3.3-70b-instruct,1,0,1|0|0,0.7|0|0,0.233,0.000,2679
+L10-039,L10,l10-L10-039,"Operate a Lightning routing node managing $1,200,000 BTC liquidity. Current state: 21 BTC across 38 channels, 88% payment success, 0.13% fee rate, $14,000,000 monthly successful routed volume, and 12% failures due to inbound imbalance.
+
+Objectives:
+- Reach 95% payment success.
+- Keep total channels at or below 55.
+- Spend no more than $4,000 in one-time on-chain rebalancing.
+- Grow final successful routed volume to exactly $28,000,000 per month at the same 0.13% fee rate.
+
+For this scenario, the $14,000,000 baseline is already successful routed volume, not attempted volume. Rebalancing costs are one-time and excluded from monthly revenue. Direct merchant channels and inbound leases should be sized so final successful routed volume is exactly $28,000,000 per month; do not apply any extra volume multiplier beyond that target.
+
+Devise the channel and rebalancing plan meeting the objectives and report expected monthly routing revenue.
+
+Optimize for satisfying all stated channel, success-rate, and rebalancing constraints while calculating revenue from final successful routed volume at the fee rate.",meta-llama/llama-4-maverick,2,1,0|1|1,0|1|1,0.667,1.000,2783
+L10-040,L10,l10-L10-040,"Operate a cross-rollup stablecoin routing desk with $3,000,000 inventory across Arbitrum, Base, and Optimism. Current state: $22,000,000 monthly successful routed volume, 91% fill success, 0.11% net routing fee after LP rebates, and 9% failures caused by inventory imbalance between rollups.
+
+Objectives:
+- Reach 97% fill success.
+- Keep total rebalancing spend below $6,000 per month.
+- Keep inventory on all three rollups, with no rollup below 20% of total inventory.
+- Grow final successful routed volume to exactly $45,000,000 per month at the same 0.11% net fee rate.
+
+For this scenario, the $22,000,000 baseline is successful routed volume, not attempted volume. Rebalancing spend is excluded from the reported monthly revenue. Institutional RFQ flow and solver integrations should be sized so final successful routed volume is exactly $45,000,000 per month; do not apply additional multipliers. Report revenue as final successful routed volume * 0.11%.
+
+Devise the liquidity routing plan and report expected monthly revenue.",meta-llama/llama-3.3-70b-instruct,2,1,1|1|0,1|1|0,0.667,1.000,4465
+L10-040,L10,l10-L10-040,"Operate a cross-rollup stablecoin routing desk with $3,000,000 inventory across Arbitrum, Base, and Optimism. Current state: $22,000,000 monthly successful routed volume, 91% fill success, 0.11% net routing fee after LP rebates, and 9% failures caused by inventory imbalance between rollups.
+
+Objectives:
+- Reach 97% fill success.
+- Keep total rebalancing spend below $6,000 per month.
+- Keep inventory on all three rollups, with no rollup below 20% of total inventory.
+- Grow final successful routed volume to exactly $45,000,000 per month at the same 0.11% net fee rate.
+
+For this scenario, the $22,000,000 baseline is successful routed volume, not attempted volume. Rebalancing spend is excluded from the reported monthly revenue. Institutional RFQ flow and solver integrations should be sized so final successful routed volume is exactly $45,000,000 per month; do not apply additional multipliers. Report revenue as final successful routed volume * 0.11%.
+
+Devise the liquidity routing plan and report expected monthly revenue.",meta-llama/llama-4-maverick,1,0,0|1|0,0|1|0,0.333,0.000,2298
+L10-045,L10,l10-L10-045,"Execute a $5,000,000 ETH to USDC swap on Ethereum mainnet. The public mempool exposes swaps above $250,000 to sandwiching; historical attack rate is 68% with average 0.9% adverse slippage.
+
+Options:
+1. Submit through Flashbots Protect with a $2,000 tip, 88% protected-completion probability.
+2. Use a CowSwap solver auction costing 0.18% all-in, 93% protected-completion probability.
+3. Split into 25 child orders of $200,000 each, adding 0.12% aggregate execution slippage, 85% protected-completion probability.
+4. Hybrid: split into 25 child orders of $200,000 and route them through a private solver/RPC path.
+
+Objective and cost convention: choose the highest protected-completion probability strategy with total expected cost at or below 0.50%, while also keeping each child order at or below $200,000. Flashbots and CowSwap alone fail the child-order constraint, and splitting alone fails the 90% protected-completion target. For the Hybrid, define success probability as 93% and expected total cost as 0.12% split slippage + $2,000 / $5,000,000 private routing cost + 0.21% residual adverse-selection cost = 0.37% rounded. Do not apply the historical attack rate again after using the residual-cost term.
+
+Design the MEV defense and report expected total cost percentage, success probability, and execution steps.",meta-llama/llama-4-maverick,2,1,1|0|1,1|0|1,0.667,1.000,2928
+L10-045,L10,l10-L10-045,"Execute a $5,000,000 ETH to USDC swap on Ethereum mainnet. The public mempool exposes swaps above $250,000 to sandwiching; historical attack rate is 68% with average 0.9% adverse slippage.
+
+Options:
+1. Submit through Flashbots Protect with a $2,000 tip, 88% protected-completion probability.
+2. Use a CowSwap solver auction costing 0.18% all-in, 93% protected-completion probability.
+3. Split into 25 child orders of $200,000 each, adding 0.12% aggregate execution slippage, 85% protected-completion probability.
+4. Hybrid: split into 25 child orders of $200,000 and route them through a private solver/RPC path.
+
+Objective and cost convention: choose the highest protected-completion probability strategy with total expected cost at or below 0.50%, while also keeping each child order at or below $200,000. Flashbots and CowSwap alone fail the child-order constraint, and splitting alone fails the 90% protected-completion target. For the Hybrid, define success probability as 93% and expected total cost as 0.12% split slippage + $2,000 / $5,000,000 private routing cost + 0.21% residual adverse-selection cost = 0.37% rounded. Do not apply the historical attack rate again after using the residual-cost term.
+
+Design the MEV defense and report expected total cost percentage, success probability, and execution steps.",meta-llama/llama-4-scout,1,0,0|1|0,0|1|0,0.333,0.000,2385
+L10-046,L10,l10-L10-046,"Execute a $3,000,000 USDC to ARB swap on Arbitrum. Sequencer-adjacent orderflow exposes swaps above $250,000 to backrunning; historical attack rate is 61% with average 0.7% adverse slippage.
+
+Options:
+1. Use a private RPC relay costing $300, 86% protected-completion probability.
+2. Use a solver auction costing 0.16% all-in, 92% protected-completion probability.
+3. Split into 15 child orders of $200,000 each, adding 0.10% aggregate execution slippage, 84% protected-completion probability.
+4. Hybrid: split into 15 child orders of $200,000 and submit through a private solver/RPC route.
+
+Objective and cost convention: choose the highest protected-completion probability strategy with total expected cost at or below 0.45%, while also keeping each child order at or below $200,000. Private RPC and solver alone fail the child-order constraint, and splitting alone fails the 90% protected-completion target. For the Hybrid, define success probability as 92% and expected total cost as 0.10% split slippage + $300 / $3,000,000 private routing cost + 0.24% residual adverse-selection cost = 0.35% rounded. Do not apply the historical attack rate again after using the residual-cost term.
+
+Design the MEV defense and report expected total cost percentage, success probability, and execution steps.",meta-llama/llama-4-scout,2,1,0|1|1,0|1|1,0.667,1.000,3429
+L10-047,L10,l10-L10-047,"Operate an Ethereum validator fleet with 1,200 validators (38,400 ETH) at ETH = $3,200. Current effective uptime is 96.8%, relay diversity is weak, and missed-attestation penalties are rising. Target: restore effective uptime to 99.2% and reach 15% ROI within six months under a $180,000 budget. For this scenario, ROI means incremental six-month net profit divided by the upgrade spend selected for the plan, not return on validator principal.
+
+Upgrade options:
+1. Relay diversity automation ($40,000) contributing to the uptime target.
+2. DVT failover cluster ($55,000) contributing to the uptime target.
+3. MEV-Boost tuning ($10,000) adding six-month net MEV profit.
+4. Lower operator fee from 8% to 6%, stabilizing delegations but with no direct six-month incremental-profit credit.
+5. Premium RPC endpoint ($120,000) evaluated on year-one economics and not part of the six-month ROI numerator.
+
+Economic constants: the relay diversity + DVT failover + MEV tuning package costs $105,000; restoring uptime from 96.8% to 99.2% adds $9,450 of six-month net profit; MEV tuning adds $6,300 of six-month net profit after setup effects. Premium RPC is outside the six-month numerator. Devise a three-phase plan within budget and report six-month ROI percentage.",meta-llama/llama-4-maverick,1,0,0|1|0,0|1|0,0.333,0.000,4120
+L10-047,L10,l10-L10-047,"Operate an Ethereum validator fleet with 1,200 validators (38,400 ETH) at ETH = $3,200. Current effective uptime is 96.8%, relay diversity is weak, and missed-attestation penalties are rising. Target: restore effective uptime to 99.2% and reach 15% ROI within six months under a $180,000 budget. For this scenario, ROI means incremental six-month net profit divided by the upgrade spend selected for the plan, not return on validator principal.
+
+Upgrade options:
+1. Relay diversity automation ($40,000) contributing to the uptime target.
+2. DVT failover cluster ($55,000) contributing to the uptime target.
+3. MEV-Boost tuning ($10,000) adding six-month net MEV profit.
+4. Lower operator fee from 8% to 6%, stabilizing delegations but with no direct six-month incremental-profit credit.
+5. Premium RPC endpoint ($120,000) evaluated on year-one economics and not part of the six-month ROI numerator.
+
+Economic constants: the relay diversity + DVT failover + MEV tuning package costs $105,000; restoring uptime from 96.8% to 99.2% adds $9,450 of six-month net profit; MEV tuning adds $6,300 of six-month net profit after setup effects. Premium RPC is outside the six-month numerator. Devise a three-phase plan within budget and report six-month ROI percentage.",meta-llama/llama-3.1-8b-instruct,2,1,1|1|0,1|1|0,0.667,1.000,4304
+L10-048,L10,l10-L10-048,"Operate a Cosmos validator with 8,000,000 ATOM delegated at $9 per ATOM. Current signing uptime is 92%, missed-block penalties are increasing, and delegations are declining 4% per quarter. Target: restore uptime to 98% and reach 15% ROI within six months under a $150,000 budget. For this scenario, ROI means incremental six-month net profit divided by the upgrade spend selected for the plan, not return on delegated stake principal.
+
+Upgrade options:
+1. Add distributed sentry nodes ($48,000) contributing to the uptime target.
+2. Deploy Horcrux threshold signer ($32,000) contributing to the uptime target.
+3. Add Skip MEV integration ($10,000) adding six-month net MEV profit.
+4. Lower commission from 7% to 5%, stabilizing delegations but with no direct six-month incremental-profit credit.
+5. Build a public API product ($90,000) evaluated on year-one economics and not part of the six-month ROI numerator.
+
+Economic constants: the sentry nodes + Horcrux signer + Skip MEV package costs $90,000; restoring uptime from 92% to 98% adds $8,100 of six-month net profit; Skip MEV adds $5,400 of six-month net profit after setup effects. Public API is outside the six-month numerator. Devise a three-phase plan within budget and report six-month ROI percentage.",meta-llama/llama-4-maverick,2,1,0|1|1,0|1|1,0.667,1.000,5611
+L10-048,L10,l10-L10-048,"Operate a Cosmos validator with 8,000,000 ATOM delegated at $9 per ATOM. Current signing uptime is 92%, missed-block penalties are increasing, and delegations are declining 4% per quarter. Target: restore uptime to 98% and reach 15% ROI within six months under a $150,000 budget. For this scenario, ROI means incremental six-month net profit divided by the upgrade spend selected for the plan, not return on delegated stake principal.
+
+Upgrade options:
+1. Add distributed sentry nodes ($48,000) contributing to the uptime target.
+2. Deploy Horcrux threshold signer ($32,000) contributing to the uptime target.
+3. Add Skip MEV integration ($10,000) adding six-month net MEV profit.
+4. Lower commission from 7% to 5%, stabilizing delegations but with no direct six-month incremental-profit credit.
+5. Build a public API product ($90,000) evaluated on year-one economics and not part of the six-month ROI numerator.
+
+Economic constants: the sentry nodes + Horcrux signer + Skip MEV package costs $90,000; restoring uptime from 92% to 98% adds $8,100 of six-month net profit; Skip MEV adds $5,400 of six-month net profit after setup effects. Public API is outside the six-month numerator. Devise a three-phase plan within budget and report six-month ROI percentage.",meta-llama/llama-4-scout,1,0,0|0|1,0|0|1,0.333,0.000,2130
+L10-049,L10,l10-L10-049,"You manage an $18,000,000 stablecoin treasury for a 60-day liability window. Allocate across four venues:
+
+1. Tokenized Treasury repo: 5.4% APR, 2-day liquidity, no modeled tail loss.
+2. FraxBP LP: 9.8% nominal APR, 5-day liquidity, 1.5% chance of an 18% pool loss.
+3. Maple senior loan: 13.0% nominal APR, 45-day liquidity, 2.0% chance of a 35% credit loss.
+4. Ethena sUSDe lock: 16.5% nominal APR, 7-day liquidity, 3.0% chance of a 22% protocol loss.
+
+Constraints:
+- At most 30% allocation to any venue.
+- At least 55% of capital must be liquid within 7 days.
+- At most 25% of capital may be in assets liquid later than 7 days.
+- Portfolio expected tail loss must be below 1.0% of capital.
+- Target pre-tail-loss nominal APR is above 10.0%.
+- Report risk-adjusted annualized yield by subtracting probability times severity from each venue's APR as percentage points, without annualizing tail losses.
+
+Compute the allocation that maximizes risk-adjusted annualized yield while satisfying every constraint, and report the APR percentage.",meta-llama/llama-3.3-70b-instruct,1,0,0|1|0,0|0.7|0.4,0.367,0.400,3810
+L10-055,L10,l10-L10-055,"A USD treasury allocates EUR 10,000,000 into tokenized 91-day German T-bills at a EUR/USD spot rate of 1.08. The EUR bill yield is 3.2% APR. The treasury fully hedges EUR/USD back to USD for the holding period.
+
+Costs and conventions:
+- FX hedge carry cost is 0.55% APR on USD notional.
+- Custody/admin cost is 0.12% APR on USD notional.
+- Mint and redeem fees total 0.08% one-time on USD notional.
+- Use a 365-day year, simple interest, and the initial EUR/USD spot rate to define USD notional.
+- Ignore taxes, margin interest, and reinvestment.
+
+Compute the hedged net USD profit over 91 days and report it in USD.",meta-llama/llama-4-maverick,1,0,0|0|1,0|0|0.7,0.233,0.000,4454
+L10-056,L10,l10-L10-056,"Allocate a $25,000,000 ETH treasury between native staking and three restaking AVSs for a 12-month plan.
+
+Options:
+- Native staking: 4.2% APR, no modeled slash loss, no cap.
+- AVS A: 8.0% APR, 0.8% slash probability, 15% slash severity, cap 40% of capital.
+- AVS B: 11.0% APR, 1.2% slash probability, 25% slash severity, cap 30% of capital.
+- AVS C: 15.0% APR, 2.0% slash probability, 50% slash severity, cap 20% of capital.
+
+Constraints:
+- Expected slash loss, calculated as allocation weight times probability times severity, must be at most 0.45% of total capital.
+- At least 35% of capital must stay in native staking.
+- Maximize risk-adjusted APR, where each AVS APR is reduced by probability times severity as percentage points.
+
+Compute the optimal allocation and report the portfolio risk-adjusted APR percentage.",meta-llama/llama-3.1-8b-instruct,1,0,0|1|0,0|0.7|0,0.233,0.000,3123
+L10-061,L10,l10-L10-061,"Bridge $4,000,000 from Arbitrum to Solana within a weighted-average settlement time of at most 90 minutes. Expected cost equals route fee plus insurance premium plus expected uncovered loss.
+
+Routes:
+- Wormhole: 25 minutes, 0.18% fee, 0.25% failure probability, optional 0.32% insurance that covers 95% of failed principal, capacity $2,000,000.
+- LayerZero: 50 minutes, 0.22% fee, 0.15% failure probability, optional 0.28% insurance that covers 90% of failed principal, capacity $3,000,000.
+- CCTP: 140 minutes, 0.10% fee, 0.02% failure probability, no insurance, unlimited capacity.
+- Mayan: 18 minutes, 0.35% fee, 0.45% failure probability, optional 0.45% insurance that covers 98% of failed principal, capacity $1,000,000.
+
+For routes with optional insurance, use insurance if it lowers expected uncovered-loss risk enough to support the target. The total expected uncovered principal loss must be at most $4,000. Minimize expected total cost while meeting the time and risk constraints. Report expected total cost in USD.",meta-llama/llama-4-maverick,1,0,0|0|1,0|0|0.7,0.233,0.000,1652
+L10-068,L10,l10-L10-068,"A CeFi desk must meet $45,000,000 of client withdrawals within 36 hours and still hold at least a $10,000,000 cash buffer after the withdrawals clear.
+
+Available liquidity:
+- $18,000,000 cash, immediate, no haircut.
+- $22,000,000 tokenized T-bills, settle T+1 within the window, 0.04% liquidation haircut.
+- $16,000,000 ETH inventory, same-day OTC sale, 1.10% haircut.
+- $12,000,000 alt inventory, same-day OTC sale, 4.80% haircut.
+
+Choose the liquidation plan that meets withdrawals plus the ending cash buffer at minimum haircut cost. Report total haircut cost in USD.",meta-llama/llama-4-scout,1,0,1|0|0,0.7|0|0,0.233,0.000,4232
+L10-069,L10,l10-L10-069,"A $40,000,000 portfolio is allocated 45% BTC, 25% ETH, 15% SOL, and 15% stables. Daily volatilities are BTC 4.2%, ETH 5.4%, SOL 7.5%, and stables 0%.
+
+Correlations:
+- BTC/ETH: 0.78.
+- BTC/SOL: 0.62.
+- ETH/SOL: 0.68.
+
+Risk policy requires portfolio daily volatility at or below 3.20%. To preserve strategic weights, reduce the crypto sleeve pro rata across BTC, ETH, and SOL and move the proceeds to stables. Stables have zero volatility and zero correlation. Use the covariance formula with the given volatilities and correlations.
+
+Compute the maximum dollar amount that can remain in the crypto sleeve while meeting the 3.20% volatility target, and report it in USD.",meta-llama/llama-3.3-70b-instruct,1,0,0|0|1,0|0|1,0.333,0.000,2444
+L10-069,L10,l10-L10-069,"A $40,000,000 portfolio is allocated 45% BTC, 25% ETH, 15% SOL, and 15% stables. Daily volatilities are BTC 4.2%, ETH 5.4%, SOL 7.5%, and stables 0%.
+
+Correlations:
+- BTC/ETH: 0.78.
+- BTC/SOL: 0.62.
+- ETH/SOL: 0.68.
+
+Risk policy requires portfolio daily volatility at or below 3.20%. To preserve strategic weights, reduce the crypto sleeve pro rata across BTC, ETH, and SOL and move the proceeds to stables. Stables have zero volatility and zero correlation. Use the covariance formula with the given volatilities and correlations.
+
+Compute the maximum dollar amount that can remain in the crypto sleeve while meeting the 3.20% volatility target, and report it in USD.",meta-llama/llama-4-scout,2,1,1|1|0,0.7|0.7|0,0.467,0.700,1649
+AGI-015,L11/AGI,agi-AGI-015,"Convert $2,000,000 USDC to ETH before a 90-minute announcement expected to push ETH +5-8%. You want lowest acquisition cost, but visible DEX or bridge overuse is copied by searchers after the first large route.
+
+Venues (price | fee | fixed costs | adversarial capacity before repricing):
+- Binance: $3,005 | 0.10% taker | $0 fixed | $600,000.
+- Coinbase: $3,010 | 0.15% taker | $0 fixed | $500,000.
+- Kraken: $3,000 | 0.26% taker | $0 fixed | $500,000.
+- Uniswap V3 Ethereum: $3,003 | 0.30% pool fee | $80 gas | $450,000.
+- Curve ETH: $3,004 | 0.04% fee | $120 gas | $400,000.
+- Uniswap Arbitrum: $2,998 | 0.25% fee | $14 bridge+gas | $400,000 private-intent capacity.
+- Velodrome Optimism: $2,995 | 0.20% fee | $9 bridge+gas | $400,000 private-intent capacity.
+- OTC Circle: $3,006 | 0.05% fee | $0 fixed | $250,000 before dealer fade.
+- OTC Cumberland: $3,008 | 0.08% fee | $0 fixed | $250,000 before dealer fade.
+
+Trades above an adversarial capacity incur copied-flow repricing that is worse than the next listed venue. Construct the unique allocation that minimizes total cost while completing inside the 90-minute window.
+
+Output JSON fields: intent, chosen_strategy, venue_allocation_usd, expected_eth_received, effective_price.
+
+Choose the strategy from: [capacity_capped_best_execution, otc_first_dealer_workup, single_venue_lowest_quote_sweep, pro_rata_across_all_venues].",meta-llama/llama-4-maverick,2,1,1|0|1,0.778|0.222|0.778,0.593,0.778,3976
+AGI-024,L11/AGI,agi-AGI-024,"You must buy 50,000 ABC before an information event. A copy-trading bot worsens the remaining public book after it sees an aggressive parent order above 10,000 ABC, while private fills update no public footprint.
+
+Raw execution primitives:
+- Dark_RFQ can fill 15,000 ABC at $1.206 all-in if committed before T+20s; it is not visible to the copy bot.
+- Internalizer can fill 18,000 ABC at $1.2075 all-in if committed before T+45s; it is not visible to the copy bot.
+- RFQ_A can fill 10,000 ABC at $1.209 all-in if committed before T+70s; it is not visible to the copy bot.
+- A hidden public iceberg can absorb up to 7,000 ABC at $1.204 before the event. Any larger public parent becomes visible and can reprice the rest of the order.
+- Current mid is $1.2. Every committed child must finish inside the event window.
+
+Design the execution route from these primitives. The answer must reconcile route order, venue fills, hidden-public size, all-in average price, slippage versus mid, and a self-check that the copied-flow trigger is not activated. Output JSON fields: intent, chosen_strategy, execution_sequence, venue_fills, hidden_public_qty, expected_avg_price, expected_slippage_pct, self_check.",meta-llama/llama-4-scout,1,0,0|0|1,0.091|0.182|0.727,0.333,0.182,3315
+AGI-026,L11/AGI,agi-AGI-026,"You must buy 120,000 KAP before an information event. A copy-trading bot worsens the remaining public book after it sees an aggressive parent order above 25,000 KAP, while private fills update no public footprint.
+
+Raw execution primitives:
+- Internalizer can fill 42,000 KAP at $4.925 all-in if committed before T+20s; it is not visible to the copy bot.
+- Dark_RFQ can fill 35,000 KAP at $4.931 all-in if committed before T+45s; it is not visible to the copy bot.
+- CEX_Y can fill 30,000 KAP at $4.936 all-in if committed before T+70s; it is not visible to the copy bot.
+- A hidden public iceberg can absorb up to 13,000 KAP at $4.918 before the event. Any larger public parent becomes visible and can reprice the rest of the order.
+- Current mid is $4.91. Every committed child must finish inside the event window.
+
+Design the execution route from these primitives. The answer must reconcile route order, venue fills, hidden-public size, all-in average price, slippage versus mid, and a self-check that the copied-flow trigger is not activated. Output JSON fields: intent, chosen_strategy, execution_sequence, venue_fills, hidden_public_qty, expected_avg_price, expected_slippage_pct, self_check.",meta-llama/llama-4-scout,1,0,0|1|0,0.182|0.727|0.636,0.515,0.636,2059
+AGI-063,L11/AGI,agi-AGI-063,"Convert $2,000,000 USDC into ETH before an announcement window. Visible overuse of any route is copied by searchers and repriced worse than the next venue; private/OTC routes do not create a public pre-fill graph.
+
+Raw venue primitives:
+- Kraken: usable clip $500,000, quoted price $2992, fee 0.07%, fixed cost $40, publicly visible before completion.
+- Uniswap_Arbitrum: usable clip $450,000, quoted price $2996, fee 0.10%, fixed cost $120, private before completion.
+- Curve_ETH: usable clip $400,000, quoted price $2998, fee 0.08%, fixed cost $90, private before completion.
+- Binance: usable clip $350,000, quoted price $3001, fee 0.06%, fixed cost $30, publicly visible before completion.
+- Velodrome_Optimism: usable clip $300,000, quoted price $3004, fee 0.12%, fixed cost $80, private before completion.
+- Fixed costs are deducted before percentage fees.
+- The route plan must complete the full notional without creating an observable clip larger than the public route can absorb before copy-trading reprices it.
+
+Design the acquisition route. The answer must reconcile venue allocation, largest visible clip, asset received, effective price, and self-check from one plan. Output JSON fields: intent, chosen_strategy, venue_allocation_usd, largest_visible_clip_usd, expected_asset_received, effective_price, self_check.",meta-llama/llama-3.3-70b-instruct,2,1,1|1|0,0.727|0.727|0.545,0.667,0.727,4179
+AGI-063,L11/AGI,agi-AGI-063,"Convert $2,000,000 USDC into ETH before an announcement window. Visible overuse of any route is copied by searchers and repriced worse than the next venue; private/OTC routes do not create a public pre-fill graph.
+
+Raw venue primitives:
+- Kraken: usable clip $500,000, quoted price $2992, fee 0.07%, fixed cost $40, publicly visible before completion.
+- Uniswap_Arbitrum: usable clip $450,000, quoted price $2996, fee 0.10%, fixed cost $120, private before completion.
+- Curve_ETH: usable clip $400,000, quoted price $2998, fee 0.08%, fixed cost $90, private before completion.
+- Binance: usable clip $350,000, quoted price $3001, fee 0.06%, fixed cost $30, publicly visible before completion.
+- Velodrome_Optimism: usable clip $300,000, quoted price $3004, fee 0.12%, fixed cost $80, private before completion.
+- Fixed costs are deducted before percentage fees.
+- The route plan must complete the full notional without creating an observable clip larger than the public route can absorb before copy-trading reprices it.
+
+Design the acquisition route. The answer must reconcile venue allocation, largest visible clip, asset received, effective price, and self-check from one plan. Output JSON fields: intent, chosen_strategy, venue_allocation_usd, largest_visible_clip_usd, expected_asset_received, effective_price, self_check.",meta-llama/llama-4-scout,1,0,0|0|1,0.545|0.091|0.727,0.455,0.545,2612
+AGI-064,L11/AGI,agi-AGI-064,"Convert $2,000,000 USDC into BTC before an announcement window. Visible overuse of any route is copied by searchers and repriced worse than the next venue; private/OTC routes do not create a public pre-fill graph.
+
+Raw venue primitives:
+- Binance: usable clip $600,000, quoted price $59880, fee 0.05%, fixed cost $35, publicly visible before completion.
+- Kraken: usable clip $500,000, quoted price $59940, fee 0.06%, fixed cost $40, publicly visible before completion.
+- Coinbase: usable clip $300,000, quoted price $60020, fee 0.08%, fixed cost $30, publicly visible before completion.
+- Curve_BTC: usable clip $300,000, quoted price $60060, fee 0.10%, fixed cost $100, private before completion.
+- OTC_Circle: usable clip $300,000, quoted price $60120, fee 0.04%, fixed cost $20, publicly visible before completion.
+- Fixed costs are deducted before percentage fees.
+- The route plan must complete the full notional without creating an observable clip larger than the public route can absorb before copy-trading reprices it.
+
+Design the acquisition route. The answer must reconcile venue allocation, largest visible clip, asset received, effective price, and self-check from one plan. Output JSON fields: intent, chosen_strategy, venue_allocation_usd, largest_visible_clip_usd, expected_asset_received, effective_price, self_check.",meta-llama/llama-3.3-70b-instruct,1,0,0|1|0,0.545|0.727|0.545,0.606,0.545,6992
+AGI-086,L11/AGI,agi-AGI-086,"You must buy 50,000 ABC before an information event. A copy-trading bot worsens the remaining public book after it sees an aggressive parent order above 10,000 ABC, while private fills update no public footprint.
+
+Raw execution primitives:
+- Dark_RFQ can fill 15,000 ABC at $1.206 all-in if committed before T+20s; it is not visible to the copy bot.
+- Internalizer can fill 18,000 ABC at $1.2075 all-in if committed before T+45s; it is not visible to the copy bot.
+- RFQ_A can fill 10,000 ABC at $1.209 all-in if committed before T+70s; it is not visible to the copy bot.
+- A hidden public iceberg can absorb up to 7,000 ABC at $1.204 before the event. Any larger public parent becomes visible and can reprice the rest of the order.
+- Current mid is $1.2. Every committed child must finish inside the event window.
+
+Design the execution route from these primitives. The answer must reconcile route order, venue fills, hidden-public size, all-in average price, slippage versus mid, and a self-check that the copied-flow trigger is not activated. Output JSON fields: intent, chosen_strategy, execution_sequence, venue_fills, hidden_public_qty, expected_avg_price, expected_slippage_pct, self_check.",meta-llama/llama-4-maverick,1,0,0|0|1,0.545|0.636|0.727,0.636,0.636,3002
+AGI-088,L11/AGI,agi-AGI-088,"You must buy 120,000 KAP before an information event. A copy-trading bot worsens the remaining public book after it sees an aggressive parent order above 25,000 KAP, while private fills update no public footprint.
+
+Raw execution primitives:
+- Internalizer can fill 42,000 KAP at $4.925 all-in if committed before T+20s; it is not visible to the copy bot.
+- Dark_RFQ can fill 35,000 KAP at $4.931 all-in if committed before T+45s; it is not visible to the copy bot.
+- CEX_Y can fill 30,000 KAP at $4.936 all-in if committed before T+70s; it is not visible to the copy bot.
+- A hidden public iceberg can absorb up to 13,000 KAP at $4.918 before the event. Any larger public parent becomes visible and can reprice the rest of the order.
+- Current mid is $4.91. Every committed child must finish inside the event window.
+
+Design the execution route from these primitives. The answer must reconcile route order, venue fills, hidden-public size, all-in average price, slippage versus mid, and a self-check that the copied-flow trigger is not activated. Output JSON fields: intent, chosen_strategy, execution_sequence, venue_fills, hidden_public_qty, expected_avg_price, expected_slippage_pct, self_check.",meta-llama/llama-4-scout,1,0,0|1|0,0.182|0.727|0.636,0.515,0.636,2476
+AGI-092,L11/AGI,agi-AGI-092,"Stable yield holdout. Allocate $100,000 for 90 days across five protocol venues with APY, tail-loss, cap, and exit-window differences.
+
+Venue signals after tail losses and hedge drag: Aave_USDC: cap 20000, net APY signal 7.04%, 48h-liquid; Curve_3pool: cap 30000, net APY signal 8.14%, 48h-liquid; Ethena_USDe: cap 20000, net APY signal 9.24%, term/slow-exit; GMX_GLP: cap 30000, net APY signal 10.34%, term/slow-exit; a fifth uncapped-looking venue has lower net APY and enters a redemption queue above $10,000. A public allocator that exceeds a fragile venue threshold is queued behind mercenary withdrawals. At least half the capital must be liquid inside 48 hours, and no allocation may use a tier that enters the adversarial queue.
+
+Maximize risk-adjusted 90-day dollars from the listed opportunity set.
+
+Output JSON fields: intent, chosen_strategy, allocation_usd, expected_net_apy_pct, expected_90d_profit_usd, liquidity_48h_usd.",meta-llama/llama-4-maverick,1,0,1|0|0,0.778|0.667|0.667,0.704,0.667,1953

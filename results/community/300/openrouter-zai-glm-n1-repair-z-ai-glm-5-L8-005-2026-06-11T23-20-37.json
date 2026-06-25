@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-11T23:20:42.448Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L8-005-2026-06-11T23-20-37",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L8-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-005",
+      "raw": "{\"action\":\"B\",\"action_name\":\"deleverage_to_2x\",\"liquidation_probabilities\":{\"maintain_3x\":0.0081,\"deleverage_2x\":0.0013,\"deleverage_1_5x\":0.0001},\"expected_values\":{\"maintain_3x\":45.85,\"deleverage_2x\":41.00,\"deleverage_1_5x\":36.44,\"close\":0},\"reasoning\":\"Using barrier-hitting probability for GBM with zero drift: P_liq = 2*N(-d2) where d2 = ln(S0/L)/(σ√T). With σ_weekly=0.1317 and T=1 week: 3× leverage (L=1400, 30% drop) gives d2=2.40, P≈0.81% exceeding 0.5% threshold. 2× leverage (L=1200, 40% drop) gives d2=3.20, P≈0.13% within threshold. EV = carry - P_liq×penalty. 2× leverage maximizes EV among compliant actions.\",\"calculation_method\":\"barrier_hitting\"}",
+      "durationMs": 4625,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0081,
+            "deleverage_2x": 0.0013,
+            "deleverage_1_5x": 0.0001
+          },
+          "expected_values": {
+            "maintain_3x": 45.85,
+            "deleverage_2x": 41,
+            "deleverage_1_5x": 36.44,
+            "close": 0
+          },
+          "reasoning": "Using barrier-hitting probability for GBM with zero drift: P_liq = 2*N(-d2) where d2 = ln(S0/L)/(σ√T). With σ_weekly=0.1317 and T=1 week: 3× leverage (L=1400, 30% drop) gives d2=2.40, P≈0.81% exceeding 0.5% threshold. 2× leverage (L=1200, 40% drop) gives d2=3.20, P≈0.13% within threshold. EV = carry - P_liq×penalty. 2× leverage maximizes EV among compliant actions.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

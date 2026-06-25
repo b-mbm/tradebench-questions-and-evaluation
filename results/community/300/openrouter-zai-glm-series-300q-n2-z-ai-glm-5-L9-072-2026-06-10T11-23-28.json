@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T11:23:30.789Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-072-2026-06-10T11-23-28",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-072"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-072",
+      "raw": "{\"intent\":\"restake\",\"expected_value\":[\"N1\",\"N2\",\"N3\"],\"reasoning\":\"N1: net=8.6-0.5-1.5*0.7=7.05% >=6%, slash_mult=1.5<=3.2, delay=5<=8, oracle=10<=22, cap=240>=200. N2: net=12.8-1-3*1=8.8% >=6%, slash_mult=3<=3.2, delay=8<=8, oracle=21<=22, cap=300>=200. N3: net=10.4-0.6-2.1*0.8=8.12% >=6%, slash_mult=2.1<=3.2, delay=6<=8, oracle=18<=22, cap=230>=200. N4 fails capacity (180<200). N5 fails slash_mult (3.6>3.2). N6 fails delay (9>8). Top 3 by net score: N2(8.8%), N3(8.12%), N1(7.05%).\"}",
+      "durationMs": 2368,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "N1",
+            "N2",
+            "N3"
+          ],
+          "reasoning": "N1: net=8.6-0.5-1.5*0.7=7.05% >=6%, slash_mult=1.5<=3.2, delay=5<=8, oracle=10<=22, cap=240>=200. N2: net=12.8-1-3*1=8.8% >=6%, slash_mult=3<=3.2, delay=8<=8, oracle=21<=22, cap=300>=200. N3: net=10.4-0.6-2.1*0.8=8.12% >=6%, slash_mult=2.1<=3.2, delay=6<=8, oracle=18<=22, cap=230>=200. N4 fails capacity (180<200). N5 fails slash_mult (3.6>3.2). N6 fails delay (9>8). Top 3 by net score: N2(8.8%), N3(8.12%), N1(7.05%)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T08:33:50.506Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-024-2026-06-10T08-33-28",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-024"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-024",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\n    \"A2\",\n    \"A4\",\n    \"A5\"\n  ],\n  \"reasoning\": \"A3 is rejected because its slashing multiplier (4.0) exceeds the 3.5 limit. Calculated net scores for eligible AVSs: A1 = 7.4 - 0.3 - (1.4 * 0.5) = 6.4%, A2 = 11.2 - 0.8 - (2.5 * 0.9) = 8.15%, A4 = 9.4 - 0.4 - (1.8 * 0.6) = 7.92%, A5 = 10.1 - 0.5 - (2 * 0.7) = 8.2%. All pass capacity, delay, and oracle constraints. The top 3 by net score are A5, A2, and A4.\"\n}",
+      "durationMs": 21475,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A2",
+            "A4",
+            "A5"
+          ],
+          "reasoning": "A3 is rejected because its slashing multiplier (4.0) exceeds the 3.5 limit. Calculated net scores for eligible AVSs: A1 = 7.4 - 0.3 - (1.4 * 0.5) = 6.4%, A2 = 11.2 - 0.8 - (2.5 * 0.9) = 8.15%, A4 = 9.4 - 0.4 - (1.8 * 0.6) = 7.92%, A5 = 10.1 - 0.5 - (2 * 0.7) = 8.2%. All pass capacity, delay, and oracle constraints. The top 3 by net score are A5, A2, and A4."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

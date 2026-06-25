@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-06-11T18:30:20.325Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-065-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-065"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-065",
+      "raw": " {\"intent\":\"swap\",\"chosen_strategy\":\"Maximize private venue usage to avoid pre-fill graph leakage, then fill remaining notional across public venues at their maximum usable clip limits to prevent searcher repricing\",\"venue_allocation_usd\":{\"Binance\":550000,\"Jupiter_Solana\":450000,\"Uniswap_Arbitrum\":350000,\"OTC_Circle\":350000,\"Coinbase\":300000},\"largest_visible_clip_usd\":550000,\"expected_asset_received\":13326.7574,\"effective_price\":150.074,\"self_check\":\"Sum of allocations equals $2,000,000; public venues (Binance $550k, OTC $350k, Coinbase $300k) operate at exact usable clips avoiding overuse; private venues ($800k) execute without public pre-fill graphs; net SOL calculated by deducting fixed costs then percentage fees from each tranche before converting at venue-specific prices.\",\"reasoning\":\"Allocated full private liquidity first (Jupiter $450k, Uniswap $350k) to minimize visible footprint. Distributed remaining $1.2M across public venues at their maximum single-clip capacities (Binance $550k, OTC $350k, Coinbase $300k) to stay within absorbable limits and avoid copy-trading repricing. Per-venue SOL computed as (Allocation - Fixed_Cost)*(1 - Fee_Percent)/Price, summed to ~13,326.76 SOL for an effective price of ~$150.07 per SOL.\"}",
+      "durationMs": 138917,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7272727272727273,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "venue_allocation_usd.Binance": 1,
+          "venue_allocation_usd.Jupiter_Solana": 1,
+          "venue_allocation_usd.Uniswap_Arbitrum": 1,
+          "venue_allocation_usd.OTC_Circle": 1,
+          "venue_allocation_usd.Coinbase": 1,
+          "largest_visible_clip_usd": 1,
+          "expected_asset_received": 1,
+          "effective_price": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "chosen_strategy": "Maximize private venue usage to avoid pre-fill graph leakage, then fill remaining notional across public venues at their maximum usable clip limits to prevent searcher repricing",
+          "venue_allocation_usd": {
+            "Binance": 550000,
+            "Jupiter_Solana": 450000,
+            "Uniswap_Arbitrum": 350000,
+            "OTC_Circle": 350000,
+            "Coinbase": 300000
+          },
+          "largest_visible_clip_usd": 550000,
+          "expected_asset_received": 13326.7574,
+          "effective_price": 150.074,
+          "self_check": "Sum of allocations equals $2,000,000; public venues (Binance $550k, OTC $350k, Coinbase $300k) operate at exact usable clips avoiding overuse; private venues ($800k) execute without public pre-fill graphs; net SOL calculated by deducting fixed costs then percentage fees from each tranche before converting at venue-specific prices.",
+          "reasoning": "Allocated full private liquidity first (Jupiter $450k, Uniswap $350k) to minimize visible footprint. Distributed remaining $1.2M across public venues at their maximum single-clip capacities (Binance $550k, OTC $350k, Coinbase $300k) to stay within absorbable limits and avoid copy-trading repricing. Per-venue SOL computed as (Allocation - Fixed_Cost)*(1 - Fee_Percent)/Price, summed to ~13,326.76 SOL for an effective price of ~$150.07 per SOL."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

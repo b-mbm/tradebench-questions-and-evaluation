@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:28:46.277Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-078-2026-06-10T06-28-22",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-078"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-078",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 1300,\n  \"reasoning\": \"Computed all-in cost for each route: A=$8,400 (0.58%×1.25M+$900+0.02%×1.25M), B=$6,400 (0.33%×1.25M+$1,900+0.03%×1.25M), C=$7,700 (0.22%×1.25M+$4,200+0.06%×1.25M), D infeasible (settlement 18min>15min cap). All other routes pass constraints. Best feasible is Route B at $6,400; second-best is Route C at $7,700. USD saved = $7,700-$6,400 = $1,300. Extra AVAX = $1,300/$42 ≈ 30.95 AVAX.\"\n}",
+      "durationMs": 22888,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 1300,
+          "reasoning": "Computed all-in cost for each route: A=$8,400 (0.58%×1.25M+$900+0.02%×1.25M), B=$6,400 (0.33%×1.25M+$1,900+0.03%×1.25M), C=$7,700 (0.22%×1.25M+$4,200+0.06%×1.25M), D infeasible (settlement 18min>15min cap). All other routes pass constraints. Best feasible is Route B at $6,400; second-best is Route C at $7,700. USD saved = $7,700-$6,400 = $1,300. Extra AVAX = $1,300/$42 ≈ 30.95 AVAX."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

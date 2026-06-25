@@ -1,0 +1,809 @@
+{
+  "runAt": "2026-06-09T06:50:29.816Z",
+  "label": "openrouter-zai-family-300q-l6-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1",
+    "z-ai/glm-5-turbo",
+    "z-ai/glm-5",
+    "z-ai/glm-5v-turbo"
+  ],
+  "questionIds": [
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L6-001",
+      "raw": "{\n\"intent\": \"buy\",\n\"order_type\": \"limit\",\n\"asset\": \"ETH-3500C-30D\",\n\"size\": 2,\n\"unit\": \"contracts\",\n\"price\": \"market\",\n\"venue\": \"deribit\",\n\"venue_name\": \"Deribit\",\n\"risk_controls\": {\n\"stop_loss\": \"50% premium\",\n\"take_profit\": \"200% premium\",\n\"slippage_tolerance\": \"5%\",\n\"position_size_limit\": \"2 contracts\"\n},\n\"follow_up\": \"confirm option premium and available expiry date\",\n\"reasoning\": \"Buying 2 ETH call options with $3,500 strike, 30-day expiry (~2025-11-12). Current ETH at $3,000 makes this OTM by $500. Deribit is most liquid venue for ETH options. Need to confirm premium pricing and nearest standard expiry date availability.\",\n\"requires_follow_up\": true,\n\"follow_up_description\": \"Confirm option premium quote and exact expiry date on Deribit (standard expiries may not align exactly with 30 days)\"\n}",
+      "durationMs": 33121,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.02571428571428572,
+          "asset": 0.03692307692307692,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "ETH-3500C-30D",
+          "size": 2,
+          "unit": "contracts",
+          "price": "market",
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "risk_controls": {
+            "stop_loss": "50% premium",
+            "take_profit": "200% premium",
+            "slippage_tolerance": "5%",
+            "position_size_limit": "2 contracts"
+          },
+          "follow_up": "confirm option premium and available expiry date",
+          "reasoning": "Buying 2 ETH call options with $3,500 strike, 30-day expiry (~2025-11-12). Current ETH at $3,000 makes this OTM by $500. Deribit is most liquid venue for ETH options. Need to confirm premium pricing and nearest standard expiry date availability.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm option premium quote and exact expiry date on Deribit (standard expiries may not align exactly with 30 days)"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"recurring\",\n  \"asset\": \"BTC\",\n  \"size\": \"500\",\n  \"unit\": \"usd\",\n  \"price\": \"market\",\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"coinbase_recurring\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"position_size_limit\": \"500\"\n  },\n  \"follow_up\": \"weekly execution confirmation and portfolio rebalance review at month-end\",\n  \"reasoning\": \"DCA strategy: $500/week for ~13 weeks (3 months), total commitment ~$6,500. Market orders at weekly intervals to average entry price. Coinbase supports native recurring buy automation.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor weekly fills for 13 weeks, verify execution each Monday, review strategy performance at month-end intervals, and terminate DCA after 3 months (approximately 2026-01-13)\"\n}",
+      "durationMs": 31112,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "recurring",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "price": "market",
+          "venue": "coinbase",
+          "venue_name": "coinbase_recurring",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "position_size_limit": "500"
+          },
+          "follow_up": "weekly execution confirmation and portfolio rebalance review at month-end",
+          "reasoning": "DCA strategy: $500/week for ~13 weeks (3 months), total commitment ~$6,500. Market orders at weekly intervals to average entry price. Coinbase supports native recurring buy automation.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor weekly fills for 13 weeks, verify execution each Monday, review strategy performance at month-end intervals, and terminate DCA after 3 months (approximately 2026-01-13)"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.1\",\n  \"unit\": \"btc\",\n  \"price\": \"40000\",\n  \"venue\": \"exchange\",\n  \"venue_name\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": \"0.6\"\n  },\n  \"follow_up\": \"place remaining 5 limit buy orders at $41k, $42k, $43k, $44k, $45k\",\n  \"reasoning\": \"first rung of 6-rung ladder buy from $40k to $45k in $1k increments; limit orders at each level to scale into position\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"5 remaining limit buy orders: 0.1 BTC each at $41,000, $42,000, $43,000, $44,000, $45,000\"\n}",
+      "durationMs": 27680,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9428571428571428,
+        "score": 0.88,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.12,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.1",
+          "unit": "btc",
+          "price": "40000",
+          "venue": "exchange",
+          "venue_name": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "0.6"
+          },
+          "follow_up": "place remaining 5 limit buy orders at $41k, $42k, $43k, $44k, $45k",
+          "reasoning": "first rung of 6-rung ladder buy from $40k to $45k in $1k increments; limit orders at each level to scale into position",
+          "requires_follow_up": true,
+          "follow_up_description": "5 remaining limit buy orders: 0.1 BTC each at $41,000, $42,000, $43,000, $44,000, $45,000"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L6-004",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"trailing_stop\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"price\": 42750,\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"stop_loss\": \"5% trailing\",\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"monitor trailing stop activation and adjust if volatility spikes\",\n  \"reasoning\": \"trailing stop set 5% below current market price of $45,000, initial stop at $42,750; stop will trail upward with price, protecting 0.5 BTC position while allowing upside capture\"\n}",
+      "durationMs": 3219,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7943055555555556,
+        "score": 0.7525000000000001,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "price": 42750,
+          "venue": "coinbase",
+          "risk_controls": {
+            "stop_loss": "5% trailing",
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor trailing stop activation and adjust if volatility spikes",
+          "reasoning": "trailing stop set 5% below current market price of $45,000, initial stop at $42,750; stop will trail upward with price, protecting 0.5 BTC position while allowing upside capture"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L6-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"twap\",\n  \"asset\": \"ETH\",\n  \"size\": 10,\n  \"venue\": \"coinbase\",\n  \"duration\": \"4h\",\n  \"reasoning\": \"TWAP sell of 10 ETH over 4 hours to minimize market impact, slicing into equal portions executed at regular intervals\"\n}",
+      "durationMs": 11255,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8477083333333334,
+        "score": 0.7825000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "coinbase",
+          "duration": "4h",
+          "reasoning": "TWAP sell of 10 ETH over 4 hours to minimize market impact, slicing into equal portions executed at regular intervals"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH-3500-C-30D\",\n  \"size\": 2,\n  \"unit\": \"contracts\",\n  \"venue\": \"deribit\",\n  \"venue_name\": \"Deribit\",\n  \"risk_controls\": {},\n  \"follow_up\": \"request limit price\",\n  \"reasoning\": \"Purchasing 2 out-of-the-money ETH call options with a $3,500 strike price expiring in 30 days. Options typically require a limit order price for execution.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"A limit price for the option premium is required to place the order.\"\n}",
+      "durationMs": 14894,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.02571428571428572,
+          "asset": 0.03428571428571429,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "ETH-3500-C-30D",
+          "size": 2,
+          "unit": "contracts",
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "risk_controls": {},
+          "follow_up": "request limit price",
+          "reasoning": "Purchasing 2 out-of-the-money ETH call options with a $3,500 strike price expiring in 30 days. Options typically require a limit order price for execution.",
+          "requires_follow_up": true,
+          "follow_up_description": "A limit price for the option premium is required to place the order."
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"dca\",\n  \"order_type\": \"recurring\",\n  \"asset\": \"BTC\",\n  \"size\": \"500\",\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm schedule setup\",\n  \"reasoning\": \"Setting up a recurring weekly buy of $500 USD worth of BTC for 3 months (12 weeks).\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Confirm the 12 weekly purchases of $500 BTC are scheduled correctly.\"\n}",
+      "durationMs": 17673,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "dca",
+          "order_type": "recurring",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "venue_name": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm schedule setup",
+          "reasoning": "Setting up a recurring weekly buy of $500 USD worth of BTC for 3 months (12 weeks).",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm the 12 weekly purchases of $500 BTC are scheduled correctly."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order",
+      "durationMs": 33152,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "unit": 0,
+          "venue": 0,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "ladder_size_unreasonable"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L6-004",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"trailing_stop\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"price\": \"5%\",\n  \"venue\": \"exchange\",\n  \"risk_controls\": {\n    \"stop_loss\": \"5% trailing\"\n  },\n  \"reasoning\": \"Setting a trailing stop 5% below the current market price of 45000 to protect the 0.5 BTC position from downside risk while allowing upside participation.\"\n}",
+      "durationMs": 24793,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8659375,
+        "score": 0.8150000000000001,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "price": "5%",
+          "venue": "exchange",
+          "risk_controls": {
+            "stop_loss": "5% trailing"
+          },
+          "reasoning": "Setting a trailing stop 5% below the current market price of 45000 to protect the 0.5 BTC position from downside risk while allowing upside participation."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L6-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"twap\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"venue\": \"mainnet\",\n  \"duration\": \"4 hours\",\n  \"reasoning\": \"Executing a time-weighted average price (TWAP) order to sell 10 ETH over a 4-hour duration to minimize market impact.\"\n}",
+      "durationMs": 12006,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9425,
+        "score": 0.87,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.1,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": "10",
+          "venue": "mainnet",
+          "duration": "4 hours",
+          "reasoning": "Executing a time-weighted average price (TWAP) order to sell 10 ETH over a 4-hour duration to minimize market impact."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"option\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"contracts\",\n  \"price\": \"premium\",\n  \"venue\": \"deribit\",\n  \"venue_name\": \"Deribit\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"2\"\n  },\n  \"follow_up\": \"confirm option fill and monitor implied volatility\",\n  \"reasoning\": \"buying 2 ETH call options with $3,500 strike expiring in 30 days via Deribit, the leading crypto options venue\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"monitor option greeks and ETH price movement toward $3,500 strike\"\n}",
+      "durationMs": 6736,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.1,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "option",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "contracts",
+          "price": "premium",
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "risk_controls": {
+            "position_size_limit": "2"
+          },
+          "follow_up": "confirm option fill and monitor implied volatility",
+          "reasoning": "buying 2 ETH call options with $3,500 strike expiring in 30 days via Deribit, the leading crypto options venue",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor option greeks and ETH price movement toward $3,500 strike"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dca\",\n  \"asset\": \"BTC\",\n  \"size\": 500,\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"schedule recurring weekly purchases for 12 weeks\",\n  \"reasoning\": \"DCA strategy requires recurring order setup; first order executed immediately with remaining 11 orders scheduled weekly\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Set up automated recurring buy of $500 BTC weekly for remaining 11 weeks (total 12 weeks = 3 months)\"\n}",
+      "durationMs": 2777,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": 500,
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "schedule recurring weekly purchases for 12 weeks",
+          "reasoning": "DCA strategy requires recurring order setup; first order executed immediately with remaining 11 orders scheduled weekly",
+          "requires_follow_up": true,
+          "follow_up_description": "Set up automated recurring buy of $500 BTC weekly for remaining 11 weeks (total 12 weeks = 3 months)"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": \"specify\",\n  \"unit\": \"btc\",\n  \"price\": \"40000\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Ladder buy: Place 6 limit orders at $40,000, $41,000, $42,000, $43,000, $44,000, $45,000. Specify size per order or total allocation to distribute across ladder.\",\n  \"reasoning\": \"First order of 6-level ladder buy strategy from $40k to $45k at $1k intervals\"\n}",
+      "durationMs": 27059,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8350284090909091,
+        "score": 0.785909090909091,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.010909090909090912,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "specify",
+          "unit": "btc",
+          "price": "40000",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Ladder buy: Place 6 limit orders at $40,000, $41,000, $42,000, $43,000, $44,000, $45,000. Specify size per order or total allocation to distribute across ladder.",
+          "reasoning": "First order of 6-level ladder buy strategy from $40k to $45k at $1k intervals"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L6-004",
+      "raw": "",
+      "durationMs": 3816,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L6-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"twap\",\n  \"asset\": \"ETH\",\n  \"size\": 10,\n  \"venue\": \"coinbase\",\n  \"duration\": \"4 hours\",\n  \"reasoning\": \"TWAP order splits 10 ETH into equal slices over 4 hours (~2.5 ETH/hour or ~0.042 ETH/min) to minimize market impact and achieve average execution price\"\n}",
+      "durationMs": 8220,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8477083333333334,
+        "score": 0.7825000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "coinbase",
+          "duration": "4 hours",
+          "reasoning": "TWAP order splits 10 ETH into equal slices over 4 hours (~2.5 ETH/hour or ~0.042 ETH/min) to minimize market impact and achieve average execution price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH-13NOV25-3500-C\",\n  \"size\": 2,\n  \"unit\": \"contracts\",\n  \"venue\": \"deribit\",\n  \"venue_name\": \"Deribit\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"2%\"\n  },\n  \"reasoning\": \"Buying 2 ETH call option contracts with $3,500 strike expiring ~30 days (Nov 13, 2025). Current ETH spot at $3,000 makes these OTM calls - speculative bullish position.\",\n  \"follow_up\": \"confirm fill and monitor delta/gamma exposure\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify option premium paid and set up monitoring for breakeven point (~$3,500 + premium)\"\n}",
+      "durationMs": 10367,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0,
+          "asset": 0.02666666666666666,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "ETH-13NOV25-3500-C",
+          "size": 2,
+          "unit": "contracts",
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "risk_controls": {
+            "slippage_tolerance": "2%"
+          },
+          "reasoning": "Buying 2 ETH call option contracts with $3,500 strike expiring ~30 days (Nov 13, 2025). Current ETH spot at $3,000 makes these OTM calls - speculative bullish position.",
+          "follow_up": "confirm fill and monitor delta/gamma exposure",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify option premium paid and set up monitoring for breakeven point (~$3,500 + premium)"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"recurring_market\",\n  \"asset\": \"BTC\",\n  \"size\": \"500\",\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": \"6500\"\n  },\n  \"follow_up\": \"schedule weekly executions for 12 weeks\",\n  \"reasoning\": \"DCA strategy: $500/week × ~12 weeks = $6,000 total exposure over 3 months at current BTC price of $45,000, acquiring approximately 0.133 BTC total across all purchases\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Confirm DCA schedule is active and monitor weekly fills. Total planned investment: $6,000 over 3 months (~12 weekly orders). Adjust if price moves significantly outside expected range.\"\n}\n``*End of code block*",
+      "durationMs": 10734,
+      "grade": {
+        "pass": false,
+        "confidence": 0.43478571428571433,
+        "score": 0.6763333333333335,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02133333333333333,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "recurring_market",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "venue_name": "coinbase",
+          "slippage_tolerance": "0.5%",
+          "position_size_limit": "6500",
+          "follow_up": "schedule weekly executions for 12 weeks",
+          "reasoning": "DCA strategy: $500/week × ~12 weeks = $6,000 total exposure over 3 months at current BTC price of $45,000, acquiring approximately 0.133 BTC total across all purchases",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm DCA schedule is active and monitor weekly fills. Total planned investment: $6,000 over 3 months (~12 weekly orders). Adjust if price moves significantly outside expected range.",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.1\",\n  \"unit\": \"btc\",\n  \"price\": 40000,\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"position_size_limit\": \"0.6\"\n  },\n  \"follow_up\": \"place remaining 5 ladder orders at $41k, $42k, $43k, $44k, $45k\",\n  \"reasoning\": \"Ladder buy strategy: placing first of 6 limit buy orders from $40k to $45k in $1,000 increments. Current BTC price is $45,000 so all ladder orders are below spot. Each rung sized equally at 0.1 BTC for total 0.6 BTC exposure if fully filled.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute 5 additional limit buy orders: 0.1 BTC @ $41,000, 0.1 BTC @ $42,000, 0.1 BTC @ $43,000, 0.1 BTC @ $44,000, 0.1 BTC @ $45,000\"\n}\n",
+      "durationMs": 19512,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8303571428571429,
+        "score": 0.775,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.1",
+          "unit": "btc",
+          "price": 40000,
+          "venue": "coinbase",
+          "venue_name": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "position_size_limit": "0.6"
+          },
+          "follow_up": "place remaining 5 ladder orders at $41k, $42k, $43k, $44k, $45k",
+          "reasoning": "Ladder buy strategy: placing first of 6 limit buy orders from $40k to $45k in $1,000 increments. Current BTC price is $45,000 so all ladder orders are below spot. Each rung sized equally at 0.1 BTC for total 0.6 BTC exposure if fully filled.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute 5 additional limit buy orders: 0.1 BTC @ $41,000, 0.1 BTC @ $42,000, 0.1 BTC @ $43,000, 0.1 BTC @ $44,000, 0.1 BTC @ $45,000"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L6-004",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"trailing_stop\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"stop_loss\": \"5% trailing\"\n  },\n  \"follow_up\": \"monitor trailing stop activation and adjust if needed\",\n  \"reasoning\": \"Setting trailing stop 5% below market on 0.5 BTC position. Current BTC price is $45,000. The trailing stop will follow price upward and trigger a market sell if BTC drops 5% from its highest point since order placement.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Confirm trailing stop order has been placed and is active. Monitor for any price movements that may trigger execution.\"\n}",
+      "durationMs": 12023,
+      "grade": {
+        "pass": false,
+        "confidence": 0.49512500000000004,
+        "score": 0.5825,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "stop_loss": "5% trailing"
+          },
+          "follow_up": "monitor trailing stop activation and adjust if needed",
+          "reasoning": "Setting trailing stop 5% below market on 0.5 BTC position. Current BTC price is $45,000. The trailing stop will follow price upward and trigger a market sell if BTC drops 5% from its highest point since order placement.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm trailing stop order has been placed and is active. Monitor for any price movements that may trigger execution."
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L6-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"twap\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"unit\": \"eth\",\n  \"venue\": \"coinbase\",\n  \"duration\": \"4h\",\n  \"reasoning\": \"TWAP order to sell 10 ETH evenly distributed over 4 hours (2.5 ETH/hour) to minimize market impact at current price of $3000/ETH\"\n}",
+      "durationMs": 35436,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8477083333333334,
+        "score": 0.7825000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.0125,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "eth",
+          "venue": "coinbase",
+          "duration": "4h",
+          "reasoning": "TWAP order to sell 10 ETH evenly distributed over 4 hours (2.5 ETH/hour) to minimize market impact at current price of $3000/ETH"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

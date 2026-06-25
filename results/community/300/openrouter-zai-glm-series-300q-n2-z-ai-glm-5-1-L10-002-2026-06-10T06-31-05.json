@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:31:37.381Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-002-2026-06-10T06-31-05",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-002",
+      "raw": "{\n  \"intent\": \"8-minute liquidation prevention plan: (1) Immediately deposit $15M stables as Compound collateral to reduce LTV from 75% to ~43%, well below liquidation threshold; (2) Begin unwinding BTC/ETH LP on Uniswap to reduce oracle-sensitive exposure; (3) Monitor oracle deviation rate and prepare emergency deleveraging if deviation approaches 7%; (4) Once oracle corrects in ~43 minutes, reassess and redeploy capital\",\n  \"expected_value\": 1890000,\n  \"reasoning\": \"Oracle-sensitive non-stable exposure = $20M Compound + $15M LP = $35M. Expected loss avoided = current deviation (5.4%) × oracle-sensitive exposure protected ($35M) = 0.054 × 35,000,000 = $1,890,000. Adding $15M stables as Compound collateral drops LTV to ~43%, eliminating liquidation risk even under full oracle correction. Unwinding LP protects remaining $15M oracle-sensitive position.\"\n}",
+      "durationMs": 31822,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "8-minute liquidation prevention plan: (1) Immediately deposit $15M stables as Compound collateral to reduce LTV from 75% to ~43%, well below liquidation threshold; (2) Begin unwinding BTC/ETH LP on Uniswap to reduce oracle-sensitive exposure; (3) Monitor oracle deviation rate and prepare emergency deleveraging if deviation approaches 7%; (4) Once oracle corrects in ~43 minutes, reassess and redeploy capital",
+          "expected_value": 1890000,
+          "reasoning": "Oracle-sensitive non-stable exposure = $20M Compound + $15M LP = $35M. Expected loss avoided = current deviation (5.4%) × oracle-sensitive exposure protected ($35M) = 0.054 × 35,000,000 = $1,890,000. Adding $15M stables as Compound collateral drops LTV to ~43%, eliminating liquidation risk even under full oracle correction. Unwinding LP protects remaining $15M oracle-sensitive position."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

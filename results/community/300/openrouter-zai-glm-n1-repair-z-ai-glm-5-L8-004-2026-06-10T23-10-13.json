@@ -1,0 +1,74 @@
+{
+  "runAt": "2026-06-10T23:10:30.372Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L8-004-2026-06-10T23-10-13",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L8-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"restake\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer AVS\",\n  \"rationale\": \"Option A (EigenLayer) is optimal: 7.0% total APR minus 2.75% effective borrow cost yields 4.25% net APR, exceeding 1% target. Slashing risk 3% is within 4% limit, and 7-day lock satisfies 8-day collateral requirement. Option B fails both constraints (5% slashing exceeds limit, 14-day lock exceeds timing). Option C yields only 1.45% net APR.\",\n  \"decision_factors\": {\n    \"constraint_compliance\": \"Option A satisfies all constraints; Option B fails slashing and timing constraints; Option C satisfies all constraints\",\n    \"yield_optimization\": \"EigenLayer adds 2.8% APR with acceptable risk; Symbiotic offers higher yield but violates constraints\",\n    \"timing_analysis\": \"7-day EigenLayer lock allows collateral availability by day 8; Symbiotic 14-day lock would miss borrowing opportunity\",\n    \"risk_adjusted_return\": \"EigenLayer provides best risk-adjusted return among compliant options\"\n  },\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 4.25,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": 1.45,\n  \"option_a_outperformance\": 2.8\n}",
+      "durationMs": 16586,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0.16,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "restake",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS",
+          "rationale": "Option A (EigenLayer) is optimal: 7.0% total APR minus 2.75% effective borrow cost yields 4.25% net APR, exceeding 1% target. Slashing risk 3% is within 4% limit, and 7-day lock satisfies 8-day collateral requirement. Option B fails both constraints (5% slashing exceeds limit, 14-day lock exceeds timing). Option C yields only 1.45% net APR.",
+          "decision_factors": {
+            "constraint_compliance": "Option A satisfies all constraints; Option B fails slashing and timing constraints; Option C satisfies all constraints",
+            "yield_optimization": "EigenLayer adds 2.8% APR with acceptable risk; Symbiotic offers higher yield but violates constraints",
+            "timing_analysis": "7-day EigenLayer lock allows collateral availability by day 8; Symbiotic 14-day lock would miss borrowing opportunity",
+            "risk_adjusted_return": "EigenLayer provides best risk-adjusted return among compliant options"
+          },
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 4.25,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": 1.45,
+          "option_a_outperformance": 2.8
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

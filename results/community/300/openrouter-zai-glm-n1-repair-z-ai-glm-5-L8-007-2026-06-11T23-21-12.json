@@ -1,0 +1,51 @@
+{
+  "runAt": "2026-06-11T23:22:04.339Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L8-007-2026-06-11T23-21-12",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L8-007"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L8-007",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"market\",\n  \"asset\": \"stETH\",\n  \"size\": 2500,\n  \"venue\": \"dex\",\n  \"venue_name\": \"1inch Fusion\",\n  \"expected_value\": -130812.5,\n  \"unit\": \"USD_total_cost\",\n  \"reasoning\": \"Notional $7.475M. Common costs: spread 0.25% + impact 0.35% + dynamic widening 0.75% (15×$500k) = 1.35% = $100,912.50. 1inch Fusion: fee 0.05% + MEV 0.4% = 0.40% = $29,900. Total 1.75% = $130,812.50. CowSwap fails 15-min deadline (2,500 > 2,000 capacity). Uniswap costs $145,662.50. 1inch Fusion optimal: lowest cost meeting time constraint.\",\n  \"constraint_awareness\": \"Settlement within 15 minutes required for margin call. Single venue execution mandatory. 1inch Fusion instant settlement with partial MEV protection meets all constraints at lowest total cost.\"\n}",
+      "durationMs": 51360,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7806944444444446,
+        "score": 0.7300000000000001,
+        "fieldScores": {
+          "intent": 0.0125,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0.05,
+          "venue_name": 0.5,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "market",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "dex",
+          "venue_name": "1inch Fusion",
+          "expected_value": -130812.5,
+          "unit": "USD_total_cost",
+          "reasoning": "Notional $7.475M. Common costs: spread 0.25% + impact 0.35% + dynamic widening 0.75% (15×$500k) = 1.35% = $100,912.50. 1inch Fusion: fee 0.05% + MEV 0.4% = 0.40% = $29,900. Total 1.75% = $130,812.50. CowSwap fails 15-min deadline (2,500 > 2,000 capacity). Uniswap costs $145,662.50. 1inch Fusion optimal: lowest cost meeting time constraint.",
+          "constraint_awareness": "Settlement within 15 minutes required for margin call. Single venue execution mandatory. 1inch Fusion instant settlement with partial MEV protection meets all constraints at lowest total cost."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

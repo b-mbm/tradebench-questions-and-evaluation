@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T23:01:58.953Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L5-005-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L5-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L5-005",
+      "raw": " {\"intent\":\"stake\",\"order_type\":\"stake\",\"asset\":\"ETH\",\"size\":10,\"unit\":\"eth\",\"venue\":\"lido\",\"venue_name\":\"Lido\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"confirm stETH receipt and validator entry\",\"reasoning\":\"liquid stake 10 ETH on Lido to receive stETH and earn mainnet staking yield\",\"requires_follow_up\":true,\"follow_up_description\":\"monitor stETH balance and deposit confirmation on Ethereum mainnet\"}",
+      "durationMs": 16340,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "stake",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "eth",
+          "venue": "lido",
+          "venue_name": "Lido",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm stETH receipt and validator entry",
+          "reasoning": "liquid stake 10 ETH on Lido to receive stETH and earn mainnet staking yield",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor stETH balance and deposit confirmation on Ethereum mainnet"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

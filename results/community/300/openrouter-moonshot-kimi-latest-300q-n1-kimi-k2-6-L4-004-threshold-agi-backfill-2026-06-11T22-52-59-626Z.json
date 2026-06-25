@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-11T22:52:59.625Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L4-004-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L4-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-004",
+      "raw": " {\"intent\":\"stress_test\",\"order_type\":\"simulation\",\"asset\":\"PORTFOLIO\",\"size\":0,\"venue\":\"portfolio_analytics\",\"risk_controls\":{},\"follow_up\":\"provide holdings\",\"reasoning\":\"Stress test for -50% crypto crash requested. Portfolio composition is required to calculate drawdown, remaining equity, and liquidations. Crypto assets in context: BTC, ETH, SOL, MATIC, ARB, PEPE, stETH. Stable/hedge assets: USDC, DAI, GLD, TLT.\",\"requires_follow_up\":true,\"follow_up_description\":\"Submit current portfolio allocations (token quantities or percentages) to run the -50% crypto crash simulation.\"}",
+      "durationMs": 53650,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03599999999999999,
+          "asset": 0.16,
+          "size": 0.04,
+          "venue": 0.04666666666666666,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "PORTFOLIO",
+          "size": 0,
+          "venue": "portfolio_analytics",
+          "risk_controls": {},
+          "follow_up": "provide holdings",
+          "reasoning": "Stress test for -50% crypto crash requested. Portfolio composition is required to calculate drawdown, remaining equity, and liquidations. Crypto assets in context: BTC, ETH, SOL, MATIC, ARB, PEPE, stETH. Stable/hedge assets: USDC, DAI, GLD, TLT.",
+          "requires_follow_up": true,
+          "follow_up_description": "Submit current portfolio allocations (token quantities or percentages) to run the -50% crypto crash simulation."
+        },
+        "failureReasons": [
+          "stress_test_invalid_size"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

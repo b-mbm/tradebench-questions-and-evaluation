@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:54:02.631Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-042-2026-06-10T06-53-49",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-042"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-042",
+      "raw": "{\n  \"intent\": \"consolidate\",\n  \"expected_value\": 0.0133764,\n  \"reasoning\": \"Consolidate 1,850 smallest Taproot UTXOs into 90 outputs. Total vbytes = (1850 inputs × 58 vB) + (90 outputs × 43 vB) + 300 vB overhead = 107,300 + 3,870 + 300 = 111,470 vbytes. BTC cost = 111,470 × 12 sat/vB / 100,000,000 = 0.0133764 BTC, well under the 0.04 BTC limit.\"\n}",
+      "durationMs": 12962,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "consolidate",
+          "expected_value": 0.0133764,
+          "reasoning": "Consolidate 1,850 smallest Taproot UTXOs into 90 outputs. Total vbytes = (1850 inputs × 58 vB) + (90 outputs × 43 vB) + 300 vB overhead = 107,300 + 3,870 + 300 = 111,470 vbytes. BTC cost = 111,470 × 12 sat/vB / 100,000,000 = 0.0133764 BTC, well under the 0.04 BTC limit."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

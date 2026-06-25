@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-12T02:31:56.739Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-101-2026-06-12T02-29-09",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-101"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-101",
+      "raw": "{\n  \"intent\": \"vote_and_position\",\n  \"vote\": \"yes\",\n  \"position\": \"keep_farming\",\n  \"chosen_strategy\": \"Vote yes to pass emission reduction, maintain farming position to capture upside from reduced sell pressure and treasury stabilization\",\n  \"net_sell_pressure_delta_per_day\": -28750,\n  \"stabilization_buy_usd\": 45000,\n  \"expected_12d_price_change_pct\": 12,\n  \"self_check\": \"Current sell 54k/day, if passes: 24k from emissions (60% of 40k) + 5k unlock (3 days) = avg 25.25k/day, delta -28.75k/day, treasury $45k, 2/3 flow reaches price for ~12% upside\",\n  \"reasoning\": \"Vote passage reduces emissions from implied ~90k to 40k/day, farmer selling drops from 54k to avg 25.25k/day over 12 days, treasury adds $45k support, 2/3 of net flow reaches price for ~12% expected gain\"\n}",
+      "durationMs": 166964,
+      "grade": {
+        "pass": false,
+        "confidence": 0.75,
+        "score": 0.25,
+        "fieldScores": {
+          "intent": 0,
+          "vote": 1,
+          "position": 0,
+          "chosen_strategy": 0,
+          "net_sell_pressure_delta_per_day": 0,
+          "stabilization_buy_usd": 1,
+          "expected_12d_price_change_pct": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "vote_and_position",
+          "vote": "yes",
+          "position": "keep_farming",
+          "chosen_strategy": "Vote yes to pass emission reduction, maintain farming position to capture upside from reduced sell pressure and treasury stabilization",
+          "net_sell_pressure_delta_per_day": -28750,
+          "stabilization_buy_usd": 45000,
+          "expected_12d_price_change_pct": 12,
+          "self_check": "Current sell 54k/day, if passes: 24k from emissions (60% of 40k) + 5k unlock (3 days) = avg 25.25k/day, delta -28.75k/day, treasury $45k, 2/3 flow reaches price for ~12% upside",
+          "reasoning": "Vote passage reduces emissions from implied ~90k to 40k/day, farmer selling drops from 54k to avg 25.25k/day over 12 days, treasury adds $45k support, 2/3 of net flow reaches price for ~12% expected gain"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:position",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:net_sell_pressure_delta_per_day",
+          "agi_validation_failed:expected_12d_price_change_pct",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

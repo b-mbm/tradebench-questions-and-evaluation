@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:55:21.951Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-045-2026-06-10T06-54-34",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-045"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-045",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 0.37,\n  \"reasoning\": \"Hybrid strategy (Option 4) is the only option satisfying all constraints: split $5M into 25 child orders of $200K each (≤$200K limit) routed through private solver/RPC path. Total expected cost = 0.12% split slippage + 0.04% ($2K/$5M private routing) + 0.21% residual adverse-selection = 0.37% (≤0.50% cap). Protected-completion probability = 93% (≥90% target). Options 1 and 2 fail the $200K child-order constraint; Option 3 fails the 90% probability threshold.\"\n}",
+      "durationMs": 47311,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 0.37,
+          "reasoning": "Hybrid strategy (Option 4) is the only option satisfying all constraints: split $5M into 25 child orders of $200K each (≤$200K limit) routed through private solver/RPC path. Total expected cost = 0.12% split slippage + 0.04% ($2K/$5M private routing) + 0.21% residual adverse-selection = 0.37% (≤0.50% cap). Protected-completion probability = 93% (≥90% target). Options 1 and 2 fail the $200K child-order constraint; Option 3 fails the 90% probability threshold."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

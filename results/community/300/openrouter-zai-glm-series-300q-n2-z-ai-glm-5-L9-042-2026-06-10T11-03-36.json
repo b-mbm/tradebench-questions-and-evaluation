@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:03:58.543Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-042-2026-06-10T11-03-36",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-042"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-042",
+      "raw": "{\n  \"intent\": \"calculate_incremental_apr\",\n  \"expected_value\": 4.33,\n  \"reasoning\": \"Base case: daily revenue = $24M × 0.63 × 0.0003 × 0.80 × 0.92 = $3,338.50; net daily = $3,338.50 - $1,500 = $1,838.50; annual = $671,051; APR = $671,051 / $15.5M = 4.33%. Stress test (20% volume drop): net daily = $1,170.78 > 0, APR remains positive. Oracle age ≤30 min satisfied. Expected value is base-case incremental APR.\"\n}",
+      "durationMs": 21771,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_incremental_apr",
+          "expected_value": 4.33,
+          "reasoning": "Base case: daily revenue = $24M × 0.63 × 0.0003 × 0.80 × 0.92 = $3,338.50; net daily = $3,338.50 - $1,500 = $1,838.50; annual = $671,051; APR = $671,051 / $15.5M = 4.33%. Stress test (20% volume drop): net daily = $1,170.78 > 0, APR remains positive. Oracle age ≤30 min satisfied. Expected value is base-case incremental APR."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

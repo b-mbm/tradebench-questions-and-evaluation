@@ -1,0 +1,908 @@
+{
+  "runAt": "2026-06-08T16:58:13.252Z",
+  "label": "openrouter-llamas-300q-l4-n2-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "meta-llama/llama-3.1-8b-instruct"
+  ],
+  "questionIds": [
+    "L4-001",
+    "L4-002",
+    "L4-003",
+    "L4-004",
+    "L4-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"dex\",\n  \"asset\": \"portfolio\",\n  \"size\": \"100%\",\n  \"venue\": \"portfolio\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm holdings\",\n  \"reasoning\": \"require follow-up to determine current portfolio composition before rebalancing to 60/30/10 target weights\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"provide current holdings of BTC, ETH, and USDC to calculate rebalancing trades\"\n}",
+      "durationMs": 7942,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6774725274725274,
+        "score": 0.6323076923076922,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.012307692307692299,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "dex",
+          "asset": "portfolio",
+          "size": "100%",
+          "venue": "portfolio",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm holdings",
+          "reasoning": "require follow-up to determine current portfolio composition before rebalancing to 60/30/10 target weights",
+          "requires_follow_up": true,
+          "follow_up_description": "provide current holdings of BTC, ETH, and USDC to calculate rebalancing trades"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"assess\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"portfolio\",\n  \"size\": \"5\",\n  \"unit\": \"assets\",\n  \"venue\": \"risk management\",\n  \"venue_name\": \"correlation analysis\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"n/a\",\n    \"max_gas\": \"n/a\"\n  },\n  \"follow_up\": \"diversification strategy\",\n  \"reasoning\": \"evaluate portfolio-wide correlation risk across BTC, ETH, SOL, MATIC, LINK\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"based on correlation analysis, identify optimal diversification opportunities to minimize portfolio risk\"\n}",
+      "durationMs": 2647,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8542500000000001,
+        "score": 0.804,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.023999999999999994,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess",
+          "order_type": "analysis",
+          "asset": "portfolio",
+          "size": "5",
+          "unit": "assets",
+          "venue": "risk management",
+          "venue_name": "correlation analysis",
+          "risk_controls": {
+            "slippage_tolerance": "n/a",
+            "max_gas": "n/a"
+          },
+          "follow_up": "diversification strategy",
+          "reasoning": "evaluate portfolio-wide correlation risk across BTC, ETH, SOL, MATIC, LINK",
+          "requires_follow_up": true,
+          "follow_up_description": "based on correlation analysis, identify optimal diversification opportunities to minimize portfolio risk"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L4-003",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"tax_loss_harvesting\",\n  \"asset\": \"portfolio\",\n  \"size\": \"entire_portfolio\",\n  \"venue\": \"internal\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"identify_harvesting_opportunities\",\n  \"reasoning\": \"review portfolio for tax loss harvesting opportunities\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"review portfolio positions for unrealized losses and identify opportunities to offset gains\"\n}",
+      "durationMs": 9084,
+      "grade": {
+        "pass": false,
+        "confidence": 0.45867559523809526,
+        "score": 0.43169467787114846,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.03764705882352942,
+          "asset": 0.12,
+          "size": 0.01333333333333333,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "tax_loss_harvesting",
+          "asset": "portfolio",
+          "size": "entire_portfolio",
+          "venue": "internal",
+          "risk_controls": {
+            "slippage_tolerance": "0%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "identify_harvesting_opportunities",
+          "reasoning": "review portfolio for tax loss harvesting opportunities",
+          "requires_follow_up": true,
+          "follow_up_description": "review portfolio positions for unrealized losses and identify opportunities to offset gains"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"stress_test\",\n  \"order_type\": \"simulation\",\n  \"asset\": \"portfolio\",\n  \"size\": \"100%\",\n  \"venue\": \"simulation\",\n  \"risk_controls\": {\n    \"stop_loss\": \"-50%\",\n    \"slippage_tolerance\": \"0%\",\n    \"max_gas\": \"0 gwei\"\n  },\n  \"follow_up\": \"review stress test results\",\n  \"reasoning\": \"simulate -50% crypto crash on entire portfolio\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"review potential losses and adjust portfolio as needed\"\n}",
+      "durationMs": 5449,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.03599999999999999,
+          "asset": 0.16,
+          "size": 0.08,
+          "venue": 0.023999999999999994,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "portfolio",
+          "size": "100%",
+          "venue": "simulation",
+          "risk_controls": {
+            "stop_loss": "-50%",
+            "slippage_tolerance": "0%",
+            "max_gas": "0 gwei"
+          },
+          "follow_up": "review stress test results",
+          "reasoning": "simulate -50% crypto crash on entire portfolio",
+          "requires_follow_up": true,
+          "follow_up_description": "review potential losses and adjust portfolio as needed"
+        },
+        "failureReasons": [
+          "stress_test_invalid_size"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L4-005",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"analysis\",\n  \"asset\": \"portfolio\",\n  \"size\": \"varies\",\n  \"venue\": \"internal\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"N/A\"\n  },\n  \"follow_up\": \"provide portfolio returns\",\n  \"reasoning\": \"calculate Sharpe ratio requires portfolio returns and risk-free rate\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"please provide portfolio returns data to calculate Sharpe ratio\"\n}",
+      "durationMs": 2239,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6771160714285716,
+        "score": 0.6372857142857145,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.01428571428571429,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analysis",
+          "asset": "portfolio",
+          "size": "varies",
+          "venue": "internal",
+          "risk_controls": {
+            "slippage_tolerance": "N/A"
+          },
+          "follow_up": "provide portfolio returns",
+          "reasoning": "calculate Sharpe ratio requires portfolio returns and risk-free rate",
+          "requires_follow_up": true,
+          "follow_up_description": "please provide portfolio returns data to calculate Sharpe ratio"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"multi-leg\",\n  \"asset\": \"portfolio\",\n  \"size\": \"100%\",\n  \"unit\": \"%\",\n  \"venue\": \"multi-venue\",\n  \"venue_name\": \"aggregator\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"verify holdings\",\n  \"reasoning\": \"check for missing assets before rebalancing\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"confirm current holdings match expected assets\"\n}",
+      "durationMs": 4390,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.09,
+          "order_type": 0.03692307692307692,
+          "asset": 0.026666666666666665,
+          "size": 0.025,
+          "venue": 0.010909090909090912,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "multi-leg",
+          "asset": "portfolio",
+          "size": "100%",
+          "unit": "%",
+          "venue": "multi-venue",
+          "venue_name": "aggregator",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "verify holdings",
+          "reasoning": "check for missing assets before rebalancing",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm current holdings match expected assets"
+        },
+        "failureReasons": [
+          "rebalance_missing_assets"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"correlation analysis\",\n  \"asset\": \"portfolio\",\n  \"size\": \"5 assets\",\n  \"unit\": \"count\",\n  \"venue\": \"off-chain\",\n  \"venue_name\": \"custom analysis\",\n  \"risk_controls\": {\n    \"position_size_limit\": \"20% per asset\"\n  },\n  \"follow_up\": \"review diversification\",\n  \"reasoning\": \"assess correlation risk across BTC, ETH, SOL, MATIC, LINK to optimize portfolio diversification\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"rebalance portfolio based on correlation analysis\"\n}",
+      "durationMs": 1402,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8757912457912457,
+        "score": 0.8296969696969696,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.03636363636363637,
+          "venue": 0.01333333333333334,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "correlation analysis",
+          "asset": "portfolio",
+          "size": "5 assets",
+          "unit": "count",
+          "venue": "off-chain",
+          "venue_name": "custom analysis",
+          "risk_controls": {
+            "position_size_limit": "20% per asset"
+          },
+          "follow_up": "review diversification",
+          "reasoning": "assess correlation risk across BTC, ETH, SOL, MATIC, LINK to optimize portfolio diversification",
+          "requires_follow_up": true,
+          "follow_up_description": "rebalance portfolio based on correlation analysis"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L4-003",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"limit\",\n  \"asset\": \"PEPE\",\n  \"size\": \"1000000\",\n  \"unit\": \"PEPE\",\n  \"price\": \"0.0000008\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"2%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor fill and adjust\",\n  \"reasoning\": \"PEPE is at a significant loss; selling to harvest tax loss\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Check if order is filled and adjust size or price as needed\"\n}",
+      "durationMs": 6711,
+      "grade": {
+        "pass": false,
+        "confidence": 0.42755102040816334,
+        "score": 0.3990476190476191,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.04,
+          "asset": 0.01333333333333334,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "limit",
+          "asset": "PEPE",
+          "size": "1000000",
+          "unit": "PEPE",
+          "price": "0.0000008",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "2%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor fill and adjust",
+          "reasoning": "PEPE is at a significant loss; selling to harvest tax loss",
+          "requires_follow_up": true,
+          "follow_up_description": "Check if order is filled and adjust size or price as needed"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"stress_test\",\n  \"order_type\": \"simulation\",\n  \"asset\": \"portfolio\",\n  \"size\": \"-50%\",\n  \"unit\": \"%\",\n  \"venue\": \"internal\",\n  \"risk_controls\": {\n    \"stop_loss\": null,\n    \"take_profit\": null,\n    \"slippage_tolerance\": null,\n    \"max_gas\": null,\n    \"position_size_limit\": null\n  },\n  \"follow_up\": \"review results\",\n  \"reasoning\": \"simulate extreme market downturn\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"analyze potential losses and adjust risk management\"\n}",
+      "durationMs": 2384,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9775000000000001,
+        "score": 0.9200000000000002,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress_test",
+          "order_type": "simulation",
+          "asset": "portfolio",
+          "size": "-50%",
+          "unit": "%",
+          "venue": "internal",
+          "risk_controls": {
+            "stop_loss": null,
+            "take_profit": null,
+            "slippage_tolerance": null,
+            "max_gas": null,
+            "position_size_limit": null
+          },
+          "follow_up": "review results",
+          "reasoning": "simulate extreme market downturn",
+          "requires_follow_up": true,
+          "follow_up_description": "analyze potential losses and adjust risk management"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L4-005",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"analytics\",\n  \"asset\": \"portfolio\",\n  \"size\": \"N/A\",\n  \"venue\": \"internal\",\n  \"risk_controls\": {},\n  \"follow_up\": \"none\",\n  \"reasoning\": \"Sharpe ratio calculation requires historical returns",
+      "durationMs": 1347,
+      "grade": {
+        "pass": false,
+        "confidence": 0.28712460317460314,
+        "score": 0.44173015873015875,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.12444444444444445,
+          "asset": 0.12,
+          "size": 0.01428571428571429,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analytics",
+          "asset": "portfolio",
+          "size": "N/A",
+          "venue": "internal",
+          "follow_up": "none",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"market\",\n  \"asset\": \"\",\n  \"size\": \"\",\n  \"unit\": \"usd\",\n  \"price\": \"\",\n  \"venue\": \"\",\n  \"risk_controls\": {},\n  \"follow_up\": \"confirm holdings\",\n  \"reasoning\": \"portfolio needs to be rebalanced to 60% BTC, 30% ETH, 10% USDC\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify current holdings\"\n}",
+      "durationMs": 4249,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5525,
+        "score": 0.6799999999999999,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "market",
+          "asset": "",
+          "size": "",
+          "unit": "usd",
+          "price": "",
+          "venue": "",
+          "risk_controls": {},
+          "follow_up": "confirm holdings",
+          "reasoning": "portfolio needs to be rebalanced to 60% BTC, 30% ETH, 10% USDC",
+          "requires_follow_up": true,
+          "follow_up_description": "verify current holdings"
+        },
+        "failureReasons": [
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"assess_correlation_risk\",\n  \"order_type\": \"none\",\n  \"asset\": \"portfolio\",\n  \"size\": \"100%\",\n  \"unit\": \"usd\",\n  \"venue\": \"none\",\n  \"risk_controls\": {\n    \"stop_loss\": \"none\",\n    \"take_profit\": \"none\",\n    \"slippage_tolerance\": \"none\",\n    \"max_gas\": \"none\",\n    \"position_size_limit\": \"none\"\n  },\n  \"follow_up\": \"rebalance portfolio\",\n  \"reasoning\": \"high correlation risk across assets\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"review portfolio composition\",\n  \"correlation_risks\": [\n    {\n      \"asset1\": \"BTC\",\n      \"asset2\": \"ETH\",\n      \"correlation\": 0.8\n    },\n    {\n      \"asset1\": \"ETH\",\n      \"asset2\": \"SOL\",\n      \"correlation\": 0.7\n    },\n    {\n      \"asset1\": \"SOL\",\n      \"asset2\": \"MATIC\",\n      \"correlation\": 0.6\n    },\n    {\n      \"asset1\": \"MATIC\",\n      \"asset2\": \"LINK\",\n      \"correlation\": 0.5\n    },\n    {\n      \"asset1\": \"BTC\",\n      \"asset2\": \"LINK\",\n      \"correlation\": 0.4\n    }\n  ],\n  \"diversification_implications\": [\n    {\n      \"asset\": \"BTC\",\n      \"target_allocation\": 20\n    },\n    {\n      \"asset\": \"ETH\",\n      \"target_allocation\": 20\n    },\n    {\n      \"asset\": \"SOL\",\n      \"target_allocation\": 15\n    },\n    {\n      \"asset\": \"MATIC\",\n      \"target_allocation\": 15\n    },\n    {\n      \"asset\": \"LINK\",\n      \"target_allocation\": 30\n    }\n  ]\n}",
+      "durationMs": 8983,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.1457142857142857,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess_correlation_risk",
+          "order_type": "none",
+          "asset": "portfolio",
+          "size": "100%",
+          "unit": "usd",
+          "venue": "none",
+          "risk_controls": {
+            "stop_loss": "none",
+            "take_profit": "none",
+            "slippage_tolerance": "none",
+            "max_gas": "none",
+            "position_size_limit": "none"
+          },
+          "follow_up": "rebalance portfolio",
+          "reasoning": "high correlation risk across assets",
+          "requires_follow_up": true,
+          "follow_up_description": "review portfolio composition",
+          "correlation_risks": [
+            {
+              "asset1": "BTC",
+              "asset2": "ETH",
+              "correlation": 0.8
+            },
+            {
+              "asset1": "ETH",
+              "asset2": "SOL",
+              "correlation": 0.7
+            },
+            {
+              "asset1": "SOL",
+              "asset2": "MATIC",
+              "correlation": 0.6
+            },
+            {
+              "asset1": "MATIC",
+              "asset2": "LINK",
+              "correlation": 0.5
+            },
+            {
+              "asset1": "BTC",
+              "asset2": "LINK",
+              "correlation": 0.4
+            }
+          ],
+          "diversification_implications": [
+            {
+              "asset": "BTC",
+              "target_allocation": 20
+            },
+            {
+              "asset": "ETH",
+              "target_allocation": 20
+            },
+            {
+              "asset": "SOL",
+              "target_allocation": 15
+            },
+            {
+              "asset": "MATIC",
+              "target_allocation": 15
+            },
+            {
+              "asset": "LINK",
+              "target_allocation": 30
+            }
+          ]
+        },
+        "failureReasons": [
+          "correlation_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L4-003",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"offset gains\",\n  \"reasoning\": \"tax loss harvesting opportunity\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"buy similar asset to offset gains\"\n}",
+      "durationMs": 2382,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3023015873015873,
+        "score": 0.27904761904761904,
+        "fieldScores": {
+          "intent": 0.02571428571428572,
+          "order_type": 0.02,
+          "asset": 0.01333333333333334,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "offset gains",
+          "reasoning": "tax loss harvesting opportunity",
+          "requires_follow_up": true,
+          "follow_up_description": "buy similar asset to offset gains"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"stress test\",\n  \"order_type\": \"simulation\",\n  \"asset\": \"portfolio\",\n  \"size\": \"entire portfolio\",\n  \"unit\": \"usd\",\n  \"venue\": \"portfolio simulator\",\n  \"risk_controls\": {\n    \"stop_loss\": \"-50%\"\n  },\n  \"follow_up\": \"review results\",\n  \"reasoning\": \"simulate extreme market conditions\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"analyze portfolio resilience\"\n}",
+      "durationMs": 2988,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.16363636363636364,
+          "order_type": 0.03599999999999999,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.018947368421052636,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress test",
+          "order_type": "simulation",
+          "asset": "portfolio",
+          "size": "entire portfolio",
+          "unit": "usd",
+          "venue": "portfolio simulator",
+          "risk_controls": {
+            "stop_loss": "-50%"
+          },
+          "follow_up": "review results",
+          "reasoning": "simulate extreme market conditions",
+          "requires_follow_up": true,
+          "follow_up_description": "analyze portfolio resilience"
+        },
+        "failureReasons": [
+          "stress_test_invalid_size"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L4-005",
+      "raw": "{\n  \"intent\": \"information\",\n  \"order_type\": \"none\",\n  \"asset\": \"portfolio\",\n  \"size\": \"not applicable\",\n  \"unit\": \"not applicable\",\n  \"price\": \"not applicable\",\n  \"venue\": \"not applicable\",\n  \"venue_name\": \"not applicable\",\n  \"risk_controls\": {},\n  \"follow_up\": \"none\",\n  \"reasoning\": \"Sharpe ratio calculation requires portfolio returns and risk data, which is not provided in the context\",\n  \"requires_follow_up\": false,\n  \"follow_up_description\": \"need portfolio returns and risk data\"\n}",
+      "durationMs": 2483,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4338035714285714,
+        "score": 0.40828571428571425,
+        "fieldScores": {
+          "intent": 0.023999999999999994,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0.00714285714285714,
+          "venue": 0.017142857142857147,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "information",
+          "order_type": "none",
+          "asset": "portfolio",
+          "size": "not applicable",
+          "unit": "not applicable",
+          "price": "not applicable",
+          "venue": "not applicable",
+          "venue_name": "not applicable",
+          "risk_controls": {},
+          "follow_up": "none",
+          "reasoning": "Sharpe ratio calculation requires portfolio returns and risk data, which is not provided in the context",
+          "requires_follow_up": false,
+          "follow_up_description": "need portfolio returns and risk data"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L4-001",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.6\",\n  \"unit\": \"usd\",\n  \"price\": \"27000\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"check holdings for ETH and USDC\",\n  \"reasoning\": \"rebalance to target weights\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"missing holdings for ETH and USDC\"\n}",
+      "durationMs": 2962,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.09,
+          "order_type": 0.012307692307692299,
+          "asset": 0.023999999999999994,
+          "size": 0.0125,
+          "venue": 0.015,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.6",
+          "unit": "usd",
+          "price": "27000",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "check holdings for ETH and USDC",
+          "reasoning": "rebalance to target weights",
+          "requires_follow_up": true,
+          "follow_up_description": "missing holdings for ETH and USDC"
+        },
+        "failureReasons": [
+          "rebalance_missing_percentages"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L4-002",
+      "raw": "{\n  \"intent\": \"assess\",\n  \"order_type\": \"risk analysis\",\n  \"asset\": \"portfolio\",\n  \"size\": \"all\",\n  \"unit\": \"assets\",\n  \"price\": \"market\",\n  \"venue\": \"market\",\n  \"venue_name\": \"global\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"optimize diversification\",\n  \"reasoning\": \"portfolio-wide correlation risk assessment\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"review diversification implications and rebalance portfolio\"\n}",
+      "durationMs": 3945,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.06352941176470588,
+          "order_type": 0.09846153846153848,
+          "asset": 0.12,
+          "size": 0.009090909090909094,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess",
+          "order_type": "risk analysis",
+          "asset": "portfolio",
+          "size": "all",
+          "unit": "assets",
+          "price": "market",
+          "venue": "market",
+          "venue_name": "global",
+          "risk_controls": {
+            "slippage_tolerance": "5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "optimize diversification",
+          "reasoning": "portfolio-wide correlation risk assessment",
+          "requires_follow_up": true,
+          "follow_up_description": "review diversification implications and rebalance portfolio"
+        },
+        "failureReasons": [
+          "correlation_missing_assets"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L4-003",
+      "raw": "{\n  \"intent\": \"tax loss harvesting\",\n  \"order_type\": \"limit\",\n  \"asset\": \"PEPE\",\n  \"size\": \"100000\",\n  \"unit\": \"usd\",\n  \"price\": \"0.000001\",\n  \"venue\": \"binance\",\n  \"venue_name\": \"binance usdt\",\n  \"risk_controls\": {\n    \"stop_loss\": \"0.0000005\",\n    \"take_profit\": \"0.0000015\",\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor price movement\",\n  \"reasoning\": \"harvest loss on low-value asset\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"re-evaluate sell price after 24 hours\"\n}",
+      "durationMs": 3861,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5535252192982456,
+        "score": 0.5209649122807017,
+        "fieldScores": {
+          "intent": 0.13263157894736843,
+          "order_type": 0.04,
+          "asset": 0.01333333333333334,
+          "size": 0,
+          "venue": 0.015,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "tax loss harvesting",
+          "order_type": "limit",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "usd",
+          "price": "0.000001",
+          "venue": "binance",
+          "venue_name": "binance usdt",
+          "risk_controls": {
+            "stop_loss": "0.0000005",
+            "take_profit": "0.0000015",
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor price movement",
+          "reasoning": "harvest loss on low-value asset",
+          "requires_follow_up": true,
+          "follow_up_description": "re-evaluate sell price after 24 hours"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L4-004",
+      "raw": "{\n  \"intent\": \"stress test\",\n  \"order_type\": \"market\",\n  \"asset\": \"portfolio\",\n  \"size\": \"100%\",\n  \"unit\": \"usd\",\n  \"price\": \"-50%\",\n  \"venue\": \"crypto market\",\n  \"risk_controls\": {\n    \"stop_loss\": \"0%\",\n    \"take_profit\": \"0%\",\n    \"slippage_tolerance\": \"10%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"rebalance portfolio\",\n  \"reasoning\": \"simulate -50% crypto market crash to assess portfolio resilience\"\n}",
+      "durationMs": 3541,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.16363636363636364,
+          "order_type": 0.0225,
+          "asset": 0.16,
+          "size": 0.08,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stress test",
+          "order_type": "market",
+          "asset": "portfolio",
+          "size": "100%",
+          "unit": "usd",
+          "price": "-50%",
+          "venue": "crypto market",
+          "risk_controls": {
+            "stop_loss": "0%",
+            "take_profit": "0%",
+            "slippage_tolerance": "10%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "rebalance portfolio",
+          "reasoning": "simulate -50% crypto market crash to assess portfolio resilience"
+        },
+        "failureReasons": [
+          "stress_test_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L4-005",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"metric\",\n  \"asset\": \"Sharpe ratio\",\n  \"size\": \"0\",\n  \"unit\": \"ratio\",\n  \"price\": \"0\",\n  \"venue\": \"context\",\n  \"venue_name\": \"historical data\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"interpret result\",\n  \"reasoning\": \"calculate Sharpe ratio from historical data\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"determine investment strategy based on Sharpe ratio\"\n}",
+      "durationMs": 2912,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5121428571428571,
+        "score": 0.478,
+        "fieldScores": {
+          "intent": 0.108,
+          "order_type": 0.02,
+          "asset": 0.03,
+          "size": 0,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "metric",
+          "asset": "Sharpe ratio",
+          "size": "0",
+          "unit": "ratio",
+          "price": "0",
+          "venue": "context",
+          "venue_name": "historical data",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "interpret result",
+          "reasoning": "calculate Sharpe ratio from historical data",
+          "requires_follow_up": true,
+          "follow_up_description": "determine investment strategy based on Sharpe ratio"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

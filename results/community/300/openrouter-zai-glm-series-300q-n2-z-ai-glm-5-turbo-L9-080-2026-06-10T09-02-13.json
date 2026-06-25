@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T09:02:40.332Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-080-2026-06-10T09-02-13",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-080"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-080",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"V1\", \"V2\", \"V3\"],\n  \"reasoning\": \"V4 rejected (slashing multiplier 2.9 > 2.7), V5 rejected (capacity 80 < 90), V6 rejected (oracle freshness 20 > 18). Eligible net scores: V1=6.45%, V2=7.18%, V3=7.14%. Selected top 3 eligible AVSs.\"\n}",
+      "durationMs": 26898,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "V1",
+            "V2",
+            "V3"
+          ],
+          "reasoning": "V4 rejected (slashing multiplier 2.9 > 2.7), V5 rejected (capacity 80 < 90), V6 rejected (oracle freshness 20 > 18). Eligible net scores: V1=6.45%, V2=7.18%, V3=7.14%. Selected top 3 eligible AVSs."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

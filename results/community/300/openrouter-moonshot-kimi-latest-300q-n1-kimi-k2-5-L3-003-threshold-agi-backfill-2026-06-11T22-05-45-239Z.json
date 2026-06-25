@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T22:05:45.238Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L3-003-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L3-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L3-003",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"cross_chain\",\"asset\":\"ETH\",\"size\":\"2\",\"unit\":\"eth\",\"venue\":\"across\",\"venue_name\":\"Across Protocol\",\"risk_controls\":{\"slippage_tolerance\":\"0.1%\",\"max_gas\":\"35 gwei\"},\"follow_up\":\"swap ETH for MATIC on Polygon\",\"requires_follow_up\":true,\"follow_up_description\":\"Swap the bridged ETH to MATIC token on Polygon PoS chain using DEX aggregator (e.g., Uniswap or QuickSwap)\",\"reasoning\":\"Bridge 2 ETH from Ethereum mainnet to Polygon PoS chain via fast liquidity bridge, then convert to MATIC token on destination chain\"}",
+      "durationMs": 10831,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6110192307692308,
+        "score": 0.5750769230769232,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.015999999999999997,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0,
+          "venue_name": 0.015999999999999997,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "cross_chain",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "venue": "across",
+          "venue_name": "Across Protocol",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "35 gwei"
+          },
+          "follow_up": "swap ETH for MATIC on Polygon",
+          "requires_follow_up": true,
+          "follow_up_description": "Swap the bridged ETH to MATIC token on Polygon PoS chain using DEX aggregator (e.g., Uniswap or QuickSwap)",
+          "reasoning": "Bridge 2 ETH from Ethereum mainnet to Polygon PoS chain via fast liquidity bridge, then convert to MATIC token on destination chain"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "runAt": "2026-06-10T06:12:48.845Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-031-L9-040-1781071655201",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-031",
+    "L9-032",
+    "L9-033",
+    "L9-034",
+    "L9-035",
+    "L9-036",
+    "L9-037",
+    "L9-038",
+    "L9-039",
+    "L9-040"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-031",
+      "raw": "",
+      "durationMs": 50830,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-032",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"A1\", \"A3\", \"A4\"],\n  \"reasoning\": \"Computed net score = yield - operator fee - slashing multiplier × expected slashing loss for each AVS. A1: 6.8-0.2-(1.2×0.5)=6.0%, eligible (all constraints pass). A2: slashing multiplier 3>2.8, rejected. A3: 7.2-0.4-(1.5×0.4)=6.2%, eligible. A4: 11-0.9-(2.4×1.1)=7.46%, eligible (delay 7 days fails, so A4 is rejected). A5: 5.9-0.1-(0.8×0.4)=5.48%, eligible. With A4 rejected for delay>6 days, top 3 eligible by net score are A5 (5.48%), A1 (6.0%), A3 (6.2%). Selected: A1, A3, A5.\"\n}",
+      "durationMs": 12819,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A1",
+            "A3",
+            "A4"
+          ],
+          "reasoning": "Computed net score = yield - operator fee - slashing multiplier × expected slashing loss for each AVS. A1: 6.8-0.2-(1.2×0.5)=6.0%, eligible (all constraints pass). A2: slashing multiplier 3>2.8, rejected. A3: 7.2-0.4-(1.5×0.4)=6.2%, eligible. A4: 11-0.9-(2.4×1.1)=7.46%, eligible (delay 7 days fails, so A4 is rejected). A5: 5.9-0.1-(0.8×0.4)=5.48%, eligible. With A4 rejected for delay>6 days, top 3 eligible by net score are A5 (5.48%), A1 (6.0%), A3 (6.2%). Selected: A1, A3, A5."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-033",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 471000,\n  \"reasoning\": \"Success net = $1,450,000 - ($11,000 flash fee + $110,000 gas + $210,000 slippage + $180,000 MEV) = $939,000. Failure net = -($11,000 + $110,000 + $140,000) = -$261,000. EV = 0.61×939,000 + 0.39×(-261,000) = $572,790 - $101,790 = $471,000. Oracle age 24s ≤ 45s ✓, liquidity $2.4M ≥ $1.76M ✓, EV > 0 ✓. All constraints pass, execute.\"\n}",
+      "durationMs": 37026,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 471000,
+          "reasoning": "Success net = $1,450,000 - ($11,000 flash fee + $110,000 gas + $210,000 slippage + $180,000 MEV) = $939,000. Failure net = -($11,000 + $110,000 + $140,000) = -$261,000. EV = 0.61×939,000 + 0.39×(-261,000) = $572,790 - $101,790 = $471,000. Oracle age 24s ≤ 45s ✓, liquidity $2.4M ≥ $1.76M ✓, EV > 0 ✓. All constraints pass, execute."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-034",
+      "raw": "{\n  \"intent\": \"calculate_incremental_apr\",\n  \"expected_value\": 1.567,\n  \"reasoning\": \"Base-case incremental APR: ((42,000,000 × 0.48 × 0.00012 × 0.92 × 0.88 - 1,100) × 365) / 20,000,000 = ((2,419.2 × 0.92 × 0.88 - 1,100) × 365) / 20,000,000 = ((1,958.584 - 1,100) × 365) / 20,000,000 = (858.584 × 365) / 20,000,000 = 313,383.3 / 20,000,000 = 0.01567 = 1.567%. Stress test at 80% volume yields daily net of $466.87 (positive), so base-case APR stands. Oracle age ≤ 30 min satisfied.\"\n}",
+      "durationMs": 28525,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_incremental_apr",
+          "expected_value": 1.567,
+          "reasoning": "Base-case incremental APR: ((42,000,000 × 0.48 × 0.00012 × 0.92 × 0.88 - 1,100) × 365) / 20,000,000 = ((2,419.2 × 0.92 × 0.88 - 1,100) × 365) / 20,000,000 = ((1,958.584 - 1,100) × 365) / 20,000,000 = (858.584 × 365) / 20,000,000 = 313,383.3 / 20,000,000 = 0.01567 = 1.567%. Stress test at 80% volume yields daily net of $466.87 (positive), so base-case APR stands. Oracle age ≤ 30 min satisfied."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-035",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 1132786,\n  \"reasoning\": \"Missing votes = 160000 - 92000 = 68000 COMP, which is <= 83000 lendable liquidity, so borrowing is feasible. Borrowing cost (68k × $70 × 16% × 14/",
+      "durationMs": 40142,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 1132786,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-036",
+      "raw": "{\n  \"intent\": \"no_action\",\n  \"expected_value\": 0,\n  \"reasoning\": \"All three options fail hard constraints and have negative net EV. Option A: settlement 18min > 15min limit, net EV = 34000 - 9000 - 3240 - 25200 = -3440. Option B: slippage 0.31% > 0.25% limit, net EV = 22500 - 7100 - 5580 - 10400 = -580. Option C: oracle age 61s > 50s limit, net EV = 28000 - 11800 - 2520 - 24800 = -11120. No option is both positive-EV and feasible.\"\n}",
+      "durationMs": 14734,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "All three options fail hard constraints and have negative net EV. Option A: settlement 18min > 15min limit, net EV = 34000 - 9000 - 3240 - 25200 = -3440. Option B: slippage 0.31% > 0.25% limit, net EV = 22500 - 7100 - 5580 - 10400 = -580. Option C: oracle age 61s > 50s limit, net EV = 28000 - 11800 - 2520 - 24800 = -11120. No option is both positive-EV and feasible."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-037",
+      "raw": "",
+      "durationMs": 47852,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-038",
+      "raw": "{\n\"intent\": \"swap\",\n\"expected_value\": 500,\n\"reasoning\": \"All three routes are feasible (settlement≤14min, oracle≤60s, capacity≥$2M). Route A cost=0.007×2M+1800+0.0002×2M=14000+1800+400=$16200. Route B cost=0.0035×2M+2300+0.0004×2M=7000+2300+800=$10100. Route C cost=0.0028×2M+1400+0.0018×2M=5600+1400+3600=$10600. Best is Route B at $10100, second-best is Route C at $10600, saving $500 USD = ~3.52 extra SOL at $142.\"\n}",
+      "durationMs": 19646,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 500,
+          "reasoning": "All three routes are feasible (settlement≤14min, oracle≤60s, capacity≥$2M). Route A cost=0.007×2M+1800+0.0002×2M=14000+1800+400=$16200. Route B cost=0.0035×2M+2300+0.0004×2M=7000+2300+800=$10100. Route C cost=0.0028×2M+1400+0.0018×2M=5600+1400+3600=$10600. Best is Route B at $10100, second-best is Route C at $10600, saving $500 USD = ~3.52 extra SOL at $142."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-039",
+      "raw": "{\n  \"intent\": \"repay_usdc_debt\",\n  \"expected_value\": 245075,\n  \"reasoning\": \"Pre-repay HF = (700*3500*0.80)/1620000 = 1960000/1620000 ≈ 1.2099. Post-shock collateral = 700*3500*0.90 = 2205000. Formula: max(0, 1620000+3200 - 2450000*0.80*0.90/1.28) = max(0, 1623200 - 1764000/1.28) = max(0, 1623200 - 1378125) = 245075 USDC minimum debt reduction required after fees.\"\n}",
+      "durationMs": 25976,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay_usdc_debt",
+          "expected_value": 245075,
+          "reasoning": "Pre-repay HF = (700*3500*0.80)/1620000 = 1960000/1620000 ≈ 1.2099. Post-shock collateral = 700*3500*0.90 = 2205000. Formula: max(0, 1620000+3200 - 2450000*0.80*0.90/1.28) = max(0, 1623200 - 1764000/1.28) = max(0, 1623200 - 1378125) = 245075 USDC minimum debt reduction required after fees."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-040",
+      "raw": "{\n  \"intent\": \"restake_selection\",\n  \"expected_value\": [\"A1\", \"A3\", \"A5\"],\n  \"reasoning\": \"Calculated net scores: A1=8.8-0.5-(2×0.6)=7.1%, A2=14-1.2-(3.2×1.2)=8.96% but slashing multiplier 3.2>3 fails hard constraint, A3=9.1-0.4-(1.6×0.7)=7.58%, A4=7.5-0.3-(1.1×0.5)=6.65% but capacity 200<250 fails hard constraint, A5=10.8-0.8-(2.4×0.8)=8.08%. Only A1, A3, A5 pass all hard constraints (net≥6.2%, slashing mult≤3, delay≤10d, oracle≤30min, capacity≥250). Selecting all three eligible AVSs by highest risk-adjusted APR: A5(8.08%), A3(7.58%), A1(7.1%).\"\n}",
+      "durationMs": 31138,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake_selection",
+          "expected_value": [
+            "A1",
+            "A3",
+            "A5"
+          ],
+          "reasoning": "Calculated net scores: A1=8.8-0.5-(2×0.6)=7.1%, A2=14-1.2-(3.2×1.2)=8.96% but slashing multiplier 3.2>3 fails hard constraint, A3=9.1-0.4-(1.6×0.7)=7.58%, A4=7.5-0.3-(1.1×0.5)=6.65% but capacity 200<250 fails hard constraint, A5=10.8-0.8-(2.4×0.8)=8.08%. Only A1, A3, A5 pass all hard constraints (net≥6.2%, slashing mult≤3, delay≤10d, oracle≤30min, capacity≥250). Selecting all three eligible AVSs by highest risk-adjusted APR: A5(8.08%), A3(7.58%), A1(7.1%)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

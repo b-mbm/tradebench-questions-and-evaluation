@@ -1,0 +1,48 @@
+{
+  "runAt": "2026-06-11T00:41:20.235Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-006-2026-06-11T00-40-52",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-006"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-006",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"reactive_iceberg_limits\",\n  \"price_band\": \"$58,540-$58,555\",\n  \"child_order_btc\": 40,\n  \"repricing_interval_sec\": 45,\n  \"expected_avg_price\": \"$58,548\",\n  \"reasoning\": \"Iceberg orders under 40 BTC avoid toxicity classifier detection. 500 BTC over 10 min with 45-sec repricing allows ~13 cycles of ~40 BTC each. Price band balances completion risk vs cost. Expected fill near current ask given thin liquidity.\"\n}",
+      "durationMs": 27851,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "price_band": 0,
+          "child_order_btc": 1,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "reactive_iceberg_limits",
+          "price_band": "$58,540-$58,555",
+          "child_order_btc": 40,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": "$58,548",
+          "reasoning": "Iceberg orders under 40 BTC avoid toxicity classifier detection. 500 BTC over 10 min with 45-sec repricing allows ~13 cycles of ~40 BTC each. Price band balances completion risk vs cost. Expected fill near current ask given thin liquidity."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:price_band",
+          "agi_validation_failed:expected_avg_price"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

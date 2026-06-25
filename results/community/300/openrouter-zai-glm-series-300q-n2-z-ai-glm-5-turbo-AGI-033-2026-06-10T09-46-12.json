@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-10T09:46:38.069Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-AGI-033-2026-06-10T09-46-12",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-033"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-033",
+      "raw": "{\n  \"intent\": \"transfer\",\n  \"chosen_strategy\": \"split_private_and_relayer\",\n  \"route_allocation_usd\": {\n    \"Alpha\": 350000,\n    \"Delta\": 250000\n  },\n  \"observable_largest_clip_usd\": 250000,\n  \"expected_loss_usd\": 3590,\n  \"expected_arrival_minutes\": 65,\n  \"self_check\": \"Alpha 350k (private, 65m < 90m) + Delta 250k (relayer, 40m < 90m) = ",
+      "durationMs": 25036,
+      "grade": {
+        "pass": false,
+        "confidence": 0.328125,
+        "score": 0.375,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_allocation_usd.Alpha": 0,
+          "route_allocation_usd.Delta": 0,
+          "observable_largest_clip_usd": 1,
+          "expected_loss_usd": 1,
+          "expected_arrival_minutes": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "transfer",
+          "chosen_strategy": "split_private_and_relayer",
+          "Alpha": 350000,
+          "Delta": 250000,
+          "observable_largest_clip_usd": 250000,
+          "expected_loss_usd": 3590,
+          "expected_arrival_minutes": 65,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

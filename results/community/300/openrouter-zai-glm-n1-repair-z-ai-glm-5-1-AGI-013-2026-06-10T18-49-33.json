@@ -1,0 +1,64 @@
+{
+  "runAt": "2026-06-10T18:50:32.174Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-013-2026-06-10T18-49-33",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-013"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-013",
+      "raw": "{\n\"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"Harvest all three loss positions selling thinnest-first to minimize adversarial execution cost, replace with non-substantially-identical proxies per replacement map\",\n  \"assets_to_sell\": [\"LINK\", \"SOL\", \"MATIC\"],\n  \"sale_sequence\": [\"LINK\", \"SOL\", \"MATIC\"],\n  \"replacement_assets\": {\n    \"SOL\": \"AVAX/NEAR basket\",\n    \"LINK\": \"UNI\",\n    \"MATIC\": \"ARB\"\n  },\n  \"net_tax_benefit\": 19560,\n  \"remaining_unoffset_gains\": 20000,\n  \"reasoning\": \"Harvest all $60K losses (LINK $30K + SOL $20K + MATIC $10K) offsetting short-term gains at 37% = $22,200 gross tax savings. Round-trip transaction costs at 0.6% per position: LINK $720 + SOL $1,080 + MATIC $840 = $2,640. Net benefit = $22,200 - $2,640 = $19,560. Sale sequence LINK→SOL→MATIC sells thinnest liquidity first before adversarial market maker can widen spreads on later exits. $80K gains - $60K harvested losses = $20K remaining unoffset gains.\"\n}",
+      "durationMs": 58312,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6666666666666666,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "assets_to_sell": 1,
+          "sale_sequence": 1,
+          "replacement_assets.SOL": 0,
+          "replacement_assets.LINK": 1,
+          "replacement_assets.MATIC": 1,
+          "net_tax_benefit": 1,
+          "remaining_unoffset_gains": 1
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "Harvest all three loss positions selling thinnest-first to minimize adversarial execution cost, replace with non-substantially-identical proxies per replacement map",
+          "assets_to_sell": [
+            "LINK",
+            "SOL",
+            "MATIC"
+          ],
+          "sale_sequence": [
+            "LINK",
+            "SOL",
+            "MATIC"
+          ],
+          "replacement_assets": {
+            "SOL": "AVAX/NEAR basket",
+            "LINK": "UNI",
+            "MATIC": "ARB"
+          },
+          "net_tax_benefit": 19560,
+          "remaining_unoffset_gains": 20000,
+          "reasoning": "Harvest all $60K losses (LINK $30K + SOL $20K + MATIC $10K) offsetting short-term gains at 37% = $22,200 gross tax savings. Round-trip transaction costs at 0.6% per position: LINK $720 + SOL $1,080 + MATIC $840 = $2,640. Net benefit = $22,200 - $2,640 = $19,560. Sale sequence LINK→SOL→MATIC sells thinnest liquidity first before adversarial market maker can widen spreads on later exits. $80K gains - $60K harvested losses = $20K remaining unoffset gains."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:replacement_assets.SOL"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

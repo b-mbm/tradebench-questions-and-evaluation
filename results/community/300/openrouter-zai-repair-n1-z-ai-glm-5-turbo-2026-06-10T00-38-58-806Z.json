@@ -1,0 +1,606 @@
+{
+  "runAt": "2026-06-10T00:38:58.805Z",
+  "label": "openrouter-zai-repair-n1-z-ai-glm-5-turbo",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-023",
+    "L9-029",
+    "L9-050",
+    "L9-066",
+    "L9-068",
+    "L9-069",
+    "L10-016",
+    "L10-043",
+    "L10-049",
+    "AGI-002",
+    "AGI-011",
+    "AGI-014",
+    "AGI-015",
+    "AGI-021",
+    "AGI-025",
+    "AGI-026",
+    "AGI-027",
+    "AGI-086",
+    "AGI-087",
+    "AGI-088",
+    "AGI-091",
+    "AGI-092",
+    "AGI-093",
+    "AGI-105",
+    "AGI-113"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-002",
+      "raw": "",
+      "durationMs": 613,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-011",
+      "raw": "",
+      "durationMs": 559,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-014",
+      "raw": "",
+      "durationMs": 584,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-015",
+      "raw": "",
+      "durationMs": 582,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-021",
+      "raw": "",
+      "durationMs": 741,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-025",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"private_first_then_hidden_public\",\n  \"execution_sequence\": [\n    \"CEX_Y\",\n    \"Dark_RFQ\",\n    \"RFQ_A\",\n    \"hidden_public\"\n  ],\n  \"venue_fills\": {\n    \"CEX_Y\": 22000,\n    \"Dark_RFQ\": 25000,\n    \"RFQ_A\": 24000,\n    \"hidden_public\": 9000\n  },\n  \"hidden_public_qty\": 9000,\n  \"expected_avg_price\": 0.8227175,\n  \"expected_slippage_pct\": 0.4539,\n  \"self_check\": \"Hidden public size is 9,000 RHO, which is strictly less than the 18,000 RHO visibility threshold, ensuring the copy bot is not triggered and the public book is",
+      "durationMs": 27021,
+      "grade": {
+        "pass": false,
+        "confidence": 0.21074380165289255,
+        "score": 0.2727272727272727,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "venue_fills.CEX_Y": 0,
+          "venue_fills.Dark_RFQ": 0,
+          "venue_fills.RFQ_A": 0,
+          "venue_fills.hidden_public": 0,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "private_first_then_hidden_public",
+          "CEX_Y": 22000,
+          "Dark_RFQ": 25000,
+          "RFQ_A": 24000,
+          "hidden_public": 9000,
+          "hidden_public_qty": 9000,
+          "expected_avg_price": 0.8227175,
+          "expected_slippage_pct": 0.4539,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-026",
+      "raw": "",
+      "durationMs": 454,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-027",
+      "raw": "",
+      "durationMs": 420,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-086",
+      "raw": "",
+      "durationMs": 949,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-087",
+      "raw": "",
+      "durationMs": 800,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-088",
+      "raw": "",
+      "durationMs": 1110,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-091",
+      "raw": "",
+      "durationMs": 22541,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-092",
+      "raw": "{\n  \"intent\": \"allocate\",\n",
+      "durationMs": 21990,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "expected_net_apy_pct": 0,
+          "expected_90d_profit_usd": 0,
+          "liquidity_48h_usd": 0,
+          "allocation_usd.Aave_USDC": 0,
+          "allocation_usd.Curve_3pool": 0,
+          "allocation_usd.Ethena_USDe": 0,
+          "allocation_usd.GMX_GLP": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-093",
+      "raw": "",
+      "durationMs": 23338,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-105",
+      "raw": "{\n  \"intent\": \"quote\",\n  \"chosen_strategy\": \"aggressive_ask_skew_fast_cancel\",\n  \"bid_half_spread_bps\": 18,\n  \"ask_half_spread_bps\": 2.5,\n  \"update_ms\": 250,\n  \"max_quote_size_usd\": 75000,\n  \"hedge_rate_usd_per_sec\": 85000,\n  \"expected_20m_pnl_usd\": 4200,\n  \"self_check\": \"Bid widened to 18bps to prevent toxic buys from breaching $525k cap; ask tightened to 2.5bps to shed $410k long inventory; 250ms update matches perp reprice to minimize stale quote exposure; hedge rate at 85k/sec safely below 90k/sec limit.\",\n  \"reasoning\": \"With $410k long inventory and a $525k cap, symmetric quoting risks breaching the cap on downside tape via toxic bid hits. Widening the bid to 18 bps and tightening the ask to 2.5 bps aggressively sheds inventory while protecting the upside. Updating every 250ms matches the perp venue reprice cadence to minimize stale-quote duration. Max quote size of $75k and hedge rate of $85k/sec ensure spot impact stays under 9 bps.\"\n}",
+      "durationMs": 21447,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "bid_half_spread_bps": 0,
+          "ask_half_spread_bps": 0,
+          "update_ms": 0,
+          "max_quote_size_usd": 0,
+          "hedge_rate_usd_per_sec": 0,
+          "expected_20m_pnl_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "quote",
+          "chosen_strategy": "aggressive_ask_skew_fast_cancel",
+          "bid_half_spread_bps": 18,
+          "ask_half_spread_bps": 2.5,
+          "update_ms": 250,
+          "max_quote_size_usd": 75000,
+          "hedge_rate_usd_per_sec": 85000,
+          "expected_20m_pnl_usd": 4200,
+          "self_check": "Bid widened to 18bps to prevent toxic buys from breaching $525k cap; ask tightened to 2.5bps to shed $410k long inventory; 250ms update matches perp reprice to minimize stale quote exposure; hedge rate at 85k/sec safely below 90k/sec limit.",
+          "reasoning": "With $410k long inventory and a $525k cap, symmetric quoting risks breaching the cap on downside tape via toxic bid hits. Widening the bid to 18 bps and tightening the ask to 2.5 bps aggressively sheds inventory while protecting the upside. Updating every 250ms matches the perp venue reprice cadence to minimize stale-quote duration. Max quote size of $75k and hedge rate of $85k/sec ensure spot impact stays under 9 bps."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:bid_half_spread_bps",
+          "agi_validation_failed:ask_half_spread_bps",
+          "agi_validation_failed:update_ms",
+          "agi_validation_failed:max_quote_size_usd",
+          "agi_validation_failed:hedge_rate_usd_per_sec",
+          "agi_validation_failed:expected_20m_pnl_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-113",
+      "raw": "",
+      "durationMs": 24838,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L10-016",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 0.55,\n  \"reasoning\": \"Hybrid strategy chosen: split into 20 micro-swaps of $100k each via private RPC with Jito bundles. Expected cost = 0.15% split slippage + 0.0025% RPC fee + 0.3975% residual Jito cost = 0.55%, meeting the <0.6% cost and <$100k child order constraints with 90% success.\"\n}",
+      "durationMs": 16637,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 0.55,
+          "reasoning": "Hybrid strategy chosen: split into 20 micro-swaps of $100k each via private RPC with Jito bundles. Expected cost = 0.15% split slippage + 0.0025% RPC fee + 0.3975% residual Jito cost = 0.55%, meeting the <0.6% cost and <$100k child order constraints with 90% success."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L10-043",
+      "raw": "",
+      "durationMs": 22542,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L10-049",
+      "raw": "",
+      "durationMs": 20774,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-023",
+      "raw": "",
+      "durationMs": 22556,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-029",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 72.4025,\n  \"reasoning\": \"Basis capture $14,000 + funding $18,600 - percent costs $4,800 - fixed costs $950 - borrow drag $3,013.70 - buffer reserve $4,000 = $19,836.30 net profit. Annualized ROE = (19836.30 / 2,000,000) * (365 / 5) = 72.4%. Meets all criteria: > 25% ROE, 0.12% slippage <= 0.35%, and bridge window assumed <= 40 hours.\"\n}\n",
+      "durationMs": 19832,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 72.4025,
+          "reasoning": "Basis capture $14,000 + funding $18,600 - percent costs $4,800 - fixed costs $950 - borrow drag $3,013.70 - buffer reserve $4,000 = $19,836.30 net profit. Annualized ROE = (19836.30 / 2,000,000) * (365 / 5) = 72.4%. Meets all criteria: > 25% ROE, 0.12% slippage <= 0.35%, and bridge window assumed <= 40 hours."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-050",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"expected_value\": 5.43,\n  \"reasoning\": \"Calculated using the formula: ((9500000 * 0.58 * 0.00035 * 0.88 * 0.85 - 520) * 365) / 6200000 = 5.43%.\"\n}\n",
+      "durationMs": 18809,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "expected_value": 5.43,
+          "reasoning": "Calculated using the formula: ((9500000 * 0.58 * 0.00035 * 0.88 * 0.85 - 520) * 365) / 6200000 = 5.43%."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-066",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"expected_value\": 0.04379,\n  \"reasoning\": \"Bucket 1 fees: 24000000 * 0.44 * 0.00022 = 2323.2. Bucket 2 fees: 6000000 * 0.80 * 0.0004 = 1920. Total daily fees = 4243.2. After 87% capture and 9% skim: 4243.2 * 0.87 * 0.91 = 3359.34. Subtracting 1200 overhead gives 2159.34 daily net. Annualized: 2159.34 * 365 / 18000000 = 0.04379.\"\n}",
+      "durationMs": 20480,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "expected_value": 0.04379,
+          "reasoning": "Bucket 1 fees: 24000000 * 0.44 * 0.00022 = 2323.2. Bucket 2 fees: 6000000 * 0.80 * 0.0004 = 1920. Total daily fees = 4243.2. After 87% capture and 9% skim: 4243.2 * 0.87 * 0.91 = 3359.34. Subtracting 1200 overhead gives 2159.34 daily net. Annualized: 2159.34 * 365 / 18000000 = 0.04379."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-068",
+      "raw": "{\n  \"intent\": \"no_action\",\n  \"expected_value\": 0,\n  \"reasoning\": \"Option A fails slippage constraint (0.38% > 0.32%). Option B fails settlement constraint (12m > 9m) and has negative EV (-$1,480). Option C fails oracle age constraint (62s > 50s). Option D has negative EV (-$4,120). No option is both positive-EV and feasible.\"\n}\n",
+      "durationMs": 17418,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "Option A fails slippage constraint (0.38% > 0.32%). Option B fails settlement constraint (12m > 9m) and has negative EV (-$1,480). Option C fails oracle age constraint (62s > 50s). Option D has negative EV (-$4,120). No option is both positive-EV and feasible."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-069",
+      "raw": "",
+      "durationMs": 22872,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

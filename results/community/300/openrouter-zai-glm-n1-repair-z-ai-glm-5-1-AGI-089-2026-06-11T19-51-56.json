@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-11T19:52:45.585Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-089-2026-06-11T19-51-56",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-089"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-089",
+      "raw": "{\n  \"intent\": \"defensive_hedge\",\n  \"chosen_strategy\": \"hedge_50_ETH_via_tunnel_to_drop_net_exposure_below_55_threshold_and_preserve_30_upside_delta\",\n  \"hedge_units\": 50,\n  \"net_exposure_units\": 30,\n  \"worst_case_margin_drawdown_pct\": 6.42,\n  \"funding_window_pnl_usd\": -51.57,\n  \"self_check\": \"hedge_50_reduces_net_to_30_below_55_threshold_avoids_sweep_preserves_30_delta_per_mandate_no_sweep_path_inconsistency_worst_drawdown_is_current_unrealized_loss_plus_hedge_cost_divided_by_original_margin_funding_on_30_units_minus_hedge_cost_yields_negative_small_pnl\",\n  \"reasoning\": \"Original margin = 80*3200/4 = 64000. Hedge 50 ETH at 3150 mid (max tunnel capacity) drops net exposure to 30 ETH, safely below 55 threshold, avoiding stress-mark to 3000 and preserving exactly 30 ETH upside delta per mandate. Hedge cost = 50*3150*0.07% = 110.25. Current unrealized loss on 80 long = 80*(3150-3200) = -4000. Worst drawdown = (4000+110.25)/64000 = 6.42%. Post-sweep mark 3260: funding on 30 ETH = 30*3260*0.06% = 58.68. Short 50 loses 50*(3260-3150)=5500, long 80 gains 80*60=4800, net unrealized = -700. Funding window PnL = 58.68 - 110.25 = -51.57.\"\n}",
+      "durationMs": 48778,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7857142857142857,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "hedge_units": 1,
+          "net_exposure_units": 1,
+          "worst_case_margin_drawdown_pct": 0,
+          "funding_window_pnl_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "defensive_hedge",
+          "chosen_strategy": "hedge_50_ETH_via_tunnel_to_drop_net_exposure_below_55_threshold_and_preserve_30_upside_delta",
+          "hedge_units": 50,
+          "net_exposure_units": 30,
+          "worst_case_margin_drawdown_pct": 6.42,
+          "funding_window_pnl_usd": -51.57,
+          "self_check": "hedge_50_reduces_net_to_30_below_55_threshold_avoids_sweep_preserves_30_delta_per_mandate_no_sweep_path_inconsistency_worst_drawdown_is_current_unrealized_loss_plus_hedge_cost_divided_by_original_margin_funding_on_30_units_minus_hedge_cost_yields_negative_small_pnl",
+          "reasoning": "Original margin = 80*3200/4 = 64000. Hedge 50 ETH at 3150 mid (max tunnel capacity) drops net exposure to 30 ETH, safely below 55 threshold, avoiding stress-mark to 3000 and preserving exactly 30 ETH upside delta per mandate. Hedge cost = 50*3150*0.07% = 110.25. Current unrealized loss on 80 long = 80*(3150-3200) = -4000. Worst drawdown = (4000+110.25)/64000 = 6.42%. Post-sweep mark 3260: funding on 30 ETH = 30*3260*0.06% = 58.68. Short 50 loses 50*(3260-3150)=5500, long 80 gains 80*60=4800, net unrealized = -700. Funding window PnL = 58.68 - 110.25 = -51.57."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:worst_case_margin_drawdown_pct",
+          "agi_validation_failed:funding_window_pnl_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

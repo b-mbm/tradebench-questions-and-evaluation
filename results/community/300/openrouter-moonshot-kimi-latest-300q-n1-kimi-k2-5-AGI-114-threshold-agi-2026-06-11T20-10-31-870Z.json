@@ -1,0 +1,63 @@
+{
+  "runAt": "2026-06-11T20:10:31.869Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-114-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-114"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-114",
+      "raw": "{\n  \"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"single_lot_arb\",\n  \"lots_to_harvest\": [\"ARB\"],\n  \"replacement_basket\": [\"OP_STRK_pair\"],\n  \"harvested_loss_usd\": 36000,\n  \"immediate_tax_alpha_usd\": 14688,\n  \"carryforward_loss_usd\": 0,\n  \"implementation_cost_usd\": 1364,\n  \"net_tax_alpha_usd\": 13324,\n  \"tracking_gap_pct\": 9.0,\n  \"self_check\": \"weighted_tracking_gap_9pct_within_11pct_limit_immediate_offset_maximized\",\n  \"reasoning\": \"Only ARB satisfies the 11% tracking gap constraint alone at 9%. All other individual lots exceed 11% (LDO 14%, AVAX 16%, SEI 26%, DOGE 32%). Combining ARB with any other lot produces weighted gaps above 11% (e.g., ARB+LDO=11.14%). ARB provides $36k loss, fully absorbed by $128k gains at 40.8% rate yielding $14,688 immediate tax benefit. Costs: exit 31bps on $240k=$744 plus fixed $620=$1,364. Net alpha $13,324.\"\n}",
+      "durationMs": 58282,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6363636363636364,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "lots_to_harvest": 1,
+          "replacement_basket": 0,
+          "harvested_loss_usd": 1,
+          "immediate_tax_alpha_usd": 1,
+          "carryforward_loss_usd": 1,
+          "implementation_cost_usd": 1,
+          "net_tax_alpha_usd": 1,
+          "tracking_gap_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "single_lot_arb",
+          "lots_to_harvest": [
+            "ARB"
+          ],
+          "replacement_basket": [
+            "OP_STRK_pair"
+          ],
+          "harvested_loss_usd": 36000,
+          "immediate_tax_alpha_usd": 14688,
+          "carryforward_loss_usd": 0,
+          "implementation_cost_usd": 1364,
+          "net_tax_alpha_usd": 13324,
+          "tracking_gap_pct": 9,
+          "self_check": "weighted_tracking_gap_9pct_within_11pct_limit_immediate_offset_maximized",
+          "reasoning": "Only ARB satisfies the 11% tracking gap constraint alone at 9%. All other individual lots exceed 11% (LDO 14%, AVAX 16%, SEI 26%, DOGE 32%). Combining ARB with any other lot produces weighted gaps above 11% (e.g., ARB+LDO=11.14%). ARB provides $36k loss, fully absorbed by $128k gains at 40.8% rate yielding $14,688 immediate tax benefit. Costs: exit 31bps on $240k=$744 plus fixed $620=$1,364. Net alpha $13,324."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:replacement_basket",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

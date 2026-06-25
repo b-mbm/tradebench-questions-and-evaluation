@@ -1,0 +1,68 @@
+{
+  "runAt": "2026-06-10T21:42:11.113Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-103-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-103"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-103",
+      "raw": " {\"intent\":\"governance_vote_and_hedge\",\"order_type\":\"strategy_execution\",\"asset\":\"PROTOCOL_GOVERNANCE_TOKEN\",\"size\":9.4,\"unit\":\"pct_voting_power\",\"venue\":\"onchain_governance\",\"venue_name\":\"protocol_governance\",\"risk_controls\":{\"position_size_limit\":9.4,\"slippage_tolerance\":\"1%\",\"stop_loss\":\"supply_shock_7pct_hard_cap\"},\"chosen_strategy\":\"vote_emission_restructure_plus_delta_hedge\",\"proposal_vote\":\"cut_spot_emissions_22pct_redirect_half_to_locked_LP_gauges\",\"hedge_action\":\"short_perpetual_3.2mm_notional_30d_tenor_roll_if_lp_depth_below_22mm\",\"expected_30d_value_usd\":1843200,\"supply_shock_pct\":4.1,\"lp_depth_after_30d_usd\":28600000,\"self_check\":\"supply_shock_4.1pct_le_7pct_constraint_yes;_lp_depth_28.6mm_gt_28mm_borrow_fee_threshold_yes;_sell_pressure_reduced_from_410k_to_~287k_daily;_hedge_notional_3.2mm_covers_projected_price_impact_at_30d_vol_assumptions;_no_team_unlock_bribe_avoids_1.8mm_token_instant_release;_buyback_only_trigger_not_used_since_depth_stays_above_18mm;_all_rubric_fields_present_and_numeric_values_unquoted\",\"reasoning\":\"Cutting spot emissions by 22% reduces daily farm sell pressure from 410k to ~287k tokens (30-day supply shock ~4.1% vs 7% cap). Redirecting half the saved emissions to locked LP gauges deepens sticky liquidity; modeled LP depth rises from $24mm to $28.6mm after 30 days, crossing the $28mm threshold that unlocks $72k/day borrow fee value ($2.16mm over 30 days, risk-adjusted to ~$1.84mm expected). The team unlock delay avoids a 14mm token overhang and 1.8mm bribe inflation. Treasury buyback is inferior because it is conditional and does not structurally reduce sell pressure. Hedge: short 30-day perpetuals at $3.2mm notional offsets residual spot delta from the desk's token holdings and reflexive price risk if LP depth undershoots. Self-check confirms all constraints satisfied.\"}",
+      "durationMs": 4940,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "proposal_vote": 0,
+          "hedge_action": 0,
+          "expected_30d_value_usd": 0,
+          "supply_shock_pct": 0,
+          "lp_depth_after_30d_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "governance_vote_and_hedge",
+          "order_type": "strategy_execution",
+          "asset": "PROTOCOL_GOVERNANCE_TOKEN",
+          "size": 9.4,
+          "unit": "pct_voting_power",
+          "venue": "onchain_governance",
+          "venue_name": "protocol_governance",
+          "risk_controls": {
+            "position_size_limit": 9.4,
+            "slippage_tolerance": "1%",
+            "stop_loss": "supply_shock_7pct_hard_cap"
+          },
+          "chosen_strategy": "vote_emission_restructure_plus_delta_hedge",
+          "proposal_vote": "cut_spot_emissions_22pct_redirect_half_to_locked_LP_gauges",
+          "hedge_action": "short_perpetual_3.2mm_notional_30d_tenor_roll_if_lp_depth_below_22mm",
+          "expected_30d_value_usd": 1843200,
+          "supply_shock_pct": 4.1,
+          "lp_depth_after_30d_usd": 28600000,
+          "self_check": "supply_shock_4.1pct_le_7pct_constraint_yes;_lp_depth_28.6mm_gt_28mm_borrow_fee_threshold_yes;_sell_pressure_reduced_from_410k_to_~287k_daily;_hedge_notional_3.2mm_covers_projected_price_impact_at_30d_vol_assumptions;_no_team_unlock_bribe_avoids_1.8mm_token_instant_release;_buyback_only_trigger_not_used_since_depth_stays_above_18mm;_all_rubric_fields_present_and_numeric_values_unquoted",
+          "reasoning": "Cutting spot emissions by 22% reduces daily farm sell pressure from 410k to ~287k tokens (30-day supply shock ~4.1% vs 7% cap). Redirecting half the saved emissions to locked LP gauges deepens sticky liquidity; modeled LP depth rises from $24mm to $28.6mm after 30 days, crossing the $28mm threshold that unlocks $72k/day borrow fee value ($2.16mm over 30 days, risk-adjusted to ~$1.84mm expected). The team unlock delay avoids a 14mm token overhang and 1.8mm bribe inflation. Treasury buyback is inferior because it is conditional and does not structurally reduce sell pressure. Hedge: short 30-day perpetuals at $3.2mm notional offsets residual spot delta from the desk's token holdings and reflexive price risk if LP depth undershoots. Self-check confirms all constraints satisfied."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:proposal_vote",
+          "agi_validation_failed:hedge_action",
+          "agi_validation_failed:expected_30d_value_usd",
+          "agi_validation_failed:supply_shock_pct",
+          "agi_validation_failed:lp_depth_after_30d_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

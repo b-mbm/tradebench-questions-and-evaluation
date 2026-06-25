@@ -1,0 +1,51 @@
+{
+  "runAt": "2026-06-10T07:33:58.823Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-038-2026-06-10T07-32-29",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-038"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-038",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"hidden_iceberg_twap\",\n  \"price_band\": \"$147.00-$147.20\",\n  \"child_order_units\": 2500,\n  \"repricing_interval_sec\": 45,\n  \"expected_avg_price\": 147.10,\n  \"self_check\": \"12×2500=30000SOL; 12×45s=540s<600s window; child≤2500 avoids classifier detection of displayed interest>10K; band floor≥$147.00≈fair value prevents non-completion from passive bidding; band cap≤$147.20 limits adverse selection on thin asks; 45s cadence matches exchange repricing limit enabling adaptive reposition",
+      "durationMs": 88856,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4040816326530612,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "price_band": 0,
+          "child_order_units": 1,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "hidden_iceberg_twap",
+          "price_band": "$147.00-$147.20",
+          "child_order_units": 2500,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": 147.1,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:price_band",
+          "agi_validation_failed:expected_avg_price",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

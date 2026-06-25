@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T06:21:31.188Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-059-1781072436727",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-059"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-059",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 533202.74,\n  \"reasoning\": \"Missing votes = 98000 - 55000 = 43000 COMP, which is <= lendable liquidity of 58000 COMP. Bribe cost = 43000 * $4 = $172000. Borrow interest = 43000 * $66 * 0.20 * (9/365) = $13997.26. Expected delay loss = 0.04 * $520000 = $20800. EV = 0.63 * $1200000 - $172000 - $13997.26 - $16000 - $20800 = $756000 - $222797.26 = $533202.74. Positive EV and liquidity constraint satisfied, so execute.\"\n}",
+      "durationMs": 54101,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 533202.74,
+          "reasoning": "Missing votes = 98000 - 55000 = 43000 COMP, which is <= lendable liquidity of 58000 COMP. Bribe cost = 43000 * $4 = $172000. Borrow interest = 43000 * $66 * 0.20 * (9/365) = $13997.26. Expected delay loss = 0.04 * $520000 = $20800. EV = 0.63 * $1200000 - $172000 - $13997.26 - $16000 - $20800 = $756000 - $222797.26 = $533202.74. Positive EV and liquidity constraint satisfied, so execute."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

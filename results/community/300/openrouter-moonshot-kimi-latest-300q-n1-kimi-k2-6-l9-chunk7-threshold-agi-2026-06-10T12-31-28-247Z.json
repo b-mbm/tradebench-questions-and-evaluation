@@ -1,0 +1,220 @@
+{
+  "runAt": "2026-06-10T12:31:28.246Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-l9-chunk7-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L9-061",
+    "L9-062",
+    "L9-063",
+    "L9-064",
+    "L9-065",
+    "L9-066",
+    "L9-067",
+    "L9-068",
+    "L9-069",
+    "L9-070"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-061",
+      "raw": "",
+      "durationMs": 35608,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-062",
+      "raw": "{\"intent\":\"select_route\",\"expected_value\":1240,\"reasoning\":\"Computed all-in cost = percent*notional + fixed + risk*notional. Route A = $12,250 (feasible). Route B = $7,760 (feasible). Route C = $9,000 (feasible). Route D = $8,440 but infeasible due to 22-minute settlement exceeding the 18-minute hard cap. Best feasible route is B; second-best is C. Expected value = $9,000 - $7,760 = $1,240 USD saved. At $1.15/ARB, extra ARB = 1,240 / 1.15 ≈ 1,078.26.\"}",
+      "durationMs": 79394,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "select_route",
+          "expected_value": 1240,
+          "reasoning": "Computed all-in cost = percent*notional + fixed + risk*notional. Route A = $12,250 (feasible). Route B = $7,760 (feasible). Route C = $9,000 (feasible). Route D = $8,440 but infeasible due to 22-minute settlement exceeding the 18-minute hard cap. Best feasible route is B; second-best is C. Expected value = $9,000 - $7,760 = $1,240 USD saved. At $1.15/ARB, extra ARB = 1,240 / 1.15 ≈ 1,078.26."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-063",
+      "raw": "",
+      "durationMs": 76192,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Invalid response body while trying to fetch https://openrouter.ai/api/v1/chat/completions: read ETIMEDOUT"
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-064",
+      "raw": "",
+      "durationMs": 75761,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Connection error."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-065",
+      "raw": "",
+      "durationMs": 66082,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-066",
+      "raw": "",
+      "durationMs": 55548,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-067",
+      "raw": "",
+      "durationMs": 17449,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Invalid response body while trying to fetch https://openrouter.ai/api/v1/chat/completions: read ETIMEDOUT"
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-068",
+      "raw": "",
+      "durationMs": 180006,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-069",
+      "raw": "",
+      "durationMs": 18567,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-070",
+      "raw": " {\"intent\":\"evaluate_cross_chain_routes\",\"expected_value\":4680,\"reasoning\":\"Notional=$3,600,000. Hard constraints: settlement<=22 min, oracle age<=50 sec, capacity>=$3,600,000. Route D fails oracle age (52 sec > 50). Route C fails capacity ($3,800,000 >= $3,600,000 is actually okay; wait $3.8M >= $3.6M so passes). Recheck: Route A cost=0.0044*3600000+3600+0.0005*3600000=15840+3600+1800=21240. Route B cost=0.0027*3600000+4800+0.0003*3600000=9720+4800+1080=15600. Route C cost=0.0021*3600000+7300+0.0004*3600000=7560+7300+1440=16300. Route D infeasible (oracle 52s). Feasible: A, B, C. Best feasible is B at $15,600; second-best is C at $16,300. USD saved = 16300-15600 = 700. Wait recheck: expected risk is percent of notional. Route A: 0.44%*3.6M=15840, fixed 3600, risk 0.05%*3.6M=1800. Total=21240. Route B: 0.27%*3.6M=9720, fixed 4800, risk 0.03%*3.6M=1080. Total=15600. Route C: 0.21%*3.6M=7560, fixed 7300, risk 0.04%*3.6M=1440. Total=16300. Route D: 0.18%*3.6M=6480, fixed 2400, risk 0.2%*3.6M=7200. Total=16080, but infeasible. Best feasible B ($15,600), second-best C ($16,300). Expected value = $700. Extra TIA = 700/9 ≈ 77.78. But expected_value field is numeric USD saved = 700.\"}",
+      "durationMs": 2787,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "evaluate_cross_chain_routes",
+          "expected_value": 4680,
+          "reasoning": "Notional=$3,600,000. Hard constraints: settlement<=22 min, oracle age<=50 sec, capacity>=$3,600,000. Route D fails oracle age (52 sec > 50). Route C fails capacity ($3,800,000 >= $3,600,000 is actually okay; wait $3.8M >= $3.6M so passes). Recheck: Route A cost=0.0044*3600000+3600+0.0005*3600000=15840+3600+1800=21240. Route B cost=0.0027*3600000+4800+0.0003*3600000=9720+4800+1080=15600. Route C cost=0.0021*3600000+7300+0.0004*3600000=7560+7300+1440=16300. Route D infeasible (oracle 52s). Feasible: A, B, C. Best feasible is B at $15,600; second-best is C at $16,300. USD saved = 16300-15600 = 700. Wait recheck: expected risk is percent of notional. Route A: 0.44%*3.6M=15840, fixed 3600, risk 0.05%*3.6M=1800. Total=21240. Route B: 0.27%*3.6M=9720, fixed 4800, risk 0.03%*3.6M=1080. Total=15600. Route C: 0.21%*3.6M=7560, fixed 7300, risk 0.04%*3.6M=1440. Total=16300. Route D: 0.18%*3.6M=6480, fixed 2400, risk 0.2%*3.6M=7200. Total=16080, but infeasible. Best feasible B ($15,600), second-best C ($16,300). Expected value = $700. Extra TIA = 700/9 ≈ 77.78. But expected_value field is numeric USD saved = 700."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

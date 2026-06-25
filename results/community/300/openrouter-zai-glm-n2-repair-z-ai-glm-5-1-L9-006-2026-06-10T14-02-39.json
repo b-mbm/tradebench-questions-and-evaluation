@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T14:03:05.602Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L9-006-2026-06-10T14-02-39",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-006"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-006",
+      "raw": "{\n  \"intent\": \"basis_unwind_analysis\",\n  \"expected_value\": -739228,\n  \"reasoning\": \"Plan A loss = 4% stress on $50M = $2,000,000. Plan B: (1) option premium = 13% × $50M × 8% = $520,000; (2) funding paid by short over 2 days = $50M × 80% × (2/365) = $219,178; (3) transfer fee = 0.0005 BTC × $100,000 = $50. Plan B total = $739,228. Plan C infeasible. Plan B is optimal with lowest loss of $739,228.\"\n}",
+      "durationMs": 25361,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "basis_unwind_analysis",
+          "expected_value": -739228,
+          "reasoning": "Plan A loss = 4% stress on $50M = $2,000,000. Plan B: (1) option premium = 13% × $50M × 8% = $520,000; (2) funding paid by short over 2 days = $50M × 80% × (2/365) = $219,178; (3) transfer fee = 0.0005 BTC × $100,000 = $50. Plan B total = $739,228. Plan C infeasible. Plan B is optimal with lowest loss of $739,228."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

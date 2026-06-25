@@ -1,0 +1,73 @@
+{
+  "runAt": "2026-06-10T20:34:01.752Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-114-2026-06-10T20-33-28",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-114"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-114",
+      "raw": "{\n  \"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"maximize_net_tax_alpha_constrained_by_tracking_gap\",\n  \"lots_to_harvest\": [\"AVAX\", \"ARB\", \"LDO\"],\n  \"replacement_basket\": [\"SUI_APT_pair\", \"OP_STRK_pair\", \"RPL_PENDLE_pair\"],\n  \"harvested_loss_usd\": 122000,\n  \"immediate_tax_alpha_usd\": 52224,\n  \"carryforward_loss_usd\": 0,\n  \"implementation_cost_usd\": 4158.8,\n  \"net_tax_alpha_usd\": 48065.2,\n  \"tracking_gap_pct\": 13.17,\n  \"self_check\": \"FAIL_tracking_gap_exceeds_11pct\",\n  \"reasoning\": \"AVAX+ARB+LDO yields $122k loss ($128k gains fully offset at 40.8%=$52224 alpha), but weighted tracking gap=(330*16+240*9+180*14)/750=13.17% exceeds 11% limit. Must drop AVAX. ARB+LDO+SEI: loss=88k<128k so carryforward exists. ARB+LDO: loss=65k, all immediate offset, gap=(240*9+180*14)/420=11.14% still over. ARB+SEI: loss=59k, gap=(240*9+150*26)/390=15.38%. LDO+SEI: loss=52k, gap=(180*14+150*26)/330=19.39%. ARB alone: loss=36k, gap=9%. Best under 11% is ARB+LDO at 11.14% which barely exceeds. ARB alone at 9% gap gives $36k loss, $14688 immediate alpha, $744.4 impl cost, net=$13943.6. Rechecking ARB+LDO weighted gap: (240*9+180*14)/(240+180)=2160+2520/420=4680/420=11.14%. Just over. So ARB alone is the constrained optimum under 11%.\"\n}",
+      "durationMs": 33233,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5909090909090909,
+        "score": 0.09090909090909091,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "lots_to_harvest": 0,
+          "replacement_basket": 0,
+          "harvested_loss_usd": 0,
+          "immediate_tax_alpha_usd": 0,
+          "carryforward_loss_usd": 1,
+          "implementation_cost_usd": 0,
+          "net_tax_alpha_usd": 0,
+          "tracking_gap_pct": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "maximize_net_tax_alpha_constrained_by_tracking_gap",
+          "lots_to_harvest": [
+            "AVAX",
+            "ARB",
+            "LDO"
+          ],
+          "replacement_basket": [
+            "SUI_APT_pair",
+            "OP_STRK_pair",
+            "RPL_PENDLE_pair"
+          ],
+          "harvested_loss_usd": 122000,
+          "immediate_tax_alpha_usd": 52224,
+          "carryforward_loss_usd": 0,
+          "implementation_cost_usd": 4158.8,
+          "net_tax_alpha_usd": 48065.2,
+          "tracking_gap_pct": 13.17,
+          "self_check": "FAIL_tracking_gap_exceeds_11pct",
+          "reasoning": "AVAX+ARB+LDO yields $122k loss ($128k gains fully offset at 40.8%=$52224 alpha), but weighted tracking gap=(330*16+240*9+180*14)/750=13.17% exceeds 11% limit. Must drop AVAX. ARB+LDO+SEI: loss=88k<128k so carryforward exists. ARB+LDO: loss=65k, all immediate offset, gap=(240*9+180*14)/420=11.14% still over. ARB+SEI: loss=59k, gap=(240*9+150*26)/390=15.38%. LDO+SEI: loss=52k, gap=(180*14+150*26)/330=19.39%. ARB alone: loss=36k, gap=9%. Best under 11% is ARB+LDO at 11.14% which barely exceeds. ARB alone at 9% gap gives $36k loss, $14688 immediate alpha, $744.4 impl cost, net=$13943.6. Rechecking ARB+LDO weighted gap: (240*9+180*14)/(240+180)=2160+2520/420=4680/420=11.14%. Just over. So ARB alone is the constrained optimum under 11%."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:lots_to_harvest",
+          "agi_validation_failed:replacement_basket",
+          "agi_validation_failed:harvested_loss_usd",
+          "agi_validation_failed:immediate_tax_alpha_usd",
+          "agi_validation_failed:implementation_cost_usd",
+          "agi_validation_failed:net_tax_alpha_usd",
+          "agi_validation_failed:tracking_gap_pct",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

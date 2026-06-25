@@ -1,0 +1,132 @@
+{
+  "runAt": "2026-06-10T15:00:46.937Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-l10-from1-chunk4-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L10-016",
+    "L10-017",
+    "L10-018",
+    "L10-019",
+    "L10-020"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-016",
+      "raw": "",
+      "durationMs": 95255,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-017",
+      "raw": " {\n  \"intent\": \"operate_solana_validator_upgrade_plan\",\n  \"order_type\": \"strategic_plan\",\n  \"asset\": \"SOL\",\n  \"size\": 500000,\n  \"unit\": \"sol\",\n  \"price\": 140,\n  \"venue\": \"solana_mainnet\",\n  \"venue_name\": \"validator_operations\",\n  \"risk_controls\": {\n    \"position_size_limit\": 200000,\n    \"slippage_tolerance\": 0\n  },\n  \"expected_value\": 15,\n  \"reasoning\": \"Phase 1: Hardware refresh ($50,000) + Jito MEV setup ($15,000) = $65,000 spend to restore performance to 93-95% and capture MEV. Phase 2: Lower commission from 8% to 6% to stabilize and reverse the 5% quarterly delegation decline. Phase 3: Launch premium RPC for year-one economics ($180k revenue vs $150k cost) to diversify revenue. Six-month incremental net profit from performance restoration is $6,750 and Jito adds $3,000, totaling $9,750. ROI = $9,750 / $65,000 = 15%. Total spend $65,000 is within $200,000 budget. Premium RPC is evaluated separately on year-one economics and does not affect the six-month ROI numerator.\",\n  \"requires_follow_up\": true,\n  \"follow_up\": \"confirm hardware delivery and Jito setup completion\",\n  \"follow_up_description\": \"Track delegation stabilization after commission reduction and monitor RPC revenue ramp.\"\n}",
+      "durationMs": 2253,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "operate_solana_validator_upgrade_plan",
+          "order_type": "strategic_plan",
+          "asset": "SOL",
+          "size": 500000,
+          "unit": "sol",
+          "price": 140,
+          "venue": "solana_mainnet",
+          "venue_name": "validator_operations",
+          "risk_controls": {
+            "position_size_limit": 200000,
+            "slippage_tolerance": 0
+          },
+          "expected_value": 15,
+          "reasoning": "Phase 1: Hardware refresh ($50,000) + Jito MEV setup ($15,000) = $65,000 spend to restore performance to 93-95% and capture MEV. Phase 2: Lower commission from 8% to 6% to stabilize and reverse the 5% quarterly delegation decline. Phase 3: Launch premium RPC for year-one economics ($180k revenue vs $150k cost) to diversify revenue. Six-month incremental net profit from performance restoration is $6,750 and Jito adds $3,000, totaling $9,750. ROI = $9,750 / $65,000 = 15%. Total spend $65,000 is within $200,000 budget. Premium RPC is evaluated separately on year-one economics and does not affect the six-month ROI numerator.",
+          "requires_follow_up": true,
+          "follow_up": "confirm hardware delivery and Jito setup completion",
+          "follow_up_description": "Track delegation stabilization after commission reduction and monitor RPC revenue ramp."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-018",
+      "raw": "",
+      "durationMs": 23511,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-019",
+      "raw": "",
+      "durationMs": 180006,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-020",
+      "raw": " {\"intent\":\"defend\",\"expected_value\":1200000,\"reasoning\":\"Within 6 minutes, deleverage the $12M Aave stETH loop, reduce the $8M Compound borrow, and withdraw the $5M Uniswap V3 LP to protect $25M of oracle-sensitive exposure before the oracle corrects. Expected loss avoided = $25,000,000 × 4.8% = $1,200,000.\"}",
+      "durationMs": 94556,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "defend",
+          "expected_value": 1200000,
+          "reasoning": "Within 6 minutes, deleverage the $12M Aave stETH loop, reduce the $8M Compound borrow, and withdraw the $5M Uniswap V3 LP to protect $25M of oracle-sensitive exposure before the oracle corrects. Expected loss avoided = $25,000,000 × 4.8% = $1,200,000."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

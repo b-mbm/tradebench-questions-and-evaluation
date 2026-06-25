@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-11T18:13:23.195Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-053-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-053"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-053",
+      "raw": " {\"intent\":\"exit\",\"decision\":\"exit\",\"chosen_strategy\":\"sequential_private_then_public\",\"exit_sequence\":[\"private_mm\",\"dex_slice\"],\"private_sale_usd\":99300,\"expected_exit_value_usd\":148500,\"expected_stay_value_usd\":120000,\"self_check\":\"Valid sequence: private_mm executes before any visible flow to prevent cancellation, absorbing $100k at 99.3% ($99,300). Remaining $50k exits via dex_slice at 98.4% ($49,200). Total proceeds $148,500 exceed expected stay value $120,000, satisfying capital preservation mandate.\",\"reasoning\":\"Executing private_mm first ($100,000 × 0.993 = $99,300) followed by dex_slice ($50,000 × 0.984 = $49,200) yields $148,500. Holding yields expected value of $120,000 (20% × $600,000). The private-t",
+      "durationMs": 23591,
+      "grade": {
+        "pass": false,
+        "confidence": 0.525,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "decision": 1,
+          "chosen_strategy": 0,
+          "exit_sequence": 0,
+          "private_sale_usd": 1,
+          "expected_exit_value_usd": 1,
+          "expected_stay_value_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit",
+          "decision": "exit",
+          "chosen_strategy": "sequential_private_then_public",
+          "private_sale_usd": 99300,
+          "expected_exit_value_usd": 148500,
+          "expected_stay_value_usd": 120000,
+          "self_check": "Valid sequence: private_mm executes before any visible flow to prevent cancellation, absorbing $100k at 99.3% ($99,300). Remaining $50k exits via dex_slice at 98.4% ($49,200). Total proceeds $148,500 exceed expected stay value $120,000, satisfying capital preservation mandate.",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

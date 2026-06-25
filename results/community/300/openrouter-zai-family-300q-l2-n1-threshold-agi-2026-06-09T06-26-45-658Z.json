@@ -1,0 +1,690 @@
+{
+  "runAt": "2026-06-09T06:26:45.657Z",
+  "label": "openrouter-zai-family-300q-l2-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1",
+    "z-ai/glm-5-turbo",
+    "z-ai/glm-5",
+    "z-ai/glm-5v-turbo"
+  ],
+  "questionIds": [
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L2-001",
+      "raw": "{\n\"intent\": \"swap\",\n\"order_type\": \"dex\",\n\"asset\": \"DAI\",\n\"size\": \"5000\",\n\"unit\": \"usdc\",\n\"price\": \"pool spot\",\n\"venue\": \"dex\",\n\"venue_name\": \"uniswap\",\n\"risk_controls\": {\n\"slippage_tolerance\": \"0.5%\",\n\"max_gas\": \"30 gwei\"\n},\n\"follow_up\": \"confirm swap completion and verify DAI received\",\n\"reasoning\": \"Stablecoin-to-stablecoin swap on Ethereum mainnet via Uniswap, the deepest liquidity venue for USDC/DAI pair. Tight slippage tolerance appropriate given minimal price divergence between USDC and DAI.\"\n}",
+      "durationMs": 7162,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm swap completion and verify DAI received",
+          "reasoning": "Stablecoin-to-stablecoin swap on Ethereum mainnet via Uniswap, the deepest liquidity venue for USDC/DAI pair. Tight slippage tolerance appropriate given minimal price divergence between USDC and DAI."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L2-002",
+      "raw": "{\n\"intent\": \"buy\",\n\"order_type\": \"dex\",\n\"asset\": \"PEPE\",\n\"size\": 100000,\n\"unit\": \"pepe\",\n\"price\": \"pool spot\",\n\"venue\": \"dex\",\n\"venue_name\": \"uniswap\",\n\"risk_controls\": {\n\"slippage_tolerance\": \"15%\",\n\"max_gas\": \"30 gwei\"\n},\n\"follow_up\": \"confirm swap execution and check for MEV exposure\",\n\"reasoning\": \"PEPE is a volatile memecoin primarily traded on DEXes; 15% slippage tolerance is appropriate given typical low liquidity and price impact for this token\",\n\"requires_follow_up\": true,\n\"follow_up_description\": \"Verify transaction receipt and actual fill price due to high slippage tolerance\"\n}",
+      "durationMs": 10483,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8192735042735044,
+        "score": 0.7761538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "PEPE",
+          "size": 100000,
+          "unit": "pepe",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm swap execution and check for MEV exposure",
+          "reasoning": "PEPE is a volatile memecoin primarily traded on DEXes; 15% slippage tolerance is appropriate given typical low liquidity and price impact for this token",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify transaction receipt and actual fill price due to high slippage tolerance"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dex\",\n  \"asset\": \"MATIC\",\n  \"size\": \"1000\",\n  \"unit\": \"matic\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"quickswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill on Polygon\",\n  \"reasoning\": \"Route via QuickSwap on Polygon network for minimal gas fees; MATIC is native to Polygon where gas costs are fractions of a cent compared to 30 gwei mainnet\"\n}",
+      "durationMs": 2818,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8181250000000001,
+        "score": 0.7700000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "MATIC",
+          "size": "1000",
+          "unit": "matic",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "quickswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill on Polygon",
+          "reasoning": "Route via QuickSwap on Polygon network for minimal gas fees; MATIC is native to Polygon where gas costs are fractions of a cent compared to 30 gwei mainnet"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"WETH\",\n  \"size\": \"50000\",\n  \"unit\": \"usd\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"50000\"\n  },\n  \"follow_up\": \"verify pool depth and price impact before confirming\",\n  \"reasoning\": \"50k USDC swap requires liquidity analysis on USDC/WETH pool. At ~16.67 WETH expected output, Uniswap V3 offers deepest liquidity. 1% slippage tolerance appropriate for this size. Gas at 30 gwei is favorable.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Check Uniswap V3 USDC/WETH pool TVL and estimated price impact before executing\"\n}",
+      "durationMs": 15789,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "WETH",
+          "size": "50000",
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "50000"
+          },
+          "follow_up": "verify pool depth and price impact before confirming",
+          "reasoning": "50k USDC swap requires liquidity analysis on USDC/WETH pool. At ~16.67 WETH expected output, Uniswap V3 offers deepest liquidity. 1% slippage tolerance appropriate for this size. Gas at 30 gwei is favorable.",
+          "requires_follow_up": true,
+          "follow_up_description": "Check Uniswap V3 USDC/WETH pool TVL and estimated price impact before executing"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"DAI\",\n  \"size\": \"5000\",\n  \"unit\": \"usdc\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm swap tx\",\n  \"reasoning\": \"stablecoin to stablecoin swap on ethereum mainnet via uniswap, low slippage expected\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 9858,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm swap tx",
+          "reasoning": "stablecoin to stablecoin swap on ethereum mainnet via uniswap, low slippage expected",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"PEPE\",\n  \"size\": \"100000\",\n  \"unit\": \"PEPE\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"15%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"Market buy for 100,000 PEPE with high slippage tolerance to account for potential low liquidity.\"\n}",
+      "durationMs": 12229,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9776068376068378,
+        "score": 0.9261538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "PEPE",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "Market buy for 100,000 PEPE with high slippage tolerance to account for potential low liquidity."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dex\",\n  \"asset\": \"MATIC\",\n  \"size\": \"1000\",\n  \"unit\": \"matic\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"quickswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"50 gwei\"\n  },\n  \"follow_up\": \"confirm swap and gas used\",\n  \"reasoning\": \"Executing on Polygon via QuickSwap minimizes gas fees compared to Ethereum mainnet DEXs. Polygon network has significantly lower gas costs, typically under $0.01 per transaction. Using USDC as input token for the swap.\",\n  \"requires_follow_up\": false\n}\n",
+      "durationMs": 6257,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8181250000000001,
+        "score": 0.7700000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "MATIC",
+          "size": "1000",
+          "unit": "matic",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "quickswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "50 gwei"
+          },
+          "follow_up": "confirm swap and gas used",
+          "reasoning": "Executing on Polygon via QuickSwap minimizes gas fees compared to Ethereum mainnet DEXs. Polygon network has significantly lower gas costs, typically under $0.01 per transaction. Using USDC as input token for the swap.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"WETH\",\n  \"size\": \"50000\",\n  \"unit\": \"usd\",\n  \"price\": \"pending liquidity analysis\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"50000\"\n  },\n  \"follow_up\": \"analyze liquidity across multiple DEX pools\",\n  \"reasoning\": \"50,000 USDC (~16.67 WETH at $3000/ETH) is a significant swap size that requires liquidity depth analysis across USDC/WETH pools on Uniswap, SushiSwap, and Curve to minimize price impact and determine optimal routing\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Analyze USDC/WETH pool depths on major DEXes (Uniswap V3, SushiSwap, Curve) to determine: 1) Available liquidity within 0.5% slippage, 2) Expected price impact, 3) Optimal split routing if single pool insufficient, 4) Compare vs 1inch/Paraswap aggregator quotes\"\n}\n",
+      "durationMs": 8002,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "WETH",
+          "size": "50000",
+          "unit": "usd",
+          "price": "pending liquidity analysis",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "50000"
+          },
+          "follow_up": "analyze liquidity across multiple DEX pools",
+          "reasoning": "50,000 USDC (~16.67 WETH at $3000/ETH) is a significant swap size that requires liquidity depth analysis across USDC/WETH pools on Uniswap, SushiSwap, and Curve to minimize price impact and determine optimal routing",
+          "requires_follow_up": true,
+          "follow_up_description": "Analyze USDC/WETH pool depths on major DEXes (Uniswap V3, SushiSwap, Curve) to determine: 1) Available liquidity within 0.5% slippage, 2) Expected price impact, 3) Optimal split routing if single pool insufficient, 4) Compare vs 1inch/Paraswap aggregator quotes"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"DAI\",\n  \"size\": \"5000\",\n  \"unit\": \"USDC\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm swap completion\",\n  \"reasoning\": \"routing via Uniswap V3 for optimal stablecoin swap execution with tight slippage\"\n}",
+      "durationMs": 11141,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "USDC",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm swap completion",
+          "reasoning": "routing via Uniswap V3 for optimal stablecoin swap execution with tight slippage"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dex\",\n  \"asset\": \"PEPE\",\n  \"size\": \"100000\",\n  \"unit\": \"PEPE\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"15%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm swap execution\",\n  \"reasoning\": \"PEPE is a meme token with high volatility; 15% slippage tolerance appropriate for large price impact on low-liquidity pairs\"\n}",
+      "durationMs": 16487,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8192735042735044,
+        "score": 0.7761538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "PEPE",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm swap execution",
+          "reasoning": "PEPE is a meme token with high volatility; 15% slippage tolerance appropriate for large price impact on low-liquidity pairs"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dex\",\n  \"asset\": \"MATIC\",\n  \"size\": \"1000\",\n  \"unit\": \"matic\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"quickswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm swap on polygon network\",\n  \"reasoning\": \"quickswap on polygon network offers minimal gas fees for matic purchases, typical transaction cost under $0.01\"\n}",
+      "durationMs": 13244,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8181250000000001,
+        "score": 0.7700000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "MATIC",
+          "size": "1000",
+          "unit": "matic",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "quickswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm swap on polygon network",
+          "reasoning": "quickswap on polygon network offers minimal gas fees for matic purchases, typical transaction cost under $0.01"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"WETH\",\n  \"size\": \"50000\",\n  \"unit\": \"usd\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"50000\"\n  },\n  \"follow_up\": \"check uniswap v3 usdc/weth pool depth at 0.3% and 0.05% fee tiers\",\n  \"reasoning\": \"50000 usdc equals ~16.67 eth at current prices - significant size requiring liquidity analysis to minimize slippage impact\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"analyze pool liquidity depth and recommend optimal fee tier and routing before execution\"\n}",
+      "durationMs": 13846,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "WETH",
+          "size": "50000",
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "50000"
+          },
+          "follow_up": "check uniswap v3 usdc/weth pool depth at 0.3% and 0.05% fee tiers",
+          "reasoning": "50000 usdc equals ~16.67 eth at current prices - significant size requiring liquidity analysis to minimize slippage impact",
+          "requires_follow_up": true,
+          "follow_up_description": "analyze pool liquidity depth and recommend optimal fee tier and routing before execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"DAI\",\n  \"size\": \"5000\",\n  \"unit\": \"usd\",\n  \"price\": \"~5010 DAI\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm swap execution\",\n  \"reasoning\": \"Executing USDC to DAI swap on Ethereum mainnet via Uniswap. Stablecoin pair with tight peg (~0.999 ratio), expecting ~5010 DAI output at current prices.\",\n  \"requires_follow_up\": false\n}\n",
+      "durationMs": 13212,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "usd",
+          "price": "~5010 DAI",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm swap execution",
+          "reasoning": "Executing USDC to DAI swap on Ethereum mainnet via Uniswap. Stablecoin pair with tight peg (~0.999 ratio), expecting ~5010 DAI output at current prices.",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dex\",\n  \"asset\": \"PEPE\",\n  \"size\": \"100000\",\n  \"unit\": \"tokens\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"15%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm transaction hash and monitor fill\",\n  \"reasoning\": \"PEPE is an ERC-20 memecoin traded primarily on Uniswap V2/V3 pools on Ethereum mainnet. User explicitly requested 15% slippage tolerance for this low-liquidity asset to ensure execution.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify transaction confirmation on Etherscan and check actual execution price vs expected\"\n}",
+      "durationMs": 14362,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8192735042735044,
+        "score": 0.7761538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "tokens",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm transaction hash and monitor fill",
+          "reasoning": "PEPE is an ERC-20 memecoin traded primarily on Uniswap V2/V3 pools on Ethereum mainnet. User explicitly requested 15% slippage tolerance for this low-liquidity asset to ensure execution.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify transaction confirmation on Etherscan and check actual execution price vs expected"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dex\",\n  \"asset\": \"MATIC\",\n  \"size\": \"1000\",\n  \"unit\": \"matic\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"quickswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"50 gwei\"\n  },\n  \"follow_up\": \"confirm fill and verify gas used\",\n  \"reasoning\": \"Executing via QuickSwap on Polygon network for minimal gas fees. MATIC is native to Polygon, so on-chain DEX execution on L2 will have significantly lower gas costs compared to Ethereum mainnet. At $0.80/MATIC, total cost is approximately $800 USD.\",\n  \"requires_follow_up\": false\n}\n``Note: If you prefer a CEX route for zero gas (exchange handles it internally), I can adjust to use Coinbase/Binance instead.",
+      "durationMs": 15552,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4692857142857143,
+        "score": 0.7300000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "MATIC",
+          "size": "1000",
+          "unit": "matic",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "quickswap",
+          "slippage_tolerance": "0.5%",
+          "max_gas": "50 gwei",
+          "follow_up": "confirm fill and verify gas used",
+          "reasoning": "Executing via QuickSwap on Polygon network for minimal gas fees. MATIC is native to Polygon, so on-chain DEX execution on L2 will have significantly lower gas costs compared to Ethereum mainnet. At $0.80/MATIC, total cost is approximately $800 USD.",
+          "requires_follow_up": false,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"WETH\",\n  \"size\": \"50000\",\n  \"unit\": \"usd\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\",\n    \"position_size_limit\": \"50000\"\n  },\n  \"follow_up\": \"analyze pool depth and confirm liquidity\",\n  \"reasoning\": \"50,000 USDC (~16.7 WETH at $3,000/ETH) is a significant swap requiring liquidity analysis. Uniswap V3 USDC/WETH pool typically has deep liquidity but must verify sufficient depth at current tick range to minimize slippage and price impact.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Check Uniswap V3 USDC/WETH pool (0.05% or 0.3% fee tier) liquidity within current price bounds. Verify available liquidity exceeds 50k USDC with acceptable slippage. Consider splitting across multiple pools or using aggregator if single-pool depth insufficient.\"\n}\n``End of code block",
+      "durationMs": 7903,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3243749999999999,
+        "score": 0.5045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "WETH",
+          "size": "50000",
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "slippage_tolerance": "0.5%",
+          "max_gas": "40 gwei",
+          "position_size_limit": "50000",
+          "follow_up": "analyze pool depth and confirm liquidity",
+          "reasoning": "50,000 USDC (~16.7 WETH at $3,000/ETH) is a significant swap requiring liquidity analysis. Uniswap V3 USDC/WETH pool typically has deep liquidity but must verify sufficient depth at current tick range to minimize slippage and price impact.",
+          "requires_follow_up": true,
+          "follow_up_description": "Check Uniswap V3 USDC/WETH pool (0.05% or 0.3% fee tier) liquidity within current price bounds. Verify available liquidity exceeds 50k USDC with acceptable slippage. Consider splitting across multiple pools or using aggregator if single-pool depth insufficient.",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

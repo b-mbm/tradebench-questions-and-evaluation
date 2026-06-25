@@ -1,0 +1,444 @@
+{
+  "runAt": "2026-06-09T04:54:20.445Z",
+  "label": "openrouter-mistral-family-300q-l5-n3-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "mistralai/mistral-medium-3-5",
+    "mistralai/mistral-small-2603"
+  ],
+  "questionIds": [
+    "L5-001",
+    "L5-002",
+    "L5-003",
+    "L5-004",
+    "L5-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L5-001",
+      "raw": "{\"intent\": \"add_liquidity\", \"order_type\": \"concentrated_liquidity\", \"asset\": \"ETH/USDC\", \"size\": \"10000\", \"unit\": \"usd\", \"price\": \"2700-2900\", \"venue\": \"dex\", \"venue_name\": \"uniswap_v3\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\", \"position_size_limit\": \"10000\"}, \"follow_up\": \"verify position range and IL risk\", \"reasoning\": \"Concentrated liquidity position in Uniswap V3 for ETH/USDC between $2,700–$2,900 with 8% max impermanent loss tolerance. Size set to $10,000 USD equivalent split between ETH and USDC.\", \"requires_follow_up\": true, \"follow_up_description\": \"Confirm position is active within the specified range and monitor for impermanent loss exposure.\"}",
+      "durationMs": 2045,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7200714285714286,
+        "score": 0.6777142857142857,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.07200000000000001,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated_liquidity",
+          "asset": "ETH/USDC",
+          "size": "10000",
+          "unit": "usd",
+          "price": "2700-2900",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "10000"
+          },
+          "follow_up": "verify position range and IL risk",
+          "reasoning": "Concentrated liquidity position in Uniswap V3 for ETH/USDC between $2,700–$2,900 with 8% max impermanent loss tolerance. Size set to $10,000 USD equivalent split between ETH and USDC.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm position is active within the specified range and monitor for impermanent loss exposure."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L5-002",
+      "raw": "{\"intent\": \"long\", \"order_type\": \"leverage\", \"asset\": \"ETH\", \"size\": 1, \"unit\": \"eth\", \"venue\": \"aave\", \"venue_name\": \"Aave V3\", \"risk_controls\": {\"stop_loss\": \"2500\", \"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\", \"position_size_limit\": 3}, \"follow_up\": \"monitor liquidation threshold and health factor\", \"reasoning\": \"3x leveraged long position on ETH using 1 ETH as collateral on Aave, requiring borrowing 2 ETH worth of stablecoins (e.g., USDC) to amplify exposure\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify borrowed amount, interest rate, and liquidation price; adjust stop-loss if needed\"}",
+      "durationMs": 1521,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.06153846153846154,
+          "order_type": 0.045333333333333344,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "long",
+          "order_type": "leverage",
+          "asset": "ETH",
+          "size": 1,
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "stop_loss": "2500",
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": 3
+          },
+          "follow_up": "monitor liquidation threshold and health factor",
+          "reasoning": "3x leveraged long position on ETH using 1 ETH as collateral on Aave, requiring borrowing 2 ETH worth of stablecoins (e.g., USDC) to amplify exposure",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify borrowed amount, interest rate, and liquidation price; adjust stop-loss if needed"
+        },
+        "failureReasons": [
+          "leverage_invalid_order_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L5-003",
+      "raw": "{\"intent\": \"deposit\", \"order_type\": \"delta_neutral_farm\", \"asset\": \"ETH\", \"size\": 5, \"unit\": \"eth\", \"venue\": \"aave\", \"venue_name\": \"Aave V3 Ethereum\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\", \"position_size_limit\": 5}, \"follow_up\": \"monitor yield and delta exposure\", \"reasoning\": \"Deposit 5 ETH into Aave for delta-neutral yield farming (e.g., borrow stablecoins against ETH collateral and supply to yield-bearing pools)\", \"requires_follow_up\": true, \"follow_up_description\": \"Track yield rates, liquidation risk, and delta neutrality adjustments\"}",
+      "durationMs": 1430,
+      "grade": {
+        "pass": false,
+        "confidence": 0.639375,
+        "score": 0.601764705882353,
+        "fieldScores": {
+          "intent": 0.031764705882352945,
+          "order_type": 0.03,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "deposit",
+          "order_type": "delta_neutral_farm",
+          "asset": "ETH",
+          "size": 5,
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "Aave V3 Ethereum",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": 5
+          },
+          "follow_up": "monitor yield and delta exposure",
+          "reasoning": "Deposit 5 ETH into Aave for delta-neutral yield farming (e.g., borrow stablecoins against ETH collateral and supply to yield-bearing pools)",
+          "requires_follow_up": true,
+          "follow_up_description": "Track yield rates, liquidation risk, and delta neutrality adjustments"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L5-004",
+      "raw": "{\"intent\": \"borrow\", \"order_type\": \"collateralized_loan\", \"asset\": \"USDC\", \"size\": 5000, \"unit\": \"usd\", \"venue\": \"aave\", \"venue_name\": \"Aave v3\", \"risk_controls\": {\"position_size_limit\": \"80%\", \"slippage_tolerance\": \"0.1%\"}, \"follow_up\": \"monitor liquidation threshold\", \"reasoning\": \"Borrow 5000 USDC against 2 ETH collateral (6000 USD value at 3000 ETH/USD). Loan-to-value ratio is ~83.3%, which is below Aave's max LTV for ETH (~80% for stablecoins). Adjust size or add more collateral if needed.\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify loan-to-value ratio and liquidation risk before execution\"}",
+      "durationMs": 1677,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.17,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "collateralized_loan",
+          "asset": "USDC",
+          "size": 5000,
+          "unit": "usd",
+          "venue": "aave",
+          "venue_name": "Aave v3",
+          "risk_controls": {
+            "position_size_limit": "80%",
+            "slippage_tolerance": "0.1%"
+          },
+          "follow_up": "monitor liquidation threshold",
+          "reasoning": "Borrow 5000 USDC against 2 ETH collateral (6000 USD value at 3000 ETH/USD). Loan-to-value ratio is ~83.3%, which is below Aave's max LTV for ETH (~80% for stablecoins). Adjust size or add more collateral if needed.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify loan-to-value ratio and liquidation risk before execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L5-005",
+      "raw": "{\"intent\": \"stake\", \"order_type\": \"liquid_staking\", \"asset\": \"ETH\", \"size\": 10, \"unit\": \"ETH\", \"venue\": \"lido\", \"venue_name\": \"Lido\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"verify stETH receipt\", \"reasoning\": \"Liquid staking 10 ETH via Lido for stETH tokens with minimal slippage and current gas limit\", \"requires_follow_up\": true, \"follow_up_description\": \"Confirm stETH tokens are received in wallet and track staking rewards\"}",
+      "durationMs": 2827,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.08,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "liquid_staking",
+          "asset": "ETH",
+          "size": 10,
+          "unit": "ETH",
+          "venue": "lido",
+          "venue_name": "Lido",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "verify stETH receipt",
+          "reasoning": "Liquid staking 10 ETH via Lido for stETH tokens with minimal slippage and current gas limit",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm stETH tokens are received in wallet and track staking rewards"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L5-001",
+      "raw": "{\"intent\": \"add_liquidity\", \"order_type\": \"concentrated_liquidity\", \"asset\": \"ETH/USDC\", \"size\": \"10000\", \"unit\": \"usd\", \"venue\": \"dex\", \"venue_name\": \"uniswap_v3\", \"price\": \"range:2700-2900\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"40 gwei\", \"position_size_limit\": \"10000 usd\"}, \"follow_up\": \"monitor pool depth and rebalance if price exits range\", \"reasoning\": \"concentrated liquidity position in ETH/USDC pool with price range $2,700–$2,900 to optimize capital efficiency while limiting impermanent loss to ≤8%\", \"requires_follow_up\": true, \"follow_up_description\": \"Rebalance or exit position if ETH price breaches $2,700 or $2,900 to maintain risk constraints\"}",
+      "durationMs": 1742,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7200714285714286,
+        "score": 0.6777142857142857,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.07200000000000001,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "add_liquidity",
+          "order_type": "concentrated_liquidity",
+          "asset": "ETH/USDC",
+          "size": "10000",
+          "unit": "usd",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "price": "range:2700-2900",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "40 gwei",
+            "position_size_limit": "10000 usd"
+          },
+          "follow_up": "monitor pool depth and rebalance if price exits range",
+          "reasoning": "concentrated liquidity position in ETH/USDC pool with price range $2,700–$2,900 to optimize capital efficiency while limiting impermanent loss to ≤8%",
+          "requires_follow_up": true,
+          "follow_up_description": "Rebalance or exit position if ETH price breaches $2,700 or $2,900 to maintain risk constraints"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L5-002",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"collateralized_debt_position\", \"asset\": \"ETH\", \"size\": \"1\", \"unit\": \"eth\", \"venue\": \"aave\", \"venue_name\": \"Aave V3\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor leverage ratio and liquidation risk\", \"requires_follow_up\": true, \"follow_up_description\": \"Track health factor and adjust collateral if needed\", \"reasoning\": \"Open 3x leveraged long ETH position by depositing 1 ETH as collateral on Aave V3 mainnet. Leverage will be applied via borrowed ETH.\"}",
+      "durationMs": 1298,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0.03923076923076923,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "collateralized_debt_position",
+          "asset": "ETH",
+          "size": "1",
+          "unit": "eth",
+          "venue": "aave",
+          "venue_name": "Aave V3",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor leverage ratio and liquidation risk",
+          "requires_follow_up": true,
+          "follow_up_description": "Track health factor and adjust collateral if needed",
+          "reasoning": "Open 3x leveraged long ETH position by depositing 1 ETH as collateral on Aave V3 mainnet. Leverage will be applied via borrowed ETH."
+        },
+        "failureReasons": [
+          "leverage_invalid_intent"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L5-003",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"ETH\", \"size\": 5, \"unit\": \"eth\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"aave\", \"risk_controls\": {\"slippage_tolerance\": \"0.3%\", \"max_gas\": \"35 gwei\"}, \"follow_up\": \"deposit into aave for yield farming\", \"requires_follow_up\": true, \"follow_up_description\": \"monitor yield farming position and rebalance if delta exposure exceeds 5%\", \"reasoning\": \"enter delta-neutral yield farming by swapping ETH to stETH via aave pool to earn yield while maintaining delta neutrality\"}",
+      "durationMs": 1402,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6656209150326797,
+        "score": 0.6305882352941177,
+        "fieldScores": {
+          "intent": 0.010588235294117648,
+          "order_type": 0.02,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0.06,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 5,
+          "unit": "eth",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "35 gwei"
+          },
+          "follow_up": "deposit into aave for yield farming",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor yield farming position and rebalance if delta exposure exceeds 5%",
+          "reasoning": "enter delta-neutral yield farming by swapping ETH to stETH via aave pool to earn yield while maintaining delta neutrality"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L5-004",
+      "raw": "{\"intent\": \"borrow\", \"order_type\": \"collateralized_debt_position\", \"asset\": \"USDC\", \"size\": \"5000\", \"unit\": \"usd\", \"venue\": \"lending_protocol\", \"venue_name\": \"aave\", \"risk_controls\": {\"slippage_tolerance\": \"0%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor collateralization ratio\", \"reasoning\": \"borrow 5000 USDC against 2 ETH collateral at current ETH price of 3000 USD\", \"requires_follow_up\": true, \"follow_up_description\": \"Ensure collateralization ratio remains above liquidation threshold after borrow\"}",
+      "durationMs": 1285,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9027163461538462,
+        "score": 0.8496153846153847,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.01961538461538462,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "borrow",
+          "order_type": "collateralized_debt_position",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "venue": "lending_protocol",
+          "venue_name": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor collateralization ratio",
+          "reasoning": "borrow 5000 USDC against 2 ETH collateral at current ETH price of 3000 USD",
+          "requires_follow_up": true,
+          "follow_up_description": "Ensure collateralization ratio remains above liquidation threshold after borrow"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L5-005",
+      "raw": "{\"intent\": \"stake\", \"order_type\": \"liquid_staking\", \"asset\": \"ETH\", \"size\": \"10\", \"unit\": \"eth\", \"venue\": \"lido\", \"venue_name\": \"Lido DAO\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"confirm stETH receipt\", \"reasoning\": \"stake 10 ETH to receive stETH tokens with minimal slippage and gas cost\"}",
+      "durationMs": 1274,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9600000000000002,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.12,
+          "venue_name": 0.04,
+          "risk_controls": 0.06,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "stake",
+          "order_type": "liquid_staking",
+          "asset": "ETH",
+          "size": "10",
+          "unit": "eth",
+          "venue": "lido",
+          "venue_name": "Lido DAO",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm stETH receipt",
+          "reasoning": "stake 10 ETH to receive stETH tokens with minimal slippage and gas cost"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

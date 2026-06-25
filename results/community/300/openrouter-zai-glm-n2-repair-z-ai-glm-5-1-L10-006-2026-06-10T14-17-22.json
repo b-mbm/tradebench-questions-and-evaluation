@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T14:18:21.555Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L10-006-2026-06-10T14-17-22",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-006"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-006",
+      "raw": "{\n\"intent\": \"convert_to_cvx\",\n\"expected_value\": 1200000,\n\"reasoning\": \"Option 3 dominates. Convert 5M veCRV to CVX at t=0, forfeiting bribes. Expected CVX value: 0.6×7M + 0.4×5M = 6.2M, profit 1.2M. Option 1 (Votium): 12-week compounded bribes ~260K + expected veCRV 4.1M = 4.36M, loss -640K. Option 2 (Convex): rewards ~188K + expected position 4.1M = 4.288M, loss -712K. The 40% CVX pump on 60% probability far outweighs forfeited bribe income.\"\n}",
+      "durationMs": 27748,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "convert_to_cvx",
+          "expected_value": 1200000,
+          "reasoning": "Option 3 dominates. Convert 5M veCRV to CVX at t=0, forfeiting bribes. Expected CVX value: 0.6×7M + 0.4×5M = 6.2M, profit 1.2M. Option 1 (Votium): 12-week compounded bribes ~260K + expected veCRV 4.1M = 4.36M, loss -640K. Option 2 (Convex): rewards ~188K + expected position 4.1M = 4.288M, loss -712K. The 40% CVX pump on 60% probability far outweighs forfeited bribe income."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

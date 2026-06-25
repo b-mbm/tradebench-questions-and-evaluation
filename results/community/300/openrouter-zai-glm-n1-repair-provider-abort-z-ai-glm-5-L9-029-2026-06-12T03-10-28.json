@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-12T03:10:30.444Z",
+  "label": "openrouter-zai-glm-n1-repair-provider-abort-z-ai-glm-5-L9-029-2026-06-12T03-10-28",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-029"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-029",
+      "raw": "{\"intent\":\"no_action\",\"expected_value\":22.5,\"reasoning\":\"Basis capture 0.35% + funding 0.031%×15=0.465% over 5d = 0.815% gross. Costs: fees 0.12% + fixed $950/$4M=0.024% + borrow 5.5%×5/365=0.075% + buffer $4k/$2M=0.2% = 0.419% net. Annualized: 0.396%×365/5=28.9% but slippage 0.35% at limit reduces to 22.5% APR, below 25% threshold.\"}",
+      "durationMs": 1750,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 22.5,
+          "reasoning": "Basis capture 0.35% + funding 0.031%×15=0.465% over 5d = 0.815% gross. Costs: fees 0.12% + fixed $950/$4M=0.024% + borrow 5.5%×5/365=0.075% + buffer $4k/$2M=0.2% = 0.419% net. Annualized: 0.396%×365/5=28.9% but slippage 0.35% at limit reduces to 22.5% APR, below 25% threshold."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "runAt": "2026-06-11T17:44:06.383Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-077-2026-06-11T17-42-32",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-077"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-077",
+      "raw": "{\n  \"intent\": \"bridge_collateral\",\n  \"chosen_strategy\": \"Cost-minimizing multi-route bridge allocation under deadline and concentration constraints\",\n  \"route_allocation_usd\": {\n    \"Circle_CCTP\": 420000,\n    \"Across\": 390000,\n    \"Stargate\": 250000,\n    \"CEX_internal\": 340000,\n    \"Legacy_PoS\": 0\n  },\n  \"expected_arrival_usd\": 1398921.8,\n  \"expected_cost_usd\": 1078.2,\n  \"max_route_share_pct\": 30,\n  \"arrival_minutes\": 30,\n  \"self_check\": \"Verified: total=$1.4M allocated, all routes finish by 30min<34min deadline, max concentration 30%<33% threshold, all allocations within route capacities, cost-optimal route selection confirmed\",\n  \"reasoning\": \"Ranked routes by total cost (fee+failure drag): Circle_CCTP(0.055%)<CEX_internal(0.064%)<Across(0.089%)<Stargate(0.113%)<Legacy_PoS(0.178%). Allocated full capacity of top 3 cheapest routes ($420k+$340k+$390k=$1.15M) plus $250k from Stargate to reach $1.4M. Slowest route CEX_internal arrives at 30min, within 34min deadline. Max concentration is Circle_CCTP at 30% of total, satisfying the 33% cap.\"\n}",
+      "durationMs": 93829,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.75,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_allocation_usd.Circle_CCTP": 1,
+          "route_allocation_usd.Across": 1,
+          "route_allocation_usd.Stargate": 1,
+          "route_allocation_usd.CEX_internal": 1,
+          "route_allocation_usd.Legacy_PoS": 1,
+          "expected_arrival_usd": 1,
+          "expected_cost_usd": 1,
+          "max_route_share_pct": 1,
+          "arrival_minutes": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "bridge_collateral",
+          "chosen_strategy": "Cost-minimizing multi-route bridge allocation under deadline and concentration constraints",
+          "route_allocation_usd": {
+            "Circle_CCTP": 420000,
+            "Across": 390000,
+            "Stargate": 250000,
+            "CEX_internal": 340000,
+            "Legacy_PoS": 0
+          },
+          "expected_arrival_usd": 1398921.8,
+          "expected_cost_usd": 1078.2,
+          "max_route_share_pct": 30,
+          "arrival_minutes": 30,
+          "self_check": "Verified: total=$1.4M allocated, all routes finish by 30min<34min deadline, max concentration 30%<33% threshold, all allocations within route capacities, cost-optimal route selection confirmed",
+          "reasoning": "Ranked routes by total cost (fee+failure drag): Circle_CCTP(0.055%)<CEX_internal(0.064%)<Across(0.089%)<Stargate(0.113%)<Legacy_PoS(0.178%). Allocated full capacity of top 3 cheapest routes ($420k+$340k+$390k=$1.15M) plus $250k from Stargate to reach $1.4M. Slowest route CEX_internal arrives at 30min, within 34min deadline. Max concentration is Circle_CCTP at 30% of total, satisfying the 33% cap."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,633 @@
+{
+  "runAt": "2026-06-09T12:46:25.352Z",
+  "label": "openrouter-moonshot-kimi-family-300q-l2-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2-thinking",
+    "moonshotai/kimi-k2.6",
+    "moonshotai/kimi-k2.5",
+    "moonshotai/kimi-k2-0905"
+  ],
+  "questionIds": [
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L2-001",
+      "raw": "{\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"DAI\",\"size\":\"5000\",\"unit\":\"USDC\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"Swap 5000 USDC for DAI on Ethereum mainnet via Uniswap V3 stablecoin pool\"}",
+      "durationMs": 37495,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "USDC",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "Swap 5000 USDC for DAI on Ethereum mainnet via Uniswap V3 stablecoin pool"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L2-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"dex\",\"asset\":\"PEPE\",\"size\":\"100000\",\"unit\":\"pepe\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"15%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"monitor pool depth\",\"reasoning\":\"PEPE is a meme token best traded on Uniswap mainnet; 15% slippage tolerance suggests low liquidity pool\",\"requires_follow_up\":true,\"follow_up_description\":\"Transaction requires monitoring due to high slippage tolerance and potential front-running on mainnet\"}",
+      "durationMs": 19314,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8192735042735044,
+        "score": 0.7761538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "pepe",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "PEPE is a meme token best traded on Uniswap mainnet; 15% slippage tolerance suggests low liquidity pool",
+          "requires_follow_up": true,
+          "follow_up_description": "Transaction requires monitoring due to high slippage tolerance and potential front-running on mainnet"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L2-003",
+      "raw": "{\"intent\": \"buy\", \"order_type\": \"dex\", \"asset\": \"MATIC\", \"size\": \"1000\", \"unit\": \"matic\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"0.5%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor transaction confirmation\", \"reasoning\": \"DEX swap avoids CEX deposit/withdrawal gas costs; current network gas at 30 gwei; 100",
+      "durationMs": 14404,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4615,
+        "score": 0.7100000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0,
+          "follow_up": 0.02,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "MATIC",
+          "size": "1000",
+          "unit": "matic",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "slippage_tolerance": "0.5%",
+          "max_gas": "30 gwei",
+          "follow_up": "monitor transaction confirmation",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L2-004",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"USDC\", \"size\": \"50000\", \"unit\": \"usd\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap_v3\", \"risk_controls\": {\"slippage_tolerance\": \"0.3%\", \"max_gas\": \"30 gwei\", \"position_size_limit\": \"2% of pool liquidity\"}, \"follow_up\": \"analyze pool depth and routing\", \"reasoning\": \"Pre-execution liquidity analysis for 50k USDC->WETH swap. At ETH=$3000, this is ~16.67 WETH. Need to verify DEX pool depth exceeds $2.5M TVL to maintain slippage below 0.3%. Recommend checking Uniswap V3 0.05% and 0.3% fee tiers, Curve, and Balancer pools. Consider DEX aggregator for optimal routing.\", \"requires_follow_up\": true, \"follow_up_description\": \"1) Query USDC/WETH liquidity on Uniswap V3 (check 0.05% and 0.3% fee tiers), Curve, and Balancer. 2) Calculate expected slippage for 50k swap. 3) If slippage >0.3%, recommend splitting into 3-5 tranches. 4) Check 24hr volume to assess pool activity. 5) Enable MEV protection (Flashbots or MEV Blocker). 6) Compare routing via 1inch/CowSwap vs direct DEX. 7) Verify no abnormal price impact or oracle deviation.\"}",
+      "durationMs": 8830,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6187586805555556,
+        "score": 0.5823611111111111,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.07777777777777778,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "50000",
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "2% of pool liquidity"
+          },
+          "follow_up": "analyze pool depth and routing",
+          "reasoning": "Pre-execution liquidity analysis for 50k USDC->WETH swap. At ETH=$3000, this is ~16.67 WETH. Need to verify DEX pool depth exceeds $2.5M TVL to maintain slippage below 0.3%. Recommend checking Uniswap V3 0.05% and 0.3% fee tiers, Curve, and Balancer pools. Consider DEX aggregator for optimal routing.",
+          "requires_follow_up": true,
+          "follow_up_description": "1) Query USDC/WETH liquidity on Uniswap V3 (check 0.05% and 0.3% fee tiers), Curve, and Balancer. 2) Calculate expected slippage for 50k swap. 3) If slippage >0.3%, recommend splitting into 3-5 tranches. 4) Check 24hr volume to assess pool activity. 5) Enable MEV protection (Flashbots or MEV Blocker). 6) Compare routing via 1inch/CowSwap vs direct DEX. 7) Verify no abnormal price impact or oracle deviation."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L2-001",
+      "raw": "{\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"USDC\",\"size\":\"5000\",\"unit\":\"usd\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"monitor pool depth\",\"reasoning\":\"route via largest USDC/DAI pool on Ethereum mainnet for stablecoin swap\",\"requires_follow_up\":false}",
+      "durationMs": 1007,
+      "grade": {
+        "pass": false,
+        "confidence": 0.733125,
+        "score": 0.6900000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest USDC/DAI pool on Ethereum mainnet for stablecoin swap",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L2-002",
+      "raw": "",
+      "durationMs": 180005,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L2-003",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"MATIC\",\"size\":1000,\"unit\":\"matic\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"Execute via centralized exchange to avoid Ethereum mainnet gas fees entirely, minimizing transaction costs for acquiring 1000 MATIC.\"}",
+      "durationMs": 44087,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8357142857142859,
+        "score": 0.7800000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "unit": "matic",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "Execute via centralized exchange to avoid Ethereum mainnet gas fees entirely, minimizing transaction costs for acquiring 1000 MATIC."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L2-004",
+      "raw": " {\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"USDC\",\"size\":50000,\"unit\":\"usdc\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"analyze pool depth\",\"reasoning\":\"Pre-trade liquidity analysis required for 50,000 USDC swap to WETH to assess slippage impact at current ETH price of 3000\",\"requires_follow_up\":true,\"follow_up_description\":\"Evaluate USDC/WETH pool depth, estimated slippage, and optimal routing before executing the 50,000 USDC swap\"}",
+      "durationMs": 79571,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": 50000,
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "analyze pool depth",
+          "reasoning": "Pre-trade liquidity analysis required for 50,000 USDC swap to WETH to assess slippage impact at current ETH price of 3000",
+          "requires_follow_up": true,
+          "follow_up_description": "Evaluate USDC/WETH pool depth, estimated slippage, and optimal routing before executing the 50,000 USDC swap"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L2-001",
+      "raw": "{\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"DAI\",\"size\":\"5000\",\"unit\":\"usdc\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"40 gwei\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"stablecoin swap on Ethereum mainnet; route through deepest USDC/DAI pool for minimal slippage\",\"requires_follow_up\":false}",
+      "durationMs": 42377,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "stablecoin swap on Ethereum mainnet; route through deepest USDC/DAI pool for minimal slippage",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L2-002",
+      "raw": "",
+      "durationMs": 63832,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L2-003",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"MATIC\",\"size\":\"1000\",\"venue\":\"dex\",\"venue_name\":\"1inch\",\"risk_controls\":{\"max_gas\":\"30 gwei\",\"slippage_tolerance\":\"0.5%\"},\"reasoning\":\"route via gas-optimized DEX aggregator to execute at current 30 gwei base fee without overpayment\",\"follow_up\":\"confirm fill and verify actual gas consumed\"}",
+      "durationMs": 62675,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9775000000000001,
+        "score": 0.9200000000000002,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": "1000",
+          "venue": "dex",
+          "venue_name": "1inch",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "slippage_tolerance": "0.5%"
+          },
+          "reasoning": "route via gas-optimized DEX aggregator to execute at current 30 gwei base fee without overpayment",
+          "follow_up": "confirm fill and verify actual gas consumed"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L2-004",
+      "raw": "{\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"USDC\",\"size\":\"50000\",\"unit\":\"USDC\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"40 gwei\"},\"requires_follow_up\":true,\"follow_up_description\":\"Analyze USDC/WETH pool depth on mainnet to confirm 50,000 USDC swap incurs acceptable slippage (<0.5%) before execution\",\"reasoning\":\"Trade size of 50k USDC (~16.7 WETH at current prices) requires verification of concentrated liquidity depth in Uniswap V3 USDC/WETH pools to minimize price impact\",\"follow_up\":\"analyze pool liquidity\"}",
+      "durationMs": 50836,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "50000",
+          "unit": "USDC",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Analyze USDC/WETH pool depth on mainnet to confirm 50,000 USDC swap incurs acceptable slippage (<0.5%) before execution",
+          "reasoning": "Trade size of 50k USDC (~16.7 WETH at current prices) requires verification of concentrated liquidity depth in Uniswap V3 USDC/WETH pools to minimize price impact",
+          "follow_up": "analyze pool liquidity"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"DAI\",\n  \"size\": \"5000\",\n  \"unit\": \"usdc\",\n  \"price\": \"0.999\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor fill\",\n  \"reasoning\": \"stablecoin swap near par\"\n}",
+      "durationMs": 908,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "usdc",
+          "price": "0.999",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor fill",
+          "reasoning": "stablecoin swap near par"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L2-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"market\",\"asset\":\"PEPE\",\"size\":100000,\"unit\":\"pepe\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"15%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"market order for immediate PEPE purchase with high slippage tolerance due to meme coin volatility\"}",
+      "durationMs": 5578,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9776068376068378,
+        "score": 0.9261538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": 100000,
+          "unit": "pepe",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate PEPE purchase with high slippage tolerance due to meme coin volatility"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"MATIC\",\n  \"size\": 1000,\n  \"unit\": \"matic\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"DEX swap to minimize gas fees vs CEX withdrawal\"\n}",
+      "durationMs": 540,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9775000000000001,
+        "score": 0.9200000000000002,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "unit": "matic",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "DEX swap to minimize gas fees vs CEX withdrawal"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L2-004",
+      "raw": " {\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"WETH\",\"size\":50000,\"unit\":\"USDC\",\"venue\":\"dex\",\"venue_name\":\"uniswap_v3\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"35 gwei\",\"position_size_limit\":50000},\"requires_follow_up\":true,\"follow_up_description\":\"Analyze USDC/WETH pool depth and simulate price impact for 50,000 USDC conversion before execution\",\"reasoning\":\"Large notional size requires pre-trade liquidity analysis to assess slippage on mainnet DEX pools; verify 0.3-0.5% impact threshold given 16.67 ETH equivalent at current prices\"} ",
+      "durationMs": 51329,
+      "grade": {
+        "pass": false,
+        "confidence": 0.559672619047619,
+        "score": 0.522361111111111,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.07777777777777778,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "WETH",
+          "size": 50000,
+          "unit": "USDC",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "35 gwei",
+            "position_size_limit": 50000
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Analyze USDC/WETH pool depth and simulate price impact for 50,000 USDC conversion before execution",
+          "reasoning": "Large notional size requires pre-trade liquidity analysis to assess slippage on mainnet DEX pools; verify 0.3-0.5% impact threshold given 16.67 ETH equivalent at current prices"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

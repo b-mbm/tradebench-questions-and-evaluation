@@ -1,0 +1,1045 @@
+{
+  "runAt": "2026-06-09T02:43:19.066Z",
+  "label": "openrouter-mistral-family-300q-l8-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "mistralai/mistral-medium-3-5",
+    "mistralai/mistral-small-2603"
+  ],
+  "questionIds": [
+    "L8-001",
+    "L8-002",
+    "L8-003",
+    "L8-004",
+    "L8-005",
+    "L8-006",
+    "L8-007",
+    "L8-008",
+    "L8-009",
+    "L8-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-001",
+      "raw": "{\"intent\": \"deploy\", \"order_type\": \"yield_strategy\", \"asset\": \"USDC\", \"size\": 5000000, \"venue\": \"multi_venue\", \"venue_name\": \"Pendle + Convex\", \"expected_value\": 4.87, \"unit\": \"usd\", \"allocation\": {\"pendle_pt_steth\": 3500000, \"convex_curve_3pool\": 1500000}, \"reasoning\": \"Maximize yield under constraints: 70% Pendle PT-stETH (3% discount over 90 days = ~12.2% annualized) + 30% Convex (4.2% * 2.5x = 10.5% APR). Net yield after costs (slippage, gas, vlCVX) and constraints (35% min Curve, 70% max Pendle) results in ~4.87% annualized net yield.\"}",
+      "durationMs": 1804,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.010434782608695655,
+          "order_type": 0.007894736842105265,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.002999999999999999,
+          "venue_name": 0.027692307692307693,
+          "expected_value": 0,
+          "unit": 0.001428571428571428,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "deploy",
+          "order_type": "yield_strategy",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "multi_venue",
+          "venue_name": "Pendle + Convex",
+          "expected_value": 4.87,
+          "unit": "usd",
+          "allocation": {
+            "pendle_pt_steth": 3500000,
+            "convex_curve_3pool": 1500000
+          },
+          "reasoning": "Maximize yield under constraints: 70% Pendle PT-stETH (3% discount over 90 days = ~12.2% annualized) + 30% Convex (4.2% * 2.5x = 10.5% APR). Net yield after costs (slippage, gas, vlCVX) and constraints (35% min Curve, 70% max Pendle) results in ~4.87% annualized net yield."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range",
+          "multi_protocol_liquidity_constraint"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-002",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"ETH\", \"size\": 5000000, \"unit\": \"usdc\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap\", \"risk_controls\": {\"slippage_tolerance\": \"0.3%\", \"max_gas\": \"170 gwei\"}, \"follow_up\": \"monitor MEV protection and retry if needed\", \"reasoning\": \"Strategy A (Flashbots Protect) has lower expected total cost ($1,038.60) vs Strategy B ($22,815.00). Calculations: A: gas=(320000*(150+2)*2850/1e9)=145.56, fees=180+(0.04*65)=182.60, MEV loss=22000*(1-0.985)=330, total=145.56+182.60+330=658.16 + slippage (5000000*0.003=15000) = 15658.16. B: gas=(180000*(150+20)*2850/1e9)=89.37, fees=0, MEV loss=22000, total=89.37+22000=22089.37 + slippage (15000) = 37089.37. Correction: Slippage is constant and not part of MEV/gas comparison. Recalculating without slippage: A: 145.56+182.60+330=658.16. B: 89.37+22000=22089.37. Strategy A is optimal.\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify Flashbots Protect execution and retry if failed\"}",
+      "durationMs": 7271,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "expected_total_cost": 0,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 5000000,
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "170 gwei"
+          },
+          "follow_up": "monitor MEV protection and retry if needed",
+          "reasoning": "Strategy A (Flashbots Protect) has lower expected total cost ($1,038.60) vs Strategy B ($22,815.00). Calculations: A: gas=(320000*(150+2)*2850/1e9)=145.56, fees=180+(0.04*65)=182.60, MEV loss=22000*(1-0.985)=330, total=145.56+182.60+330=658.16 + slippage (5000000*0.003=15000) = 15658.16. B: gas=(180000*(150+20)*2850/1e9)=89.37, fees=0, MEV loss=22000, total=89.37+22000=22089.37 + slippage (15000) = 37089.37. Correction: Slippage is constant and not part of MEV/gas comparison. Recalculating without slippage: A: 145.56+182.60+330=658.16. B: 89.37+22000=22089.37. Strategy A is optimal.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify Flashbots Protect execution and retry if failed"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-003",
+      "raw": "{\n  \"intent\": \"rebalance\",\n  \"order_type\": \"portfolio\",\n  \"asset\": \"BTC, ETH, Bonds\",\n  \"size\": 1000000,\n  \"venue\": \"multi-venue\",\n  \"portfolio_volatility\": 0.4123,\n  \"risk_contributions\": {\n    \"btc\": 38.5,\n    \"eth\": 52.1,\n    \"bonds\": 9.4\n  },\n  \"btc_contribution_pct\": 38.5,\n  \"eth_contribution_pct\": 52.1,\n  \"bonds_contribution_pct\": 9.4,\n  \"rebalancing_required\": true,\n  \"target_allocations_usd\": {\n    \"btc\": 333333,\n    \"eth\": 333333,\n    \"bonds\": 333334\n  },\n  \"target_btc_usd\": 333333,\n  \"target_eth_usd\": 333333,\n  \"target_bonds_usd\": 333334,\n  \"transactions\": [\n    {\n      \"intent\": \"sell\",\n      \"order_type\": \"market\",\n      \"asset\": \"BTC\",\n      \"size\": 66667,\n      \"unit\": \"usd\",\n      \"venue\": \"coinbase\",\n      \"venue_name\": \"Coinbase Pro\"\n    },\n    {\n      \"intent\": \"sell\",\n      \"order_type\": \"market\",\n      \"asset\": \"ETH\",\n      \"size\": 16667,\n      \"unit\": \"usd\",\n      \"venue\": \"coinbase\",\n      \"venue_name\": \"Coinbase Pro\"\n    },\n    {\n      \"intent\": \"buy\",\n      \"order_type\": \"market\",\n      \"asset\": \"Bonds\",\n      \"size\": 83334,\n      \"unit\": \"usd\",\n      \"venue\": \"interactive_brokers\",\n      \"venue_name\": \"Interactive Brokers\"\n    }\n  ],\n  \"btc_sell_amount\": 66667,\n  \"eth_sell_amount\": 16667,\n  \"bonds_buy_amount\": 83334,\n  \"btc_post_slippage\": 66333.665,\n  \"eth_post_slippage\": 16616.6665,\n  \"bonds_post_slippage\": 83250.666,\n  \"reasoning\": \"Calculated risk contributions using correlation-aware portfolio variance. BTC and ETH exceed ±5pp band (52.1% and 38.5% vs 33.33% target). Target allocations set to equal risk contributions. Trades rounded to nearest $1k, post-slippage amounts computed.\"\n}",
+      "durationMs": 3490,
+      "grade": {
+        "pass": true,
+        "confidence": 0.834125874125874,
+        "score": 0.8068181818181818,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "portfolio",
+          "asset": "BTC, ETH, Bonds",
+          "size": 1000000,
+          "venue": "multi-venue",
+          "portfolio_volatility": 0.4123,
+          "risk_contributions": {
+            "btc": 38.5,
+            "eth": 52.1,
+            "bonds": 9.4
+          },
+          "btc_contribution_pct": 38.5,
+          "eth_contribution_pct": 52.1,
+          "bonds_contribution_pct": 9.4,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 333333,
+            "eth": 333333,
+            "bonds": 333334
+          },
+          "target_btc_usd": 333333,
+          "target_eth_usd": 333333,
+          "target_bonds_usd": 333334,
+          "transactions": [
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "BTC",
+              "size": 66667,
+              "unit": "usd",
+              "venue": "coinbase",
+              "venue_name": "Coinbase Pro"
+            },
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "ETH",
+              "size": 16667,
+              "unit": "usd",
+              "venue": "coinbase",
+              "venue_name": "Coinbase Pro"
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "Bonds",
+              "size": 83334,
+              "unit": "usd",
+              "venue": "interactive_brokers",
+              "venue_name": "Interactive Brokers"
+            }
+          ],
+          "btc_sell_amount": 66667,
+          "eth_sell_amount": 16667,
+          "bonds_buy_amount": 83334,
+          "btc_post_slippage": 66333.665,
+          "eth_post_slippage": 16616.6665,
+          "bonds_post_slippage": 83250.666,
+          "reasoning": "Calculated risk contributions using correlation-aware portfolio variance. BTC and ETH exceed ±5pp band (52.1% and 38.5% vs 33.33% target). Target allocations set to equal risk contributions. Trades rounded to nearest $1k, post-slippage amounts computed."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-004",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"order_type\": \"deposit\",\n  \"asset\": \"stETH\",\n  \"size\": 100,\n  \"unit\": \"eth\",\n  \"venue\": \"eigenlayer\",\n  \"venue_name\": \"EigenLayer AVS Restaking\",\n  \"rationale\": \"EigenLayer provides the highest net APR after borrowing costs while meeting all constraints (collateral timing, slashing risk, and net APR target). Symbiotic fails slashing risk, and Lido-only fails net APR target.\",\n  \"decision_factors\": \"Option A: Net APR 1.2% (4.2% + 2.8% - 5.5% * 50/100), slashing risk 3% (<4%), lock 7 days (<8). Option B: Slashing risk 5% (>4%) fails. Option C: Net APR -1.3% (<1%) fails.\",\n  \"total_staking_apr\": 7.0,\n  \"borrow_rate\": 5.5,\n  \"effective_borrow_cost_on_portfolio\": 2.75,\n  \"net_apr_after_borrow\": 1.2,\n  \"meets_net_apr_target\": true,\n  \"slashing_risk_pct\": 3,\n  \"within_risk_tolerance\": true,\n  \"liquidity_days\": 7,\n  \"meets_collateral_timing\": true,\n  \"option_c_net_apr_comparison\": -1.3,\n  \"option_a_outperformance\": 2.5\n}",
+      "durationMs": 2105,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7777777777777777,
+        "score": 0.7466666666666666,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.06666666666666667,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0.064,
+          "borrow_rate": 0.04,
+          "effective_borrow_cost_on_portfolio": 0.096,
+          "net_apr_after_borrow": 0,
+          "meets_net_apr_target": 0.08,
+          "slashing_risk_pct": 0.064,
+          "within_risk_tolerance": 0.08,
+          "liquidity_days": 0.04,
+          "meets_collateral_timing": 0.096,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "deposit",
+          "asset": "stETH",
+          "size": 100,
+          "unit": "eth",
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer AVS Restaking",
+          "rationale": "EigenLayer provides the highest net APR after borrowing costs while meeting all constraints (collateral timing, slashing risk, and net APR target). Symbiotic fails slashing risk, and Lido-only fails net APR target.",
+          "decision_factors": "Option A: Net APR 1.2% (4.2% + 2.8% - 5.5% * 50/100), slashing risk 3% (<4%), lock 7 days (<8). Option B: Slashing risk 5% (>4%) fails. Option C: Net APR -1.3% (<1%) fails.",
+          "total_staking_apr": 7,
+          "borrow_rate": 5.5,
+          "effective_borrow_cost_on_portfolio": 2.75,
+          "net_apr_after_borrow": 1.2,
+          "meets_net_apr_target": true,
+          "slashing_risk_pct": 3,
+          "within_risk_tolerance": true,
+          "liquidity_days": 7,
+          "meets_collateral_timing": true,
+          "option_c_net_apr_comparison": -1.3,
+          "option_a_outperformance": 2.5
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-005",
+      "raw": "{\n  \"action\": \"B\",\n  \"action_name\": \"deleverage_to_2x\",\n  \"liquidation_probabilities\": {\n    \"maintain_3x\": 0.0123,\n    \"deleverage_2x\": 0.0042,\n    \"deleverage_1_5x\": 0.0011\n  },\n  \"expected_values\": {\n    \"maintain_3x\": 41.52,\n    \"deleverage_2x\": 40.21,\n    \"deleverage_1_5x\": 35.43,\n    \"close\": 0\n  },\n  \"reasoning\": \"Calculated liquidation probabilities using barrier-hitting method for continuous monitoring with σ_weekly=0.1317 and zero drift. Expected values = weekly carry - (liquidation_probability * liquidation_penalty). Only B (2x leverage) satisfies the ≤0.5% weekly liquidation probability threshold and has the highest EV among compliant actions.\",\n  \"calculation_method\": \"barrier_hitting\"\n}",
+      "durationMs": 4195,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0123,
+            "deleverage_2x": 0.0042,
+            "deleverage_1_5x": 0.0011
+          },
+          "expected_values": {
+            "maintain_3x": 41.52,
+            "deleverage_2x": 40.21,
+            "deleverage_1_5x": 35.43,
+            "close": 0
+          },
+          "reasoning": "Calculated liquidation probabilities using barrier-hitting method for continuous monitoring with σ_weekly=0.1317 and zero drift. Expected values = weekly carry - (liquidation_probability * liquidation_penalty). Only B (2x leverage) satisfies the ≤0.5% weekly liquidation probability threshold and has the highest EV among compliant actions.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-006",
+      "raw": "{\n  \"intent\": \"fixed_yield_allocation\",\n  \"order_type\": \"market\",\n  \"asset\": \"PT-USDe\",\n  \"size\": 100000,\n  \"unit\": \"usd\",\n  \"price\": \"pool spot\",\n  \"venue\": \"pendle\",\n  \"venue_name\": \"pendle\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.15%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth and maturity\",\n  \"reasoning\": \"Pendle PT-USDe offers highest fixed APY (12.3%) for 90-day horizon, aligns with medium risk tolerance (no leverage/depeg exposure), and meets all constraints. Capital is locked but yield is guaranteed.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Track PT-USDe liquidity depth and maturity date to ensure smooth redemption.\"\n}",
+      "durationMs": 3620,
+      "grade": {
+        "pass": false,
+        "confidence": 0.13499999999999998,
+        "score": 0.3,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0,
+          "asset": 0.05,
+          "allocation": 0,
+          "venue": 0.05,
+          "maturity": 0,
+          "expected_apy": 0,
+          "selected_strategy": 0,
+          "reasoning": 0.12,
+          "risk_assessment": 0,
+          "meets_constraints": 0,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "order_type": "market",
+          "asset": "PT-USDe",
+          "size": 100000,
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "pendle",
+          "venue_name": "pendle",
+          "risk_controls": {
+            "slippage_tolerance": "0.15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth and maturity",
+          "reasoning": "Pendle PT-USDe offers highest fixed APY (12.3%) for 90-day horizon, aligns with medium risk tolerance (no leverage/depeg exposure), and meets all constraints. Capital is locked but yield is guaranteed.",
+          "requires_follow_up": true,
+          "follow_up_description": "Track PT-USDe liquidity depth and maturity date to ensure smooth redemption."
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-007",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"dex\", \"asset\": \"stETH\", \"size\": 2500, \"venue\": \"cowswap\", \"venue_name\": \"CowSwap\", \"expected_value\": -22500, \"unit\": \"USD_total_cost\", \"reasoning\": \"Notional: 2500 * 2990 = 7,475,000 USD. Common costs: base spread (0.25%) + price impact (0.35%) + dynamic widening (0.05% * (7,475,000/500,000) = 0.075%) = 0.675%. Venue costs: CowSwap fee 0.15%, MEV 0%. Total cost: 0.825% of 7,475,000 = 61,673.75 USD. However, CowSwap capacity is 2,000 stETH per batch, so 2,500 stETH requires two batches (12 + 12 = 24 min), violating the 15-min deadline. Next best: 1inch Fusion. Common costs same (0.675%). Venue costs: fee 0.05% + MEV 0.4% = 0.45%. Total cost: 1.125% of 7,475,000 = 84,093.75 USD. Uniswap V3: common costs 0.675% + fee 0.3% + MEV 0.8% = 1.775%. Total cost: 1.775% of 7,475,000 = 132,531.25 USD. 1inch Fusion is the only venue meeting all constraints (capacity, time, MEV protection). Recalculating 1inch Fusion: dynamic widening is 0.05% per $500k, so 7,475,000 / 500,000 = 14.95 → 15 increments → 0.75%. Common costs: 0.25% + 0.35% + 0.75% = 1.35%. Venue costs: 0.05% + 0.4% = 0.45%. Total: 1.8%. 1.8% of 7,475,000 = 134,550 USD. But initial dynamic widening calculation was incorrect: 7,475,000 / 500,000 = 14.95 → 14 full increments (0.05% * 14 = 0.7%). Common costs: 0.25 + 0.35 + 0.7 = 1.3%. Venue costs: 0.05 + 0.4 = 0.45%. Total: 1.75%. 1.75% of 7,475,000 = 130,812.5 USD. CowSwap cannot meet deadline. Uniswap V3: common 1.3% + fee 0.3% + MEV 0.8% = 2.4%. 2.4% of 7,475,000 = 179,400 USD. 1inch Fusion is optimal. Final calculation: 1.75% of 7,475,000 = 130,812.5 USD. But expected_value must be negative. However, the problem states 'expected_value is the negative USD_total_cost'. So -130812.5. But the example uses integers. Rounding to nearest integer: -130813. But the problem says 'concise string summarizing how you derived the numbers'. Rechecking: dynamic widening is 0.05% per $500k. 7,475,000 / 500,000 = 14.95 → 14 increments (0.7%). Common: 0.25 + 0.35 + 0.7 = 1.3%. Venue: 0.05 + 0.4 = 0.45%. Total: 1.75%. 1.75% * 7,475,000 = 130,812.5. Negative: -130812.5. But the problem says 'numeric JSON values'. So -130812.5. But the example uses integers. However, the problem does not specify integer-only. So -130812.5. But the problem says 'concise string'. Final answer: 1inch Fusion, total cost 1.75% of notional = 130,812.5 USD, expected_value = -130812.5.\", \"constraint_awareness\": \"CowSwap fails capacity (2,000 < 2,500) and time (24 min > 15 min). Uniswap V3 has highest total cost (2.4%). 1inch Fusion meets all constraints with lowest total cost (1.75%).\"}",
+      "durationMs": 6076,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3485714285714286,
+        "score": 0.32,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "cowswap",
+          "venue_name": "CowSwap",
+          "expected_value": -22500,
+          "unit": "USD_total_cost",
+          "reasoning": "Notional: 2500 * 2990 = 7,475,000 USD. Common costs: base spread (0.25%) + price impact (0.35%) + dynamic widening (0.05% * (7,475,000/500,000) = 0.075%) = 0.675%. Venue costs: CowSwap fee 0.15%, MEV 0%. Total cost: 0.825% of 7,475,000 = 61,673.75 USD. However, CowSwap capacity is 2,000 stETH per batch, so 2,500 stETH requires two batches (12 + 12 = 24 min), violating the 15-min deadline. Next best: 1inch Fusion. Common costs same (0.675%). Venue costs: fee 0.05% + MEV 0.4% = 0.45%. Total cost: 1.125% of 7,475,000 = 84,093.75 USD. Uniswap V3: common costs 0.675% + fee 0.3% + MEV 0.8% = 1.775%. Total cost: 1.775% of 7,475,000 = 132,531.25 USD. 1inch Fusion is the only venue meeting all constraints (capacity, time, MEV protection). Recalculating 1inch Fusion: dynamic widening is 0.05% per $500k, so 7,475,000 / 500,000 = 14.95 → 15 increments → 0.75%. Common costs: 0.25% + 0.35% + 0.75% = 1.35%. Venue costs: 0.05% + 0.4% = 0.45%. Total: 1.8%. 1.8% of 7,475,000 = 134,550 USD. But initial dynamic widening calculation was incorrect: 7,475,000 / 500,000 = 14.95 → 14 full increments (0.05% * 14 = 0.7%). Common costs: 0.25 + 0.35 + 0.7 = 1.3%. Venue costs: 0.05 + 0.4 = 0.45%. Total: 1.75%. 1.75% of 7,475,000 = 130,812.5 USD. CowSwap cannot meet deadline. Uniswap V3: common 1.3% + fee 0.3% + MEV 0.8% = 2.4%. 2.4% of 7,475,000 = 179,400 USD. 1inch Fusion is optimal. Final calculation: 1.75% of 7,475,000 = 130,812.5 USD. But expected_value must be negative. However, the problem states 'expected_value is the negative USD_total_cost'. So -130812.5. But the example uses integers. Rounding to nearest integer: -130813. But the problem says 'concise string summarizing how you derived the numbers'. Rechecking: dynamic widening is 0.05% per $500k. 7,475,000 / 500,000 = 14.95 → 14 increments (0.7%). Common: 0.25 + 0.35 + 0.7 = 1.3%. Venue: 0.05 + 0.4 = 0.45%. Total: 1.75%. 1.75% * 7,475,000 = 130,812.5. Negative: -130812.5. But the problem says 'numeric JSON values'. So -130812.5. But the example uses integers. However, the problem does not specify integer-only. So -130812.5. But the problem says 'concise string'. Final answer: 1inch Fusion, total cost 1.75% of notional = 130,812.5 USD, expected_value = -130812.5.",
+          "constraint_awareness": "CowSwap fails capacity (2,000 < 2,500) and time (24 min > 15 min). Uniswap V3 has highest total cost (2.4%). 1inch Fusion meets all constraints with lowest total cost (1.75%)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-008",
+      "raw": "{\"intent\": \"rebalance\", \"order_type\": \"multi_leg\", \"asset\": \"BTC, ETH, GLD, TLT\", \"size\": \"0.5 BTC, 8 ETH, 1200 GLD, 2400 TLT\", \"unit\": \"native\", \"venue\": \"interactive_brokers\", \"venue_name\": \"Interactive Brokers\", \"risk_controls\": {}, \"follow_up\": \"verify T+2 settlement for all legs\", \"reasoning\": \"Interactive Brokers supports all assets with 0.1% fee, minimizing total fees to $699.00 (well under $2,000 limit). Coinbase would charge 0.6% on BTC/ETH, increasing fees to $271.80 for crypto legs alone, totaling $970.80 when combined with IB for GLD/TLT. Full IB execution is cheaper and meets all constraints.\", \"requires_follow_up\": true, \"follow_up_description\": \"Confirm all trades settle within same trading day window despite T+2 settlement\"}",
+      "durationMs": 4047,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0,
+          "execution_plan": 0,
+          "fee_summary": 0,
+          "rationale": 0,
+          "constraints_met": 0
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "multi_leg",
+          "asset": "BTC, ETH, GLD, TLT",
+          "size": "0.5 BTC, 8 ETH, 1200 GLD, 2400 TLT",
+          "unit": "native",
+          "venue": "interactive_brokers",
+          "venue_name": "Interactive Brokers",
+          "risk_controls": {},
+          "follow_up": "verify T+2 settlement for all legs",
+          "reasoning": "Interactive Brokers supports all assets with 0.1% fee, minimizing total fees to $699.00 (well under $2,000 limit). Coinbase would charge 0.6% on BTC/ETH, increasing fees to $271.80 for crypto legs alone, totaling $970.80 when combined with IB for GLD/TLT. Full IB execution is cheaper and meets all constraints.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm all trades settle within same trading day window despite T+2 settlement"
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "l8_008_missing_execution_plan"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-009",
+      "raw": "{\"decision\": \"execute\", \"reasoning\": \"Cash-and-carry arbitrage is profitable: ETH-PERP trades at $8 premium with positive funding rate. Split capital to buy spot ETH and short ETH-PERP. Funding revenue exceeds entry costs, with positive annualized ROI.\", \"execution\": {\"step_1\": \"transfer_50000_usdt_to_binance_for_margin\", \"step_2\": \"buy_20.40816326530612_eth_spot_coinbase_maker\", \"step_3\": \"short_20.40816326530612_eth_perp_binance_maker\", \"delta_neutral\": true, \"exit_trigger\": \"funding rate turns negative or spread closes\"}}",
+      "durationMs": 1496,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5584518167456556,
+        "score": 0.4786729857819905,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.028672985781990516,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": "Cash-and-carry arbitrage is profitable: ETH-PERP trades at $8 premium with positive funding rate. Split capital to buy spot ETH and short ETH-PERP. Funding revenue exceeds entry costs, with positive annualized ROI.",
+          "execution": {
+            "step_1": "transfer_50000_usdt_to_binance_for_margin",
+            "step_2": "buy_20.40816326530612_eth_spot_coinbase_maker",
+            "step_3": "short_20.40816326530612_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding rate turns negative or spread closes"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L8-010",
+      "raw": "{\"intent\": \"collar\", \"order_type\": \"options\", \"asset\": \"BTC\", \"size\": 10, \"call_strike\": 49500, \"put_strike\": 42750, \"net_cost_per_btc\": -500, \"venue\": \"deribit\", \"venue_name\": \"Deribit\", \"expiry_days\": 30, \"reasoning\": \"Selected 10% OTM call (49500) and 5% OTM put (42750) to balance premium: +420 (call) -920 (put) = -500 net debit per BTC. This minimizes economic cost while providing 5% downside protection and preserving 10% upside participation, avoiding overpriced puts and maintaining reasonable upside.\"}",
+      "durationMs": 1387,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7990000000000002,
+        "score": 0.7520000000000001,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.1,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.08000000000000002,
+          "net_cost_per_btc": 0,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "collar",
+          "order_type": "options",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 42750,
+          "net_cost_per_btc": -500,
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "expiry_days": 30,
+          "reasoning": "Selected 10% OTM call (49500) and 5% OTM put (42750) to balance premium: +420 (call) -920 (put) = -500 net debit per BTC. This minimizes economic cost while providing 5% downside protection and preserving 10% upside participation, avoiding overpriced puts and maintaining reasonable upside."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-001",
+      "raw": "{\"intent\": \"allocate\", \"order_type\": \"strategic\", \"asset\": \"USDC\", \"size\": 5000000, \"venue\": \"multi\", \"venue_name\": \"pendle_convex\", \"expected_value\": 5078125, \"unit\": \"usd\", \"allocation\": {\"pendle_pt_steth\": 3500000, \"convex_curve_3pool\": 1500000}, \"reasoning\": \"Optimal allocation balances 70% in Pendle PT-stETH (3% discount + stETH yield) and 30% in Convex-Boosted Curve 3pool (4.2% * 2.5 = 10.5% APR) while respecting constraints. Pendle allocation leverages discount for stETH appreciation; Curve allocation meets 35% minimum. Net yield calculation accounts for slippage, gas, and vlCVX opportunity cost.\"}",
+      "durationMs": 1591,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.01391304347826087,
+          "order_type": 0.005263157894736842,
+          "asset": 0.03,
+          "size": 0.03,
+          "venue": 0.016666666666666666,
+          "venue_name": 0.03,
+          "expected_value": 0,
+          "unit": 0.001428571428571428,
+          "allocation": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "strategic",
+          "asset": "USDC",
+          "size": 5000000,
+          "venue": "multi",
+          "venue_name": "pendle_convex",
+          "expected_value": 5078125,
+          "unit": "usd",
+          "allocation": {
+            "pendle_pt_steth": 3500000,
+            "convex_curve_3pool": 1500000
+          },
+          "reasoning": "Optimal allocation balances 70% in Pendle PT-stETH (3% discount + stETH yield) and 30% in Convex-Boosted Curve 3pool (4.2% * 2.5 = 10.5% APR) while respecting constraints. Pendle allocation leverages discount for stETH appreciation; Curve allocation meets 35% minimum. Net yield calculation accounts for slippage, gas, and vlCVX opportunity cost."
+        },
+        "failureReasons": [
+          "multi_protocol_expected_value_out_of_bounds",
+          "multi_protocol_expected_value_out_of_range",
+          "multi_protocol_liquidity_constraint"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-002",
+      "raw": "{\"intent\": \"execute_mev_defense\", \"strategy\": \"A\", \"expected_total_cost\": 324.2, \"cost_breakdown\": {\"gas\": 19.2, \"fees\": 180, \"expected_mev_loss\": 330}, \"reasoning\": \"Strategy A: Expected cost = setup fee ($180) + gas cost (320k units * 152 gwei * 1e-9 ETH/gwei * $2850) + expected MEV loss ($22k * 1.5% residual). Retry cost ($65) is negligible due to 96% success rate. Strategy B: Expected cost = gas cost (180k units * 170 gwei * 1e-9 ETH/gwei * $2850) + $22k MEV loss. Strategy A is cheaper ($324.2 vs $3,315.9).\"}",
+      "durationMs": 2020,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8999999999999999,
+        "score": 0.6,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 324.2,
+          "cost_breakdown": {
+            "gas": 19.2,
+            "fees": 180,
+            "expected_mev_loss": 330
+          },
+          "reasoning": "Strategy A: Expected cost = setup fee ($180) + gas cost (320k units * 152 gwei * 1e-9 ETH/gwei * $2850) + expected MEV loss ($22k * 1.5% residual). Retry cost ($65) is negligible due to 96% success rate. Strategy B: Expected cost = gas cost (180k units * 170 gwei * 1e-9 ETH/gwei * $2850) + $22k MEV loss. Strategy A is cheaper ($324.2 vs $3,315.9)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-003",
+      "raw": "{\"intent\": \"rebalance\", \"order_type\": \"risk_parity\", \"asset\": \"portfolio\", \"size\": 1000000, \"venue\": \"multi_venue\", \"portfolio_volatility\": 38.7298, \"risk_contributions\": {\"btc\": 0.4567, \"eth\": 0.4833, \"bonds\": 0.06}, \"btc_contribution_pct\": 45.67, \"eth_contribution_pct\": 48.33, \"bonds_contribution_pct\": 6, \"rebalancing_required\": true, \"target_allocations_usd\": {\"btc\": 333333, \"eth\": 333333, \"bonds\": 333334}, \"target_btc_usd\": 333333, \"target_eth_usd\": 333333, \"target_bonds_usd\": 333334, \"transactions\": [{\"intent\": \"sell\", \"order_type\": \"market\", \"asset\": \"BTC\", \"size\": 66667, \"venue\": \"coinbase\", \"reasoning\": \"BTC risk contribution (45.67%) exceeds upper band (38.33%). Sell $66,667 to reduce to target allocation.\"}, {\"intent\": \"sell\", \"order_type\": \"market\", \"asset\": \"ETH\", \"size\": 16667, \"venue\": \"coinbase\", \"reasoning\": \"ETH risk contribution (48.33%) exceeds upper band (38.33%). Sell $16,667 to reduce to target allocation.\"}, {\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"bonds\", \"size\": 83334, \"venue\": \"treasury_direct\", \"reasoning\": \"Bonds risk contribution (6%) is below lower band (28.33%). Buy $83,334 to increase to target allocation.\"}], \"btc_sell_amount\": 66667, \"eth_sell_amount\": 16667, \"bonds_buy_amount\": 83334, \"btc_post_slippage\": 66333.33, \"eth_post_slippage\": 16583.33, \"bonds_post_slippage\": 83250.03, \"reasoning\": \"Computed portfolio volatility (38.73%) using correlation-aware risk-parity optimization. Current risk contributions: BTC 45.67%, ETH 48.33%, Bonds 6%. All exceed trigger bands. Target allocations set to 33.33% each. Trades rounded to nearest $1,000 and adjusted for slippage (0.5% crypto, 0.1% bonds).\"}",
+      "durationMs": 3782,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9259415584415583,
+        "score": 0.8977272727272726,
+        "fieldScores": {
+          "intent": 0,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0,
+          "venue": 0,
+          "portfolio_volatility": 0.08,
+          "risk_contributions": 0,
+          "btc_contribution_pct": 0.09,
+          "eth_contribution_pct": 0.09,
+          "bonds_contribution_pct": 0,
+          "rebalancing_required": 0.1,
+          "target_allocations_usd": 0,
+          "target_btc_usd": 0.0334,
+          "target_eth_usd": 0.0333,
+          "target_bonds_usd": 0.0333,
+          "transactions": 0,
+          "btc_sell_amount": 0.0167,
+          "eth_sell_amount": 0.0167,
+          "bonds_buy_amount": 0.0166,
+          "btc_post_slippage": 0.01,
+          "eth_post_slippage": 0.01,
+          "bonds_post_slippage": 0.01,
+          "reasoning": 0.25
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "risk_parity",
+          "asset": "portfolio",
+          "size": 1000000,
+          "venue": "multi_venue",
+          "portfolio_volatility": 38.7298,
+          "risk_contributions": {
+            "btc": 0.4567,
+            "eth": 0.4833,
+            "bonds": 0.06
+          },
+          "btc_contribution_pct": 45.67,
+          "eth_contribution_pct": 48.33,
+          "bonds_contribution_pct": 6,
+          "rebalancing_required": true,
+          "target_allocations_usd": {
+            "btc": 333333,
+            "eth": 333333,
+            "bonds": 333334
+          },
+          "target_btc_usd": 333333,
+          "target_eth_usd": 333333,
+          "target_bonds_usd": 333334,
+          "transactions": [
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "BTC",
+              "size": 66667,
+              "venue": "coinbase",
+              "reasoning": "BTC risk contribution (45.67%) exceeds upper band (38.33%). Sell $66,667 to reduce to target allocation."
+            },
+            {
+              "intent": "sell",
+              "order_type": "market",
+              "asset": "ETH",
+              "size": 16667,
+              "venue": "coinbase",
+              "reasoning": "ETH risk contribution (48.33%) exceeds upper band (38.33%). Sell $16,667 to reduce to target allocation."
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "bonds",
+              "size": 83334,
+              "venue": "treasury_direct",
+              "reasoning": "Bonds risk contribution (6%) is below lower band (28.33%). Buy $83,334 to increase to target allocation."
+            }
+          ],
+          "btc_sell_amount": 66667,
+          "eth_sell_amount": 16667,
+          "bonds_buy_amount": 83334,
+          "btc_post_slippage": 66333.33,
+          "eth_post_slippage": 16583.33,
+          "bonds_post_slippage": 83250.03,
+          "reasoning": "Computed portfolio volatility (38.73%) using correlation-aware risk-parity optimization. Current risk contributions: BTC 45.67%, ETH 48.33%, Bonds 6%. All exceed trigger bands. Target allocations set to 33.33% each. Trades rounded to nearest $1,000 and adjusted for slippage (0.5% crypto, 0.1% bonds)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-004",
+      "raw": "{\"intent\": \"restake\", \"order_type\": \"protocol\", \"asset\": \"stETH\", \"size\": 100, \"venue\": \"eigenlayer\", \"venue_name\": \"EigenLayer\", \"rationale\": \"Option A (EigenLayer) maximizes net APR while meeting all constraints: total APR 7.0% (4.2% + 2.8%), net APR after borrow cost 1.5% (7.0% - 5.5%), slashing risk 3% < 4% max, lock period 7 days < 8 days collateral requirement, and high TVL ensures liquidity.\", \"decision_factors\": {\"total_staking_apr\": 7.0, \"borrow_rate\": 5.5, \"effective_borrow_cost_on_portfolio\": 2.75, \"net_apr_after_borrow\": 1.5, \"meets_net_apr_target\": true, \"slashing_risk_pct\": 3, \"within_risk_tolerance\": true, \"liquidity_days\": 7, \"meets_collateral_timing\": true, \"option_c_net_apr_comparison\": 4.2, \"option_a_outperformance\": 2.8}}",
+      "durationMs": 1783,
+      "grade": {
+        "pass": false,
+        "confidence": 0.09692307692307695,
+        "score": 0.28,
+        "fieldScores": {
+          "intent": 0.04,
+          "order_type": 0,
+          "asset": 0.04,
+          "size": 0.04,
+          "venue": 0,
+          "venue_name": 0.16,
+          "rationale": 0,
+          "decision_factors": 0,
+          "total_staking_apr": 0,
+          "borrow_rate": 0,
+          "effective_borrow_cost_on_portfolio": 0,
+          "net_apr_after_borrow": 0,
+          "meets_net_apr_target": 0,
+          "slashing_risk_pct": 0,
+          "within_risk_tolerance": 0,
+          "liquidity_days": 0,
+          "meets_collateral_timing": 0,
+          "option_c_net_apr_comparison": 0,
+          "option_a_outperformance": 0
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "order_type": "protocol",
+          "asset": "stETH",
+          "size": 100,
+          "venue": "eigenlayer",
+          "venue_name": "EigenLayer",
+          "rationale": "Option A (EigenLayer) maximizes net APR while meeting all constraints: total APR 7.0% (4.2% + 2.8%), net APR after borrow cost 1.5% (7.0% - 5.5%), slashing risk 3% < 4% max, lock period 7 days < 8 days collateral requirement, and high TVL ensures liquidity.",
+          "decision_factors": {
+            "total_staking_apr": 7,
+            "borrow_rate": 5.5,
+            "effective_borrow_cost_on_portfolio": 2.75,
+            "net_apr_after_borrow": 1.5,
+            "meets_net_apr_target": true,
+            "slashing_risk_pct": 3,
+            "within_risk_tolerance": true,
+            "liquidity_days": 7,
+            "meets_collateral_timing": true,
+            "option_c_net_apr_comparison": 4.2,
+            "option_a_outperformance": 2.8
+          }
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-005",
+      "raw": "{\"action\": \"B\", \"action_name\": \"deleverage_to_2x\", \"liquidation_probabilities\": {\"maintain_3x\": 0.0123, \"deleverage_2x\": 0.0031, \"deleverage_1_5x\": 0.0012}, \"expected_values\": {\"maintain_3x\": 43.85, \"deleverage_2x\": 41.31, \"deleverage_1_5x\": 35.54, \"close\": 0}, \"reasoning\": \"Calculated weekly liquidation probabilities using barrier-hitting formula for GBM with σ=13.17%, zero drift, and current price vs liquidation price. Maintain 3x exceeds 0.5% threshold (1.23% > 0.5%). Deleverage to 2x reduces probability to 0.31% (below threshold) with EV $41.31. Deleverage to 1.5x further reduces risk but lowers carry EV below 2x. Close position yields zero EV. Optimal action is deleverage to 2x.\", \"calculation_method\": \"barrier_hitting\"}",
+      "durationMs": 1984,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "action": 0.4,
+          "action_name": 0,
+          "liquidation_probabilities": 0.3,
+          "expected_values": 0.2,
+          "reasoning": 0.1,
+          "calculation_method": 0
+        },
+        "normalizedResponse": {
+          "action": "B",
+          "action_name": "deleverage_to_2x",
+          "liquidation_probabilities": {
+            "maintain_3x": 0.0123,
+            "deleverage_2x": 0.0031,
+            "deleverage_1_5x": 0.0012
+          },
+          "expected_values": {
+            "maintain_3x": 43.85,
+            "deleverage_2x": 41.31,
+            "deleverage_1_5x": 35.54,
+            "close": 0
+          },
+          "reasoning": "Calculated weekly liquidation probabilities using barrier-hitting formula for GBM with σ=13.17%, zero drift, and current price vs liquidation price. Maintain 3x exceeds 0.5% threshold (1.23% > 0.5%). Deleverage to 2x reduces probability to 0.31% (below threshold) with EV $41.31. Deleverage to 1.5x further reduces risk but lowers carry EV below 2x. Close position yields zero EV. Optimal action is deleverage to 2x.",
+          "calculation_method": "barrier_hitting"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-006",
+      "raw": "{\"intent\": \"fixed_yield_allocation\", \"strategy\": \"fixed_yield\", \"asset\": \"PT-USDe\", \"allocation\": 100000, \"venue\": \"pendle\", \"maturity\": \"90d\", \"expected_apy\": 12.3, \"selected_strategy\": \"C\", \"reasoning\": \"Pendle PT-USDe offers the highest fixed APY (12.3%) for the 90-day horizon, aligning with the medium risk tolerance by avoiding leverage/depeg exposure. Leveraged loops (B/D) exceed the 3% depeg risk constraint, while simple stake (A) underperforms fixed yield options.\", \"risk_assessment\": \"low\", \"meets_constraints\": true, \"alternatives_rejected\": {\"B\": \"Leveraged loop (3x) exposes capital to >3% depeg risk (liquidation threshold 80%), violating medium risk tolerance despite higher APY (11.9%).\", \"D\": \"Hybrid strategy splits capital but retains 2x leverage on 50K, exposing 50% of allocation to depeg risk (>3% threshold). Fixed yield via Pendle (C) is superior for risk-adjusted returns.\"}}",
+      "durationMs": 1991,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "intent": 0.08,
+          "strategy": 0.06,
+          "asset": 0.05,
+          "allocation": 0.08,
+          "venue": 0.05,
+          "maturity": 0.04,
+          "expected_apy": 0.25,
+          "selected_strategy": 0.2,
+          "reasoning": 0.12,
+          "risk_assessment": 0.04,
+          "meets_constraints": 0.03,
+          "alternatives_rejected": 0
+        },
+        "normalizedResponse": {
+          "intent": "fixed_yield_allocation",
+          "strategy": "fixed_yield",
+          "asset": "PT-USDe",
+          "allocation": 100000,
+          "venue": "pendle",
+          "maturity": "90d",
+          "expected_apy": 12.3,
+          "selected_strategy": "C",
+          "reasoning": "Pendle PT-USDe offers the highest fixed APY (12.3%) for the 90-day horizon, aligning with the medium risk tolerance by avoiding leverage/depeg exposure. Leveraged loops (B/D) exceed the 3% depeg risk constraint, while simple stake (A) underperforms fixed yield options.",
+          "risk_assessment": "low",
+          "meets_constraints": true,
+          "alternatives_rejected": {
+            "B": "Leveraged loop (3x) exposes capital to >3% depeg risk (liquidation threshold 80%), violating medium risk tolerance despite higher APY (11.9%).",
+            "D": "Hybrid strategy splits capital but retains 2x leverage on 50K, exposing 50% of allocation to depeg risk (>3% threshold). Fixed yield via Pendle (C) is superior for risk-adjusted returns."
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-007",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"dex\", \"asset\": \"stETH\", \"size\": 2500, \"venue\": \"cowswap\", \"venue_name\": \"CowSwap\", \"expected_value\": -11250, \"unit\": \"USD_total_cost\", \"reasoning\": \"CowSwap total cost = base_spread(0.25%) + price_impact(0.35%) + dynamic_widening(0.05% * 9 = 0.45%) + protocol_fee(0.15%) = 1.20% of $7.475M notional = $89,700. MEV extraction = 0%. Settlement time 12 min < 15 min hard deadline. Capacity 2,000 stETH insufficient for 2,500 stETH, but overflow queued to next batch (+12 min) still within 15 min window. Total cost lower than alternatives due to MEV protection and batch auction efficiency.\", \"constraint_awareness\": \"Settlement time met via batch queueing within 15 min window despite capacity constraint. All 2,500 stETH sold in single execution window. MEV extraction minimized to 0%.\"}",
+      "durationMs": 2053,
+      "grade": {
+        "pass": false,
+        "confidence": 0.3485714285714286,
+        "score": 0.32,
+        "fieldScores": {
+          "intent": 0.05,
+          "order_type": 0.05,
+          "asset": 0.05,
+          "size": 0.05,
+          "venue": 0,
+          "venue_name": 0,
+          "expected_value": 0,
+          "unit": 0.02,
+          "reasoning": 0.02,
+          "constraint_awareness": 0.16
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "stETH",
+          "size": 2500,
+          "venue": "cowswap",
+          "venue_name": "CowSwap",
+          "expected_value": -11250,
+          "unit": "USD_total_cost",
+          "reasoning": "CowSwap total cost = base_spread(0.25%) + price_impact(0.35%) + dynamic_widening(0.05% * 9 = 0.45%) + protocol_fee(0.15%) = 1.20% of $7.475M notional = $89,700. MEV extraction = 0%. Settlement time 12 min < 15 min hard deadline. Capacity 2,000 stETH insufficient for 2,500 stETH, but overflow queued to next batch (+12 min) still within 15 min window. Total cost lower than alternatives due to MEV protection and batch auction efficiency.",
+          "constraint_awareness": "Settlement time met via batch queueing within 15 min window despite capacity constraint. All 2,500 stETH sold in single execution window. MEV extraction minimized to 0%."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-008",
+      "raw": "{\"intent\": \"rebalance\", \"strategy\": \"venue_split\", \"execution_plan\": [{\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"BTC\", \"size\": 0.5, \"unit\": \"btc\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase\", \"risk_controls\": {}, \"fee_rate\": 0.006, \"notional\": 22500, \"fee_amount\": 135}, {\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"ETH\", \"size\": 8, \"unit\": \"eth\", \"venue\": \"coinbase\", \"venue_name\": \"Coinbase\", \"risk_controls\": {}, \"fee_rate\": 0.006, \"notional\": 22400, \"fee_amount\": 134.4}, {\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"GLD\", \"size\": 1200, \"unit\": \"usd\", \"venue\": \"interactive_brokers\", \"venue_name\": \"Interactive Brokers\", \"risk_controls\": {}, \"fee_rate\": 0.001, \"notional\": 222000, \"fee_amount\": 222}, {\"intent\": \"buy\", \"order_type\": \"market\", \"asset\": \"TLT\", \"size\": 2400, \"unit\": \"usd\", \"venue\": \"interactive_brokers\", \"venue_name\": \"Interactive Brokers\", \"risk_controls\": {}, \"fee_rate\": 0.001, \"notional\": 228000, \"fee_amount\": 228}], \"fee_summary\": {\"total_fees\": 719.4, \"total_notional\": 694900, \"total_execution_cost\": 695619.4}, \"rationale\": \"Split crypto (BTC/ETH) to Coinbase (0.6% fee) and ETFs (GLD/TLT) to Interactive Brokers (0.1% fee) to minimize total fees while meeting the $2,000 fee cap and same-day execution constraint.\", \"constraints_met\": {\"max_total_fees\": true, \"execution_window\": true, \"objective\": true}}",
+      "durationMs": 2816,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8015625000000001,
+        "score": 0.7125,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.30000000000000004,
+          "execution_plan": 0.3,
+          "fee_summary": 0,
+          "rationale": 0.0125,
+          "constraints_met": 0.1
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "strategy": "venue_split",
+          "execution_plan": [
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "BTC",
+              "size": 0.5,
+              "unit": "btc",
+              "venue": "coinbase",
+              "venue_name": "Coinbase",
+              "risk_controls": {},
+              "fee_rate": 0.006,
+              "notional": 22500,
+              "fee_amount": 135
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "ETH",
+              "size": 8,
+              "unit": "eth",
+              "venue": "coinbase",
+              "venue_name": "Coinbase",
+              "risk_controls": {},
+              "fee_rate": 0.006,
+              "notional": 22400,
+              "fee_amount": 134.4
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "GLD",
+              "size": 1200,
+              "unit": "usd",
+              "venue": "interactive_brokers",
+              "venue_name": "Interactive Brokers",
+              "risk_controls": {},
+              "fee_rate": 0.001,
+              "notional": 222000,
+              "fee_amount": 222
+            },
+            {
+              "intent": "buy",
+              "order_type": "market",
+              "asset": "TLT",
+              "size": 2400,
+              "unit": "usd",
+              "venue": "interactive_brokers",
+              "venue_name": "Interactive Brokers",
+              "risk_controls": {},
+              "fee_rate": 0.001,
+              "notional": 228000,
+              "fee_amount": 228
+            }
+          ],
+          "fee_summary": {
+            "total_fees": 719.4,
+            "total_notional": 694900,
+            "total_execution_cost": 695619.4
+          },
+          "rationale": "Split crypto (BTC/ETH) to Coinbase (0.6% fee) and ETFs (GLD/TLT) to Interactive Brokers (0.1% fee) to minimize total fees while meeting the $2,000 fee cap and same-day execution constraint.",
+          "constraints_met": {
+            "max_total_fees": true,
+            "execution_window": true,
+            "objective": true
+          }
+        },
+        "failureReasons": [
+          "l8_008_total_notional_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-009",
+      "raw": "{\"decision\": \"execute\", \"reasoning\": {\"capital_allocation\": {\"spot_usd\": 50000, \"margin_usd\": 50000}, \"position_size_eth\": 20.4081632653, \"perp_notional_usd\": 50000, \"funding_revenue_daily\": 12.2448979592, \"costs_entry\": 200.04, \"break_even_periods\": 16.3333333333, \"annualized_funding_rate_pct\": 3.6503503504, \"annual_roi_on_total_capital_pct\": 0.8796969697}, \"execution\": {\"step_1\": \"transfer_50000_usdt_to_binance_for_margin\", \"step_2\": \"buy_20.4081632653_eth_spot_coinbase_maker\", \"step_3\": \"short_20.4081632653_eth_perp_binance_maker\", \"delta_neutral\": true, \"exit_trigger\": \"funding_rate_flips_negative_or_position_unwinds\"}}",
+      "durationMs": 2233,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "decision": 0.25,
+          "reasoning": 0.55,
+          "execution": 0.2
+        },
+        "normalizedResponse": {
+          "decision": "execute",
+          "reasoning": {
+            "capital_allocation": {
+              "spot_usd": 50000,
+              "margin_usd": 50000
+            },
+            "position_size_eth": 20.4081632653,
+            "perp_notional_usd": 50000,
+            "funding_revenue_daily": 12.2448979592,
+            "costs_entry": 200.04,
+            "break_even_periods": 16.3333333333,
+            "annualized_funding_rate_pct": 3.6503503504,
+            "annual_roi_on_total_capital_pct": 0.8796969697
+          },
+          "execution": {
+            "step_1": "transfer_50000_usdt_to_binance_for_margin",
+            "step_2": "buy_20.4081632653_eth_spot_coinbase_maker",
+            "step_3": "short_20.4081632653_eth_perp_binance_maker",
+            "delta_neutral": true,
+            "exit_trigger": "funding_rate_flips_negative_or_position_unwinds"
+          }
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L8-010",
+      "raw": "{\"intent\": \"collar\", \"order_type\": \"multi-leg\", \"asset\": \"BTC\", \"size\": 10, \"call_strike\": 49500, \"put_strike\": 42750, \"net_cost_per_btc\": -50, \"venue\": \"deribit\", \"venue_name\": \"Deribit\", \"expiry_days\": 30, \"reasoning\": \"Selected 10% OTM call ($49,500) and 5% OTM put ($42,750) to balance cost and protection. Net debit of $50/BTC reflects put skew overpricing (put premium -$920 vs call +$420) while maintaining meaningful downside at 5% OTM and preserving upside up to 10% OTM. Opportunity cost is limited by higher cap, and total economic cost is minimized within target range.\"}",
+      "durationMs": 1923,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8172345679012347,
+        "score": 0.7742222222222224,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.022222222222222223,
+          "asset": 0.1,
+          "size": 0.1,
+          "call_strike": 0.2,
+          "put_strike": 0.08000000000000002,
+          "net_cost_per_btc": 0.1,
+          "venue": 0.0019999999999999996,
+          "venue_name": 0.02,
+          "expiry_days": 0
+        },
+        "normalizedResponse": {
+          "intent": "collar",
+          "order_type": "multi-leg",
+          "asset": "BTC",
+          "size": 10,
+          "call_strike": 49500,
+          "put_strike": 42750,
+          "net_cost_per_btc": -50,
+          "venue": "deribit",
+          "venue_name": "Deribit",
+          "expiry_days": 30,
+          "reasoning": "Selected 10% OTM call ($49,500) and 5% OTM put ($42,750) to balance cost and protection. Net debit of $50/BTC reflects put skew overpricing (put premium -$920 vs call +$420) while maintaining meaningful downside at 5% OTM and preserving upside up to 10% OTM. Opportunity cost is limited by higher cap, and total economic cost is minimized within target range."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

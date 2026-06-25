@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:41:07.402Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-021-2026-06-10T06-41-01",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-021"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-021",
+      "raw": "{\n  \"intent\": \"defend\",\n  \"expected_value\": 5550000,\n  \"reasoning\": \"Oracle-sensitive exposure = $30M (Kamino) + $18M (Drift) + $12M (Orca LP) = $60M. USDC reserves excluded. Expected loss avoided = 9.25% deviation × $60M = $5,550,000. Defense: immediately unwind or de-lever the Kamino loop and Drift margin positions, withdraw Orca LP liquidity, and shift collateral to venues using alternative price feeds before the guardian update triggers a sharp oracle correction that would liquidate borrow accounts.\"\n}",
+      "durationMs": 5150,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "defend",
+          "expected_value": 5550000,
+          "reasoning": "Oracle-sensitive exposure = $30M (Kamino) + $18M (Drift) + $12M (Orca LP) = $60M. USDC reserves excluded. Expected loss avoided = 9.25% deviation × $60M = $5,550,000. Defense: immediately unwind or de-lever the Kamino loop and Drift margin positions, withdraw Orca LP liquidity, and shift collateral to venues using alternative price feeds before the guardian update triggers a sharp oracle correction that would liquidate borrow accounts."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

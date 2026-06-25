@@ -1,0 +1,313 @@
+{
+  "runAt": "2026-06-10T02:01:59.791Z",
+  "label": "openrouter-zai-final-error-repair-n1-z-ai-glm-5-turbo",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-002",
+    "AGI-011",
+    "AGI-014",
+    "AGI-015",
+    "AGI-021",
+    "AGI-026",
+    "AGI-027",
+    "AGI-086",
+    "AGI-087",
+    "AGI-088"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-002",
+      "raw": "",
+      "durationMs": 451,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-011",
+      "raw": "{\n  \"intent\": \"withdraw\",\n  \"decision\": \"withdraw_all\",\n  \"chosen_strategy\": \"public_mempool_yieldfarm_first\",\n  \"withdrawal_sequence\": [\"YieldFarm\", \"BlueChip\", \"RiskyCoin\"],\n  \"ev_withdraw\": 375000,\n  \"ev_stay\": 166666.67,\n  \"reasoning\": \"EV_stay is (1/12)*$2M = $166,666.67. EV_withdraw is $375,000 by exiting YieldFarm (25s), BlueChip (12s), and RiskyCoin (8s) sequentially in 45s via public mempool, avoiding the attacker's RiskyCoin-first detection trigger and saving all funds without the $600 relay cost.\"\n}",
+      "durationMs": 18388,
+      "grade": {
+        "pass": false,
+        "confidence": 0.9,
+        "score": 0.4,
+        "fieldScores": {
+          "decision": 0,
+          "chosen_strategy": 0,
+          "withdrawal_sequence": 1,
+          "ev_withdraw": 1,
+          "ev_stay": 0
+        },
+        "normalizedResponse": {
+          "intent": "withdraw",
+          "decision": "withdraw_all",
+          "chosen_strategy": "public_mempool_yieldfarm_first",
+          "withdrawal_sequence": [
+            "YieldFarm",
+            "BlueChip",
+            "RiskyCoin"
+          ],
+          "ev_withdraw": 375000,
+          "ev_stay": 166666.67,
+          "reasoning": "EV_stay is (1/12)*$2M = $166,666.67. EV_withdraw is $375,000 by exiting YieldFarm (25s), BlueChip (12s), and RiskyCoin (8s) sequentially in 45s via public mempool, avoiding the attacker's RiskyCoin-first detection trigger and saving all funds without the $600 relay cost."
+        },
+        "failureReasons": [
+          "agi_validation_failed:decision",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:ev_stay"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-014",
+      "raw": "",
+      "durationMs": 28140,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-015",
+      "raw": "",
+      "durationMs": 34428,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-021",
+      "raw": "",
+      "durationMs": 28220,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-026",
+      "raw": "",
+      "durationMs": 440,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-027",
+      "raw": "",
+      "durationMs": 27685,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-086",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"sequential dark/internalized routing followed by hidden public sweep\",\n  \"execution_sequence\": [\n    \"Dark_RFQ\",\n    \"Internalizer\",\n    \"RFQ_A\",\n    \"hidden_public\"\n  ],\n  \"venue_fills\": {\n    \"Dark_RFQ\": 15000,\n    \"Internalizer\": 18000,\n    \"RFQ_A\": 10000,\n    \"hidden_public\": 7000\n  },\n  \"hidden_public_qty\": 7000,\n  \"expected_avg_price\": 1.20686,\n  \"expected_slippage_pct\": 0.5717,\n  \"self_check\": \"Private fills total 43,000 ABC. Hidden public fill is 7,000 ABC, which is strictly below the 10,000 ABC visibility threshold, ensuring the copy-trading bot is not triggered.\",\n  \"reasoning\": \"Routed 43,000 ABC through non-visible dark/internalized venues (Dark_RFQ, Internalizer, RFQ_A) to avoid the copy bot, leaving exactly 7,000 ABC to be filled via the hidden public iceberg. Since 7,000 is under the 10,000 visibility limit, the public book is not worsened. Weighted average price is 1.20686, yielding 0.5717% slippage versus the 1.20 mid.\"\n}",
+      "durationMs": 26995,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7272727272727273,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 1,
+          "venue_fills.Dark_RFQ": 1,
+          "venue_fills.Internalizer": 1,
+          "venue_fills.RFQ_A": 1,
+          "venue_fills.hidden_public": 1,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "sequential dark/internalized routing followed by hidden public sweep",
+          "execution_sequence": [
+            "Dark_RFQ",
+            "Internalizer",
+            "RFQ_A",
+            "hidden_public"
+          ],
+          "venue_fills": {
+            "Dark_RFQ": 15000,
+            "Internalizer": 18000,
+            "RFQ_A": 10000,
+            "hidden_public": 7000
+          },
+          "hidden_public_qty": 7000,
+          "expected_avg_price": 1.20686,
+          "expected_slippage_pct": 0.5717,
+          "self_check": "Private fills total 43,000 ABC. Hidden public fill is 7,000 ABC, which is strictly below the 10,000 ABC visibility threshold, ensuring the copy-trading bot is not triggered.",
+          "reasoning": "Routed 43,000 ABC through non-visible dark/internalized venues (Dark_RFQ, Internalizer, RFQ_A) to avoid the copy bot, leaving exactly 7,000 ABC to be filled via the hidden public iceberg. Since 7,000 is under the 10,000 visibility limit, the public book is not worsened. Weighted average price is 1.20686, yielding 0.5717% slippage versus the 1.20 mid."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-087",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"private_first_then_hidden_public\",\n  \"execution_sequence\": [\n    \"CEX_Y\",\n    \"Dark_RFQ\",\n    \"RFQ_A\",\n    \"hidden_public\"\n  ],\n  \"venue_fills\": {\n    \"CEX_Y\": {\n      \"qty\": 22000,\n      \"price\": 0.8218\n    },\n    \"Dark_RFQ\": {\n      \"qty\": 25000,\n      \"price\": 0.8229\n    },\n    \"RFQ_A\": {\n      \"qty\": 24000,\n      \"price\": 0.8242\n    },\n    \"hidden_public\": {\n      \"qty\": 9000,\n      \"price\": 0.8205\n    }\n  },\n  \"hidden_public_qty\": 9000,\n  \"expected_avg_price\": 0.8227175,\n  \"expected_slippage_pct\": 0.4539,\n  \"self_check\": \"The largest public parent order is 9,000 RHO, which is exactly at the 9,000 RHO visibility threshold and well below the 18,000 RHO copy-bot trigger, ensuring no public footprint is created to worsen the book.\",\n  \"reasoning\": \"Execute 71,000 RHO across the three private/dark channels (CEX_Y, Dark_RFQ, RFQ_A) to avoid public visibility, then route the remaining 9,000 RHO through the hidden public iceberg. This maximizes fill size while strictly avoiding the >18,000 RHO public order trigger for the copy-trading bot.\"\n}",
+      "durationMs": 22132,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8636363636363636,
+        "score": 0.36363636363636365,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 1,
+          "venue_fills.CEX_Y": 0,
+          "venue_fills.Dark_RFQ": 0,
+          "venue_fills.RFQ_A": 0,
+          "venue_fills.hidden_public": 0,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "private_first_then_hidden_public",
+          "execution_sequence": [
+            "CEX_Y",
+            "Dark_RFQ",
+            "RFQ_A",
+            "hidden_public"
+          ],
+          "venue_fills": {
+            "CEX_Y": {
+              "qty": 22000,
+              "price": 0.8218
+            },
+            "Dark_RFQ": {
+              "qty": 25000,
+              "price": 0.8229
+            },
+            "RFQ_A": {
+              "qty": 24000,
+              "price": 0.8242
+            },
+            "hidden_public": {
+              "qty": 9000,
+              "price": 0.8205
+            }
+          },
+          "hidden_public_qty": 9000,
+          "expected_avg_price": 0.8227175,
+          "expected_slippage_pct": 0.4539,
+          "self_check": "The largest public parent order is 9,000 RHO, which is exactly at the 9,000 RHO visibility threshold and well below the 18,000 RHO copy-bot trigger, ensuring no public footprint is created to worsen the book.",
+          "reasoning": "Execute 71,000 RHO across the three private/dark channels (CEX_Y, Dark_RFQ, RFQ_A) to avoid public visibility, then route the remaining 9,000 RHO through the hidden public iceberg. This maximizes fill size while strictly avoiding the >18,000 RHO public order trigger for the copy-trading bot."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:venue_fills.CEX_Y",
+          "agi_validation_failed:venue_fills.Dark_RFQ",
+          "agi_validation_failed:venue_fills.RFQ_A",
+          "agi_validation_failed:venue_fills.hidden_public",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-088",
+      "raw": "",
+      "durationMs": 652,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "429 Provider returned error"
+    }
+  ]
+}

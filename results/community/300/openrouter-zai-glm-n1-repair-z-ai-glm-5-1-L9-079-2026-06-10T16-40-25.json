@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T16:40:52.868Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-L9-079-2026-06-10T16-40-25",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-079"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-079",
+      "raw": "{\n  \"intent\": \"sell_collateral_to_repay_debt\",\n  \"expected_value\": 69.83,\n  \"reasoning\": \"Stressed ETH price = $3,600 * 0.89 = $3,204. Effective sale price = $3,204 * 0.9965 = $3,192.786. Debt with fees = $2,056,400. Solving (900-x)*3204*0.79 = 1.3*(2,056,400 - x*3192.786): 2,278,044 - 2,531.16x = 2,673,320 - 4,150.6218x → 1,619.4618x = 395,276 → x ≈ 69.83 ETH minimum to sell to restore HF to 1.3 target.\"\n}",
+      "durationMs": 26674,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell_collateral_to_repay_debt",
+          "expected_value": 69.83,
+          "reasoning": "Stressed ETH price = $3,600 * 0.89 = $3,204. Effective sale price = $3,204 * 0.9965 = $3,192.786. Debt with fees = $2,056,400. Solving (900-x)*3204*0.79 = 1.3*(2,056,400 - x*3192.786): 2,278,044 - 2,531.16x = 2,673,320 - 4,150.6218x → 1,619.4618x = 395,276 → x ≈ 69.83 ETH minimum to sell to restore HF to 1.3 target."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

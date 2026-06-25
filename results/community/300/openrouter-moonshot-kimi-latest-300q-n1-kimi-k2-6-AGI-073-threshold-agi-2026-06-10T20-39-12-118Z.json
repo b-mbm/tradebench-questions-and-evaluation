@@ -1,0 +1,72 @@
+{
+  "runAt": "2026-06-10T20:39:12.117Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-073-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-073"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-073",
+      "raw": "{\"intent\":\"exit\",\"order_type\":\"strategy\",\"asset\":\"TUSD\",\"size\":1100000,\"unit\":\"tusd\",\"venue\":\"multi-venue\",\"risk_controls\":{\"position_size_limit\":1100000,\"slippage_tolerance\":\"0.5%\"},\"chosen_strategy\":\"private_priority_with_fast_visible_cap\",\"exit_allocation_units\":{\"CEX_convert\":340000,\"OTC_issuer\":330000,\"Curve_legacy\":0,\"Aave_close\":220000,\"DEX_thin\":210000},\"expected_recovered_usd\":1074822.8,\"fast_cash_usd\":535466,\"largest_visible_exit_units\":340000,\"self_check\":\"visible exits sum 550000 <= 350000 each so no queue; private exits sum 550000; fast cash within 18 min from CEX_convert (10 min) and DEX_thin (8 min) = 550000 units yielding ~535466 usd > 660000? no, wait recalc: CEX 340000*0.99*(1-0.0007)=335764.38, DEX 210000*0.98*(1-0.0015)=205693.8, total fast cash 541458.18. OTC 330000*0.99*(1-0.0003)=326901. Aave 220000*1=220000. Total recovered 1088360? recheck: 340000*0.99*0.9993=335764.38; 210000*0.98*0.9985=205693.8; 330000*0.99*0.9997=326901; 220000*1=220000; sum=1088359.18. fast cash = 335764.38+205693.8=541458.18. self_check: largest visible 340000 < 350000 threshold, no queue. fast cash 541458 < 660000? fails. Need more fast cash. Reduce OTC, increase CEX? But CEX visible. If CEX 390000 visible >350000 queue. So max CEX 350000? threshold says larger than 350000 join queue, so 350000 is safe (not larger). Use CEX 350000. Then need 1100000-350000-220000=530000 for OTC+DEX. DEX fast 8 min, OTC slow 50 min. To maximize fast cash, put remaining 530000 into DEX up to cap 190000, then OTC 340000. DEX 190000 fast. fast cash = 350000+190000 = 540000 units. recovered: CEX 350000*0.99*0.9993=345757.95; DEX 190000*0.98*0.9985=185921.3; Aave 220000; OTC 340000*0.99*0.9997=336499.62; total=1088178.87. fast cash usd = 345757.95+185921.3=531679.25 < 660000. Still fails. Need more fast cash. Can we use Curve? 21 min > 18 min, not fast enough. Aave 30 min > 18 min. So only CEX (10) and DEX (8) qualify for fast cash. Max fast units = 390000+190000=580000. Max fast usd = 390000*0.99*0.9993 + 190000*0.98*0.9985 = 386129.13 + 185921.3 = 572050.43 < 660000. So impossible to get 660k fast cash from given primitives. But maybe fast cash means cash timing <= 18 min, and we can combine. 572050 is max possible. The prompt says 'if that can be achieved'. Since it cannot, we should get as close as possible while preserving value. But maybe we can interpret 'cash-equivalent recovery' as nominal value, not recovered after fee? No, recovery is before fee. Or maybe we can use Curve at 21 min if we count 'inside first 18 minutes' as start of process? No. Let's re-read: 'Treasury needs at least $660,000 cash-equivalent recovery inside the first 18 minutes if that can be achieved without entering the queue.' Since it cannot, we maximize fast cash without queue. But maybe we can use CEX at 390000 (visible) and DEX 190000, total 580000 units, fast cash 572050. But CEX 390000 > 350000, enters queue, which is prohibited. So max without queue is CEX 350000 (or 340000 to be safe). Let's use 350000 exactly (not larger than 350000). Then DEX 190000. Fast cash 531679. But wait, if we use CEX 390000 we enter queue and suffer later refresh, meaning timing becomes later? The prompt says 'suffer a later refresh' which likely means delayed, so maybe not fast enough anyway. So avoid queue. Best fast cash is 531679 with CEX 350000 + DEX 190000 + Aave 220000? Aave is 30 min, not fast. So fast cash only CEX+DEX. Let's allocate: CEX 350000, DEX 190000, Aave 220000, OTC 340000. Total 1,100,000. Fast cash = 531679. This is the best possible without queue. Expected recovered = 350000*0.99*0.9993 + 190000*0.98*0.9985 + 220000 + 340000*0.99*0.9997 = 345757.95 + 185921.3 + 220000 + 336499.62 = 1088178.87. Largest visible exit = 350000. Self check: 350000 is not larger than 350000, so no queue. Fast cash 531679 < 660000, requirement not fully met but maximized under constraints. However, maybe we can put 350000 in CEX and 210000 in DEX, and 220000 Aave, 320000 OTC. Fast cash same. Let's use the earlier allocation with CEX 340000 to be safely under. But 350000 is allowed (not larger). Let's use 350000. Actually 'larger than 350,000' means >350000, so 350000 is safe. Let's use exactly 350000 to maximize. DEX 190000. Aave 220000. OTC 340000. Sum = 1,100,000. Fast cash = 531679.25. Let's compute precisely: CEX: 350000 * 0.99 = 346500; fee 0.07% = 242.55; net = 346257.45? Wait earlier I used (1-0.0007). 0.99 * 0.9993 = 0.989307. 350000 * 0.989307 = 346257.45. DEX: 0.98 * 0.9985 = 0.97853. 190000 * 0.97853 = 185920.7. Sum fast = 532178.15. Let me recalc: 350000*0.99*0.9993 = 350000*0.989307 = 346257.45. 190000*0.98*0.9985 = 190000*0.97853 = 185920.7. Total = 532178.15. OTC: 340000*0.99*0.9997 = 340000*0.989703 = 336499.02. Aave: 220000. Total recovered = 346257.45 + 185920.7 + 336499.02 + 220000 = 1,088,677.17. Let's use these numbers. But wait, is there any way to get more fast cash by using Curve? 21 min > 18 min, no. So this is optimal. Let's double-check if we can use DEX 190000 and CEX 390000 but somehow avoid queue by splitting CEX into two orders? The prompt says 'Visible exits larger than 350,000 units join an adversarial queue'. If we split CEX into two orders of 195000 each, are they visible exits? Probably each exit is a transaction/order. If we split, each is 195000, not larger than 350000. But capacity is 390000 total. If we do two orders of 195000, total 390000, each visible but not larger than 350000. Does the queue trigger on individual exit size or aggregate? The prompt says 'Visible exits larger than 350,000 units join an adversarial queue'. This suggests per-exit size. So we could split CEX into two orders: 195000 and 195000, both visible, each <= 350000, so no queue. Then we could use full CEX capacity 390000. DEX 190000. Total fast units = 580000. Fast cash = 390000*0.989307 + 190000*0.97853 = 385829.73 + 185920.7 = 571750.43. Still < 660000. Aave 220000. OTC 110000? Wait total is 1,100,000. 390000+190000+220000 = 800000. Remaining 300000 to OTC. OTC capacity 330000, so 300000 fits. Then OTC recovery = 300000*0.989703 = 296910.9. Total recovered = 571750.43 + 220000 + 296910.9 = 1,088,661.33. Fast cash = 571750.43. Largest visible exit units = 195000 (if split) or 390000 (if single). To avoid queue, we should split and largest visible exit = 195000. But the field 'largest_visible_exit_units' probably refers to the size of the largest single visible exit in the plan. So 195000. But is splitting allowed? The prompt lists primitives with capacities. It doesn't say we can't split.",
+      "durationMs": 45190,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "exit_allocation_units.CEX_convert": 0,
+          "exit_allocation_units.OTC_issuer": 0,
+          "exit_allocation_units.Curve_legacy": 0,
+          "exit_allocation_units.Aave_close": 0,
+          "exit_allocation_units.DEX_thin": 0,
+          "expected_recovered_usd": 0,
+          "fast_cash_usd": 0,
+          "largest_visible_exit_units": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit",
+          "order_type": "strategy",
+          "asset": "TUSD",
+          "size": "1100000",
+          "unit": "tusd",
+          "venue": "multi-venue",
+          "position_size_limit": 1100000,
+          "slippage_tolerance": "0.5%",
+          "chosen_strategy": "private_priority_with_fast_visible_cap",
+          "CEX_convert": 340000,
+          "OTC_issuer": 330000,
+          "Curve_legacy": 0,
+          "Aave_close": 220000,
+          "DEX_thin": 210000,
+          "expected_recovered_usd": 1074822.8,
+          "fast_cash_usd": 535466,
+          "largest_visible_exit_units": 340000,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "agi_validation_failed:expected_recovered_usd",
+          "agi_validation_failed:fast_cash_usd",
+          "agi_validation_failed:largest_visible_exit_units",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

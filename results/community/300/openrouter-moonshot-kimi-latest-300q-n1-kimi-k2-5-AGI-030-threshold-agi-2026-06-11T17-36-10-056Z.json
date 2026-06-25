@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T17:36:10.055Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-030-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-030"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-030",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"chosen_strategy\": \"Max-cap utilization of top-4 venues with full liquid venue allocation to meet 48h floor\",\n  \"expected_net_apy_pct\": 8.8,\n  \"expected_90d_profit_usd\": 2170,\n  \"liquidity_48h_usd\": 50000,\n  \"allocation_usd\": {\n    \"Aave_USDC\": 20000,\n    \"Curve_3pool\": 30000,\n    \"Ethena_USDe\": 20000,\n    \"GMX_GLP\": 30000\n  },\n  \"reasoning\": \"To satisfy the 48h liquidity constraint, $50k is allocated to liquid venues (Aave $20k, Curve $30k). Remaining $50k fills highest-yield slow-exit caps (GMX $30k, Ethena $20k), skipping the fifth venue due to lower APY and adversarial queue risk. Weighted APY is 8.8%, generating ~$2,170 over 90 days.\"\n}",
+      "durationMs": 103493,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7777777777777778,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "expected_net_apy_pct": 1,
+          "expected_90d_profit_usd": 1,
+          "liquidity_48h_usd": 1,
+          "allocation_usd.Aave_USDC": 1,
+          "allocation_usd.Curve_3pool": 1,
+          "allocation_usd.Ethena_USDe": 1,
+          "allocation_usd.GMX_GLP": 1
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "chosen_strategy": "Max-cap utilization of top-4 venues with full liquid venue allocation to meet 48h floor",
+          "expected_net_apy_pct": 8.8,
+          "expected_90d_profit_usd": 2170,
+          "liquidity_48h_usd": 50000,
+          "allocation_usd": {
+            "Aave_USDC": 20000,
+            "Curve_3pool": 30000,
+            "Ethena_USDe": 20000,
+            "GMX_GLP": 30000
+          },
+          "reasoning": "To satisfy the 48h liquidity constraint, $50k is allocated to liquid venues (Aave $20k, Curve $30k). Remaining $50k fills highest-yield slow-exit caps (GMX $30k, Ethena $20k), skipping the fifth venue due to lower APY and adversarial queue risk. Weighted APY is 8.8%, generating ~$2,170 over 90 days."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

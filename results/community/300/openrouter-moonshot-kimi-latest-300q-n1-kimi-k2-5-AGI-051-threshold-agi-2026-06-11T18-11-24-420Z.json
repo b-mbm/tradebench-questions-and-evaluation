@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T18:11:24.419Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-051-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-051"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-051",
+      "raw": " {\n  \"intent\": \"exit\",\n  \"decision\": \"exit\",\n  \"chosen_strategy\": \"sequential_private_then_public\",\n  \"exit_sequence\": [\n    \"otc_block\",\n    \"dex_twap\"\n  ],\n  \"private_sale_usd\": 178560,\n  \"expected_exit_value_usd\": 296760,\n  \"expected_stay_value_usd\": 189000,\n  \"self_check\": \"private execution precedes visible flow to prevent bid cancellation; total exit capacity matches position size of $300,000\",\n  \"reasoning\": \"Expected exit value of $296,760 (otc_block $180k at 99.2% plus dex_twap $120k at 98.5%) exceeds expected stay value of $189,000 (45% probability of $420,000 recovery); otc_block must execute first to avoid public flow invalidating the private liquidity\"\n}",
+      "durationMs": 34708,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.625,
+        "fieldScores": {
+          "intent": 0,
+          "decision": 1,
+          "chosen_strategy": 0,
+          "exit_sequence": 1,
+          "private_sale_usd": 1,
+          "expected_exit_value_usd": 1,
+          "expected_stay_value_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit",
+          "decision": "exit",
+          "chosen_strategy": "sequential_private_then_public",
+          "exit_sequence": [
+            "otc_block",
+            "dex_twap"
+          ],
+          "private_sale_usd": 178560,
+          "expected_exit_value_usd": 296760,
+          "expected_stay_value_usd": 189000,
+          "self_check": "private execution precedes visible flow to prevent bid cancellation; total exit capacity matches position size of $300,000",
+          "reasoning": "Expected exit value of $296,760 (otc_block $180k at 99.2% plus dex_twap $120k at 98.5%) exceeds expected stay value of $189,000 (45% probability of $420,000 recovery); otc_block must execute first to avoid public flow invalidating the private liquidity"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "runAt": "2026-06-10T19:21:18.864Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-047-2026-06-10T19-20-11",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-047"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-047",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"chosen_strategy\": \"USDC-first: bridge USDC to Base then swap for TKN on destination\",\n  \"route_steps\": [\n    \"Bridge $3,000 USDC from Ethereum to Base via privately-attested USDC bridge flow (fee: $22)\",\n    \"Swap $2,978 USDC for TKN on Base DEX at spot $4.80 with 0.30% slippage tolerance\"\n  ],\n  \"expected_tokens\": 618.56,\n  \"completion_minutes\": 15,\n  \"total_fee_usd\": 22,\n  \"self_check\": \"USDC bridge attested privately before destination swap avoids sequencer monitor delay on TKN transfers; $2,978 USDC / $4.80 × (1 - 0.003) = 618.56 TKN received on Base within 20-min window; buy-first route yields only ~596.97 TKN at $4.95 with $",
+      "durationMs": 67302,
+      "grade": {
+        "pass": false,
+        "confidence": 0.336734693877551,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_steps": 0,
+          "expected_tokens": 1,
+          "completion_minutes": 0,
+          "total_fee_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "chosen_strategy": "USDC-first: bridge USDC to Base then swap for TKN on destination",
+          "expected_tokens": 618.56,
+          "completion_minutes": 15,
+          "total_fee_usd": 22,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "agi_validation_failed:completion_minutes",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

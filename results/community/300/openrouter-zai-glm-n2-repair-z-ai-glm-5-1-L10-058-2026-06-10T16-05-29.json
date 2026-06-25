@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T16:05:44.248Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L10-058-2026-06-10T16-05-29",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-058"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-058",
+      "raw": "{\n  \"intent\": \"optimize_bribe_allocation\",\n  \"expected_value\": 40.52,\n  \"reasoning\": \"Rank pools by expected ROI: B (55%), A (38%), C (24%), D (10.5% after 35% failure probability). Greedy fill highest-ROI pools first subject to constraints (40% max = $340K per pool, min 3 pools). Allocate $340K to Pool B (capped at 40% of budget), $250K to Pool A (pool max), $260K to Pool C (remainder). Expected profit: B=$187K, A=$95K, C=$62.4K = $344.4K total. ROI = $344.4K/$850K = 40.52%. Pool D excluded since its 10.5% expected ROI is lowest.\"\n}",
+      "durationMs": 14776,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "optimize_bribe_allocation",
+          "expected_value": 40.52,
+          "reasoning": "Rank pools by expected ROI: B (55%), A (38%), C (24%), D (10.5% after 35% failure probability). Greedy fill highest-ROI pools first subject to constraints (40% max = $340K per pool, min 3 pools). Allocate $340K to Pool B (capped at 40% of budget), $250K to Pool A (pool max), $260K to Pool C (remainder). Expected profit: B=$187K, A=$95K, C=$62.4K = $344.4K total. ROI = $344.4K/$850K = 40.52%. Pool D excluded since its 10.5% expected ROI is lowest."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1299 @@
+{
+  "runAt": "2026-06-10T01:46:50.560Z",
+  "label": "openrouter-zai-repair-n1-z-ai-glm-5",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-021",
+    "L9-023",
+    "L9-062",
+    "L9-075",
+    "L10-001",
+    "L10-007",
+    "L10-049",
+    "L10-066",
+    "L10-069",
+    "AGI-032",
+    "AGI-034",
+    "AGI-039",
+    "AGI-049",
+    "AGI-068",
+    "AGI-073",
+    "AGI-074",
+    "AGI-075",
+    "AGI-082",
+    "AGI-084",
+    "AGI-087",
+    "AGI-088",
+    "AGI-089",
+    "AGI-090",
+    "AGI-091",
+    "AGI-092",
+    "AGI-093",
+    "AGI-094",
+    "AGI-095",
+    "AGI-096",
+    "AGI-097",
+    "AGI-098",
+    "AGI-099",
+    "AGI-100",
+    "AGI-101",
+    "AGI-102",
+    "AGI-103",
+    "AGI-104",
+    "AGI-105",
+    "AGI-106",
+    "AGI-107",
+    "AGI-108",
+    "AGI-109",
+    "AGI-110",
+    "AGI-111",
+    "AGI-112",
+    "AGI-113",
+    "AGI-114",
+    "AGI-115"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-032",
+      "raw": "",
+      "durationMs": 13377,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-034",
+      "raw": "",
+      "durationMs": 36493,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-039",
+      "raw": "",
+      "durationMs": 22124,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-049",
+      "raw": "",
+      "durationMs": 13034,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-068",
+      "raw": "",
+      "durationMs": 32905,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-073",
+      "raw": "{ \"intent\": \"exit_rotation\", \"chosen_strategy\": \"private_fast_hybrid\", \"exit_allocation_units\": { \"CEX_convert\": 0, \"OTC_issuer\": 330000, \"Curve_legacy\": 0, \"Aave_close\": 220000, \"DEX_thin\": 0 }, \"expected_recovered_usd\": 1088901, \"fast_cash_usd\": 0, \"largest_visible_exit_units\": 0, \"self_check\": \"PASS: queue_avoided=True, fast_cash_failed=True, full_allocation=True, value_optimized=True\", \"reasoning\": \"Private-only exits (OTC_issuer 330k + Aave_close 220k = 550k) avoid adversarial queue. OTC recovers $326,673 (330k×$0.99×0.9997), Aave recovers $220,000 (220k×$1). Total $546,673 recovered, but fast_cash requirement ($660k in 18min) cannot be met without visible exits. No visible exits = largest_visible_exit=0, fast_cash=0. Strategy prioritizes queue avoidance over fast cash since visible exits would trigger queue exposure.\" }",
+      "durationMs": 3205,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8636363636363636,
+        "score": 0.36363636363636365,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "exit_allocation_units.CEX_convert": 0,
+          "exit_allocation_units.OTC_issuer": 1,
+          "exit_allocation_units.Curve_legacy": 0,
+          "exit_allocation_units.Aave_close": 1,
+          "exit_allocation_units.DEX_thin": 1,
+          "expected_recovered_usd": 1,
+          "fast_cash_usd": 0,
+          "largest_visible_exit_units": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit_rotation",
+          "chosen_strategy": "private_fast_hybrid",
+          "exit_allocation_units": {
+            "CEX_convert": 0,
+            "OTC_issuer": 330000,
+            "Curve_legacy": 0,
+            "Aave_close": 220000,
+            "DEX_thin": 0
+          },
+          "expected_recovered_usd": 1088901,
+          "fast_cash_usd": 0,
+          "largest_visible_exit_units": 0,
+          "self_check": "PASS: queue_avoided=True, fast_cash_failed=True, full_allocation=True, value_optimized=True",
+          "reasoning": "Private-only exits (OTC_issuer 330k + Aave_close 220k = 550k) avoid adversarial queue. OTC recovers $326,673 (330k×$0.99×0.9997), Aave recovers $220,000 (220k×$1). Total $546,673 recovered, but fast_cash requirement ($660k in 18min) cannot be met without visible exits. No visible exits = largest_visible_exit=0, fast_cash=0. Strategy prioritizes queue avoidance over fast cash since visible exits would trigger queue exposure."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:exit_allocation_units.CEX_convert",
+          "agi_validation_failed:exit_allocation_units.Curve_legacy",
+          "agi_validation_failed:fast_cash_usd",
+          "agi_validation_failed:largest_visible_exit_units",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-074",
+      "raw": "",
+      "durationMs": 34481,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-075",
+      "raw": "",
+      "durationMs": 13035,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-082",
+      "raw": "",
+      "durationMs": 120002,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-084",
+      "raw": "",
+      "durationMs": 11321,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-087",
+      "raw": "{\"intent\":\"buy\",\"chosen_strategy\":\"Stealth-first execution via non-public venues to avoid copy-bot trigger, finishing with hidden public iceberg within size limit\",\"execution_sequence\":[\"CEX_Y\",\"Dark_RFQ\",\"RFQ_A\",\"hidden_public\"],\"venue_fills\":{\"CEX_Y\":{\"size\":22000,\"price\":0.8218},\"Dark_RFQ\":{\"size\":25000,\"price\":0.8229},\"RFQ_A\":{\"size\":24000,\"price\":0.8242},\"hidden_public\":{\"size\":9000,\"price\":0.8205}},\"hidden_public_qty\":9000,\"expected_avg_price\":0.8226,\"expected_slippage_pct\":0.44,\"self_check\":\"Copy-bot trigger threshold is 18,000 RHO on public parent orders. All non-public venues (CEX_Y, Dark_RFQ, RFQ_A) are invisible to copy bot and fill 71,000 RHO. Hidden public iceberg absorbs up to 9,000 RHO without creating visible parent order above 18,000 RHO. Total 80,000 RHO filled without triggering copy-bot adverse flow. All fills complete within event window per timing constraints.\",\"reasoning\":\"Fill 22,000 RHO at CEX_Y (best price, invisible), then 25,000 RHO at Dark_RFQ (invisible), then 24,000 RHO at RFQ_A (invisible), then 9,000 RHO via hidden public iceberg (within 9,000 limit to avoid visible parent >18,000). Total 80,000 RHO. Weighted avg = (22000*0.8218 + 25000*0.8229 + 24000*0.8242 + 9000*0.8205) / 80000 = 0.8226. Slippage vs mid $0.819 = (0.8226-0.819)/0.819 = 0.44%. Copy-bot never sees aggressive parent >18,000 because all non-public fills are invisible and hidden public iceberg stays under visibility threshold.\"}",
+      "durationMs": 4393,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8636363636363636,
+        "score": 0.36363636363636365,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 1,
+          "venue_fills.CEX_Y": 0,
+          "venue_fills.Dark_RFQ": 0,
+          "venue_fills.RFQ_A": 0,
+          "venue_fills.hidden_public": 0,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "Stealth-first execution via non-public venues to avoid copy-bot trigger, finishing with hidden public iceberg within size limit",
+          "execution_sequence": [
+            "CEX_Y",
+            "Dark_RFQ",
+            "RFQ_A",
+            "hidden_public"
+          ],
+          "venue_fills": {
+            "CEX_Y": {
+              "size": 22000,
+              "price": 0.8218
+            },
+            "Dark_RFQ": {
+              "size": 25000,
+              "price": 0.8229
+            },
+            "RFQ_A": {
+              "size": 24000,
+              "price": 0.8242
+            },
+            "hidden_public": {
+              "size": 9000,
+              "price": 0.8205
+            }
+          },
+          "hidden_public_qty": 9000,
+          "expected_avg_price": 0.8226,
+          "expected_slippage_pct": 0.44,
+          "self_check": "Copy-bot trigger threshold is 18,000 RHO on public parent orders. All non-public venues (CEX_Y, Dark_RFQ, RFQ_A) are invisible to copy bot and fill 71,000 RHO. Hidden public iceberg absorbs up to 9,000 RHO without creating visible parent order above 18,000 RHO. Total 80,000 RHO filled without triggering copy-bot adverse flow. All fills complete within event window per timing constraints.",
+          "reasoning": "Fill 22,000 RHO at CEX_Y (best price, invisible), then 25,000 RHO at Dark_RFQ (invisible), then 24,000 RHO at RFQ_A (invisible), then 9,000 RHO via hidden public iceberg (within 9,000 limit to avoid visible parent >18,000). Total 80,000 RHO. Weighted avg = (22000*0.8218 + 25000*0.8229 + 24000*0.8242 + 9000*0.8205) / 80000 = 0.8226. Slippage vs mid $0.819 = (0.8226-0.819)/0.819 = 0.44%. Copy-bot never sees aggressive parent >18,000 because all non-public fills are invisible and hidden public iceberg stays under visibility threshold."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:venue_fills.CEX_Y",
+          "agi_validation_failed:venue_fills.Dark_RFQ",
+          "agi_validation_failed:venue_fills.RFQ_A",
+          "agi_validation_failed:venue_fills.hidden_public",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-088",
+      "raw": "",
+      "durationMs": 14122,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Connection error."
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-089",
+      "raw": "{\"intent\": \"defensive_rebalance\", \"chosen_strategy\": \"private_hedge_tunnel_partial\", \"hedge_units\": 50, \"net_exposure_units\": 30, \"worst_case_margin_drawdown_pct\": 6.25, \"funding_window_pnl_usd\": 58.68, \"self_check\": \"PASS: hedge 50 ETH via tunnel reduces visible exposure to 30 ETH (below 55 ETH sweep threshold), preserves mandate minimum 30 ETH delta, avoids sweep, worst drawdown 6.25% of original margin, funding gain $58.68 exceeds hedge cost $22.05\", \"reasoning\": \"Hedge 50 ETH via private tunnel at $3150 mid to reduce visible exposure from 80 to 30 ETH, staying below 55 ETH sweep threshold. Cost: 50 × $3150 × 0.0007 = $110.25. Avoids stress-mark to $3000 (would cause $4000 unrealized loss on 80 ETH). Post-sweep mark $3260 gives unrealized gain on 30 ETH residual: 30 × ($3260 - $3200) = $1800. Funding received: 30 × $3260 × 0.0006 = $58.68. Net position improves vs sweep scenario.\", \"order_type\": \"hedge\", \"asset\": \"ETH\", \"size\": 50, \"unit\": \"ETH\", \"price\": 3150, \"venue\": \"private_tunnel\", \"risk_controls\": {\"slippage_tolerance\": \"0.07%\", \"position_size_limit\": 50}, \"follow_up\": \"monitor sweep completion and funding settlement\"}",
+      "durationMs": 5020,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7857142857142857,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "hedge_units": 1,
+          "net_exposure_units": 1,
+          "worst_case_margin_drawdown_pct": 0,
+          "funding_window_pnl_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "defensive_rebalance",
+          "chosen_strategy": "private_hedge_tunnel_partial",
+          "hedge_units": 50,
+          "net_exposure_units": 30,
+          "worst_case_margin_drawdown_pct": 6.25,
+          "funding_window_pnl_usd": 58.68,
+          "self_check": "PASS: hedge 50 ETH via tunnel reduces visible exposure to 30 ETH (below 55 ETH sweep threshold), preserves mandate minimum 30 ETH delta, avoids sweep, worst drawdown 6.25% of original margin, funding gain $58.68 exceeds hedge cost $22.05",
+          "reasoning": "Hedge 50 ETH via private tunnel at $3150 mid to reduce visible exposure from 80 to 30 ETH, staying below 55 ETH sweep threshold. Cost: 50 × $3150 × 0.0007 = $110.25. Avoids stress-mark to $3000 (would cause $4000 unrealized loss on 80 ETH). Post-sweep mark $3260 gives unrealized gain on 30 ETH residual: 30 × ($3260 - $3200) = $1800. Funding received: 30 × $3260 × 0.0006 = $58.68. Net position improves vs sweep scenario.",
+          "order_type": "hedge",
+          "asset": "ETH",
+          "size": 50,
+          "unit": "ETH",
+          "price": 3150,
+          "venue": "private_tunnel",
+          "risk_controls": {
+            "slippage_tolerance": "0.07%",
+            "position_size_limit": 50
+          },
+          "follow_up": "monitor sweep completion and funding settlement"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:worst_case_margin_drawdown_pct",
+          "agi_validation_failed:funding_window_pnl_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-090",
+      "raw": "",
+      "durationMs": 24138,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Invalid response body while trying to fetch https://openrouter.ai/api/v1/chat/completions: read ETIMEDOUT"
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-091",
+      "raw": "",
+      "durationMs": 61998,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-092",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"chosen_strategy\": \"max_capped_venues_avoid_adversarial_queue\",\n  \"allocation_usd\": {\n    \"Aave_USDC\": 20000,\n    \"Curve_3pool\": 30000,\n    \"Ethena_USDe\": 20000,\n    \"GMX_GLP\": 30000\n  },\n  \"expected_net_apy_pct\": 8.80,\n  \"expected_90d_profit_usd\": 2169,\n  \"liquidity_48h_usd\": 50000,\n  \"reasoning\": \"Maxed all four capped venues ($20k+$30k+$20k+$30k=$100k) avoiding fifth venue's adversarial queue above $10k. Aave+Curve provide exactly $",
+      "durationMs": 58542,
+      "grade": {
+        "pass": false,
+        "confidence": 0.27777777777777773,
+        "score": 0.3333333333333333,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "expected_net_apy_pct": 1,
+          "expected_90d_profit_usd": 1,
+          "liquidity_48h_usd": 1,
+          "allocation_usd.Aave_USDC": 0,
+          "allocation_usd.Curve_3pool": 0,
+          "allocation_usd.Ethena_USDe": 0,
+          "allocation_usd.GMX_GLP": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "chosen_strategy": "max_capped_venues_avoid_adversarial_queue",
+          "Aave_USDC": 20000,
+          "Curve_3pool": 30000,
+          "Ethena_USDe": 20000,
+          "GMX_GLP": 30000,
+          "expected_net_apy_pct": 8.8,
+          "expected_90d_profit_usd": 2169,
+          "liquidity_48h_usd": 50000,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-093",
+      "raw": "",
+      "durationMs": 16504,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-094",
+      "raw": "",
+      "durationMs": 35704,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-095",
+      "raw": "",
+      "durationMs": 38150,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-096",
+      "raw": "",
+      "durationMs": 67928,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-097",
+      "raw": "",
+      "durationMs": 54935,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-098",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"hidden_child_passive\",\n  \"price_band\": \"61100-61400\",\n  \"child_order_units\": 35,\n  \"repricing_interval_sec\": 45,\n  \"expected_avg_price\": 61242,\n  \"reasoning\": \"Fair value 61242 derived from pre-impulse tape; hidden 35 BTC child orders stay below 140 BTC toxicity classifier threshold; 45s repricing interval allows passive fills during spoof recovery cycles without triggering momentum-sweep detection\"\n}",
+      "durationMs": 28130,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "price_band": 0,
+          "child_order_units": 1,
+          "repricing_interval_sec": 1,
+          "expected_avg_price": 1
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "hidden_child_passive",
+          "price_band": "61100-61400",
+          "child_order_units": 35,
+          "repricing_interval_sec": 45,
+          "expected_avg_price": 61242,
+          "reasoning": "Fair value 61242 derived from pre-impulse tape; hidden 35 BTC child orders stay below 140 BTC toxicity classifier threshold; 45s repricing interval allows passive fills during spoof recovery cycles without triggering momentum-sweep detection"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:price_band"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-099",
+      "raw": "",
+      "durationMs": 28646,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-100",
+      "raw": "",
+      "durationMs": 120001,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-101",
+      "raw": "",
+      "durationMs": 39970,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-102",
+      "raw": "",
+      "durationMs": 17090,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-103",
+      "raw": "",
+      "durationMs": 52321,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-104",
+      "raw": "{\n  \"intent\": \"market_make\",\n  \"chosen_strategy\": \"selective_wide_defensive_quoting\",\n  \"half_spread_bps\": 28,\n  \"update_ms\": 90,\n  \"max_inventory_usd\": 18000,\n  \"expected_1h_pnl_usd\": 412,\n  \"toxic_defense\": \"quote 28 bps half-spread to buffer 24 bps toxic mark moves; update at round-trip latency to minimize stale quotes; inventory cap 82% of hedge capacity for nonlinear skew buffer\",\n  \"self_check\": \"half-spread within 20-35 bps competitive band; update cadence exceeds round-trip latency; inventory cap below $22k nonlinear threshold; PnL positive after $92 toxic drag\",\n  \"reasoning\": \"With 45ms cancel latency and 24 bps toxic moves, quoting 28 bps half-spread provides 4 bps cushion while staying in 20-35 bps competitive band. Update at 90ms (~2x cancel latency) minimizes stale quote exposure. Inventory capped at $18k (82% of $22k capacity) for skew buffer. Expected PnL = $180k turnover × 28 bps - $92 toxic drag = $412.\"\n}",
+      "durationMs": 77001,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "half_spread_bps": 1,
+          "update_ms": 1,
+          "max_inventory_usd": 0,
+          "expected_1h_pnl_usd": 1,
+          "toxic_defense": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "market_make",
+          "chosen_strategy": "selective_wide_defensive_quoting",
+          "half_spread_bps": 28,
+          "update_ms": 90,
+          "max_inventory_usd": 18000,
+          "expected_1h_pnl_usd": 412,
+          "toxic_defense": "quote 28 bps half-spread to buffer 24 bps toxic mark moves; update at round-trip latency to minimize stale quotes; inventory cap 82% of hedge capacity for nonlinear skew buffer",
+          "self_check": "half-spread within 20-35 bps competitive band; update cadence exceeds round-trip latency; inventory cap below $22k nonlinear threshold; PnL positive after $92 toxic drag",
+          "reasoning": "With 45ms cancel latency and 24 bps toxic moves, quoting 28 bps half-spread provides 4 bps cushion while staying in 20-35 bps competitive band. Update at 90ms (~2x cancel latency) minimizes stale quote exposure. Inventory capped at $18k (82% of $22k capacity) for skew buffer. Expected PnL = $180k turnover × 28 bps - $92 toxic drag = $412."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:max_inventory_usd",
+          "agi_validation_failed:toxic_defense",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-105",
+      "raw": "",
+      "durationMs": 45902,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-106",
+      "raw": "",
+      "durationMs": 39437,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-107",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"chosen_strategy\": \"SOL_short_plus_BTC_put_spread\",\n  \"hedge_legs\": {\n    \"SOL_short\": {\n      \"notional_usd\": 310000\n    },\n    \"BTC_put_spread\": {\n      \"notional_usd\": 620000\n    }\n  },\n  \"expected_vol_reduction_pct\": 50,\n  \"residual_1d_var_usd\": 1000000,\n  \"self_check\": \"SOL_short $310k at dealer margin limit; BTC_put_spread $620k under $750k cap; combined vol reduction ~50% meets risk committee target; no ETH short avoids dealer repricing and residual tail; crowding margin rule not triggered since SOL at but not over limit and BTC puts add no short-crowding exposure\",\n  \"reasoning\": \"Maximized SOL short at $310k limit for highest marginal crisis-vol contribution; paired with $620k BTC put-spread (under $750k cap) for crash convexity without crowding exposure; avoided ETH short due to dealer repricing and residual tail risk; achieves ~50% VaR reduction target with residual $1M from estimated $2M original 1d VaR.\"\n}",
+      "durationMs": 22817,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7857142857142857,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "hedge_legs.SOL_short.notional_usd": 1,
+          "hedge_legs.BTC_put_spread.notional_usd": 0,
+          "expected_vol_reduction_pct": 0,
+          "residual_1d_var_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "SOL_short_plus_BTC_put_spread",
+          "hedge_legs": {
+            "SOL_short": {
+              "notional_usd": 310000
+            },
+            "BTC_put_spread": {
+              "notional_usd": 620000
+            }
+          },
+          "expected_vol_reduction_pct": 50,
+          "residual_1d_var_usd": 1000000,
+          "self_check": "SOL_short $310k at dealer margin limit; BTC_put_spread $620k under $750k cap; combined vol reduction ~50% meets risk committee target; no ETH short avoids dealer repricing and residual tail; crowding margin rule not triggered since SOL at but not over limit and BTC puts add no short-crowding exposure",
+          "reasoning": "Maximized SOL short at $310k limit for highest marginal crisis-vol contribution; paired with $620k BTC put-spread (under $750k cap) for crash convexity without crowding exposure; avoided ETH short due to dealer repricing and residual tail risk; achieves ~50% VaR reduction target with residual $1M from estimated $2M original 1d VaR."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:hedge_legs.BTC_put_spread.notional_usd",
+          "agi_validation_failed:expected_vol_reduction_pct",
+          "agi_validation_failed:residual_1d_var_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-108",
+      "raw": "",
+      "durationMs": 120004,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-109",
+      "raw": "",
+      "durationMs": 3133,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-110",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"order_type\": \"perp_short_ladder\",\n  \"asset\": \"ETH\",\n  \"size\": 500000,\n  \"unit\": \"usd\",\n  \"venue\": \"multi\",\n  \"risk_controls\": {\n    \"stop_loss\": \"cascade_buffer\",\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": 500000\n  },\n  \"chosen_strategy\": \"delta_neutral_basis_trade\",\n  \"perp_short_allocation_usd\": {\n    \"Binance\": 150000,\n    \"Hyperliquid\": 100000,\n    \"Bybit\": 100000,\n    \"OKX\": 100000,\n    \"dYdX\": 50000\n  },\n  \"leverage\": 1,\n  \"apr_pct\": 29,\n  \"pnl_30d_usd\": 12083,\n  \"cascade_buffer_pct\": 100,\n  \"survives_cascade\": true,\n  \"self_check\": \"total_short_500k_equals_spot_long_500k_within_all_resilient_capacity_limits_delta_neutral_verified\",\n  \"reasoning\": \"Allocated $500k short across 5 venues within resilient capacity limits ($150k Binance@32%, $100k Hyperliquid@31%, $100k Bybit@29%, $100k OKX@26%, $50k dYdX@22%), yielding 29% weighted APR. 1x leverage matches spot long. Zero capacity exceeded = 100% cascade buffer, survives exchange cascade without ADL risk.\"\n}",
+      "durationMs": 34029,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6153846153846154,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "perp_short_allocation_usd.Binance": 1,
+          "perp_short_allocation_usd.Hyperliquid": 1,
+          "perp_short_allocation_usd.Bybit": 1,
+          "perp_short_allocation_usd.OKX": 1,
+          "perp_short_allocation_usd.dYdX": 1,
+          "leverage": 1,
+          "apr_pct": 1,
+          "pnl_30d_usd": 0,
+          "cascade_buffer_pct": 0,
+          "survives_cascade": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "order_type": "perp_short_ladder",
+          "asset": "ETH",
+          "size": 500000,
+          "unit": "usd",
+          "venue": "multi",
+          "risk_controls": {
+            "stop_loss": "cascade_buffer",
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": 500000
+          },
+          "chosen_strategy": "delta_neutral_basis_trade",
+          "perp_short_allocation_usd": {
+            "Binance": 150000,
+            "Hyperliquid": 100000,
+            "Bybit": 100000,
+            "OKX": 100000,
+            "dYdX": 50000
+          },
+          "leverage": 1,
+          "apr_pct": 29,
+          "pnl_30d_usd": 12083,
+          "cascade_buffer_pct": 100,
+          "survives_cascade": true,
+          "self_check": "total_short_500k_equals_spot_long_500k_within_all_resilient_capacity_limits_delta_neutral_verified",
+          "reasoning": "Allocated $500k short across 5 venues within resilient capacity limits ($150k Binance@32%, $100k Hyperliquid@31%, $100k Bybit@29%, $100k OKX@26%, $50k dYdX@22%), yielding 29% weighted APR. 1x leverage matches spot long. Zero capacity exceeded = 100% cascade buffer, survives exchange cascade without ADL risk."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:pnl_30d_usd",
+          "agi_validation_failed:cascade_buffer_pct",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-111",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"chosen_strategy\": \"delta-neutral short ladder across 5 venues at resilient capacity\",\n  \"perp_short_allocation_usd\": {\n    \"Binance\": 120000,\n    \"Bybit\": 120000,\n    \"OKX\": 110000,\n    \"Hyperliquid\": 90000,\n    \"dYdX\": 60000\n  },\n  \"leverage\": 1,\n  \"apr_pct\": 30.9,\n  \"pnl_30d_usd\": 12699,\n  \"cascade_buffer_pct\": 0,\n  \"survives_cascade\": true,\n  \"self_check\": \"total=$500k matches spot custody; all venues at resilient capacity limits; weighted APR 30.9% = (120*34+120*32+110*30+90*31+60*24)/500; delta-neutral 1x confirmed\",\n  \"reasoning\": \"Allocated $500k shorts across 5 venues at exact resilient capacity limits to match spot custody, maximizing venue diversification to survive single-exchange cascade while capturing weighted 30.9% APR carry\"\n}",
+      "durationMs": 61538,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6923076923076923,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "perp_short_allocation_usd.Binance": 1,
+          "perp_short_allocation_usd.Bybit": 1,
+          "perp_short_allocation_usd.OKX": 1,
+          "perp_short_allocation_usd.Hyperliquid": 1,
+          "perp_short_allocation_usd.dYdX": 1,
+          "leverage": 1,
+          "apr_pct": 1,
+          "pnl_30d_usd": 1,
+          "cascade_buffer_pct": 0,
+          "survives_cascade": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "delta-neutral short ladder across 5 venues at resilient capacity",
+          "perp_short_allocation_usd": {
+            "Binance": 120000,
+            "Bybit": 120000,
+            "OKX": 110000,
+            "Hyperliquid": 90000,
+            "dYdX": 60000
+          },
+          "leverage": 1,
+          "apr_pct": 30.9,
+          "pnl_30d_usd": 12699,
+          "cascade_buffer_pct": 0,
+          "survives_cascade": true,
+          "self_check": "total=$500k matches spot custody; all venues at resilient capacity limits; weighted APR 30.9% = (120*34+120*32+110*30+90*31+60*24)/500; delta-neutral 1x confirmed",
+          "reasoning": "Allocated $500k shorts across 5 venues at exact resilient capacity limits to match spot custody, maximizing venue diversification to survive single-exchange cascade while capturing weighted 30.9% APR carry"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:cascade_buffer_pct",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-112",
+      "raw": "{\"intent\":\"basis_rotation\",\"chosen_strategy\":\"borrow_capped_multi_asset_basis_ladder\",\"pair_allocations_usd\":{\"BTC\":680000,\"ETH\":940000,\"SOL\":780000},\"venue_sequence\":[\"SOL on Venue B (4-hour)\",\"BTC capped on Venue A (8-hour)\",\"ETH residual on Venue B (4-hour)\",\"collateral rebalance before second funding window\"],\"expected_36h_net_pnl_usd\":43200,\"max_margin_utilization_pct\":53,\"shock_survival_buffer_usd\":216000,\"self_check\":\"borrow_caps_verified_BTC_under_700k_knee_SOL_under_62pct_haircut_trigger_funding_windows_aligned_positive_shock_buffer_maintained\",\"reasoning\":\"BTC allocated 20000 below 700k borrow-tightening knee at 680k; SOL at 32.5% of 2.4M equals 780k; ETH receives residual 940k; SOL sequenced first on 4-hour Venue B for faster funding capture; BTC on Venue A within borrow cap; ETH residual on Venue B; collateral rebalance before second window reduces utilization by 11pct to 53pct keeping SOL under 62pct haircut threshold; 9pct shock buffer of 216k maintained across portfolio; expected 36h net PnL derived from funding capture net of borrow costs and rebalance fees\"}",
+      "durationMs": 3491,
+      "grade": {
+        "pass": false,
+        "confidence": 0.9,
+        "score": 0.4,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "pair_allocations_usd.BTC": 1,
+          "pair_allocations_usd.ETH": 1,
+          "pair_allocations_usd.SOL": 1,
+          "venue_sequence": 0,
+          "expected_36h_net_pnl_usd": 0,
+          "max_margin_utilization_pct": 0,
+          "shock_survival_buffer_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "basis_rotation",
+          "chosen_strategy": "borrow_capped_multi_asset_basis_ladder",
+          "pair_allocations_usd": {
+            "BTC": 680000,
+            "ETH": 940000,
+            "SOL": 780000
+          },
+          "venue_sequence": [
+            "SOL on Venue B (4-hour)",
+            "BTC capped on Venue A (8-hour)",
+            "ETH residual on Venue B (4-hour)",
+            "collateral rebalance before second funding window"
+          ],
+          "expected_36h_net_pnl_usd": 43200,
+          "max_margin_utilization_pct": 53,
+          "shock_survival_buffer_usd": 216000,
+          "self_check": "borrow_caps_verified_BTC_under_700k_knee_SOL_under_62pct_haircut_trigger_funding_windows_aligned_positive_shock_buffer_maintained",
+          "reasoning": "BTC allocated 20000 below 700k borrow-tightening knee at 680k; SOL at 32.5% of 2.4M equals 780k; ETH receives residual 940k; SOL sequenced first on 4-hour Venue B for faster funding capture; BTC on Venue A within borrow cap; ETH residual on Venue B; collateral rebalance before second window reduces utilization by 11pct to 53pct keeping SOL under 62pct haircut threshold; 9pct shock buffer of 216k maintained across portfolio; expected 36h net PnL derived from funding capture net of borrow costs and rebalance fees"
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:venue_sequence",
+          "agi_validation_failed:expected_36h_net_pnl_usd",
+          "agi_validation_failed:max_margin_utilization_pct",
+          "agi_validation_failed:shock_survival_buffer_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-113",
+      "raw": "",
+      "durationMs": 64947,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-114",
+      "raw": "",
+      "durationMs": 32994,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-115",
+      "raw": "",
+      "durationMs": 4516,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-001",
+      "raw": "",
+      "durationMs": 12877,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-007",
+      "raw": "```json\n{\n  \"intent\": \"arbitrage\",\n  \"expected_value\": 28894,\n  \"reasoning\": \"Spread decay model: remaining_spread = 1.7% × 2^(-t/120). Hop (45min): EV = 1.197% × 99.8% - 0.2% = +0.866%/$, allocated $200K (10% cap) = $1,732. Stargate (90min): EV = 0.848% × 99.5% - 0.5% = +0.643%/$, allocated $1.8M (remaining) = $11,574. Circle (240min) and Multichain (30min) have negative EV. Total expected profit: $28,894.\"\n}\n```",
+      "durationMs": 119695,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "expected_value": 28894,
+          "reasoning": "Spread decay model: remaining_spread = 1.7% × 2^(-t/120). Hop (45min): EV = 1.197% × 99.8% - 0.2% = +0.866%/$, allocated $200K (10% cap) = $1,732. Stargate (90min): EV = 0.848% × 99.5% - 0.5% = +0.643%/$, allocated $1.8M (remaining) = $11,574. Circle (240min) and Multichain (30min) have negative EV. Total expected profit: $28,894."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "fenced_json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-049",
+      "raw": "",
+      "durationMs": 36433,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-066",
+      "raw": "{\n  \"intent\": \"calculate minimum USD repayment for NFT lending vault deleveraging\",\n  \"expected_value\": 636608,\n  \"reasoning\": \"Post-stress floor = 28 ETH × 0.78 = 21.84 ETH. Max debt for 78% LTV = 21.84 × 0.78 = 17.0352 ETH/NFT. Tranche A needs 40 × (21 - 17.0352) = 158.592 ETH. Tranche B needs 35 × (19 - 17.0352) = 68.768 ETH. Tranche C at 73.26% LTV needs no repayment. Total = 227.36 ETH × $2,800 = $636,608.\"\n}",
+      "durationMs": 9866,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate minimum USD repayment for NFT lending vault deleveraging",
+          "expected_value": 636608,
+          "reasoning": "Post-stress floor = 28 ETH × 0.78 = 21.84 ETH. Max debt for 78% LTV = 21.84 × 0.78 = 17.0352 ETH/NFT. Tranche A needs 40 × (21 - 17.0352) = 158.592 ETH. Tranche B needs 35 × (19 - 17.0352) = 68.768 ETH. Tranche C at 73.26% LTV needs no repayment. Total = 227.36 ETH × $2,800 = $636,608."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-069",
+      "raw": "",
+      "durationMs": 120003,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "The user aborted a request."
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-021",
+      "raw": "",
+      "durationMs": 8812,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-023",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"expected_value\": 533400,\n  \"reasoning\": \"Pre-repay HF = $5,000,000 × 0.78 / $3,150,000 = 1.23. Post-12% shock collateral = $4,400,000. Shock HF = 1.08 < 1.3 target. Using formula: max(0, $3,150,000 + $8,000 - $5,000,000 × 0.78 × 0.88 / 1.3) = max(0, $3,158,000 - $2,624,600) = $533,400 USDC debt reduction required after accounting for $8,000 fees. Reject borrow-more action.\"\n}",
+      "durationMs": 21123,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "expected_value": 533400,
+          "reasoning": "Pre-repay HF = $5,000,000 × 0.78 / $3,150,000 = 1.23. Post-12% shock collateral = $4,400,000. Shock HF = 1.08 < 1.3 target. Using formula: max(0, $3,150,000 + $8,000 - $5,000,000 × 0.78 × 0.88 / 1.3) = max(0, $3,158,000 - $2,624,600) = $533,400 USDC debt reduction required after accounting for $8,000 fees. Reject borrow-more action."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-062",
+      "raw": "{\n  \"intent\": \"cross_chain_swap\",\n  \"expected_value\": 1240,\n  \"reasoning\": \"Route A cost: 0.52%×1.9M + $1800 + 0.03%×1.9M = $12,250 (feasible). Route B cost: 0.2%×1.9M + $3200 + 0.04%×1.9M = $7,760 (feasible). Route C cost: 0.18%×1.9M + $5200 + 0.02%×1.9M = $9,000 (feasible). Route D infeasible: 22min > 18min limit. Best feasible: Route B at $7,760. Second-best: Route C at $9,000. Savings: $1,240. Extra ARB: $1,240/$1.15 = 1,078.26 ARB.\"\n}",
+      "durationMs": 37414,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "cross_chain_swap",
+          "expected_value": 1240,
+          "reasoning": "Route A cost: 0.52%×1.9M + $1800 + 0.03%×1.9M = $12,250 (feasible). Route B cost: 0.2%×1.9M + $3200 + 0.04%×1.9M = $7,760 (feasible). Route C cost: 0.18%×1.9M + $5200 + 0.02%×1.9M = $9,000 (feasible). Route D infeasible: 22min > 18min limit. Best feasible: Route B at $7,760. Second-best: Route C at $9,000. Savings: $1,240. Extra ARB: $1,240/$1.15 = 1,078.26 ARB."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-075",
+      "raw": "",
+      "durationMs": 12542,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

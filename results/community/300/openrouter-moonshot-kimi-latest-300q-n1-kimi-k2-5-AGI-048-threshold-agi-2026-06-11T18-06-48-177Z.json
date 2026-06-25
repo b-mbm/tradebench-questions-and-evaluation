@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-11T18:06:48.177Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-048-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-048"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-048",
+      "raw": " {\n  \"intent\": \"defensive_market_making\",\n  \"chosen_strategy\": \"selective_wide_defensive_quoting\",\n  \"half_spread_bps\": 30,\n  \"update_ms\": 50,\n  \"max_inventory_usd\": 22000,\n  \"expected_1h_pnl_usd\": 448,\n  \"toxic_defense\": \"Quote 30bps half-spread to exceed 24bps toxic burst magnitude; refresh quotes every 50ms to align with 45ms cancel latency; cap inventory at $22k to prevent nonlinear skew; rely on passive fills only.\",\n  \"self_check\": \"Spread buffer covers latency risk (30 > 24), update cadence exceeds cancel RTT (50ms > 45ms), inventory within warehouse capacity (22000 <= 22000), net PnL positive after toxic drag (448 > 0).\",\n  \"reasoning\": \"Selected selective_wide_defensive_quoting because 45ms latency precludes tight/race strategies. Set half-spread to 30bps to buffer 24bps toxic moves while remaining within 20-35bps benign band. Update 50ms prevents cancel backlog. Inventory capped at desk limit $22k. Expected PnL = $180k turnover * 0.0030 - $92 drag = $448.\"\n}",
+      "durationMs": 89866,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "half_spread_bps": 1,
+          "update_ms": 0,
+          "max_inventory_usd": 1,
+          "expected_1h_pnl_usd": 1,
+          "toxic_defense": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "defensive_market_making",
+          "chosen_strategy": "selective_wide_defensive_quoting",
+          "half_spread_bps": 30,
+          "update_ms": 50,
+          "max_inventory_usd": 22000,
+          "expected_1h_pnl_usd": 448,
+          "toxic_defense": "Quote 30bps half-spread to exceed 24bps toxic burst magnitude; refresh quotes every 50ms to align with 45ms cancel latency; cap inventory at $22k to prevent nonlinear skew; rely on passive fills only.",
+          "self_check": "Spread buffer covers latency risk (30 > 24), update cadence exceeds cancel RTT (50ms > 45ms), inventory within warehouse capacity (22000 <= 22000), net PnL positive after toxic drag (448 > 0).",
+          "reasoning": "Selected selective_wide_defensive_quoting because 45ms latency precludes tight/race strategies. Set half-spread to 30bps to buffer 24bps toxic moves while remaining within 20-35bps benign band. Update 50ms prevents cancel backlog. Inventory capped at desk limit $22k. Expected PnL = $180k turnover * 0.0030 - $92 drag = $448."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:update_ms",
+          "agi_validation_failed:toxic_defense",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "runAt": "2026-06-10T06:07:34.862Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-021-L9-030-1781071451155",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-021",
+    "L9-022",
+    "L9-023",
+    "L9-024",
+    "L9-025",
+    "L9-026",
+    "L9-027",
+    "L9-028",
+    "L9-029",
+    "L9-030"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-021",
+      "raw": "",
+      "durationMs": 13697,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-022",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 900,\n  \"reasoning\": \"Computed all-in cost for each route: Route A = 0.41%×1,750,000 + 1,800 + 0.04%×1,750,000 = 7,175 + 1,800 + 700 = $9,675; Route B = 0.24%×1,750,000 + 2,500 + 0.02%×1,750,000 = 4,200 + 2,500 + 350 = $7,050; Route C = 0.30%×1,750,000 + 1,300 + 0.08%×1,750,000 = 5,250 + 1,300 + 1,400 = $7,950. All routes satisfy constraints (settlement ≤16min, oracle ≤60s, capacity ≥$1.75M). Best feasible is Route B (Across solver) at $7,050; second-best is Route C at $7,950. USD saved = 7,950 - 7,050 = $900. Extra ETH = 900/3,500 ≈ 0.257 ETH.\"\n}",
+      "durationMs": 26385,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 900,
+          "reasoning": "Computed all-in cost for each route: Route A = 0.41%×1,750,000 + 1,800 + 0.04%×1,750,000 = 7,175 + 1,800 + 700 = $9,675; Route B = 0.24%×1,750,000 + 2,500 + 0.02%×1,750,000 = 4,200 + 2,500 + 350 = $7,050; Route C = 0.30%×1,750,000 + 1,300 + 0.08%×1,750,000 = 5,250 + 1,300 + 1,400 = $7,950. All routes satisfy constraints (settlement ≤16min, oracle ≤60s, capacity ≥$1.75M). Best feasible is Route B (Across solver) at $7,050; second-best is Route C at $7,950. USD saved = 7,950 - 7,050 = $900. Extra ETH = 900/3,500 ≈ 0.257 ETH."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-023",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"expected_value\": 518000,\n  \"reasoning\": \"Collateral=50×$100,000=$5M, debt=$3,150,000, fees=$8,000, LT=0.78, shock=12%, target HF=1.3. Post-shock collateral=$5M×0.88=$4.4M. Formula: max(0, 3,150,000+8,000 - 5,000,000×0.78×0.88/1.3) = max(0, 3,158,000 - 2,640,000) = $518,000. Pre-repay HF=3,900,000/3,150,000≈1.238; post-shock HF≈1.09<1.3, so repay USDC rather than add collateral. Borrow-more rejected.\"\n}",
+      "durationMs": 19107,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "expected_value": 518000,
+          "reasoning": "Collateral=50×$100,000=$5M, debt=$3,150,000, fees=$8,000, LT=0.78, shock=12%, target HF=1.3. Post-shock collateral=$5M×0.88=$4.4M. Formula: max(0, 3,150,000+8,000 - 5,000,000×0.78×0.88/1.3) = max(0, 3,158,000 - 2,640,000) = $518,000. Pre-repay HF=3,900,000/3,150,000≈1.238; post-shock HF≈1.09<1.3, so repay USDC rather than add collateral. Borrow-more rejected."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-024",
+      "raw": "{\n\"intent\": \"restake_selection\",\n\"expected_value\": [\"A5\", \"A2\", \"A4\"],\n\"reasoning\": \"Computed net score = yield - operator fee - slashing multiplier × expected slashing loss. A1: 7.4-0.3-1.4×0.5=6.4%. A2: 11.2-0.8-2.5×0.9=8.15%. A3: 13.5-1-4×1.1=8.1% but slashing multiplier 4>3.5 → rejected. A4: 9.4-0.4-1.8×0.6=7.92%. A5: 10.1-0.5-2×0.7=8.2%. All eligible AVSs pass hard constraints (net≥6%, multiplier≤3.5, delay≤8d, oracle≤25min, capacity≥150). Top 3 by net score: A5(8.2%), A2(8.15%), A4(7.92%).\"\n}",
+      "durationMs": 28866,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake_selection",
+          "expected_value": [
+            "A5",
+            "A2",
+            "A4"
+          ],
+          "reasoning": "Computed net score = yield - operator fee - slashing multiplier × expected slashing loss. A1: 7.4-0.3-1.4×0.5=6.4%. A2: 11.2-0.8-2.5×0.9=8.15%. A3: 13.5-1-4×1.1=8.1% but slashing multiplier 4>3.5 → rejected. A4: 9.4-0.4-1.8×0.6=7.92%. A5: 10.1-0.5-2×0.7=8.2%. All eligible AVSs pass hard constraints (net≥6%, multiplier≤3.5, delay≤8d, oracle≤25min, capacity≥150). Top 3 by net score: A5(8.2%), A2(8.15%), A4(7.92%)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-025",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 247320,\n  \"reasoning\": \"Flash loan fee = 0.09% × $8M = $7,200. Success (68%): net = $620,000 - $7,200 - $52,000 - $76,000 - $65,000 = $419,800. Failure (32%): net = -$7,200 - $52,000 - $60,000 = -$119,200. EV = 0.68×$419,800 + 0.32×(-$119,200) = $285,464 - $38,144 = $247,320. Oracle age 35s ≤ 45s ✓, liquidity $900K ≥ $640K ✓, EV > 0 ✓.\"\n}",
+      "durationMs": 15441,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 247320,
+          "reasoning": "Flash loan fee = 0.09% × $8M = $7,200. Success (68%): net = $620,000 - $7,200 - $52,000 - $76,000 - $65,000 = $419,800. Failure (32%): net = -$7,200 - $52,000 - $60,000 = -$119,200. EV = 0.68×$419,800 + 0.32×(-$119,200) = $285,464 - $38,144 = $247,320. Oracle age 35s ≤ 45s ✓, liquidity $900K ≥ $640K ✓, EV > 0 ✓."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-026",
+      "raw": "{\n  \"intent\": \"calculate_incremental_apr\",\n  \"expected_value\": 4.40,\n  \"reasoning\": \"Base-case incremental APR: ((16M * 0.72 * 0.00018 * 0.85 * 0.95 - 650) * 365) / 8.5M = ((1,674.432 - 650) * 365) / 8,500,000 = 1,024.432 * 365 / 8,500,000 = 373,917.68 / 8,500,000 = 4.40%. Under 20% volume stress (12.8M daily), net daily LP revenue = 689.55 > 0, so APR stays positive. Oracle age ≤30 min assumed satisfied on mainnet. Excludes compounding, LP-token drift, base fees, and rewards.\"\n}",
+      "durationMs": 9433,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_incremental_apr",
+          "expected_value": 4.4,
+          "reasoning": "Base-case incremental APR: ((16M * 0.72 * 0.00018 * 0.85 * 0.95 - 650) * 365) / 8.5M = ((1,674.432 - 650) * 365) / 8,500,000 = 1,024.432 * 365 / 8,500,000 = 373,917.68 / 8,500,000 = 4.40%. Under 20% volume stress (12.8M daily), net daily LP revenue = 689.55 > 0, so APR stays positive. Oracle age ≤30 min assumed satisfied on mainnet. Excludes compounding, LP-token drift, base fees, and rewards."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-027",
+      "raw": "",
+      "durationMs": 12923,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-028",
+      "raw": "{\n  \"intent\": \"no_action\",\n  \"expected_value\": 0,\n  \"reasoning\": \"All three options fail hard constraints: Option A slippage 0.41% > 0.35% max (also net EV = 9800-2100-2624-7200 = -2124); Option B settlement 13 min > 10 min max (also net EV = 16200-4200-1098-14400 = -3498); Option C oracle age 51s > 45s max (also net EV = 7200-2500-1612-7000 = -3912). No option is both positive-EV and feasible, so refuse to trade.\"\n}",
+      "durationMs": 26982,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "All three options fail hard constraints: Option A slippage 0.41% > 0.35% max (also net EV = 9800-2100-2624-7200 = -2124); Option B settlement 13 min > 10 min max (also net EV = 16200-4200-1098-14400 = -3498); Option C oracle age 51s > 45s max (also net EV = 7200-2500-1612-7000 = -3912). No option is both positive-EV and feasible, so refuse to trade."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-029",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 84.93,\n  \"reasoning\": \"Basis capture: 0.35% × $4M = $14,000. Funding: 0.031% × 15 periods (5 days × 3) × $4M = $18,600. Percent costs: 0.12% × $4M = $4,800. Fixed costs: $950. Borrow drag: 5.5% APR × $2M × 5/365 = $1,506.85. Buffer reserve: $4,000. Net profit = $14,000 + $18,600 - $4,800 - $950 - $1,506.85 - $4,000 = $21,343.15. Annualized APR = ($21,343.15 / $2,000,000) × (365/5) = 77.9%. Wait recalc: (14000+18600-4800-950-1506.85-4000)/2000000*365/5 = 21343.15/2000000*73 = 0.01067*73 = 77.9%. Exceeds 25% threshold, slippage 0.12% < 0.35%, execute.\"\n}",
+      "durationMs": 25701,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 84.93,
+          "reasoning": "Basis capture: 0.35% × $4M = $14,000. Funding: 0.031% × 15 periods (5 days × 3) × $4M = $18,600. Percent costs: 0.12% × $4M = $4,800. Fixed costs: $950. Borrow drag: 5.5% APR × $2M × 5/365 = $1,506.85. Buffer reserve: $4,000. Net profit = $14,000 + $18,600 - $4,800 - $950 - $1,506.85 - $4,000 = $21,343.15. Annualized APR = ($21,343.15 / $2,000,000) × (365/5) = 77.9%. Wait recalc: (14000+18600-4800-950-1506.85-4000)/2000000*365/5 = 21343.15/2000000*73 = 0.01067*73 = 77.9%. Exceeds 25% threshold, slippage 0.12% < 0.35%, execute."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-030",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 5800,\n  \"reasoning\": \"Route A cost = 0.55%×3.2M + 3000 + 0.02%×3.2M = 17600+3000+640 = 21240; feasible (17min≤18, oracle 44s≤60, cap 6M≥3.2M). Route B cost = 0.31%×3.2M + 3600 + 0.06%×3.2M = 9920+3600+1920 = 15440; feasible (12min≤18, oracle 35s≤60, cap 3.5M≥3.2M). Route C cost = 0.28%×3.2M + 5200 + 0.05%×3.2M = 8960+5200+1600 = 15760; infeasible (cap 3.3M < 3.2M notional). Best feasible is Route B at 15440, second-best feasible is Route A at 21240. USD saved = 21240-15440 = 5800. Extra BTC = 5800/100000 = 0.058 BTC.\"\n}",
+      "durationMs": 20267,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 5800,
+          "reasoning": "Route A cost = 0.55%×3.2M + 3000 + 0.02%×3.2M = 17600+3000+640 = 21240; feasible (17min≤18, oracle 44s≤60, cap 6M≥3.2M). Route B cost = 0.31%×3.2M + 3600 + 0.06%×3.2M = 9920+3600+1920 = 15440; feasible (12min≤18, oracle 35s≤60, cap 3.5M≥3.2M). Route C cost = 0.28%×3.2M + 5200 + 0.05%×3.2M = 8960+5200+1600 = 15760; infeasible (cap 3.3M < 3.2M notional). Best feasible is Route B at 15440, second-best feasible is Route A at 21240. USD saved = 21240-15440 = 5800. Extra BTC = 5800/100000 = 0.058 BTC."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

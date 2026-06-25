@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:58:23.761Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-022-2026-06-10T23-56-50",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-022"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-022",
+      "raw": "{\n  \"intent\": \"settle\",\n  \"expected_value\": 0.1416,\n  \"reasoning\": \"Optimal sequence: SUAVE (88% success, 0.12% fee) then bloXroute (84% success, 0.18% fee) if first fails. Combined success: 0.88 + 0.12*0.84 = 98.08% >= 98% target. Expected cost: 0.12% + 0.12*0.18% = 0.1416%. This minimizes cost while meeting success threshold within 24h constraint.\"\n}",
+      "durationMs": 30454,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "settle",
+          "expected_value": 0.1416,
+          "reasoning": "Optimal sequence: SUAVE (88% success, 0.12% fee) then bloXroute (84% success, 0.18% fee) if first fails. Combined success: 0.88 + 0.12*0.84 = 98.08% >= 98% target. Expected cost: 0.12% + 0.12*0.18% = 0.1416%. This minimizes cost while meeting success threshold within 24h constraint."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

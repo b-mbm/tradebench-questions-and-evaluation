@@ -1,0 +1,533 @@
+{
+  "runAt": "2026-06-09T02:42:02.880Z",
+  "label": "openrouter-mistral-family-300q-l7-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "mistralai/mistral-medium-3-5",
+    "mistralai/mistral-small-2603"
+  ],
+  "questionIds": [
+    "L7-001",
+    "L7-002",
+    "L7-003",
+    "L7-004",
+    "L7-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L7-001",
+      "raw": "{\"intent\": \"arbitrage\", \"order_type\": \"flash_loan\", \"asset\": \"ETH\", \"size\": \"100\", \"unit\": \"eth\", \"price\": \"spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap_v3\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\", \"position_size_limit\": \"100 ETH\"}, \"follow_up\": \"verify profit and repay loan\", \"reasoning\": \"Flash loan arbitrage opportunity detected between DEXes for ETH/USDC pair. Borrow 100 ETH via flash loan, execute arbitrage across Uniswap V3 and SushiSwap, repay loan + fees, and retain profit.\", \"requires_follow_up\": true, \"follow_up_description\": \"Monitor transaction confirmation, verify profit calculation, and ensure loan repayment within the same block.\"}",
+      "durationMs": 3769,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.10124999999999999,
+          "order_type": 0.017777777777777785,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "order_type": "flash_loan",
+          "asset": "ETH",
+          "size": "100",
+          "unit": "eth",
+          "price": "spot",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "100 ETH"
+          },
+          "follow_up": "verify profit and repay loan",
+          "reasoning": "Flash loan arbitrage opportunity detected between DEXes for ETH/USDC pair. Borrow 100 ETH via flash loan, execute arbitrage across Uniswap V3 and SushiSwap, repay loan + fees, and retain profit.",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor transaction confirmation, verify profit calculation, and ensure loan repayment within the same block."
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L7-002",
+      "raw": "{\"intent\": \"repay\", \"order_type\": \"market\", \"asset\": \"USDC\", \"size\": 7000, \"unit\": \"USDC\", \"venue\": \"aave\", \"venue_name\": \"Aave v3\", \"risk_controls\": {\"slippage_tolerance\": \"0.1%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"verify debt closure and collateral release\", \"reasoning\": \"Repay 7,000 USDC to close the underwater position and free 5 ETH collateral. Market order ensures immediate execution.\", \"requires_follow_up\": true, \"follow_up_description\": \"Check Aave v3 for debt clearance and collateral unlock status\"}",
+      "durationMs": 2638,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8892857142857143,
+        "score": 0.8300000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "order_type": "market",
+          "asset": "USDC",
+          "size": 7000,
+          "unit": "USDC",
+          "venue": "aave",
+          "venue_name": "Aave v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "verify debt closure and collateral release",
+          "reasoning": "Repay 7,000 USDC to close the underwater position and free 5 ETH collateral. Market order ensures immediate execution.",
+          "requires_follow_up": true,
+          "follow_up_description": "Check Aave v3 for debt clearance and collateral unlock status"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L7-003",
+      "raw": "{\"intent\": \"calculate\", \"order_type\": \"analysis\", \"asset\": \"ETH/USDC LP\", \"size\": 10000, \"venue\": \"amm\", \"il_percentage\": -5.72, \"il_loss_usd\": -572.0, \"net_gain_usd\": 275.0, \"net_return_pct\": 2.75, \"hold_value\": 16666.67, \"lp_value\": 10847, \"reasoning\": \"Impermanent loss calculated as 2*sqrt(3000/5000)/(1+3000/5000)-1 = -5.72%. IL loss = 10000 * -5.72% = -572 USD. Fees earned = 847 USD. Net gain = 847 - 572 = 275 USD. Net return = 275/10000 = 2.75%. Hold value = 10000 * (5000/3000) = 16666.67 USD. LP value = 10000 + 847 - 572 = 10847 USD.\"}",
+      "durationMs": 1897,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.042352941176470586,
+          "order_type": 0.05,
+          "asset": 0.03636363636363637,
+          "size": 0.04,
+          "venue": 0.04,
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0,
+          "lp_value": 0,
+          "reasoning": 0.00932270916334661
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analysis",
+          "asset": "ETH/USDC LP",
+          "size": 10000,
+          "venue": "amm",
+          "il_percentage": -5.72,
+          "il_loss_usd": -572,
+          "net_gain_usd": 275,
+          "net_return_pct": 2.75,
+          "hold_value": 16666.67,
+          "lp_value": 10847,
+          "reasoning": "Impermanent loss calculated as 2*sqrt(3000/5000)/(1+3000/5000)-1 = -5.72%. IL loss = 10000 * -5.72% = -572 USD. Fees earned = 847 USD. Net gain = 847 - 572 = 275 USD. Net return = 275/10000 = 2.75%. Hold value = 10000 * (5000/3000) = 16666.67 USD. LP value = 10000 + 847 - 572 = 10847 USD."
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_net_gain",
+          "lp_net_return_inconsistent_il_loss",
+          "lp_net_return_il_pct_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L7-004",
+      "raw": "{\"intent\": \"calculate\", \"order_type\": \"portfolio_metrics\", \"asset\": \"USDC\", \"size\": 100000, \"venue\": \"defi\", \"blended_apy\": 5.78, \"weighted_risk_score\": 1.6, \"excess_return\": 0.78, \"risk_adjusted_ratio\": 0.4875, \"total_annual_yield_usd\": 5780, \"allocation\": {\"aave\": 50000, \"curve\": 30000, \"yearn\": 20000}, \"reasoning\": \"Blended APY: (0.5*4.2 + 0.3*6.8 + 0.2*8.1) = 5.78%. Weighted risk: (0.5*1 + 0.3*2 + 0.2*3) = 1.6. Excess return: 5.78 - 5.0 = 0.78%. Risk-adjusted ratio: 0.78 / 1.6 = 0.4875. Annual yield: 100000 * 0.0578 = 5780 USD.\"}",
+      "durationMs": 1829,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.019285714285714285,
+          "order_type": 0.005625,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0.24,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.014207650273224045
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "portfolio_metrics",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "defi",
+          "blended_apy": 5.78,
+          "weighted_risk_score": 1.6,
+          "excess_return": 0.78,
+          "risk_adjusted_ratio": 0.4875,
+          "total_annual_yield_usd": 5780,
+          "allocation": {
+            "aave": 50000,
+            "curve": 30000,
+            "yearn": 20000
+          },
+          "reasoning": "Blended APY: (0.5*4.2 + 0.3*6.8 + 0.2*8.1) = 5.78%. Weighted risk: (0.5*1 + 0.3*2 + 0.2*3) = 1.6. Excess return: 5.78 - 5.0 = 0.78%. Risk-adjusted ratio: 0.78 / 1.6 = 0.4875. Annual yield: 100000 * 0.0578 = 5780 USD."
+        },
+        "failureReasons": [
+          "portfolio_efficiency_inconsistent_weighted_risk"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-medium-3-5",
+      "modelLabel": "openrouter:mistralai/mistral-medium-3-5",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.5166666666666666,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.7583333333333333,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"cowswap\",\n  \"worst_option\": \"uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"dex\",\n  \"venue_name\": \"cowswap\",\n  \"reasoning\": \"Calculated total costs (slippage + gas + MEV) as % of gross value (300000). CowSwap has lowest total cost (0.4%) and highest net proceeds (298800). Uniswap has highest total cost (1.5167%) and lowest net proceeds (295450). Savings vs worst: 298800 - 295450 = 3350.\"\n}",
+      "durationMs": 7701,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9988079922536814,
+        "score": 0.9821925679787084,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.0002938775510204081
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5166666666666666,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583333333333333,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "cowswap",
+          "worst_option": "uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "dex",
+          "venue_name": "cowswap",
+          "reasoning": "Calculated total costs (slippage + gas + MEV) as % of gross value (300000). CowSwap has lowest total cost (0.4%) and highest net proceeds (298800). Uniswap has highest total cost (1.5167%) and lowest net proceeds (295450). Savings vs worst: 298800 - 295450 = 3350."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L7-001",
+      "raw": "{\"intent\": \"swap\", \"order_type\": \"dex\", \"asset\": \"USDC\", \"size\": \"1000000\", \"price\": \"pool spot\", \"venue\": \"dex\", \"venue_name\": \"uniswap_v3\", \"risk_controls\": {\"slippage_tolerance\": \"0.3%\", \"max_gas\": \"30 gwei\"}, \"follow_up\": \"monitor arbitrage execution\", \"reasoning\": \"Flash loan arbitrage opportunity detected between DEX pools. Execute swap via Uniswap V3 for optimal gas efficiency and liquidity depth.\", \"requires_follow_up\": true, \"follow_up_description\": \"Verify arbitrage profit after execution and confirm loan repayment.\"}",
+      "durationMs": 1902,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "1000000",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor arbitrage execution",
+          "reasoning": "Flash loan arbitrage opportunity detected between DEX pools. Execute swap via Uniswap V3 for optimal gas efficiency and liquidity depth.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify arbitrage profit after execution and confirm loan repayment."
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L7-002",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"market\", \"asset\": \"ETH\", \"size\": 5, \"unit\": \"eth\", \"venue\": \"dex\", \"venue_name\": \"aave\", \"risk_controls\": {\"slippage_tolerance\": \"0.3%\", \"max_gas\": \"40 gwei\"}, \"follow_up\": \"repay USDC debt\", \"reasoning\": \"unwind underwater position by selling collateral to cover borrowed USDC\", \"requires_follow_up\": true, \"follow_up_description\": \"repay 7000 USDC debt after ETH sale\"}",
+      "durationMs": 1357,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.039999999999999994,
+          "order_type": 0,
+          "asset": 0,
+          "size": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": 5,
+          "unit": "eth",
+          "venue": "dex",
+          "venue_name": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.3%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "repay USDC debt",
+          "reasoning": "unwind underwater position by selling collateral to cover borrowed USDC",
+          "requires_follow_up": true,
+          "follow_up_description": "repay 7000 USDC debt after ETH sale"
+        },
+        "failureReasons": [
+          "size_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L7-003",
+      "raw": "{\"intent\": \"calculate\", \"order_type\": \"analysis\", \"asset\": \"ETH/USDC LP\", \"size\": 10000, \"venue\": \"amm\", \"il_percentage\": 13.4, \"il_loss_usd\": -1340, \"net_gain_usd\": -493, \"net_return_pct\": -4.93, \"hold_value\": 16666.67, \"lp_value\": 15326.67, \"reasoning\": \"Initial position: 1.6667 ETH + 5000 USDC. At ETH=$5000, hold value = 1.6667*5000 + 5000 = 13333.5 + 5000 = 18333.5. LP value = 2*sqrt(1.6667*5000*5000) = 14142.14. Impermanent loss = 18333.5 - 14142.14 = 4191.36. Adjusted LP value with fees = 14142.14 + 847 = 14989.14. Net loss = 10000 - 14989.14 = -493. Impermanent loss % = (4191.36/18333.5)*100 = 22.86%. Net return % = (-493/10000)*100 = -4.93%.\"}",
+      "durationMs": 2276,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.042352941176470586,
+          "order_type": 0.05,
+          "asset": 0.03636363636363637,
+          "size": 0.04,
+          "venue": 0.04,
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0,
+          "lp_value": 0,
+          "reasoning": 0.006329479768786128
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "analysis",
+          "asset": "ETH/USDC LP",
+          "size": 10000,
+          "venue": "amm",
+          "il_percentage": 13.4,
+          "il_loss_usd": -1340,
+          "net_gain_usd": -493,
+          "net_return_pct": -4.93,
+          "hold_value": 16666.67,
+          "lp_value": 15326.67,
+          "reasoning": "Initial position: 1.6667 ETH + 5000 USDC. At ETH=$5000, hold value = 1.6667*5000 + 5000 = 13333.5 + 5000 = 18333.5. LP value = 2*sqrt(1.6667*5000*5000) = 14142.14. Impermanent loss = 18333.5 - 14142.14 = 4191.36. Adjusted LP value with fees = 14142.14 + 847 = 14989.14. Net loss = 10000 - 14989.14 = -493. Impermanent loss % = (4191.36/18333.5)*100 = 22.86%. Net return % = (-493/10000)*100 = -4.93%."
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_net_gain",
+          "lp_net_return_inconsistent_il_loss",
+          "lp_net_return_il_pct_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L7-004",
+      "raw": "{\"intent\": \"analysis\", \"order_type\": \"none\", \"asset\": \"USDC\", \"size\": 100000, \"venue\": \"defi_portfolio\", \"blended_apy\": 5.86, \"weighted_risk_score\": 1.7, \"excess_return\": 0.86, \"risk_adjusted_ratio\": 0.5058823529411765, \"total_annual_yield_usd\": 5860, \"allocation\": {\"aave\": 50000, \"curve\": 30000, \"yearn\": 20000}, \"reasoning\": \"Blended APY = (50000*4.2% + 30000*6.8% + 20000*8.1%)/100000 = 5.86%. Weighted risk = (50000*1 + 30000*2 + 20000*3)/100000 = 1.7. Excess return = 5.86% - 5.0% = 0.86%. Risk-adjusted ratio = 0.86 / 1.7 = 0.5059. Annual yield = 100000 * 5.86% = 5860 USD.\"}",
+      "durationMs": 1847,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.008571428571428574,
+          "order_type": 0.00375,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.004615384615384615,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0.24,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.014881516587677725
+        },
+        "normalizedResponse": {
+          "intent": "analysis",
+          "order_type": "none",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "defi_portfolio",
+          "blended_apy": 5.86,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.86,
+          "risk_adjusted_ratio": 0.5058823529411764,
+          "total_annual_yield_usd": 5860,
+          "allocation": {
+            "aave": 50000,
+            "curve": 30000,
+            "yearn": 20000
+          },
+          "reasoning": "Blended APY = (50000*4.2% + 30000*6.8% + 20000*8.1%)/100000 = 5.86%. Weighted risk = (50000*1 + 30000*2 + 20000*3)/100000 = 1.7. Excess return = 5.86% - 5.0% = 0.86%. Risk-adjusted ratio = 0.86 / 1.7 = 0.5059. Annual yield = 100000 * 5.86% = 5860 USD."
+        },
+        "failureReasons": [
+          "portfolio_efficiency_inconsistent_blended_apy",
+          "portfolio_efficiency_inconsistent_excess_return",
+          "portfolio_efficiency_inconsistent_risk_ratio"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "mistralai/mistral-small-2603",
+      "modelLabel": "openrouter:mistralai/mistral-small-2603",
+      "questionId": "L7-005",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"dex\", \"asset\": \"ETH\", \"size\": 100, \"eth_price\": 3000, \"gross_value\": 300000, \"uniswap_slippage_cost\": 900, \"uniswap_gas_cost\": 50, \"uniswap_mev_cost\": 3600, \"uniswap_total_cost\": 4550, \"uniswap_total_cost_pct\": 1.5167, \"uniswap_net_proceeds\": 295450, \"cowswap_slippage_cost\": 1200, \"cowswap_gas_cost\": 0, \"cowswap_mev_cost\": 0, \"cowswap_total_cost\": 1200, \"cowswap_total_cost_pct\": 0.4, \"cowswap_net_proceeds\": 298800, \"oneinch_slippage_cost\": 1050, \"oneinch_gas_cost\": 25, \"oneinch_mev_cost\": 1200, \"oneinch_total_cost\": 2275, \"oneinch_total_cost_pct\": 0.7583, \"oneinch_net_proceeds\": 297725, \"best_option\": \"CowSwap\", \"worst_option\": \"Uniswap\", \"venue\": \"dex\", \"venue_name\": \"cowswap\", \"reasoning\": \"Calculated total costs for each option by summing slippage (gross_value * slippage_pct), gas (fixed USD), and MEV (gross_value * mev_pct). Net proceeds = gross_value - total_cost. CowSwap has the lowest total cost (0.4%) and highest net proceeds ($298,800), while Uniswap has the highest total cost (1.5167%) and lowest net proceeds ($295,450). Savings vs worst (Uniswap) = $298,800 - $295,450 = $3,350.\"}",
+      "durationMs": 2670,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9392269714210398,
+        "score": 0.9230731905857885,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.0002877094972067039
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5167,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "venue": "dex",
+          "venue_name": "cowswap",
+          "reasoning": "Calculated total costs for each option by summing slippage (gross_value * slippage_pct), gas (fixed USD), and MEV (gross_value * mev_pct). Net proceeds = gross_value - total_cost. CowSwap has the lowest total cost (0.4%) and highest net proceeds ($298,800), while Uniswap has the highest total cost (1.5167%) and lowest net proceeds ($295,450). Savings vs worst (Uniswap) = $298,800 - $295,450 = $3,350."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

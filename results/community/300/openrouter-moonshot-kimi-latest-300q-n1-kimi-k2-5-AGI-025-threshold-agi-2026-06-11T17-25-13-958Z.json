@@ -1,0 +1,65 @@
+{
+  "runAt": "2026-06-11T17:25:13.958Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-025-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-025"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-025",
+      "raw": " {\"intent\":\"buy\",\"chosen_strategy\":\"time_priority_private_sweep_with_hidden_iceberg\",\"execution_sequence\":[\"CEX_Y\",\"Dark_RFQ\",\"RFQ_A\",\"hidden_public\"],\"venue_fills\":{\"CEX_Y\":22000,\"Dark_RFQ\":25000,\"RFQ_A\":24000,\"hidden_public\":9000},\"hidden_public_qty\":9000,\"expected_avg_price\":0.8227,\"expected_slippage_pct\":0.4539,\"self_check\":\"Verified safe: private fills (CEX_Y/Dark_RFQ/RFQ_A) leave zero public footprint; hidden iceberg size is 9,000 RHO, which is below the 18,000 RHO copy-bot trigger threshold and within the 9,000 RHO hidden capacity, ensuring the aggressive parent order remains invisible and the book is not worsened.\",\"reasoning\":\"Total 80,000 RHO: 22k+25k+24k via private venues (no footprint) plus 9k hidden iceberg. Weighted avg price: (22000×0.8218+25000×0.8229+24000×0.8242+9000×0.8205)/80000=0.8227. Slippage vs mid 0.819: (0.8227-0.819)/0.819×100=0.4539%. Sequence respects T+20s/T+45s/T+70s commitment deadlines and keeps largest visible public order at 9k, safely under 18k trigger.\"}",
+      "durationMs": 177549,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7272727272727273,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 1,
+          "venue_fills.CEX_Y": 1,
+          "venue_fills.Dark_RFQ": 1,
+          "venue_fills.RFQ_A": 1,
+          "venue_fills.hidden_public": 1,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "time_priority_private_sweep_with_hidden_iceberg",
+          "execution_sequence": [
+            "CEX_Y",
+            "Dark_RFQ",
+            "RFQ_A",
+            "hidden_public"
+          ],
+          "venue_fills": {
+            "CEX_Y": 22000,
+            "Dark_RFQ": 25000,
+            "RFQ_A": 24000,
+            "hidden_public": 9000
+          },
+          "hidden_public_qty": 9000,
+          "expected_avg_price": 0.8227,
+          "expected_slippage_pct": 0.4539,
+          "self_check": "Verified safe: private fills (CEX_Y/Dark_RFQ/RFQ_A) leave zero public footprint; hidden iceberg size is 9,000 RHO, which is below the 18,000 RHO copy-bot trigger threshold and within the 9,000 RHO hidden capacity, ensuring the aggressive parent order remains invisible and the book is not worsened.",
+          "reasoning": "Total 80,000 RHO: 22k+25k+24k via private venues (no footprint) plus 9k hidden iceberg. Weighted avg price: (22000×0.8218+25000×0.8229+24000×0.8242+9000×0.8205)/80000=0.8227. Slippage vs mid 0.819: (0.8227-0.819)/0.819×100=0.4539%. Sequence respects T+20s/T+45s/T+70s commitment deadlines and keeps largest visible public order at 9k, safely under 18k trigger."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:29:14.136Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L9-037-2026-06-10T23-27-22",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-037"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-037",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 31.31,\n  \"reasoning\": \"Basis capture $2,800 (0.28% of $1M) plus funding $3,510 (0.078% × 4.5 periods) yields $6,310 gross. Costs: fees/slippage $3,200, fixed $120, borrow drag $575 (14% APR × 1.5/365), buffer $1,900. Net $514.66. Annualized ROE = $514.66/$400K × 365/1.5 = 31.31%. Exceeds 25% threshold; slippage 0.32% within 0.35% limit.\"\n}",
+      "durationMs": 111687,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 31.31,
+          "reasoning": "Basis capture $2,800 (0.28% of $1M) plus funding $3,510 (0.078% × 4.5 periods) yields $6,310 gross. Costs: fees/slippage $3,200, fixed $120, borrow drag $575 (14% APR × 1.5/365), buffer $1,900. Net $514.66. Annualized ROE = $514.66/$400K × 365/1.5 = 31.31%. Exceeds 25% threshold; slippage 0.32% within 0.35% limit."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

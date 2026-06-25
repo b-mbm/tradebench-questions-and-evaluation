@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T06:32:42.925Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-004-2026-06-10T06-32-10",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-004",
+      "raw": "{\n  \"intent\": \"hedge on CEX\",\n  \"expected_value\": -12000,\n  \"reasoning\": \"Hedging on CEX for $12,000 slippage neutralizes the $180,000 oracle-skewed inventory exposure. Pulling liquidity ($8,000) only prevents new fills but leaves existing $180K exposure unhedged. Trusting oracle accepts full $180K loss. Option 2 minimizes expected cost at $12,000.\"\n}",
+      "durationMs": 32202,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge on CEX",
+          "expected_value": -12000,
+          "reasoning": "Hedging on CEX for $12,000 slippage neutralizes the $180,000 oracle-skewed inventory exposure. Pulling liquidity ($8,000) only prevents new fills but leaves existing $180K exposure unhedged. Trusting oracle accepts full $180K loss. Option 2 minimizes expected cost at $12,000."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

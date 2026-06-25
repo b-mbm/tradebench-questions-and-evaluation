@@ -4,7 +4,7 @@
     "benchmark": "TradeBench 300Q",
     "run_type": "N=1 pass@1 candidate archive",
     "archived_date": "2026-06-15",
-    "model_count": 68,
+    "model_count": 69,
     "dirty_definition": "Dirty = still unanswered, blank, transport error, truncated, provider/generation failure, or otherwise non-scoreable. Answered fail = clean scored answer that did not pass.",
     "excluded_unsalvageable": [
       "openai/gpt-5.4-pro",
@@ -24,9 +24,11 @@
       "results/repair-checkpoints/top20-no-openai-pro-dirty-repair.jsonl",
       "results/local-qwen35-q6k-300/summary.csv",
       "results/local-qwen35-q6k-300/scores.jsonl",
-      "results/local-qwen35-q6k-300/generations.jsonl"
+      "results/local-qwen35-q6k-300/generations.jsonl",
+      "results/openrouter-glm-5-2-coinbench-300q-2026-06-17",
+      "results/official/300/June 15th final/glm-5-2-openrouter-coinbench-2026-06-17"
     ],
-    "updated_date": "2026-06-16",
+    "updated_date": "2026-06-17",
     "local_models_added": [
       "local-qwen35-4b-q6k",
       "local-qwen35-2b-q6k",
@@ -49,6 +51,9 @@
       "results/parallel-level11-working",
       "results/repair-checkpoints",
       "results/local-qwen35-q6k-300"
+    ],
+    "openrouter_models_added": [
+      "z-ai/glm-5.2"
     ]
   },
   "rows": [
@@ -253,6 +258,16 @@
       "rank": 20
     },
     {
+      "model": "z-ai/glm-5.2",
+      "pass_at_1": 136,
+      "total": 300,
+      "pass_pct": 45.3,
+      "clean": 228,
+      "dirty": 72,
+      "answered_fail": 92,
+      "rank": 21
+    },
+    {
       "model": "inclusionai/ring-2.6-1t",
       "pass_at_1": 134,
       "total": 300,
@@ -260,7 +275,7 @@
       "clean": 285,
       "dirty": 15,
       "answered_fail": 151,
-      "rank": 21
+      "rank": 22
     },
     {
       "model": "z-ai/glm-5",
@@ -270,7 +285,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 169,
-      "rank": 22
+      "rank": 23
     },
     {
       "model": "google/gemini-3.5-flash",
@@ -280,7 +295,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 170,
-      "rank": 23
+      "rank": 24
     },
     {
       "model": "inception/mercury-2",
@@ -290,7 +305,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 173,
-      "rank": 24
+      "rank": 25
     },
     {
       "model": "moonshotai/kimi-k2.6",
@@ -300,7 +315,7 @@
       "clean": 257,
       "dirty": 43,
       "answered_fail": 140,
-      "rank": 25
+      "rank": 26
     },
     {
       "model": "qwen/qwen3.5-397b-a17b",
@@ -310,7 +325,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 186,
-      "rank": 26
+      "rank": 27
     },
     {
       "model": "qwen/qwen3.5-9b",
@@ -320,7 +335,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 188,
-      "rank": 27
+      "rank": 28
     },
     {
       "model": "x-ai/grok-4.3",
@@ -330,7 +345,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 188,
-      "rank": 28
+      "rank": 29
     },
     {
       "model": "minimax/minimax-m2.7",
@@ -340,7 +355,7 @@
       "clean": 290,
       "dirty": 10,
       "answered_fail": 183,
-      "rank": 29
+      "rank": 30
     },
     {
       "model": "deepseek/deepseek-v4-pro",
@@ -350,7 +365,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 197,
-      "rank": 30
+      "rank": 31
     },
     {
       "model": "minimax/minimax-m2.5",
@@ -360,7 +375,7 @@
       "clean": 299,
       "dirty": 1,
       "answered_fail": 196,
-      "rank": 31
+      "rank": 32
     },
     {
       "model": "anthropic/claude-sonnet-4.6",
@@ -370,7 +385,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 202,
-      "rank": 32
+      "rank": 33
     },
     {
       "model": "minimax/minimax-m2",
@@ -380,7 +395,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 204,
-      "rank": 33
+      "rank": 34
     },
     {
       "model": "anthropic/claude-opus-4.8",
@@ -390,7 +405,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 208,
-      "rank": 34
+      "rank": 35
     },
     {
       "model": "qwen/qwen3.5-35b-a3b",
@@ -400,7 +415,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 209,
-      "rank": 35
+      "rank": 36
     },
     {
       "model": "qwen/qwen3.5-flash-02-23",
@@ -410,7 +425,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 213,
-      "rank": 36
+      "rank": 37
     },
     {
       "model": "google/gemma-4-26b-a4b-it",
@@ -420,7 +435,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 216,
-      "rank": 37
+      "rank": 38
     },
     {
       "model": "google/gemini-3.1-flash-lite",
@@ -430,7 +445,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 218,
-      "rank": 38
+      "rank": 39
     },
     {
       "model": "anthropic/claude-opus-4.7",
@@ -440,7 +455,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 219,
-      "rank": 39
+      "rank": 40
     },
     {
       "model": "minimax/minimax-m2.1",
@@ -450,7 +465,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 219,
-      "rank": 40
+      "rank": 41
     },
     {
       "model": "deepseek/deepseek-v4-flash",
@@ -460,7 +475,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 220,
-      "rank": 41
+      "rank": 42
     },
     {
       "model": "anthropic/claude-sonnet-4.5",
@@ -470,7 +485,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 221,
-      "rank": 42
+      "rank": 43
     },
     {
       "model": "kwaipilot/kat-coder-pro-v2",
@@ -480,7 +495,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 222,
-      "rank": 43
+      "rank": 44
     },
     {
       "model": "arcee-ai/trinity-mini",
@@ -490,7 +505,7 @@
       "clean": 263,
       "dirty": 37,
       "answered_fail": 187,
-      "rank": 44
+      "rank": 45
     },
     {
       "model": "local-qwen35-4b-q6k",
@@ -500,7 +515,7 @@
       "clean": 288,
       "dirty": 12,
       "answered_fail": 213,
-      "rank": 45
+      "rank": 46
     },
     {
       "model": "qwen/qwen3-max-thinking",
@@ -510,7 +525,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 229,
-      "rank": 46
+      "rank": 47
     },
     {
       "model": "xiaomi/mimo-v2.5",
@@ -520,7 +535,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 233,
-      "rank": 47
+      "rank": 48
     },
     {
       "model": "xiaomi/mimo-v2.5-pro",
@@ -530,7 +545,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 236,
-      "rank": 48
+      "rank": 49
     },
     {
       "model": "inclusionai/ling-2.6-1t",
@@ -540,7 +555,7 @@
       "clean": 273,
       "dirty": 27,
       "answered_fail": 209,
-      "rank": 49
+      "rank": 50
     },
     {
       "model": "mistralai/mistral-small-2603",
@@ -550,7 +565,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 243,
-      "rank": 50
+      "rank": 51
     },
     {
       "model": "mistralai/mistral-medium-3-5",
@@ -560,7 +575,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 244,
-      "rank": 51
+      "rank": 52
     },
     {
       "model": "xiaomi/mimo-v2-flash",
@@ -570,7 +585,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 244,
-      "rank": 52
+      "rank": 53
     },
     {
       "model": "meta-llama/llama-3.3-70b-instruct",
@@ -580,7 +595,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 245,
-      "rank": 53
+      "rank": 54
     },
     {
       "model": "anthropic/claude-haiku-4.5",
@@ -590,7 +605,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 248,
-      "rank": 54
+      "rank": 55
     },
     {
       "model": "meta-llama/llama-4-maverick",
@@ -600,7 +615,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 248,
-      "rank": 55
+      "rank": 56
     },
     {
       "model": "deepseek/deepseek-chat-v3.1",
@@ -610,7 +625,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 251,
-      "rank": 56
+      "rank": 57
     },
     {
       "model": "inclusionai/ling-2.6-flash",
@@ -620,7 +635,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 252,
-      "rank": 57
+      "rank": 58
     },
     {
       "model": "meta-llama/llama-4-scout",
@@ -630,7 +645,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 252,
-      "rank": 58
+      "rank": 59
     },
     {
       "model": "x-ai/grok-4.20",
@@ -640,7 +655,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 254,
-      "rank": 59
+      "rank": 60
     },
     {
       "model": "ibm-granite/granite-4.1-8b",
@@ -650,7 +665,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 259,
-      "rank": 60
+      "rank": 61
     },
     {
       "model": "deepcogito/cogito-v2.1-671b",
@@ -660,7 +675,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 261,
-      "rank": 61
+      "rank": 62
     },
     {
       "model": "deepseek/deepseek-v3.2-exp",
@@ -670,7 +685,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 261,
-      "rank": 62
+      "rank": 63
     },
     {
       "model": "liquid/lfm-2-24b-a2b",
@@ -680,7 +695,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 261,
-      "rank": 63
+      "rank": 64
     },
     {
       "model": "openai/gpt-5.2-codex",
@@ -690,7 +705,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 261,
-      "rank": 64
+      "rank": 65
     },
     {
       "model": "meta-llama/llama-3.1-8b-instruct",
@@ -700,7 +715,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 266,
-      "rank": 65
+      "rank": 66
     },
     {
       "model": "deepseek/deepseek-v3.2",
@@ -710,7 +725,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 267,
-      "rank": 66
+      "rank": 67
     },
     {
       "model": "local-qwen35-2b-q6k",
@@ -720,7 +735,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 282,
-      "rank": 67
+      "rank": 68
     },
     {
       "model": "local-qwen35-0.8b-q6k",
@@ -730,7 +745,7 @@
       "clean": 300,
       "dirty": 0,
       "answered_fail": 288,
-      "rank": 68
+      "rank": 69
     }
   ]
 }

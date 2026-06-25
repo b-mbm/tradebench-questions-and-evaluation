@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T11:13:03.075Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-056-2026-06-10T11-12-31",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-056"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-056",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"A1\", \"A3\", \"A4\"],\n  \"reasoning\": \"Evaluated 5 AVSs against constraints. A2 rejected: slashing multiplier 3.1 > 3. A5 rejected: withdrawal delay 8 days > 7. Eligible AVSs ranked by net score: A3 (7.5%), A4 (6.9%), A1 (6.54%). Selected top 3 eligible.\"\n}",
+      "durationMs": 30797,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A1",
+            "A3",
+            "A4"
+          ],
+          "reasoning": "Evaluated 5 AVSs against constraints. A2 rejected: slashing multiplier 3.1 > 3. A5 rejected: withdrawal delay 8 days > 7. Eligible AVSs ranked by net score: A3 (7.5%), A4 (6.9%), A1 (6.54%). Selected top 3 eligible."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

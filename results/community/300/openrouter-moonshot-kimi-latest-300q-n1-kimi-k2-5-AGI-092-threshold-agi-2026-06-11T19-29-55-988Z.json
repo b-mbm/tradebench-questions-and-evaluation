@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T19:29:55.987Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-092-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-092"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-092",
+      "raw": "{\"intent\":\"stable_yield_allocation\",\"chosen_strategy\":\"cap_maximization_with_liquidity_floor\",\"expected_net_apy_pct\":8.8,\"expected_90d_profit_usd\":2169.86,\"liquidity_48h_usd\":50000,\"allocation_usd\":{\"Aave_USDC\":20000,\"Curve_3pool\":30000,\"Ethena_USDe\":20000,\"GMX_GLP\":30000},\"reasoning\":\"Maximized risk-adjusted yield by filling highest net APY venues to their caps while maintaining exactly $50k in 48h-liquid venues (Aave_USDC and Curve_3pool) to meet the liquidity constraint. Excluded the fifth uncapped venue to avoid adversarial redemption queues above $10k. Weighted APY: (20k×7.04% + 30k×8.14% + 20k×9.24% + 30k×10.34%)/100k = 8.8%. Expected 90-day profit: $100k × 8.8% × 90/365 ≈ $2,169.86.\"}",
+      "durationMs": 98223,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7777777777777778,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "expected_net_apy_pct": 1,
+          "expected_90d_profit_usd": 1,
+          "liquidity_48h_usd": 1,
+          "allocation_usd.Aave_USDC": 1,
+          "allocation_usd.Curve_3pool": 1,
+          "allocation_usd.Ethena_USDe": 1,
+          "allocation_usd.GMX_GLP": 1
+        },
+        "normalizedResponse": {
+          "intent": "stable_yield_allocation",
+          "chosen_strategy": "cap_maximization_with_liquidity_floor",
+          "expected_net_apy_pct": 8.8,
+          "expected_90d_profit_usd": 2169.86,
+          "liquidity_48h_usd": 50000,
+          "allocation_usd": {
+            "Aave_USDC": 20000,
+            "Curve_3pool": 30000,
+            "Ethena_USDe": 20000,
+            "GMX_GLP": 30000
+          },
+          "reasoning": "Maximized risk-adjusted yield by filling highest net APY venues to their caps while maintaining exactly $50k in 48h-liquid venues (Aave_USDC and Curve_3pool) to meet the liquidity constraint. Excluded the fifth uncapped venue to avoid adversarial redemption queues above $10k. Weighted APY: (20k×7.04% + 30k×8.14% + 20k×9.24% + 30k×10.34%)/100k = 8.8%. Expected 90-day profit: $100k × 8.8% × 90/365 ≈ $2,169.86."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T15:19:29.758Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L10-052-2026-06-10T15-18-58",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-052"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-052",
+      "raw": "{\n  \"intent\": \"repay_debt\",\n  \"expected_value\": 1561481.48,\n  \"reasoning\": \"For each vault, compute minimum repayment so post-stress HF >= 1.08: Repayment = Debt - (StressedCollateral × LiqThreshold) / 1.08. WBTC: 9800000 - (12320000×0.78)/1.08 = 902222.22. ETH: 5200000 - (6800000×0.82)/1.08 = 37037.04. stSOL: 3400000 - (4000000×0.75)/1.08 = 622222.22. Total = 1561481.48 USD, well within the 9M USDC available.\"\n}",
+      "durationMs": 31138,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay_debt",
+          "expected_value": 1561481.48,
+          "reasoning": "For each vault, compute minimum repayment so post-stress HF >= 1.08: Repayment = Debt - (StressedCollateral × LiqThreshold) / 1.08. WBTC: 9800000 - (12320000×0.78)/1.08 = 902222.22. ETH: 5200000 - (6800000×0.82)/1.08 = 37037.04. stSOL: 3400000 - (4000000×0.75)/1.08 = 622222.22. Total = 1561481.48 USD, well within the 9M USDC available."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

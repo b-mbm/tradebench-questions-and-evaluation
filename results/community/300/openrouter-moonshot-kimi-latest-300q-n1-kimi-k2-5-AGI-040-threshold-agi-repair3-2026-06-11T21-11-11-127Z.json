@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-11T21:11:11.126Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-040-threshold-agi-repair3",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-040"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-040",
+      "raw": " {\n  \"intent\": \"accumulate\",\n  \"vote\": \"yes\",\n  \"position\": \"retain_farming\",\n  \"chosen_strategy\": \"support_emission_reduction_vote_and_continue_farming\",\n  \"net_sell_pressure_delta_per_day\": -30167,\n  \"stabilization_buy_usd\": 30000,\n  \"expected_12d_price_change_pct\": 16.7,\n  \"self_check\": \"persistent_sell_pressure_falls_56pct_outweighing_temporary_unlock_supply\",\n  \"reasoning\": \"Calculated new average daily sell pressure as 25,833 tokens (35,000 emissions*70% + 4,000 temporary unlock*4/12), yielding a delta of -30,167 vs current 56,000. Over 12 days, persistent sell reduction is 378,000 tokens; applying two-thirds order-book impact factor yields $252k equivalent support (at $1 implied price). Offsetting 16,000 tokens temporary unlock and adding $30k treasury buy produces net $266k positive flow. Dividing by $1.6M liquidity yields 16.7% expected price appreciation.\"\n}",
+      "durationMs": 169484,
+      "grade": {
+        "pass": false,
+        "confidence": 0.875,
+        "score": 0.375,
+        "fieldScores": {
+          "intent": 0,
+          "vote": 1,
+          "position": 0,
+          "chosen_strategy": 0,
+          "net_sell_pressure_delta_per_day": 0,
+          "stabilization_buy_usd": 1,
+          "expected_12d_price_change_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "accumulate",
+          "vote": "yes",
+          "position": "retain_farming",
+          "chosen_strategy": "support_emission_reduction_vote_and_continue_farming",
+          "net_sell_pressure_delta_per_day": -30167,
+          "stabilization_buy_usd": 30000,
+          "expected_12d_price_change_pct": 16.7,
+          "self_check": "persistent_sell_pressure_falls_56pct_outweighing_temporary_unlock_supply",
+          "reasoning": "Calculated new average daily sell pressure as 25,833 tokens (35,000 emissions*70% + 4,000 temporary unlock*4/12), yielding a delta of -30,167 vs current 56,000. Over 12 days, persistent sell reduction is 378,000 tokens; applying two-thirds order-book impact factor yields $252k equivalent support (at $1 implied price). Offsetting 16,000 tokens temporary unlock and adding $30k treasury buy produces net $266k positive flow. Dividing by $1.6M liquidity yields 16.7% expected price appreciation."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:position",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:net_sell_pressure_delta_per_day",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

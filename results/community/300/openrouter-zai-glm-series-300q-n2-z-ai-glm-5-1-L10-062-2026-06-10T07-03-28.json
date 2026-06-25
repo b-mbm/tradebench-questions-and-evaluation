@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T07:03:48.298Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-062-2026-06-10T07-03-28",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-062"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-062",
+      "raw": "{\n  \"intent\": \"compute\",\n  \"expected_value\": 3241600,\n  \"reasoning\": \"Stress P&L: BTC long loses 40M×9%=3.6M, ETH short loses 18M×12%=2.16M, SOL long loses 6M×18%=1.08M. Total stress loss=6.84M. Stressed equity=15M-6.84M=8.16M. Stressed notionals: BTC=40M×0.91=36.4M, ETH=18M×1.12=20.16M, SOL=6M×0.82=4.92M. Stressed gross notional=61.48M. Required equity=8%×61.48M=4,918,400. Max withdrawal=8,160,000-4,918,400=3,241,600.\"\n}",
+      "durationMs": 19692,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "compute",
+          "expected_value": 3241600,
+          "reasoning": "Stress P&L: BTC long loses 40M×9%=3.6M, ETH short loses 18M×12%=2.16M, SOL long loses 6M×18%=1.08M. Total stress loss=6.84M. Stressed equity=15M-6.84M=8.16M. Stressed notionals: BTC=40M×0.91=36.4M, ETH=18M×1.12=20.16M, SOL=6M×0.82=4.92M. Stressed gross notional=61.48M. Required equity=8%×61.48M=4,918,400. Max withdrawal=8,160,000-4,918,400=3,241,600."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

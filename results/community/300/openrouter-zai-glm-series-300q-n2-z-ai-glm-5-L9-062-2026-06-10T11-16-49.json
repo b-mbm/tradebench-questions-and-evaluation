@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:17:49.632Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-062-2026-06-10T11-16-49",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-062"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-062",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 1240,\n  \"reasoning\": \"Route D infeasible (22min>18min limit). Route B Across RFQ best: $7,760 total (0.2%×$1.9M=$3,800 + $3,200 fixed + 0.04%×$1.9M=$760 risk). Route C CEX second-best: $9,000 (0.18%×$1.9M=$3,420 + $5,200 fixed + 0.02%×$1.9M=$380 risk). USD saved: $1,240. Extra ARB: 1,078.26 ($1,240/$1.15).\"\n}",
+      "durationMs": 60186,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 1240,
+          "reasoning": "Route D infeasible (22min>18min limit). Route B Across RFQ best: $7,760 total (0.2%×$1.9M=$3,800 + $3,200 fixed + 0.04%×$1.9M=$760 risk). Route C CEX second-best: $9,000 (0.18%×$1.9M=$3,420 + $5,200 fixed + 0.02%×$1.9M=$380 risk). USD saved: $1,240. Extra ARB: 1,078.26 ($1,240/$1.15)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T11:09:33.482Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-051-2026-06-10T11-09-01",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-051"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-051",
+      "raw": "{\n  \"intent\": \"governance_action\",\n  \"expected_value\": 329581.15,\n  \"reasoning\": \"Missing votes: 144,000 HYPE (240k-96k). Borrowing cheaper than bribing ($9,279 vs $144,000). EV = 0.61×$640,000 - $9,279 - $9,000 - 0.045×$240,000 = $329,581.15. Missing votes (144k) ≤ lendable liquidity (159k). Positive EV, execute action.\"\n}",
+      "durationMs": 32108,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "governance_action",
+          "expected_value": 329581.15,
+          "reasoning": "Missing votes: 144,000 HYPE (240k-96k). Borrowing cheaper than bribing ($9,279 vs $144,000). EV = 0.61×$640,000 - $9,279 - $9,000 - 0.045×$240,000 = $329,581.15. Missing votes (144k) ≤ lendable liquidity (159k). Positive EV, execute action."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

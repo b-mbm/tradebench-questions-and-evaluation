@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T08:28:16.223Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-010-2026-06-10T08-28-00",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-010",
+      "raw": "{\n  \"intent\": \"calculate_expected_value\",\n  \"expected_value\": 502500,\n  \"reasoning\": \"Success probability is 70% with a net profit of $765,000 ($850k profit - $85k costs). Frontrun probability is 30% with a net loss of -$110,000. EV = (0.70 * 765,000) + (0.30 * -110,000) = 502,500.\"\n}",
+      "durationMs": 15636,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate_expected_value",
+          "expected_value": 502500,
+          "reasoning": "Success probability is 70% with a net profit of $765,000 ($850k profit - $85k costs). Frontrun probability is 30% with a net loss of -$110,000. EV = (0.70 * 765,000) + (0.30 * -110,000) = 502,500."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

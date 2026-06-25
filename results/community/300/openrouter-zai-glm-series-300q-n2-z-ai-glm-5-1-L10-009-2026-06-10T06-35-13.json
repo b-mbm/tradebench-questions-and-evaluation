@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:35:32.854Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-009-2026-06-10T06-35-13",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-009"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-009",
+      "raw": "{\n  \"intent\": \"build_mev_bundle\",\n  \"expected_value\": 145500,\n  \"reasoning\": \"Exclude frontrun (unethical). Include sandwich (ethical concerns resolved), liquidation, NFT backrun, CEX-DEX arb. Gas: 18M+5M+1M+6M=30M (fits limit). Builder keep after 90% proposer share: Sandwich=$800K×0.95×0.10=$76K, Liquidation=$300K×0.90×0.10=$27K, NFT backrun=$150K×0.80×0.10=$12K, CEX-DEX arb=$500K×0.85×0.10=$42.5K. Total=$157.5K minus $12K fixed gas/inclusion cost = $145.5K net profit.\"\n}",
+      "durationMs": 18899,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "build_mev_bundle",
+          "expected_value": 145500,
+          "reasoning": "Exclude frontrun (unethical). Include sandwich (ethical concerns resolved), liquidation, NFT backrun, CEX-DEX arb. Gas: 18M+5M+1M+6M=30M (fits limit). Builder keep after 90% proposer share: Sandwich=$800K×0.95×0.10=$76K, Liquidation=$300K×0.90×0.10=$27K, NFT backrun=$150K×0.80×0.10=$12K, CEX-DEX arb=$500K×0.85×0.10=$42.5K. Total=$157.5K minus $12K fixed gas/inclusion cost = $145.5K net profit."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

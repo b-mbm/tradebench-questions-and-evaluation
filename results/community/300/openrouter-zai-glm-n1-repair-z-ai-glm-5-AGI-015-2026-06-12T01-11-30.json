@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-06-12T01:11:33.427Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-015-2026-06-12T01-11-30",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-015"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-015",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"ETH\",\n  \"size\": \"664.89\",\n  \"unit\": \"eth\",\n  \"venue\": \"multi\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"reasoning\": \"Capacity-capped allocation across 4 venues to minimize acquisition cost while avoiding adversarial repricing. Kraken ($500K), Curve ($400K), Binance ($600K), Uniswap Arbitrum ($500K) = $2M total. Expected ETH: 664.89 at effective price $3,008.28.\"\n}",
+      "durationMs": 2363,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "venue_allocation_usd.Velodrome_Optimism": 0,
+          "venue_allocation_usd.Uniswap_Arbitrum": 0,
+          "venue_allocation_usd.Kraken": 0,
+          "venue_allocation_usd.Curve_ETH": 0,
+          "venue_allocation_usd.Binance": 0,
+          "expected_eth_received": 0,
+          "effective_price": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "ETH",
+          "size": "664.89",
+          "unit": "eth",
+          "venue": "multi",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "reasoning": "Capacity-capped allocation across 4 venues to minimize acquisition cost while avoiding adversarial repricing. Kraken ($500K), Curve ($400K), Binance ($600K), Uniswap Arbitrum ($500K) = $2M total. Expected ETH: 664.89 at effective price $3,008.28."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

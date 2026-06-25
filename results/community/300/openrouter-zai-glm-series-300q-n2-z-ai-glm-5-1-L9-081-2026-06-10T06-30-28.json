@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T06:30:36.410Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-081-2026-06-10T06-30-28",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-081"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-081",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 634320,\n  \"reasoning\": \"Success (54%): net = $1,900,000 - ($12,000 loan fee + $130,000 gas + $170,000 slippage + $155,000 MEV + $65,000 hedge) = $1,368,000. Partial failure (18%): net = -$300,000 ($240,000 loan+gas+hedge loss + $60,000 oracle-update). Full revert (28%): net = -$180,000. EV = 0.54×1,368,000 + 0.18×(-300,000) + 0.28×(-180,000) = 738,720 - 54,000 - 50,400 = $634,320. Hard constraints pass: oracle age 29s ≤ 38s, liquidity $3.1M ≥ $2.2M, probabilities sum 100%. EV > 0 so execute.\"\n}",
+      "durationMs": 7572,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 634320,
+          "reasoning": "Success (54%): net = $1,900,000 - ($12,000 loan fee + $130,000 gas + $170,000 slippage + $155,000 MEV + $65,000 hedge) = $1,368,000. Partial failure (18%): net = -$300,000 ($240,000 loan+gas+hedge loss + $60,000 oracle-update). Full revert (28%): net = -$180,000. EV = 0.54×1,368,000 + 0.18×(-300,000) + 0.28×(-180,000) = 738,720 - 54,000 - 50,400 = $634,320. Hard constraints pass: oracle age 29s ≤ 38s, liquidity $3.1M ≥ $2.2M, probabilities sum 100%. EV > 0 so execute."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

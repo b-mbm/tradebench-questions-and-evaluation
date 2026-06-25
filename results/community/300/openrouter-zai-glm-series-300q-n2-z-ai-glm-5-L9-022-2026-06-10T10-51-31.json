@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T10:52:09.804Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-022-2026-06-10T10-51-31",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-022"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-022",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 900,\n  \"reasoning\": \"Route B (Across solver) wins with lowest all-in cost $7,050 = 0.24%×$1.75M($4,200) + $2,500 fixed + 0.02%×$1.75M($350). Route C costs $7,950, Route A costs $9,675. All routes satisfy constraints (settlement≤16min, oracle≤60s, capacity≥$1.75M). USD saved = $7,950-$7,050 = $900. Extra ETH = $900/$3,500 = 0.257 ETH.\"\n}",
+      "durationMs": 38257,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 900,
+          "reasoning": "Route B (Across solver) wins with lowest all-in cost $7,050 = 0.24%×$1.75M($4,200) + $2,500 fixed + 0.02%×$1.75M($350). Route C costs $7,950, Route A costs $9,675. All routes satisfy constraints (settlement≤16min, oracle≤60s, capacity≥$1.75M). USD saved = $7,950-$7,050 = $900. Extra ETH = $900/$3,500 = 0.257 ETH."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

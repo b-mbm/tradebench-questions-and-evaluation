@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T06:23:08.518Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-064-1781072560479",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-064"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-064",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"R1\", \"R2\", \"R3\"],\n  \"reasoning\": \"Computed net score = yield - operator fee - slashing multiplier × expected slashing loss for each AVS. R4 fails slashing multiplier (3.4 > 3), R5 fails withdrawal delay (9 days > 7), R6 fails oracle freshness (28 min > 25). Only R1 (6.86%), R2 (7.98%), R3 (7.51%) pass all hard constraints, so all three are selected as the top 3 by risk-adjusted APR.\"\n}",
+      "durationMs": 27687,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "R1",
+            "R2",
+            "R3"
+          ],
+          "reasoning": "Computed net score = yield - operator fee - slashing multiplier × expected slashing loss for each AVS. R4 fails slashing multiplier (3.4 > 3), R5 fails withdrawal delay (9 days > 7), R6 fails oracle freshness (28 min > 25). Only R1 (6.86%), R2 (7.98%), R3 (7.51%) pass all hard constraints, so all three are selected as the top 3 by risk-adjusted APR."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

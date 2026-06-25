@@ -1,0 +1,455 @@
+{
+  "runAt": "2026-06-09T12:55:34.107Z",
+  "label": "openrouter-moonshot-kimi-family-300q-l3-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2-thinking",
+    "moonshotai/kimi-k2.6",
+    "moonshotai/kimi-k2.5",
+    "moonshotai/kimi-k2-0905"
+  ],
+  "questionIds": [
+    "L3-001",
+    "L3-002",
+    "L3-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L3-001",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"bridge\",\"asset\":\"USDC\",\"size\":1000,\"unit\":\"usd\",\"venue\":\"bridge\",\"venue_name\":\"arbitrum_native_bridge\",\"risk_controls\":{\"max_gas\":\"30 gwei\",\"slippage_tolerance\":\"0.5%\"},\"follow_up\":\"swap USDC for ARB\",\"reasoning\":\"Two-step operation: (1) Bridge 1000 USDC from Ethereum mainnet to Arbitrum, (2) Swap USDC for ARB on Arbitrum DEX. ARB priced at $1.2, targeting ~833 ARB.\",\"requires_follow_up\":true,\"follow_up_description\":\"After USDC arrives on Arbitrum, execute DEX swap: sell 1000 USDC for ARB at market price using Camelot or Uniswap v3 with 1% slippage tolerance. Expected output ~833 ARB before fees.\"}",
+      "durationMs": 45945,
+      "grade": {
+        "pass": true,
+        "confidence": 0.92791452991453,
+        "score": 0.8790769230769232,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.055999999999999994,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": 1000,
+          "unit": "usd",
+          "venue": "bridge",
+          "venue_name": "arbitrum_native_bridge",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "swap USDC for ARB",
+          "reasoning": "Two-step operation: (1) Bridge 1000 USDC from Ethereum mainnet to Arbitrum, (2) Swap USDC for ARB on Arbitrum DEX. ARB priced at $1.2, targeting ~833 ARB.",
+          "requires_follow_up": true,
+          "follow_up_description": "After USDC arrives on Arbitrum, execute DEX swap: sell 1000 USDC for ARB at market price using Camelot or Uniswap v3 with 1% slippage tolerance. Expected output ~833 ARB before fees."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L3-002",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"bridge\",\"asset\":\"USDC\",\"size\":\"10000\",\"unit\":\"usd\",\"venue\":\"bridge\",\"venue_name\":\"across\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"execute three bridge operations\",\"reasoning\":\"Split 10,000 USDC equally across Ethereum, Arbitrum, and Optimism requires bridging 3,333.33 USDC to each L2 and retaining 3,333.33 USDC on Ethereum\",\"requires_follow_up\":true,\"follow_up_description\":\"1) Bridge 3,333.33 USDC from Ethereum to Arbitrum, 2) Bridge 3,333.33 USDC from Ethereum to Optimism, 3) Keep 3,333.33 USDC on Ethereum\"}",
+      "durationMs": 37732,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8514814814814816,
+        "score": 0.8066666666666668,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.00666666666666667,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "10000",
+          "unit": "usd",
+          "venue": "bridge",
+          "venue_name": "across",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "execute three bridge operations",
+          "reasoning": "Split 10,000 USDC equally across Ethereum, Arbitrum, and Optimism requires bridging 3,333.33 USDC to each L2 and retaining 3,333.33 USDC on Ethereum",
+          "requires_follow_up": true,
+          "follow_up_description": "1) Bridge 3,333.33 USDC from Ethereum to Arbitrum, 2) Bridge 3,333.33 USDC from Ethereum to Optimism, 3) Keep 3,333.33 USDC on Ethereum"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-thinking",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-thinking",
+      "questionId": "L3-003",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"cross-chain\",\"asset\":\"ETH\",\"size\":2,\"unit\":\"eth\",\"price\":\"market\",\"venue\":\"hop\",\"venue_name\":\"Hop Protocol\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"max_gas\":\"50 gwei\",\"position_size_limit\":\"2 eth\"},\"follow_up\":\"execute swap on polygon dex\",\"reasoning\":\"Bridge 2 ETH ($6000) from Ethereum to Polygon via Hop Protocol, then swap for approximately 7500 MATIC at $0.8/MATIC. Using Hop for fast cross-chain transfer with 1% slippage tolerance for the subsequent DEX swap.\",\"requires_follow_up\":true,\"follow_up_description\":\"After bridge completion to Polygon, swap ETH for MATIC on QuickSwap or Uniswap with 1% slippage tolerance\"}",
+      "durationMs": 53275,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6137237762237764,
+        "score": 0.5776223776223778,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.01454545454545455,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0,
+          "venue_name": 0.02,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "cross-chain",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "price": "market",
+          "venue": "hop",
+          "venue_name": "Hop Protocol",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "50 gwei",
+            "position_size_limit": "2 eth"
+          },
+          "follow_up": "execute swap on polygon dex",
+          "reasoning": "Bridge 2 ETH ($6000) from Ethereum to Polygon via Hop Protocol, then swap for approximately 7500 MATIC at $0.8/MATIC. Using Hop for fast cross-chain transfer with 1% slippage tolerance for the subsequent DEX swap.",
+          "requires_follow_up": true,
+          "follow_up_description": "After bridge completion to Polygon, swap ETH for MATIC on QuickSwap or Uniswap with 1% slippage tolerance"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L3-001",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"bridge\",\"asset\":\"USDC\",\"size\":\"1000\",\"unit\":\"usdc\",\"venue\":\"arbitrum\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"max_gas\":\"30 gwei\"},\"follow_up\":\"buy ARB\",\"requires_follow_up\":true,\"follow_up_description\":\"Swap the bridged 1000 USDC for ARB on Arbitrum after bridge settlement\",\"reasoning\":\"User requested a two-step workflow: bridge 1000 USDC to Arbitrum, then buy ARB. This object represents the first required step (bridging) and flags the follow-up purchase.\"}",
+      "durationMs": 97841,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7788942307692309,
+        "score": 0.7330769230769232,
+        "fieldScores": {
+          "intent": 0.08307692307692308,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.03,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": "1000",
+          "unit": "usdc",
+          "venue": "arbitrum",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "buy ARB",
+          "requires_follow_up": true,
+          "follow_up_description": "Swap the bridged 1000 USDC for ARB on Arbitrum after bridge settlement",
+          "reasoning": "User requested a two-step workflow: bridge 1000 USDC to Arbitrum, then buy ARB. This object represents the first required step (bridging) and flags the follow-up purchase."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L3-002",
+      "raw": " {\"intent\":\"bridge\",\"order_type\":\"cross-chain transfer\",\"asset\":\"USDC\",\"size\":\"3333.33\",\"unit\":\"usd\",\"venue\":\"multi-chain\",\"venue_name\":\"Ethereum / Arbitrum / Optimism\",\"risk_controls\":{\"slippage_tolerance\":\"0.1%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":\"3333.33\"},\"follow_up\":\"confirm balances on all three chains\",\"reasoning\":\"split 10,000 USDC equally across three chains (~3,333.33 each) via native bridges or cross-chain messaging; no price risk since asset is stablecoin\",\"requires_follow_up\":true,\"follow_up_description\":\"verify receipt of USDC on Ethereum, Arbitrum, and Optimism and confirm total equals 10,000 USDC minus fees\"}",
+      "durationMs": 1279,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4521742424242425,
+        "score": 0.4255757575757576,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.024000000000000004,
+          "asset": 0.14,
+          "size": 0,
+          "venue": 0.010909090909090912,
+          "venue_name": 0.010666666666666665,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "cross-chain transfer",
+          "asset": "USDC",
+          "size": "3333.33",
+          "unit": "usd",
+          "venue": "multi-chain",
+          "venue_name": "Ethereum / Arbitrum / Optimism",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "3333.33"
+          },
+          "follow_up": "confirm balances on all three chains",
+          "reasoning": "split 10,000 USDC equally across three chains (~3,333.33 each) via native bridges or cross-chain messaging; no price risk since asset is stablecoin",
+          "requires_follow_up": true,
+          "follow_up_description": "verify receipt of USDC on Ethereum, Arbitrum, and Optimism and confirm total equals 10,000 USDC minus fees"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L3-003",
+      "raw": "",
+      "durationMs": 1574,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"cross_chain_swap\",\n  \"asset\": \"ARB\",\n  \"size\": \"1000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap_arbitrum\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"reasoning\": \"Bridge 1000 USDC from mainnet to Arbitrum then swap to ARB at market price (~833 ARB at $1.20/ARB less fees)\",\n  \"requires_follow_up\": true,\n  \"follow_up\": \"confirm bridge and swap completion\",\n  \"follow_up_description\": \"Monitor L1 bridge transaction finality and verify ARB arrival in Arbitrum wallet\"\n}",
+      "durationMs": 92091,
+      "grade": {
+        "pass": false,
+        "confidence": 0.4059139194139194,
+        "score": 0.38203663003663,
+        "fieldScores": {
+          "intent": 0.013846153846153836,
+          "order_type": 0.022857142857142864,
+          "asset": 0,
+          "size": 0.14,
+          "venue": 0.019999999999999993,
+          "venue_name": 0.005333333333333332,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "cross_chain_swap",
+          "asset": "ARB",
+          "size": "1000",
+          "unit": "usdc",
+          "venue": "dex",
+          "venue_name": "uniswap_arbitrum",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "reasoning": "Bridge 1000 USDC from mainnet to Arbitrum then swap to ARB at market price (~833 ARB at $1.20/ARB less fees)",
+          "requires_follow_up": true,
+          "follow_up": "confirm bridge and swap completion",
+          "follow_up_description": "Monitor L1 bridge transaction finality and verify ARB arrival in Arbitrum wallet"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L3-002",
+      "raw": "",
+      "durationMs": 49719,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L3-003",
+      "raw": "",
+      "durationMs": 39659,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L3-001",
+      "raw": "{\n  \"intent\": \"bridge_and_buy\",\n  \"order_type\": \"bridge\",\n  \"asset\": \"ARB\",\n  \"size\": 1000,\n  \"unit\": \"usd\",\n  \"price\": \"1.2\",\n  \"venue\": \"bridge\",\n  \"venue_name\": \"hop\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm bridge completion and swap fill\",\n  \"reasoning\": \"bridge USDC to Arbitrum then swap to ARB\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"monitor bridge completion and execute ARB swap on Arbitrum\"\n}",
+      "durationMs": 719,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7763736263736264,
+        "score": 0.7246153846153847,
+        "fieldScores": {
+          "intent": 0.12461538461538461,
+          "order_type": 0.16,
+          "asset": 0,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_buy",
+          "order_type": "bridge",
+          "asset": "ARB",
+          "size": 1000,
+          "unit": "usd",
+          "price": "1.2",
+          "venue": "bridge",
+          "venue_name": "hop",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm bridge completion and swap fill",
+          "reasoning": "bridge USDC to Arbitrum then swap to ARB",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor bridge completion and execute ARB swap on Arbitrum"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L3-002",
+      "raw": "{\"intent\":\"bridge\",\"order_type\":\"bridge\",\"asset\":\"USDC\",\"size\":3333.33,\"unit\":\"usdc\",\"venue\":\"bridge\",\"risk_controls\":{\"max_gas\":\"30 gwei\",\"slippage_tolerance\":\"0.1%\"},\"follow_up\":\"repeat for Arbitrum and Optimism\",\"reasoning\":\"split 10k USDC equally across 3 L2s, 3333.33 USDC per chain\",\"requires_follow_up\":true,\"follow_up_description\":\"execute identical bridge tx to Arbitrum and Optimism\"}",
+      "durationMs": 5846,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8500000000000001,
+        "score": 0.8,
+        "fieldScores": {
+          "intent": 0.060000000000000005,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge",
+          "order_type": "bridge",
+          "asset": "USDC",
+          "size": 3333.33,
+          "unit": "usdc",
+          "venue": "bridge",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "slippage_tolerance": "0.1%"
+          },
+          "follow_up": "repeat for Arbitrum and Optimism",
+          "reasoning": "split 10k USDC equally across 3 L2s, 3333.33 USDC per chain",
+          "requires_follow_up": true,
+          "follow_up_description": "execute identical bridge tx to Arbitrum and Optimism"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2-0905",
+      "modelLabel": "openrouter:moonshotai/kimi-k2-0905",
+      "questionId": "L3-003",
+      "raw": "{\"intent\":\"bridge_and_swap\",\"order_type\":\"bridge\",\"asset\":\"ETH\",\"size\":2,\"unit\":\"eth\",\"venue\":\"bridge\",\"venue_name\":\"polygon_pos_bridge\",\"risk_controls\":{\"max_gas\":\"40 gwei\",\"slippage_tolerance\":\"2%\"},\"follow_up\":\"swap bridged ETH for MATIC on Polygon\",\"reasoning\":\"Bridge 2 ETH from Ethereum to Polygon via Polygon PoS bridge, then swap for MATIC\",\"requires_follow_up\":true,\"follow_up_description\":\"After bridge confirmation, execute swap of 2 ETH for MATIC on Polygon network\"}",
+      "durationMs": 5858,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9650000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.14,
+          "venue": 0.12,
+          "venue_name": 0.045,
+          "risk_controls": 0.1,
+          "follow_up": 0.04,
+          "reasoning": 0.04
+        },
+        "normalizedResponse": {
+          "intent": "bridge_and_swap",
+          "order_type": "bridge",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "venue": "bridge",
+          "venue_name": "polygon_pos_bridge",
+          "risk_controls": {
+            "max_gas": "40 gwei",
+            "slippage_tolerance": "2%"
+          },
+          "follow_up": "swap bridged ETH for MATIC on Polygon",
+          "reasoning": "Bridge 2 ETH from Ethereum to Polygon via Polygon PoS bridge, then swap for MATIC",
+          "requires_follow_up": true,
+          "follow_up_description": "After bridge confirmation, execute swap of 2 ETH for MATIC on Polygon network"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "runAt": "2026-06-10T18:54:58.639Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-009-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-009"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-009",
+      "raw": "{\"intent\":\"swap\",\"chosen_strategy\":\"Route 2: buy WLD on Ethereum now then bridge WLD to Optimism\",\"chosen_path\":\"Ethereum L1 -> buy WLD -> bridge WLD to Optimism\",\"expected_wld\":414.56,\"completion_minutes\":10,\"reasoning\":\"Route 2 completes in 10 minutes before the premium fully prices in. Starting with 1000 USDC, buying WLD on Ethereum at $2.40 with 0.1% slippage and $28 total fees leaves 972 USDC equivalent, yielding 404.83 WLD. Bridging WLD to Optimism incurs a 0.15% token fee, leaving 404.83 * 0.9985 = 404.22 WLD. However, at minute 10 the linear premium is 5%, so the WLD price on Optimism is $2.42 * 1.05 = $2.541, but since we already own WLD and are bridging the token, we deliver 404.22 WLD. Wait, recalculating properly: effective spend on Route 2 is 1000 - 28 = 972 USDC. WLD acquired on Ethereum = 972 / (2.40 * 1.001) = 972 / 2.4024 = 404.595. After 0.15% bridge fee: 404.595 * 0.9985 = 404.588. But we need to compare value delivered. Actually the question asks for WLD delivered. Let me recalculate all routes carefully. Route 1: 1000 - 8 - 12 = 980 USDC reaches Optimism at minute 10. Price at minute 10 on Optimism: $2.42 * (1 + 0.05*15/30? No, premium arrives linearly 0% to 15% over 30 min, so at minute 10 it's 5% premium, price = 2.42 * 1.05 = 2.541. Slippage 0.3% means effective price = 2.541 * 1.003 = 2.5486. WLD = 980 / 2.5486 = 384.5. Route 2: Buy at minute 0 on Ethereum at 2.40 * 1.001 = 2.4024. 1000 - 28 = 972 USDC. WLD = 972 / 2.4024 = 404.596. Bridge fee 0.15%: 404.596 * 0.9985 = 403.99. Delivered at minute 10. Route 3: Not executable due to unspecified second bridge. Route 4: Not executable due to unspecified second bridge. So Route 2 wins with ~404 WLD. Wait, let me recheck: 972 / 2.4024 = 404.5954. * 0.9985 = 403.987. Hmm but I need to check if searchers closing spreads after 12 minutes affects anything. Route 2 completes at minute 10, before searchers act. The WLD is already on Optimism. So expected_wld = 403.99, completion_minutes = 10. But let me recalculate more precisely. 972 / (2.4 * 1.001) = 972 / 2.4024 = 404.5954046. Times 0.9985 = 403.987. Actually I said 414.56 in my initial quick calc which was wrong. Let me fix. 972/2.4024 = 404.6. Hmm, but I want to be very precise. 2.4 * 1.001 = 2.4024. 972 / 2.4024 = 404.595404595... * 0.9985 = 403.987... So expected_wld is approximately 403.99. But wait, is there any benefit to Route 1? At minute 10, premium is 5%, so Optimism price is 2.42 * 1.05 = 2.541. With 0.3% slippage: 2.541 * 1.003 = 2.548623. 980 / 2.548623 = 384.52. Route 2 is clearly better. But wait, does Route 2 buy at spot 2.40 or does the premium affect Ethereum too? The problem says 'announcement premium arrives linearly' and 'later WLD purchases therefore buy fewer tokens.' It seems the premium is specific to the announcement being priced in, and spots are given as current. But searchers close cross-chain spreads after 12 minutes. This suggests that initially there are different prices across chains, and after 12 minutes they converge. However, Route 2 buys on Ethereum at $2.40 now and bridges. The token fee is 0.15%. So we get ~404 WLD. Actually, I need to reconsider: does the premium mean the price goes up everywhere, or just on Optimism? The problem says 'Spot now: WLD Ethereum $2.40, Arbitrum $2.38, Optimism $2.42, Base $2.39' and 'announcement premium arrives linearly from 0% to +15% over the 30 minutes; later WLD purchases therefore buy fewer tokens.' This suggests the price of WLD is rising over time due to the announcement. Since Optimism is the venue where the partnership is presumably announced, maybe the premium hits Optimism first or hardest? But the problem says 'later WLD purchases therefore buy fewer tokens' generally. And 'searchers close cross-chain WLD spreads after 12 minutes' - this implies prices across chains converge by minute 12. So by minute 12, all chains have the same price which includes some premium. For Route 2, we buy at minute 0 on Ethereum at $2.40 (before premium) and bridge, completing at minute 10. So we avoid the premium entirely on the purchase, and only pay the 0.15% bridge fee. For Route 1, we bridge USDC (no price exposure) and buy at minute 10 on Optimism, when the premium is 5% (10/30 * 15% = 5%). So we pay more. Route 2 is definitely better. Now, expected_wld: 1000 - 28 = 972. Buy WLD at 2.40 with 0.1% slippage means execution price = 2.40 * 1.001 = 2.4024. WLD amount = 972 / 2.4024 = 404.5954. Then bridge with 0.15% fee: 404.5954 * (1 - 0.0015) = 404.5954 * 0.9985 = 403.9875. So expected_wld = 403.99 (rounded to 2 decimals). completion_minutes = 10. chosen_strategy = Route 2. chosen_path = Buy WLD on Ethereum now, bridge WLD to Optimism. reasoning = concise. Let me double check if I should include the rising premium in the Ethereum purchase. The problem says 'announcement premium arrives linearly from 0% to +15% over the 30 minutes; later WLD purchases therefore buy fewer tokens.' This could mean that even on Ethereum, the price rises. But the spot is given as $2.40 now. So buying now at $2.40 (plus slippage) is correct. The searchers close spreads after 12 minutes, meaning that if you wait, you can't arbitrage the cross-chain difference anymore. But Route 2 completes at minute 10. So it's fine. Actually, I want to make sure about Route 1 timing. It says 'bridge USDC to Optimism in 10 minutes' then buy. So completion is minute 10. At that point premium is 5%. Route 2 completes at minute 10 as well. But Route 2 bought at minute 0 price. So Route 2 wins. Is there any interpretation where Route 1 is better? No. What about the fact that Route 2 bridges WLD and there might be a time value? The problem says 'delivered on Optimism by minute 30'. Both deliver by minute 10. So the amount of WLD is what matters. Route 2 gives more. Therefore: expected_wld: 403.99 (or 404.0). I'll use 403.99 for precision. Actually, let me recalculate once more: 972 / 2.4024 = 404.5954045954046. Multiply by 0.9985 = 403.9875095095095. So 403.99. I'll round to 403.99. Or should I keep more precision? The problem doesn't specify. I'll use 403.99. Hmm, but maybe the slippage is applied differently. Sometimes slippage means you get less tokens, so execution price = spot * (1 + slippage). That's what I did. And bridge fee of 0.15% token fee means you lose 0.15% of tokens. That's what I did. Okay. Final JSON: intent: swap, chosen_strategy: Route 2, chosen_path: Ethereum L1 -> buy WLD -> bridge WLD to Optimism, expected_wld: 403.99, completion_minutes: 10, reasoning: Route 2 is executable and completes in 10 minutes before searchers close spreads and before the announcement premium significantly increases prices. Buying WLD on Ethereum at the lower pre-premium spot of $2.40 with 0.1% slippage and $28 fees yields 404.60 WLD; after a 0.15% bridge token fee, 403.99 WLD arrives on Optimism. Routes 3 and 4 are non-executable due to unspecified second bridges. Route 1 arrives at minute 10 but must buy into a 5% premium on Optimism with higher slippage, delivering only ~384.5 WLD. Therefore Route 2 maximizes WLD delivered. Wait, the reasoning needs to be concise. Let me shorten it. Also, I need to make sure the JSON matches the required fields exactly: intent, chosen_strategy, chosen_path, expected_w",
+      "durationMs": 17499,
+      "grade": {
+        "pass": false,
+        "confidence": 0.42,
+        "score": 0.2,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "chosen_path": 0,
+          "expected_wld": 0,
+          "completion_minutes": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "chosen_strategy": "Route 2: buy WLD on Ethereum now then bridge WLD to Optimism",
+          "chosen_path": "Ethereum L1 -> buy WLD -> bridge WLD to Optimism",
+          "expected_wld": 414.56,
+          "completion_minutes": 10,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:chosen_path",
+          "agi_validation_failed:expected_wld"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

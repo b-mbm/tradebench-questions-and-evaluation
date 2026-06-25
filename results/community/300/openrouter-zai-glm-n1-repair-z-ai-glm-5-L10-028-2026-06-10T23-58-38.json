@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:58:56.469Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L10-028-2026-06-10T23-58-38",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-028"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-028",
+      "raw": "{\n  \"intent\": \"convert to AURA\",\n  \"expected_value\": 577500,\n  \"reasoning\": \"Option 3 maximizes expected profit. Option 1: $149,100 bribes (18% APR compounded 14 weeks) minus $412,500 expected veBAL loss (55% × 25% × $3M) = -$263,400. Option 2: $106,800 rewards (13% APR) minus $412,500 expected loss = -$305,700. Option 3: 55% probability × 35% AURA gain × $3M = $577,500 expected profit. Option 3 is optimal at $577,500.\"\n}",
+      "durationMs": 17144,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 0.3
+        },
+        "normalizedResponse": {
+          "intent": "convert to AURA",
+          "expected_value": 577500,
+          "reasoning": "Option 3 maximizes expected profit. Option 1: $149,100 bribes (18% APR compounded 14 weeks) minus $412,500 expected veBAL loss (55% × 25% × $3M) = -$263,400. Option 2: $106,800 rewards (13% APR) minus $412,500 expected loss = -$305,700. Option 3: 55% probability × 35% AURA gain × $3M = $577,500 expected profit. Option 3 is optimal at $577,500."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

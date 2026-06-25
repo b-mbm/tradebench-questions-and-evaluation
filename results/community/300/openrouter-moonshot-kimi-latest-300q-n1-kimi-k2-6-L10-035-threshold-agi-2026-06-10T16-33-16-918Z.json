@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T16:33:16.917Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L10-035-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L10-035"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-035",
+      "raw": " {\"intent\":\"execute\",\"expected_value\":216,\"reasoning\":\"Selected the Low scenario (18 gwei, 100% fill) to guarantee all 15 transactions complete, since Medium (70% fill) and High (partial unfilled) fail the all-or-nothing requirement. Total gas = 15 * 250,000 = 3,750,000. ETH cost = 3,750,000 * 18 * 1e-9 = 0.0675 ETH. USD spend = 0.0675 * 3200 = 216.\"}",
+      "durationMs": 28869,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 216,
+          "reasoning": "Selected the Low scenario (18 gwei, 100% fill) to guarantee all 15 transactions complete, since Medium (70% fill) and High (partial unfilled) fail the all-or-nothing requirement. Total gas = 15 * 250,000 = 3,750,000. ETH cost = 3,750,000 * 18 * 1e-9 = 0.0675 ETH. USD spend = 0.0675 * 3200 = 216."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "runAt": "2026-06-11T22:14:36.475Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L6-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L6-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L6-002",
+      "raw": "{\"intent\":\"buy\",\"order_type\":\"dca\",\"asset\":\"BTC\",\"size\":\"500\",\"unit\":\"usd\",\"venue\":\"coinbase\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"position_size_limit\":\"6500\"},\"follow_up\":\"verify recurring schedule\",\"reasoning\":\"dollar cost averaging strategy: $500 weekly BTC purchases over 3 months (12-13 weeks) to average entry price and reduce timing risk\",\"requires_follow_up\":true,\"follow_up_description\":\"confirm 12-13 weekly orders scheduled and monitor execution\"}",
+      "durationMs": 9277,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "position_size_limit": "6500"
+          },
+          "follow_up": "verify recurring schedule",
+          "reasoning": "dollar cost averaging strategy: $500 weekly BTC purchases over 3 months (12-13 weeks) to average entry price and reduce timing risk",
+          "requires_follow_up": true,
+          "follow_up_description": "confirm 12-13 weekly orders scheduled and monitor execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

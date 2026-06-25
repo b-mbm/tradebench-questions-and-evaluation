@@ -1,0 +1,330 @@
+{
+  "runAt": "2026-06-10T04:02:51.036Z",
+  "label": "openrouter-zai-glm-series-300q-l1-n2",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1",
+    "z-ai/glm-5-turbo",
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L1-001",
+    "L1-002",
+    "L1-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"price\": \"market\",\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"Coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": 22500\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution of 0.5 BTC at current market price (~$22,500 notional)\"\n}",
+      "durationMs": 12575,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "price": "market",
+          "venue": "coinbase",
+          "venue_name": "Coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": 22500
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution of 0.5 BTC at current market price (~$22,500 notional)"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": 10,\n  \"unit\": \"sol\",\n  \"price\": 95,\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": 950\n  },\n  \"follow_up\": \"monitor for fill at $95 limit price\",\n  \"reasoning\": \"Limit buy order placed below current market price of $100; order will only execute if SOL drops to $95 or below, total notional value of $950\"\n}",
+      "durationMs": 2015,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": 10,
+          "unit": "sol",
+          "price": 95,
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": 950
+          },
+          "follow_up": "monitor for fill at $95 limit price",
+          "reasoning": "Limit buy order placed below current market price of $100; order will only execute if SOL drops to $95 or below, total notional value of $950"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L1-003",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"stop\",\n  \"asset\": \"ETH\",\n  \"size\": 2,\n  \"unit\": \"eth\",\n  \"price\": 2800,\n  \"venue\": \"cex\",\n  \"risk_controls\": {\n    \"stop_loss\": 2800,\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm stop loss is active\",\n  \"reasoning\": \"Stop loss order triggers a market sell of 2 ETH if price falls to $2,800, limiting downside risk from current price of $3,000\"\n}",
+      "durationMs": 10771,
+      "grade": {
+        "pass": true,
+        "confidence": 0.902020202020202,
+        "score": 0.8545454545454546,
+        "fieldScores": {
+          "intent": 0.05454545454545454,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "stop",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "eth",
+          "price": 2800,
+          "venue": "cex",
+          "risk_controls": {
+            "stop_loss": 2800,
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm stop loss is active",
+          "reasoning": "Stop loss order triggers a market sell of 2 ETH if price falls to $2,800, limiting downside risk from current price of $3,000"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 13595,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "venue": "coinbase",
+          "venue_name": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": \"10\",\n  \"unit\": \"SOL\",\n  \"price\": \"95\",\n  \"venue\": \"exchange\",\n  \"risk_controls\": {},\n  \"follow_up\": \"confirm order placement\",\n  \"reasoning\": \"limit order placed below current market price of $100 to buy at a discount\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 12082,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.9600000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "unit": "SOL",
+          "price": "95",
+          "venue": "exchange",
+          "risk_controls": {},
+          "follow_up": "confirm order placement",
+          "reasoning": "limit order placed below current market price of $100 to buy at a discount",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L1-003",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"stop_loss\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"eth\",\n  \"price\": \"2800\",\n  \"venue\": \"exchange\",\n  \"risk_controls\": {\n    \"stop_loss\": \"2800\"\n  },\n  \"follow_up\": \"confirm stop loss placement\",\n  \"reasoning\": \"Setting a stop loss to automatically sell 2 ETH if the price drops to $2,800 to limit downside risk.\"\n}",
+      "durationMs": 13841,
+      "grade": {
+        "pass": true,
+        "confidence": 0.902020202020202,
+        "score": 0.8545454545454546,
+        "fieldScores": {
+          "intent": 0.05454545454545454,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "eth",
+          "price": "2800",
+          "venue": "exchange",
+          "risk_controls": {
+            "stop_loss": "2800"
+          },
+          "follow_up": "confirm stop loss placement",
+          "reasoning": "Setting a stop loss to automatically sell 2 ETH if the price drops to $2,800 to limit downside risk."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L1-001",
+      "raw": "",
+      "durationMs": 2068,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L1-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"SOL\",\n  \"size\": \"10\",\n  \"unit\": \"SOL\",\n  \"price\": \"95\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\"\n  },\n  \"follow_up\": \"monitor for fill at limit price\",\n  \"reasoning\": \"limit order placed at $95, below current market price of $100, will execute when price reaches target\"\n}",
+      "durationMs": 14364,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9447222222222224,
+        "score": 0.8950000000000001,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.14,
+          "venue": 0.015,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "SOL",
+          "size": "10",
+          "unit": "SOL",
+          "price": "95",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "1%"
+          },
+          "follow_up": "monitor for fill at limit price",
+          "reasoning": "limit order placed at $95, below current market price of $100, will execute when price reaches target"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L1-003",
+      "raw": "",
+      "durationMs": 1888,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

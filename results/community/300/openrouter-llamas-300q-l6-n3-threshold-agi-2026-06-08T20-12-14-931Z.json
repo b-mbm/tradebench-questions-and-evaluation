@@ -1,0 +1,859 @@
+{
+  "runAt": "2026-06-08T20:12:14.929Z",
+  "label": "openrouter-llamas-300q-l6-n3-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "meta-llama/llama-3.1-8b-instruct"
+  ],
+  "questionIds": [
+    "L6-001",
+    "L6-002",
+    "L6-003",
+    "L6-004",
+    "L6-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH-3500-30D\",\n  \"size\": 2,\n  \"unit\": \"contracts\",\n  \"venue\": \"deribit\",\n  \"venue_name\": \"Deribit Options\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"2%\",\n    \"position_size_limit\": \"10 contracts\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"buying call options for potential upside in ETH price\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"monitor options Greeks and adjust position as needed\"\n}",
+      "durationMs": 2095,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.02571428571428572,
+          "asset": 0.04,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "ETH-3500-30D",
+          "size": 2,
+          "unit": "contracts",
+          "venue": "deribit",
+          "venue_name": "Deribit Options",
+          "risk_controls": {
+            "slippage_tolerance": "2%",
+            "position_size_limit": "10 contracts"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "buying call options for potential upside in ETH price",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor options Greeks and adjust position as needed"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"500\",\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\"\n  },\n  \"follow_up\": \"schedule weekly execution for 3 months\",\n  \"reasoning\": \"DCA strategy to reduce timing risk\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Repeat buy order every week for 12 weeks\"\n}",
+      "durationMs": 3804,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "1%"
+          },
+          "follow_up": "schedule weekly execution for 3 months",
+          "reasoning": "DCA strategy to reduce timing risk",
+          "requires_follow_up": true,
+          "follow_up_description": "Repeat buy order every week for 12 weeks"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.1\",\n  \"unit\": \"btc\",\n  \"price\": \"40000\",\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"Coinbase Pro\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"position_size_limit\": \"1 btc\"\n  },\n  \"follow_up\": \"create ladder orders\",\n  \"reasoning\": \"initiate ladder buy strategy\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"create additional limit orders every $1,000 from $41,000 to $45,000 for 0.1 BTC\"\n}",
+      "durationMs": 3292,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8303571428571429,
+        "score": 0.775,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.1",
+          "unit": "btc",
+          "price": "40000",
+          "venue": "coinbase",
+          "venue_name": "Coinbase Pro",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "position_size_limit": "1 btc"
+          },
+          "follow_up": "create ladder orders",
+          "reasoning": "initiate ladder buy strategy",
+          "requires_follow_up": true,
+          "follow_up_description": "create additional limit orders every $1,000 from $41,000 to $45,000 for 0.1 BTC"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L6-004",
+      "raw": "{\n  \"intent\": \"set_trailing_stop\",\n  \"order_type\": \"stop_loss\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"stop_loss\": \"5% below market\",\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"monitor stop trigger\",\n  \"reasoning\": \"trailing stop to limit potential losses\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check if stop loss is triggered and adjust as needed\"\n}",
+      "durationMs": 2126,
+      "grade": {
+        "pass": true,
+        "confidence": 0.631125,
+        "score": 0.7425,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0,
+          "venue": 0.0125,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_trailing_stop",
+          "order_type": "stop_loss",
+          "asset": "BTC",
+          "size": "0.5",
+          "venue": "coinbase",
+          "risk_controls": {
+            "stop_loss": "5% below market",
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor stop trigger",
+          "reasoning": "trailing stop to limit potential losses",
+          "requires_follow_up": true,
+          "follow_up_description": "check if stop loss is triggered and adjust as needed"
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L6-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"TWAP\",\n  \"asset\": \"ETH\",\n  \"size\": 10,\n  \"venue\": \"mainnet\",\n  \"duration\": \"4 hours\",\n  \"reasoning\": \"TWAP order to sell 10 ETH over 4 hours for steady execution\"\n}",
+      "durationMs": 1657,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9425,
+        "score": 0.87,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.1,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "TWAP",
+          "asset": "ETH",
+          "size": 10,
+          "venue": "mainnet",
+          "duration": "4 hours",
+          "reasoning": "TWAP order to sell 10 ETH over 4 hours for steady execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"options\",\n  \"asset\": \"ETH-3500-C\",\n  \"size\": \"2\",\n  \"unit\": \"contracts\",\n  \"price\": \"market\",\n  \"venue\": \"deribit\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"2%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm fill and monitor position\",\n  \"reasoning\": \"buying calls to speculate on ETH price increase\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check for fill and assess position delta\"\n}",
+      "durationMs": 1254,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.18,
+          "asset": 0.04800000000000001,
+          "size": 0.14,
+          "price": 0,
+          "venue": 0.1,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "options",
+          "asset": "ETH-3500-C",
+          "size": "2",
+          "unit": "contracts",
+          "price": "market",
+          "venue": "deribit",
+          "risk_controls": {
+            "slippage_tolerance": "2%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm fill and monitor position",
+          "reasoning": "buying calls to speculate on ETH price increase",
+          "requires_follow_up": true,
+          "follow_up_description": "check for fill and assess position delta"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dca\",\n  \"asset\": \"BTC\",\n  \"size\": \"500\",\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"venue_name\": \"Coinbase Prime\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor executions\",\n  \"reasoning\": \"DCA strategy to reduce market impact\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify weekly buys for 3 months\"\n}",
+      "durationMs": 1807,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9509375,
+        "score": 0.895,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "venue_name": "Coinbase Prime",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor executions",
+          "reasoning": "DCA strategy to reduce market impact",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify weekly buys for 3 months"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.025\",\n  \"unit\": \"usd\",\n  \"price\": \"45000\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor order book depth\",\n  \"reasoning\": \"ladder buy orders require multiple executions\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Create additional limit buy orders at $44k, $43k, $42k, and $41k for BTC\"\n}",
+      "durationMs": 2398,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8303571428571429,
+        "score": 0.775,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.025",
+          "unit": "usd",
+          "price": "45000",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor order book depth",
+          "reasoning": "ladder buy orders require multiple executions",
+          "requires_follow_up": true,
+          "follow_up_description": "Create additional limit buy orders at $44k, $43k, $42k, and $41k for BTC"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L6-004",
+      "raw": "{\n  \"intent\": \"set_stop_loss\",\n  \"order_type\": \"trailing_stop\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"btc\",\n  \"price\": \"5% below market\",\n  \"venue\": \"exchange\",\n  \"venue_name\": \"binance\",\n  \"risk_controls\": {\n    \"trailing_stop_percentage\": \"5%\"\n  },\n  \"follow_up\": \"monitor stop trigger\",\n  \"reasoning\": \"protect against downside risk\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check if stop is triggered and adjust as necessary\"\n}",
+      "durationMs": 1144,
+      "grade": {
+        "pass": true,
+        "confidence": 0.914814814814815,
+        "score": 0.8666666666666668,
+        "fieldScores": {
+          "intent": 0.06666666666666668,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_stop_loss",
+          "order_type": "trailing_stop",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "btc",
+          "price": "5% below market",
+          "venue": "exchange",
+          "venue_name": "binance",
+          "risk_controls": {
+            "trailing_stop_percentage": "5%"
+          },
+          "follow_up": "monitor stop trigger",
+          "reasoning": "protect against downside risk",
+          "requires_follow_up": true,
+          "follow_up_description": "check if stop is triggered and adjust as necessary"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L6-005",
+      "raw": "{\"intent\": \"sell\", \"order_type\": \"twap\", \"asset\": \"ETH\", \"size\": \"10\", \"venue\": \"cow_protocol\", \"risk_controls\": {}, \"duration\": \"4 hours\", \"reasoning\": \"derived from prompt\"}",
+      "durationMs": 736,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8440151515151516,
+        "score": 0.7790909090909092,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.009090909090909094,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "twap",
+          "asset": "ETH",
+          "size": "10",
+          "venue": "cow_protocol",
+          "risk_controls": {},
+          "duration": "4 hours",
+          "reasoning": "derived from prompt"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH-3500-C-30D\",\n  \"size\": \"2\",\n  \"unit\": \"contracts\",\n  \"price\": 3500,\n  \"venue\": \"derivatives\",\n  \"venue_name\": \"opensea\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"5%\"\n  },\n  \"follow_up\": \"monitor option Greeks\",\n  \"reasoning\": \"buying calls for speculative purposes\"\n}",
+      "durationMs": 2252,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.02571428571428572,
+          "asset": 0.03428571428571429,
+          "size": 0.14,
+          "price": 0.1,
+          "venue": 0.006666666666666665,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "ETH-3500-C-30D",
+          "size": "2",
+          "unit": "contracts",
+          "price": 3500,
+          "venue": "derivatives",
+          "venue_name": "opensea",
+          "risk_controls": {
+            "slippage_tolerance": "5%"
+          },
+          "follow_up": "monitor option Greeks",
+          "reasoning": "buying calls for speculative purposes"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"recurring_buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"500\",\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {},\n  \"follow_up\": \"confirm weekly fills\",\n  \"reasoning\": \"set up DCA for 3 months\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"monitor weekly executions\"\n}",
+      "durationMs": 3600,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7285714285714288,
+        "score": 0.6800000000000002,
+        "fieldScores": {
+          "intent": 0.045,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "recurring_buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {},
+          "follow_up": "confirm weekly fills",
+          "reasoning": "set up DCA for 3 months",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor weekly executions"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.025\",\n  \"unit\": \"btc\",\n  \"venue\": \"binance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"monitor fills\",\n  \"reasoning\": \"create ladder buy orders\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify execution at each level\",\n  \"ladder\": [\n    {\n      \"price\": 40000,\n      \"size\": 0.025\n    },\n    {\n      \"price\": 41000,\n      \"size\": 0.025\n    },\n    {\n      \"price\": 42000,\n      \"size\": 0.025\n    },\n    {\n      \"price\": 43000,\n      \"size\": 0.025\n    },\n    {\n      \"price\": 44000,\n      \"size\": 0.025\n    },\n    {\n      \"price\": 45000,\n      \"size\": 0.025\n    }\n  ]\n}",
+      "durationMs": 8268,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8326530612244898,
+        "score": 0.7771428571428571,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0.12
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "BTC",
+          "size": "0.025",
+          "unit": "btc",
+          "venue": "binance",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor fills",
+          "reasoning": "create ladder buy orders",
+          "requires_follow_up": true,
+          "follow_up_description": "verify execution at each level",
+          "ladder": [
+            {
+              "price": 40000,
+              "size": 0.025
+            },
+            {
+              "price": 41000,
+              "size": 0.025
+            },
+            {
+              "price": 42000,
+              "size": 0.025
+            },
+            {
+              "price": 43000,
+              "size": 0.025
+            },
+            {
+              "price": 44000,
+              "size": 0.025
+            },
+            {
+              "price": 45000,
+              "size": 0.025
+            }
+          ]
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L6-004",
+      "raw": "{\n\"intent\": \"set_trailing_stop\",\n  \"order_type\": \"conditional\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"BTC\",\n  \"price\": \"45000\",\n  \"venue\": \"manual\",\n  \"risk_controls\": {\n    \"stop_loss\": \"42750\"\n  },\n  \"follow_up\": \"monitor price\",\n  \"reasoning\": \"trailing stop 5% below market price\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"adjust stop loss if price moves\"\n}",
+      "durationMs": 779,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7809375000000001,
+        "score": 0.7350000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.015000000000000006,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set_trailing_stop",
+          "order_type": "conditional",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "BTC",
+          "price": "45000",
+          "venue": "manual",
+          "risk_controls": {
+            "stop_loss": "42750"
+          },
+          "follow_up": "monitor price",
+          "reasoning": "trailing stop 5% below market price",
+          "requires_follow_up": true,
+          "follow_up_description": "adjust stop loss if price moves"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L6-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"TWAP\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"venue\": \"dex\",\n  \"duration\": \"4 hours\",\n  \"reasoning\": \"Executed a TWAP sell order for 10 ETH over 4 hours to minimize market impact\"\n}",
+      "durationMs": 2075,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9425,
+        "score": 0.87,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.1,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "TWAP",
+          "asset": "ETH",
+          "size": "10",
+          "venue": "dex",
+          "duration": "4 hours",
+          "reasoning": "Executed a TWAP sell order for 10 ETH over 4 hours to minimize market impact"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L6-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"ETH\",\n  \"size\": \"2\",\n  \"unit\": \"calls\",\n  \"price\": \"3500\",\n  \"venue\": \"binance\",\n  \"venue_name\": \"Binance Futures\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"limit order for 2 ETH calls expiring in 30 days\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify the trade was executed at the specified price\"\n}",
+      "durationMs": 2689,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07714285714285715,
+          "order_type": 0.02571428571428572,
+          "asset": 0.16,
+          "size": 0.14,
+          "price": 0.1,
+          "venue": 0.03333333333333334,
+          "risk_controls": 0.08,
+          "follow_up": 0.03,
+          "reasoning": 0.03
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "ETH",
+          "size": "2",
+          "unit": "calls",
+          "price": "3500",
+          "venue": "binance",
+          "venue_name": "Binance Futures",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "limit order for 2 ETH calls expiring in 30 days",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify the trade was executed at the specified price"
+        },
+        "failureReasons": [
+          "options_missing_call_type"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L6-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dca\",\n  \"asset\": \"BTC\",\n  \"size\": \"500\",\n  \"unit\": \"usd\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill and schedule next\",\n  \"reasoning\": \"dollar-cost averaging for long-term growth\"\n}",
+      "durationMs": 1647,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8303571428571429,
+        "score": 0.775,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0.12,
+          "unit": 0.08,
+          "venue": 0.015,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dca",
+          "asset": "BTC",
+          "size": "500",
+          "unit": "usd",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill and schedule next",
+          "reasoning": "dollar-cost averaging for long-term growth"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L6-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"ladder\",\n  \"asset\": \"BTC\",\n  \"size\": \"10000\",\n  \"unit\": \"usd\",\n  \"price\": \"40000\",\n  \"venue\": \"binance\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor order book\",\n  \"reasoning\": \"create ladder buy orders for BTC\"\n}",
+      "durationMs": 3067,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7119047619047619,
+        "score": 0.6571428571428571,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.14,
+          "size": 0,
+          "unit": 0.08,
+          "venue": 0.017142857142857147,
+          "risk_controls": 0.08,
+          "follow_up": 0,
+          "reasoning": 0,
+          "requires_follow_up": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "ladder",
+          "asset": "BTC",
+          "size": "10000",
+          "unit": "usd",
+          "price": "40000",
+          "venue": "binance",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor order book",
+          "reasoning": "create ladder buy orders for BTC"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L6-004",
+      "raw": "{\n  \"intent\": \"set trailing stop\",\n  \"order_type\": \"stop\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"unit\": \"BTC\",\n  \"price\": \"0.95\",\n  \"venue\": \"exchange\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor price movement\",\n  \"reasoning\": \"set trailing stop 5% below market price\"\n}",
+      "durationMs": 2703,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9040522875816994,
+        "score": 0.8564705882352942,
+        "fieldScores": {
+          "intent": 0.17647058823529413,
+          "order_type": 0.060000000000000005,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.1,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "set trailing stop",
+          "order_type": "stop",
+          "asset": "BTC",
+          "size": "0.5",
+          "unit": "BTC",
+          "price": "0.95",
+          "venue": "exchange",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor price movement",
+          "reasoning": "set trailing stop 5% below market price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L6-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"TWAP\",\n  \"asset\": \"ETH\",\n  \"size\": \"10\",\n  \"venue\": \"binance\",\n  \"duration\": \"4 hours\",\n  \"reasoning\": \"TWAP order for 10 ETH over 4 hours to sell at average price\"\n}",
+      "durationMs": 1954,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8496428571428573,
+        "score": 0.7842857142857144,
+        "fieldScores": {
+          "intent": 0.15,
+          "order_type": 0.15,
+          "asset": 0.15,
+          "size": 0.12,
+          "venue": 0.01428571428571429,
+          "duration": 0.2,
+          "risk_controls": 0,
+          "follow_up_description": 0
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "TWAP",
+          "asset": "ETH",
+          "size": "10",
+          "venue": "binance",
+          "duration": "4 hours",
+          "reasoning": "TWAP order for 10 ETH over 4 hours to sell at average price"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

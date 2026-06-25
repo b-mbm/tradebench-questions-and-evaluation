@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T09:01:37.811Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-078-2026-06-10T09-01-15",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-078"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-078",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"expected_value\": 1300,\n  \"reasoning\": \"Route D is infeasible due to settlement time (18m > 15m cap). Feasible route costs: A=$8,400, B=$6,400, C=$7,700. Best is Route B, saving $1,300 versus second-best Route C, resulting in ~30.95 extra AVAX.\"\n}\n",
+      "durationMs": 21782,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 1300,
+          "reasoning": "Route D is infeasible due to settlement time (18m > 15m cap). Feasible route costs: A=$8,400, B=$6,400, C=$7,700. Best is Route B, saving $1,300 versus second-best Route C, resulting in ~30.95 extra AVAX."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

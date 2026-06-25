@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T22:39:27.666Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-020-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-020"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-020",
+      "raw": "{\"intent\": \"defend\", \"expected_value\": 1200000, \"reasoning\": \"Oracle-sensitive exposure totals $25M ($12M Lido loop + $8M Compound borrow + $5M Uniswap LP). Expected loss avoided = 4.8% * $25,000,000 = $1,200,000 by unwinding these positions before the 6-minute liquidation spike.\"}",
+      "durationMs": 135756,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "defend",
+          "expected_value": 1200000,
+          "reasoning": "Oracle-sensitive exposure totals $25M ($12M Lido loop + $8M Compound borrow + $5M Uniswap LP). Expected loss avoided = 4.8% * $25,000,000 = $1,200,000 by unwinding these positions before the 6-minute liquidation spike."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

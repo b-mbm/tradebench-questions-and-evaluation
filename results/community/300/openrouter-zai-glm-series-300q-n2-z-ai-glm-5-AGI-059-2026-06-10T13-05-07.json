@@ -1,0 +1,66 @@
+{
+  "runAt": "2026-06-10T13:05:40.443Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-AGI-059-2026-06-10T13-05-07",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-059"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-059",
+      "raw": "{\n  \"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"Harvest all three loss lots in ascending exit-depth order to maximize tax offset while avoiding wash sale through non-identical replacement baskets\",\n  \"assets_to_sell\": [\"FTM\", \"MATIC\", \"UNI\"],\n  \"sale_sequence\": [\"FTM\", \"MATIC\", \"UNI\"],\n  \"replacement_assets\": {\n    \"FTM\": \"L1_alt_basket\",\n    \"MATIC\": \"ARB_OP_basket\",\n    \"UNI\": \"AAVE_COMP_basket\"\n  },\n  \"net_tax_benefit\": 24910,\n  \"remaining_unoffset_gains\": 22000,\n  \"self_check\": \"All lots harvested for maximum $73,000 loss offset; sequence FTM(0.7)→MATIC(1.3)→UNI(2.1) respects exit-depth constraint preventing spread widening; replacement baskets avoid 30-day wash sale; gross tax savings $27,010 minus $2,100 round-trip cost equals $24,910 net benefit; $95,000 gains minus $73,000 losses leaves $22,000 unoffset\",\n  \"reasoning\": \"Total losses $73,000 offset gains at 37% = $27,010 gross savings. Round-trip on $350,000 notional at 0.60% = $2,100 cost. Net benefit $24,910. Thinnest lot (FTM exit-depth 0.7) sold first to prevent market maker widening spreads on subsequent exits.\"\n}",
+      "durationMs": 32986,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "assets_to_sell": 1,
+          "sale_sequence": 1,
+          "replacement_assets.FTM": 1,
+          "replacement_assets.MATIC": 1,
+          "replacement_assets.UNI": 1,
+          "net_tax_benefit": 1,
+          "remaining_unoffset_gains": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "Harvest all three loss lots in ascending exit-depth order to maximize tax offset while avoiding wash sale through non-identical replacement baskets",
+          "assets_to_sell": [
+            "FTM",
+            "MATIC",
+            "UNI"
+          ],
+          "sale_sequence": [
+            "FTM",
+            "MATIC",
+            "UNI"
+          ],
+          "replacement_assets": {
+            "FTM": "L1_alt_basket",
+            "MATIC": "ARB_OP_basket",
+            "UNI": "AAVE_COMP_basket"
+          },
+          "net_tax_benefit": 24910,
+          "remaining_unoffset_gains": 22000,
+          "self_check": "All lots harvested for maximum $73,000 loss offset; sequence FTM(0.7)→MATIC(1.3)→UNI(2.1) respects exit-depth constraint preventing spread widening; replacement baskets avoid 30-day wash sale; gross tax savings $27,010 minus $2,100 round-trip cost equals $24,910 net benefit; $95,000 gains minus $73,000 losses leaves $22,000 unoffset",
+          "reasoning": "Total losses $73,000 offset gains at 37% = $27,010 gross savings. Round-trip on $350,000 notional at 0.60% = $2,100 cost. Net benefit $24,910. Thinnest lot (FTM exit-depth 0.7) sold first to prevent market maker widening spreads on subsequent exits."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

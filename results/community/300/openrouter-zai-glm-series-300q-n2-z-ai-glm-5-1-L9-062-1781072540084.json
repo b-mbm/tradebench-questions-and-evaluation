@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:22:33.051Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-062-1781072540084",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-062"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-062",
+      "raw": "{\n  \"intent\": \"cross_chain_swap\",\n  \"expected_value\": 1240,\n  \"reasoning\": \"Notional=$1.9M. Route A cost: 0.52%×1.9M=$9,880 + $1,800 + 0.03%×1.9M=$570 = $12,250 (feasible: 17min≤18, 44s≤50s, cap≥notional). Route B cost: 0.2%×1.9M=$3,800 + $3,200 + 0.04%×1.9M=$760 = $7,760 (feasible: 10min≤18, 32s≤50s, cap≥notional). Route C cost: 0.18%×1.9M=$3,420 + $5,200 + 0.02%×1.9M=$380 = $9,000 (feasible: 14min≤18, 38s≤50s, cap≥notional). Route D cost: 0.24%×1.9M=$4,560 + $1,600 + 0.12%×1.9M=$2,280 = $8,440 (infeasible: 22min>18min). Best feasible=Route B at $7,760; second-best=Route C at $9,000. USD saved=$1,240. Extra ARB=$1,240/$1.15≈1,086.96 ARB.\"\n}",
+      "durationMs": 12551,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "cross_chain_swap",
+          "expected_value": 1240,
+          "reasoning": "Notional=$1.9M. Route A cost: 0.52%×1.9M=$9,880 + $1,800 + 0.03%×1.9M=$570 = $12,250 (feasible: 17min≤18, 44s≤50s, cap≥notional). Route B cost: 0.2%×1.9M=$3,800 + $3,200 + 0.04%×1.9M=$760 = $7,760 (feasible: 10min≤18, 32s≤50s, cap≥notional). Route C cost: 0.18%×1.9M=$3,420 + $5,200 + 0.02%×1.9M=$380 = $9,000 (feasible: 14min≤18, 38s≤50s, cap≥notional). Route D cost: 0.24%×1.9M=$4,560 + $1,600 + 0.12%×1.9M=$2,280 = $8,440 (infeasible: 22min>18min). Best feasible=Route B at $7,760; second-best=Route C at $9,000. USD saved=$1,240. Extra ARB=$1,240/$1.15≈1,086.96 ARB."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

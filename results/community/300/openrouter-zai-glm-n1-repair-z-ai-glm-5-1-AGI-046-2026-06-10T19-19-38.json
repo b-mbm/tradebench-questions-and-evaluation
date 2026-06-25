@@ -1,0 +1,51 @@
+{
+  "runAt": "2026-06-10T19:19:56.097Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-046-2026-06-10T19-19-38",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-046"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-046",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"chosen_strategy\": \"USDC-first: bridge USDC to Arbitrum then swap for ARB on destination\",\n  \"route_steps\": [\n    \"1. Bridge $1,500 USDC from Ethereum to Arbitrum via canonical bridge (fee $14), privately attested flow avoids sequencer focal-object delay\",\n    \"2. Receive $1,486 USDC on Arbitrum\",\n    \"3. Swap $1,486 USDC → ARB on Arbitrum DEX at spot $1.18 with 0.20% slippage (effective price $1.18236)\"\n  ],\n  \"expected_tokens\": 1256.86,\n  \"completion_minutes\": 15,\n  \"total_fee_usd\": 16.97,\n  \"self_check\": \"USDC-first avoids sequencer delay on token transfers",
+      "durationMs": 17566,
+      "grade": {
+        "pass": false,
+        "confidence": 0.2755102040816326,
+        "score": 0.14285714285714285,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_steps": 0,
+          "expected_tokens": 1,
+          "completion_minutes": 0,
+          "total_fee_usd": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "chosen_strategy": "USDC-first: bridge USDC to Arbitrum then swap for ARB on destination",
+          "expected_tokens": 1256.86,
+          "completion_minutes": 15,
+          "total_fee_usd": 16.97,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "agi_validation_failed:completion_minutes",
+          "agi_validation_failed:total_fee_usd",
+          "missing_field"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

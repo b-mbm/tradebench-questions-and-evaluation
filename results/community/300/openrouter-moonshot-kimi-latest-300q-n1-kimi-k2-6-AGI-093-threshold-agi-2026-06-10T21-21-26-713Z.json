@@ -1,0 +1,70 @@
+{
+  "runAt": "2026-06-10T21:21:26.712Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-093-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-093"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-093",
+      "raw": " {\n  \"intent\": \"allocate\",\n  \"order_type\": \"restaking_yield_holdout\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"unit\": \"usd\",\n  \"venue\": \"multi_venue\",\n  \"venue_name\": \"Aave_USDC,Symbiotic_AVS,EigenLayer_AVS,Pendle_PT\",\n  \"risk_controls\": {\n    \"position_size_limit\": 25000,\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"monitor redemption queues and reallocate if any venue approaches cap threshold\",\n  \"reasoning\": \"Maximize risk-adjusted 90-day return subject to: at least $50,000 liquid within 48h, no allocation entering adversarial redemption queue. Aave_USDC and Symbiotic_AVS are 48h-liquid; allocate their caps of $25,000 and $20,000 respectively for $45,000 liquid. The remaining $55,000 must avoid the uncapped lower-APY venue with queue risk. EigenLayer_AVS and Pendle_PT are term/slow-exit but do not queue below their caps. To maximize yield, fill Pendle_PT cap $30,000 (highest APY 9.49%) and EigenLayer_AVS cap $25,000 (next highest 8.39%). Total allocated: $100,000. Weighted average APY = (25000*6.19 + 20000*7.29 + 25000*8.39 + 30000*9.49)/100000 = 8.095%. Expected 90-day profit = 100000 * 8.095% * (90/365) = $1996.44. Liquid within 48h = $45,000.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Check if any venue cap changes or queue conditions shift; ensure $45k remains liquid.\",\n  \"chosen_strategy\": \"Cap-constrained max-yield with liquidity floor: fill all four capped venues, prioritizing highest APY term venues after securing 48h liquid minimum.\",\n  \"expected_net_apy_pct\": 8.095,\n  \"expected_90d_profit_usd\": 1996.44,\n  \"liquidity_48h_usd\": 45000,\n  \"allocation_usd\": {\n    \"Aave_USDC\": 25000,\n    \"Symbiotic_AVS\": 20000,\n    \"EigenLayer_AVS\": 25000,\n    \"Pendle_PT\": 30000\n  }\n}",
+      "durationMs": 3150,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5555555555555556,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "expected_net_apy_pct": 0,
+          "expected_90d_profit_usd": 1,
+          "liquidity_48h_usd": 0,
+          "allocation_usd.Aave_USDC": 1,
+          "allocation_usd.Symbiotic_AVS": 1,
+          "allocation_usd.EigenLayer_AVS": 1,
+          "allocation_usd.Pendle_PT": 1
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "restaking_yield_holdout",
+          "asset": "USDC",
+          "size": 100000,
+          "unit": "usd",
+          "venue": "multi_venue",
+          "venue_name": "Aave_USDC,Symbiotic_AVS,EigenLayer_AVS,Pendle_PT",
+          "risk_controls": {
+            "position_size_limit": 25000,
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "monitor redemption queues and reallocate if any venue approaches cap threshold",
+          "reasoning": "Maximize risk-adjusted 90-day return subject to: at least $50,000 liquid within 48h, no allocation entering adversarial redemption queue. Aave_USDC and Symbiotic_AVS are 48h-liquid; allocate their caps of $25,000 and $20,000 respectively for $45,000 liquid. The remaining $55,000 must avoid the uncapped lower-APY venue with queue risk. EigenLayer_AVS and Pendle_PT are term/slow-exit but do not queue below their caps. To maximize yield, fill Pendle_PT cap $30,000 (highest APY 9.49%) and EigenLayer_AVS cap $25,000 (next highest 8.39%). Total allocated: $100,000. Weighted average APY = (25000*6.19 + 20000*7.29 + 25000*8.39 + 30000*9.49)/100000 = 8.095%. Expected 90-day profit = 100000 * 8.095% * (90/365) = $1996.44. Liquid within 48h = $45,000.",
+          "requires_follow_up": true,
+          "follow_up_description": "Check if any venue cap changes or queue conditions shift; ensure $45k remains liquid.",
+          "chosen_strategy": "Cap-constrained max-yield with liquidity floor: fill all four capped venues, prioritizing highest APY term venues after securing 48h liquid minimum.",
+          "expected_net_apy_pct": 8.095,
+          "expected_90d_profit_usd": 1996.44,
+          "liquidity_48h_usd": 45000,
+          "allocation_usd": {
+            "Aave_USDC": 25000,
+            "Symbiotic_AVS": 20000,
+            "EigenLayer_AVS": 25000,
+            "Pendle_PT": 30000
+          }
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:expected_net_apy_pct",
+          "agi_validation_failed:liquidity_48h_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

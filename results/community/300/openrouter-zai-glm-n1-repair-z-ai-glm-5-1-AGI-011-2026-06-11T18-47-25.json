@@ -1,0 +1,48 @@
+{
+  "runAt": "2026-06-11T18:47:40.123Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-AGI-011-2026-06-11T18-47-25",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-011"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-011",
+      "raw": "{\n  \"intent\": \"emergency_withdraw\",\n  \"decision\": \"withdraw_all_via_private_relay\",\n  \"chosen_strategy\": \"private_relay_parallel_withdrawal\",\n  \"withdrawal_sequence\": \"YieldFarm(0s)→BlueChip(0s)→RiskyCoin(0s)\",\n  \"ev_withdraw\": 374400,\n  \"ev_stay\": 196250,\n  \"reasoning\": \"EV_stay=(1/12)×$2,355,000+(11/12)×$0=$196,250. EV_withdraw=$375,000-$600(relay)=$374,400. Private relay prevents attacker from inferring detection and front-running YieldFarm exit. All withdrawals complete within 25s (longest), well before 60s exploit window. Withdraw EV nearly doubles stay EV given 11/12 rug probability.\"\n}",
+      "durationMs": 14258,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7,
+        "score": 0.2,
+        "fieldScores": {
+          "decision": 0,
+          "chosen_strategy": 0,
+          "withdrawal_sequence": 0,
+          "ev_withdraw": 1,
+          "ev_stay": 0
+        },
+        "normalizedResponse": {
+          "intent": "emergency_withdraw",
+          "decision": "withdraw_all_via_private_relay",
+          "chosen_strategy": "private_relay_parallel_withdrawal",
+          "withdrawal_sequence": "YieldFarm(0s)→BlueChip(0s)→RiskyCoin(0s)",
+          "ev_withdraw": 374400,
+          "ev_stay": 196250,
+          "reasoning": "EV_stay=(1/12)×$2,355,000+(11/12)×$0=$196,250. EV_withdraw=$375,000-$600(relay)=$374,400. Private relay prevents attacker from inferring detection and front-running YieldFarm exit. All withdrawals complete within 25s (longest), well before 60s exploit window. Withdraw EV nearly doubles stay EV given 11/12 rug probability."
+        },
+        "failureReasons": [
+          "agi_validation_failed:decision",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:withdrawal_sequence",
+          "agi_validation_failed:ev_stay"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:54:59.063Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-036-2026-06-10T11-54-32",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-036"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-036",
+      "raw": "{\n  \"intent\": \"predict_gas_costs\",\n  \"expected_value\": 215.04,\n  \"reasoning\": \"Execute all 8 transactions only in Low scenario at 32 gwei (100% fill required for complete migration). USD cost = 8 transactions × 300,000 gas × 32 gwei × 1e-9 ETH/gwei × $2,800/ETH = $215.04. Medium (67 gwei, 75% fill) and High (115 gwei, incomplete) scenarios infeasible as migration requires all 8 transactions to succeed.\"\n}",
+      "durationMs": 26466,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "predict_gas_costs",
+          "expected_value": 215.04,
+          "reasoning": "Execute all 8 transactions only in Low scenario at 32 gwei (100% fill required for complete migration). USD cost = 8 transactions × 300,000 gas × 32 gwei × 1e-9 ETH/gwei × $2,800/ETH = $215.04. Medium (67 gwei, 75% fill) and High (115 gwei, incomplete) scenarios infeasible as migration requires all 8 transactions to succeed."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T12:04:46.107Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-050-2026-06-10T12-04-04",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-050"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-050",
+      "raw": "{\n  \"intent\": \"hedge\",\n  \"expected_value\": 113684.21,\n  \"reasoning\": \"Portfolio: 4000 ETH at $3000 = $12M. Stress: -18% to $2460, loss = $2.16M. Cap = $420K. Options 1-3 fail: covered calls net loss $1.992M, 20% OTM puts net loss $2.376M, 10% OTM puts net loss $1.584M. Short perps: solve 2.16M - 0.18N - 0.0036N = 420K, N = $10.526M. Funding = 0.012% × 30 × N = $113,684.21. Only short perps satisfies cap.\"\n}",
+      "durationMs": 41318,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "expected_value": 113684.21,
+          "reasoning": "Portfolio: 4000 ETH at $3000 = $12M. Stress: -18% to $2460, loss = $2.16M. Cap = $420K. Options 1-3 fail: covered calls net loss $1.992M, 20% OTM puts net loss $2.376M, 10% OTM puts net loss $1.584M. Short perps: solve 2.16M - 0.18N - 0.0036N = 420K, N = $10.526M. Funding = 0.012% × 30 × N = $113,684.21. Only short perps satisfies cap."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-10T09:37:19.031Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-AGI-010-2026-06-10T09-36-57",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-010",
+      "raw": "{\n  \"intent\": \"market_make\",\n  \"chosen_strategy\": \"selective_wide_toxic_filter\",\n  \"spread_bps\": 30,\n  \"update_ms\": 50,\n  \"max_inventory_usd\": 25000,\n  \"toxic_defense\": \"shock cancels, counterparty signatures, skew widening, inventory caps\",\n  \"expected_daily_pnl_usd\": 840,\n  \"reasoning\": \"Captures 12% of $4M flow ($480k) at 30 bps spread (inside WideBot's 50 bps, outside FastBot's 10 bps) yielding $1,440 gross. Subtracting $600 toxicity filter cost gives $840 net. Inventory capped at $25k to avoid ToxicBot's adverse selection.\"\n}\n",
+      "durationMs": 21613,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7857142857142857,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "spread_bps": 0,
+          "update_ms": 0,
+          "max_inventory_usd": 1,
+          "toxic_defense": 0,
+          "expected_daily_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "market_make",
+          "chosen_strategy": "selective_wide_toxic_filter",
+          "spread_bps": 30,
+          "update_ms": 50,
+          "max_inventory_usd": 25000,
+          "toxic_defense": "shock cancels, counterparty signatures, skew widening, inventory caps",
+          "expected_daily_pnl_usd": 840,
+          "reasoning": "Captures 12% of $4M flow ($480k) at 30 bps spread (inside WideBot's 50 bps, outside FastBot's 10 bps) yielding $1,440 gross. Subtracting $600 toxicity filter cost gives $840 net. Inventory capped at $25k to avoid ToxicBot's adverse selection."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:spread_bps",
+          "agi_validation_failed:update_ms",
+          "agi_validation_failed:toxic_defense",
+          "agi_validation_failed:expected_daily_pnl_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

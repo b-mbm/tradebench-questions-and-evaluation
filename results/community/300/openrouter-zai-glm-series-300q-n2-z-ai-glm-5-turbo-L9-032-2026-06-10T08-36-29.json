@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T08:36:50.309Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-turbo-L9-032-2026-06-10T08-36-29",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "L9-032"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L9-032",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"A1\", \"A3\", \"A5\"],\n  \"reasoning\": \"A2 fails the slashing multiplier constraint (3 > 2.8) and A4 fails the withdrawal delay constraint (7 > 6 days). A1, A3, and A5 pass all hard constraints and have net scores of 6.0%, 6.2%, and 5.48% respectively, making them the exactly 3 eligible AVSs to select.\"\n}",
+      "durationMs": 20261,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A1",
+            "A3",
+            "A5"
+          ],
+          "reasoning": "A2 fails the slashing multiplier constraint (3 > 2.8) and A4 fails the withdrawal delay constraint (7 > 6 days). A1, A3, and A5 pass all hard constraints and have net scores of 6.0%, 6.2%, and 5.48% respectively, making them the exactly 3 eligible AVSs to select."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

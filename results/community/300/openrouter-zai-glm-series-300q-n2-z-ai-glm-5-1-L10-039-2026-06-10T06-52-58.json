@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:53:18.435Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-039-2026-06-10T06-52-58",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-039"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-039",
+      "raw": "{\n  \"intent\": \"lightning_routing_rebalance\",\n  \"expected_value\": 36400,\n  \"reasoning\": \"Target successful routed volume is $28,000,000/month at 0.13% fee rate. Revenue = $28,000,000 × 0.0013 = $36,400/month. To achieve this: fix inbound imbalance reducing failures from 12% to 5% (reaching 95% success), add up to 17 channels (38→55 max) with direct merchant channels and inbound leases sized to double volume from $14M to $28M, all within $4,000 on-chain rebalancing budget. Rebalancing costs are one-time and excluded from monthly revenue calculation.\"\n}",
+      "durationMs": 19979,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "lightning_routing_rebalance",
+          "expected_value": 36400,
+          "reasoning": "Target successful routed volume is $28,000,000/month at 0.13% fee rate. Revenue = $28,000,000 × 0.0013 = $36,400/month. To achieve this: fix inbound imbalance reducing failures from 12% to 5% (reaching 95% success), add up to 17 channels (38→55 max) with direct merchant channels and inbound leases sized to double volume from $14M to $28M, all within $4,000 on-chain rebalancing budget. Rebalancing costs are one-time and excluded from monthly revenue calculation."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

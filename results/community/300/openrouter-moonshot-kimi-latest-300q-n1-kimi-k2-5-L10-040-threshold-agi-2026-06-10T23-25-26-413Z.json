@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:25:26.412Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-040-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-040"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-040",
+      "raw": "{\n  \"intent\": \"cross_rollup_stablecoin_routing_desk_operation\",\n  \"expected_value\": 49500,\n  \"reasoning\": \"Allocate $3M inventory equally across Arbitrum, Base, and Optimism ($1M per rollup, 33.3% each) to satisfy the minimum 20% constraint per rollup and mitigate inventory imbalance. Deploy dynamic rebalancing with spend capped below $6,000 monthly to reduce imbalance-driven failures from 9% to 3%, achieving the 97% fill success target. Scale institutional RFQ flow and solver integrations to generate exactly $45,000,000 in monthly successful routed volume. Revenue is calculated as $45,000,000 × 0.11% = $49,500.\"\n}",
+      "durationMs": 146354,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "cross_rollup_stablecoin_routing_desk_operation",
+          "expected_value": 49500,
+          "reasoning": "Allocate $3M inventory equally across Arbitrum, Base, and Optimism ($1M per rollup, 33.3% each) to satisfy the minimum 20% constraint per rollup and mitigate inventory imbalance. Deploy dynamic rebalancing with spend capped below $6,000 monthly to reduce imbalance-driven failures from 9% to 3%, achieving the 97% fill success target. Scale institutional RFQ flow and solver integrations to generate exactly $45,000,000 in monthly successful routed volume. Revenue is calculated as $45,000,000 × 0.11% = $49,500."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-11T22:01:39.439Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L2-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L2-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L2-002",
+      "raw": " {\"intent\":\"buy\",\"order_type\":\"dex\",\"asset\":\"PEPE\",\"size\":100000,\"unit\":\"pepe\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"15%\"},\"follow_up\":\"confirm fill\",\"reasoning\":\"market buy of PEPE tokens on DEX with elevated slippage tolerance for volatile meme coin execution\"}",
+      "durationMs": 27418,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8192735042735044,
+        "score": 0.7761538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "PEPE",
+          "size": 100000,
+          "unit": "pepe",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market buy of PEPE tokens on DEX with elevated slippage tolerance for volatile meme coin execution"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

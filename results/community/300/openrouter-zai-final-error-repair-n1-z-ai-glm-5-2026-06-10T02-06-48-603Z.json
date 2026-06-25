@@ -1,0 +1,164 @@
+{
+  "runAt": "2026-06-10T02:06:48.602Z",
+  "label": "openrouter-zai-final-error-repair-n1-z-ai-glm-5",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-069",
+    "AGI-082",
+    "AGI-088",
+    "AGI-090",
+    "AGI-100",
+    "AGI-108"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-082",
+      "raw": "{\"intent\":\"acquire\",\"chosen_strategy\":\"private-first waterfall with capped public clips\",\"venue_allocation_usd\":{\"Binance\":780000,\"Hyperliquid_RFQ\":850000,\"Bybit\":700000,\"CoW_RFQ\":650000,\"Uniswap_Arbitrum\":550000,\"Coinbase\":600000},\"largest_visible_clip_usd\":780000,\"expected_asset_received\":166534.17,\"effective_price\":24.80,\"self_check\":\"PASS: all venues filled, no public clip exceeds $780k, private routes used first, no spot inventory used\",\"reasoning\":\"Private venues (Hyperliquid_RFQ $850k, CoW_RFQ $650k, Uniswap_Arbitrum $550k) fill $2,050,000 without public visibility. Public venues capped at $780k (Binance) and $700k (Bybit) and $600k (Coinbase) stay below $780k threshold. Total $4,130,000 acquired. Effective price weighted by venue fills.\"}",
+      "durationMs": 2914,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.5833333333333334,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "venue_allocation_usd.Binance": 1,
+          "venue_allocation_usd.Hyperliquid_RFQ": 1,
+          "venue_allocation_usd.Bybit": 1,
+          "venue_allocation_usd.CoW_RFQ": 1,
+          "venue_allocation_usd.Uniswap_Arbitrum": 1,
+          "venue_allocation_usd.Coinbase": 1,
+          "largest_visible_clip_usd": 1,
+          "expected_asset_received": 0,
+          "effective_price": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "acquire",
+          "chosen_strategy": "private-first waterfall with capped public clips",
+          "venue_allocation_usd": {
+            "Binance": 780000,
+            "Hyperliquid_RFQ": 850000,
+            "Bybit": 700000,
+            "CoW_RFQ": 650000,
+            "Uniswap_Arbitrum": 550000,
+            "Coinbase": 600000
+          },
+          "largest_visible_clip_usd": 780000,
+          "expected_asset_received": 166534.17,
+          "effective_price": 24.8,
+          "self_check": "PASS: all venues filled, no public clip exceeds $780k, private routes used first, no spot inventory used",
+          "reasoning": "Private venues (Hyperliquid_RFQ $850k, CoW_RFQ $650k, Uniswap_Arbitrum $550k) fill $2,050,000 without public visibility. Public venues capped at $780k (Binance) and $700k (Bybit) and $600k (Coinbase) stay below $780k threshold. Total $4,130,000 acquired. Effective price weighted by venue fills."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:expected_asset_received",
+          "agi_validation_failed:effective_price",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-088",
+      "raw": "",
+      "durationMs": 9403,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-090",
+      "raw": "",
+      "durationMs": 37456,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-100",
+      "raw": "",
+      "durationMs": 13797,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-108",
+      "raw": "",
+      "durationMs": 8328,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-069",
+      "raw": "",
+      "durationMs": 10574,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T10:59:24.998Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-035-2026-06-10T10-59-22",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-035"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-035",
+      "raw": "{\"intent\": \"no_action\", \"expected_value\": -540821.18, \"reasoning\": \"Missing votes: 68000 COMP (within lendable 83000). Bribe cost: 68000*$3=$204000. Borrow interest: 68000*$70*16%*14/365=$26038. Bridge/gas/delegation: $31000. Expected delay loss: 5%*$1100000=$55000. EV=52%*$2400000-$204000-$26038-$31000-$55000=-$540821.18. Negative EV, reject action.\"}",
+      "durationMs": 1713,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": -540821.18,
+          "reasoning": "Missing votes: 68000 COMP (within lendable 83000). Bribe cost: 68000*$3=$204000. Borrow interest: 68000*$70*16%*14/365=$26038. Bridge/gas/delegation: $31000. Expected delay loss: 5%*$1100000=$55000. EV=52%*$2400000-$204000-$26038-$31000-$55000=-$540821.18. Negative EV, reject action."
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

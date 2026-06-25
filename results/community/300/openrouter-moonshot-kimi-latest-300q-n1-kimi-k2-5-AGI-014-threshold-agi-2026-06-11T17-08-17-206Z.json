@@ -1,0 +1,61 @@
+{
+  "runAt": "2026-06-11T17:08:17.205Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-014-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-014"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-014",
+      "raw": "{\n  \"intent\": \"execute_delta_neutral_carry\",\n  \"chosen_strategy\": \"cash_and_carry_short_perp_ladder\",\n  \"perp_short_allocation_usd\": {\n    \"Binance\": 150000,\n    \"Bybit\": 100000,\n    \"Hyperliquid\": 100000,\n    \"OKX\": 100000,\n    \"dYdX\": 50000\n  },\n  \"leverage\": 1,\n  \"apr_pct\": 28.1,\n  \"pnl_30d_usd\": 11548,\n  \"survives_cascade\": true,\n  \"reasoning\": \"Allocated $500k notional short across venues by descending funding rate (Hyperliquid 30%, Bybit 28%, Binance 25%, OKX 22%, dYdX 18%) to maximize weighted avg funding of 25.3%. Used 1x leverage (fully collateralized) to ensure zero liquidation risk at $2,850 cascade (5% drop). Net APR = 25.3% funding + 6.1% annualized basis capture (0.5% over 60 hours) - 2.4% borrow/drag - 1.0% conservatism = 28.1%. 30d PnL: $500k*(28.1%/365)*30 = $11,548. Spot long $500k ETH at 1x ensures perfect delta neutrality.\"\n}",
+      "durationMs": 67457,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.6363636363636364,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "perp_short_allocation_usd.Binance": 1,
+          "perp_short_allocation_usd.Bybit": 1,
+          "perp_short_allocation_usd.Hyperliquid": 1,
+          "perp_short_allocation_usd.OKX": 1,
+          "perp_short_allocation_usd.dYdX": 1,
+          "leverage": 1,
+          "apr_pct": 0,
+          "pnl_30d_usd": 0,
+          "survives_cascade": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute_delta_neutral_carry",
+          "chosen_strategy": "cash_and_carry_short_perp_ladder",
+          "perp_short_allocation_usd": {
+            "Binance": 150000,
+            "Bybit": 100000,
+            "Hyperliquid": 100000,
+            "OKX": 100000,
+            "dYdX": 50000
+          },
+          "leverage": 1,
+          "apr_pct": 28.1,
+          "pnl_30d_usd": 11548,
+          "survives_cascade": true,
+          "reasoning": "Allocated $500k notional short across venues by descending funding rate (Hyperliquid 30%, Bybit 28%, Binance 25%, OKX 22%, dYdX 18%) to maximize weighted avg funding of 25.3%. Used 1x leverage (fully collateralized) to ensure zero liquidation risk at $2,850 cascade (5% drop). Net APR = 25.3% funding + 6.1% annualized basis capture (0.5% over 60 hours) - 2.4% borrow/drag - 1.0% conservatism = 28.1%. 30d PnL: $500k*(28.1%/365)*30 = $11,548. Spot long $500k ETH at 1x ensures perfect delta neutrality."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:apr_pct",
+          "agi_validation_failed:pnl_30d_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

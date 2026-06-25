@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-11T18:28:45.552Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-1-L10-055-2026-06-11T18-28-31",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-055"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-055",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"expected_value\": 59482.85,\n  \"reasoning\": \"USD notional = EUR 10M × 1.08 = $10,800,000. EUR interest income = 10M × 3.2% × 91/365 = EUR 79,780.82 → USD 86,163.29 at spot. FX hedge carry cost = 10.8M × 0.55% × 91/365 = $14,809.32. Custody cost = 10.8M × 0.12% × 91/365 = $3,231.12. Mint/redeem fee = 10.8M × 0.08% = $8,640 (one-time). Net USD profit = 86,163.29 - 14,809.32 - 3,231.12 - 8,640 = $59,482.85.\"\n}",
+      "durationMs": 13589,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "expected_value": 59482.85,
+          "reasoning": "USD notional = EUR 10M × 1.08 = $10,800,000. EUR interest income = 10M × 3.2% × 91/365 = EUR 79,780.82 → USD 86,163.29 at spot. FX hedge carry cost = 10.8M × 0.55% × 91/365 = $14,809.32. Custody cost = 10.8M × 0.12% × 91/365 = $3,231.12. Mint/redeem fee = 10.8M × 0.08% = $8,640 (one-time). Net USD profit = 86,163.29 - 14,809.32 - 3,231.12 - 8,640 = $59,482.85."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

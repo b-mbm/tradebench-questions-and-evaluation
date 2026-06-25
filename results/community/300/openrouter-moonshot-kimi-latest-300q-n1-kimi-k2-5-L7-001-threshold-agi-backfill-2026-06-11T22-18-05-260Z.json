@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-11T22:18:05.258Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L7-001-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L7-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L7-001",
+      "raw": " {\"intent\":\"arbitrage\",\"order_type\":\"flash_loan\",\"asset\":\"ETH\",\"size\":\"500\",\"unit\":\"eth\",\"venue\":\"multi_dex\",\"venue_name\":\"Aave + Curve + Uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"0.05%\",\"max_gas\":\"30 gwei\",\"position_size_limit\":\"500\"},\"requires_follow_up\":true,\"follow_up_description\":\"Flash borrow 500 ETH from Aave (0.09% fee), swap to stETH on Curve at 0.33% discount (2990 vs 3000), swap stETH back to ETH on Uniswap V3 at 3000, repay loan. Gross spread 0.33%, net 0.24% after fees = 1.2 ETH profit. Gas estimate 800k @ 30 gwei = 0.024 ETH. Net profit ~$3,480.\",\"reasoning\":\"stETH/ETH",
+      "durationMs": 34879,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.10124999999999999,
+          "order_type": 0.017777777777777785,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.045,
+          "venue_name": 0.011111111111111117,
+          "risk_controls": 0,
+          "follow_up": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "order_type": "flash_loan",
+          "asset": "ETH",
+          "size": "500",
+          "unit": "eth",
+          "venue": "multi_dex",
+          "venue_name": "Aave + Curve + Uniswap",
+          "slippage_tolerance": "0.05%",
+          "max_gas": "30 gwei",
+          "position_size_limit": "500",
+          "requires_follow_up": true,
+          "follow_up_description": "Flash borrow 500 ETH from Aave (0.09% fee), swap to stETH on Curve at 0.33% discount (2990 vs 3000), swap stETH back to ETH on Uniswap V3 at 3000, repay loan. Gross spread 0.33%, net 0.24% after fees = 1.2 ETH profit. Gas estimate 800k @ 30 gwei = 0.024 ETH. Net profit ~$3,480.",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

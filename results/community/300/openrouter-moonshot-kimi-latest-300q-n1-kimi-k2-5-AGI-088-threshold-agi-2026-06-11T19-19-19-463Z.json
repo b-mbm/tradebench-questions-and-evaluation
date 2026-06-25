@@ -1,0 +1,65 @@
+{
+  "runAt": "2026-06-11T19:19:19.462Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-088-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-088"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-088",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"Time-Prioritized Private Execution with Residual Hidden Public Sweep\",\n  \"execution_sequence\": [\n    \"Internalizer\",\n    \"Dark_RFQ\",\n    \"CEX_Y\",\n    \"hidden_public\"\n  ],\n  \"venue_fills\": {\n    \"Internalizer\": 42000,\n    \"Dark_RFQ\": 35000,\n    \"CEX_Y\": 30000,\n    \"hidden_public\": 13000\n  },\n  \"hidden_public_qty\": 13000,\n  \"expected_avg_price\": 4.9287,\n  \"expected_slippage_pct\": 0.3817,\n  \"self_check\": \"No single public parent order exceeds 25,000 KAP (max public chunk is 13,000 KAP); all private fills leave no footprint; total quantity equals 120,000 KAP; all commitments respect T+20s, T+45s, T+70s deadlines and event window.\",\n  \"reasoning\": \"To acquire 120,000 KAP without triggering the copy-trading bot (>25,000 KAP visible parent), utilize all non-visible liquidity first: Internalizer (42,000 @ $4.925, T+20s), Dark_RFQ (35,000 @ $4.931, T+45s), and CEX_Y (30,000 @ $4.936, T+70s). The remaining 13,000 KAP is filled via the hidden public iceberg at $4.918 (best available price), which is safe at 13,000 KAP (<25,000 KAP trigger). Weighted average price is (42000*4.925 + 35000*4.931 + 30000*4.936 + 13000*4.918)/120000 = $4.9287. Slippage vs. $4.91 mid is 0.3817%.\"\n}",
+      "durationMs": 80854,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7272727272727273,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 1,
+          "venue_fills.Internalizer": 1,
+          "venue_fills.Dark_RFQ": 1,
+          "venue_fills.CEX_Y": 1,
+          "venue_fills.hidden_public": 1,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "Time-Prioritized Private Execution with Residual Hidden Public Sweep",
+          "execution_sequence": [
+            "Internalizer",
+            "Dark_RFQ",
+            "CEX_Y",
+            "hidden_public"
+          ],
+          "venue_fills": {
+            "Internalizer": 42000,
+            "Dark_RFQ": 35000,
+            "CEX_Y": 30000,
+            "hidden_public": 13000
+          },
+          "hidden_public_qty": 13000,
+          "expected_avg_price": 4.9287,
+          "expected_slippage_pct": 0.3817,
+          "self_check": "No single public parent order exceeds 25,000 KAP (max public chunk is 13,000 KAP); all private fills leave no footprint; total quantity equals 120,000 KAP; all commitments respect T+20s, T+45s, T+70s deadlines and event window.",
+          "reasoning": "To acquire 120,000 KAP without triggering the copy-trading bot (>25,000 KAP visible parent), utilize all non-visible liquidity first: Internalizer (42,000 @ $4.925, T+20s), Dark_RFQ (35,000 @ $4.931, T+45s), and CEX_Y (30,000 @ $4.936, T+70s). The remaining 13,000 KAP is filled via the hidden public iceberg at $4.918 (best available price), which is safe at 13,000 KAP (<25,000 KAP trigger). Weighted average price is (42000*4.925 + 35000*4.931 + 30000*4.936 + 13000*4.918)/120000 = $4.9287. Slippage vs. $4.91 mid is 0.3817%."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

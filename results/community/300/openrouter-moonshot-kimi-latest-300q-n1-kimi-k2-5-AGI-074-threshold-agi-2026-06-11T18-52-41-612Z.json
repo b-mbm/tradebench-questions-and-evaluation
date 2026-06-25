@@ -1,0 +1,62 @@
+{
+  "runAt": "2026-06-11T18:52:41.612Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-074-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-074"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-074",
+      "raw": " {\n  \"intent\": \"bridge_collateral\",\n  \"chosen_strategy\": \"cost_minimization_with_concentration_cap\",\n  \"route_allocation_usd\": {\n    \"Circle_CCTP\": 700000,\n    \"Across\": 620000,\n    \"Stargate\": 380000,\n    \"Hop\": 0,\n    \"CEX_internal\": 500000\n  },\n  \"expected_arrival_usd\": 2198555.8,\n  \"expected_cost_usd\": 1444.2,\n  \"max_route_share_pct\": 31.82,\n  \"arrival_minutes\": 38,\n  \"self_check\": \"Total allocation 2200000 USD verified; max single route 700000 USD is 31.82% under 36% cap; all routes arrive by minute 38 within 42-minute deadline; costs minimized by prioritizing lowest-rate routes (Circle_CCTP 0.044%, CEX_internal 0.053%, Across 0.078%, Stargate 0.102%)\",\n  \"reasoning\": \"To maximize expected arrival value, selected routes with lowest combined fee and failure drag rates, filling highest-capacity cheapest routes first: Circle_CCTP (700k), CEX_internal (500k), Across (620k), then partial Stargate (380k) to reach exactly 2.2M. Skipped Hop (0.130% cost) as higher cost than Stargate (0.102%). All routes arrive by minute 38, satisfying the 42-minute deadline, with concentration safely below 36% threshold.\"\n}",
+      "durationMs": 115283,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.75,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "route_allocation_usd.Circle_CCTP": 1,
+          "route_allocation_usd.Across": 1,
+          "route_allocation_usd.Stargate": 1,
+          "route_allocation_usd.Hop": 1,
+          "route_allocation_usd.CEX_internal": 1,
+          "expected_arrival_usd": 1,
+          "expected_cost_usd": 1,
+          "max_route_share_pct": 1,
+          "arrival_minutes": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "bridge_collateral",
+          "chosen_strategy": "cost_minimization_with_concentration_cap",
+          "route_allocation_usd": {
+            "Circle_CCTP": 700000,
+            "Across": 620000,
+            "Stargate": 380000,
+            "Hop": 0,
+            "CEX_internal": 500000
+          },
+          "expected_arrival_usd": 2198555.8,
+          "expected_cost_usd": 1444.2,
+          "max_route_share_pct": 31.82,
+          "arrival_minutes": 38,
+          "self_check": "Total allocation 2200000 USD verified; max single route 700000 USD is 31.82% under 36% cap; all routes arrive by minute 38 within 42-minute deadline; costs minimized by prioritizing lowest-rate routes (Circle_CCTP 0.044%, CEX_internal 0.053%, Across 0.078%, Stargate 0.102%)",
+          "reasoning": "To maximize expected arrival value, selected routes with lowest combined fee and failure drag rates, filling highest-capacity cheapest routes first: Circle_CCTP (700k), CEX_internal (500k), Across (620k), then partial Stargate (380k) to reach exactly 2.2M. Skipped Hop (0.130% cost) as higher cost than Stargate (0.102%). All routes arrive by minute 38, satisfying the 42-minute deadline, with concentration safely below 36% threshold."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

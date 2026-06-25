@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-06-12T01:52:08.093Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-AGI-065-2026-06-12T01-49-47",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-065"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-065",
+      "raw": "{\n  \"intent\": \"acquire\",\n  \"chosen_strategy\": \"maximize private routes to minimize visible footprint, fill remainder via public routes at clip limits\",\n  \"venue_allocation_usd\": {\n    \"Binance\": 550000,\n    \"Jupiter_Solana\": 450000,\n    \"Uniswap_Arbitrum\": 350000,\n    \"OTC_Circle\": 350000,\n    \"Coinbase\": 300000\n  },\n  \"largest_visible_clip_usd\": 550000,\n  \"expected_asset_received\": 13326.99,\n  \"effective_price\": 150.17,\n  \"self_check\": \"Total allocation $2M verified across all venues; private routes (Jupiter+Uniswap=$800K) create no visible pre-fill graph; public routes within usable clips; largest visible clip $550K at Binance; all fees applied correctly (fixed costs deducted before percentage fees); SOL received 13326.99 at effective price $150.17/SOL\",\n  \"reasoning\": \"Private routes prioritized: Jupiter_Solana ($450K) and Uniswap_Arbitrum ($350K) provide $800K with no visible footprint. Remaining $1.2M via public routes at max clip: Binance $550K, OTC_Circle $350K, Coinbase $300K. Per-venue SOL: Binance 3672.01, Jupiter 2999.93, Uniswap 2329.87, OTC 2330.34, Coinbase 1994.84. Total: 13326.99 SOL. Effective price: $150.17/SOL.\"\n}",
+      "durationMs": 140440,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7272727272727273,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "venue_allocation_usd.Binance": 1,
+          "venue_allocation_usd.Jupiter_Solana": 1,
+          "venue_allocation_usd.Uniswap_Arbitrum": 1,
+          "venue_allocation_usd.OTC_Circle": 1,
+          "venue_allocation_usd.Coinbase": 1,
+          "largest_visible_clip_usd": 1,
+          "expected_asset_received": 1,
+          "effective_price": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "acquire",
+          "chosen_strategy": "maximize private routes to minimize visible footprint, fill remainder via public routes at clip limits",
+          "venue_allocation_usd": {
+            "Binance": 550000,
+            "Jupiter_Solana": 450000,
+            "Uniswap_Arbitrum": 350000,
+            "OTC_Circle": 350000,
+            "Coinbase": 300000
+          },
+          "largest_visible_clip_usd": 550000,
+          "expected_asset_received": 13326.99,
+          "effective_price": 150.17,
+          "self_check": "Total allocation $2M verified across all venues; private routes (Jupiter+Uniswap=$800K) create no visible pre-fill graph; public routes within usable clips; largest visible clip $550K at Binance; all fees applied correctly (fixed costs deducted before percentage fees); SOL received 13326.99 at effective price $150.17/SOL",
+          "reasoning": "Private routes prioritized: Jupiter_Solana ($450K) and Uniswap_Arbitrum ($350K) provide $800K with no visible footprint. Remaining $1.2M via public routes at max clip: Binance $550K, OTC_Circle $350K, Coinbase $300K. Per-venue SOL: Binance 3672.01, Jupiter 2999.93, Uniswap 2329.87, OTC 2330.34, Coinbase 1994.84. Total: 13326.99 SOL. Effective price: $150.17/SOL."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

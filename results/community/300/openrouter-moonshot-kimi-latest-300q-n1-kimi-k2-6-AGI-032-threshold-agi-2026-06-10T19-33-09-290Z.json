@@ -1,0 +1,75 @@
+{
+  "runAt": "2026-06-10T19:33:09.289Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-032-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-032"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-032",
+      "raw": " {\n  \"intent\": \"allocate\",\n  \"order_type\": \"strategy\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"unit\": \"usd\",\n  \"venue\": \"multi\",\n  \"risk_controls\": {\n    \"stop_loss\": \"tail loss avoidance\",\n    \"slippage_tolerance\": \"0%\",\n    \"position_size_limit\": 100000\n  },\n  \"follow_up\": \"rebalance at day 45\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Monitor Maple credit event and Ethena queue depth; rebalance if any venue risk parameters change.\",\n  \"reasoning\": \"Maximize risk-adjusted 90-day yield while preserving $50k+ 48h liquidity and avoiding adversarial queues. Aave_USDC gets $30k (max capacity, zero risk, instant). Maple_USDC gets $25k (max capacity, expected loss 0.08%, still 48h liquid). Ethena_USDe capped at $20k to avoid adversarial queue; expected loss 1.25%. GMX_GLP gets $25k (capacity before impact, beta drag 1.75% over 90d). NewFarm excluded because public queue above $10k violates mandate. Weighted APY: (30k*5.4 + 25k*9.8*0.992 + 20k*16*0.9875 + 25k*18*0.9825)/100k = 11.53%. 90d profit = 100k * 11.53% * 90/365 = $2,843. 48h liquidity = 30k + 25k = $55k. Self-check: no queue violations, $55k > $50k, all size <= capacity.\",\n  \"chosen_strategy\": \"Aave+Maple+Ethena(capped)+GMX; exclude NewFarm due to public queue penalty.\",\n  \"allocation_usd\": {\n    \"Aave_USDC\": 30000,\n    \"Maple_USDC\": 25000,\n    \"GMX_GLP\": 25000,\n    \"Ethena_USDe\": 20000\n  },\n  \"expected_net_apy_pct\": 11.53,\n  \"expected_90d_profit_usd\": 2843,\n  \"liquidity_48h_usd\": 55000,\n  \"self_check\": \"All allocations within venue capacities; Ethena <= $20k avoids adversarial queue; 48h liquidity $55k exceeds $50k minimum; NewFarm excluded due to public queue inconsistency; expected losses netted in APY.\"\n}",
+      "durationMs": 3858,
+      "grade": {
+        "pass": false,
+        "confidence": 0.8,
+        "score": 0.3,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "allocation_usd.Aave_USDC": 1,
+          "allocation_usd.Maple_USDC": 1,
+          "allocation_usd.GMX_GLP": 0,
+          "allocation_usd.Ethena_USDe": 0,
+          "expected_net_apy_pct": 0,
+          "expected_90d_profit_usd": 0,
+          "liquidity_48h_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "strategy",
+          "asset": "USDC",
+          "size": 100000,
+          "unit": "usd",
+          "venue": "multi",
+          "risk_controls": {
+            "stop_loss": "tail loss avoidance",
+            "slippage_tolerance": "0%",
+            "position_size_limit": 100000
+          },
+          "follow_up": "rebalance at day 45",
+          "requires_follow_up": true,
+          "follow_up_description": "Monitor Maple credit event and Ethena queue depth; rebalance if any venue risk parameters change.",
+          "reasoning": "Maximize risk-adjusted 90-day yield while preserving $50k+ 48h liquidity and avoiding adversarial queues. Aave_USDC gets $30k (max capacity, zero risk, instant). Maple_USDC gets $25k (max capacity, expected loss 0.08%, still 48h liquid). Ethena_USDe capped at $20k to avoid adversarial queue; expected loss 1.25%. GMX_GLP gets $25k (capacity before impact, beta drag 1.75% over 90d). NewFarm excluded because public queue above $10k violates mandate. Weighted APY: (30k*5.4 + 25k*9.8*0.992 + 20k*16*0.9875 + 25k*18*0.9825)/100k = 11.53%. 90d profit = 100k * 11.53% * 90/365 = $2,843. 48h liquidity = 30k + 25k = $55k. Self-check: no queue violations, $55k > $50k, all size <= capacity.",
+          "chosen_strategy": "Aave+Maple+Ethena(capped)+GMX; exclude NewFarm due to public queue penalty.",
+          "allocation_usd": {
+            "Aave_USDC": 30000,
+            "Maple_USDC": 25000,
+            "GMX_GLP": 25000,
+            "Ethena_USDe": 20000
+          },
+          "expected_net_apy_pct": 11.53,
+          "expected_90d_profit_usd": 2843,
+          "liquidity_48h_usd": 55000,
+          "self_check": "All allocations within venue capacities; Ethena <= $20k avoids adversarial queue; 48h liquidity $55k exceeds $50k minimum; NewFarm excluded due to public queue inconsistency; expected losses netted in APY."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:allocation_usd.GMX_GLP",
+          "agi_validation_failed:allocation_usd.Ethena_USDe",
+          "agi_validation_failed:expected_net_apy_pct",
+          "agi_validation_failed:expected_90d_profit_usd",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

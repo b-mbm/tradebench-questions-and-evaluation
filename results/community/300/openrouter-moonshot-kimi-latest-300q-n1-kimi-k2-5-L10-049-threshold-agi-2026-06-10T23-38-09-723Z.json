@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:38:09.722Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L10-049-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L10-049"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L10-049",
+      "raw": "{\"intent\": \"optimize_treasury_allocation\", \"expected_value\": 11.496, \"reasoning\": \"Allocation maximizes risk-adjusted yield by filling highest-adjusted-yield venues first: Ethena 30% (15.84% adj), Maple 25% (12.3% adj), FraxBP 30% (9.53% adj), Repo 15% (5.4% adj). Constraints verified: all venues ≤30%, Maple ≤25% liquidity cap, tail loss 0.454% < 1.0%, pre-tail APR 11.95% > 10.0%. Calculation: 0.30×(16.5-0.66) + 0.25×(13.0-0.70) + 0.30×(9.8-0.27) + 0.15×5.4 = 11.496%.\"}",
+      "durationMs": 86177,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "optimize_treasury_allocation",
+          "expected_value": 11.496,
+          "reasoning": "Allocation maximizes risk-adjusted yield by filling highest-adjusted-yield venues first: Ethena 30% (15.84% adj), Maple 25% (12.3% adj), FraxBP 30% (9.53% adj), Repo 15% (5.4% adj). Constraints verified: all venues ≤30%, Maple ≤25% liquidity cap, tail loss 0.454% < 1.0%, pre-tail APR 11.95% > 10.0%. Calculation: 0.30×(16.5-0.66) + 0.25×(13.0-0.70) + 0.30×(9.8-0.27) + 0.15×5.4 = 11.496%."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

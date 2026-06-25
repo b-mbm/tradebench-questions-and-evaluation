@@ -1,0 +1,66 @@
+{
+  "runAt": "2026-06-10T07:47:35.597Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-AGI-058-2026-06-10T07-47-06",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "AGI-058"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "AGI-058",
+      "raw": "{\n  \"intent\": \"tax_loss_harvest\",\n  \"chosen_strategy\": \"Harvest all three loss lots, selling thinnest first to avoid market-maker widening on later exits, then immediately replace with correlated but non-identical baskets to maintain exposure and avoid wash-sale disallowance.\",\n  \"assets_to_sell\": [\"DOGE\", \"OP\", \"AVAX\"],\n  \"sale_sequence\": [\"DOGE\", \"OP\", \"AVAX\"],\n  \"replacement_assets\": {\n    \"DOGE\": \"MEME_largecap_basket\",\n    \"OP\": \"ARB_IMX_basket\",\n    \"AVAX\": \"TIA_ATOM_basket\"\n  },\n  \"net_tax_benefit\": 16080,\n  \"remaining_unoffset_gains\": 12000,\n  \"self_check\": \"Total harvested losses $48,000 offset $48,000 of $60,000 gains at 37% = $17,760 gross tax savings. Round-trip costs: DOGE $60,000×0.60%=$360, OP $80,000×0.60%=$480, AVAX $140,000×0.60%=$840; total $1,680. Net benefit $17,760−$1,680=$16,080. Remaining unoffset gains $12,000. Sale sequence DOGE(0.6)→OP(0.9)→AVAX(2.5) respects thinnest-first constraint. Replacement baskets are non-identical tickers so 30-day wash-sale rule is avoided. All checks pass.\",\n  \"reasoning\": \"Harvest all $48,000 in unrealized losses across DOGE ($20k), OP ($12k), AVAX ($16k) to offset short-term gains at 37%. Sell thinnest lots first (DOGE exit-depth 0.6, then OP 0.9, then AVAX 2.5) to prevent market-maker widening on subsequent exits. Gross tax savings = $48,000 × 37% = $17,760. Round-trip friction on $280,000 total notional at 0.60% = $1,680. Net benefit = $16,080. Remaining $12,000 gains unoffset. Replace immediately with non-identical correlated baskets to stay invested and avoid wash-sale.\"\n}",
+      "durationMs": 29222,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "assets_to_sell": 1,
+          "sale_sequence": 1,
+          "replacement_assets.DOGE": 1,
+          "replacement_assets.OP": 1,
+          "replacement_assets.AVAX": 1,
+          "net_tax_benefit": 1,
+          "remaining_unoffset_gains": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "tax_loss_harvest",
+          "chosen_strategy": "Harvest all three loss lots, selling thinnest first to avoid market-maker widening on later exits, then immediately replace with correlated but non-identical baskets to maintain exposure and avoid wash-sale disallowance.",
+          "assets_to_sell": [
+            "DOGE",
+            "OP",
+            "AVAX"
+          ],
+          "sale_sequence": [
+            "DOGE",
+            "OP",
+            "AVAX"
+          ],
+          "replacement_assets": {
+            "DOGE": "MEME_largecap_basket",
+            "OP": "ARB_IMX_basket",
+            "AVAX": "TIA_ATOM_basket"
+          },
+          "net_tax_benefit": 16080,
+          "remaining_unoffset_gains": 12000,
+          "self_check": "Total harvested losses $48,000 offset $48,000 of $60,000 gains at 37% = $17,760 gross tax savings. Round-trip costs: DOGE $60,000×0.60%=$360, OP $80,000×0.60%=$480, AVAX $140,000×0.60%=$840; total $1,680. Net benefit $17,760−$1,680=$16,080. Remaining unoffset gains $12,000. Sale sequence DOGE(0.6)→OP(0.9)→AVAX(2.5) respects thinnest-first constraint. Replacement baskets are non-identical tickers so 30-day wash-sale rule is avoided. All checks pass.",
+          "reasoning": "Harvest all $48,000 in unrealized losses across DOGE ($20k), OP ($12k), AVAX ($16k) to offset short-term gains at 37%. Sell thinnest lots first (DOGE exit-depth 0.6, then OP 0.9, then AVAX 2.5) to prevent market-maker widening on subsequent exits. Gross tax savings = $48,000 × 37% = $17,760. Round-trip friction on $280,000 total notional at 0.60% = $1,680. Net benefit = $16,080. Remaining $12,000 gains unoffset. Replace immediately with non-identical correlated baskets to stay invested and avoid wash-sale."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

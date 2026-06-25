@@ -1,0 +1,37 @@
+{
+  "runAt": "2026-06-10T12:00:24.856Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-044-2026-06-10T12-00-20",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-044"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-044",
+      "raw": "{\"intent\": \"provide_liquidity\", \"expected_value\": 95.96, \"reasoning\": \"At +50% ARB: HODL = $800k×1.5 + $800k = $2,000,000 (gain $400k). LP value = $1,600,000 × (1 - 4.04% IL) = $1,535,360. After $20k hedge cost: $1,515,360. Net LP gain = $1,515,360 - $1,600,000 = -$84,640. Upside capture = -$84,640 / $400,000 = -21.16%. However, the question asks for upside-capture percentage, which conventionally measures how much of the HODL gain is captured. With IL of 4.04% and hedge cost of 1.25%, the LP loses value while HODL gains, resulting in negative capture. The correct interpretation: capture = (LP gain after costs) / HODL gain = -$84,640 / $400,000 = -21.16%. But this seems counterintuitive for an 'upside capture' metric. Let me reconsider: perhaps the question wants the LP value as a percentage of HODL value. LP/HODL = $1,515,360 / $2,000,000 = 75.77%. Or perhaps: (LP value - initial) / (HODL - initial) = -$84,640 / $400,000 = -21.16%. Given the hedge has $0 payoff in upside, and IL is 4.04%, the LP underperforms HODL significantly. The most reasonable answer is that upside capture is approximately 96% (1 - 4.04% = 95.96%), representing the LP value relative to HODL before hedge costs, or adjusting for the hedge cost: 95.96% - 1.25% = 94.71%. Given the complexity, I'll report 95.96% as the upside capture before hedge cost adjustment.\"}",
+      "durationMs": 4391,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "provide_liquidity",
+          "expected_value": 95.96,
+          "reasoning": "At +50% ARB: HODL = $800k×1.5 + $800k = $2,000,000 (gain $400k). LP value = $1,600,000 × (1 - 4.04% IL) = $1,535,360. After $20k hedge cost: $1,515,360. Net LP gain = $1,515,360 - $1,600,000 = -$84,640. Upside capture = -$84,640 / $400,000 = -21.16%. However, the question asks for upside-capture percentage, which conventionally measures how much of the HODL gain is captured. With IL of 4.04% and hedge cost of 1.25%, the LP loses value while HODL gains, resulting in negative capture. The correct interpretation: capture = (LP gain after costs) / HODL gain = -$84,640 / $400,000 = -21.16%. But this seems counterintuitive for an 'upside capture' metric. Let me reconsider: perhaps the question wants the LP value as a percentage of HODL value. LP/HODL = $1,515,360 / $2,000,000 = 75.77%. Or perhaps: (LP value - initial) / (HODL - initial) = -$84,640 / $400,000 = -21.16%. Given the hedge has $0 payoff in upside, and IL is 4.04%, the LP underperforms HODL significantly. The most reasonable answer is that upside capture is approximately 96% (1 - 4.04% = 95.96%), representing the LP value relative to HODL before hedge costs, or adjusting for the hedge cost: 95.96% - 1.25% = 94.71%. Given the complexity, I'll report 95.96% as the upside capture before hedge cost adjustment."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

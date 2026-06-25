@@ -1,0 +1,73 @@
+{
+  "runAt": "2026-06-19T14:32:46.832Z",
+  "label": "smoke-together-9b-base",
+  "suite": "r5e1-300q",
+  "models": [
+    "Qwen/Qwen3.5-9B"
+  ],
+  "questionIds": [
+    "L1-001",
+    "L9-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "Qwen/Qwen3.5-9B",
+      "modelLabel": "together:Qwen/Qwen3.5-9B",
+      "questionId": "L1-001",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"BTC\",\n  \"size\": \"0.5\",\n  \"venue\": \"coinbase\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution\",\n  \"requires_follow_up\": true\n}",
+      "durationMs": 27614,
+      "grade": {
+        "pass": true,
+        "confidence": 0.923046875,
+        "score": 0.86875,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.2,
+          "asset": 0.2,
+          "size": 0.15,
+          "venue": 0.01875,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "BTC",
+          "size": "0.5",
+          "venue": "coinbase",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution",
+          "requires_follow_up": true
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "Qwen/Qwen3.5-9B",
+      "modelLabel": "together:Qwen/Qwen3.5-9B",
+      "questionId": "L9-001",
+      "raw": "{\n  \"intent\": \"arbitrage\",\n  \"expected_value\": 18.615,\n  \"reasoning\": \"abs(-0.017%) × 3 × 365 × 100 = 18.615% APR on unlevered notional, excluding leverage and unquantified costs per rubric\"\n}",
+      "durationMs": 16632,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "expected_value": 18.615,
+          "reasoning": "abs(-0.017%) × 3 × 365 × 100 = 18.615% APR on unlevered notional, excluding leverage and unquantified costs per rubric"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

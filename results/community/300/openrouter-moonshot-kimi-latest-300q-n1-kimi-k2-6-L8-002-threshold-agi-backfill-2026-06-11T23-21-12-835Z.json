@@ -1,0 +1,46 @@
+{
+  "runAt": "2026-06-11T23:21:12.834Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L8-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L8-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L8-002",
+      "raw": "{\n  \"intent\": \"execute_mev_defense\",\n  \"strategy\": \"A\",\n  \"expected_total_cost\": 251.04,\n  \"cost_breakdown\": {\n    \"gas\": 1.824,\n    \"fees\": 180,\n    \"expected_mev_loss\": 69.216\n  },\n  \"reasoning\": \"Strategy A (Flashbots Protect): gas = 320,000 * 2 gwei * 2850 / 1e9 = $1.824; setup fee = $180; residual MEV = $22,000 * (1 - 0.985) = $330; expected MEV loss = $330 * 0.96 + $22,000 * 0.04 = $316.8 + $880 = $1,196.8? Wait, let me recalculate carefully. Actually, the expected MEV loss should account for success rate and retry. Let me recalculate: For Strategy A, with 96% success rate, 4% fail and retry. But the retry cost is $65, not the full MEV loss. Wait, the prompt says 'retry cost if failed: $65'. So expected cost = setup fee + gas + expected MEV loss + expected retry cost. MEV protection is 98.5%, so if successful, MEV loss = $22,000 * (1 - 0.985) = $330. If failed (4%), we pay retry cost $65 and then what? The prompt doesn't specify MEV loss on retry. Let me assume retry succeeds with same protection. Actually, let me re-read: 'Success rate: 96% first attempt'. So 4% fail and need retry. Expected cost = setup_fee + gas + (success_rate * residual_mev_loss + fail_rate * (retry_cost + residual_mev_loss?)). Actually, if it fails first attempt, you pay retry cost $65 and then presumably succeed with same protection. But the problem might be simpler: expected total cost = setup fee + gas + expected_mev_loss + expected_retry_cost. Let me calculate expected MEV loss: With 98.5% protection, expected loss if transaction goes through is $22,000 * 0.015 = $330. But wait, if it fails first attempt, does it get protected on retry? I'll assume the retry also has 98.5% protection. So expected MEV loss = $330 (since all attempts that land are protected at 98.5%). Actually, no - the 96% is success rate of first attempt. If it fails, you retry. The expected number of attempts: 1 + 0.04 = 1.04. Expected retry cost = 0.04 * $65 = $2.6. Gas is paid per attempt? Actually, gas is paid for each on-chain transaction. So expected gas = 1.04 * $1.824 = $1.89696. But wait, the problem might want us to calculate expected cost as: fixed gas (assuming it goes through) + setup fee + expected retry cost + expected MEV loss. Let me think about what the question is really asking. 'Calculate total expected cost for each strategy and select the optimal one.' For Strategy A: Setup fee $180 (one-time). Gas: 320,000 units at 2 gwei priority fee. But wait, there's also base fee? The prompt says 'Gas: 320,000 units at 2 gwei priority fee'. Does that include base fee? Usually gas cost = gas_units * (base_fee + priority_fee). But the prompt says 'Gas: 320,000 units at 2 gwei priority fee' - this might mean total gas price is 2 gwei? Or priority fee is 2 gwei and base fee is separate? Looking at Strategy B: 'Gas: 180,000 units at 150 gwei base + 20 gwei priority'. So for Strategy B, gas cost = 180,000 * (150 + 20) gwei. For Strategy A: 'Gas: 320,000 units at 2 gwei priority fee'. It doesn't mention base fee for A. Maybe Flashbots bundles don't pay base fee? No, they do. Or maybe the '2 gwei priority fee' means the total fee is 2 gwei? Actually, in Flashbots, you might pay only priority fee to the validator. But typically you still pay base fee. However, the prompt might be simplifying: for A, gas price = 2 gwei total; for B, gas price = 170 gwei total. Let me check the context JSON: for A, it has 'priority_fee_gwei': 2, and no base_fee. For B, it has 'priority_fee_gwei': 20 and we know base_fee_gwei is 150. So for A, maybe we only calculate priority fee? Or maybe base fee is also 150? But the prompt says 'Base fee: 150 gwei' as a market condition. So why would A not pay base fee? Actually, looking at the prompt text: 'Gas: 320,000 units at 2 gwei priority fee'. It explicitly says 'priority fee', not total. But in the context JSON, A only has 'priority_fee_gwei': 2. This is ambiguous. However, for B, the prompt says '150 gwei base + 20 gwei priority', so B explicitly includes base. For A, maybe the total gas price is just 2 gwei? Or maybe it's 150 + 2 = 152 gwei? But that would make A much more expensive. Let me re-read the original prompt carefully: 'Strategy A: Flashbots Protect - Setup fee: $180 - Gas: 320,000 units at 2 gwei priority fee - Execution: 2 blocks average (24 seconds)'. It doesn't mention base fee for A. In Flashbots, you still pay base fee to the network. But maybe the problem intends for A to be cheap on gas. Actually, looking at the context JSON: 'gas': '30 gwei' at top level, but 'base_fee_gwei': 150. The top-level gas might be current gas price. But for the calculation, I think the problem wants us to use the numbers as given. For A: gas cost = 320,000 * 2 gwei * ETH_price / 1e9. For B: gas cost = 180,000 * (150 + 20) gwei * ETH_price / 1e9. Let me verify with the context JSON. The context JSON for A has 'priority_fee_gwei': 2, and for B has 'priority_fee_gwei': 20. The base_fee_gwei is 150 globally. So for B, total gas price = 150 + 20 = 170 gwei. For A, should we add base fee? The context JSON doesn't specify a different base fee for A. But the prompt text says 'Gas: 320,000 units at 2 gwei priority fee'. This could mean the total gas cost is calculated at 2 gwei (maybe because Flashbots bundles are subsidized? No). Actually, I think the safest interpretation is that for A, the gas price is 2 gwei total (perhaps because it's a private transaction and the base fee is handled differently, or the problem simplified it). But wait, the problem says 'Base fee: 150 gwei' as a market condition. If A has to pay base fee, then A's gas would be 320,000 * (150 + 2) gwei, which is huge. Let me calculate: 320,000 * 152 gwei * 2850 / 1e9 = $138.7. That's not huge actually. B would be 180,000 * 170 * 2850 / 1e9 = $87.21. So A would be more expensive in gas but still small compared to MEV. But if A is only 2 gwei total: 320,000 * 2 * 2850 / 1e9 = $1.824. That's very cheap. Which interpretation is intended? Looking at the prompt: 'Gas: 320,000 units at 2 gwei priority fee'. The word 'priority fee' suggests it's in addition to base fee. But then why not mention base fee? Maybe because in Flashbots, you don't pay base fee? No, you do. Actually, in Flashbots, the transaction is still an Ethereum transaction that pays base fee. However, maybe the problem is simplified and '2 gwei priority fee' is the only extra cost beyond the setup fee, implying base fee is paid in both but maybe not? Wait, no - base fee is burned on every transaction. Let me look at the context JSON again. It has 'base_fee_gwei': 150 globally. It doesn't override it for A. So I think we should apply base fee to both. But then A's gas would be 320,000 * (150 + 2) = 320,000 * 152 gwei. Let me calculate: 320,000 * 152 = 48,640,000 gwei = 0.04864 ETH. At $2850, that's $138.624. Plus setup fee $180 = $318.624. Plus expected MEV loss. For B: 180,000 * (150 + 20) = 180,000 * 170 = 30,600,000 gwei = 0.0306 ETH. At $2850, that's $87.21. Plus expected MEV loss $22,000. So B would be $22,087.21 vs A would be ~$318.62 + MEV. That would make A obviously better. But wait, if A pays base fee, why does the prompt emphasize '2 gwei priority fee' and not mention base fee? And why is the setup fee only $180? If gas alone is $138, then total fixed cost is $318, which is still much less than $22,000. But maybe the problem wants us to compare $22,000 vs a few hundred. However, the problem says 'Evaluate MEV defense strategies' and 'Calculate total expected cost'. If A is obviously better by orders of magnitude, the calculation is trivial. But maybe there's a trick: the 96% success rate means 4% of the time you fail and pay retry cost. But even",
+      "durationMs": 47084,
+      "grade": {
+        "pass": false,
+        "confidence": 0.33,
+        "score": 0.7333333333333334,
+        "fieldScores": {
+          "intent": 0,
+          "strategy": 0.6,
+          "expected_total_cost": 0.13333333333333336,
+          "cost_breakdown": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "execute_mev_defense",
+          "strategy": "A",
+          "expected_total_cost": 251.04,
+          "gas": 1.824,
+          "fees": 180,
+          "expected_mev_loss": 69.216,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

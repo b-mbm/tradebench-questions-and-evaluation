@@ -1,0 +1,233 @@
+{
+  "runAt": "2026-06-10T12:16:11.094Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-l9-chunk6-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L9-051",
+    "L9-052",
+    "L9-053",
+    "L9-054",
+    "L9-055",
+    "L9-056",
+    "L9-057",
+    "L9-058",
+    "L9-059",
+    "L9-060"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-051",
+      "raw": "",
+      "durationMs": 61546,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-052",
+      "raw": "",
+      "durationMs": 40420,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-053",
+      "raw": "",
+      "durationMs": 35504,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-054",
+      "raw": "",
+      "durationMs": 44578,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-055",
+      "raw": "{\"intent\":\"repay\",\"expected_value\":232200,\"reasoning\":\"Pre-repay HF = (1000*3100*0.84)/2,050,000 ≈ 1.2702. Post-9%-shock HF without action = (1000*3100*0.91*0.84)/2,050,000 ≈ 1.1559, below the 1.3 target. Max allowable debt after shock at target HF = (1000*3100*0.91*0.84)/1.3 = 1,822,800. Total liability including $5,000 fees = 2,055,000. Minimum USDC debt reduction required = max(0, 2,055,000 - 1,822,800) = 232,200.\"}",
+      "durationMs": 112125,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "expected_value": 232200,
+          "reasoning": "Pre-repay HF = (1000*3100*0.84)/2,050,000 ≈ 1.2702. Post-9%-shock HF without action = (1000*3100*0.91*0.84)/2,050,000 ≈ 1.1559, below the 1.3 target. Max allowable debt after shock at target HF = (1000*3100*0.91*0.84)/1.3 = 1,822,800. Total liability including $5,000 fees = 2,055,000. Minimum USDC debt reduction required = max(0, 2,055,000 - 1,822,800) = 232,200."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-056",
+      "raw": "",
+      "durationMs": 100874,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-057",
+      "raw": " {\"intent\":\"simulate\",\"order_type\":\"flash_loan_exploit\",\"asset\":\"USDC\",\"size\":30000000,\"unit\":\"usd\",\"venue\":\"dex\",\"venue_name\":\"uniswap/aave\",\"risk_controls\":{\"slippage_tolerance\":280000,\"max_gas\":145000,\"position_size_limit\":30000000},\"expected_value\":651000,\"reasoning\":\"Success EV: 0.59 * (2,100,000 - 0.06%*30,000,000 - 145,000 - 280,000 - 260,000) = 0.59 * 1,300,000 = 767,000. Failure EV: 0.41 * (-0.06%*30,000,000 - 145,000 - 190,000) = 0.41 * (-463,000) = -189,830. Expected value = 767,000 - 189,830 = 577,170. Hard constraints pass: oracle age 27s <= 45s, liquidation liquidity 3.6M >= 2.4M. EV > 0, execute. Recalculating precisely: flash fee = 18,000. Success net = 2,100,000 - 18,000 - 145,000 - 280,000 - 260,000 = 1,397,000. Success EV = 0.59 * 1,397,000 = 824,230. Failure loss = 18,000 + 145,000 + 190,000 = 353,000. Failure EV = 0.41 * -353,000 = -144,730. Total EV = 824,230 - 144,730 = 679,500.\",\"requires_follow_up\":true,\"follow_up_description\":\"monitor bundle inclusion and MEV auction outcome\"}",
+      "durationMs": 2367,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "simulate",
+          "order_type": "flash_loan_exploit",
+          "asset": "USDC",
+          "size": 30000000,
+          "unit": "usd",
+          "venue": "dex",
+          "venue_name": "uniswap/aave",
+          "risk_controls": {
+            "slippage_tolerance": 280000,
+            "max_gas": 145000,
+            "position_size_limit": 30000000
+          },
+          "expected_value": 651000,
+          "reasoning": "Success EV: 0.59 * (2,100,000 - 0.06%*30,000,000 - 145,000 - 280,000 - 260,000) = 0.59 * 1,300,000 = 767,000. Failure EV: 0.41 * (-0.06%*30,000,000 - 145,000 - 190,000) = 0.41 * (-463,000) = -189,830. Expected value = 767,000 - 189,830 = 577,170. Hard constraints pass: oracle age 27s <= 45s, liquidation liquidity 3.6M >= 2.4M. EV > 0, execute. Recalculating precisely: flash fee = 18,000. Success net = 2,100,000 - 18,000 - 145,000 - 280,000 - 260,000 = 1,397,000. Success EV = 0.59 * 1,397,000 = 824,230. Failure loss = 18,000 + 145,000 + 190,000 = 353,000. Failure EV = 0.41 * -353,000 = -144,730. Total EV = 824,230 - 144,730 = 679,500.",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor bundle inclusion and MEV auction outcome"
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-058",
+      "raw": "",
+      "durationMs": 67402,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-059",
+      "raw": "",
+      "durationMs": 46501,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Invalid response body while trying to fetch https://openrouter.ai/api/v1/chat/completions: read ETIMEDOUT"
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-060",
+      "raw": "",
+      "durationMs": 75763,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "error"
+        ],
+        "parsingMethod": "none"
+      },
+      "error": "Connection error."
+    }
+  ]
+}

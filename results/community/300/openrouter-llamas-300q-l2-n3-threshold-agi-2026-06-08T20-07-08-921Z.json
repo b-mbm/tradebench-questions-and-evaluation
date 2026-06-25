@@ -1,0 +1,675 @@
+{
+  "runAt": "2026-06-08T20:07:08.920Z",
+  "label": "openrouter-llamas-300q-l2-n3-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "meta-llama/llama-3.1-8b-instruct"
+  ],
+  "questionIds": [
+    "L2-001",
+    "L2-002",
+    "L2-003",
+    "L2-004"
+  ],
+  "evaluations": [
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": \"5000\",\n  \"unit\": \"usdc\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"route via largest pool\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check for execution and potential need for re-routing\"\n}",
+      "durationMs": 3728,
+      "grade": {
+        "pass": false,
+        "confidence": 0.733125,
+        "score": 0.6900000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usdc",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest pool",
+          "requires_follow_up": true,
+          "follow_up_description": "check for execution and potential need for re-routing"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"PEPE\",\n  \"size\": \"100000\",\n  \"unit\": \"PEPE\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"15%\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"market order for immediate execution with specified slippage tolerance\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify that the order was filled within the specified slippage tolerance\"\n}",
+      "durationMs": 5925,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9776068376068378,
+        "score": 0.9261538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "PEPE",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "market order for immediate execution with specified slippage tolerance",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify that the order was filled within the specified slippage tolerance"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"MATIC\",\n  \"size\": \"1000\",\n  \"unit\": \"matic\",\n  \"price\": \"0.8\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"polygon_dex\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"limit order to minimize gas fees on polygon network\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"monitor transaction status and adjust gas price if necessary\"\n}",
+      "durationMs": 11998,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8718888888888889,
+        "score": 0.8260000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.055999999999999994,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "MATIC",
+          "size": "1000",
+          "unit": "matic",
+          "price": "0.8",
+          "venue": "dex",
+          "venue_name": "polygon_dex",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "limit order to minimize gas fees on polygon network",
+          "requires_follow_up": true,
+          "follow_up_description": "monitor transaction status and adjust gas price if necessary"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.3-70b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.3-70b-instruct",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": \"50000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"swap\",\n  \"reasoning\": \"assess liquidity before executing swap\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"swap 50,000 USDC for WETH if liquidity is sufficient\"\n}",
+      "durationMs": 17587,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7140885416666667,
+        "score": 0.6720833333333334,
+        "fieldScores": {
+          "intent": 0.07875,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "50000",
+          "unit": "usdc",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "swap",
+          "reasoning": "assess liquidity before executing swap",
+          "requires_follow_up": true,
+          "follow_up_description": "swap 50,000 USDC for WETH if liquidity is sufficient"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": \"5000\",\n  \"unit\": \"usd\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"route via largest USDC/DAI pool on Uniswap\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check if slippage exceeds tolerance\"\n}",
+      "durationMs": 3655,
+      "grade": {
+        "pass": false,
+        "confidence": 0.733125,
+        "score": 0.6900000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "5000",
+          "unit": "usd",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest USDC/DAI pool on Uniswap",
+          "requires_follow_up": true,
+          "follow_up_description": "check if slippage exceeds tolerance"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"dex\",\n  \"asset\": \"PEPE\",\n  \"size\": \"100,000\",\n  \"unit\": \"pepe\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"15%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"execute on uniswap with specified slippage tolerance\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"check for sufficient liquidity\"\n}",
+      "durationMs": 2039,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8192735042735044,
+        "score": 0.7761538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "PEPE",
+          "size": "100,000",
+          "unit": "pepe",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "execute on uniswap with specified slippage tolerance",
+          "requires_follow_up": true,
+          "follow_up_description": "check for sufficient liquidity"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"MATIC\",\n  \"size\": \"1000\",\n  \"unit\": \"usd\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"25 gwei\"\n  },\n  \"follow_up\": \"confirm fill\",\n  \"reasoning\": \"using DEX to minimize gas fees and ensure best price\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"verify transaction confirmation and gas cost\"\n}",
+      "durationMs": 2899,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9775000000000001,
+        "score": 0.9200000000000002,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": "1000",
+          "unit": "usd",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "25 gwei"
+          },
+          "follow_up": "confirm fill",
+          "reasoning": "using DEX to minimize gas fees and ensure best price",
+          "requires_follow_up": true,
+          "follow_up_description": "verify transaction confirmation and gas cost"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-maverick",
+      "modelLabel": "openrouter:meta-llama/llama-4-maverick",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"liquidity_check\",\n  \"asset\": \"WETH\",\n  \"size\": \"50000\",\n  \"unit\": \"USDC\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"execute swap\",\n  \"reasoning\": \"check liquidity before executing large swap\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"execute swap if liquidity is sufficient\"\n}",
+      "durationMs": 2462,
+      "grade": {
+        "pass": true,
+        "confidence": 0.7214847883597884,
+        "score": 0.6835119047619047,
+        "fieldScores": {
+          "intent": 0.07875,
+          "order_type": 0.011428571428571423,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "liquidity_check",
+          "asset": "WETH",
+          "size": "50000",
+          "unit": "USDC",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "execute swap",
+          "reasoning": "check liquidity before executing large swap",
+          "requires_follow_up": true,
+          "follow_up_description": "execute swap if liquidity is sufficient"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"DAI\",\n  \"size\": \"5000\",\n  \"unit\": \"USDC\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"route via largest pool\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify the swap execution and monitor pool depth for potential slippage\"\n}",
+      "durationMs": 7124,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": "5000",
+          "unit": "USDC",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest pool",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify the swap execution and monitor pool depth for potential slippage"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L2-002",
+      "raw": "{\n\"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"PEPE\",\n  \"size\": \"100000\",\n  \"unit\": \"PEPE\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"15%\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"execute market order with slippage tolerance\"\n}",
+      "durationMs": 685,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9776068376068378,
+        "score": 0.9261538461538463,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.0061538461538461495,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "PEPE",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "15%"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "execute market order with slippage tolerance"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L2-003",
+      "raw": "  \"intent\": \"buy\",\n  \"order_type\": \"dex\",\n  \"asset\": \"MATIC\",\n  \"size\": \"1000\",\n  \"unit\": \"matic\",\n  \" \"dex\",\n  \"venue_name\": \"polygon dex\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor gas fees\",\n  \"reasoning\": \"minimize gas fees by using dex on polygon network\"\n}",
+      "durationMs": 2576,
+      "grade": {
+        "pass": false,
+        "confidence": 0.32961038961038963,
+        "score": 0.640909090909091,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0.05090909090909091,
+          "risk_controls": 0,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "dex",
+          "asset": "MATIC",
+          "size": "1000",
+          "unit": "matic",
+          "venue_name": "polygon dex",
+          "max_gas": "30 gwei",
+          "follow_up": "monitor gas fees",
+          "reasoning": "minimize gas fees by using dex on polygon network",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-4-scout",
+      "modelLabel": "openrouter:meta-llama/llama-4-scout",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": \"50000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"analyze liquidity before swapping to ensure sufficient depth for 50,000 USDC\"\n}",
+      "durationMs": 6729,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "50000",
+          "unit": "usdc",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "analyze liquidity before swapping to ensure sufficient depth for 50,000 USDC"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L2-001",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": \"5000\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"route via largest pool\"\n}",
+      "durationMs": 1926,
+      "grade": {
+        "pass": false,
+        "confidence": 0.733125,
+        "score": 0.6900000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "5000",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "route via largest pool"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L2-002",
+      "raw": "{\n  \"intent\": \"buy\",\n   \"order_type\": \"market\",\n   \"asset\": \"PEPE\",\n   \"size\": \"100000\",\n   \"unit\": \"pepe\",\n   \"risk_controls\": {\n      \"slippage_tolerance\": \"15%\"\n   },\n   \"venue\": \"binance\",\n   \"venue_name\": \"Binance\",\n   \"reasoning\": \"market order for immediate execution with 15% slippage tolerance\",\n   \"requires_follow_up\": false\n}",
+      "durationMs": 403,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8274725274725276,
+        "score": 0.7723076923076925,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0.01230769230769231,
+          "risk_controls": 0.04,
+          "follow_up": 0,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "PEPE",
+          "size": "100000",
+          "unit": "pepe",
+          "risk_controls": {
+            "slippage_tolerance": "15%"
+          },
+          "venue": "binance",
+          "venue_name": "Binance",
+          "reasoning": "market order for immediate execution with 15% slippage tolerance",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"limit\",\n  \"asset\": \"MATIC\",\n  \"size\": \"1000\",\n  \"price\": \"0.8\",\n  \"venue\": \"binance\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor fill status\",\n  \"reasoning\": \"limit order to minimize gas fees\"\n}",
+      "durationMs": 1968,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6750000000000002,
+        "score": 0.6300000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "limit",
+          "asset": "MATIC",
+          "size": "1000",
+          "price": "0.8",
+          "venue": "binance",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor fill status",
+          "reasoning": "limit order to minimize gas fees"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "meta-llama/llama-3.1-8b-instruct",
+      "modelLabel": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "questionId": "L2-004",
+      "raw": "{\n  \"intent\": \"swap\",\n  \"order_type\": \"dex\",\n  \"asset\": \"USDC\",\n  \"size\": \"50000\",\n  \"price\": \"pool spot\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"monitor pool depth\",\n  \"reasoning\": \"analyze liquidity before swapping USDC for WETH\"\n}",
+      "durationMs": 3769,
+      "grade": {
+        "pass": false,
+        "confidence": 0.6423697916666666,
+        "score": 0.6045833333333333,
+        "fieldScores": {
+          "intent": 0.01125,
+          "order_type": 0,
+          "asset": 0.05333333333333333,
+          "size": 0.1,
+          "venue": 0.12,
+          "venue_name": 0.1,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "USDC",
+          "size": "50000",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "monitor pool depth",
+          "reasoning": "analyze liquidity before swapping USDC for WETH"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

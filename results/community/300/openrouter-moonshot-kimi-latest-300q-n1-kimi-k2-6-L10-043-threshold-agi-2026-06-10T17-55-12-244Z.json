@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-10T17:55:12.243Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L10-043-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L10-043"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L10-043",
+      "raw": "{\n  \"intent\": \"provide_liquidity\",\n  \"order_type\": \"dex\",\n  \"asset\": \"WBTC/USDC\",\n  \"size\": 3000000,\n  \"unit\": \"usd\",\n  \"price\": \"70000\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap_v3\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": 3000000\n  },\n  \"follow_up\": \"monitor hedge expiry and rebalance range\",\n  \"reasoning\": \"Constructed 45-day PnL table for $3M Uniswap V3 WBTC/USDC LP centered at $70k with $1.5M each side. HODL values: initial $3M. At -25% ($33,750): HODL $2.625M, LP IL 0.63% => LP $2.608M, IL loss $17k, hedge covers 80% => $13.6k recovery, net PnL -$48.4k. At +25% ($56,250): HODL $3.375M, LP IL 0.63% => LP $3.354M, hedge $0 upside payoff, net PnL $309k. At -50% ($22,500): HODL $2.25M, LP IL 4.04% => LP $2.159M, IL loss $91k, hedge covers 80% => $72.8k recovery, net PnL -$63.2k. At +50% ($67,500): HODL $3.75M, LP IL 4.04% => LP $3.598M, hedge $0, net PnL $553k. At -100% ($0): HODL $1.5M (WBTC worthless, USDC half remains), LP terminal pool value $1.5M (all WBTC, no extra IL), hedge covers 80% of $0 IL => $0 recovery, net PnL -$1.5M. At +100% ($90,000): HODL $4.5M, LP IL 5.72% => LP $4.243M, minus $45k hedge cost => $4.198M, net PnL $1.198M. Upside capture at +100%: (4.198M - 3M) / (4.5M - 3M) = 1.198M / 1.5M = 79.87%. Expected value computed as probability-weighted average across symmetric scenarios (equal 1/6 weights): (-48.4k + 309k - 63.2k + 553k - 1500k + 1198k) / 6 = $248.07k.\",\n  \"expected_value\": 248070,\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Reassess hedge rollover and pool range re-centering before 45-day expiry.\"\n}",
+      "durationMs": 3365,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "provide_liquidity",
+          "order_type": "dex",
+          "asset": "WBTC/USDC",
+          "size": 3000000,
+          "unit": "usd",
+          "price": "70000",
+          "venue": "dex",
+          "venue_name": "uniswap_v3",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "30 gwei",
+            "position_size_limit": 3000000
+          },
+          "follow_up": "monitor hedge expiry and rebalance range",
+          "reasoning": "Constructed 45-day PnL table for $3M Uniswap V3 WBTC/USDC LP centered at $70k with $1.5M each side. HODL values: initial $3M. At -25% ($33,750): HODL $2.625M, LP IL 0.63% => LP $2.608M, IL loss $17k, hedge covers 80% => $13.6k recovery, net PnL -$48.4k. At +25% ($56,250): HODL $3.375M, LP IL 0.63% => LP $3.354M, hedge $0 upside payoff, net PnL $309k. At -50% ($22,500): HODL $2.25M, LP IL 4.04% => LP $2.159M, IL loss $91k, hedge covers 80% => $72.8k recovery, net PnL -$63.2k. At +50% ($67,500): HODL $3.75M, LP IL 4.04% => LP $3.598M, hedge $0, net PnL $553k. At -100% ($0): HODL $1.5M (WBTC worthless, USDC half remains), LP terminal pool value $1.5M (all WBTC, no extra IL), hedge covers 80% of $0 IL => $0 recovery, net PnL -$1.5M. At +100% ($90,000): HODL $4.5M, LP IL 5.72% => LP $4.243M, minus $45k hedge cost => $4.198M, net PnL $1.198M. Upside capture at +100%: (4.198M - 3M) / (4.5M - 3M) = 1.198M / 1.5M = 79.87%. Expected value computed as probability-weighted average across symmetric scenarios (equal 1/6 weights): (-48.4k + 309k - 63.2k + 553k - 1500k + 1198k) / 6 = $248.07k.",
+          "expected_value": 248070,
+          "requires_follow_up": true,
+          "follow_up_description": "Reassess hedge rollover and pool range re-centering before 45-day expiry."
+        },
+        "failureReasons": [
+          "l10_expected_value_out_of_range"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

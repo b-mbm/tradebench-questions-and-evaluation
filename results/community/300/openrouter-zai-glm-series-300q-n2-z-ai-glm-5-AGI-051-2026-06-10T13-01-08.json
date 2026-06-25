@@ -1,0 +1,55 @@
+{
+  "runAt": "2026-06-10T13:01:38.837Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-AGI-051-2026-06-10T13-01-08",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "AGI-051"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "AGI-051",
+      "raw": "{\n  \"intent\": \"exit\",\n  \"decision\": \"exit\",\n  \"chosen_strategy\": \"sequential private-then-public exit\",\n  \"exit_sequence\": [\"otc_block\", \"dex_twap\"],\n  \"private_sale_usd\": 178560,\n  \"expected_exit_value_usd\": 296760,\n  \"expected_stay_value_usd\": 189000,\n  \"self_check\": \"Private first preserves bid; exit value $296,760 > stay value $189,000; capital preserved at 98.9%\",\n  \"reasoning\": \"Private OTC ($180K at 99.2%) first to avoid bid cancellation, then public DEX ($120K at 98.5%) = $296,760 total. Stay EV = $420K × 45% = $189,000. Exit is optimal.\"\n}",
+      "durationMs": 30177,
+      "grade": {
+        "pass": false,
+        "confidence": 1,
+        "score": 0.625,
+        "fieldScores": {
+          "intent": 0,
+          "decision": 1,
+          "chosen_strategy": 0,
+          "exit_sequence": 1,
+          "private_sale_usd": 1,
+          "expected_exit_value_usd": 1,
+          "expected_stay_value_usd": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "exit",
+          "decision": "exit",
+          "chosen_strategy": "sequential private-then-public exit",
+          "exit_sequence": [
+            "otc_block",
+            "dex_twap"
+          ],
+          "private_sale_usd": 178560,
+          "expected_exit_value_usd": 296760,
+          "expected_stay_value_usd": 189000,
+          "self_check": "Private first preserves bid; exit value $296,760 > stay value $189,000; capital preserved at 98.9%",
+          "reasoning": "Private OTC ($180K at 99.2%) first to avoid bid cancellation, then public DEX ($120K at 98.5%) = $296,760 total. Stay EV = $420K × 45% = $189,000. Exit is optimal."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

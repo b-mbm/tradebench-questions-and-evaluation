@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T16:17:01.117Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L10-069-2026-06-10T16-16-31",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-069"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-069",
+      "raw": "{\n  \"intent\": \"compute_max_crypto_sleeve\",\n  \"expected_value\": 26800000,\n  \"reasoning\": \"Portfolio variance = sum of w_i^2*σ_i^2 + 2*sum of w_i*w_j*σ_i*σ_j*ρ_ij. With pro-rata reduction factor r, weights become w_BTC=0.45r, w_ETH=0.25r, w_SOL=0.15r, w_stables=1-0.85r. Setting portfolio vol=3.20% and solving: 0.1024 = r^2 * (0.45^2*0.042^2 + 0.25^2*0.054^2 + 0.15^2*0.075^2 + 2*0.45*0.25*0.042*0.054*0.78 + 2*0.45*0.15*0.042*0.075*0.62 + 2*0.25*0.15*0.054*0.075*0.68) = r^2 * 0.003612. So r^2 = 0.1024/0.003612 = 28.35, r = 0.7888. Max crypto sleeve = 0.7888 * $34,000,000 ≈ $26,819,000 ≈ $26,800,000.\"\n}",
+      "durationMs": 29323,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7,
+        "fieldScores": {
+          "expected_value": 0.7
+        },
+        "normalizedResponse": {
+          "intent": "compute_max_crypto_sleeve",
+          "expected_value": 26800000,
+          "reasoning": "Portfolio variance = sum of w_i^2*σ_i^2 + 2*sum of w_i*w_j*σ_i*σ_j*ρ_ij. With pro-rata reduction factor r, weights become w_BTC=0.45r, w_ETH=0.25r, w_SOL=0.15r, w_stables=1-0.85r. Setting portfolio vol=3.20% and solving: 0.1024 = r^2 * (0.45^2*0.042^2 + 0.25^2*0.054^2 + 0.15^2*0.075^2 + 2*0.45*0.25*0.042*0.054*0.78 + 2*0.45*0.15*0.042*0.075*0.62 + 2*0.25*0.15*0.054*0.075*0.68) = r^2 * 0.003612. So r^2 = 0.1024/0.003612 = 28.35, r = 0.7888. Max crypto sleeve = 0.7888 * $34,000,000 ≈ $26,819,000 ≈ $26,800,000."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

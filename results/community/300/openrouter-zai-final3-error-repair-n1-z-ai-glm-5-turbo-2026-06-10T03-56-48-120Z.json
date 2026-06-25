@@ -1,0 +1,136 @@
+{
+  "runAt": "2026-06-10T03:56:48.120Z",
+  "label": "openrouter-zai-final3-error-repair-n1-z-ai-glm-5-turbo",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-002",
+    "AGI-026",
+    "AGI-088"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-002",
+      "raw": "",
+      "durationMs": 26995,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-026",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"sequential_private_then_hidden_public\",\n  \"execution_sequence\": [\n    \"Internalizer\",\n    \"Dark_RFQ\",\n    \"CEX_Y\",\n    \"hidden_public\"\n  ],\n  \"venue_fills\": {\n    \"Internalizer\": 42000,\n    \"Dark_RFQ\": 35000,\n    \"CEX_Y\": 30000,\n    \"hidden_public\": 13000\n  },\n  \"hidden_public_qty\": 13000,\n  \"expected_avg_price\": 4.928741666666667,\n  \"expected_slippage_pct\": 0.3817,\n  \"self_check\": \"Public parent order is exactly 13,000 KAP, which is strictly less than the 25,000 KAP threshold, ensuring the copy-trading bot is not triggered. All other fills totaling 107,000 KAP are executed via private channels and update no public footprint.\",\n  \"reasoning\": \"Route 107,000 KAP sequentially through private venues (Internalizer, Dark_RFQ, CEX_Y) to avoid public footprint, leaving exactly 13,000 KAP for the hidden public iceberg, which stays under the 25,000 KAP visibility threshold to prevent copy-bot activation.\"\n}\n",
+      "durationMs": 22732,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 0.7272727272727273,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 1,
+          "venue_fills.Internalizer": 1,
+          "venue_fills.Dark_RFQ": 1,
+          "venue_fills.CEX_Y": 1,
+          "venue_fills.hidden_public": 1,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "sequential_private_then_hidden_public",
+          "execution_sequence": [
+            "Internalizer",
+            "Dark_RFQ",
+            "CEX_Y",
+            "hidden_public"
+          ],
+          "venue_fills": {
+            "Internalizer": 42000,
+            "Dark_RFQ": 35000,
+            "CEX_Y": 30000,
+            "hidden_public": 13000
+          },
+          "hidden_public_qty": 13000,
+          "expected_avg_price": 4.928741666666667,
+          "expected_slippage_pct": 0.3817,
+          "self_check": "Public parent order is exactly 13,000 KAP, which is strictly less than the 25,000 KAP threshold, ensuring the copy-trading bot is not triggered. All other fills totaling 107,000 KAP are executed via private channels and update no public footprint.",
+          "reasoning": "Route 107,000 KAP sequentially through private venues (Internalizer, Dark_RFQ, CEX_Y) to avoid public footprint, leaving exactly 13,000 KAP for the hidden public iceberg, which stays under the 25,000 KAP visibility threshold to prevent copy-bot activation."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-088",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"chosen_strategy\": \"sequential private routing with capped hidden public sweep\",\n  \"execution_sequence\": [\n    \"Internalizer\",\n    \"Dark_RFQ\",\n    \"CEX_Y\",\n    \"hidden_public\"\n  ],\n  \"venue_fills\": {\n    \"Internalizer\": 42000,\n    \"Dark_RFQ\": 35000,\n    \"CEX_Y\": 30000,\n    \"hidden_public\": 13000\n  },\n  \"hidden_public_qty\": 13000,\n  \"expected_avg_price\": 4.928741666666667,\n  \"expected_slippage_pct\": 0.3817,\n  \"self_check\": \"Public parent order size is 13,000 KAP, which is strictly less than the 25,000 KAP copy-bot trigger threshold. All other fills are private and invisible to the public book.\",\n  \"reasoning\": \"Summed private fills (42k + 35k + 30k = 107k) and remaining required size (13k) exactly matches the hidden public iceberg capacity. Calculated VWAP across all four venues and verified public exposure remains below the 25k trigger.\"\n",
+      "durationMs": 23444,
+      "grade": {
+        "pass": false,
+        "confidence": 0.25289256198347104,
+        "score": 0.2727272727272727,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "venue_fills.Internalizer": 0,
+          "venue_fills.Dark_RFQ": 0,
+          "venue_fills.CEX_Y": 0,
+          "venue_fills.hidden_public": 0,
+          "hidden_public_qty": 1,
+          "expected_avg_price": 1,
+          "expected_slippage_pct": 1,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "chosen_strategy": "sequential private routing with capped hidden public sweep",
+          "Internalizer": 42000,
+          "Dark_RFQ": 35000,
+          "CEX_Y": 30000,
+          "hidden_public": 13000,
+          "hidden_public_qty": 13000,
+          "expected_avg_price": 4.928741666666667,
+          "expected_slippage_pct": 0.3817,
+          "self_check": "Public parent order size is 13,000 KAP, which is strictly less than the 25,000 KAP copy-bot trigger threshold. All other fills are private and invisible to the public book.",
+          "reasoning": "Summed private fills (42k + 35k + 30k = 107k) and remaining required size (13k) exactly matches the hidden public iceberg capacity. Calculated VWAP across all four venues and verified public exposure remains below the 25k trigger.",
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "agi_validation_failed:self_check"
+        ],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}

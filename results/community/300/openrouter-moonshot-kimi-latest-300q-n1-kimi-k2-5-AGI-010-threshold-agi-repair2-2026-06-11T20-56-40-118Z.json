@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-11T20:56:40.116Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-AGI-010-threshold-agi-repair2",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "AGI-010"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "AGI-010",
+      "raw": "{\n  \"intent\": \"market_make\",\n  \"chosen_strategy\": \"selective_wide_toxic_filter\",\n  \"spread_bps\": 30,\n  \"update_ms\": 150,\n  \"max_inventory_usd\": 25000,\n  \"toxic_defense\": true,\n  \"expected_daily_pnl_usd\": 840,\n  \"reasoning\": \"With 50ms latency, I cannot outrun FastBot (10ms) or ToxicBot (30ms), so I avoid latency races. By quoting a 30bps spread (tighter than WideBot's 50bps but wider than FastBot's 10bps), I capture the defensive 12% flow share ($480k volume). At 30bps full spread, gross spread revenue on $480k volume (assuming balanced inventory) is approximately $1440. Subtracting the $600 daily toxic defense cost leaves $840. The 150ms update frequency is slower than my 50ms latency to avoid excessive churn but fast enough to adjust to fair value moves. Capping inventory at $25k prevents ToxicBot from forcing one-sided fills against stale quotes when inventory exceeds this threshold.\"\n}",
+      "durationMs": 55967,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7857142857142857,
+        "score": 0.2857142857142857,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 1,
+          "spread_bps": 0,
+          "update_ms": 0,
+          "max_inventory_usd": 1,
+          "toxic_defense": 0,
+          "expected_daily_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "market_make",
+          "chosen_strategy": "selective_wide_toxic_filter",
+          "spread_bps": 30,
+          "update_ms": 150,
+          "max_inventory_usd": 25000,
+          "toxic_defense": true,
+          "expected_daily_pnl_usd": 840,
+          "reasoning": "With 50ms latency, I cannot outrun FastBot (10ms) or ToxicBot (30ms), so I avoid latency races. By quoting a 30bps spread (tighter than WideBot's 50bps but wider than FastBot's 10bps), I capture the defensive 12% flow share ($480k volume). At 30bps full spread, gross spread revenue on $480k volume (assuming balanced inventory) is approximately $1440. Subtracting the $600 daily toxic defense cost leaves $840. The 150ms update frequency is slower than my 50ms latency to avoid excessive churn but fast enough to adjust to fair value moves. Capping inventory at $25k prevents ToxicBot from forcing one-sided fills against stale quotes when inventory exceeds this threshold."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:spread_bps",
+          "agi_validation_failed:update_ms",
+          "agi_validation_failed:toxic_defense",
+          "agi_validation_failed:expected_daily_pnl_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

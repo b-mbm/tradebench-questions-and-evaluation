@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T10:53:56.930Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-024-2026-06-10T10-53-26",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-024"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-024",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"A5\", \"A2\", \"A4\"],\n  \"reasoning\": \"Calculated net scores (yield - fee - slashing_mult * slashing_loss): A1=6.4%, A2=8.15%, A3=8.1% (REJECTED: slashing multiplier 4>3.5 limit), A4=7.92%, A5=8.2%. All AVSs pass other constraints (delay≤8d, oracle≤25min, capacity≥150 stETH, net≥6%). Selected top 3 by net score: A5 (8.2%), A2 (8.15%), A4 (7.92%).\"\n}",
+      "durationMs": 29771,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A5",
+            "A2",
+            "A4"
+          ],
+          "reasoning": "Calculated net scores (yield - fee - slashing_mult * slashing_loss): A1=6.4%, A2=8.15%, A3=8.1% (REJECTED: slashing multiplier 4>3.5 limit), A4=7.92%, A5=8.2%. All AVSs pass other constraints (delay≤8d, oracle≤25min, capacity≥150 stETH, net≥6%). Selected top 3 by net score: A5 (8.2%), A2 (8.15%), A4 (7.92%)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

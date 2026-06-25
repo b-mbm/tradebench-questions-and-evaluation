@@ -1,0 +1,49 @@
+{
+  "runAt": "2026-06-10T22:45:46.747Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-turbo-AGI-102-2026-06-10T22-44-32",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5-turbo"
+  ],
+  "questionIds": [
+    "AGI-102"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "AGI-102",
+      "raw": "{\"answer\": \"Vote yes, keep farming. Net sell pressure delta: -30166.67 tokens/day. Stabilization: $30000. Expected 12d price change: positive due to 46% drop in sell pressure and $30k buy support, exact % depends on token price.\"}\n",
+      "durationMs": 22552,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0,
+          "vote": 0,
+          "position": 0,
+          "chosen_strategy": 0,
+          "net_sell_pressure_delta_per_day": 0,
+          "stabilization_buy_usd": 0,
+          "expected_12d_price_change_pct": 0,
+          "self_check": 0
+        },
+        "normalizedResponse": {
+          "answer": "Vote yes, keep farming. Net sell pressure delta: -30166.67 tokens/day. Stabilization: $30000. Expected 12d price change: positive due to 46% drop in sell pressure and $30k buy support, exact % depends on token price."
+        },
+        "failureReasons": [
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field",
+          "missing_field"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

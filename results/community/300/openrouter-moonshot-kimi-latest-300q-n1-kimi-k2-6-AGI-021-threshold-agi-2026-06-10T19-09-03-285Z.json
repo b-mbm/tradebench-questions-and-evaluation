@@ -1,0 +1,60 @@
+{
+  "runAt": "2026-06-10T19:09:03.284Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-AGI-021-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "AGI-021"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "AGI-021",
+      "raw": "{\"intent\":\"hedge\",\"chosen_strategy\":\"SOL_first_then_LINK\",\"execution_sequence\":[\"SOL\",\"LINK\"],\"hedge_legs\":{\"SOL\":{\"notional_usd\":210000},\"LINK\":{\"notional_usd\":190000}},\"risk_reduction_pct\":54.8,\"worst_case_residual_pnl_usd\":-28420,\"reasoning\":\"Chosen pair SOL+LINK maximizes beta-dollar relief (210k*0.3124 + 190k*0.2356 = 110,368 beta-$) and meets the >=50% cut. Execution order SOL first avoids the higher 0.31% second-clip cost on SOL; instead LINK pays 0.22% as second. Diversifier excluded because its lower relief forces a smaller beta cut and worse residual under large spot shocks. Worst-case residual PnL estimated across three stress tapes after hedge and dealer costs (SOL 0.12% + LINK 0.22% = 0.34% total cost) leaves the smallest worst residual versus other pair/order combinations.\"}",
+      "durationMs": 9009,
+      "grade": {
+        "pass": false,
+        "confidence": 0.9285714285714286,
+        "score": 0.42857142857142855,
+        "fieldScores": {
+          "intent": 0,
+          "chosen_strategy": 0,
+          "execution_sequence": 0,
+          "hedge_legs.LINK.notional_usd": 1,
+          "hedge_legs.SOL.notional_usd": 1,
+          "risk_reduction_pct": 1,
+          "worst_case_residual_pnl_usd": 0
+        },
+        "normalizedResponse": {
+          "intent": "hedge",
+          "chosen_strategy": "SOL_first_then_LINK",
+          "execution_sequence": [
+            "SOL",
+            "LINK"
+          ],
+          "hedge_legs": {
+            "SOL": {
+              "notional_usd": 210000
+            },
+            "LINK": {
+              "notional_usd": 190000
+            }
+          },
+          "risk_reduction_pct": 54.8,
+          "worst_case_residual_pnl_usd": -28420,
+          "reasoning": "Chosen pair SOL+LINK maximizes beta-dollar relief (210k*0.3124 + 190k*0.2356 = 110,368 beta-$) and meets the >=50% cut. Execution order SOL first avoids the higher 0.31% second-clip cost on SOL; instead LINK pays 0.22% as second. Diversifier excluded because its lower relief forces a smaller beta cut and worse residual under large spot shocks. Worst-case residual PnL estimated across three stress tapes after hedge and dealer costs (SOL 0.12% + LINK 0.22% = 0.34% total cost) leaves the smallest worst residual versus other pair/order combinations."
+        },
+        "failureReasons": [
+          "agi_validation_failed:intent",
+          "agi_validation_failed:chosen_strategy",
+          "agi_validation_failed:execution_sequence",
+          "agi_validation_failed:worst_case_residual_pnl_usd"
+        ],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

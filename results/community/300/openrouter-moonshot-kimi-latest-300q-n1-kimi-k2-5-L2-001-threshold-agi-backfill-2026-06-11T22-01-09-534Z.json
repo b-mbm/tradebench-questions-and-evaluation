@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-11T22:01:09.533Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L2-001-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L2-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L2-001",
+      "raw": "{\"intent\":\"swap\",\"order_type\":\"dex\",\"asset\":\"DAI\",\"size\":5000,\"unit\":\"USDC\",\"price\":\"pool spot\",\"venue\":\"dex\",\"venue_name\":\"uniswap\",\"risk_controls\":{\"slippage_tolerance\":\"0.5%\",\"max_gas\":\"50 gwei\"},\"follow_up\":\"confirm DAI receipt and balance\",\"reasoning\":\"swap 5000 USDC into DAI via Ethereum mainnet DEX using pool spot price with slippage protection\"}",
+      "durationMs": 59951,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8972222222222224,
+        "score": 0.8500000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.029999999999999992,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0.08,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "order_type": "dex",
+          "asset": "DAI",
+          "size": 5000,
+          "unit": "USDC",
+          "price": "pool spot",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "50 gwei"
+          },
+          "follow_up": "confirm DAI receipt and balance",
+          "reasoning": "swap 5000 USDC into DAI via Ethereum mainnet DEX using pool spot price with slippage protection"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

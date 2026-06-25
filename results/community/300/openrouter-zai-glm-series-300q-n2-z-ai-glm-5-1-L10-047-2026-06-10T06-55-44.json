@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:56:01.765Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-047-2026-06-10T06-55-44",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-047"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-047",
+      "raw": "{\n\"intent\": \"validator_fleet_upgrade\",\n\"expected_value\": 15,\n\"reasoning\": \"Three-phase plan within $180K budget: Phase 1 relay diversity automation ($40K) for uptime, Phase 2 DVT failover cluster ($55K) for uptime, Phase 3 MEV-Boost tuning ($10K) for MEV profit. Total spend $105K. Six-month incremental profit = uptime gain $9,450 + MEV tuning $6,300 = $15,750. ROI = $15,750 / $105,000 = 15%, hitting target. Premium RPC ($120K) excluded from six-month numerator; operator fee reduction has no incremental-profit credit per constraints.\"\n}",
+      "durationMs": 16713,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "validator_fleet_upgrade",
+          "expected_value": 15,
+          "reasoning": "Three-phase plan within $180K budget: Phase 1 relay diversity automation ($40K) for uptime, Phase 2 DVT failover cluster ($55K) for uptime, Phase 3 MEV-Boost tuning ($10K) for MEV profit. Total spend $105K. Six-month incremental profit = uptime gain $9,450 + MEV tuning $6,300 = $15,750. ROI = $15,750 / $105,000 = 15%, hitting target. Premium RPC ($120K) excluded from six-month numerator; operator fee reduction has no incremental-profit credit per constraints."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

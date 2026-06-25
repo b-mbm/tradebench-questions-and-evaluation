@@ -1,0 +1,242 @@
+{
+  "runAt": "2026-06-10T11:20:34.478Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-l9-chunk3-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L9-021",
+    "L9-022",
+    "L9-023",
+    "L9-024",
+    "L9-025",
+    "L9-026",
+    "L9-027",
+    "L9-028",
+    "L9-029",
+    "L9-030"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-021",
+      "raw": "",
+      "durationMs": 24280,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-022",
+      "raw": "",
+      "durationMs": 27908,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-023",
+      "raw": "",
+      "durationMs": 56358,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-024",
+      "raw": "{\"intent\":\"restake\",\"expected_value\":[\"A2\",\"A4\",\"A5\"],\"reasoning\":\"Computed net score = headline yield - operator fee - (slashing multiplier × expected slashing loss). A3 excluded because slashing multiplier 4 exceeds the hard cap of 3.5. Eligible net scores: A1 6.4%, A2 8.15%, A4 7.92%, A5 8.2%. Selected the three highest: A5 (8.2%), A2 (8.15%), and A4 (7.92%).\"}",
+      "durationMs": 109101,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A2",
+            "A4",
+            "A5"
+          ],
+          "reasoning": "Computed net score = headline yield - operator fee - (slashing multiplier × expected slashing loss). A3 excluded because slashing multiplier 4 exceeds the hard cap of 3.5. Eligible net scores: A1 6.4%, A2 8.15%, A4 7.92%, A5 8.2%. Selected the three highest: A5 (8.2%), A2 (8.15%), and A4 (7.92%)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-025",
+      "raw": "",
+      "durationMs": 60528,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-026",
+      "raw": "",
+      "durationMs": 54151,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-027",
+      "raw": " {\n  \"intent\": \"governance_incentive_action\",\n  \"order_type\": \"capital_action\",\n  \"asset\": \"AAVE\",\n  \"size\": 54000,\n  \"unit\": \"AAVE\",\n  \"venue\": \"dao\",\n  \"venue_name\": \"Aave\",\n  \"risk_controls\": {\n    \"position_size_limit\": 69000,\n    \"slippage_tolerance\": \"3.5%\"\n  },\n  \"expected_value\": 466100,\n  \"reasoning\": \"Missing votes = 85,000 - 31,000 = 54,000 AAVE. This is <= lendable liquidity of 69,000 AAVE. Bribe cost = 54,000 * $5 = $270,000. Borrow interest = 54,000 * $118 * 22.0% * (7/365) = $24,912. Bridge/gas/delegation costs = $24,000. Expected delay loss = 3.5% * $650,000 = $22,750. Expected value = 58% * $1,450,000 - $270,000 - $24,912 - $24,000 - $22,750 = $841,000 - $341,662 = $499,338. Wait recalc: 0.58*1,450,000 = 841,000. Costs = 270,000 + 24,912 + 24,000 + 22,750 = 341,662. EV = 841,000 - 341,662 = 499,338. Hmm let me recheck borrow interest: 54000 * 118 = 6,372,000 principal. 6,372,000 * 0.22 = 1,401,840 annual. *7/365 = 26,896.99? Let's compute precisely: 1,401,840 / 365 = 3,840.6575... *7 = 26,884.60. Let me recalculate: 54000*118 = 6,372,000. 6,372,000 * 0.22 = 1,401,840. 1,401,840 * 7 / 365 = 9,812,880 / 365 = 26,884.60. So borrow interest = $26,884.60. Total costs = 270,000 + 26,884.60 + 24,000 + 22,750 = 343,634.60. EV = 841,000 - 343,634.60 = 497,365.40. Round to nearest dollar: 497,365. But let me check if they want integer. The prompt says numeric JSON values for expected_value. I'll use 497365. Reasoning: missing votes 54k, bribe cost $270k, borrow interest $26,885, gas/bridge $24k, expected delay loss $22,750, total costs $343,635, benefit $841k, net EV $497,365 positive so execute and reject no_action.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Confirm vote delegation and bridge execution before snapshot\"\n}",
+      "durationMs": 3134,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "expected_value": 0
+        },
+        "normalizedResponse": {
+          "intent": "governance_incentive_action",
+          "order_type": "capital_action",
+          "asset": "AAVE",
+          "size": 54000,
+          "unit": "AAVE",
+          "venue": "dao",
+          "venue_name": "Aave",
+          "risk_controls": {
+            "position_size_limit": 69000,
+            "slippage_tolerance": "3.5%"
+          },
+          "expected_value": 466100,
+          "reasoning": "Missing votes = 85,000 - 31,000 = 54,000 AAVE. This is <= lendable liquidity of 69,000 AAVE. Bribe cost = 54,000 * $5 = $270,000. Borrow interest = 54,000 * $118 * 22.0% * (7/365) = $24,912. Bridge/gas/delegation costs = $24,000. Expected delay loss = 3.5% * $650,000 = $22,750. Expected value = 58% * $1,450,000 - $270,000 - $24,912 - $24,000 - $22,750 = $841,000 - $341,662 = $499,338. Wait recalc: 0.58*1,450,000 = 841,000. Costs = 270,000 + 24,912 + 24,000 + 22,750 = 341,662. EV = 841,000 - 341,662 = 499,338. Hmm let me recheck borrow interest: 54000 * 118 = 6,372,000 principal. 6,372,000 * 0.22 = 1,401,840 annual. *7/365 = 26,896.99? Let's compute precisely: 1,401,840 / 365 = 3,840.6575... *7 = 26,884.60. Let me recalculate: 54000*118 = 6,372,000. 6,372,000 * 0.22 = 1,401,840. 1,401,840 * 7 / 365 = 9,812,880 / 365 = 26,884.60. So borrow interest = $26,884.60. Total costs = 270,000 + 26,884.60 + 24,000 + 22,750 = 343,634.60. EV = 841,000 - 343,634.60 = 497,365.40. Round to nearest dollar: 497,365. But let me check if they want integer. The prompt says numeric JSON values for expected_value. I'll use 497365. Reasoning: missing votes 54k, bribe cost $270k, borrow interest $26,885, gas/bridge $24k, expected delay loss $22,750, total costs $343,635, benefit $841k, net EV $497,365 positive so execute and reject no_action.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm vote delegation and bridge execution before snapshot"
+        },
+        "failureReasons": [
+          "l9_expected_value_mismatch"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-028",
+      "raw": " {\"intent\":\"no_action\",\"expected_value\":0,\"reasoning\":\"Option A fails hard slippage (0.41% > 0.35%). Option B fails hard settlement (13 min > 10 min). Option C fails hard oracle age (51 sec > 45 sec). No option satisfies all constraints, so no trade is executed and expected value is zero.\"}",
+      "durationMs": 55305,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "no_action",
+          "expected_value": 0,
+          "reasoning": "Option A fails hard slippage (0.41% > 0.35%). Option B fails hard settlement (13 min > 10 min). Option C fails hard oracle age (51 sec > 45 sec). No option satisfies all constraints, so no trade is executed and expected value is zero."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-029",
+      "raw": "",
+      "durationMs": 19017,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L9-030",
+      "raw": "{\n  \"intent\": \"route_selection\",\n  \"expected_value\": 320,\n  \"reasoning\": \"All routes satisfy hard constraints (settlement ≤18 min, oracle age ≤60 s, capacity ≥$3.2M). Costs: Route A = 0.0055*3.2M + 3,000 + 0.0002*3.2M = $21,240; Route B = 0.0031*3.2M + 3,600 + 0.0006*3.2M = $15,440; Route C = 0.0028*3.2M + 5,200 + 0.0005*3.2M = $15,760. Best is Route B; second-best is Route C. USD saved = $15,760 − $15,440 = $320. At $100,000/BTC, extra BTC = 0.0032.\"\n}",
+      "durationMs": 146809,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "route_selection",
+          "expected_value": 320,
+          "reasoning": "All routes satisfy hard constraints (settlement ≤18 min, oracle age ≤60 s, capacity ≥$3.2M). Costs: Route A = 0.0055*3.2M + 3,000 + 0.0002*3.2M = $21,240; Route B = 0.0031*3.2M + 3,600 + 0.0006*3.2M = $15,440; Route C = 0.0028*3.2M + 5,200 + 0.0005*3.2M = $15,760. Best is Route B; second-best is Route C. USD saved = $15,760 − $15,440 = $320. At $100,000/BTC, extra BTC = 0.0032."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

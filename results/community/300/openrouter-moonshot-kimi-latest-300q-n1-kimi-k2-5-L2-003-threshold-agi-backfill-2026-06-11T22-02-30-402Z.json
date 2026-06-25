@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-11T22:02:30.400Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L2-003-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L2-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L2-003",
+      "raw": "{\n  \"intent\": \"buy\",\n  \"order_type\": \"market\",\n  \"asset\": \"MATIC\",\n  \"size\": 1000,\n  \"unit\": \"matic\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"1inch\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"1%\",\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"confirm on-chain receipt and token balance\",\n  \"reasoning\": \"route swap via gas-efficient aggregator to minimize transaction costs; single-hop route preferred to limit gas consumption\",\n  \"requires_follow_up\": false\n}",
+      "durationMs": 48540,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9775000000000001,
+        "score": 0.9200000000000002,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.18,
+          "asset": 0.16,
+          "size": 0.16,
+          "venue": 0.14,
+          "venue_name": 0,
+          "risk_controls": 0.04,
+          "follow_up": 0.02,
+          "reasoning": 0.02
+        },
+        "normalizedResponse": {
+          "intent": "buy",
+          "order_type": "market",
+          "asset": "MATIC",
+          "size": 1000,
+          "unit": "matic",
+          "venue": "dex",
+          "venue_name": "1inch",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "confirm on-chain receipt and token balance",
+          "reasoning": "route swap via gas-efficient aggregator to minimize transaction costs; single-hop route preferred to limit gas consumption",
+          "requires_follow_up": false
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

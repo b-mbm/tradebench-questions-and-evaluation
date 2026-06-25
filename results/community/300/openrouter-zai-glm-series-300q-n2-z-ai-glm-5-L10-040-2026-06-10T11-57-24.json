@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T11:58:20.830Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L10-040-2026-06-10T11-57-24",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L10-040"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L10-040",
+      "raw": "{\n  \"intent\": \"Cross-rollup stablecoin routing: Distribute $3M inventory across Arbitrum/Base/Optimism (min 20% each), implement automated rebalancing under $6K/month, integrate institutional RFQ and solvers to scale to $45M successful volume at 97% fill rate\",\n  \"expected_value\": 49500,\n  \"reasoning\": \"Revenue = $45M successful volume × 0.11% net fee = $49,500. Scale from $22M to $45M via RFQ/solver integrations while improving fill rate 91%→97% through better inventory positioning and <$6K monthly rebalancing across three rollups maintaining 20%+ inventory each.\"\n}",
+      "durationMs": 55798,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "Cross-rollup stablecoin routing: Distribute $3M inventory across Arbitrum/Base/Optimism (min 20% each), implement automated rebalancing under $6K/month, integrate institutional RFQ and solvers to scale to $45M successful volume at 97% fill rate",
+          "expected_value": 49500,
+          "reasoning": "Revenue = $45M successful volume × 0.11% net fee = $49,500. Scale from $22M to $45M via RFQ/solver integrations while improving fill rate 91%→97% through better inventory positioning and <$6K monthly rebalancing across three rollups maintaining 20%+ inventory each."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

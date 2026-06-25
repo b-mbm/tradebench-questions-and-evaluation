@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T16:07:54.308Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L10-060-2026-06-10T16-07-29",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-060"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-060",
+      "raw": "{\n  \"intent\": \"allocate_airdrop_capital\",\n  \"expected_value\": 57820,\n  \"reasoning\": \"Ranked strategies by net ROI: Lending 17.8%, NFT bids 16.5%, Bridge 2.46%, Perp 0.8%. Allocate to highest ROI first respecting caps: Lending $200k (net $35,600 = 240k pts × $0.15 - $400 gas), NFT bids $100k (net $16,500 = 200k pts × $0.10 - $3,500 stale-fill), Bridge $200k (net $4,920 = 540k pts × $0.018 - $4,800 fees), Perp $100k (net $800 = 200k pts × $0.022 - $3,600 fees). Total = $57,820.\"\n}",
+      "durationMs": 24754,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "allocate_airdrop_capital",
+          "expected_value": 57820,
+          "reasoning": "Ranked strategies by net ROI: Lending 17.8%, NFT bids 16.5%, Bridge 2.46%, Perp 0.8%. Allocate to highest ROI first respecting caps: Lending $200k (net $35,600 = 240k pts × $0.15 - $400 gas), NFT bids $100k (net $16,500 = 200k pts × $0.10 - $3,500 stale-fill), Bridge $200k (net $4,920 = 540k pts × $0.018 - $4,800 fees), Perp $100k (net $800 = 200k pts × $0.022 - $3,600 fees). Total = $57,820."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

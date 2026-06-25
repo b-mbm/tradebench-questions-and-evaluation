@@ -1,0 +1,1005 @@
+{
+  "runAt": "2026-06-09T07:03:17.441Z",
+  "label": "openrouter-zai-family-300q-l7-n1-threshold-agi",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1",
+    "z-ai/glm-5-turbo",
+    "z-ai/glm-5",
+    "z-ai/glm-5v-turbo"
+  ],
+  "questionIds": [
+    "L7-001",
+    "L7-002",
+    "L7-003",
+    "L7-004",
+    "L7-005"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L7-001",
+      "raw": "{\n  \"intent\": \"arbitrage\",\n  \"order_type\": \"flash_loan\",\n  \"asset\": \"stETH\",\n  \"size\": \"500\",\n  \"unit\": \"eth\",\n  \"price\": \"2990\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"aave_curve\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.15%\",\n    \"max_gas\": \"30 gwei\",\n    \"position_size_limit\": \"1000000\"\n  },\n  \"follow_up\": \"verify stETH redemption queue depth and calculate net profit after gas\",\n  \"reasoning\": \"stETH trading at 2990 vs ETH at 3000 (0.33% discount). Flash loan arbitrage: borrow ETH on Aave, buy stETH at discount on Curve, sell stETH for ETH on Uniswap or redeem. Gross profit ~0.33% minus gas (~30 gwei) and slippage. DAI/USDC spread (0.1%) also viable but thinner margin after gas costs.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Confirm stETH/ETH pool depth on Curve and Uniswap, verify redemption queue status, calculate minimum profitable flash loan size given current gas prices\"\n}",
+      "durationMs": 36211,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.10124999999999999,
+          "order_type": 0.017777777777777785,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0.011111111111111117,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "order_type": "flash_loan",
+          "asset": "stETH",
+          "size": "500",
+          "unit": "eth",
+          "price": "2990",
+          "venue": "dex",
+          "venue_name": "aave_curve",
+          "risk_controls": {
+            "slippage_tolerance": "0.15%",
+            "max_gas": "30 gwei",
+            "position_size_limit": "1000000"
+          },
+          "follow_up": "verify stETH redemption queue depth and calculate net profit after gas",
+          "reasoning": "stETH trading at 2990 vs ETH at 3000 (0.33% discount). Flash loan arbitrage: borrow ETH on Aave, buy stETH at discount on Curve, sell stETH for ETH on Uniswap or redeem. Gross profit ~0.33% minus gas (~30 gwei) and slippage. DAI/USDC spread (0.1%) also viable but thinner margin after gas costs.",
+          "requires_follow_up": true,
+          "follow_up_description": "Confirm stETH/ETH pool depth on Curve and Uniswap, verify redemption queue status, calculate minimum profitable flash loan size given current gas prices"
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L7-002",
+      "raw": "{\n\"intent\":\"unwind\",\n\"order_type\":\"dex\",\n\"asset\":\"ETH\",\n\"size\":\"2.334\",\n\"unit\":\"eth\",\n\"price\":\"3000\",\n\"venue\":\"dex\",\n\"venue_name\":\"uniswap\",\n\"risk_controls\":{\n\"slippage_tolerance\":\"1%\",\n\"max_gas\":\"30 gwei\"\n},\n\"follow_up\":\"repay 7000 USDC debt then withdraw remaining ~2.666 ETH collateral\",\n\"reasoning\":\"Swap ~2.334 ETH at $3000 to obtain 7000 USDC needed to repay borrowed amount, then withdraw remaining ~2.666 ETH collateral to fully close position\",\n\"requires_follow_up\":true,\n\"follow_up_description\":\"After swap fill, execute repay of 7000 USDC on lending protocol and withdraw remaining 2.666 ETH collateral\"\n}",
+      "durationMs": 22186,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5005,
+        "score": 0.46199999999999997,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.033999999999999996,
+          "asset": 0,
+          "size": 0,
+          "venue": 0.007999999999999998,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "unwind",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": "2.334",
+          "unit": "eth",
+          "price": "3000",
+          "venue": "dex",
+          "venue_name": "uniswap",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "repay 7000 USDC debt then withdraw remaining ~2.666 ETH collateral",
+          "reasoning": "Swap ~2.334 ETH at $3000 to obtain 7000 USDC needed to repay borrowed amount, then withdraw remaining ~2.666 ETH collateral to fully close position",
+          "requires_follow_up": true,
+          "follow_up_description": "After swap fill, execute repay of 7000 USDC on lending protocol and withdraw remaining 2.666 ETH collateral"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"calculation\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 10000,\n  \"venue\": \"constant_product_amm\",\n  \"il_percentage\": -3.18,\n  \"il_loss_usd\": -",
+      "durationMs": 25542,
+      "grade": {
+        "pass": false,
+        "confidence": 0.035710236604354254,
+        "score": 0.10656591048747913,
+        "fieldScores": {
+          "intent": 0.01882352941176471,
+          "order_type": 0.013636363636363636,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0.002222222222222223,
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0,
+          "lp_value": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "calculation",
+          "asset": "ETH/USDC",
+          "size": "10000",
+          "venue": "constant_product_amm",
+          "il_percentage": -3.18,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "mismatch_fieldname",
+          "mismatch_fieldname"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"calculation\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 5.76,\n  \"weighted_risk_score\": 1.7,\n  \"excess_return\": 0.76,\n  \"risk_adjusted_ratio\": 0.4471,\n  \"total_annual_yield_usd\": 5760,\n  \"allocation\": {\n    \"aave\": {\"pct\": 50, \"amount\": 50000, \"apy\": 4.2, \"risk\": 1.0},\n    \"curve\": {\"pct\": 30, \"amount\": 30000, \"apy\": 6.8, \"risk\": 2.0},\n    \"yearn\": {\"pct\": 20, \"amount\": 20000, \"apy\": 8.1, \"risk\": 3.0}\n  },\n  \"reasoning\": \"Blended APY = 0.5×4.2 + 0.3×6.8 + 0.2×8.1 = 5.76%. Weighted risk = 0.5×1 + 0.3×2 + 0.2×3 = 1.7. Excess return = 5.76 - 5.0 = 0.76%. Risk-adjusted ratio = 0.76/1.7 = 0.4471. Annual yield = 100000×5.76% = $5,760.\"\n}",
+      "durationMs": 14966,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9667391203421714,
+        "score": 0.9239035902488171,
+        "fieldScores": {
+          "intent": 0.008571428571428574,
+          "order_type": 0.00818181818181818,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0.24,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.01562841530054645
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "calculation",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "defi",
+          "blended_apy": 5.76,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.76,
+          "risk_adjusted_ratio": 0.4471,
+          "total_annual_yield_usd": 5760,
+          "allocation": {
+            "aave": {
+              "pct": 50,
+              "amount": 50000,
+              "apy": 4.2,
+              "risk": 1
+            },
+            "curve": {
+              "pct": 30,
+              "amount": 30000,
+              "apy": 6.8,
+              "risk": 2
+            },
+            "yearn": {
+              "pct": 20,
+              "amount": 20000,
+              "apy": 8.1,
+              "risk": 3
+            }
+          },
+          "reasoning": "Blended APY = 0.5×4.2 + 0.3×6.8 + 0.2×8.1 = 5.76%. Weighted risk = 0.5×1 + 0.3×2 + 0.2×3 = 1.7. Excess return = 5.76 - 5.0 = 0.76%. Risk-adjusted ratio = 0.76/1.7 = 0.4471. Annual yield = 100000×5.76% = $5,760."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.5167,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.7583,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"CowSwap\",\n  \"worst_option\": \"Uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"dex\",\n  \"venue_name\": \"cowswap\",\n  \"reasoning\": \"CowSwap yields highest net proceeds ($298,800) because its zero MEV risk and gasless execution outweigh slightly higher slippage. Uniswap is worst ($295,450) due to 1.2% MEV exposure costing $3,600. 1inch Fusion is middle ($297,725). Savings of best vs worst = $3,350.\"\n}",
+      "durationMs": 8517,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9989303453115549,
+        "score": 0.9823128856624321,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.00041600000000000003
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5167,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "dex",
+          "venue_name": "cowswap",
+          "reasoning": "CowSwap yields highest net proceeds ($298,800) because its zero MEV risk and gasless execution outweigh slightly higher slippage. Uniswap is worst ($295,450) due to 1.2% MEV exposure costing $3,600. 1inch Fusion is middle ($297,725). Savings of best vs worst = $3,350."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L7-001",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"flash_loan\",\n  \"asset\": \"stETH\",\n  \"size\": 0,\n  \"venue\": \"multi_dex\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"reasoning\": \"Context provides a single aggregate price feed. stETH (2990) vs ETH (3000) shows a 0.33% spread, but specific DEX pool reserves, fee tiers, and liquidity depths are required to determine if a profitable flash loan arbitrage exists after 30 gwei gas costs.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Provide specific DEX pool prices and reserves (e.g., Uniswap stETH/ETH vs Curve stETH/ETH) to calculate exact arbitrage profitability and route.\"\n}",
+      "durationMs": 24781,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.07875,
+          "order_type": 0.017777777777777785,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.045,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "flash_loan",
+          "asset": "stETH",
+          "size": 0,
+          "venue": "multi_dex",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "reasoning": "Context provides a single aggregate price feed. stETH (2990) vs ETH (3000) shows a 0.33% spread, but specific DEX pool reserves, fee tiers, and liquidity depths are required to determine if a profitable flash loan arbitrage exists after 30 gwei gas costs.",
+          "requires_follow_up": true,
+          "follow_up_description": "Provide specific DEX pool prices and reserves (e.g., Uniswap stETH/ETH vs Curve stETH/ETH) to calculate exact arbitrage profitability and route."
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L7-002",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"order_type\": \"on-chain\",\n  \"asset\": \"USDC\",\n  \"size\": \"7000\",\n  \"unit\": \"usdc\",\n  \"venue\": \"defi\",\n  \"venue_name\": \"lending_protocol\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\"\n  },\n  \"follow_up\": \"withdraw 5 ETH collateral after debt repayment\",\n  \"reasoning\": \"Unwind underwater position by repaying full 7000 USDC debt. Collateral value: 5 ETH × $3000 = $15000. After repayment, withdraw remaining collateral.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Execute collateral withdrawal of 5 ETH once USDC repayment confirms on-chain\"\n}\n",
+      "durationMs": 19136,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9044531250000001,
+        "score": 0.8512500000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.02125,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "order_type": "on-chain",
+          "asset": "USDC",
+          "size": "7000",
+          "unit": "usdc",
+          "venue": "defi",
+          "venue_name": "lending_protocol",
+          "risk_controls": {
+            "max_gas": "30 gwei"
+          },
+          "follow_up": "withdraw 5 ETH collateral after debt repayment",
+          "reasoning": "Unwind underwater position by repaying full 7000 USDC debt. Collateral value: 5 ETH × $3000 = $15000. After repayment, withdraw remaining collateral.",
+          "requires_follow_up": true,
+          "follow_up_description": "Execute collateral withdrawal of 5 ETH once USDC repayment confirms on-chain"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"order_type\": \"n/a\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 10000,\n  \"venue\": \"n/a\",\n  \"il_percentage\": -3.175,\n  \"il_loss_usd\": 423.39,\n  \"net_gain_usd\": 3756.94,\n  \"net_return_pct\": 37.57,\n  \"hold_value\": 13333.33,\n  \"lp_value\": 12909.94,\n  \"reasoning\": \"Initial pool: 1.6667 ETH + 5000 USDC (k=8333.33). Final pool value at ETH=$5000 is 12909.94 USD. Hold value is 13333.33 USD. IL is -423.39 USD (-3.175%). Adding 847 USD fees to LP value yields 13756.94 USD. Net gain is 3",
+      "durationMs": 85312,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.042352941176470586,
+          "order_type": 0.00625,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0,
+          "il_percentage": 0,
+          "il_loss_usd": 0.2,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0.03,
+          "lp_value": 0.03,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "order_type": "n/a",
+          "asset": "ETH/USDC",
+          "size": "10000",
+          "venue": "n/a",
+          "il_percentage": -3.175,
+          "il_loss_usd": 423.39,
+          "net_gain_usd": 3756.94,
+          "net_return_pct": 37.57,
+          "hold_value": 13333.33,
+          "lp_value": 12909.94,
+          "risk_controls": {}
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_net_gain",
+          "lp_net_return_il_pct_mismatch"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"hold\",\n  \"order_type\": \"none\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 5.76,\n  \"weighted_risk_score\": 1.7,\n  \"excess_return\": 0.76,\n  \"risk_adjusted_ratio\": 0.4470588235294117,\n  \"total_annual_yield_usd\": 5760,\n  \"allocation\": {\n    \"aave\": 0.5,\n    \"curve\": 0.3,\n    \"yearn\": 0.2\n  },\n  \"reasoning\": \"Blended APY = (0.5*4.2)+(0.3*6.8)+(0.2*8.1) = 5.76%. Weighted Risk = (0.5*1)+(0.3*2)+(0.2*3) = 1.7. Excess Return =",
+      "durationMs": 31246,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5675620798319327,
+        "score": 0.9000350140056023,
+        "fieldScores": {
+          "intent": 0.004285714285714283,
+          "order_type": 0.00375,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0.24,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "hold",
+          "order_type": "none",
+          "asset": "USDC",
+          "size": "100000",
+          "venue": "defi",
+          "blended_apy": 5.76,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.76,
+          "risk_adjusted_ratio": 0.4470588235294117,
+          "total_annual_yield_usd": 5760,
+          "aave": 0.5,
+          "curve": 0.3,
+          "yearn": 0.2,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5-turbo",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.5166666666666666,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.7583333333333333,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"CowSwap\",\n  \"worst_option\": \"Uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"dex\",\n  \"venue_name\": \"cowswap\",\n  \"reasoning\": \"Calculated slippage, gas, and MEV costs as percentages and absolute values of the $300,000 gross value. CowSwap has the lowest total cost (0.4%) due to zero gas and zero MEV risk, yielding the highest net proceeds of $298,800, saving $3,350 compared to Uniswap.\"\n}\n",
+      "durationMs": 28963,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9987630259348692,
+        "score": 0.9821483496860142,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.00024899598393574295
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.5166666666666666,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.7583333333333333,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "dex",
+          "venue_name": "cowswap",
+          "reasoning": "Calculated slippage, gas, and MEV costs as percentages and absolute values of the $300,000 gross value. CowSwap has the lowest total cost (0.4%) due to zero gas and zero MEV risk, yielding the highest net proceeds of $298,800, saving $3,350 compared to Uniswap."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L7-001",
+      "raw": "",
+      "durationMs": 2882,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L7-002",
+      "raw": "{\n  \"intent\": \"repay\",\n  \"order_type\": \"lending\",\n  \"asset\": \"USDC\",\n  \"size\": \"7000\",\n  \"unit\": \"usd\",\n  \"venue\": \"lending\",\n  \"venue_name\": \"aave\",\n  \"risk_controls\": {\n    \"max_gas\": \"30 gwei\",\n    \"slippage_tolerance\": \"0.5%\"\n  },\n  \"follow_up\": \"withdraw 5 ETH collateral\",\n  \"reasoning\": \"repay 7000 USDC debt to unlock collateral; position has 15,000 USD collateral value vs 7,000 debt (healthy but user requests unwind)\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"withdraw 5 ETH collateral after debt repayment confirms\"\n}",
+      "durationMs": 28726,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9076785714285716,
+        "score": 0.8542857142857144,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.024285714285714296,
+          "asset": 0.15,
+          "size": 0.14,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "repay",
+          "order_type": "lending",
+          "asset": "USDC",
+          "size": "7000",
+          "unit": "usd",
+          "venue": "lending",
+          "venue_name": "aave",
+          "risk_controls": {
+            "max_gas": "30 gwei",
+            "slippage_tolerance": "0.5%"
+          },
+          "follow_up": "withdraw 5 ETH collateral",
+          "reasoning": "repay 7000 USDC debt to unlock collateral; position has 15,000 USD collateral value vs 7,000 debt (healthy but user requests unwind)",
+          "requires_follow_up": true,
+          "follow_up_description": "withdraw 5 ETH collateral after debt repayment confirms"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L7-003",
+      "raw": "",
+      "durationMs": 37633,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {},
+        "normalizedResponse": null,
+        "failureReasons": [
+          "truncated_response",
+          "transport_error"
+        ],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"portfolio_analysis\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 5.76,\n  \"weighted_risk_score\": 1.7,\n  \"excess_return\": 0.76,\n  \"risk_adjusted_ratio\": 0.447,\n  \"total_annual_yield_usd\": 5760,\n  \"allocation\": \"50% Aave, 30% Curve, 20% Yearn\",\n  \"reasoning\": \"Blended APY (5.76%) = 0.5×4.2 + 0.3×6.8 + 0.2×8.1. Weighted risk (1.7) = 0.5×1 + 0.3×2 + 0.2×3. Excess return (0.76%) = 5.76 - 5.0. Risk-adjusted ratio (0.447) = ",
+      "durationMs": 15426,
+      "grade": {
+        "pass": false,
+        "confidence": 0.5766213049925853,
+        "score": 0.914401054539463,
+        "fieldScores": {
+          "intent": 0.008571428571428574,
+          "order_type": 0.014117647058823528,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0.24,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "portfolio_analysis",
+          "asset": "USDC",
+          "size": "100000",
+          "venue": "defi",
+          "blended_apy": 5.76,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.76,
+          "risk_adjusted_ratio": 0.447,
+          "total_annual_yield_usd": 5760,
+          "allocation": "50% Aave, 30% Curve, 20% Yearn",
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.517,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.4,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.758,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"CowSwap\",\n  \"worst_option\": \"Uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"dex\",\n  \"venue_name\": \"cowswap\",\n  \"reasoning\": \"CowSwap maximizes net proceeds at $298,800 USDC with only 0.4% total cost (slippage only, no gas/MEV), saving $3,350 vs Uniswap's 1.517% total cost including $3,600 MEV exposure.\"\n}",
+      "durationMs": 29415,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9988778827947614,
+        "score": 0.9822612958729113,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.00036363636363636367
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.517,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.758,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "dex",
+          "venue_name": "cowswap",
+          "reasoning": "CowSwap maximizes net proceeds at $298,800 USDC with only 0.4% total cost (slippage only, no gas/MEV), saving $3,350 vs Uniswap's 1.517% total cost including $3,600 MEV exposure."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L7-001",
+      "raw": "{\n  \"intent\": \"arbitrage\",\n  \"order_type\": \"flash_loan_dex\",\n  \"asset\": \"stETH\",\n  \"size\": \"100\",\n  \"unit\": \"eth\",\n  \"price\": \"2990\",\n  \"venue\": \"dex\",\n  \"venue_name\": \"uniswap_v3_curve\",\n  \"risk_controls\": {\n    \"stop_loss\": \"2985\",\n    \"take_profit\": \"2998\",\n    \"slippage_tolerance\": \"0.1%\",\n    \"max_gas\": \"35 gwei\",\n    \"position_size_limit\": \"500 eth\"\n  },\n  \"follow_up\": \"monitor stETH/ETH peg across Curve and Uniswap pools\",\n  \"reasoning\": \"Identified stETH/ETH price discrepancy: stETH trading at 2990 vs ETH at 3000 represents ~0.33% arbitrage spread. Flash loan strategy: borrow ETH → buy discounted stETH on pool with lower price → sell/swap stETH on pool closer to peg → repay loan + capture spread. Key risks: slippage on large orders, gas costs eating thin margins, peg convergence during execution. With gas at 30 gwei and target size of 100 ETH (~$300K notional), estimated profit ~$900-2800 after costs if spread holds.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Requires real-time pool depth analysis across Uniswap V3, Curve, and Balancer to confirm actual executable spread exceeds gas + slippage costs\"\n}\n",
+      "durationMs": 12345,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.10124999999999999,
+          "order_type": 0.02666666666666666,
+          "asset": 0.023999999999999994,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0.06,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "arbitrage",
+          "order_type": "flash_loan_dex",
+          "asset": "stETH",
+          "size": "100",
+          "unit": "eth",
+          "price": "2990",
+          "venue": "dex",
+          "venue_name": "uniswap_v3_curve",
+          "risk_controls": {
+            "stop_loss": "2985",
+            "take_profit": "2998",
+            "slippage_tolerance": "0.1%",
+            "max_gas": "35 gwei",
+            "position_size_limit": "500 eth"
+          },
+          "follow_up": "monitor stETH/ETH peg across Curve and Uniswap pools",
+          "reasoning": "Identified stETH/ETH price discrepancy: stETH trading at 2990 vs ETH at 3000 represents ~0.33% arbitrage spread. Flash loan strategy: borrow ETH → buy discounted stETH on pool with lower price → sell/swap stETH on pool closer to peg → repay loan + capture spread. Key risks: slippage on large orders, gas costs eating thin margins, peg convergence during execution. With gas at 30 gwei and target size of 100 ETH (~$300K notional), estimated profit ~$900-2800 after costs if spread holds.",
+          "requires_follow_up": true,
+          "follow_up_description": "Requires real-time pool depth analysis across Uniswap V3, Curve, and Balancer to confirm actual executable spread exceeds gas + slippage costs"
+        },
+        "failureReasons": [
+          "l7_001_asset_must_be_multi_or_generic"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L7-002",
+      "raw": "{\n  \"intent\": \"unwind\",\n  \"order_type\": \"close_position\",\n  \"asset\": \"ETH\",\n  \"size\": \"5\",\n  \"unit\": \"eth\",\n  \"venue\": \"lending_protocol\",\n  \"venue_name\": \"aave\",\n  \"risk_controls\": {\n    \"slippage_tolerance\": \"0.5%\",\n    \"max_gas\": \"40 gwei\"\n  },\n  \"follow_up\": \"confirm position closed, verify collateral withdrawn\",\n  \"reasoning\": \"Unwind underwater leverage position: repay 7000 USDC debt and withdraw 5 ETH collateral. Current collateral value: 5 ETH × $3,000 = $15,000 vs $7,000 debt. Position has ~114% LTV (assuming typical 80% LTV threshold for liquidation). Executing full position closure via lending protocol.\",\n  \"requires_follow_up\": true,\n  \"follow_up_description\": \"Verify USDC repayment executed and 5 ETH collateral successfully withdrawn to wallet\"\n}\n",
+      "durationMs": 25908,
+      "grade": {
+        "pass": false,
+        "confidence": 0.7691666666666668,
+        "score": 0.7100000000000001,
+        "fieldScores": {
+          "intent": 0.2,
+          "order_type": 0.17,
+          "asset": 0,
+          "size": 0,
+          "venue": 0.12,
+          "risk_controls": 0.12,
+          "follow_up": 0.05,
+          "reasoning": 0.05
+        },
+        "normalizedResponse": {
+          "intent": "unwind",
+          "order_type": "close_position",
+          "asset": "ETH",
+          "size": "5",
+          "unit": "eth",
+          "venue": "lending_protocol",
+          "venue_name": "aave",
+          "risk_controls": {
+            "slippage_tolerance": "0.5%",
+            "max_gas": "40 gwei"
+          },
+          "follow_up": "confirm position closed, verify collateral withdrawn",
+          "reasoning": "Unwind underwater leverage position: repay 7000 USDC debt and withdraw 5 ETH collateral. Current collateral value: 5 ETH × $3,000 = $15,000 vs $7,000 debt. Position has ~114% LTV (assuming typical 80% LTV threshold for liquidation). Executing full position closure via lending protocol.",
+          "requires_follow_up": true,
+          "follow_up_description": "Verify USDC repayment executed and 5 ETH collateral successfully withdrawn to wallet"
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L7-003",
+      "raw": "{\n  \"intent\": \"analyze\",\n  \"order_type\": \"lp_position\",\n  \"asset\": \"ETH/USDC\",\n  \"size\": 10000,\n  \"venue\": \"amm_pool\",\n  \"il_percentage\": -3.175,\n  \"il_loss_usd\": -423.33,\n  \"net_gain_usd\": 3757.89,\n  \"net_return_pct\": 37.579,\n  \"hold_value\": 13333.33,\n  \"lp_value\": 13757.89,\n  \"reasoning\": \"Initial position: 1.6667 ETH ($5,000) + 5,000 USDC. At $5,000/ETH, hold value = (1.6667 × 5,000) + 5,000 = $13,333.33. Price ratio k = 5000/3000 = 1.6667. IL formula: 2√k/(1+k) - 1 = 2(1.291)/2.667 - 1 = -3.175%. IL loss = 3.175% × $13,333.33 = -$423.33. LP value without fees = $13,333.33 - $423.33 = $12,910. Adding $847 fees = $13,757.89. Net return = ($13,757.89 - $10,000)/$10,000 = 37.58%.\"\n}",
+      "durationMs": 23785,
+      "grade": {
+        "pass": false,
+        "confidence": 0,
+        "score": 0,
+        "fieldScores": {
+          "intent": 0.01882352941176471,
+          "order_type": 0.004999999999999999,
+          "asset": 0.05,
+          "size": 0.04,
+          "venue": 0,
+          "il_percentage": 0,
+          "il_loss_usd": 0,
+          "net_gain_usd": 0,
+          "net_return_pct": 0,
+          "hold_value": 0.03,
+          "lp_value": 0,
+          "reasoning": 0.005999999999999998
+        },
+        "normalizedResponse": {
+          "intent": "analyze",
+          "order_type": "lp_position",
+          "asset": "ETH/USDC",
+          "size": 10000,
+          "venue": "amm_pool",
+          "il_percentage": -3.175,
+          "il_loss_usd": -423.33,
+          "net_gain_usd": 3757.89,
+          "net_return_pct": 37.579,
+          "hold_value": 13333.33,
+          "lp_value": 13757.89,
+          "reasoning": "Initial position: 1.6667 ETH ($5,000) + 5,000 USDC. At $5,000/ETH, hold value = (1.6667 × 5,000) + 5,000 = $13,333.33. Price ratio k = 5000/3000 = 1.6667. IL formula: 2√k/(1+k) - 1 = 2(1.291)/2.667 - 1 = -3.175%. IL loss = 3.175% × $13,333.33 = -$423.33. LP value without fees = $13,333.33 - $423.33 = $12,910. Adding $847 fees = $13,757.89. Net return = ($13,757.89 - $10,000)/$10,000 = 37.58%."
+        },
+        "failureReasons": [
+          "lp_net_return_inconsistent_net_gain"
+        ],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L7-004",
+      "raw": "{\n  \"intent\": \"allocate\",\n  \"order_type\": \"deposit\",\n  \"asset\": \"USDC\",\n  \"size\": 100000,\n  \"venue\": \"defi\",\n  \"blended_apy\": 5.76,\n  \"weighted_risk_score\": 1.7,\n  \"excess_return\": 0.76,\n  \"risk_adjusted_ratio\": 0.4470588235294118,\n  \"total_annual_yield_usd\": 5760,\n  \"allocation\": {\n    \"aave\": {\"pct\": 0.5, \"amount\": 50000, \"apy\": 4.2, \"risk\": 1},\n    \"curve\": {\"pct\": 0.3, \"amount\": 30000, \"apy\": 6.8, \"risk\": 2},\n    \"yearn\": {\"pct\": 0.2, \"amount\": 20000, \"apy\": 8.1, \"risk\": 3}\n  },\n  \"reasoning\": \"Blended APY = (0.5×4.2)+(0.3×6.8)+(0.2×8.1)=5.76%. Weighted risk = (0.5×1)+(0.3×2)+(0.2×3)=1.7. Excess return = 5.76%-5%=0.76%. Risk-adjusted ratio = 0.76/1.7=0.447. Annual yield = $100,000×5.76%=$5,760.\"\n}",
+      "durationMs": 23596,
+      "grade": {
+        "pass": true,
+        "confidence": 0.967565235980135,
+        "score": 0.9246931012842298,
+        "fieldScores": {
+          "intent": 0.010714285714285716,
+          "order_type": 0.0075,
+          "asset": 0.02,
+          "size": 0.02,
+          "venue": 0.02,
+          "blended_apy": 0.18,
+          "weighted_risk_score": 0.15,
+          "excess_return": 0.2,
+          "risk_adjusted_ratio": 0.24,
+          "total_annual_yield_usd": 0.08,
+          "allocation": 0,
+          "reasoning": 0.014972677595628415
+        },
+        "normalizedResponse": {
+          "intent": "allocate",
+          "order_type": "deposit",
+          "asset": "USDC",
+          "size": 100000,
+          "venue": "defi",
+          "blended_apy": 5.76,
+          "weighted_risk_score": 1.7,
+          "excess_return": 0.76,
+          "risk_adjusted_ratio": 0.4470588235294118,
+          "total_annual_yield_usd": 5760,
+          "allocation": {
+            "aave": {
+              "pct": 0.5,
+              "amount": 50000,
+              "apy": 4.2,
+              "risk": 1
+            },
+            "curve": {
+              "pct": 0.3,
+              "amount": 30000,
+              "apy": 6.8,
+              "risk": 2
+            },
+            "yearn": {
+              "pct": 0.2,
+              "amount": 20000,
+              "apy": 8.1,
+              "risk": 3
+            }
+          },
+          "reasoning": "Blended APY = (0.5×4.2)+(0.3×6.8)+(0.2×8.1)=5.76%. Weighted risk = (0.5×1)+(0.3×2)+(0.2×3)=1.7. Excess return = 5.76%-5%=0.76%. Risk-adjusted ratio = 0.76/1.7=0.447. Annual yield = $100,000×5.76%=$5,760."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    },
+    {
+      "modelId": "z-ai/glm-5v-turbo",
+      "modelLabel": "openrouter:z-ai/glm-5v-turbo",
+      "questionId": "L7-005",
+      "raw": "{\n  \"intent\": \"sell\",\n  \"order_type\": \"dex\",\n  \"asset\": \"ETH\",\n  \"size\": 100,\n  \"eth_price\": 3000,\n  \"gross_value\": 300000,\n  \"uniswap_slippage_cost\": 900,\n  \"uniswap_gas_cost\": 50,\n  \"uniswap_mev_cost\": 3600,\n  \"uniswap_total_cost\": 4550,\n  \"uniswap_total_cost_pct\": 1.517,\n  \"uniswap_net_proceeds\": 295450,\n  \"cowswap_slippage_cost\": 1200,\n  \"cowswap_gas_cost\": 0,\n  \"cowswap_mev_cost\": 0,\n  \"cowswap_total_cost\": 1200,\n  \"cowswap_total_cost_pct\": 0.400,\n  \"cowswap_net_proceeds\": 298800,\n  \"oneinch_slippage_cost\": 1050,\n  \"oneinch_gas_cost\": 25,\n  \"oneinch_mev_cost\": 1200,\n  \"oneinch_total_cost\": 2275,\n  \"oneinch_total_cost_pct\": 0.758,\n  \"oneinch_net_proceeds\": 297725,\n  \"best_option\": \"CowSwap\",\n  \"worst_option\": \"Uniswap\",\n  \"savings_vs_worst\": 3350,\n  \"venue\": \"dex\",\n  \"venue_name\": \"CowSwap\",\n  \"reasoning\": \"Calculated each option's total cost as slippage (percentage of gross value) plus gas (fixed USD) plus MEV loss (percentage of gross value). CowSwap has lowest total cost at $1,200 (0.4%) due to zero gas and zero MEV protection, yielding highest net proceeds of $298,800. Uniswap is worst at $4,550 total cost (1.517%) due to high MEV exposure. Savings of $3,350 by choosing CowSwap over Uniswap.\"\n}",
+      "durationMs": 19434,
+      "grade": {
+        "pass": true,
+        "confidence": 0.9987967601993492,
+        "score": 0.9821815227724485,
+        "fieldScores": {
+          "intent": 0.002105263157894737,
+          "order_type": 0.0005263157894736847,
+          "asset": 0.01,
+          "size": 0.01,
+          "eth_price": 0.01,
+          "gross_value": 0.01,
+          "uniswap_slippage_cost": 0.001,
+          "uniswap_gas_cost": 0.001,
+          "uniswap_mev_cost": 0.001,
+          "uniswap_total_cost": 0.001,
+          "uniswap_total_cost_pct": 0.13,
+          "uniswap_net_proceeds": 0.13,
+          "cowswap_slippage_cost": 0.001,
+          "cowswap_gas_cost": 0.001,
+          "cowswap_mev_cost": 0.001,
+          "cowswap_total_cost": 0.001,
+          "cowswap_total_cost_pct": 0.13,
+          "cowswap_net_proceeds": 0.13,
+          "oneinch_slippage_cost": 0.001,
+          "oneinch_gas_cost": 0.001,
+          "oneinch_mev_cost": 0.001,
+          "oneinch_total_cost": 0.001,
+          "oneinch_total_cost_pct": 0.13,
+          "oneinch_net_proceeds": 0.13,
+          "best_option": 0.09,
+          "worst_option": 0.01,
+          "savings_vs_worst": 0.06,
+          "venue": 0.001,
+          "venue_name": 0.001,
+          "reasoning": 0.00028266666666666663
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "dex",
+          "asset": "ETH",
+          "size": 100,
+          "eth_price": 3000,
+          "gross_value": 300000,
+          "uniswap_slippage_cost": 900,
+          "uniswap_gas_cost": 50,
+          "uniswap_mev_cost": 3600,
+          "uniswap_total_cost": 4550,
+          "uniswap_total_cost_pct": 1.517,
+          "uniswap_net_proceeds": 295450,
+          "cowswap_slippage_cost": 1200,
+          "cowswap_gas_cost": 0,
+          "cowswap_mev_cost": 0,
+          "cowswap_total_cost": 1200,
+          "cowswap_total_cost_pct": 0.4,
+          "cowswap_net_proceeds": 298800,
+          "oneinch_slippage_cost": 1050,
+          "oneinch_gas_cost": 25,
+          "oneinch_mev_cost": 1200,
+          "oneinch_total_cost": 2275,
+          "oneinch_total_cost_pct": 0.758,
+          "oneinch_net_proceeds": 297725,
+          "best_option": "CowSwap",
+          "worst_option": "Uniswap",
+          "savings_vs_worst": 3350,
+          "venue": "dex",
+          "venue_name": "CowSwap",
+          "reasoning": "Calculated each option's total cost as slippage (percentage of gross value) plus gas (fixed USD) plus MEV loss (percentage of gross value). CowSwap has lowest total cost at $1,200 (0.4%) due to zero gas and zero MEV protection, yielding highest net proceeds of $298,800. Uniswap is worst at $4,550 total cost (1.517%) due to high MEV exposure. Savings of $3,350 by choosing CowSwap over Uniswap."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

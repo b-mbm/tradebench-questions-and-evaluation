@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-06-10T10:45:30.649Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-L9-009-2026-06-10T10-45-06",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-009"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-009",
+      "raw": "{\n  \"intent\": \"restake\",\n  \"expected_value\": [\"A2\", \"A5\", \"A1\"],\n  \"reasoning\": \"Calculated net scores: A1=7% (8%-2×0.5%), A2=9% (12%-3×1%), A3=5.9% (ineligible, <6%), A4=5% (ineligible, multiplier>3, delay>7d), A5=8% (10%-2.5×0.8%). All constraints checked: A1, A2, A5 pass eligibility (net≥6%, multiplier≤3, delay≤7d, oracle≤30min). Selected top 3 by net score: A2(9%)>A5(8%)>A1(7%).\"\n}",
+      "durationMs": 23643,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "restake",
+          "expected_value": [
+            "A2",
+            "A5",
+            "A1"
+          ],
+          "reasoning": "Calculated net scores: A1=7% (8%-2×0.5%), A2=9% (12%-3×1%), A3=5.9% (ineligible, <6%), A4=5% (ineligible, multiplier>3, delay>7d), A5=8% (10%-2.5×0.8%). All constraints checked: A1, A2, A5 pass eligibility (net≥6%, multiplier≤3, delay≤7d, oracle≤30min). Selected top 3 by net score: A2(9%)>A5(8%)>A1(7%)."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

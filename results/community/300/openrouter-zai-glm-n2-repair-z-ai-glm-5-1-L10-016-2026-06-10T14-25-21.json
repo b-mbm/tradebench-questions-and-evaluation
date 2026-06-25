@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T14:25:54.972Z",
+  "label": "openrouter-zai-glm-n2-repair-z-ai-glm-5-1-L10-016-2026-06-10T14-25-21",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-016"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-016",
+      "raw": "{\n\"intent\":\"swap\",\n\"expected_value\":0.55,\n\"reasoning\":\"Hybrid strategy: split $2M into 20 micro-swaps of $100K each routed via private RPC (Triton/Helius). Total expected cost = 0.15% split slippage + 0.0025% ($50/$2M) RPC cost + 0.3975% residual Jito adverse-selection = 0.55%, under 0.6% cap. Success probability 90%, each child order at $100K limit. Private RPC alone fails child-order constraint; splitting alone fails 90% success target; Jito bundle alone fails child-order constraint.\"\n}",
+      "durationMs": 32685,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "swap",
+          "expected_value": 0.55,
+          "reasoning": "Hybrid strategy: split $2M into 20 micro-swaps of $100K each routed via private RPC (Triton/Helius). Total expected cost = 0.15% split slippage + 0.0025% ($50/$2M) RPC cost + 0.3975% residual Jito adverse-selection = 0.55%, under 0.6% cap. Success probability 90%, each child order at $100K limit. Private RPC alone fails child-order constraint; splitting alone fails 90% success target; Jito bundle alone fails child-order constraint."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

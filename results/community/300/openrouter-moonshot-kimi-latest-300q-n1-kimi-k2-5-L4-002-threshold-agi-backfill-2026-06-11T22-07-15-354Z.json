@@ -1,0 +1,52 @@
+{
+  "runAt": "2026-06-11T22:07:15.353Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-5-L4-002-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.5"
+  ],
+  "questionIds": [
+    "L4-002"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.5",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.5",
+      "questionId": "L4-002",
+      "raw": "{\"intent\":\"assess\",\"order_type\":\"correlation_analysis\",\"asset\":\"BTC,ETH,SOL,MATIC,LINK\",\"size\":0,\"unit\":\"portfolio\",\"venue\":\"internal\",\"risk_controls\":{\"position_size_limit\":\"20% per asset; 60% aggregate crypto beta max\"},\"reasoning\":\"Single-timestamp price data prevents empirical correlation matrix estimation. Historically, BTC, ETH, SOL, MATIC, and LINK share high beta correlation (>0.80) during risk-off regimes, creating portfolio-wide systemic risk. LINK price is missing from context. stETH/ETH are near-perfect substitutes and provide no diversification. Actionable implications: (1) cap aggregate crypto beta at 60%, (2) diversify into uncorrelated assets available in context—GLD and TLT—as ballast, (3) use USDC/DAI for liquidity buffers, (4) avoid stETH as a diversifier.\",\"requires_follow_up\":true,\"follow_up_description\":\"Retrieve LINK price history and compute 30-day rolling correlation matrix across the five assets. If average pairwise correlation exceeds 0.80, execute rebalancing trades into GLD/TLT and stablecoins to reduce portfolio beta concentration.\"}",
+      "durationMs": 55387,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8016666666666666,
+        "score": 0.74,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0,
+          "venue": 0.12,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "assess",
+          "order_type": "correlation_analysis",
+          "asset": "BTC,ETH,SOL,MATIC,LINK",
+          "size": 0,
+          "unit": "portfolio",
+          "venue": "internal",
+          "risk_controls": {
+            "position_size_limit": "20% per asset; 60% aggregate crypto beta max"
+          },
+          "reasoning": "Single-timestamp price data prevents empirical correlation matrix estimation. Historically, BTC, ETH, SOL, MATIC, and LINK share high beta correlation (>0.80) during risk-off regimes, creating portfolio-wide systemic risk. LINK price is missing from context. stETH/ETH are near-perfect substitutes and provide no diversification. Actionable implications: (1) cap aggregate crypto beta at 60%, (2) diversify into uncorrelated assets available in context—GLD and TLT—as ballast, (3) use USDC/DAI for liquidity buffers, (4) avoid stETH as a diversifier.",
+          "requires_follow_up": true,
+          "follow_up_description": "Retrieve LINK price history and compute 30-day rolling correlation matrix across the five assets. If average pairwise correlation exceeds 0.80, execute rebalancing trades into GLD/TLT and stablecoins to reduce portfolio beta concentration."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

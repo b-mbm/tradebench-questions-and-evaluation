@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T07:00:22.811Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L10-054-2026-06-10T06-59-48",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L10-054"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L10-054",
+      "raw": "{\n  \"intent\": \"choose_mode_B\",\n  \"expected_value\": 1476,\n  \"reasoning\": \"Mode A: ending inv 5.2M, spread capture 0.08%×$1.44M=$1152, risk penalty 1.2M×$0.012=$14400, net=-$13248. Mode B: ending inv 3.7M, spread capture 0.11%×$1.8M=$1980, adverse selection 0.03%×$1.68M=$504, no risk penalty (below 4M), net=$1476. Mode C: ending inv 4.1M, spread capture 0.14%×$1.08M=$1512, exchange penalty $6000, risk penalty 100K×$0.012=$1200, net=-$5688. Mode B wins at $1476.\"\n}",
+      "durationMs": 33566,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "choose_mode_B",
+          "expected_value": 1476,
+          "reasoning": "Mode A: ending inv 5.2M, spread capture 0.08%×$1.44M=$1152, risk penalty 1.2M×$0.012=$14400, net=-$13248. Mode B: ending inv 3.7M, spread capture 0.11%×$1.8M=$1980, adverse selection 0.03%×$1.68M=$504, no risk penalty (below 4M), net=$1476. Mode C: ending inv 4.1M, spread capture 0.14%×$1.08M=$1512, exchange penalty $6000, risk penalty 100K×$0.012=$1200, net=-$5688. Mode B wins at $1476."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

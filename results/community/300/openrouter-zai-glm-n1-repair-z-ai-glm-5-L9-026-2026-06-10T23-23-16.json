@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T23:23:33.486Z",
+  "label": "openrouter-zai-glm-n1-repair-z-ai-glm-5-L9-026-2026-06-10T23-23-16",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5"
+  ],
+  "questionIds": [
+    "L9-026"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5",
+      "modelLabel": "openrouter:z-ai/glm-5",
+      "questionId": "L9-026",
+      "raw": "{\n  \"intent\": \"calculate\",\n  \"expected_value\": 4.40,\n  \"reasoning\": \"Incremental APR = ((16,000,000 * 0.72 * 0.00018 * 0.85 * 0.95 - 650) * 365) / 8,500,000 = ((1,674.43 - 650) * 365) / 8,500,000 = 373,917 / 8,500,000 = 4.40%. Stress test at 20% volume yields negative APR (-1.04%), but base case is positive. Oracle age <= 30 min satisfied.\"\n}",
+      "durationMs": 16326,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "calculate",
+          "expected_value": 4.4,
+          "reasoning": "Incremental APR = ((16,000,000 * 0.72 * 0.00018 * 0.85 * 0.95 - 650) * 365) / 8,500,000 = ((1,674.43 - 650) * 365) / 8,500,000 = 373,917 / 8,500,000 = 4.40%. Stress test at 20% volume yields negative APR (-1.04%), but base case is positive. Oracle age <= 30 min satisfied."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

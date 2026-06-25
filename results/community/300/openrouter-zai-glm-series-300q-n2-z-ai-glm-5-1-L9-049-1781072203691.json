@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:16:47.463Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-049-1781072203691",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-049"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-049",
+      "raw": "{\n  \"intent\": \"execute\",\n  \"expected_value\": 150980,\n  \"reasoning\": \"Success net profit = $410,000 - ($2,500 flash fee + $39,000 gas + $42,000 slippage + $38,000 MEV) = $288,500. Failure net loss = $2,500 + $39,000 + $52,000 = $93,500. EV = 0.64 × $288,500 + 0.36 × (-$93,500) = $184,640 - $33,660 = $150,980. Oracle age 29s <= 45s ✓, liquidity $600k >= $400k ✓, EV > 0 ✓. All hard constraints pass, execute.\"\n}",
+      "durationMs": 3361,
+      "grade": {
+        "pass": true,
+        "confidence": 1,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "execute",
+          "expected_value": 150980,
+          "reasoning": "Success net profit = $410,000 - ($2,500 flash fee + $39,000 gas + $42,000 slippage + $38,000 MEV) = $288,500. Failure net loss = $2,500 + $39,000 + $52,000 = $93,500. EV = 0.64 × $288,500 + 0.36 × (-$93,500) = $184,640 - $33,660 = $150,980. Oracle age 29s <= 45s ✓, liquidity $600k >= $400k ✓, EV > 0 ✓. All hard constraints pass, execute."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

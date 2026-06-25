@@ -1,0 +1,53 @@
+{
+  "runAt": "2026-06-11T22:51:08.012Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L4-001-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L4-001"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L4-001",
+      "raw": " {\"intent\":\"rebalance\",\"order_type\":\"rebalance\",\"asset\":\"BTC,ETH,USDC\",\"size\":\"pending\",\"unit\":\"usd\",\"venue\":\"multiple\",\"risk_controls\":{\"slippage_tolerance\":\"1%\",\"max_gas\":\"30 gwei\"},\"requires_follow_up\":true,\"follow_up_description\":\"Current portfolio holdings are missing. Provide current balances to calculate exact trades needed to achieve 60% BTC, 30% ETH, 10% USDC target weights.\",\"reasoning\":\"Cannot execute rebalance without current holdings to determine required buy/sell quantities for exact target weight alignment.\"}",
+      "durationMs": 27541,
+      "grade": {
+        "pass": true,
+        "confidence": 0.78,
+        "score": 0.72,
+        "fieldScores": {
+          "intent": 0.18,
+          "order_type": 0.16,
+          "asset": 0.12,
+          "size": 0.1,
+          "venue": 0,
+          "venue_name": 0,
+          "risk_controls": 0.1,
+          "follow_up": 0,
+          "reasoning": 0.06
+        },
+        "normalizedResponse": {
+          "intent": "rebalance",
+          "order_type": "rebalance",
+          "asset": "BTC,ETH,USDC",
+          "size": "pending",
+          "unit": "usd",
+          "venue": "multiple",
+          "risk_controls": {
+            "slippage_tolerance": "1%",
+            "max_gas": "30 gwei"
+          },
+          "requires_follow_up": true,
+          "follow_up_description": "Current portfolio holdings are missing. Provide current balances to calculate exact trades needed to achieve 60% BTC, 30% ETH, 10% USDC target weights.",
+          "reasoning": "Cannot execute rebalance without current holdings to determine required buy/sell quantities for exact target weight alignment."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

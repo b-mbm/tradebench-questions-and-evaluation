@@ -1,0 +1,54 @@
+{
+  "runAt": "2026-06-11T22:43:51.557Z",
+  "label": "openrouter-moonshot-kimi-latest-300q-n1-kimi-k2-6-L1-003-threshold-agi-backfill",
+  "suite": "r5e1-300q",
+  "models": [
+    "moonshotai/kimi-k2.6"
+  ],
+  "questionIds": [
+    "L1-003"
+  ],
+  "evaluations": [
+    {
+      "modelId": "moonshotai/kimi-k2.6",
+      "modelLabel": "openrouter:moonshotai/kimi-k2.6",
+      "questionId": "L1-003",
+      "raw": " {\"intent\":\"sell\",\"order_type\":\"stop_loss\",\"asset\":\"ETH\",\"size\":2,\"unit\":\"ETH\",\"price\":2800,\"venue\":\"unspecified\",\"risk_controls\":{\"stop_loss\":2800},\"follow_up\":\"confirm venue\",\"reasoning\":\"User wants to set a stop loss to sell 2 ETH if price drops to $2,800. Venue is not specified, so follow-up is required to know where the position is held.\",\"requires_follow_up\":true,\"follow_up_description\":\"Need to confirm which exchange or custody venue holds the 2 ETH in order to place the stop loss order.\"}",
+      "durationMs": 14998,
+      "grade": {
+        "pass": true,
+        "confidence": 0.8156565656565657,
+        "score": 0.7727272727272728,
+        "fieldScores": {
+          "intent": 0.05454545454545454,
+          "order_type": 0.18,
+          "asset": 0.15,
+          "size": 0.1,
+          "price": 0.17,
+          "venue": 0.018181818181818177,
+          "risk_controls": 0.05,
+          "follow_up": 0.025,
+          "reasoning": 0.025
+        },
+        "normalizedResponse": {
+          "intent": "sell",
+          "order_type": "stop_loss",
+          "asset": "ETH",
+          "size": 2,
+          "unit": "ETH",
+          "price": 2800,
+          "venue": "unspecified",
+          "risk_controls": {
+            "stop_loss": 2800
+          },
+          "follow_up": "confirm venue",
+          "reasoning": "User wants to set a stop loss to sell 2 ETH if price drops to $2,800. Venue is not specified, so follow-up is required to know where the position is held.",
+          "requires_follow_up": true,
+          "follow_up_description": "Need to confirm which exchange or custody venue holds the 2 ETH in order to place the stop loss order."
+        },
+        "failureReasons": [],
+        "parsingMethod": "json"
+      }
+    }
+  ]
+}

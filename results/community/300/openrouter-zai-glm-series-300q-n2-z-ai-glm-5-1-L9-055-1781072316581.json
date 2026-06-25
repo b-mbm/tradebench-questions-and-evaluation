@@ -1,0 +1,35 @@
+{
+  "runAt": "2026-06-10T06:19:37.802Z",
+  "label": "openrouter-zai-glm-series-300q-n2-z-ai-glm-5-1-L9-055-1781072316581",
+  "suite": "r5e1-300q",
+  "models": [
+    "z-ai/glm-5.1"
+  ],
+  "questionIds": [
+    "L9-055"
+  ],
+  "evaluations": [
+    {
+      "modelId": "z-ai/glm-5.1",
+      "modelLabel": "openrouter:z-ai/glm-5.1",
+      "questionId": "L9-055",
+      "raw": "{\n  \"intent\": \"repay_usdc\",\n  \"expected_value\": 232200,\n  \"reasoning\": \"Pre-repay HF = (1000*3100*0.84)/2050000 = 2604000/2050000 = 1.2702. Post-shock collateral = 3100000*0.91 = 2821000. Max sustainable debt at target HF = 2821000*0.84/1.3 = 1822800. Min debt reduction = 2050000 + 5000(fees) - 1822800 = 232200 USDC. Reject borrow-more; repay USDC to hit",
+      "durationMs": 60849,
+      "grade": {
+        "pass": true,
+        "confidence": 0.6,
+        "score": 1,
+        "fieldScores": {
+          "expected_value": 1
+        },
+        "normalizedResponse": {
+          "intent": "repay_usdc",
+          "expected_value": 232200,
+          "risk_controls": {}
+        },
+        "failureReasons": [],
+        "parsingMethod": "none"
+      }
+    }
+  ]
+}
