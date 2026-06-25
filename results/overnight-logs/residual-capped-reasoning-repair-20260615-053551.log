@@ -1,0 +1,230 @@
+=== RESIDUAL CAPPED REASONING REPAIR START Mon Jun 15 05:35:51 PDT 2026 ===
+=== PLAN ===
+minimax/minimax-m3	1 rows
+minimax/minimax-m2.1	2 rows
+openai/gpt-5.2-codex	2 rows
+inception/mercury-2	11 rows
+prime-intellect/intellect-3	59 rows
+inclusionai/ring-2.6-1t	79 rows
+TOTAL	154 rows
+=== MODEL START model=minimax/minimax-m3 rows=1 Mon Jun 15 05:35:51 PDT 2026 ===
+Models: minimax/minimax-m3
+Source rows: 0; checkpoint rows: 72
+Dirty tasks: 1; selected: 1
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=(default) reasoningMaxTokens=1024 reasoningExclude=true disableThinking=false
+ - minimax/minimax-m3: 1 dirty
+(node:58729) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/1] clean-fail minimax/minimax-m3 AGI-113 attempts=1
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/residual-capped-reasoning-repair-2026-06-15T12-36-58-009Z.json
+minimax/minimax-m3: clean=73 dirty=0 pass=9/300
+=== MODEL END model=minimax/minimax-m3 rc=0 Mon Jun 15 05:36:58 PDT 2026 ===
+=== MODEL START model=minimax/minimax-m2.1 rows=2 Mon Jun 15 05:37:18 PDT 2026 ===
+Models: minimax/minimax-m2.1
+Source rows: 0; checkpoint rows: 3
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=(default) reasoningMaxTokens=1024 reasoningExclude=true disableThinking=false
+ - minimax/minimax-m2.1: 2 dirty
+(node:59036) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] clean-fail minimax/minimax-m2.1 AGI-080 attempts=1
+[2/2] clean-fail minimax/minimax-m2.1 AGI-073 attempts=2
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/residual-capped-reasoning-repair-2026-06-15T12-39-55-780Z.json
+minimax/minimax-m2.1: clean=2 dirty=0 pass=0/300
+=== MODEL END model=minimax/minimax-m2.1 rc=0 Mon Jun 15 05:39:55 PDT 2026 ===
+=== MODEL START model=openai/gpt-5.2-codex rows=2 Mon Jun 15 05:40:15 PDT 2026 ===
+Models: openai/gpt-5.2-codex
+Source rows: 0; checkpoint rows: 2
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=(default) reasoningMaxTokens=1024 reasoningExclude=true disableThinking=false
+ - openai/gpt-5.2-codex: 2 dirty
+(node:59643) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] pass openai/gpt-5.2-codex L8-003 attempts=1
+[2/2] clean-fail openai/gpt-5.2-codex L10-061 attempts=3
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/residual-capped-reasoning-repair-2026-06-15T12-42-33-065Z.json
+openai/gpt-5.2-codex: clean=2 dirty=0 pass=1/300
+=== MODEL END model=openai/gpt-5.2-codex rc=0 Mon Jun 15 05:42:33 PDT 2026 ===
+=== MODEL START model=inception/mercury-2 rows=11 Mon Jun 15 05:42:53 PDT 2026 ===
+Models: inception/mercury-2
+Source rows: 0; checkpoint rows: 78
+Dirty tasks: 11; selected: 11
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=(default) reasoningMaxTokens=1024 reasoningExclude=true disableThinking=false
+ - inception/mercury-2: 11 dirty
+(node:60144) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/11] dirty inception/mercury-2 L10-010 attempts=3 types=empty_raw+truncated_response+transport_error
+[2/11] dirty inception/mercury-2 L10-008 attempts=3 types=empty_raw+truncated_response+transport_error
+[3/11] dirty inception/mercury-2 L10-018 attempts=3 types=empty_raw+truncated_response+transport_error
+[4/11] dirty inception/mercury-2 L10-019 attempts=3 types=empty_raw+truncated_response+transport_error
+[5/11] dirty inception/mercury-2 L10-056 attempts=3 types=empty_raw+truncated_response+transport_error
+[6/11] dirty inception/mercury-2 L10-058 attempts=3 types=empty_raw+truncated_response+transport_error
+[7/11] dirty inception/mercury-2 AGI-068 attempts=3 types=empty_raw+truncated_response+transport_error
+[8/11] dirty inception/mercury-2 AGI-070 attempts=3 types=empty_raw+truncated_response+transport_error
+[9/11] dirty inception/mercury-2 AGI-105 attempts=3 types=empty_raw+truncated_response+transport_error
+[10/11] dirty inception/mercury-2 AGI-079 attempts=3 types=empty_raw+truncated_response+transport_error
+[11/11] dirty inception/mercury-2 AGI-114 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/residual-capped-reasoning-repair-2026-06-15T12-44-02-556Z.json
+inception/mercury-2: clean=67 dirty=11 pass=5/300
+=== MODEL END model=inception/mercury-2 rc=0 Mon Jun 15 05:44:02 PDT 2026 ===
+=== MODEL START model=prime-intellect/intellect-3 rows=59 Mon Jun 15 05:44:22 PDT 2026 ===
+Models: prime-intellect/intellect-3
+Source rows: 0; checkpoint rows: 59
+Dirty tasks: 59; selected: 59
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=(default) reasoningMaxTokens=1024 reasoningExclude=true disableThinking=false
+ - prime-intellect/intellect-3: 59 dirty
+(node:60758) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/59] clean-fail prime-intellect/intellect-3 L5-002 attempts=1
+[2/59] pass prime-intellect/intellect-3 L8-001 attempts=1
+[3/59] clean-fail prime-intellect/intellect-3 L7-003 attempts=2
+[4/59] pass prime-intellect/intellect-3 L8-005 attempts=2
+[5/59] dirty prime-intellect/intellect-3 L8-003 attempts=3 types=empty_raw+truncated_response+transport_error
+[6/59] pass prime-intellect/intellect-3 L10-001 attempts=2
+[7/59] pass prime-intellect/intellect-3 L10-007 attempts=1
+[8/59] clean-fail prime-intellect/intellect-3 L10-006 attempts=1
+[9/59] pass prime-intellect/intellect-3 L10-008 attempts=2
+[10/59] clean-fail prime-intellect/intellect-3 L10-018 attempts=2
+[11/59] pass prime-intellect/intellect-3 L10-019 attempts=1
+[12/59] pass prime-intellect/intellect-3 L10-022 attempts=1
+[13/59] pass prime-intellect/intellect-3 L10-023 attempts=1
+[14/59] pass prime-intellect/intellect-3 L10-030 attempts=1
+[15/59] pass prime-intellect/intellect-3 L10-031 attempts=1
+[16/59] pass prime-intellect/intellect-3 L10-032 attempts=1
+[17/59] pass prime-intellect/intellect-3 L10-033 attempts=1
+[18/59] pass prime-intellect/intellect-3 L10-043 attempts=1
+[19/59] clean-fail prime-intellect/intellect-3 L10-044 attempts=1
+[20/59] pass prime-intellect/intellect-3 L10-056 attempts=1
+[21/59] pass prime-intellect/intellect-3 L10-051 attempts=1
+[22/59] pass prime-intellect/intellect-3 L10-058 attempts=1
+[23/59] pass prime-intellect/intellect-3 L10-057 attempts=1
+[24/59] pass prime-intellect/intellect-3 L10-068 attempts=1
+[25/59] clean-fail prime-intellect/intellect-3 L10-061 attempts=2
+[26/59] pass prime-intellect/intellect-3 L10-069 attempts=2
+[27/59] clean-fail prime-intellect/intellect-3 AGI-002 attempts=1
+[28/59] clean-fail prime-intellect/intellect-3 AGI-001 attempts=2
+[29/59] clean-fail prime-intellect/intellect-3 AGI-011 attempts=1
+[30/59] clean-fail prime-intellect/intellect-3 AGI-014 attempts=1
+[31/59] clean-fail prime-intellect/intellect-3 AGI-021 attempts=1
+[32/59] pass prime-intellect/intellect-3 AGI-015 attempts=1
+[33/59] clean-fail prime-intellect/intellect-3 AGI-022 attempts=1
+[34/59] clean-fail prime-intellect/intellect-3 AGI-023 attempts=1
+[35/59] clean-fail prime-intellect/intellect-3 AGI-031 attempts=1
+[36/59] clean-fail prime-intellect/intellect-3 AGI-039 attempts=1
+[37/59] clean-fail prime-intellect/intellect-3 AGI-040 attempts=1
+[38/59] pass prime-intellect/intellect-3 AGI-064 attempts=1
+[39/59] clean-fail prime-intellect/intellect-3 AGI-065 attempts=1
+[40/59] clean-fail prime-intellect/intellect-3 AGI-066 attempts=1
+[41/59] clean-fail prime-intellect/intellect-3 AGI-068 attempts=2
+[42/59] clean-fail prime-intellect/intellect-3 AGI-067 attempts=3
+[43/59] clean-fail prime-intellect/intellect-3 AGI-069 attempts=2
+[44/59] clean-fail prime-intellect/intellect-3 AGI-073 attempts=2
+[45/59] dirty prime-intellect/intellect-3 AGI-071 attempts=3 types=empty_raw+truncated_response+transport_error
+[46/59] clean-fail prime-intellect/intellect-3 AGI-079 attempts=1
+[47/59] clean-fail prime-intellect/intellect-3 AGI-080 attempts=1
+[48/59] clean-fail prime-intellect/intellect-3 AGI-078 attempts=2
+[49/59] clean-fail prime-intellect/intellect-3 AGI-081 attempts=1
+[50/59] pass prime-intellect/intellect-3 AGI-083 attempts=1
+[51/59] clean-fail prime-intellect/intellect-3 AGI-091 attempts=1
+[52/59] clean-fail prime-intellect/intellect-3 AGI-093 attempts=1
+[53/59] clean-fail prime-intellect/intellect-3 AGI-099 attempts=1
+[54/59] clean-fail prime-intellect/intellect-3 AGI-101 attempts=1
+[55/59] clean-fail prime-intellect/intellect-3 AGI-102 attempts=1
+[56/59] clean-fail prime-intellect/intellect-3 AGI-103 attempts=1
+[57/59] pass prime-intellect/intellect-3 AGI-113 attempts=1
+[58/59] clean-fail prime-intellect/intellect-3 AGI-114 attempts=1
+[59/59] clean-fail prime-intellect/intellect-3 AGI-115 attempts=1
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/residual-capped-reasoning-repair-2026-06-15T13-18-28-963Z.json
+prime-intellect/intellect-3: clean=57 dirty=2 pass=23/300
+=== MODEL END model=prime-intellect/intellect-3 rc=0 Mon Jun 15 06:18:29 PDT 2026 ===
+=== MODEL START model=inclusionai/ring-2.6-1t rows=79 Mon Jun 15 06:18:49 PDT 2026 ===
+Models: inclusionai/ring-2.6-1t
+Source rows: 0; checkpoint rows: 79
+Dirty tasks: 79; selected: 79
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=(default) reasoningMaxTokens=1024 reasoningExclude=true disableThinking=false
+ - inclusionai/ring-2.6-1t: 79 dirty
+(node:68154) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/79] pass inclusionai/ring-2.6-1t L8-001 attempts=1
+[2/79] pass inclusionai/ring-2.6-1t L8-009 attempts=1
+[3/79] clean-fail inclusionai/ring-2.6-1t L9-037 attempts=1
+[4/79] dirty inclusionai/ring-2.6-1t L8-003 attempts=3 types=empty_raw+truncated_response+transport_error
+[5/79] pass inclusionai/ring-2.6-1t L9-073 attempts=1
+[6/79] clean-fail inclusionai/ring-2.6-1t L9-079 attempts=1
+[7/79] clean-fail inclusionai/ring-2.6-1t L9-051 attempts=2
+[8/79] clean-fail inclusionai/ring-2.6-1t L10-006 attempts=1
+[9/79] pass inclusionai/ring-2.6-1t L10-001 attempts=2
+[10/79] pass inclusionai/ring-2.6-1t L10-007 attempts=1
+[11/79] pass inclusionai/ring-2.6-1t L10-013 attempts=1
+[12/79] pass inclusionai/ring-2.6-1t L10-008 attempts=1
+[13/79] pass inclusionai/ring-2.6-1t L10-018 attempts=1
+[14/79] pass inclusionai/ring-2.6-1t L10-019 attempts=1
+[15/79] clean-fail inclusionai/ring-2.6-1t L10-022 attempts=1
+[16/79] pass inclusionai/ring-2.6-1t L10-023 attempts=1
+[17/79] dirty inclusionai/ring-2.6-1t L10-015 attempts=3 types=empty_raw+truncated_response+transport_error
+[18/79] pass inclusionai/ring-2.6-1t L10-030 attempts=1
+[19/79] dirty inclusionai/ring-2.6-1t L10-027 attempts=3 types=empty_raw+truncated_response+transport_error
+[20/79] dirty inclusionai/ring-2.6-1t L10-031 attempts=3 types=empty_raw+truncated_response+transport_error
+[21/79] dirty inclusionai/ring-2.6-1t L10-032 attempts=3 types=empty_raw+truncated_response+transport_error
+[22/79] pass inclusionai/ring-2.6-1t L10-050 attempts=2
+[23/79] dirty inclusionai/ring-2.6-1t L10-044 attempts=3 types=parse_failed
+[24/79] pass inclusionai/ring-2.6-1t L10-051 attempts=2
+[25/79] pass inclusionai/ring-2.6-1t L10-064 attempts=1
+[26/79] clean-fail inclusionai/ring-2.6-1t L10-061 attempts=3
+[27/79] pass inclusionai/ring-2.6-1t L10-068 attempts=1
+[28/79] clean-fail inclusionai/ring-2.6-1t AGI-001 attempts=1
+[29/79] pass inclusionai/ring-2.6-1t L10-069 attempts=3
+[30/79] dirty inclusionai/ring-2.6-1t AGI-002 attempts=3 types=empty_raw+truncated_response+transport_error
+[31/79] clean-fail inclusionai/ring-2.6-1t AGI-004 attempts=2
+[32/79] dirty inclusionai/ring-2.6-1t AGI-003 attempts=3 types=empty_raw+truncated_response+transport_error
+[33/79] clean-fail inclusionai/ring-2.6-1t AGI-008 attempts=1
+[34/79] clean-fail inclusionai/ring-2.6-1t AGI-005 attempts=1
+[35/79] clean-fail inclusionai/ring-2.6-1t AGI-011 attempts=1
+[36/79] clean-fail inclusionai/ring-2.6-1t AGI-014 attempts=1
+[37/79] pass inclusionai/ring-2.6-1t AGI-015 attempts=2
+[38/79] dirty inclusionai/ring-2.6-1t AGI-012 attempts=3 types=empty_raw+truncated_response+transport_error
+[39/79] clean-fail inclusionai/ring-2.6-1t AGI-028 attempts=1
+[40/79] clean-fail inclusionai/ring-2.6-1t AGI-027 attempts=3
+[41/79] dirty inclusionai/ring-2.6-1t AGI-029 attempts=3 types=empty_raw+truncated_response+transport_error
+[42/79] clean-fail inclusionai/ring-2.6-1t AGI-035 attempts=1
+[43/79] clean-fail inclusionai/ring-2.6-1t AGI-032 attempts=2
+[44/79] dirty inclusionai/ring-2.6-1t AGI-039 attempts=3 types=empty_raw+truncated_response+transport_error
+[45/79] dirty inclusionai/ring-2.6-1t AGI-040 attempts=3 types=empty_raw+truncated_response+transport_error
+[46/79] clean-fail inclusionai/ring-2.6-1t AGI-050 attempts=1
+[47/79] pass inclusionai/ring-2.6-1t AGI-063 attempts=1
+[48/79] dirty inclusionai/ring-2.6-1t AGI-041 attempts=3 types=empty_raw+truncated_response+transport_error
+[49/79] pass inclusionai/ring-2.6-1t AGI-065 attempts=1
+[50/79] dirty inclusionai/ring-2.6-1t AGI-064 attempts=3 types=empty_raw+truncated_response+transport_error
+[51/79] dirty inclusionai/ring-2.6-1t AGI-066 attempts=3 types=empty_raw+truncated_response+transport_error
+[52/79] dirty inclusionai/ring-2.6-1t AGI-067 attempts=3 types=empty_raw+truncated_response+transport_error
+[53/79] dirty inclusionai/ring-2.6-1t AGI-068 attempts=3 types=empty_raw+truncated_response+transport_error
+[54/79] clean-fail inclusionai/ring-2.6-1t AGI-069 attempts=2
+[55/79] clean-fail inclusionai/ring-2.6-1t AGI-070 attempts=1
+[56/79] clean-fail inclusionai/ring-2.6-1t AGI-072 attempts=1
+[57/79] clean-fail inclusionai/ring-2.6-1t AGI-073 attempts=1
+[58/79] clean-fail inclusionai/ring-2.6-1t AGI-071 attempts=2
+[59/79] clean-fail inclusionai/ring-2.6-1t AGI-079 attempts=1
+[60/79] clean-fail inclusionai/ring-2.6-1t AGI-078 attempts=1
+[61/79] clean-fail inclusionai/ring-2.6-1t AGI-080 attempts=1
+[62/79] clean-fail inclusionai/ring-2.6-1t AGI-081 attempts=1
+[63/79] pass inclusionai/ring-2.6-1t AGI-083 attempts=1
+[64/79] clean-fail inclusionai/ring-2.6-1t AGI-085 attempts=1
+[65/79] dirty inclusionai/ring-2.6-1t AGI-084 attempts=3 types=empty_raw+truncated_response+transport_error
+[66/79] clean-fail inclusionai/ring-2.6-1t AGI-090 attempts=1
+[67/79] dirty inclusionai/ring-2.6-1t AGI-089 attempts=3 types=empty_raw+truncated_response+transport_error
+[68/79] clean-fail inclusionai/ring-2.6-1t AGI-093 attempts=3
+[69/79] dirty inclusionai/ring-2.6-1t AGI-091 attempts=3 types=empty_raw+truncated_response+transport_error
+[70/79] clean-fail inclusionai/ring-2.6-1t AGI-094 attempts=2
+[71/79] dirty inclusionai/ring-2.6-1t AGI-099 attempts=3 types=empty_raw+truncated_response+transport_error
+[72/79] dirty inclusionai/ring-2.6-1t AGI-101 attempts=3 types=empty_raw+truncated_response+transport_error
+[73/79] dirty inclusionai/ring-2.6-1t AGI-102 attempts=3 types=empty_raw+truncated_response+transport_error
+[74/79] clean-fail inclusionai/ring-2.6-1t AGI-103 attempts=2
+[75/79] pass inclusionai/ring-2.6-1t AGI-108 attempts=1
+[76/79] clean-fail inclusionai/ring-2.6-1t AGI-113 attempts=1
+[77/79] clean-fail inclusionai/ring-2.6-1t AGI-114 attempts=2
+[78/79] dirty inclusionai/ring-2.6-1t AGI-112 attempts=3 types=empty_raw+truncated_response+transport_error
+[79/79] pass inclusionai/ring-2.6-1t AGI-115 attempts=2
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/residual-capped-reasoning-repair-2026-06-15T14-30-53-981Z.json
+inclusionai/ring-2.6-1t: clean=55 dirty=24 pass=22/300
+=== MODEL END model=inclusionai/ring-2.6-1t rc=0 Mon Jun 15 07:30:54 PDT 2026 ===
+=== RESIDUAL CAPPED REASONING REPAIR DONE Mon Jun 15 07:31:14 PDT 2026 ===

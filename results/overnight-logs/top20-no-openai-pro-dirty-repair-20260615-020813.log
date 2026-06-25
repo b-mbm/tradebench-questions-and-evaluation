@@ -1,0 +1,357 @@
+=== TOP20 NO OPENAI PRO DIRTY REPAIR START Mon Jun 15 02:08:13 PDT 2026 ===
+checkpoint=results/repair-checkpoints/top20-no-openai-pro-dirty-repair.jsonl source_dir=results/repair-empty-source concurrency=2 max_retries=2 max_tokens=5000 timeout_ms=300000 no_stream=0 no_response_format=0 model_timeout_seconds=3600 repair_exclude_models=moonshotai/kimi-k2.7-code anthropic/claude-fable-5
+=== PLAN ===
+qwen/qwen3.7-plus	L8-003 L10-061 AGI-032 AGI-066 AGI-071 AGI-073 AGI-078 AGI-080
+qwen/qwen3.6-max-preview	L8-003
+qwen/qwen3.7-max	L8-003
+qwen/qwen3.6-27b	L8-003 L10-008 L10-051 AGI-073 AGI-078 AGI-081
+z-ai/glm-5-turbo	L8-003 L10-061
+openai/gpt-5.3-codex	L8-003 L10-061 AGI-002
+openai/gpt-5.5	L8-003 L10-061 AGI-002 AGI-015 AGI-028 AGI-066 AGI-089 AGI-091
+z-ai/glm-5.1	AGI-041 AGI-067 AGI-070 AGI-103
+qwen/qwen3.5-27b	L10-021 L10-049
+qwen/qwen3.6-35b-a3b	AGI-002
+qwen/qwen3.5-122b-a10b	L8-006 L9-012 L10-002 L10-004 L10-005 L10-010 L10-011 L10-012 L10-014 L10-020 L10-025 L10-026 L10-028 L10-032 L10-040 AGI-022 AGI-038 AGI-045 AGI-064 AGI-093
+z-ai/glm-5	AGI-072 AGI-102 AGI-113 AGI-114
+=== INITIAL AUDIT ===
+AUDIT initial_dirty=60 clean_repaired=33 still_dirty=27 untouched=0 remaining=27
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=4 still_dirty=2 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=1 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=1 still_dirty=3 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== ROUND 1 remaining=27 Mon Jun 15 02:08:13 PDT 2026 ===
+=== REPAIR round=1 model=qwen/qwen3.7-plus ids=L8-003 L10-061 AGI-032 AGI-066 AGI-071 AGI-073 AGI-078 AGI-080 Mon Jun 15 02:08:13 PDT 2026 ===
+Models: qwen/qwen3.7-plus
+Source rows: 0; checkpoint rows: 12
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+ - qwen/qwen3.7-plus: 2 dirty
+(node:15817) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] dirty qwen/qwen3.7-plus AGI-071 attempts=3 types=empty_raw+truncated_response+transport_error
+[2/2] dirty qwen/qwen3.7-plus AGI-073 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-23-21-421Z.json
+qwen/qwen3.7-plus: clean=6 dirty=2 pass=1/300
+=== EXIT round=1 model=qwen/qwen3.7-plus status=0 Mon Jun 15 02:23:21 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=33 still_dirty=27 untouched=0 remaining=27
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=4 still_dirty=2 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=1 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=1 still_dirty=3 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=qwen/qwen3.6-max-preview ids=L8-003 Mon Jun 15 02:23:21 PDT 2026 ===
+Models: qwen/qwen3.6-max-preview
+Source rows: 0; checkpoint rows: 2
+Dirty tasks: 0; selected: 0
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+(node:17798) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-23-22-022Z.json
+qwen/qwen3.6-max-preview: clean=1 dirty=0 pass=1/300
+=== EXIT round=1 model=qwen/qwen3.6-max-preview status=0 Mon Jun 15 02:23:22 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=33 still_dirty=27 untouched=0 remaining=27
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=4 still_dirty=2 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=1 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=1 still_dirty=3 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=qwen/qwen3.7-max ids=L8-003 Mon Jun 15 02:23:22 PDT 2026 ===
+Models: qwen/qwen3.7-max
+Source rows: 0; checkpoint rows: 3
+Dirty tasks: 1; selected: 1
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+ - qwen/qwen3.7-max: 1 dirty
+(node:17824) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/1] pass qwen/qwen3.7-max L8-003 attempts=2
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-32-07-095Z.json
+qwen/qwen3.7-max: clean=1 dirty=0 pass=1/300
+=== EXIT round=1 model=qwen/qwen3.7-max status=0 Mon Jun 15 02:32:07 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=34 still_dirty=26 untouched=0 remaining=26
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=4 still_dirty=2 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=1 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=1 still_dirty=3 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=qwen/qwen3.6-27b ids=L8-003 L10-008 L10-051 AGI-073 AGI-078 AGI-081 Mon Jun 15 02:32:07 PDT 2026 ===
+Models: qwen/qwen3.6-27b
+Source rows: 0; checkpoint rows: 13
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+ - qwen/qwen3.6-27b: 2 dirty
+(node:18963) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] dirty qwen/qwen3.6-27b L10-051 attempts=3 types=empty_raw+truncated_response+transport_error
+[2/2] clean-fail qwen/qwen3.6-27b AGI-078 attempts=2
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-35-59-454Z.json
+qwen/qwen3.6-27b: clean=5 dirty=1 pass=2/300
+=== EXIT round=1 model=qwen/qwen3.6-27b status=0 Mon Jun 15 02:35:59 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=35 still_dirty=25 untouched=0 remaining=25
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=1 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=1 still_dirty=3 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=z-ai/glm-5-turbo ids=L8-003 L10-061 Mon Jun 15 02:35:59 PDT 2026 ===
+Models: z-ai/glm-5-turbo
+Source rows: 0; checkpoint rows: 4
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+ - z-ai/glm-5-turbo: 2 dirty
+(node:19584) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] dirty z-ai/glm-5-turbo L10-061 attempts=3 types=empty_raw+truncated_response+transport_error
+[2/2] dirty z-ai/glm-5-turbo L8-003 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-40-29-584Z.json
+z-ai/glm-5-turbo: clean=0 dirty=2 pass=0/300
+=== EXIT round=1 model=z-ai/glm-5-turbo status=0 Mon Jun 15 02:40:29 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=35 still_dirty=25 untouched=0 remaining=25
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=1 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=1 still_dirty=3 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=openai/gpt-5.3-codex ids=L8-003 L10-061 AGI-002 Mon Jun 15 02:40:29 PDT 2026 ===
+Models: openai/gpt-5.3-codex
+Source rows: 0; checkpoint rows: 5
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+ - openai/gpt-5.3-codex: 2 dirty
+(node:20194) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] clean-fail openai/gpt-5.3-codex L8-003 attempts=1
+[2/2] clean-fail openai/gpt-5.3-codex L10-061 attempts=1
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-41-53-386Z.json
+openai/gpt-5.3-codex: clean=3 dirty=0 pass=0/300
+=== EXIT round=1 model=openai/gpt-5.3-codex status=0 Mon Jun 15 02:41:53 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=37 still_dirty=23 untouched=0 remaining=23
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=3 still_dirty=0 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=1 still_dirty=3 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=openai/gpt-5.5 ids=L8-003 L10-061 AGI-002 AGI-015 AGI-028 AGI-066 AGI-089 AGI-091 Mon Jun 15 02:41:53 PDT 2026 ===
+Models: openai/gpt-5.5
+Source rows: 0; checkpoint rows: 12
+Dirty tasks: 0; selected: 0
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+(node:20473) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-41-53-961Z.json
+openai/gpt-5.5: clean=8 dirty=0 pass=1/300
+=== EXIT round=1 model=openai/gpt-5.5 status=0 Mon Jun 15 02:41:53 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=37 still_dirty=23 untouched=0 remaining=23
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=3 still_dirty=0 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=1 still_dirty=3 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=z-ai/glm-5.1 ids=AGI-041 AGI-067 AGI-070 AGI-103 Mon Jun 15 02:41:54 PDT 2026 ===
+Models: z-ai/glm-5.1
+Source rows: 0; checkpoint rows: 7
+Dirty tasks: 3; selected: 3
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+ - z-ai/glm-5.1: 3 dirty
+(node:20499) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/3] clean-fail z-ai/glm-5.1 AGI-067 attempts=2
+[2/3] dirty z-ai/glm-5.1 AGI-041 attempts=3 types=empty_raw+truncated_response+transport_error
+[3/3] dirty z-ai/glm-5.1 AGI-103 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-52-54-721Z.json
+z-ai/glm-5.1: clean=2 dirty=2 pass=0/300
+=== EXIT round=1 model=z-ai/glm-5.1 status=0 Mon Jun 15 02:52:54 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=38 still_dirty=22 untouched=0 remaining=22
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=3 still_dirty=0 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=2 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=qwen/qwen3.5-27b ids=L10-021 L10-049 Mon Jun 15 02:52:54 PDT 2026 ===
+Models: qwen/qwen3.5-27b
+Source rows: 0; checkpoint rows: 4
+Dirty tasks: 0; selected: 0
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+(node:22074) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-52-55-314Z.json
+qwen/qwen3.5-27b: clean=2 dirty=0 pass=2/300
+=== EXIT round=1 model=qwen/qwen3.5-27b status=0 Mon Jun 15 02:52:55 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=38 still_dirty=22 untouched=0 remaining=22
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=3 still_dirty=0 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=2 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=qwen/qwen3.6-35b-a3b ids=AGI-002 Mon Jun 15 02:52:55 PDT 2026 ===
+Models: qwen/qwen3.6-35b-a3b
+Source rows: 0; checkpoint rows: 2
+Dirty tasks: 1; selected: 1
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+ - qwen/qwen3.6-35b-a3b: 1 dirty
+(node:22100) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/1] dirty qwen/qwen3.6-35b-a3b AGI-002 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T09-58-36-733Z.json
+qwen/qwen3.6-35b-a3b: clean=0 dirty=1 pass=0/300
+=== EXIT round=1 model=qwen/qwen3.6-35b-a3b status=0 Mon Jun 15 02:58:36 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=38 still_dirty=22 untouched=0 remaining=22
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=3 still_dirty=0 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=2 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=8 still_dirty=12 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=qwen/qwen3.5-122b-a10b ids=L8-006 L9-012 L10-002 L10-004 L10-005 L10-010 L10-011 L10-012 L10-014 L10-020 L10-025 L10-026 L10-028 L10-032 L10-040 AGI-022 AGI-038 AGI-045 AGI-064 AGI-093 Mon Jun 15 02:58:36 PDT 2026 ===
+Models: qwen/qwen3.5-122b-a10b
+Source rows: 0; checkpoint rows: 27
+Dirty tasks: 12; selected: 12
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+ - qwen/qwen3.5-122b-a10b: 12 dirty
+(node:22921) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/12] pass qwen/qwen3.5-122b-a10b L8-006 attempts=1
+[2/12] clean-fail qwen/qwen3.5-122b-a10b L10-004 attempts=2
+[3/12] pass qwen/qwen3.5-122b-a10b L10-005 attempts=1
+[4/12] dirty qwen/qwen3.5-122b-a10b L10-002 attempts=3 types=empty_raw+truncated_response+transport_error
+[5/12] dirty qwen/qwen3.5-122b-a10b L10-014 attempts=3 types=empty_raw+truncated_response+transport_error
+[6/12] dirty qwen/qwen3.5-122b-a10b L10-025 attempts=3 types=empty_raw+truncated_response+transport_error
+[7/12] dirty qwen/qwen3.5-122b-a10b L10-020 attempts=3 types=empty_raw+truncated_response+transport_error
+[8/12] dirty qwen/qwen3.5-122b-a10b L10-026 attempts=3 types=empty_raw+truncated_response+transport_error
+[9/12] dirty qwen/qwen3.5-122b-a10b L10-032 attempts=3 types=empty_raw+truncated_response+transport_error
+[10/12] clean-fail qwen/qwen3.5-122b-a10b AGI-045 attempts=1
+[11/12] pass qwen/qwen3.5-122b-a10b AGI-064 attempts=2
+[12/12] dirty qwen/qwen3.5-122b-a10b AGI-038 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T10-44-22-889Z.json
+qwen/qwen3.5-122b-a10b: clean=13 dirty=7 pass=7/300
+=== EXIT round=1 model=qwen/qwen3.5-122b-a10b status=0 Mon Jun 15 03:44:22 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=43 still_dirty=17 untouched=0 remaining=17
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=3 still_dirty=0 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=2 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=13 still_dirty=7 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== REPAIR round=1 model=z-ai/glm-5 ids=AGI-072 AGI-102 AGI-113 AGI-114 Mon Jun 15 03:44:22 PDT 2026 ===
+Models: z-ai/glm-5
+Source rows: 0; checkpoint rows: 5
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=300000 maxTokens=5000 retries=2 concurrency=2
+ - z-ai/glm-5: 2 dirty
+(node:29202) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] dirty z-ai/glm-5 AGI-114 attempts=3 types=empty_raw+truncated_response+transport_error
+[2/2] dirty z-ai/glm-5 AGI-113 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/top20-no-openai-pro-dirty-repair-2026-06-15T10-52-02-071Z.json
+z-ai/glm-5: clean=2 dirty=2 pass=0/300
+=== EXIT round=1 model=z-ai/glm-5 status=0 Mon Jun 15 03:52:02 PDT 2026 ===
+AUDIT initial_dirty=60 clean_repaired=43 still_dirty=17 untouched=0 remaining=17
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=3 still_dirty=0 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=2 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=13 still_dirty=7 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== FINAL AUDIT ===
+AUDIT initial_dirty=60 clean_repaired=43 still_dirty=17 untouched=0 remaining=17
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=1 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=5 still_dirty=1 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=2 untouched=0
+AUDIT openai/gpt-5.3-codex initial=3 clean=3 still_dirty=0 untouched=0
+AUDIT openai/gpt-5.5 initial=8 clean=8 still_dirty=0 untouched=0
+AUDIT z-ai/glm-5.1 initial=4 clean=2 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.5-27b initial=2 clean=2 still_dirty=0 untouched=0
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=13 still_dirty=7 untouched=0
+AUDIT z-ai/glm-5 initial=4 clean=2 still_dirty=2 untouched=0
+=== TOP20 NO OPENAI PRO DIRTY REPAIR DONE Mon Jun 15 03:52:02 PDT 2026 ===

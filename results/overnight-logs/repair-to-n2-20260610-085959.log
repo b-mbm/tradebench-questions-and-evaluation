@@ -1,0 +1,193 @@
+=== REPAIR TO N2 START Wed Jun 10 08:59:59 PDT 2026 ===
+=== CHECK n1 L1 round=1 failed=0 Wed Jun 10 08:59:59 PDT 2026 ===
+AUDIT n1 L1 dir=results/parallel-level1-working
+AUDIT n1 L1 generations latest=153 ok=153 failed=0
+AUDIT n1 L1 scores latest=153 ok=153 failed=0
+AUDIT n1 L1 generation failures by model []
+=== DONE n1 L1 clean Wed Jun 10 08:59:59 PDT 2026 ===
+=== CHECK n1 L2 round=1 failed=0 Wed Jun 10 08:59:59 PDT 2026 ===
+AUDIT n1 L2 dir=results/parallel-level2-working
+AUDIT n1 L2 generations latest=204 ok=204 failed=0
+AUDIT n1 L2 scores latest=204 ok=204 failed=0
+AUDIT n1 L2 generation failures by model []
+=== DONE n1 L2 clean Wed Jun 10 08:59:59 PDT 2026 ===
+=== CHECK n1 L3 round=1 failed=1 Wed Jun 10 08:59:59 PDT 2026 ===
+=== START n1 L3 repair round=1 Wed Jun 10 08:59:59 PDT 2026 ===
+Models: 51
+Questions: 3
+Results dir: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/parallel-level3-working
+Concurrency: 6
+Phases: generate, score
+Generation: 1 pending of 153 total tasks
+[gen 1/1] failed arcee-ai/trinity-mini L3-002 error=blank response
+Scoring: 1 pending of 189 generation rows
+[score 1/1] failed arcee-ai/trinity-mini L3-002 score=0.000
+
+Summary
+model anthropic/claude-fable-5: done=3 failed=0 scored=3 mean=0.642
+model anthropic/claude-haiku-4.5: done=3 failed=0 scored=3 mean=0.650
+model anthropic/claude-opus-4.7: done=3 failed=0 scored=3 mean=0.705
+model anthropic/claude-opus-4.8: done=3 failed=0 scored=3 mean=0.807
+model anthropic/claude-sonnet-4.5: done=3 failed=0 scored=3 mean=0.810
+model anthropic/claude-sonnet-4.6: done=3 failed=0 scored=3 mean=0.402
+model arcee-ai/trinity-mini: done=2 failed=1 scored=2 mean=0.321
+model deepcogito/cogito-v2.1-671b: done=3 failed=0 scored=3 mean=0.823
+model deepseek/deepseek-chat-v3.1: done=3 failed=0 scored=3 mean=0.809
+model deepseek/deepseek-v3.2: done=3 failed=0 scored=3 mean=0.784
+model deepseek/deepseek-v3.2-exp: done=3 failed=0 scored=3 mean=0.881
+model deepseek/deepseek-v4-flash: done=3 failed=0 scored=3 mean=0.600
+model deepseek/deepseek-v4-pro: done=3 failed=0 scored=3 mean=0.770
+model google/gemini-3.1-flash-lite: done=3 failed=0 scored=3 mean=0.384
+model google/gemini-3.1-pro-preview: done=3 failed=0 scored=3 mean=0.501
+model google/gemini-3.5-flash: done=3 failed=0 scored=3 mean=0.787
+model google/gemma-4-26b-a4b-it: done=3 failed=0 scored=3 mean=0.415
+model ibm-granite/granite-4.1-8b: done=3 failed=0 scored=3 mean=0.623
+model inception/mercury-2: done=3 failed=0 scored=3 mean=0.454
+model inclusionai/ling-2.6-1t: done=3 failed=0 scored=3 mean=0.455
+model inclusionai/ling-2.6-flash: done=3 failed=0 scored=3 mean=0.613
+model inclusionai/ring-2.6-1t: done=3 failed=0 scored=3 mean=0.711
+model kwaipilot/kat-coder-pro-v2: done=3 failed=0 scored=3 mean=0.471
+model liquid/lfm-2-24b-a2b: done=3 failed=0 scored=3 mean=0.586
+model minimax/minimax-m2: done=3 failed=0 scored=3 mean=0.604
+model minimax/minimax-m2.1: done=3 failed=0 scored=3 mean=0.390
+model minimax/minimax-m2.5: done=3 failed=0 scored=3 mean=0.332
+model minimax/minimax-m2.7: done=3 failed=0 scored=3 mean=0.748
+model minimax/minimax-m3: done=3 failed=0 scored=3 mean=0.770
+model openai/gpt-5.2-codex: done=3 failed=0 scored=3 mean=0.549
+model openai/gpt-5.3-codex: done=3 failed=0 scored=3 mean=0.667
+model openai/gpt-5.4-pro: done=3 failed=0 scored=3 mean=0.650
+model openai/gpt-5.5: done=3 failed=0 scored=3 mean=0.618
+model openai/gpt-5.5-pro: done=3 failed=0 scored=3 mean=0.566
+model prime-intellect/intellect-3: done=3 failed=0 scored=3 mean=0.598
+model qwen/qwen3-max-thinking: done=3 failed=0 scored=3 mean=0.582
+model qwen/qwen3.5-122b-a10b: done=3 failed=0 scored=3 mean=0.524
+model qwen/qwen3.5-27b: done=3 failed=0 scored=3 mean=0.221
+model qwen/qwen3.5-397b-a17b: done=3 failed=0 scored=3 mean=0.570
+model qwen/qwen3.5-flash-02-23: done=3 failed=0 scored=3 mean=0.661
+model qwen/qwen3.5-plus-20260420: done=3 failed=0 scored=3 mean=0.689
+model qwen/qwen3.6-flash: done=3 failed=0 scored=3 mean=0.504
+model qwen/qwen3.6-max-preview: done=3 failed=0 scored=3 mean=0.571
+model qwen/qwen3.7-max: done=3 failed=0 scored=3 mean=0.669
+model qwen/qwen3.7-plus: done=3 failed=0 scored=3 mean=0.639
+model x-ai/grok-4.20: done=3 failed=0 scored=3 mean=0.579
+model x-ai/grok-4.3: done=3 failed=0 scored=3 mean=0.476
+model x-ai/grok-build-0.1: done=3 failed=0 scored=3 mean=0.773
+model xiaomi/mimo-v2-flash: done=3 failed=0 scored=3 mean=0.664
+model xiaomi/mimo-v2.5: done=3 failed=0 scored=3 mean=0.556
+model xiaomi/mimo-v2.5-pro: done=3 failed=0 scored=3 mean=0.538
+family arcee-ai: done=2 failed=1 scored=2 mean=0.321
+family claude: done=18 failed=0 scored=18 mean=0.669
+family deepcogito: done=3 failed=0 scored=3 mean=0.823
+family deepseek: done=15 failed=0 scored=15 mean=0.769
+family google: done=12 failed=0 scored=12 mean=0.522
+family grok: done=9 failed=0 scored=9 mean=0.609
+family ibm-granite: done=3 failed=0 scored=3 mean=0.623
+family inception: done=3 failed=0 scored=3 mean=0.454
+family inclusionai: done=9 failed=0 scored=9 mean=0.593
+family kwaipilot: done=3 failed=0 scored=3 mean=0.471
+family liquid: done=3 failed=0 scored=3 mean=0.586
+family minimax: done=15 failed=0 scored=15 mean=0.569
+family openai: done=15 failed=0 scored=15 mean=0.610
+family prime-intellect: done=3 failed=0 scored=3 mean=0.598
+family qwen: done=30 failed=0 scored=30 mean=0.563
+family xiaomi: done=9 failed=0 scored=9 mean=0.586
+Summary written to /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/parallel-level3-working/summary.csv
+=== EXIT n1 L3 repair round=1 status=0 Wed Jun 10 09:00:46 PDT 2026 ===
+AUDIT n1 L3 dir=results/parallel-level3-working
+AUDIT n1 L3 generations latest=153 ok=152 failed=1
+AUDIT n1 L3 scores latest=153 ok=152 failed=1
+AUDIT n1 L3 generation failures by model [["arcee-ai/trinity-mini",1]]
+=== CHECK n1 L3 round=2 failed=1 Wed Jun 10 09:00:46 PDT 2026 ===
+=== START n1 L3 repair round=2 Wed Jun 10 09:00:46 PDT 2026 ===
+Models: 51
+Questions: 3
+Results dir: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/parallel-level3-working
+Concurrency: 6
+Phases: generate, score
+Generation: 1 pending of 153 total tasks
+[gen 1/1] failed arcee-ai/trinity-mini L3-002 error=blank response
+Scoring: 1 pending of 189 generation rows
+[score 1/1] failed arcee-ai/trinity-mini L3-002 score=0.000
+
+Summary
+model anthropic/claude-fable-5: done=3 failed=0 scored=3 mean=0.642
+model anthropic/claude-haiku-4.5: done=3 failed=0 scored=3 mean=0.650
+model anthropic/claude-opus-4.7: done=3 failed=0 scored=3 mean=0.705
+model anthropic/claude-opus-4.8: done=3 failed=0 scored=3 mean=0.807
+model anthropic/claude-sonnet-4.5: done=3 failed=0 scored=3 mean=0.810
+model anthropic/claude-sonnet-4.6: done=3 failed=0 scored=3 mean=0.402
+model arcee-ai/trinity-mini: done=2 failed=1 scored=2 mean=0.321
+model deepcogito/cogito-v2.1-671b: done=3 failed=0 scored=3 mean=0.823
+model deepseek/deepseek-chat-v3.1: done=3 failed=0 scored=3 mean=0.809
+model deepseek/deepseek-v3.2: done=3 failed=0 scored=3 mean=0.784
+model deepseek/deepseek-v3.2-exp: done=3 failed=0 scored=3 mean=0.881
+model deepseek/deepseek-v4-flash: done=3 failed=0 scored=3 mean=0.600
+model deepseek/deepseek-v4-pro: done=3 failed=0 scored=3 mean=0.770
+model google/gemini-3.1-flash-lite: done=3 failed=0 scored=3 mean=0.384
+model google/gemini-3.1-pro-preview: done=3 failed=0 scored=3 mean=0.501
+model google/gemini-3.5-flash: done=3 failed=0 scored=3 mean=0.787
+model google/gemma-4-26b-a4b-it: done=3 failed=0 scored=3 mean=0.415
+model ibm-granite/granite-4.1-8b: done=3 failed=0 scored=3 mean=0.623
+model inception/mercury-2: done=3 failed=0 scored=3 mean=0.454
+model inclusionai/ling-2.6-1t: done=3 failed=0 scored=3 mean=0.455
+model inclusionai/ling-2.6-flash: done=3 failed=0 scored=3 mean=0.613
+model inclusionai/ring-2.6-1t: done=3 failed=0 scored=3 mean=0.711
+model kwaipilot/kat-coder-pro-v2: done=3 failed=0 scored=3 mean=0.471
+model liquid/lfm-2-24b-a2b: done=3 failed=0 scored=3 mean=0.586
+model minimax/minimax-m2: done=3 failed=0 scored=3 mean=0.604
+model minimax/minimax-m2.1: done=3 failed=0 scored=3 mean=0.390
+model minimax/minimax-m2.5: done=3 failed=0 scored=3 mean=0.332
+model minimax/minimax-m2.7: done=3 failed=0 scored=3 mean=0.748
+model minimax/minimax-m3: done=3 failed=0 scored=3 mean=0.770
+model openai/gpt-5.2-codex: done=3 failed=0 scored=3 mean=0.549
+model openai/gpt-5.3-codex: done=3 failed=0 scored=3 mean=0.667
+model openai/gpt-5.4-pro: done=3 failed=0 scored=3 mean=0.650
+model openai/gpt-5.5: done=3 failed=0 scored=3 mean=0.618
+model openai/gpt-5.5-pro: done=3 failed=0 scored=3 mean=0.566
+model prime-intellect/intellect-3: done=3 failed=0 scored=3 mean=0.598
+model qwen/qwen3-max-thinking: done=3 failed=0 scored=3 mean=0.582
+model qwen/qwen3.5-122b-a10b: done=3 failed=0 scored=3 mean=0.524
+model qwen/qwen3.5-27b: done=3 failed=0 scored=3 mean=0.221
+model qwen/qwen3.5-397b-a17b: done=3 failed=0 scored=3 mean=0.570
+model qwen/qwen3.5-flash-02-23: done=3 failed=0 scored=3 mean=0.661
+model qwen/qwen3.5-plus-20260420: done=3 failed=0 scored=3 mean=0.689
+model qwen/qwen3.6-flash: done=3 failed=0 scored=3 mean=0.504
+model qwen/qwen3.6-max-preview: done=3 failed=0 scored=3 mean=0.571
+model qwen/qwen3.7-max: done=3 failed=0 scored=3 mean=0.669
+model qwen/qwen3.7-plus: done=3 failed=0 scored=3 mean=0.639
+model x-ai/grok-4.20: done=3 failed=0 scored=3 mean=0.579
+model x-ai/grok-4.3: done=3 failed=0 scored=3 mean=0.476
+model x-ai/grok-build-0.1: done=3 failed=0 scored=3 mean=0.773
+model xiaomi/mimo-v2-flash: done=3 failed=0 scored=3 mean=0.664
+model xiaomi/mimo-v2.5: done=3 failed=0 scored=3 mean=0.556
+model xiaomi/mimo-v2.5-pro: done=3 failed=0 scored=3 mean=0.538
+family arcee-ai: done=2 failed=1 scored=2 mean=0.321
+family claude: done=18 failed=0 scored=18 mean=0.669
+family deepcogito: done=3 failed=0 scored=3 mean=0.823
+family deepseek: done=15 failed=0 scored=15 mean=0.769
+family google: done=12 failed=0 scored=12 mean=0.522
+family grok: done=9 failed=0 scored=9 mean=0.609
+family ibm-granite: done=3 failed=0 scored=3 mean=0.623
+family inception: done=3 failed=0 scored=3 mean=0.454
+family inclusionai: done=9 failed=0 scored=9 mean=0.593
+family kwaipilot: done=3 failed=0 scored=3 mean=0.471
+family liquid: done=3 failed=0 scored=3 mean=0.586
+family minimax: done=15 failed=0 scored=15 mean=0.569
+family openai: done=15 failed=0 scored=15 mean=0.610
+family prime-intellect: done=3 failed=0 scored=3 mean=0.598
+family qwen: done=30 failed=0 scored=30 mean=0.563
+family xiaomi: done=9 failed=0 scored=9 mean=0.586
+Summary written to /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/parallel-level3-working/summary.csv
+=== EXIT n1 L3 repair round=2 status=0 Wed Jun 10 09:01:31 PDT 2026 ===
+AUDIT n1 L3 dir=results/parallel-level3-working
+AUDIT n1 L3 generations latest=153 ok=152 failed=1
+AUDIT n1 L3 scores latest=153 ok=152 failed=1
+AUDIT n1 L3 generation failures by model [["arcee-ai/trinity-mini",1]]
+=== CHECK n1 L3 round=3 failed=1 Wed Jun 10 09:01:31 PDT 2026 ===
+=== START n1 L3 repair round=3 Wed Jun 10 09:01:31 PDT 2026 ===
+Models: 51
+Questions: 3
+Results dir: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/parallel-level3-working
+Concurrency: 6
+Phases: generate, score
+Generation: 1 pending of 153 total tasks

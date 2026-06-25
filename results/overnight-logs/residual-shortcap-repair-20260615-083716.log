@@ -1,0 +1,44 @@
+=== RESIDUAL SHORTCAP REPAIR START Mon Jun 15 08:37:16 PDT 2026 ===
+=== PLAN ===
+prime-intellect/intellect-3	1 rows	L8-003
+inclusionai/ring-2.6-1t	15 rows	L8-003 L10-015 L10-031 L10-032 AGI-003 AGI-012 AGI-029 AGI-039 AGI-040 AGI-041 AGI-066 AGI-067 AGI-068 AGI-101 AGI-102
+TOTAL	16 rows
+=== MODEL START model=prime-intellect/intellect-3 rows=1 Mon Jun 15 08:37:17 PDT 2026 ===
+Models: prime-intellect/intellect-3
+Source rows: 0; checkpoint rows: 120
+Dirty tasks: 1; selected: 1
+Options: stream=false responseFormat=false timeoutMs=600000 maxTokens=4000 retries=2 concurrency=1 reasoningEffort=(default) reasoningMaxTokens=256 reasoningExclude=true disableThinking=false
+ - prime-intellect/intellect-3: 1 dirty
+(node:93297) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/1] dirty prime-intellect/intellect-3 L8-003 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/residual-shortcap-repair-2026-06-15T15-38-55-999Z.json
+prime-intellect/intellect-3: clean=58 dirty=1 pass=23/300
+=== MODEL END model=prime-intellect/intellect-3 rc=0 Mon Jun 15 08:38:56 PDT 2026 ===
+=== MODEL START model=inclusionai/ring-2.6-1t rows=15 Mon Jun 15 08:39:16 PDT 2026 ===
+Models: inclusionai/ring-2.6-1t
+Source rows: 0; checkpoint rows: 182
+Dirty tasks: 15; selected: 15
+Options: stream=false responseFormat=false timeoutMs=600000 maxTokens=4000 retries=2 concurrency=1 reasoningEffort=(default) reasoningMaxTokens=256 reasoningExclude=true disableThinking=false
+ - inclusionai/ring-2.6-1t: 15 dirty
+(node:93725) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/15] dirty inclusionai/ring-2.6-1t L8-003 attempts=3 types=empty_raw+truncated_response+transport_error
+[2/15] dirty inclusionai/ring-2.6-1t L10-015 attempts=3 types=empty_raw+truncated_response+transport_error
+[3/15] dirty inclusionai/ring-2.6-1t L10-031 attempts=3 types=empty_raw+truncated_response+transport_error
+[4/15] dirty inclusionai/ring-2.6-1t L10-032 attempts=3 types=empty_raw+truncated_response+transport_error
+[5/15] dirty inclusionai/ring-2.6-1t AGI-003 attempts=3 types=empty_raw+truncated_response+transport_error
+[6/15] dirty inclusionai/ring-2.6-1t AGI-012 attempts=3 types=empty_raw+truncated_response+transport_error
+[7/15] dirty inclusionai/ring-2.6-1t AGI-029 attempts=3 types=empty_raw+truncated_response+transport_error
+[8/15] dirty inclusionai/ring-2.6-1t AGI-039 attempts=3 types=empty_raw+truncated_response+transport_error
+[9/15] dirty inclusionai/ring-2.6-1t AGI-040 attempts=3 types=empty_raw+truncated_response+transport_error
+[10/15] dirty inclusionai/ring-2.6-1t AGI-041 attempts=3 types=empty_raw+truncated_response+transport_error
+[11/15] dirty inclusionai/ring-2.6-1t AGI-066 attempts=3 types=empty_raw+truncated_response+transport_error
+[12/15] dirty inclusionai/ring-2.6-1t AGI-067 attempts=3 types=empty_raw+truncated_response+transport_error
+[13/15] dirty inclusionai/ring-2.6-1t AGI-068 attempts=3 types=empty_raw+truncated_response+transport_error
+[14/15] dirty inclusionai/ring-2.6-1t AGI-101 attempts=3 types=empty_raw+truncated_response+transport_error
+[15/15] dirty inclusionai/ring-2.6-1t AGI-102 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/residual-shortcap-repair-2026-06-15T16-02-56-094Z.json
+inclusionai/ring-2.6-1t: clean=64 dirty=15 pass=25/300
+=== MODEL END model=inclusionai/ring-2.6-1t rc=0 Mon Jun 15 09:02:56 PDT 2026 ===
+=== RESIDUAL SHORTCAP REPAIR DONE Mon Jun 15 09:03:16 PDT 2026 ===

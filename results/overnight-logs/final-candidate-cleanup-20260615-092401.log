@@ -1,0 +1,59 @@
+=== FINAL CANDIDATE CLEANUP START Mon Jun 15 09:24:01 PDT 2026 ===
+checkpoint=results/repair-checkpoints/top20-no-openai-pro-dirty-repair.jsonl
+--- inclusion stream/no-format pass ---
+Models: inclusionai/ring-2.6-1t
+Source rows: 316; checkpoint rows: 197
+Dirty tasks: 15; selected: 15
+Options: stream=true responseFormat=false timeoutMs=300000 maxTokens=3000 retries=2 concurrency=1 reasoningEffort=(default) reasoningMaxTokens=512 reasoningExclude=true disableThinking=false
+ - inclusionai/ring-2.6-1t: 15 dirty
+(node:3451) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/15] dirty inclusionai/ring-2.6-1t L8-003 attempts=3 types=empty_raw+truncated_response+transport_error
+[2/15] dirty inclusionai/ring-2.6-1t L10-015 attempts=3 types=empty_raw+truncated_response+transport_error
+[3/15] dirty inclusionai/ring-2.6-1t L10-031 attempts=3 types=empty_raw+truncated_response+transport_error
+[4/15] dirty inclusionai/ring-2.6-1t L10-032 attempts=3 types=empty_raw+truncated_response+transport_error
+[5/15] dirty inclusionai/ring-2.6-1t AGI-003 attempts=3 types=empty_raw+truncated_response+transport_error
+[6/15] dirty inclusionai/ring-2.6-1t AGI-012 attempts=3 types=empty_raw+truncated_response+transport_error
+[7/15] dirty inclusionai/ring-2.6-1t AGI-029 attempts=3 types=empty_raw+truncated_response+transport_error
+[8/15] dirty inclusionai/ring-2.6-1t AGI-039 attempts=3 types=empty_raw+truncated_response+transport_error
+[9/15] dirty inclusionai/ring-2.6-1t AGI-040 attempts=3 types=empty_raw+truncated_response+transport_error
+[10/15] dirty inclusionai/ring-2.6-1t AGI-041 attempts=3 types=empty_raw+truncated_response+transport_error
+[11/15] dirty inclusionai/ring-2.6-1t AGI-066 attempts=3 types=empty_raw+truncated_response+transport_error
+[12/15] dirty inclusionai/ring-2.6-1t AGI-067 attempts=3 types=empty_raw+truncated_response+transport_error
+[13/15] dirty inclusionai/ring-2.6-1t AGI-068 attempts=3 types=empty_raw+truncated_response+transport_error
+[14/15] dirty inclusionai/ring-2.6-1t AGI-101 attempts=3 types=empty_raw+truncated_response+transport_error
+[15/15] dirty inclusionai/ring-2.6-1t AGI-102 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/final-candidate-inclusion-stream-noformat-cleanup-2026-06-15T16-41-59-029Z.json
+inclusionai/ring-2.6-1t: clean=64 dirty=15 pass=25/300
+--- prime stream/no-format pass ---
+Models: prime-intellect/intellect-3
+Source rows: 236; checkpoint rows: 121
+Dirty tasks: 1; selected: 1
+Options: stream=true responseFormat=false timeoutMs=300000 maxTokens=3000 retries=2 concurrency=1 reasoningEffort=(default) reasoningMaxTokens=512 reasoningExclude=true disableThinking=false
+ - prime-intellect/intellect-3: 1 dirty
+(node:9909) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/1] dirty prime-intellect/intellect-3 L8-003 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/final-candidate-prime-stream-noformat-cleanup-2026-06-15T16-43-13-463Z.json
+prime-intellect/intellect-3: clean=58 dirty=1 pass=23/300
+--- kimi k2.7 code no-stream/no-format pass ---
+Models: moonshotai/kimi-k2.7-code
+Source rows: 933; checkpoint rows: 21
+Dirty tasks: 34; selected: 34
+Options: stream=false responseFormat=false timeoutMs=300000 maxTokens=8000 retries=2 concurrency=1 reasoningEffort=(default) reasoningMaxTokens=(default) reasoningExclude=false disableThinking=false
+ - moonshotai/kimi-k2.7-code: 34 dirty
+(node:10210) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/34] pass moonshotai/kimi-k2.7-code L8-001 attempts=2
+[2/34] dirty moonshotai/kimi-k2.7-code L8-003 attempts=3 types=empty_raw+truncated_response+transport_error
+[3/34] clean-fail moonshotai/kimi-k2.7-code L10-015 attempts=1
+[4/34] clean-fail moonshotai/kimi-k2.7-code L10-061 attempts=2
+[5/34] dirty moonshotai/kimi-k2.7-code AGI-005 attempts=3 types=empty_raw+truncated_response+transport_error
+[6/34] dirty moonshotai/kimi-k2.7-code AGI-007 attempts=3 types=empty_raw+truncated_response+transport_error
+[7/34] clean-fail moonshotai/kimi-k2.7-code AGI-010 attempts=2
+[8/34] clean-fail moonshotai/kimi-k2.7-code AGI-014 attempts=1
+[9/34] dirty moonshotai/kimi-k2.7-code AGI-015 attempts=3 types=empty_raw+truncated_response+transport_error
+[10/34] dirty moonshotai/kimi-k2.7-code AGI-021 attempts=3 types=empty_raw+truncated_response+transport_error
+[11/34] dirty moonshotai/kimi-k2.7-code AGI-022 attempts=3 types=empty_raw+explicit_error+truncated_response+transport_error
+[12/34] dirty moonshotai/kimi-k2.7-code AGI-023 attempts=3 types=empty_raw+explicit_error+truncated_response+transport_error
+[13/34] dirty moonshotai/kimi-k2.7-code AGI-028 attempts=3 types=empty_raw+explicit_error+truncated_response+transport_error

@@ -1,0 +1,34 @@
+=== TOP20 NO OPENAI PRO DIRTY REPAIR START Sun Jun 14 23:20:10 PDT 2026 ===
+checkpoint=results/repair-checkpoints/top20-no-openai-pro-dirty-repair.jsonl source_dir=results/repair-empty-source concurrency=4 max_retries=2 max_tokens=3000 timeout_ms=180000 no_stream=0 repair_exclude_models=moonshotai/kimi-k2.7-code
+=== PLAN ===
+qwen/qwen3.7-plus	L8-003 L10-061 AGI-032 AGI-066 AGI-071 AGI-073 AGI-078 AGI-080
+qwen/qwen3.6-max-preview	L8-003
+qwen/qwen3.7-max	L8-003
+qwen/qwen3.6-27b	L8-003 L10-008 L10-051 AGI-073 AGI-078 AGI-081
+z-ai/glm-5-turbo	L8-003 L10-061
+openai/gpt-5.3-codex	L8-003 L10-061 AGI-002
+openai/gpt-5.5	L8-003 L10-061 AGI-002 AGI-015 AGI-028 AGI-066 AGI-089 AGI-091
+anthropic/claude-fable-5	L8-003 L9-005 L9-010 L9-017 L9-025 L9-033 L9-041 L9-049 L9-057 L9-065 L10-003 L10-032 L10-061
+z-ai/glm-5.1	AGI-041 AGI-067 AGI-070 AGI-103
+qwen/qwen3.5-27b	L10-021 L10-049
+qwen/qwen3.6-35b-a3b	AGI-002
+qwen/qwen3.5-122b-a10b	L8-006 L9-012 L10-002 L10-004 L10-005 L10-010 L10-011 L10-012 L10-014 L10-020 L10-025 L10-026 L10-028 L10-032 L10-040 AGI-022 AGI-038 AGI-045 AGI-064 AGI-093
+z-ai/glm-5	AGI-072 AGI-102 AGI-113 AGI-114
+=== INITIAL AUDIT ===
+AUDIT initial_dirty=73 clean_repaired=8 still_dirty=8 untouched=57 remaining=65
+AUDIT qwen/qwen3.7-plus initial=8 clean=6 still_dirty=2 untouched=0
+AUDIT qwen/qwen3.6-max-preview initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.7-max initial=1 clean=0 still_dirty=1 untouched=0
+AUDIT qwen/qwen3.6-27b initial=6 clean=2 still_dirty=4 untouched=0
+AUDIT z-ai/glm-5-turbo initial=2 clean=0 still_dirty=0 untouched=2
+AUDIT openai/gpt-5.3-codex initial=3 clean=0 still_dirty=0 untouched=3
+AUDIT openai/gpt-5.5 initial=8 clean=0 still_dirty=0 untouched=8
+AUDIT anthropic/claude-fable-5 initial=13 clean=0 still_dirty=0 untouched=13
+AUDIT z-ai/glm-5.1 initial=4 clean=0 still_dirty=0 untouched=4
+AUDIT qwen/qwen3.5-27b initial=2 clean=0 still_dirty=0 untouched=2
+AUDIT qwen/qwen3.6-35b-a3b initial=1 clean=0 still_dirty=0 untouched=1
+AUDIT qwen/qwen3.5-122b-a10b initial=20 clean=0 still_dirty=0 untouched=20
+AUDIT z-ai/glm-5 initial=4 clean=0 still_dirty=0 untouched=4
+=== ROUND 1 remaining=65 Sun Jun 14 23:20:10 PDT 2026 ===
+=== REPAIR round=1 model=qwen/qwen3.7-plus ids=L8-003 L10-061 AGI-032 AGI-066 AGI-071 AGI-073 AGI-078 AGI-080 Sun Jun 14 23:20:10 PDT 2026 ===
+./scripts/repair-top20-no-openai-pro-dirty.sh: line 130: stream_args[@]: unbound variable

@@ -1,0 +1,74 @@
++ set -euo pipefail
++++ dirname /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/scripts/run-moonshot-kimi-overnight.sh
+++ cd /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/scripts/..
+++ pwd
++ ROOT_DIR=/Users/bradleymiles/Documents/tradebench-questions-and-evaluation
++ cd /Users/bradleymiles/Documents/tradebench-questions-and-evaluation
++ DOTENV_CONFIG_PATH=/Users/bradleymiles/Documents/tradebench-lite-tests/.env
++ OUTPUT_SUBDIR=community/300
++ LOG_DIR=/Users/bradleymiles/Documents/tradebench-questions-and-evaluation/logs
++ mkdir -p /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/logs
+++ date -u +%Y-%m-%dT%H-%M-%SZ
++ RUN_STAMP=2026-06-10T05-40-22Z
++ LOG_FILE=/Users/bradleymiles/Documents/tradebench-questions-and-evaluation/logs/moonshot-kimi-nohup-debug-2026-06-10T05-40-22Z.log
++ [[ 0 == \1 ]]
++ MODEL_IDS=moonshotai/kimi-k2-thinking,moonshotai/kimi-k2.6,moonshotai/kimi-k2.5,moonshotai/kimi-k2-0905
++ SMOKE_TEMP=0.1
++ SMOKE_MAX_TOKENS=2200
++ SMOKE_CONCURRENCY=1
++ CALL_SPACING_MS=3000
++ RETRY_ATTEMPTS=2
++ RETRY_BASE_DELAY_MS=700
++ OPENROUTER_TIMEOUT_MS=180000
++ OPENROUTER_SDK_RETRIES=0
++ MIN_CREDITS_START=999
++ MIN_CREDITS_BEFORE_LEVEL=999
++ CREDIT_POLL_SECONDS=300
++ ROSTER_FILE=/tmp/tradebench-moonshot-kimi-family.json
++ cat
+++ timestamp
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ echo '[2026-06-10T05:40:22Z] Moonshot Kimi overnight queue starting'
+[2026-06-10T05:40:22Z] Moonshot Kimi overnight queue starting
+++ timestamp
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ echo '[2026-06-10T05:40:22Z] root=/Users/bradleymiles/Documents/tradebench-questions-and-evaluation'
+[2026-06-10T05:40:22Z] root=/Users/bradleymiles/Documents/tradebench-questions-and-evaluation
+++ timestamp
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ echo '[2026-06-10T05:40:22Z] log=/Users/bradleymiles/Documents/tradebench-questions-and-evaluation/logs/moonshot-kimi-nohup-debug-2026-06-10T05-40-22Z.log'
+[2026-06-10T05:40:22Z] log=/Users/bradleymiles/Documents/tradebench-questions-and-evaluation/logs/moonshot-kimi-nohup-debug-2026-06-10T05-40-22Z.log
+++ timestamp
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ echo '[2026-06-10T05:40:22Z] dotenv=/Users/bradleymiles/Documents/tradebench-lite-tests/.env'
+[2026-06-10T05:40:22Z] dotenv=/Users/bradleymiles/Documents/tradebench-lite-tests/.env
+++ timestamp
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ echo '[2026-06-10T05:40:22Z] models=moonshotai/kimi-k2-thinking,moonshotai/kimi-k2.6,moonshotai/kimi-k2.5,moonshotai/kimi-k2-0905'
+[2026-06-10T05:40:22Z] models=moonshotai/kimi-k2-thinking,moonshotai/kimi-k2.6,moonshotai/kimi-k2.5,moonshotai/kimi-k2-0905
+++ timestamp
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ echo '[2026-06-10T05:40:22Z] options temp=0.1 maxTokens=2200 concurrency=1 spacingMs=3000 retries=2 timeoutMs=180000'
+[2026-06-10T05:40:22Z] options temp=0.1 maxTokens=2200 concurrency=1 spacingMs=3000 retries=2 timeoutMs=180000
++ wait_for_credits 999 'overnight queue start'
++ local minimum=999
++ local 'context=overnight queue start'
++ true
++ local current
+++ remaining_credits
+++ DOTENV_CONFIG_PATH=/Users/bradleymiles/Documents/tradebench-lite-tests/.env
+++ node -r dotenv/config -
++ current=-4.202
+++ timestamp
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ echo '[2026-06-10T05:40:22Z] credits=-4.202; need>=999 for overnight queue start'
+[2026-06-10T05:40:22Z] credits=-4.202; need>=999 for overnight queue start
++ credits_ge -4.202 999
++ local current=-4.202
++ local minimum=999
++ node -e 'process.exit(Number(process.argv[1]) >= Number(process.argv[2]) ? 0 : 1)' -- -4.202 999
+++ timestamp
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ echo '[2026-06-10T05:40:22Z] waiting 300s for OpenRouter top-up before overnight queue start'
+[2026-06-10T05:40:22Z] waiting 300s for OpenRouter top-up before overnight queue start
++ sleep 300

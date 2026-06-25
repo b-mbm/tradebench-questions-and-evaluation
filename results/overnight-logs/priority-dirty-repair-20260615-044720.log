@@ -1,0 +1,693 @@
+=== PRIORITY DIRTY REPAIR START Mon Jun 15 04:47:20 PDT 2026 ===
+checkpoint=results/repair-checkpoints/top20-no-openai-pro-dirty-repair.jsonl dirty_json=results/official/300/tradebench-all-current-n1-dirty-rows-2026-06-15.json label=priority-dirty-repair retries=2 max_tokens=8000 concurrency=2 reasoning=none/exclude
+=== PLAN ===
+qwen/qwen3.5-9b	2 rows
+qwen/qwen3.5-35b-a3b	61 rows
+qwen/qwen3.5-397b-a17b	58 rows
+qwen/qwen3.5-flash-02-23	138 rows
+minimax/minimax-m3	73 rows
+deepseek/deepseek-v4-pro	7 rows
+minimax/minimax-m2.1	2 rows
+openai/gpt-5.2-codex	2 rows
+inception/mercury-2	78 rows
+prime-intellect/intellect-3	59 rows
+inclusionai/ring-2.6-1t	79 rows
+TOTAL	559 rows
+=== MODEL START model=qwen/qwen3.5-9b rows=2 Mon Jun 15 04:47:20 PDT 2026 ===
+Models: qwen/qwen3.5-9b
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - qwen/qwen3.5-9b: 2 dirty
+(node:40642) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] pass qwen/qwen3.5-9b L8-003 attempts=1
+[2/2] clean-fail qwen/qwen3.5-9b L10-008 attempts=1
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T11-47-39-409Z.json
+qwen/qwen3.5-9b: clean=2 dirty=0 pass=1/300
+=== MODEL END model=qwen/qwen3.5-9b rc=0 Mon Jun 15 04:47:39 PDT 2026 ===
+=== MODEL START model=qwen/qwen3.5-35b-a3b rows=61 Mon Jun 15 04:47:59 PDT 2026 ===
+Models: qwen/qwen3.5-35b-a3b
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 61; selected: 61
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - qwen/qwen3.5-35b-a3b: 61 dirty
+(node:40939) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/61] clean-fail qwen/qwen3.5-35b-a3b L8-002 attempts=1
+[2/61] clean-fail qwen/qwen3.5-35b-a3b L4-004 attempts=1
+[3/61] clean-fail qwen/qwen3.5-35b-a3b L8-007 attempts=1
+[4/61] pass qwen/qwen3.5-35b-a3b L8-009 attempts=1
+[5/61] clean-fail qwen/qwen3.5-35b-a3b L9-002 attempts=1
+[6/61] clean-fail qwen/qwen3.5-35b-a3b L9-003 attempts=1
+[7/61] clean-fail qwen/qwen3.5-35b-a3b L9-018 attempts=1
+[8/61] clean-fail qwen/qwen3.5-35b-a3b L9-022 attempts=1
+[9/61] clean-fail qwen/qwen3.5-35b-a3b L9-004 attempts=1
+[10/61] clean-fail qwen/qwen3.5-35b-a3b L9-031 attempts=1
+[11/61] clean-fail qwen/qwen3.5-35b-a3b L9-033 attempts=1
+[12/61] clean-fail qwen/qwen3.5-35b-a3b L9-030 attempts=1
+[13/61] clean-fail qwen/qwen3.5-35b-a3b L9-037 attempts=1
+[14/61] clean-fail qwen/qwen3.5-35b-a3b L9-040 attempts=1
+[15/61] pass qwen/qwen3.5-35b-a3b L9-052 attempts=1
+[16/61] pass qwen/qwen3.5-35b-a3b L9-034 attempts=1
+[17/61] clean-fail qwen/qwen3.5-35b-a3b L9-059 attempts=1
+[18/61] clean-fail qwen/qwen3.5-35b-a3b L9-073 attempts=1
+[19/61] clean-fail qwen/qwen3.5-35b-a3b L10-002 attempts=1
+[20/61] clean-fail qwen/qwen3.5-35b-a3b L9-075 attempts=1
+[21/61] clean-fail qwen/qwen3.5-35b-a3b L10-003 attempts=1
+[22/61] clean-fail qwen/qwen3.5-35b-a3b L10-010 attempts=1
+[23/61] clean-fail qwen/qwen3.5-35b-a3b L10-011 attempts=1
+[24/61] clean-fail qwen/qwen3.5-35b-a3b L10-013 attempts=1
+[25/61] clean-fail qwen/qwen3.5-35b-a3b L10-017 attempts=1
+[26/61] clean-fail qwen/qwen3.5-35b-a3b L10-019 attempts=1
+[27/61] clean-fail qwen/qwen3.5-35b-a3b L10-020 attempts=1
+[28/61] pass qwen/qwen3.5-35b-a3b L10-024 attempts=1
+[29/61] clean-fail qwen/qwen3.5-35b-a3b L10-028 attempts=1
+[30/61] clean-fail qwen/qwen3.5-35b-a3b L10-025 attempts=1
+[31/61] clean-fail qwen/qwen3.5-35b-a3b L10-029 attempts=1
+[32/61] clean-fail qwen/qwen3.5-35b-a3b L10-030 attempts=1
+[33/61] pass qwen/qwen3.5-35b-a3b L10-031 attempts=1
+[34/61] clean-fail qwen/qwen3.5-35b-a3b L10-033 attempts=1
+[35/61] pass qwen/qwen3.5-35b-a3b L10-037 attempts=1
+[36/61] pass qwen/qwen3.5-35b-a3b L10-039 attempts=1
+[37/61] pass qwen/qwen3.5-35b-a3b L10-032 attempts=1
+[38/61] clean-fail qwen/qwen3.5-35b-a3b L10-045 attempts=1
+[39/61] clean-fail qwen/qwen3.5-35b-a3b L10-049 attempts=1
+[40/61] clean-fail qwen/qwen3.5-35b-a3b L10-050 attempts=1
+[41/61] pass qwen/qwen3.5-35b-a3b L10-054 attempts=1
+[42/61] clean-fail qwen/qwen3.5-35b-a3b L10-055 attempts=1
+[43/61] clean-fail qwen/qwen3.5-35b-a3b L10-060 attempts=1
+[44/61] pass qwen/qwen3.5-35b-a3b L10-063 attempts=1
+[45/61] clean-fail qwen/qwen3.5-35b-a3b L10-067 attempts=1
+[46/61] clean-fail qwen/qwen3.5-35b-a3b L10-068 attempts=1
+[47/61] clean-fail qwen/qwen3.5-35b-a3b AGI-006 attempts=1
+[48/61] clean-fail qwen/qwen3.5-35b-a3b AGI-012 attempts=1
+[49/61] clean-fail qwen/qwen3.5-35b-a3b AGI-013 attempts=1
+[50/61] clean-fail qwen/qwen3.5-35b-a3b AGI-033 attempts=1
+[51/61] clean-fail qwen/qwen3.5-35b-a3b AGI-035 attempts=1
+[52/61] clean-fail qwen/qwen3.5-35b-a3b AGI-038 attempts=1
+[53/61] clean-fail qwen/qwen3.5-35b-a3b AGI-041 attempts=1
+[54/61] clean-fail qwen/qwen3.5-35b-a3b L10-041 attempts=1
+[55/61] clean-fail qwen/qwen3.5-35b-a3b AGI-054 attempts=1
+[56/61] clean-fail qwen/qwen3.5-35b-a3b AGI-070 attempts=1
+[57/61] clean-fail qwen/qwen3.5-35b-a3b AGI-076 attempts=1
+[58/61] clean-fail qwen/qwen3.5-35b-a3b AGI-071 attempts=1
+[59/61] clean-fail qwen/qwen3.5-35b-a3b AGI-077 attempts=1
+[60/61] clean-fail qwen/qwen3.5-35b-a3b AGI-083 attempts=1
+[61/61] clean-fail qwen/qwen3.5-35b-a3b AGI-109 attempts=1
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T11-50-33-995Z.json
+qwen/qwen3.5-35b-a3b: clean=61 dirty=0 pass=10/300
+=== MODEL END model=qwen/qwen3.5-35b-a3b rc=0 Mon Jun 15 04:50:34 PDT 2026 ===
+=== MODEL START model=qwen/qwen3.5-397b-a17b rows=58 Mon Jun 15 04:50:54 PDT 2026 ===
+Models: qwen/qwen3.5-397b-a17b
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 58; selected: 58
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - qwen/qwen3.5-397b-a17b: 58 dirty
+(node:42804) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/58] pass qwen/qwen3.5-397b-a17b L10-002 attempts=1
+[2/58] clean-fail qwen/qwen3.5-397b-a17b L10-024 attempts=1
+[3/58] clean-fail qwen/qwen3.5-397b-a17b L10-018 attempts=1
+[4/58] pass qwen/qwen3.5-397b-a17b L10-026 attempts=1
+[5/58] pass qwen/qwen3.5-397b-a17b L10-027 attempts=1
+[6/58] pass qwen/qwen3.5-397b-a17b L10-033 attempts=1
+[7/58] pass qwen/qwen3.5-397b-a17b L10-032 attempts=1
+[8/58] clean-fail qwen/qwen3.5-397b-a17b L10-038 attempts=1
+[9/58] pass qwen/qwen3.5-397b-a17b L10-034 attempts=1
+[10/58] pass qwen/qwen3.5-397b-a17b L10-045 attempts=1
+[11/58] pass qwen/qwen3.5-397b-a17b L10-046 attempts=1
+[12/58] pass qwen/qwen3.5-397b-a17b L10-042 attempts=1
+[13/58] pass qwen/qwen3.5-397b-a17b L10-047 attempts=1
+[14/58] pass qwen/qwen3.5-397b-a17b L10-055 attempts=1
+[15/58] clean-fail qwen/qwen3.5-397b-a17b L10-053 attempts=1
+[16/58] clean-fail qwen/qwen3.5-397b-a17b L10-061 attempts=1
+[17/58] pass qwen/qwen3.5-397b-a17b L10-059 attempts=1
+[18/58] clean-fail qwen/qwen3.5-397b-a17b AGI-001 attempts=1
+[19/58] clean-fail qwen/qwen3.5-397b-a17b L10-066 attempts=1
+[20/58] clean-fail qwen/qwen3.5-397b-a17b AGI-006 attempts=1
+[21/58] clean-fail qwen/qwen3.5-397b-a17b AGI-005 attempts=1
+[22/58] clean-fail qwen/qwen3.5-397b-a17b AGI-011 attempts=1
+[23/58] clean-fail qwen/qwen3.5-397b-a17b AGI-013 attempts=1
+[24/58] clean-fail qwen/qwen3.5-397b-a17b AGI-014 attempts=1
+[25/58] clean-fail qwen/qwen3.5-397b-a17b AGI-021 attempts=1
+[26/58] pass qwen/qwen3.5-397b-a17b AGI-015 attempts=1
+[27/58] pass qwen/qwen3.5-397b-a17b AGI-026 attempts=1
+[28/58] clean-fail qwen/qwen3.5-397b-a17b AGI-024 attempts=1
+[29/58] clean-fail qwen/qwen3.5-397b-a17b AGI-031 attempts=1
+[30/58] clean-fail qwen/qwen3.5-397b-a17b AGI-027 attempts=1
+[31/58] clean-fail qwen/qwen3.5-397b-a17b AGI-033 attempts=1
+[32/58] clean-fail qwen/qwen3.5-397b-a17b AGI-032 attempts=1
+[33/58] clean-fail qwen/qwen3.5-397b-a17b AGI-039 attempts=1
+[34/58] clean-fail qwen/qwen3.5-397b-a17b AGI-042 attempts=1
+[35/58] clean-fail qwen/qwen3.5-397b-a17b AGI-046 attempts=1
+[36/58] clean-fail qwen/qwen3.5-397b-a17b AGI-050 attempts=1
+[37/58] clean-fail qwen/qwen3.5-397b-a17b AGI-045 attempts=1
+[38/58] clean-fail qwen/qwen3.5-397b-a17b AGI-055 attempts=1
+[39/58] clean-fail qwen/qwen3.5-397b-a17b AGI-056 attempts=1
+[40/58] clean-fail qwen/qwen3.5-397b-a17b AGI-051 attempts=1
+[41/58] clean-fail qwen/qwen3.5-397b-a17b AGI-064 attempts=1
+[42/58] clean-fail qwen/qwen3.5-397b-a17b AGI-062 attempts=1
+[43/58] clean-fail qwen/qwen3.5-397b-a17b AGI-067 attempts=1
+[44/58] clean-fail qwen/qwen3.5-397b-a17b AGI-069 attempts=1
+[45/58] clean-fail qwen/qwen3.5-397b-a17b AGI-070 attempts=1
+[46/58] clean-fail qwen/qwen3.5-397b-a17b AGI-072 attempts=1
+[47/58] clean-fail qwen/qwen3.5-397b-a17b AGI-078 attempts=1
+[48/58] clean-fail qwen/qwen3.5-397b-a17b AGI-073 attempts=1
+[49/58] clean-fail qwen/qwen3.5-397b-a17b AGI-082 attempts=1
+[50/58] clean-fail qwen/qwen3.5-397b-a17b AGI-083 attempts=1
+[51/58] clean-fail qwen/qwen3.5-397b-a17b AGI-087 attempts=1
+[52/58] clean-fail qwen/qwen3.5-397b-a17b AGI-092 attempts=1
+[53/58] clean-fail qwen/qwen3.5-397b-a17b AGI-093 attempts=1
+[54/58] clean-fail qwen/qwen3.5-397b-a17b AGI-095 attempts=1
+[55/58] clean-fail qwen/qwen3.5-397b-a17b AGI-100 attempts=1
+[56/58] clean-fail qwen/qwen3.5-397b-a17b AGI-104 attempts=1
+[57/58] clean-fail qwen/qwen3.5-397b-a17b AGI-103 attempts=1
+[58/58] clean-fail qwen/qwen3.5-397b-a17b AGI-112 attempts=1
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T11-55-18-975Z.json
+qwen/qwen3.5-397b-a17b: clean=58 dirty=0 pass=14/300
+=== MODEL END model=qwen/qwen3.5-397b-a17b rc=0 Mon Jun 15 04:55:19 PDT 2026 ===
+=== MODEL START model=qwen/qwen3.5-flash-02-23 rows=138 Mon Jun 15 04:55:39 PDT 2026 ===
+Models: qwen/qwen3.5-flash-02-23
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 138; selected: 138
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - qwen/qwen3.5-flash-02-23: 138 dirty
+(node:45561) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/138] pass qwen/qwen3.5-flash-02-23 L9-036 attempts=1
+[2/138] clean-fail qwen/qwen3.5-flash-02-23 L10-003 attempts=1
+[3/138] clean-fail qwen/qwen3.5-flash-02-23 L9-054 attempts=1
+[4/138] clean-fail qwen/qwen3.5-flash-02-23 L10-004 attempts=1
+[5/138] pass qwen/qwen3.5-flash-02-23 L10-005 attempts=1
+[6/138] clean-fail qwen/qwen3.5-flash-02-23 L10-006 attempts=1
+[7/138] clean-fail qwen/qwen3.5-flash-02-23 L10-007 attempts=1
+[8/138] clean-fail qwen/qwen3.5-flash-02-23 L10-010 attempts=1
+[9/138] pass qwen/qwen3.5-flash-02-23 L10-008 attempts=1
+[10/138] clean-fail qwen/qwen3.5-flash-02-23 L10-011 attempts=1
+[11/138] clean-fail qwen/qwen3.5-flash-02-23 L10-013 attempts=1
+[12/138] clean-fail qwen/qwen3.5-flash-02-23 L10-014 attempts=1
+[13/138] clean-fail qwen/qwen3.5-flash-02-23 L10-015 attempts=1
+[14/138] clean-fail qwen/qwen3.5-flash-02-23 L10-017 attempts=1
+[15/138] clean-fail qwen/qwen3.5-flash-02-23 L10-016 attempts=1
+[16/138] clean-fail qwen/qwen3.5-flash-02-23 L10-018 attempts=1
+[17/138] pass qwen/qwen3.5-flash-02-23 L10-020 attempts=1
+[18/138] clean-fail qwen/qwen3.5-flash-02-23 L10-021 attempts=1
+[19/138] clean-fail qwen/qwen3.5-flash-02-23 L10-022 attempts=1
+[20/138] clean-fail qwen/qwen3.5-flash-02-23 L10-023 attempts=1
+[21/138] pass qwen/qwen3.5-flash-02-23 L10-024 attempts=1
+[22/138] clean-fail qwen/qwen3.5-flash-02-23 L10-025 attempts=1
+[23/138] pass qwen/qwen3.5-flash-02-23 L10-026 attempts=1
+[24/138] clean-fail qwen/qwen3.5-flash-02-23 L10-027 attempts=1
+[25/138] clean-fail qwen/qwen3.5-flash-02-23 L10-029 attempts=1
+[26/138] pass qwen/qwen3.5-flash-02-23 L10-032 attempts=1
+[27/138] pass qwen/qwen3.5-flash-02-23 L10-037 attempts=1
+[28/138] pass qwen/qwen3.5-flash-02-23 L10-040 attempts=1
+[29/138] clean-fail qwen/qwen3.5-flash-02-23 L10-041 attempts=1
+[30/138] clean-fail qwen/qwen3.5-flash-02-23 L10-042 attempts=1
+[31/138] clean-fail qwen/qwen3.5-flash-02-23 L10-046 attempts=1
+[32/138] pass qwen/qwen3.5-flash-02-23 L10-047 attempts=1
+[33/138] clean-fail qwen/qwen3.5-flash-02-23 L10-049 attempts=1
+[34/138] clean-fail qwen/qwen3.5-flash-02-23 L10-050 attempts=1
+[35/138] clean-fail qwen/qwen3.5-flash-02-23 L10-019 attempts=1
+[36/138] clean-fail qwen/qwen3.5-flash-02-23 L10-052 attempts=1
+[37/138] clean-fail qwen/qwen3.5-flash-02-23 L10-051 attempts=1
+[38/138] clean-fail qwen/qwen3.5-flash-02-23 L10-054 attempts=1
+[39/138] clean-fail qwen/qwen3.5-flash-02-23 L10-056 attempts=1
+[40/138] clean-fail qwen/qwen3.5-flash-02-23 L10-055 attempts=1
+[41/138] pass qwen/qwen3.5-flash-02-23 L10-059 attempts=1
+[42/138] clean-fail qwen/qwen3.5-flash-02-23 L10-058 attempts=1
+[43/138] pass qwen/qwen3.5-flash-02-23 L10-063 attempts=1
+[44/138] clean-fail qwen/qwen3.5-flash-02-23 L10-065 attempts=1
+[45/138] clean-fail qwen/qwen3.5-flash-02-23 L10-066 attempts=1
+[46/138] clean-fail qwen/qwen3.5-flash-02-23 L10-068 attempts=1
+[47/138] pass qwen/qwen3.5-flash-02-23 L10-069 attempts=1
+[48/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-003 attempts=1
+[49/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-004 attempts=1
+[50/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-006 attempts=1
+[51/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-007 attempts=1
+[52/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-008 attempts=1
+[53/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-010 attempts=1
+[54/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-011 attempts=1
+[55/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-013 attempts=1
+[56/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-015 attempts=1
+[57/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-021 attempts=1
+[58/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-024 attempts=1
+[59/138] clean-fail qwen/qwen3.5-flash-02-23 L10-067 attempts=1
+[60/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-030 attempts=1
+[61/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-031 attempts=1
+[62/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-032 attempts=1
+[63/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-029 attempts=1
+[64/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-035 attempts=1
+[65/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-036 attempts=1
+[66/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-038 attempts=1
+[67/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-034 attempts=1
+[68/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-046 attempts=1
+[69/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-047 attempts=1
+[70/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-048 attempts=1
+[71/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-049 attempts=1
+[72/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-050 attempts=1
+[73/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-051 attempts=1
+[74/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-052 attempts=1
+[75/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-053 attempts=1
+[76/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-054 attempts=1
+[77/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-055 attempts=1
+[78/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-056 attempts=1
+[79/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-057 attempts=1
+[80/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-058 attempts=1
+[81/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-059 attempts=1
+[82/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-060 attempts=1
+[83/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-041 attempts=1
+[84/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-061 attempts=1
+[85/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-062 attempts=1
+[86/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-063 attempts=1
+[87/138] pass qwen/qwen3.5-flash-02-23 AGI-064 attempts=1
+[88/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-065 attempts=1
+[89/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-067 attempts=1
+[90/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-066 attempts=1
+[91/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-068 attempts=1
+[92/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-069 attempts=1
+[93/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-071 attempts=1
+[94/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-070 attempts=1
+[95/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-072 attempts=1
+[96/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-074 attempts=1
+[97/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-075 attempts=1
+[98/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-076 attempts=1
+[99/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-077 attempts=1
+[100/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-078 attempts=1
+[101/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-079 attempts=1
+[102/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-080 attempts=1
+[103/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-081 attempts=1
+[104/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-082 attempts=1
+[105/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-073 attempts=1
+[106/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-083 attempts=1
+[107/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-084 attempts=1
+[108/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-086 attempts=1
+[109/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-087 attempts=1
+[110/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-085 attempts=1
+[111/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-089 attempts=1
+[112/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-088 attempts=1
+[113/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-091 attempts=1
+[114/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-090 attempts=1
+[115/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-092 attempts=1
+[116/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-093 attempts=1
+[117/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-094 attempts=1
+[118/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-095 attempts=1
+[119/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-096 attempts=1
+[120/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-098 attempts=1
+[121/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-097 attempts=1
+[122/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-100 attempts=1
+[123/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-101 attempts=1
+[124/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-099 attempts=1
+[125/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-102 attempts=1
+[126/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-103 attempts=1
+[127/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-104 attempts=1
+[128/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-105 attempts=1
+[129/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-106 attempts=1
+[130/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-107 attempts=1
+[131/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-109 attempts=1
+[132/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-110 attempts=1
+[133/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-111 attempts=1
+[134/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-112 attempts=1
+[135/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-113 attempts=1
+[136/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-114 attempts=1
+[137/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-115 attempts=1
+[138/138] clean-fail qwen/qwen3.5-flash-02-23 AGI-108 attempts=1
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T12-01-22-961Z.json
+qwen/qwen3.5-flash-02-23: clean=138 dirty=0 pass=14/300
+=== MODEL END model=qwen/qwen3.5-flash-02-23 rc=0 Mon Jun 15 05:01:22 PDT 2026 ===
+=== MODEL START model=minimax/minimax-m3 rows=73 Mon Jun 15 05:01:43 PDT 2026 ===
+Models: minimax/minimax-m3
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 73; selected: 73
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - minimax/minimax-m3: 73 dirty
+(node:48623) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/73] pass minimax/minimax-m3 L8-003 attempts=1
+[2/73] clean-fail minimax/minimax-m3 L10-001 attempts=1
+[3/73] pass minimax/minimax-m3 L8-001 attempts=1
+[4/73] clean-fail minimax/minimax-m3 L10-006 attempts=1
+[5/73] clean-fail minimax/minimax-m3 L10-018 attempts=1
+[6/73] clean-fail minimax/minimax-m3 L10-008 attempts=2
+[7/73] pass minimax/minimax-m3 L10-027 attempts=1
+[8/73] clean-fail minimax/minimax-m3 L10-031 attempts=1
+[9/73] pass minimax/minimax-m3 L10-023 attempts=1
+[10/73] pass minimax/minimax-m3 L10-032 attempts=1
+[11/73] clean-fail minimax/minimax-m3 L10-043 attempts=1
+[12/73] clean-fail minimax/minimax-m3 L10-051 attempts=1
+[13/73] pass minimax/minimax-m3 L10-049 attempts=1
+[14/73] clean-fail minimax/minimax-m3 L10-056 attempts=1
+[15/73] pass minimax/minimax-m3 L10-060 attempts=1
+[16/73] clean-fail minimax/minimax-m3 L10-061 attempts=1
+[17/73] clean-fail minimax/minimax-m3 L10-064 attempts=1
+[18/73] clean-fail minimax/minimax-m3 L10-069 attempts=1
+[19/73] clean-fail minimax/minimax-m3 AGI-002 attempts=1
+[20/73] clean-fail minimax/minimax-m3 AGI-001 attempts=1
+[21/73] clean-fail minimax/minimax-m3 AGI-003 attempts=2
+[22/73] clean-fail minimax/minimax-m3 AGI-004 attempts=1
+[23/73] clean-fail minimax/minimax-m3 AGI-005 attempts=1
+[24/73] clean-fail minimax/minimax-m3 AGI-011 attempts=1
+[25/73] clean-fail minimax/minimax-m3 AGI-012 attempts=1
+[26/73] clean-fail minimax/minimax-m3 AGI-014 attempts=1
+[27/73] clean-fail minimax/minimax-m3 AGI-009 attempts=1
+[28/73] clean-fail minimax/minimax-m3 AGI-021 attempts=1
+[29/73] clean-fail minimax/minimax-m3 AGI-015 attempts=1
+[30/73] clean-fail minimax/minimax-m3 AGI-023 attempts=1
+[31/73] clean-fail minimax/minimax-m3 AGI-028 attempts=1
+[32/73] clean-fail minimax/minimax-m3 AGI-027 attempts=1
+[33/73] clean-fail minimax/minimax-m3 AGI-029 attempts=1
+[34/73] clean-fail minimax/minimax-m3 AGI-031 attempts=1
+[35/73] clean-fail minimax/minimax-m3 AGI-039 attempts=1
+[36/73] clean-fail minimax/minimax-m3 AGI-040 attempts=1
+[37/73] clean-fail minimax/minimax-m3 AGI-041 attempts=1
+[38/73] pass minimax/minimax-m3 AGI-064 attempts=1
+[39/73] pass minimax/minimax-m3 AGI-063 attempts=1
+[40/73] clean-fail minimax/minimax-m3 AGI-065 attempts=1
+[41/73] clean-fail minimax/minimax-m3 AGI-066 attempts=2
+[42/73] clean-fail minimax/minimax-m3 AGI-068 attempts=1
+[43/73] clean-fail minimax/minimax-m3 AGI-069 attempts=1
+[44/73] clean-fail minimax/minimax-m3 AGI-067 attempts=1
+[45/73] clean-fail minimax/minimax-m3 AGI-071 attempts=1
+[46/73] clean-fail minimax/minimax-m3 AGI-070 attempts=1
+[47/73] clean-fail minimax/minimax-m3 AGI-072 attempts=1
+[48/73] clean-fail minimax/minimax-m3 AGI-074 attempts=1
+[49/73] clean-fail minimax/minimax-m3 AGI-076 attempts=1
+[50/73] clean-fail minimax/minimax-m3 AGI-077 attempts=1
+[51/73] clean-fail minimax/minimax-m3 AGI-078 attempts=1
+[52/73] clean-fail minimax/minimax-m3 AGI-079 attempts=1
+[53/73] clean-fail minimax/minimax-m3 AGI-073 attempts=1
+[54/73] clean-fail minimax/minimax-m3 AGI-080 attempts=1
+[55/73] clean-fail minimax/minimax-m3 AGI-081 attempts=1
+[56/73] clean-fail minimax/minimax-m3 AGI-083 attempts=1
+[57/73] clean-fail minimax/minimax-m3 AGI-082 attempts=1
+[58/73] clean-fail minimax/minimax-m3 AGI-084 attempts=1
+[59/73] clean-fail minimax/minimax-m3 AGI-085 attempts=1
+[60/73] clean-fail minimax/minimax-m3 AGI-090 attempts=1
+[61/73] clean-fail minimax/minimax-m3 AGI-089 attempts=1
+[62/73] clean-fail minimax/minimax-m3 AGI-093 attempts=1
+[63/73] clean-fail minimax/minimax-m3 AGI-094 attempts=1
+[64/73] clean-fail minimax/minimax-m3 AGI-091 attempts=1
+[65/73] clean-fail minimax/minimax-m3 AGI-101 attempts=1
+[66/73] clean-fail minimax/minimax-m3 AGI-099 attempts=1
+[67/73] clean-fail minimax/minimax-m3 AGI-103 attempts=1
+[68/73] clean-fail minimax/minimax-m3 AGI-102 attempts=1
+[69/73] clean-fail minimax/minimax-m3 AGI-112 attempts=1
+[70/73] clean-fail minimax/minimax-m3 AGI-108 attempts=1
+[71/73] clean-fail minimax/minimax-m3 AGI-114 attempts=1
+[72/73] clean-fail minimax/minimax-m3 AGI-115 attempts=1
+=== MODEL END model=minimax/minimax-m3 rc=143 Mon Jun 15 05:20:13 PDT 2026 ===
+=== MODEL START model=deepseek/deepseek-v4-pro rows=7 Mon Jun 15 05:20:33 PDT 2026 ===
+Models: deepseek/deepseek-v4-pro
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 7; selected: 7
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - deepseek/deepseek-v4-pro: 7 dirty
+(node:54311) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/7] clean-fail deepseek/deepseek-v4-pro AGI-009 attempts=1
+[2/7] clean-fail deepseek/deepseek-v4-pro AGI-040 attempts=1
+[3/7] clean-fail deepseek/deepseek-v4-pro AGI-003 attempts=1
+[4/7] clean-fail deepseek/deepseek-v4-pro AGI-089 attempts=1
+[5/7] clean-fail deepseek/deepseek-v4-pro AGI-093 attempts=1
+[6/7] clean-fail deepseek/deepseek-v4-pro AGI-101 attempts=1
+[7/7] clean-fail deepseek/deepseek-v4-pro AGI-072 attempts=2
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T12-23-24-387Z.json
+deepseek/deepseek-v4-pro: clean=7 dirty=0 pass=0/300
+=== MODEL END model=deepseek/deepseek-v4-pro rc=0 Mon Jun 15 05:23:24 PDT 2026 ===
+=== MODEL START model=minimax/minimax-m2.1 rows=2 Mon Jun 15 05:23:44 PDT 2026 ===
+Models: minimax/minimax-m2.1
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - minimax/minimax-m2.1: 2 dirty
+(node:55140) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] dirty minimax/minimax-m2.1 AGI-073 attempts=1 types=empty_raw+explicit_error+error
+[2/2] dirty minimax/minimax-m2.1 AGI-080 attempts=1 types=empty_raw+explicit_error+error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T12-23-45-159Z.json
+minimax/minimax-m2.1: clean=0 dirty=2 pass=0/300
+=== MODEL END model=minimax/minimax-m2.1 rc=0 Mon Jun 15 05:23:45 PDT 2026 ===
+=== MODEL START model=openai/gpt-5.2-codex rows=2 Mon Jun 15 05:24:05 PDT 2026 ===
+Models: openai/gpt-5.2-codex
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 2; selected: 2
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - openai/gpt-5.2-codex: 2 dirty
+(node:55263) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/2] dirty openai/gpt-5.2-codex L10-061 attempts=1 types=empty_raw+explicit_error+error
+[2/2] dirty openai/gpt-5.2-codex L8-003 attempts=1 types=empty_raw+explicit_error+error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T12-24-05-777Z.json
+openai/gpt-5.2-codex: clean=0 dirty=2 pass=0/300
+=== MODEL END model=openai/gpt-5.2-codex rc=0 Mon Jun 15 05:24:05 PDT 2026 ===
+=== MODEL START model=inception/mercury-2 rows=78 Mon Jun 15 05:24:25 PDT 2026 ===
+Models: inception/mercury-2
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 78; selected: 78
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - inception/mercury-2: 78 dirty
+(node:55384) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/78] pass inception/mercury-2 L8-007 attempts=1
+[2/78] pass inception/mercury-2 L8-009 attempts=1
+[3/78] clean-fail inception/mercury-2 L9-027 attempts=1
+[4/78] clean-fail inception/mercury-2 L9-030 attempts=1
+[5/78] clean-fail inception/mercury-2 L9-071 attempts=1
+[6/78] clean-fail inception/mercury-2 L9-078 attempts=1
+[7/78] pass inception/mercury-2 L8-003 attempts=2
+[8/78] clean-fail inception/mercury-2 L9-081 attempts=1
+[9/78] clean-fail inception/mercury-2 L10-003 attempts=1
+[10/78] clean-fail inception/mercury-2 L10-001 attempts=1
+[11/78] dirty inception/mercury-2 L10-008 attempts=3 types=empty_raw+truncated_response+transport_error
+[12/78] clean-fail inception/mercury-2 L10-013 attempts=1
+[13/78] dirty inception/mercury-2 L10-010 attempts=3 types=empty_raw+truncated_response+transport_error
+[14/78] dirty inception/mercury-2 L10-018 attempts=3 types=empty_raw+truncated_response+transport_error
+[15/78] clean-fail inception/mercury-2 L10-015 attempts=3
+[16/78] clean-fail inception/mercury-2 L10-023 attempts=1
+[17/78] clean-fail inception/mercury-2 L10-028 attempts=1
+[18/78] dirty inception/mercury-2 L10-019 attempts=3 types=empty_raw+truncated_response+transport_error
+[19/78] clean-fail inception/mercury-2 L10-031 attempts=1
+[20/78] clean-fail inception/mercury-2 L10-032 attempts=1
+[21/78] clean-fail inception/mercury-2 L10-033 attempts=1
+[22/78] clean-fail inception/mercury-2 L10-034 attempts=1
+[23/78] clean-fail inception/mercury-2 L10-030 attempts=3
+[24/78] pass inception/mercury-2 L10-046 attempts=1
+[25/78] clean-fail inception/mercury-2 L10-035 attempts=2
+[26/78] clean-fail inception/mercury-2 L10-049 attempts=2
+[27/78] clean-fail inception/mercury-2 L10-051 attempts=1
+[28/78] clean-fail inception/mercury-2 L10-050 attempts=2
+[29/78] clean-fail inception/mercury-2 L10-055 attempts=3
+[30/78] clean-fail inception/mercury-2 L10-057 attempts=1
+[31/78] dirty inception/mercury-2 L10-056 attempts=3 types=empty_raw+truncated_response+transport_error
+[32/78] clean-fail inception/mercury-2 L10-060 attempts=1
+[33/78] clean-fail inception/mercury-2 L10-061 attempts=2
+[34/78] clean-fail inception/mercury-2 L10-062 attempts=1
+[35/78] dirty inception/mercury-2 L10-058 attempts=3 types=empty_raw+truncated_response+transport_error
+[36/78] clean-fail inception/mercury-2 L10-064 attempts=1
+[37/78] pass inception/mercury-2 L10-063 attempts=3
+[38/78] clean-fail inception/mercury-2 L10-066 attempts=1
+[39/78] clean-fail inception/mercury-2 AGI-001 attempts=1
+[40/78] clean-fail inception/mercury-2 L10-065 attempts=3
+[41/78] clean-fail inception/mercury-2 AGI-008 attempts=1
+[42/78] clean-fail inception/mercury-2 AGI-011 attempts=2
+[43/78] clean-fail inception/mercury-2 AGI-012 attempts=1
+[44/78] clean-fail inception/mercury-2 AGI-013 attempts=2
+[45/78] clean-fail inception/mercury-2 AGI-003 attempts=3
+[46/78] clean-fail inception/mercury-2 AGI-014 attempts=2
+[47/78] clean-fail inception/mercury-2 AGI-040 attempts=2
+[48/78] clean-fail inception/mercury-2 AGI-041 attempts=1
+[49/78] clean-fail inception/mercury-2 AGI-015 attempts=3
+[50/78] clean-fail inception/mercury-2 AGI-049 attempts=2
+[51/78] clean-fail inception/mercury-2 AGI-053 attempts=1
+[52/78] clean-fail inception/mercury-2 AGI-047 attempts=3
+[53/78] clean-fail inception/mercury-2 AGI-065 attempts=2
+[54/78] clean-fail inception/mercury-2 AGI-066 attempts=1
+[55/78] clean-fail inception/mercury-2 AGI-064 attempts=3
+[56/78] clean-fail inception/mercury-2 AGI-067 attempts=2
+[57/78] clean-fail inception/mercury-2 AGI-069 attempts=1
+[58/78] dirty inception/mercury-2 AGI-068 attempts=3 types=empty_raw+truncated_response+transport_error
+[59/78] clean-fail inception/mercury-2 AGI-071 attempts=1
+[60/78] clean-fail inception/mercury-2 AGI-072 attempts=1
+[61/78] clean-fail inception/mercury-2 AGI-076 attempts=1
+[62/78] clean-fail inception/mercury-2 AGI-078 attempts=1
+[63/78] dirty inception/mercury-2 AGI-070 attempts=3 types=empty_raw+truncated_response+transport_error
+[64/78] clean-fail inception/mercury-2 AGI-080 attempts=1
+[65/78] clean-fail inception/mercury-2 AGI-081 attempts=2
+[66/78] clean-fail inception/mercury-2 AGI-082 attempts=1
+[67/78] dirty inception/mercury-2 AGI-079 attempts=3 types=empty_raw+truncated_response+transport_error
+[68/78] clean-fail inception/mercury-2 AGI-083 attempts=2
+[69/78] clean-fail inception/mercury-2 AGI-085 attempts=1
+[70/78] clean-fail inception/mercury-2 AGI-101 attempts=1
+[71/78] clean-fail inception/mercury-2 AGI-102 attempts=2
+[72/78] clean-fail inception/mercury-2 AGI-103 attempts=2
+[73/78] clean-fail inception/mercury-2 AGI-084 attempts=3
+[74/78] clean-fail inception/mercury-2 AGI-108 attempts=1
+[75/78] clean-fail inception/mercury-2 AGI-113 attempts=2
+[76/78] dirty inception/mercury-2 AGI-105 attempts=3 types=empty_raw+truncated_response+transport_error
+[77/78] clean-fail inception/mercury-2 AGI-115 attempts=1
+[78/78] dirty inception/mercury-2 AGI-114 attempts=3 types=empty_raw+truncated_response+transport_error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T12-26-37-916Z.json
+inception/mercury-2: clean=67 dirty=11 pass=5/300
+=== MODEL END model=inception/mercury-2 rc=0 Mon Jun 15 05:26:37 PDT 2026 ===
+=== MODEL START model=prime-intellect/intellect-3 rows=59 Mon Jun 15 05:26:57 PDT 2026 ===
+Models: prime-intellect/intellect-3
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 59; selected: 59
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - prime-intellect/intellect-3: 59 dirty
+(node:56940) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/59] dirty prime-intellect/intellect-3 L7-003 attempts=1 types=empty_raw+explicit_error+error
+[2/59] dirty prime-intellect/intellect-3 L5-002 attempts=1 types=empty_raw+explicit_error+error
+[3/59] dirty prime-intellect/intellect-3 L8-001 attempts=1 types=empty_raw+explicit_error+error
+[4/59] dirty prime-intellect/intellect-3 L8-003 attempts=1 types=empty_raw+explicit_error+error
+[5/59] dirty prime-intellect/intellect-3 L8-005 attempts=1 types=empty_raw+explicit_error+error
+[6/59] dirty prime-intellect/intellect-3 L10-001 attempts=1 types=empty_raw+explicit_error+error
+[7/59] dirty prime-intellect/intellect-3 L10-006 attempts=1 types=empty_raw+explicit_error+error
+[8/59] dirty prime-intellect/intellect-3 L10-007 attempts=1 types=empty_raw+explicit_error+error
+[9/59] dirty prime-intellect/intellect-3 L10-018 attempts=1 types=empty_raw+explicit_error+error
+[10/59] dirty prime-intellect/intellect-3 L10-008 attempts=1 types=empty_raw+explicit_error+error
+[11/59] dirty prime-intellect/intellect-3 L10-022 attempts=1 types=empty_raw+explicit_error+error
+[12/59] dirty prime-intellect/intellect-3 L10-019 attempts=1 types=empty_raw+explicit_error+error
+[13/59] dirty prime-intellect/intellect-3 L10-030 attempts=1 types=empty_raw+explicit_error+error
+[14/59] dirty prime-intellect/intellect-3 L10-023 attempts=1 types=empty_raw+explicit_error+error
+[15/59] dirty prime-intellect/intellect-3 L10-032 attempts=1 types=empty_raw+explicit_error+error
+[16/59] dirty prime-intellect/intellect-3 L10-031 attempts=1 types=empty_raw+explicit_error+error
+[17/59] dirty prime-intellect/intellect-3 L10-033 attempts=1 types=empty_raw+explicit_error+error
+[18/59] dirty prime-intellect/intellect-3 L10-043 attempts=1 types=empty_raw+explicit_error+error
+[19/59] dirty prime-intellect/intellect-3 L10-044 attempts=1 types=empty_raw+explicit_error+error
+[20/59] dirty prime-intellect/intellect-3 L10-051 attempts=1 types=empty_raw+explicit_error+error
+[21/59] dirty prime-intellect/intellect-3 L10-057 attempts=1 types=empty_raw+explicit_error+error
+[22/59] dirty prime-intellect/intellect-3 L10-056 attempts=1 types=empty_raw+explicit_error+error
+[23/59] dirty prime-intellect/intellect-3 L10-058 attempts=1 types=empty_raw+explicit_error+error
+[24/59] dirty prime-intellect/intellect-3 L10-061 attempts=1 types=empty_raw+explicit_error+error
+[25/59] dirty prime-intellect/intellect-3 L10-069 attempts=1 types=empty_raw+explicit_error+error
+[26/59] dirty prime-intellect/intellect-3 L10-068 attempts=1 types=empty_raw+explicit_error+error
+[27/59] dirty prime-intellect/intellect-3 AGI-002 attempts=1 types=empty_raw+explicit_error+error
+[28/59] dirty prime-intellect/intellect-3 AGI-001 attempts=1 types=empty_raw+explicit_error+error
+[29/59] dirty prime-intellect/intellect-3 AGI-011 attempts=1 types=empty_raw+explicit_error+error
+[30/59] dirty prime-intellect/intellect-3 AGI-014 attempts=1 types=empty_raw+explicit_error+error
+[31/59] dirty prime-intellect/intellect-3 AGI-015 attempts=1 types=empty_raw+explicit_error+error
+[32/59] dirty prime-intellect/intellect-3 AGI-021 attempts=1 types=empty_raw+explicit_error+error
+[33/59] dirty prime-intellect/intellect-3 AGI-022 attempts=1 types=empty_raw+explicit_error+error
+[34/59] dirty prime-intellect/intellect-3 AGI-023 attempts=1 types=empty_raw+explicit_error+error
+[35/59] dirty prime-intellect/intellect-3 AGI-031 attempts=1 types=empty_raw+explicit_error+error
+[36/59] dirty prime-intellect/intellect-3 AGI-039 attempts=1 types=empty_raw+explicit_error+error
+[37/59] dirty prime-intellect/intellect-3 AGI-040 attempts=1 types=empty_raw+explicit_error+error
+[38/59] dirty prime-intellect/intellect-3 AGI-065 attempts=1 types=empty_raw+explicit_error+error
+[39/59] dirty prime-intellect/intellect-3 AGI-064 attempts=1 types=empty_raw+explicit_error+error
+[40/59] dirty prime-intellect/intellect-3 AGI-066 attempts=1 types=empty_raw+explicit_error+error
+[41/59] dirty prime-intellect/intellect-3 AGI-067 attempts=1 types=empty_raw+explicit_error+error
+[42/59] dirty prime-intellect/intellect-3 AGI-068 attempts=1 types=empty_raw+explicit_error+error
+[43/59] dirty prime-intellect/intellect-3 AGI-069 attempts=1 types=empty_raw+explicit_error+error
+[44/59] dirty prime-intellect/intellect-3 AGI-071 attempts=1 types=empty_raw+explicit_error+error
+[45/59] dirty prime-intellect/intellect-3 AGI-073 attempts=1 types=empty_raw+explicit_error+error
+[46/59] dirty prime-intellect/intellect-3 AGI-078 attempts=1 types=empty_raw+explicit_error+error
+[47/59] dirty prime-intellect/intellect-3 AGI-080 attempts=1 types=empty_raw+explicit_error+error
+[48/59] dirty prime-intellect/intellect-3 AGI-079 attempts=1 types=empty_raw+explicit_error+error
+[49/59] dirty prime-intellect/intellect-3 AGI-081 attempts=1 types=empty_raw+explicit_error+error
+[50/59] dirty prime-intellect/intellect-3 AGI-083 attempts=1 types=empty_raw+explicit_error+error
+[51/59] dirty prime-intellect/intellect-3 AGI-091 attempts=1 types=empty_raw+explicit_error+error
+[52/59] dirty prime-intellect/intellect-3 AGI-093 attempts=1 types=empty_raw+explicit_error+error
+[53/59] dirty prime-intellect/intellect-3 AGI-099 attempts=1 types=empty_raw+explicit_error+error
+[54/59] dirty prime-intellect/intellect-3 AGI-101 attempts=1 types=empty_raw+explicit_error+error
+[55/59] dirty prime-intellect/intellect-3 AGI-102 attempts=1 types=empty_raw+explicit_error+error
+[56/59] dirty prime-intellect/intellect-3 AGI-103 attempts=1 types=empty_raw+explicit_error+error
+[57/59] dirty prime-intellect/intellect-3 AGI-113 attempts=1 types=empty_raw+explicit_error+error
+[58/59] dirty prime-intellect/intellect-3 AGI-114 attempts=1 types=empty_raw+explicit_error+error
+[59/59] dirty prime-intellect/intellect-3 AGI-115 attempts=1 types=empty_raw+explicit_error+error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T12-27-00-844Z.json
+prime-intellect/intellect-3: clean=0 dirty=59 pass=0/300
+=== MODEL END model=prime-intellect/intellect-3 rc=0 Mon Jun 15 05:27:00 PDT 2026 ===
+=== MODEL START model=inclusionai/ring-2.6-1t rows=79 Mon Jun 15 05:27:21 PDT 2026 ===
+Models: inclusionai/ring-2.6-1t
+Source rows: 0; checkpoint rows: 0
+Dirty tasks: 79; selected: 79
+Options: stream=true responseFormat=true timeoutMs=600000 maxTokens=8000 retries=2 concurrency=2 reasoningEffort=none reasoningMaxTokens=(default) reasoningExclude=true disableThinking=false
+ - inclusionai/ring-2.6-1t: 79 dirty
+(node:57100) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1/79] dirty inclusionai/ring-2.6-1t L8-003 attempts=1 types=empty_raw+explicit_error+error
+[2/79] dirty inclusionai/ring-2.6-1t L8-001 attempts=1 types=empty_raw+explicit_error+error
+[3/79] dirty inclusionai/ring-2.6-1t L8-009 attempts=1 types=empty_raw+explicit_error+error
+[4/79] dirty inclusionai/ring-2.6-1t L9-037 attempts=1 types=empty_raw+explicit_error+error
+[5/79] dirty inclusionai/ring-2.6-1t L9-073 attempts=1 types=empty_raw+explicit_error+error
+[6/79] dirty inclusionai/ring-2.6-1t L9-051 attempts=1 types=empty_raw+explicit_error+error
+[7/79] dirty inclusionai/ring-2.6-1t L9-079 attempts=1 types=empty_raw+explicit_error+error
+[8/79] dirty inclusionai/ring-2.6-1t L10-001 attempts=1 types=empty_raw+explicit_error+error
+[9/79] dirty inclusionai/ring-2.6-1t L10-006 attempts=1 types=empty_raw+explicit_error+error
+[10/79] dirty inclusionai/ring-2.6-1t L10-007 attempts=1 types=empty_raw+explicit_error+error
+[11/79] dirty inclusionai/ring-2.6-1t L10-008 attempts=1 types=empty_raw+explicit_error+error
+[12/79] dirty inclusionai/ring-2.6-1t L10-013 attempts=1 types=empty_raw+explicit_error+error
+[13/79] dirty inclusionai/ring-2.6-1t L10-015 attempts=1 types=empty_raw+explicit_error+error
+[14/79] dirty inclusionai/ring-2.6-1t L10-018 attempts=1 types=empty_raw+explicit_error+error
+[15/79] dirty inclusionai/ring-2.6-1t L10-019 attempts=1 types=empty_raw+explicit_error+error
+[16/79] dirty inclusionai/ring-2.6-1t L10-023 attempts=1 types=empty_raw+explicit_error+error
+[17/79] dirty inclusionai/ring-2.6-1t L10-027 attempts=1 types=empty_raw+explicit_error+error
+[18/79] dirty inclusionai/ring-2.6-1t L10-030 attempts=1 types=empty_raw+explicit_error+error
+[19/79] dirty inclusionai/ring-2.6-1t L10-031 attempts=1 types=empty_raw+explicit_error+error
+[20/79] dirty inclusionai/ring-2.6-1t L10-032 attempts=1 types=empty_raw+explicit_error+error
+[21/79] dirty inclusionai/ring-2.6-1t L10-022 attempts=1 types=empty_raw+explicit_error+error
+[22/79] dirty inclusionai/ring-2.6-1t L10-044 attempts=1 types=empty_raw+explicit_error+error
+[23/79] dirty inclusionai/ring-2.6-1t L10-050 attempts=1 types=empty_raw+explicit_error+error
+[24/79] dirty inclusionai/ring-2.6-1t L10-051 attempts=1 types=empty_raw+explicit_error+error
+[25/79] dirty inclusionai/ring-2.6-1t L10-061 attempts=1 types=empty_raw+explicit_error+error
+[26/79] dirty inclusionai/ring-2.6-1t L10-064 attempts=1 types=empty_raw+explicit_error+error
+[27/79] dirty inclusionai/ring-2.6-1t L10-068 attempts=1 types=empty_raw+explicit_error+error
+[28/79] dirty inclusionai/ring-2.6-1t L10-069 attempts=1 types=empty_raw+explicit_error+error
+[29/79] dirty inclusionai/ring-2.6-1t AGI-001 attempts=1 types=empty_raw+explicit_error+error
+[30/79] dirty inclusionai/ring-2.6-1t AGI-002 attempts=1 types=empty_raw+explicit_error+error
+[31/79] dirty inclusionai/ring-2.6-1t AGI-004 attempts=1 types=empty_raw+explicit_error+error
+[32/79] dirty inclusionai/ring-2.6-1t AGI-005 attempts=1 types=empty_raw+explicit_error+error
+[33/79] dirty inclusionai/ring-2.6-1t AGI-008 attempts=1 types=empty_raw+explicit_error+error
+[34/79] dirty inclusionai/ring-2.6-1t AGI-011 attempts=1 types=empty_raw+explicit_error+error
+[35/79] dirty inclusionai/ring-2.6-1t AGI-012 attempts=1 types=empty_raw+explicit_error+error
+[36/79] dirty inclusionai/ring-2.6-1t AGI-014 attempts=1 types=empty_raw+explicit_error+error
+[37/79] dirty inclusionai/ring-2.6-1t AGI-015 attempts=1 types=empty_raw+explicit_error+error
+[38/79] dirty inclusionai/ring-2.6-1t AGI-027 attempts=1 types=empty_raw+explicit_error+error
+[39/79] dirty inclusionai/ring-2.6-1t AGI-028 attempts=1 types=empty_raw+explicit_error+error
+[40/79] dirty inclusionai/ring-2.6-1t AGI-029 attempts=1 types=empty_raw+explicit_error+error
+[41/79] dirty inclusionai/ring-2.6-1t AGI-003 attempts=1 types=empty_raw+explicit_error+error
+[42/79] dirty inclusionai/ring-2.6-1t AGI-032 attempts=1 types=empty_raw+explicit_error+error
+[43/79] dirty inclusionai/ring-2.6-1t AGI-035 attempts=1 types=empty_raw+explicit_error+error
+[44/79] dirty inclusionai/ring-2.6-1t AGI-039 attempts=1 types=empty_raw+explicit_error+error
+[45/79] dirty inclusionai/ring-2.6-1t AGI-040 attempts=1 types=empty_raw+explicit_error+error
+[46/79] dirty inclusionai/ring-2.6-1t AGI-041 attempts=1 types=empty_raw+explicit_error+error
+[47/79] dirty inclusionai/ring-2.6-1t AGI-050 attempts=1 types=empty_raw+explicit_error+error
+[48/79] dirty inclusionai/ring-2.6-1t AGI-063 attempts=1 types=empty_raw+explicit_error+error
+[49/79] dirty inclusionai/ring-2.6-1t AGI-065 attempts=1 types=empty_raw+explicit_error+error
+[50/79] dirty inclusionai/ring-2.6-1t AGI-064 attempts=1 types=empty_raw+explicit_error+error
+[51/79] dirty inclusionai/ring-2.6-1t AGI-066 attempts=1 types=empty_raw+explicit_error+error
+[52/79] dirty inclusionai/ring-2.6-1t AGI-067 attempts=1 types=empty_raw+explicit_error+error
+[53/79] dirty inclusionai/ring-2.6-1t AGI-069 attempts=1 types=empty_raw+explicit_error+error
+[54/79] dirty inclusionai/ring-2.6-1t AGI-068 attempts=1 types=empty_raw+explicit_error+error
+[55/79] dirty inclusionai/ring-2.6-1t AGI-070 attempts=1 types=empty_raw+explicit_error+error
+[56/79] dirty inclusionai/ring-2.6-1t AGI-071 attempts=1 types=empty_raw+explicit_error+error
+[57/79] dirty inclusionai/ring-2.6-1t AGI-072 attempts=1 types=empty_raw+explicit_error+error
+[58/79] dirty inclusionai/ring-2.6-1t AGI-073 attempts=1 types=empty_raw+explicit_error+error
+[59/79] dirty inclusionai/ring-2.6-1t AGI-078 attempts=1 types=empty_raw+explicit_error+error
+[60/79] dirty inclusionai/ring-2.6-1t AGI-079 attempts=1 types=empty_raw+explicit_error+error
+[61/79] dirty inclusionai/ring-2.6-1t AGI-080 attempts=1 types=empty_raw+explicit_error+error
+[62/79] dirty inclusionai/ring-2.6-1t AGI-081 attempts=1 types=empty_raw+explicit_error+error
+[63/79] dirty inclusionai/ring-2.6-1t AGI-083 attempts=1 types=empty_raw+explicit_error+error
+[64/79] dirty inclusionai/ring-2.6-1t AGI-084 attempts=1 types=empty_raw+explicit_error+error
+[65/79] dirty inclusionai/ring-2.6-1t AGI-089 attempts=1 types=empty_raw+explicit_error+error
+[66/79] dirty inclusionai/ring-2.6-1t AGI-085 attempts=1 types=empty_raw+explicit_error+error
+[67/79] dirty inclusionai/ring-2.6-1t AGI-090 attempts=1 types=empty_raw+explicit_error+error
+[68/79] dirty inclusionai/ring-2.6-1t AGI-091 attempts=1 types=empty_raw+explicit_error+error
+[69/79] dirty inclusionai/ring-2.6-1t AGI-093 attempts=1 types=empty_raw+explicit_error+error
+[70/79] dirty inclusionai/ring-2.6-1t AGI-094 attempts=1 types=empty_raw+explicit_error+error
+[71/79] dirty inclusionai/ring-2.6-1t AGI-099 attempts=1 types=empty_raw+explicit_error+error
+[72/79] dirty inclusionai/ring-2.6-1t AGI-101 attempts=1 types=empty_raw+explicit_error+error
+[73/79] dirty inclusionai/ring-2.6-1t AGI-102 attempts=1 types=empty_raw+explicit_error+error
+[74/79] dirty inclusionai/ring-2.6-1t AGI-108 attempts=1 types=empty_raw+explicit_error+error
+[75/79] dirty inclusionai/ring-2.6-1t AGI-103 attempts=1 types=empty_raw+explicit_error+error
+[76/79] dirty inclusionai/ring-2.6-1t AGI-112 attempts=1 types=empty_raw+explicit_error+error
+[77/79] dirty inclusionai/ring-2.6-1t AGI-113 attempts=1 types=empty_raw+explicit_error+error
+[78/79] dirty inclusionai/ring-2.6-1t AGI-114 attempts=1 types=empty_raw+explicit_error+error
+[79/79] dirty inclusionai/ring-2.6-1t AGI-115 attempts=1 types=empty_raw+explicit_error+error
+Aggregate written: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/community/300/priority-dirty-repair-2026-06-15T12-27-25-721Z.json
+inclusionai/ring-2.6-1t: clean=0 dirty=79 pass=0/300
+=== MODEL END model=inclusionai/ring-2.6-1t rc=0 Mon Jun 15 05:27:25 PDT 2026 ===
+=== PRIORITY DIRTY REPAIR DONE Mon Jun 15 05:27:45 PDT 2026 ===

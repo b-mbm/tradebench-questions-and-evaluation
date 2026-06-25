@@ -1,0 +1,111 @@
+++ date
++ echo '=== REPAIR TO N2 START Wed Jun 10 09:05:54 PDT 2026 ==='
+=== REPAIR TO N2 START Wed Jun 10 09:05:54 PDT 2026 ===
++ for level in 1 2 3 4 5 6 7 8 9 10 11
++ repair_level n1 1 results/parallel-level1-working
++ local tag=n1
++ local level=1
++ local dir=results/parallel-level1-working
++ local round=1
++ '[' 1 -le 2 ']'
++ local failed
+++ count_failed results/parallel-level1-working
+++ local dir=results/parallel-level1-working
+++ node - models.tradebench-sweep-paid-active.yaml results/parallel-level1-working
++ failed=0
+++ date
++ echo '=== CHECK n1 L1 round=1 failed=0 Wed Jun 10 09:05:54 PDT 2026 ==='
+=== CHECK n1 L1 round=1 failed=0 Wed Jun 10 09:05:54 PDT 2026 ===
++ '[' 0 = 0 ']'
++ audit_level n1 1 results/parallel-level1-working
++ local tag=n1
++ local level=1
++ local dir=results/parallel-level1-working
++ node - models.tradebench-sweep-paid-active.yaml n1 1 results/parallel-level1-working
+AUDIT n1 L1 dir=results/parallel-level1-working
+AUDIT n1 L1 generations latest=153 ok=153 failed=0
+AUDIT n1 L1 scores latest=153 ok=153 failed=0
+AUDIT n1 L1 generation failures by model []
+++ date
++ echo '=== DONE n1 L1 clean Wed Jun 10 09:05:54 PDT 2026 ==='
+=== DONE n1 L1 clean Wed Jun 10 09:05:54 PDT 2026 ===
++ return 0
++ for level in 1 2 3 4 5 6 7 8 9 10 11
++ repair_level n1 2 results/parallel-level2-working
++ local tag=n1
++ local level=2
++ local dir=results/parallel-level2-working
++ local round=1
++ '[' 1 -le 2 ']'
++ local failed
+++ count_failed results/parallel-level2-working
+++ local dir=results/parallel-level2-working
+++ node - models.tradebench-sweep-paid-active.yaml results/parallel-level2-working
++ failed=0
+++ date
++ echo '=== CHECK n1 L2 round=1 failed=0 Wed Jun 10 09:05:54 PDT 2026 ==='
+=== CHECK n1 L2 round=1 failed=0 Wed Jun 10 09:05:54 PDT 2026 ===
++ '[' 0 = 0 ']'
++ audit_level n1 2 results/parallel-level2-working
++ local tag=n1
++ local level=2
++ local dir=results/parallel-level2-working
++ node - models.tradebench-sweep-paid-active.yaml n1 2 results/parallel-level2-working
+AUDIT n1 L2 dir=results/parallel-level2-working
+AUDIT n1 L2 generations latest=204 ok=204 failed=0
+AUDIT n1 L2 scores latest=204 ok=204 failed=0
+AUDIT n1 L2 generation failures by model []
+++ date
++ echo '=== DONE n1 L2 clean Wed Jun 10 09:05:54 PDT 2026 ==='
+=== DONE n1 L2 clean Wed Jun 10 09:05:54 PDT 2026 ===
++ return 0
++ for level in 1 2 3 4 5 6 7 8 9 10 11
++ repair_level n1 3 results/parallel-level3-working
++ local tag=n1
++ local level=3
++ local dir=results/parallel-level3-working
++ local round=1
++ '[' 1 -le 2 ']'
++ local failed
+++ count_failed results/parallel-level3-working
+++ local dir=results/parallel-level3-working
+++ node - models.tradebench-sweep-paid-active.yaml results/parallel-level3-working
++ failed=1
+++ date
++ echo '=== CHECK n1 L3 round=1 failed=1 Wed Jun 10 09:05:54 PDT 2026 ==='
+=== CHECK n1 L3 round=1 failed=1 Wed Jun 10 09:05:54 PDT 2026 ===
++ '[' 1 = 0 ']'
+++ date
++ echo '=== START n1 L3 repair round=1 Wed Jun 10 09:05:54 PDT 2026 ==='
+=== START n1 L3 repair round=1 Wed Jun 10 09:05:54 PDT 2026 ===
++ npx tsx scripts/parallel-runner.ts --models-file models.tradebench-sweep-paid-active.yaml --levels 3 --results-dir results/parallel-level3-working --concurrency 6 --max-retries 2 --generate --score --retry-failed --transport-failure-abort-threshold 25
+(node:65048) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Models: 51
+Questions: 3
+Results dir: /Users/bradleymiles/Documents/tradebench-questions-and-evaluation/results/parallel-level3-working
+Concurrency: 6
+Phases: generate, score
+parallel-runner failed: Error: OPENROUTER_API_KEY is required for generation.
+    at runGeneration (/Users/bradleymiles/Documents/tradebench-questions-and-evaluation/scripts/parallel-runner.ts:601:11)
+    at main (/Users/bradleymiles/Documents/tradebench-questions-and-evaluation/scripts/parallel-runner.ts:865:11)
++ local status=1
+++ date
++ echo '=== EXIT n1 L3 repair round=1 status=1 Wed Jun 10 09:05:55 PDT 2026 ==='
+=== EXIT n1 L3 repair round=1 status=1 Wed Jun 10 09:05:55 PDT 2026 ===
++ audit_level n1 3 results/parallel-level3-working
++ local tag=n1
++ local level=3
++ local dir=results/parallel-level3-working
++ node - models.tradebench-sweep-paid-active.yaml n1 3 results/parallel-level3-working
+AUDIT n1 L3 dir=results/parallel-level3-working
+AUDIT n1 L3 generations latest=153 ok=152 failed=1
+AUDIT n1 L3 scores latest=153 ok=152 failed=1
+AUDIT n1 L3 generation failures by model [["arcee-ai/trinity-mini",1]]
++ '[' 1 -ne 0 ']'
++ tail -160 results/overnight-logs/repair-debug.log
++ grep -qi 'transport failures'
+++ date
++ echo '=== TRANSPORT STORM n1 L3; cooling down 300s Wed Jun 10 09:05:55 PDT 2026 ==='
+=== TRANSPORT STORM n1 L3; cooling down 300s Wed Jun 10 09:05:55 PDT 2026 ===
++ sleep 300
