@@ -34,7 +34,9 @@ OUT_DIR      = os.environ.get("OUT_DIR", "/workspace/runpod-run")
 MODELS       = [m.strip() for m in os.environ.get("MODELS", "local-qwen36-27b-base,local-qwen36-27b-sft").split(",") if m.strip()]
 IDS          = set(x.strip() for x in os.environ.get("IDS", "").split(",") if x.strip())
 LEVELS       = set(int(x) for x in os.environ.get("LEVELS", "").replace(" ", "").split(",") if x.strip())
-BUDGETS      = [int(x) for x in os.environ.get("BUDGET_LADDER", "16000,24000,32000").split(",")]
+# Go LARGE by default: max_tokens is a CEILING, not a spend — short answers stop early and
+# cost nothing extra, so a big cap only prevents truncation re-runs (the real money waste).
+BUDGETS      = [int(x) for x in os.environ.get("BUDGET_LADDER", "26000,31000").split(",")]
 MAX_MODEL_LEN= int(os.environ.get("MAX_MODEL_LEN", "32768"))
 CONCURRENCY  = int(os.environ.get("CONCURRENCY", "8"))
 BASE_URL     = os.environ.get("BASE_URL", "http://localhost:8000/v1").rstrip("/")
@@ -94,13 +96,19 @@ def call_once(model, p, max_tokens):
     with urllib.request.urlopen(req, timeout=1800) as resp:
         data = json.load(resp)
     ch = data["choices"][0]
+    msg = ch.get("message", {}) or {}
     usage = data.get("usage", {}) or {}
+    details = usage.get("completion_tokens_details", {}) or {}
     return {
-        "raw": ch.get("message", {}).get("content", "") or "",
+        # with --reasoning-parser, content is the clean JSON answer and reasoning_content is the thinking
+        "raw": msg.get("content", "") or "",
+        "reasoning": msg.get("reasoning_content") or msg.get("reasoning") or None,
         "finish_reason": ch.get("finish_reason"),
         "prompt_tokens": usage.get("prompt_tokens"),
         "completion_tokens": usage.get("completion_tokens"),
+        "reasoning_tokens": details.get("reasoning_tokens"),
         "total_tokens": usage.get("total_tokens"),
+        "provider": data.get("provider") or "local-vllm",
         "durationMs": int((time.time() - t0) * 1000),
     }
 
@@ -142,12 +150,13 @@ def generate(model, p):
 def classify(res):
     if res is None:
         return {"status": "error", "raw": "", "finish_reason": "ERROR", "error": "no result"}
-    if res.get("finish_reason") == "ERROR":
+    fr = res.get("finish_reason")
+    if fr == "ERROR":
         res["status"] = "error"
+    elif fr == "length":           # truncation takes precedence (empty content + length == truncated, not blank)
+        res["status"] = "truncated"
     elif not (res.get("raw") or "").strip():
         res["status"] = "blank"
-    elif res.get("finish_reason") == "length":
-        res["status"] = "truncated"
     else:
         res["status"] = "ok"
     return res
@@ -160,10 +169,13 @@ def run_task(t):
         "phase": "generation", "model": model, "questionId": qid,
         "level": p.get("level"), "rubric_id": p.get("rubric_id"),
         "status": res.get("status"), "raw": res.get("raw", ""),
+        "reasoning": res.get("reasoning"),
         "finish_reason": res.get("finish_reason"),
         "prompt_tokens": res.get("prompt_tokens"),
         "completion_tokens": res.get("completion_tokens"),
+        "reasoning_tokens": res.get("reasoning_tokens"),
         "total_tokens": res.get("total_tokens"),
+        "provider": res.get("provider"),
         "budget_used": res.get("budget_used"), "attempts": res.get("attempts"),
         "durationMs": res.get("durationMs"), "error": res.get("error"),
     }

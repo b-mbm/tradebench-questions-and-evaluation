@@ -26,12 +26,17 @@ serve() {
   ln -sf "$WS/vllm/bin/ninja" /usr/local/bin/ninja
   rm -f "$SERVE_LOG"
   cd "$WS"
+  # REASONING_PARSER: separates <think> from the answer so message.content is clean JSON
+  # (kills the parse/missing_field failures). Set REASONING_PARSER="" to disable if the
+  # installed vLLM lacks the qwen3 parser. Verify the exact parser name for the pod's vLLM.
+  local rp_arg=""
+  [ -n "${REASONING_PARSER:-qwen3}" ] && rp_arg="--reasoning-parser ${REASONING_PARSER:-qwen3}"
   setsid "$WS/vllm/bin/vllm" serve "$MODEL_DIR" \
     --served-model-name local-qwen36-27b-base \
     --enable-lora --lora-modules "local-qwen36-27b-sft=$ADAPTER" \
     --max-lora-rank 32 --max-num-seqs "$MAX_NUM_SEQS" --dtype bfloat16 \
     --max-model-len "$mml" --gpu-memory-utilization "$GPU_UTIL" \
-    --enforce-eager --port 8000 --trust-remote-code \
+    $rp_arg --enforce-eager --port 8000 --trust-remote-code \
     > "$SERVE_LOG" 2>&1 < /dev/null &
   disown
 }
