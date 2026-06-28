@@ -66,7 +66,7 @@ wait_ready() {
     fi
     last_bytes="$bytes"; last_rss="$rss"
     echo "[serve $i] ready=0 bytes=$bytes rss_kb=$rss stalls=$stalls"
-    if [ "$stalls" -ge 6 ]; then echo "SERVE STALLED (no progress ~3min)"; return 3; fi
+    if [ "$stalls" -ge 24 ]; then echo "SERVE STALLED (no progress ~12min)"; return 3; fi
     sleep 30
   done
   echo "SERVE TIMEOUT"; return 1
