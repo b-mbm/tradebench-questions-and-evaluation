@@ -79,16 +79,20 @@ total = len(MODELS) * len(question_ids)
 lock = threading.Lock()
 done_count = [len(done_ok)]
 
+REQUIRE_PARAMS = os.environ.get("REQUIRE_PARAMETERS", "1") == "1"
+
 def call_once(model, p, max_tokens):
-    body = json.dumps({
+    payload = {
         "model": model,
         "messages": [{"role": "system", "content": p["system"]},
                      {"role": "user", "content": p["user"]}],
         "temperature": TEMPERATURE,
         "max_tokens": max_tokens,
         "response_format": {"type": "json_object"},          # loose on OpenRouter -> compact JSON
-        "provider": {"require_parameters": True},            # deterministic: only backends honoring the above
-    }).encode()
+    }
+    if REQUIRE_PARAMS:
+        payload["provider"] = {"require_parameters": True}   # deterministic: only backends honoring the above
+    body = json.dumps(payload).encode()
     req = urllib.request.Request(URL, body, {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {API_KEY}",
