@@ -1,0 +1,81 @@
+=== TradeBench 300Q mutation gate (real-passing-response canonicals) ===
+baseline source: results/community/300/run300-base-thinkon-2026-06-29/graded-base_on.json
+rows: 300
+covered (real passing response available): 161/300
+uncovered (no passing baseline — coverage caveat): 139
+canonical re-grade passes: 161/161
+
+MUTATION-ROBUST rows (no true leaks): 130/300
+rows with TRUE leaks (weighted field, grader didn't detect): 31
+rows with threshold leaks (detected but 0.7 threshold too lenient to flip): 20
+
+detection stats (WEIGHTED fields only):
+  weighted mutations run: 731
+  DETECTED (score dropped): 617/731 (84%)
+  FLIPPED to fail: 553/731 (76%)
+  TRUE leaks (weighted + not detected): 114/731 (16%)
+
+per-tier robust / covered / total:
+  L1: 3/3 robust/covered  (3 total)
+  L2: 1/3 robust/covered  (4 total)
+  L3: 0/0 robust/covered  (3 total)
+  L4: 1/2 robust/covered  (5 total)
+  L5: 2/2 robust/covered  (5 total)
+  L6: 2/3 robust/covered  (5 total)
+  L7: 0/2 robust/covered  (5 total)
+  L8: 4/9 robust/covered  (10 total)
+  L9: 63/63 robust/covered  (81 total)
+  L10: 54/54 robust/covered  (69 total)
+  AGI: 0/20 robust/covered  (110 total)
+
+TRUE LEAK types (weighted field, grader failed to detect): {
+  "missing_field": 68,
+  "wrong_label": 20,
+  "wrong_number": 26
+}
+
+=== HIDDEN-ORACLE PROBE (synonym-renamed chosen_strategy) ===
+rows with a chosen_strategy string label (among covered): 20
+  synonym mutant REJECTED (exact-match oracle CONFIRMED): 1
+  synonym mutant ACCEPTED (grader tolerates naming): 19
+  => 1/20 label fields are brittle to renaming
+
+first 30 rows with TRUE leaks:
+  L2-002 [L2] canonical=true trueLeaks=missing_field:venue
+  L2-003 [L2] canonical=true trueLeaks=missing_field:venue
+  L4-004 [L4] canonical=true trueLeaks=missing_field:venue
+  L6-005 [L6] canonical=true trueLeaks=missing_field:duration
+  L7-004 [L7] canonical=true trueLeaks=wrong_label:intent
+  L7-005 [L7] canonical=true trueLeaks=wrong_number:uniswap_slippage_cost,wrong_number:uniswap_gas_cost,wrong_number:uniswap_mev_cost,wrong_number:uniswap_total_cost…
+  L8-003 [L8] canonical=true trueLeaks=wrong_number:portfolio_volatility,wrong_number:target_btc_usd,wrong_number:target_eth_usd,wrong_number:target_bonds_usd…
+  L8-005 [L8] canonical=true trueLeaks=missing_field:reasoning
+  L8-006 [L8] canonical=true trueLeaks=missing_field:reasoning
+  L8-008 [L8] canonical=true trueLeaks=missing_field:strategy,missing_field:fee_summary,missing_field:constraints_met
+  L8-010 [L8] canonical=true trueLeaks=wrong_label:intent,missing_field:intent,missing_field:order_type
+  AGI-004 [AGI] canonical=true trueLeaks=missing_field:intent
+  AGI-015 [AGI] canonical=true trueLeaks=wrong_number:venue_allocation_usd.Binance,missing_field:intent,missing_field:venue_allocation_usd.Binance
+  AGI-025 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-030 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy
+  AGI-032 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-057 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-058 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-059 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-063 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-064 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-065 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-074 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-075 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-076 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-077 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-082 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-083 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-084 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+  AGI-088 [AGI] canonical=true trueLeaks=wrong_label:chosen_strategy,missing_field:intent,missing_field:chosen_strategy,missing_field:self_check
+
+GATE: FAIL
+  canonical re-grade failures (sanity): 0
+  rows with TRUE leaks (weighted field not detected): 31
+  rows with threshold leaks (caveat, not gated): 20
+  uncovered rows (coverage caveat): 139
+
+wrote results/mutation-test-300q/summary.json + row-results.json

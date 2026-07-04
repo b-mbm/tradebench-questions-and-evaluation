@@ -60,7 +60,12 @@ function getPath(obj: Json, path: string): Json {
   return path.split('.').reduce((c: Json, k) => (c == null ? undefined : c[k]), obj);
 }
 function grade(answer: Json, q: Json, rubric: Json): boolean {
-  const raw = JSON.stringify({ ...answer, reasoning: 'mutation harness probe' });
+  // Preserve the canonical's real reasoning — do NOT overwrite with a placeholder.
+  // For some questions (L4-002, L8-009) `reasoning` is a load-bearing scored field
+  // (L4-002 requires the word "correlation" in reasoning for a fatal intent gate;
+  // L8-009's reasoning is a 0.55-weight structured object with 8 numeric sub-fields).
+  // Overwriting it destroys the canonical and produces false canonical failures.
+  const raw = JSON.stringify({ ...answer, reasoning: answer.reasoning ?? 'mutation harness probe' });
   return gradeSchemaResponse(raw, q, rubric).pass;
 }
 
@@ -141,7 +146,7 @@ for (const q of SCHEMA_QUESTIONS_300Q as Json[]) {
     continue;
   }
 
-  const baseResult = gradeSchemaResponse(JSON.stringify({ ...canonical, reasoning: 'mutation harness probe' }), q, rubric);
+  const baseResult = gradeSchemaResponse(JSON.stringify({ ...canonical, reasoning: canonical.reasoning ?? 'mutation harness probe' }), q, rubric);
   const canonicalPass = baseResult.pass;
   const baseScore = baseResult.score;
   const mutations: MutationOutcome[] = [];
@@ -149,7 +154,7 @@ for (const q of SCHEMA_QUESTIONS_300Q as Json[]) {
   const thresholdLeaks: string[] = [];
 
   const runMutation = (label: string, field: string, mut: Json) => {
-    const r = gradeSchemaResponse(JSON.stringify({ ...mut, reasoning: 'mutation harness probe' }), q, rubric);
+    const r = gradeSchemaResponse(JSON.stringify({ ...mut, reasoning: mut.reasoning ?? 'mutation harness probe' }), q, rubric);
     const detected = r.score < baseScore - 0.001;
     const flipped = !r.pass && canonicalPass;
     const weighted = fieldIsWeighted(field, rubric);
