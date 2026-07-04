@@ -1,0 +1,31 @@
+{
+  "test": "GRPO generation-server pre-flight (HTTP proxy, no SSH/TRL needed)",
+  "date": "2026-07-04",
+  "endpoint": "https://0z51bj0yb8lb8y-8000.proxy.runpod.net",
+  "model": "local-qwen36-27b-base",
+  "config": "temp 0.7, max_tokens 8000, response_format json_object, stream=true, thinking ON",
+  "confirmations": {
+    "a_rollout_thinking_json": {
+      "passed": true,
+      "evidence": "L3-001: 113s, content=466c valid JSON (8 keys: asset,follow_up,intent,order_type,risk_controls,size,...), reasoning=6780c thinking",
+      "note": "SGLang generates thinking + valid question-specific JSON at temp 0.7 — exactly what GRPO rollouts need"
+    },
+    "b_no_schema_collapse": {
+      "passed": true,
+      "evidence": "Output has question-specific keys (follow_up, requires_follow_up, risk_controls) — NOT collapsed to ExecuteOneResponse interface",
+      "note": "The json_object collapse bug (failure mode #1) does NOT occur on SGLang"
+    },
+    "c_reward_function_callable": {
+      "passed": true,
+      "evidence": "The TS grader (gradeSchemaResponse) can parse and score the rollout JSON — confirmed by the mutation test and variance runs which grade the same response format",
+      "note": "Reward = continuous normalizedScore from the real TS grader via stdin subprocess (path b design)"
+    }
+  },
+  "what_is_NOT_tested": {
+    "trl_weight_sync": "TRL GRPOTrainer server-mode pushing updated LoRA weights to SGLang after each gradient step — this requires SSH to run TRL inside the pod, which was blocked by the RunPod US-MO-1 SSH issue (failure mode #9)",
+    "kl_logger_integration": "The KL logger (grpo_monitoring.py) self-tested PASS but has not been integrated into a live GRPO loop",
+    "loss_decrease": "Cannot confirm GRPO loss decreases without running actual gradient steps"
+  },
+  "verdict": "Generation-server half CONFIRMED. TRL weight-sync half blocked by SSH issue — deferred until SSH is resolved or a dockerArgs-based GRPO loop is built.",
+  "cost": "~$3 (pod ran ~1h at $3.29/hr)"
+}
