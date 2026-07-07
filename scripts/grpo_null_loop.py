@@ -210,56 +210,62 @@ def compute_kl_from_reference(model_logprobs, ref_logprobs):
 
 # ─── Checkpoint eval ──────────────────────────────────────────────────────
 def eval_checkpoint(args, gate_ids, step, merged_model_path=None):
-    """Eval current model on gate set. If merged_model_path given, SGLang serves it
-    (after weight sync). Otherwise SGLang serves base (for step-0 baseline).
+    """Eval current model on gate set via the PROVEN run-sglang-concurrent.py runner.
+
+    Uses the runner for generation (matching baseline parity exactly: separate
+    system+user messages, streaming, json_object, budget ladder, retries).
+    Then grades via the TSX grader subprocess.
+
+    If merged_model_path given, SGLang has been weight-synced (post-training).
+    Otherwise SGLang serves base (for step-0 baseline).
     """
+    import subprocess
     out_subdir = os.path.join(args.output_dir, f"eval-step-{step}")
     os.makedirs(out_subdir, exist_ok=True)
 
-    # Load prompts for gate questions
-    prompts_path = os.path.join(args.repo_root, "prompts-300q.json")
-    with open(prompts_path) as f:
-        data = json.load(f)
-    rows = data if isinstance(data, list) else data.get("rows", data.get("questions", []))
-    gate_set = set(gate_ids)
-    gate_prompts = {}
-    for r in rows:
-        qid = str(r.get("id") or r.get("questionId"))
-        if qid in gate_set:
-            system = r.get("system", "")
-            user = r.get("user", r.get("prompt", ""))
-            # Combine into a single prompt text for the runner
-            prompt_text = system + "\n\n" + user if system else user
-            gate_prompts[qid] = prompt_text
+    runner = os.path.join(args.repo_root, "scripts", "run-sglang-concurrent.py")
+    env = os.environ.copy()
+    env["IDS"] = ",".join(gate_ids)
+    env["OUT_DIR"] = out_subdir
+    env["PROBE_ENDPOINT"] = args.sglang_url
+    env["MODELS"] = "local-qwen36-27b-base"
+    env["ENABLE_THINKING"] = "1"
+    env["CONCURRENCY"] = os.environ.get("EVAL_CONCURRENCY", "8")
+    env["BUDGET_LADDER"] = "8000,16000,24000"
+    env["TRANSPORT_RETRIES"] = "3"
+    env["TEMPERATURE"] = "0.1"
+    env["PROMPTS_FILE"] = os.path.join(args.repo_root, "prompts-300q.json")
 
-    print(f"  [eval] step {step}: evaluating {len(gate_prompts)} gate questions at temp 0.1")
-    ids = list(gate_prompts.keys())
-    prompts = [gate_prompts[i] for i in ids]
+    print(f"  [eval] step {step}: running gate eval ({len(gate_ids)} q) via proven runner")
+    proc = subprocess.run(
+        [sys.executable, runner],
+        env=env, cwd=args.repo_root,
+        capture_output=True, text=True, timeout=14400,  # 4h max
+    )
+    if proc.returncode != 0:
+        print(f"  [eval] runner FAILED: {proc.stderr[-1500:]}")
+        return {"step": step, "error": "runner_failed", "total_passes": 0, "total_questions": len(gate_ids)}
 
-    # Generate at temp 0.1 (eval temperature, matching baseline variance measurement)
+    # Parse results.jsonl from the runner output
+    results_file = os.path.join(out_subdir, "results.jsonl")
     results = []
-    batch_size = 8
-    for i in range(0, len(prompts), batch_size):
-        batch = prompts[i:i + batch_size]
-        batch_ids = ids[i:i + batch_size]
-        gen = sglang_generate(
-            args.sglang_url, batch, "local-qwen36-27b-base",
-            temperature=0.1, max_tokens=2048, enable_thinking=True,
-        )
-        for j, g in enumerate(gen):
-            results.append({"id": batch_ids[j], "response": g["content"], "finish": g["finish_reason"]})
-        if i % 40 == 0:
-            print(f"    ... {i+len(batch)}/{len(prompts)}", flush=True)
+    if os.path.exists(results_file):
+        with open(results_file) as f:
+            for line in f:
+                try:
+                    results.append(json.loads(line))
+                except json.JSONDecodeError:
+                    pass
 
-    # Grade
-    grade_batch = [{"id": r["id"], "response": r["response"]} for r in results]
-    graded = grade_rollouts(args.repo_root, grade_batch)
+    # Grade via TSX grader
+    grade_batch = [{"id": r["questionId"], "response": r.get("raw", "")} for r in results]
+    graded = grade_rollouts(args.repo_root, grade_batch) if grade_batch else []
 
     # Compute pass rate
     passes = sum(1 for g in graded if g.get("pass"))
     total = len(graded)
 
-    # Stratify (Liang's panel): holdout vs rest
+    # Stratify (Liang's 2×3 panel): holdout vs rest
     split_path = os.path.join(args.repo_root, "results/grpo-preconditions/grpo-holdout-split.json")
     holdout_ids = []
     if os.path.exists(split_path):
