@@ -99,7 +99,7 @@ echo "════════════════════════�
 echo "  STARTING GRPO TRAINING"
 echo "═══════════════════════════════════════════════════════════════"
 
-CUDA_VISIBLE_DEVICES=0 /root/train/bin/python -c "
+CUDA_VISIBLE_DEVICES=1 /root/train/bin/python -c "
 import sys, os
 sys.path.insert(0, '/workspace/repo/scripts')
 os.chdir('/workspace/repo')
