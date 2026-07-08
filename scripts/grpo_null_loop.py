@@ -130,17 +130,13 @@ def grade_rollouts(repo_root, batch):
     Returns list of {id, score, pass, detail}.
     """
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    # Use the long-lived grader from grpo_reward.py
-    from grpo_reward import GraderSubprocess
-    if not hasattr(grade_rollouts, "_grader"):
-        grade_rollouts._grader = GraderSubprocess(repo_root)
-    return grade_rollouts._grader.grade_batch(batch)
+    # Use the pure-Python grader (no Node/tsx dependency)
+    from python_grader import grade_batch as py_grade_batch
+    return py_grade_batch(batch)
 
 
 def close_grader():
-    if hasattr(grade_rollouts, "_grader"):
-        grade_rollouts._grader.close()
-        del grade_rollouts._grader
+    pass  # Python grader has no subprocess to close
 
 
 # ─── GRPO loss (Schulman's stripped spec) ─────────────────────────────────
@@ -361,7 +357,14 @@ def main():
         split_path = os.path.join(args.repo_root, "results/grpo-preconditions/grpo-holdout-split.json")
         with open(split_path) as f:
             train_ids = json.load(f)["train"]["ids"]
-    print(f"training questions: {len(train_ids)}")
+
+    # Filter to only questions the Python grader handles (22 of 27).
+    # Drop the 5 complex questions per council decision (Finn: "drop, don't simplify").
+    from python_grader import TRAINING_IDS as GRADERABLE_IDS
+    graderable_set = set(GRADERABLE_IDS)
+    original_count = len(train_ids)
+    train_ids = [q for q in train_ids if q in graderable_set]
+    print(f"training questions: {len(train_ids)} (filtered from {original_count}, dropped {original_count - len(train_ids)} complex questions)")
 
     # ─── Load gate IDs ───
     gate_ids = []
