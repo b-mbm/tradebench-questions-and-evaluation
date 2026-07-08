@@ -403,7 +403,7 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(
         args.model_path,
         quantization_config=bnb_config,
-        device_map={"": "cuda:1"},  # GPU 1 for training (GPU 0 = SGLang)
+        device_map={"": "cuda:0"},  # Single GPU (colocated with SGLang)
         trust_remote_code=True,
     )
     model.gradient_checkpointing_enable()
@@ -501,10 +501,10 @@ def main():
         for si in range(0, len(samples), sub_batch_size):
             sub = samples[si:si + sub_batch_size]
             batch = collate_batch(sub, tokenizer.pad_token_id)
-            input_ids = batch["input_ids"].to("cuda:1")
-            labels = batch["labels"].to("cuda:1")
-            completion_mask = batch["completion_mask"].to("cuda:1")
-            advs = batch["advantages"].to("cuda:1")
+            input_ids = batch["input_ids"].to("cuda:0")
+            labels = batch["labels"].to("cuda:0")
+            completion_mask = batch["completion_mask"].to("cuda:0")
+            advs = batch["advantages"].to("cuda:0")
 
             loss, seq_logprobs = grpo_loss_step(
                 model, input_ids,
