@@ -63,63 +63,80 @@ def parse_args():
     return p.parse_args()
 
 
-# ─── SGLang rollout generation ────────────────────────────────────────────
-def sglang_generate(sglang_url, prompts, model_name, temperature, max_tokens, enable_thinking=True):
-    """Generate completions for a list of prompts via SGLang /v1/chat/completions.
-
-    Returns list of {content, reasoning, finish_reason, dt}.
-    Uses streaming (required for RunPod proxy) and response_format json_object.
-    """
-    url = sglang_url.rstrip("/") + "/v1/chat/completions"
-    results = []
-    for prompt_text in prompts:
-        payload = {
-            "model": model_name,
-            "messages": [{"role": "user", "content": prompt_text}],
-            "temperature": temperature,
-            "max_tokens": max_tokens,
-            "response_format": {"type": "json_object"},
-            "stream": True,
+# ─── SGLang rollout generation (CONCURRENT) ──────────────────────────────
+def _sglang_generate_one(url, prompt_text, model_name, temperature, max_tokens, enable_thinking):
+    """Generate ONE completion via SGLang. Worker function for ThreadPoolExecutor."""
+    payload = {
+        "model": model_name,
+        "messages": [{"role": "user", "content": prompt_text}],
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "response_format": {"type": "json_object"},
+        "stream": True,
+    }
+    if not enable_thinking:
+        payload["chat_template_kwargs"] = {"enable_thinking": False}
+    body = json.dumps(payload)
+    t0 = time.time()
+    try:
+        import subprocess
+        result = subprocess.run(
+            ["curl", "-s", "-m", "600", "-N", url,
+             "-H", "Content-Type: application/json", "-d", body],
+            capture_output=True, text=True, timeout=620,
+        )
+        dt = time.time() - t0
+        content_parts, reasoning_parts, finish = [], [], None
+        for line in result.stdout.split("\n"):
+            line = line.strip()
+            if not line.startswith("data: "):
+                continue
+            d = line[6:]
+            if d == "[DONE]":
+                break
+            try:
+                ch = json.loads(d)["choices"][0]
+                delta = ch.get("delta", {})
+                if delta.get("content"):
+                    content_parts.append(delta["content"])
+                if delta.get("reasoning_content"):
+                    reasoning_parts.append(delta["reasoning_content"])
+                if ch.get("finish_reason"):
+                    finish = ch["finish_reason"]
+            except (json.JSONDecodeError, KeyError, IndexError):
+                pass
+        return {
+            "content": "".join(content_parts),
+            "reasoning": "".join(reasoning_parts),
+            "finish_reason": finish or "unknown",
+            "dt": round(dt, 2),
         }
-        if not enable_thinking:
-            payload["chat_template_kwargs"] = {"enable_thinking": False}
-        body = json.dumps(payload)
-        t0 = time.time()
-        try:
-            import subprocess
-            result = subprocess.run(
-                ["curl", "-s", "-m", "600", "-N", url,
-                 "-H", "Content-Type: application/json", "-d", body],
-                capture_output=True, text=True, timeout=620,
-            )
-            dt = time.time() - t0
-            content_parts, reasoning_parts, finish = [], [], None
-            for line in result.stdout.split("\n"):
-                line = line.strip()
-                if not line.startswith("data: "):
-                    continue
-                d = line[6:]
-                if d == "[DONE]":
-                    break
-                try:
-                    ch = json.loads(d)["choices"][0]
-                    delta = ch.get("delta", {})
-                    if delta.get("content"):
-                        content_parts.append(delta["content"])
-                    if delta.get("reasoning_content"):
-                        reasoning_parts.append(delta["reasoning_content"])
-                    if ch.get("finish_reason"):
-                        finish = ch["finish_reason"]
-                except (json.JSONDecodeError, KeyError, IndexError):
-                    pass
-            results.append({
-                "content": "".join(content_parts),
-                "reasoning": "".join(reasoning_parts),
-                "finish_reason": finish or "unknown",
-                "dt": round(dt, 2),
-            })
-        except Exception as e:
-            results.append({"content": "", "reasoning": "", "finish_reason": "ERROR", "dt": 0, "error": str(e)[:200]})
+    except Exception as e:
+        return {"content": "", "reasoning": "", "finish_reason": "ERROR", "dt": 0, "error": str(e)[:200]}
+
+
+def sglang_generate(sglang_url, prompts, model_name, temperature, max_tokens, enable_thinking=True, concurrency=8):
+    """Generate completions CONCURRENTLY via ThreadPoolExecutor.
+
+    Returns list of {content, reasoning, finish_reason, dt} in the SAME ORDER as prompts.
+    """
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    url = sglang_url.rstrip("/") + "/v1/chat/completions"
+    results = [None] * len(prompts)
+
+    with ThreadPoolExecutor(max_workers=min(concurrency, len(prompts))) as pool:
+        futures = {}
+        for i, prompt_text in enumerate(prompts):
+            f = pool.submit(_sglang_generate_one, url, prompt_text, model_name,
+                           temperature, max_tokens, enable_thinking)
+            futures[f] = i
+        for f in as_completed(futures):
+            results[futures[f]] = f.result()
+
+    # Replace any None (shouldn't happen, but be safe)
+    for i, r in enumerate(results):
+        if r is None:
+            results[i] = {"content": "", "reasoning": "", "finish_reason": "ERROR", "dt": 0}
     return results
 
 
