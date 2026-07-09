@@ -140,20 +140,24 @@ def sglang_generate(sglang_url, prompts, model_name, temperature, max_tokens, en
     return results
 
 
-# ─── Reward via TS grader ─────────────────────────────────────────────────
+# ─── Reward via TS grader (proven, validated against real model output) ──
 def grade_rollouts(repo_root, batch):
     """Grade a batch of {id, response} via the TS grader subprocess.
 
     Returns list of {id, score, pass, detail}.
+    Uses the proven TypeScript grader (schema-grader-300q.ts) via npx tsx.
     """
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    # Use the pure-Python grader (no Node/tsx dependency)
-    from python_grader import grade_batch as py_grade_batch
-    return py_grade_batch(batch)
+    from grpo_reward import GraderSubprocess
+    if not hasattr(grade_rollouts, "_grader"):
+        grade_rollouts._grader = GraderSubprocess(repo_root)
+    return grade_rollouts._grader.grade_batch(batch)
 
 
 def close_grader():
-    pass  # Python grader has no subprocess to close
+    if hasattr(grade_rollouts, "_grader"):
+        grade_rollouts._grader.close()
+        del grade_rollouts._grader
 
 
 # ─── GRPO loss (Schulman's stripped spec) ─────────────────────────────────
@@ -273,22 +277,9 @@ def eval_checkpoint(args, gate_ids, step, merged_model_path=None):
                 except json.JSONDecodeError:
                     pass
 
-    # Grade: use Python grader for training questions, JSON-validity for gate questions
+    # Grade: use the TS grader (proven, handles all 300 questions)
     grade_batch = [{"id": r["questionId"], "response": r.get("raw", "")} for r in results]
-    from python_grader import grade as py_grade, TRAINING_IDS as GRADERABLE_IDS
-    graderable_set = set(GRADERABLE_IDS)
-    graded = []
-    for item in grade_batch:
-        if item["id"] in graderable_set:
-            graded.append(py_grade(item["id"], item["response"]))
-        else:
-            # For gate questions: just check JSON validity (full grading done offline)
-            import json as _json
-            try:
-                _json.loads(item["response"])
-                graded.append({"id": item["id"], "score": 1.0, "pass": True, "detail": "valid_json"})
-            except:
-                graded.append({"id": item["id"], "score": 0.0, "pass": False, "detail": "invalid_json"})
+    graded = grade_rollouts(args.repo_root, grade_batch) if grade_batch else []
 
     # Compute pass rate
     passes = sum(1 for g in graded if g.get("pass"))
@@ -391,13 +382,8 @@ def main():
         with open(split_path) as f:
             train_ids = json.load(f)["train"]["ids"]
 
-    # Filter to only questions the Python grader handles (22 of 27).
-    # Drop the 5 complex questions per council decision (Finn: "drop, don't simplify").
-    from python_grader import TRAINING_IDS as GRADERABLE_IDS
-    graderable_set = set(GRADERABLE_IDS)
-    original_count = len(train_ids)
-    train_ids = [q for q in train_ids if q in graderable_set]
-    print(f"training questions: {len(train_ids)} (filtered from {original_count}, dropped {original_count - len(train_ids)} complex questions)")
+    # Use all 27 training questions — the TS grader handles all of them.
+    print(f"training questions: {len(train_ids)}")
 
     # ─── Load gate IDs ───
     gate_ids = []
