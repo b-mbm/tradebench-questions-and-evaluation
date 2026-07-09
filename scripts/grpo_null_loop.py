@@ -400,10 +400,15 @@ def main():
         bnb_4bit_compute_dtype=torch.bfloat16,
         bnb_4bit_use_double_quant=True,
     )
+    # Auto-detect training GPU: if CUDA_VISIBLE_DEVICES is set, use cuda:0
+    # (the visible device). Otherwise use cuda:1 (second GPU, SGLang on GPU 0).
+    cuda_vis = os.environ.get("CUDA_VISIBLE_DEVICES", "")
+    train_device = "cuda:0" if cuda_vis else "cuda:1"
+    print(f"CUDA_VISIBLE_DEVICES={cuda_vis!r}, training on {train_device}")
     model = AutoModelForCausalLM.from_pretrained(
         args.model_path,
         quantization_config=bnb_config,
-        device_map={"": "cuda:1"},  # GPU 1 for training (GPU 0 = SGLang)
+        device_map={"": train_device},
         trust_remote_code=True,
     )
     model.gradient_checkpointing_enable()
@@ -501,10 +506,12 @@ def main():
         for si in range(0, len(samples), sub_batch_size):
             sub = samples[si:si + sub_batch_size]
             batch = collate_batch(sub, tokenizer.pad_token_id)
-            input_ids = batch["input_ids"].to("cuda:1")
-            labels = batch["labels"].to("cuda:1")
-            completion_mask = batch["completion_mask"].to("cuda:1")
-            advs = batch["advantages"].to("cuda:1")
+            # Use the same device as the model
+            _dev = next(model.parameters()).device
+            input_ids = batch["input_ids"].to(_dev)
+            labels = batch["labels"].to(_dev)
+            completion_mask = batch["completion_mask"].to(_dev)
+            advs = batch["advantages"]
 
             loss, seq_logprobs = grpo_loss_step(
                 model, input_ids,
