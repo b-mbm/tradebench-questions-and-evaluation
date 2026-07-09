@@ -105,7 +105,9 @@ echo "════════════════════════�
 echo "  STARTING GRPO TRAINING (null-reward, 30 steps)"
 echo "═══════════════════════════════════════════════════════════════"
 
-CUDA_VISIBLE_DEVICES=1 /root/train/bin/python -c "
+# NOTE: Do NOT set CUDA_VISIBLE_DEVICES here. Let the training see both GPUs
+# and use device_map to target GPU 1 explicitly (avoids "invalid device ordinal" bug).
+/root/train/bin/python -c "
 import sys, os
 sys.path.insert(0, '/workspace/repo/scripts')
 os.chdir('/workspace/repo')
