@@ -40,12 +40,18 @@ socketserver.TCPServer(('0.0.0.0', 8000), LogHandler).serve_forever()
 LOG_SERVER_PID=$!
 echo "Log server started (PID $LOG_SERVER_PID) — access logs at https://<podId>-8000.proxy.runpod.net/"
 
-# ─── 1. Clone repo ──────────────────────────────────────────────────────
+# ─── 1. Clone repo + npm install ────────────────────────────────────────
 if [ ! -f /workspace/repo/prompts-300q.json ]; then
   echo "── cloning repo ──"
   rm -rf /workspace/repo
   git clone --depth 1 -b "$BRANCH" "$REPO_URL" /workspace/repo 2>&1 | tail -3
 fi
+# CRITICAL: npm install for the TS grader (tsx + fastest-levenshtein)
+if [ ! -d /workspace/repo/node_modules ]; then
+  echo "── npm install (for TS grader) ──"
+  cd /workspace/repo && npm install --silent 2>&1 | tail -3
+fi
+echo "repo + npm OK"
 echo "repo OK"
 
 # ─── 2. Ninja + SGLang ──────────────────────────────────────────────────
