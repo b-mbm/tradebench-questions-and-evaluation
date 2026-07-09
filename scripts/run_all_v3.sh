@@ -118,10 +118,11 @@ sys.argv = ['grpo_null_loop.py',
     '--repo-root', '/workspace/repo',
     '--model-path', '$MODEL_PATH',
     '--output-dir', '$OUTPUT_DIR',
-    '--steps', '3',
-    '--group-size', '4',
+    '--steps', '1',
+    '--group-size', '2',
     '--eval-at', '',
     '--max-completion-len', '2048',
+    '--train-ids', 'L10-017',
 ]
 exit(main())
 " 2>&1
