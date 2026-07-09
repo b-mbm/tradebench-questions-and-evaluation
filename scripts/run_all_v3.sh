@@ -40,11 +40,14 @@ socketserver.TCPServer(('0.0.0.0', 8000), LogHandler).serve_forever()
 LOG_SERVER_PID=$!
 echo "Log server started (PID $LOG_SERVER_PID) — access logs at https://<podId>-8000.proxy.runpod.net/"
 
-# ─── 1. Clone repo + npm install ────────────────────────────────────────
-if [ ! -f /workspace/repo/prompts-300q.json ]; then
+# ─── 1. Clone or update repo + npm install ──────────────────────────────
+if [ ! -d /workspace/repo/.git ]; then
   echo "── cloning repo ──"
   rm -rf /workspace/repo
   git clone --depth 1 -b "$BRANCH" "$REPO_URL" /workspace/repo 2>&1 | tail -3
+else
+  echo "── updating existing repo (resume) ──"
+  cd /workspace/repo && git fetch origin && git reset --hard origin/"$BRANCH" 2>&1 | tail -3
 fi
 # CRITICAL: npm install for the TS grader (tsx + fastest-levenshtein)
 if [ ! -d /workspace/repo/node_modules ]; then
@@ -101,7 +104,7 @@ if [ ! -f /root/train/bin/python ]; then
   echo "── installing training deps ──"
   python3 -m venv --system-site-packages /root/train
   /root/train/bin/pip install --upgrade pip -q
-  /root/train/bin/pip install torch transformers peft bitsandbytes accelerate -q 2>&1 | tail -3
+  /root/train/bin/pip install torch transformers peft bitsandbytes accelerate numpy requests -q 2>&1 | tail -3
 fi
 echo "training deps OK"
 
