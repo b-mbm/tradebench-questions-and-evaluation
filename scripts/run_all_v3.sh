@@ -40,7 +40,14 @@ socketserver.TCPServer(('0.0.0.0', 8000), LogHandler).serve_forever()
 LOG_SERVER_PID=$!
 echo "Log server started (PID $LOG_SERVER_PID) — access logs at https://<podId>-8000.proxy.runpod.net/"
 
-# ─── 1. Clone or update repo + npm install ──────────────────────────────
+# ─── 1. Clone or update repo + install Node + npm install ───────────────
+# Install Node.js (not included in the RunPod pytorch image)
+if ! command -v npm &>/dev/null; then
+  echo "── installing Node.js ──"
+  curl -fsSL https://deb.nodesource.com/setup_20.x | bash - 2>&1 | tail -2
+  apt-get install -y nodejs 2>&1 | tail -2
+fi
+
 if [ ! -d /workspace/repo/.git ]; then
   echo "── cloning repo ──"
   rm -rf /workspace/repo
@@ -50,7 +57,7 @@ else
   cd /workspace/repo && git fetch origin && git reset --hard origin/"$BRANCH" 2>&1 | tail -3
 fi
 # CRITICAL: npm install for the TS grader (tsx + fastest-levenshtein)
-if [ ! -d /workspace/repo/node_modules ]; then
+if [ ! -d /workspace/repo/node_modules ] || [ ! -f /workspace/repo/node_modules/.package-lock.json ]; then
   echo "── npm install (for TS grader) ──"
   cd /workspace/repo && npm install --silent 2>&1 | tail -3
 fi
