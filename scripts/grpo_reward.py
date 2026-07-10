@@ -6,7 +6,7 @@ Design:
   - A long-lived tsx subprocess reads JSON batches from stdin, writes JSON scores
     to stdout. Avoids ~400ms Node startup per rollout.
   - Two modes:
-      mode="real"      → score = grader pass/fail (1.0 / 0.0)
+      mode="real"      → score = grader normalized score (0.0-1.0, with partial credit)
       mode="shuffled"  → score = real score but PERMUTED within each group
                          (np.random.permutation per group per step, seeded)
                          This is the null-reward control: rewards are uncorrelated
@@ -66,10 +66,9 @@ rl.on('line', (line) => {
       const result = gradeSchemaResponse(raw, q, rubric);
       return {
         id: row.id,
-        score: result.pass ? 1.0 : 0.0,
+        score: result.score,
         pass: result.pass,
         detail: result.pass ? 'pass' : (result.reason || 'fail'),
-        raw_score: result.score,
       };
     } catch (e) {
       return { id: row.id || '?', score: 0.0, pass: false, detail: 'error: '+e.message };
