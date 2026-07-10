@@ -44,9 +44,6 @@ socketserver.TCPServer(('0.0.0.0', 8000), LogHandler).serve_forever()
 disown  # fully detach from this script's process group
 sleep 2  # let it bind
 echo "Log server started — survives script crash"
-" &
-LOG_SERVER_PID=$!
-echo "Log server started (PID $LOG_SERVER_PID) — access logs at https://<podId>-8000.proxy.runpod.net/"
 
 # ─── 1. Clone or update repo + install Node + npm install ───────────────
 # Install Node.js (not included in the RunPod pytorch image)
