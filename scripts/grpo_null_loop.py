@@ -552,9 +552,10 @@ def main():
         torch.nn.utils.clip_grad_norm_(filter(lambda p: p.requires_grad, model.parameters()), 1.0)
         optimizer.step()
 
-        # 8. KL from reference (capture step-1 as reference per Finn's monitoring)
+        # 8. KL from reference (capture first valid step as reference)
         seq_lp = np.array(seq_logprobs_all)
-        if step == 1:
+        if kl_ref_logprobs is None:
+            # First time we have logprobs — set as reference
             kl_ref_logprobs = seq_lp.copy()
             kl = 0.0
         else:
