@@ -161,13 +161,12 @@ echo "════════════════════════�
 echo "  FINISHED — $(date -u)"
 echo "═══════════════════════════════════════════════════════════════"
 echo ""
-echo "Container staying alive for log access."
+echo "Container staying alive 10 min for log access, then will stop."
 echo "Read results at https://<podId>-8000.proxy.runpod.net/grpo-results/"
-echo "The pod will auto-stop when the operator terminates it."
 
-# Keep container alive so log server keeps serving files
-# (without this, the script exits → container dies → proxy stops)
-while true; do
-  sleep 60
-done
+# Keep container alive for 10 min so we can read results via the proxy,
+# then exit (which stops the pod). Do NOT loop forever — that burns money.
+sleep 600
+echo "10 min passed — container exiting."
+exit 0
 echo "═══════════════════════════════════════════════════════════════"
