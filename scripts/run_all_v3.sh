@@ -123,7 +123,7 @@ echo "training deps OK"
 # ─── 5. Run training (GPU 1) ────────────────────────────────────────────
 echo ""
 echo "═══════════════════════════════════════════════════════════════"
-echo "  STARTING GRPO SMOKE TEST (3 steps, real reward)"
+echo "  STARTING GRPO TRAINING (13 questions, G=8, temp 0.3, 30 steps)"
 echo "═══════════════════════════════════════════════════════════════"
 
 # NOTE: Do NOT set CUDA_VISIBLE_DEVICES here. Let the training see both GPUs
@@ -134,16 +134,17 @@ sys.path.insert(0, '/workspace/repo/scripts')
 os.chdir('/workspace/repo')
 from grpo_null_loop import main
 sys.argv = ['grpo_null_loop.py',
-    '--mode', 'smoke',
+    '--mode', 'real',
     '--sglang-url', '$SGLANG_URL',
     '--repo-root', '/workspace/repo',
     '--model-path', '$MODEL_PATH',
     '--output-dir', '$OUTPUT_DIR',
-    '--steps', '3',
+    '--steps', '30',
     '--group-size', '8',
-    '--eval-at', '',
+    '--eval-at', '10,20,30',
     '--max-completion-len', '2048',
-    '--train-ids', 'L10-017,L10-043,L10-047',
+    '--temperature', '0.3',
+    '--train-ids', 'L10-017,L10-043,L10-047,L10-056,L3-003,L9-005,L9-024,L9-040,L9-051,L9-055,L9-059,L9-064,L4-001',
 ]
 exit(main())
 " 2>&1
