@@ -24,18 +24,26 @@ echo "════════════════════════�
 echo "  GRPO v3 — LOG ACCESSIBLE via HTTP proxy — $(date -u)"
 echo "═══════════════════════════════════════════════════════════════"
 
-# ─── 0. Start log server on port 8000 IMMEDIATELY ───────────────────────
-# This serves /workspace/*.log files so we can debug via the HTTP proxy.
+# ─── 0. Start log server on port 8000 IMMEDIATELY (SURVIVES script crash) ─
+# The log server runs as a detached daemon — it keeps serving files even
+# if the main script crashes. This is CRITICAL for debugging.
 echo "Starting log server on port 8000..."
-python3 -c "
-import http.server, os, socketserver
+nohup python3 -c "
+import http.server, os, socketserver, signal
+signal.signal(signal.SIGHUP, signal.SIG_IGN)  # survive parent death
 os.chdir('/workspace')
 class LogHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
         super().end_headers()
     def log_message(self, format, *args): pass
+# Allow port reuse
+socketserver.TCPServer.allow_reuse_address = True
 socketserver.TCPServer(('0.0.0.0', 8000), LogHandler).serve_forever()
+" > /workspace/logserver.out 2>&1 &
+disown  # fully detach from this script's process group
+sleep 2  # let it bind
+echo "Log server started — survives script crash"
 " &
 LOG_SERVER_PID=$!
 echo "Log server started (PID $LOG_SERVER_PID) — access logs at https://<podId>-8000.proxy.runpod.net/"
@@ -154,4 +162,15 @@ else
 fi
 echo "═══════════════════════════════════════════════════════════════"
 echo "  FINISHED — $(date -u)"
+echo "═══════════════════════════════════════════════════════════════"
+echo ""
+echo "Container staying alive for log access."
+echo "Read results at https://<podId>-8000.proxy.runpod.net/grpo-results/"
+echo "The pod will auto-stop when the operator terminates it."
+
+# Keep container alive so log server keeps serving files
+# (without this, the script exits → container dies → proxy stops)
+while true; do
+  sleep 60
+done
 echo "═══════════════════════════════════════════════════════════════"
