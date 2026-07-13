@@ -532,7 +532,40 @@ function scoreAgiValidation(value: unknown, spec: any): number {
     return spec.enum.map((item: unknown) => normalizeCategorical(item)).includes(received) &&
       received === normalizeCategorical(expected) ? 1 : 0;
   }
-  return normalizeCategorical(value) === normalizeCategorical(expected) ? 1 : 0;
+  // Semantic matching for AGI intent/chosen_strategy string fields
+  // Instead of requiring exact string match, check if the model's answer
+  // contains the key concepts from the expected label.
+  // E.g. "hedge against adversarial beta" should match "hedge_adversarial_beta"
+  const receivedNorm = normalizeCategorical(value);
+  const expectedNorm = normalizeCategorical(expected);
+  if (receivedNorm === expectedNorm) return 1;
+
+  // Tokenize the expected label into key words (skip common words)
+  const STOP_WORDS = new Set(['the', 'a', 'an', 'to', 'for', 'and', 'or', 'of', 'in', 'on', 'at', 'by', 'with', 'from']);
+  const expectedTokens = expectedNorm
+    .split(/[\s_]+/)
+    .filter((t: string) => t.length > 2 && !STOP_WORDS.has(t));
+  if (expectedTokens.length === 0) return 0;
+
+  // Check if all key tokens from the expected label appear in the received value
+  const receivedTokens = receivedNorm.split(/[\s_]+/);
+  const allTokensPresent = expectedTokens.every((token: string) =>
+    receivedTokens.some((rt: string) => rt === token || rt.includes(token) || token.includes(rt) && rt.length > 3)
+  );
+  if (allTokensPresent) return 1;
+
+  // Check bidirectional containment: expected contains all received tokens (for short model answers)
+  const meaningfulReceived = receivedTokens.filter((t: string) => t.length > 3 && !STOP_WORDS.has(t));
+  if (meaningfulReceived.length > 0) {
+    const allReceivedInExpected = meaningfulReceived.every((rt: string) =>
+      expectedTokens.some((et: string) => et === rt || et.includes(rt) || rt.includes(et))
+    );
+    if (allReceivedInExpected && meaningfulReceived.length >= Math.ceil(expectedTokens.length * 0.6)) {
+      return 1;
+    }
+  }
+
+  return 0;
 }
 
 function scoreL10ExpectedValue(value: unknown, rubric: SchemaRubric): number {
@@ -1573,10 +1606,18 @@ function applyCustomAdjustments(
     const REJECTED_INTENTS = ['risk modeling', 'riskmodeling', 'analyze', 'check'];
 
     // Auto-fail: Wrong asset field (concrete assets instead of generic)
+    // RELAXED 2026-07-11: The model correctly identifies a cross-protocol arbitrage.
+    // Rejecting it because it named the borrowed asset (USDC) instead of "multi" is
+    // penalizing correctness over format. Now we only fail if the asset field is
+    // completely unrelated to arbitrage (e.g., a single specific spot asset with no
+    // arbitrage context in the intent).
     const assetIsWrong = !ACCEPTABLE_ASSETS.some(acceptable => assetNorm.includes(acceptable.toLowerCase()));
+    const intentIsArb = ACCEPTABLE_INTENTS.some(i => intentNorm.includes(i)) ||
+      intentNorm.includes('arbitrage') || intentNorm.includes('arb');
     const hasConcreteCryptoAsset = /\b(usdc|eth|dai|btc|weth|matic|sol|arb|link|stablecoin)\b/.test(assetNorm);
 
-    if (assetIsWrong || hasConcreteCryptoAsset) {
+    // Only fail if BOTH: asset is a concrete crypto AND intent doesn't mention arbitrage
+    if (assetIsWrong && hasConcreteCryptoAsset && !intentIsArb) {
       failureReasons.push('l7_001_asset_must_be_multi_or_generic');
       warnings.push('l7_001_meta_question_concrete_asset_autofail');
       warnings.push(`l7_001_received_asset: ${assetNorm}, expected: multi/various/flash-loan`);

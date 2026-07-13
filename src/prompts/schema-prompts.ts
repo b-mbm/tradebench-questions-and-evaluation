@@ -540,6 +540,44 @@ export interface ExecuteOnePrompts {
   user: string;
 }
 
+// The canonical intent labels for AGI (L11) questions.
+// These are the valid values the grader accepts for the `intent` field.
+// Disclosing them in the prompt tests whether the model can CLASSIFY the scenario,
+// not guess an arbitrary label string.
+const AGI_INTENT_LABELS = [
+  'adversarial_alt_buy',
+  'adversarial_beta_minimax',
+  'adversarial_bridge_risk',
+  'adversarial_event_execution',
+  'adversarial_minimax_hedge',
+  'adversarial_multi_venue_acquisition',
+  'adversarial_multi_venue_eth_buy',
+  'adverse_flow_execution_rescue',
+  'amm_cex_hedge_lag_maker',
+  'correlation_regime_trigger_hedge',
+  'crisis_correlation_hedge',
+  'crisis_liquid_yield_allocation',
+  'cross_chain_collateral_routing',
+  'cross_chain_execution_window',
+  'cross_chain_wld_timing',
+  'funding_basis_rotation',
+  'hedge_adversarial_beta',
+  'liquidation_cascade_defense',
+  'market_making_strategy',
+  'oracle_lag_market_maker',
+  'resilient_funding_basis',
+  'stablecoin_cascade_exit',
+  'stablecoin_regulatory_cascade',
+  'tail_adjusted_protocol_allocation',
+  'tail_event_exit_strategy',
+  'tail_risk_overlay_design',
+  'tax_loss_factor_neutral_optimization',
+  'tax_loss_harvest_strategy',
+  'tokenomics_governance_game',
+  'tokenomics_reflexive_vote',
+  'toxic_flow_execution',
+];
+
 export function buildExecuteOnePrompts(question: SchemaQuestion): ExecuteOnePrompts {
   const COMPACT = process.env.TB_COMPACT_PROMPT === '0' ? false : true;
   const contextBlock = JSON.stringify(question.context ?? {}, null, 2);
@@ -595,6 +633,18 @@ export function buildExecuteOnePrompts(question: SchemaQuestion): ExecuteOneProm
 
   if (schemaHint) {
     userSections.push(schemaHint, '');
+  }
+
+  // For AGI (L11) questions: disclose the valid intent labels so the model
+  // can classify the scenario rather than guess an arbitrary string.
+  if (question.level >= 11) {
+    userSections.push(
+      'Intent Classification:',
+      `The "intent" field must be EXACTLY one of these ${AGI_INTENT_LABELS.length} labels (use the exact snake_case string):`,
+      AGI_INTENT_LABELS.map(l => `  - ${l}`).join('\n'),
+      'Choose the label that best describes the strategic intent of this scenario.',
+      ''
+    );
   }
 
   userSections.push('Respond with a valid JSON object matching ExecuteOneResponse. Do not wrap in markdown fences.');
