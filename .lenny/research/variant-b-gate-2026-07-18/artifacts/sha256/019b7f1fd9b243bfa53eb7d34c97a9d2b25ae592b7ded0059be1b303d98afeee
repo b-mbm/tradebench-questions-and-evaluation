@@ -1,0 +1,33 @@
+{
+  "recoveredAt": "2026-07-19T(in session)",
+  "source": "RunPod S3 (s3://qqz94ksxmn/), via runpods3 profile",
+  "method": "aws s3 cp --profile runpods3 (no pod, no resume, $0)",
+  "files": [
+    {"path": "results.jsonl",     "bytes": 225598, "sha256": "6632ede13d32ec6ae9a8e776ceaf58399b34dc22b36ac30cb25fdc0ff2d72bb1"},
+    {"path": "outputs.json",       "bytes": 87516,  "sha256": "41e682f64e880b26a21bb89610bf37931f97c78709dc40bc77643011a33a6bc2"},
+    {"path": "grade-output.txt",   "bytes": 880,    "sha256": "0ab6a18fbb32dcd9de98c6ac3035d384ecfcdeeec74c2defbf2e4e73228674e3"},
+    {"path": "DONE",               "bytes": 29,     "sha256": "2276d69bde080d09cdd0fd4f197cdc350efc8f705602b1f59436f6679f896da0"},
+    {"path": "variant-b-gate.log", "bytes": 5555,   "sha256": "966dd30929f5487f176e2b07163448a901921288a900003219d0bf7347754aba"},
+    {"path": "sglang.log",         "bytes": 953174, "sha256": "24fcd3b3acc4c0f81a402349ebeff98039c61c47c99bd937dd70b58c5d3e7882"}
+  ],
+  "validation": {
+    "resultsJsonl_records": 175,
+    "resultsJsonl_uniqueIds": 175,
+    "resultsJsonl_errors": 0,
+    "gateOverlap": "exact match (175 = 175, no missing, no extra)"
+  },
+  "independentRegrade": {
+    "grader": "scripts/grade-300q.ts at HEAD b05da00 (identical to de22a08 for grader files)",
+    "graderBlobSha_grade-300q_ts": "2081138897b6fff8a5226bfd5a31bf247ba97020",
+    "graderBlobSha_grader_worker_ts": "9edd286c52db114d62048e56a2e7fe0c797477cd",
+    "scoreSum": 144.5,
+    "passCount": 141,
+    "perLevel": {
+      "L1": {"pass": 3, "n": 3}, "L2": {"pass": 3, "n": 4}, "L3": {"pass": 0, "n": 1},
+      "L4": {"pass": 0, "n": 4}, "L5": {"pass": 2, "n": 4}, "L6": {"pass": 3, "n": 3},
+      "L7": {"pass": 2, "n": 4}, "L8": {"pass": 9, "n": 9}, "L9": {"pass": 62, "n": 68},
+      "L10": {"pass": 56, "n": 63}, "L11": {"pass": 1, "n": 12}
+    },
+    "matchesRecorded": true
+  }
+}
