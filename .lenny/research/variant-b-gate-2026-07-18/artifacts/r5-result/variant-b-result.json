@@ -1,0 +1,68 @@
+{
+  "runId": "variant-b-gate-2026-07-18",
+  "phase": "R5 full run result",
+  "podId": "crpo2po5lv18m3",
+  "completedAt": "2026-07-19T05:31:52Z",
+  "wallClockMin": 123,
+  "modelServed": "local-qwen36-27b-base (base, no LoRA)",
+  "promptVariant": "B (prompts-300q-variantB.json)",
+  "grader": "de22a08 (frozen)",
+  "gateQuestionCount": 175,
+  "variantB_scoreSum": 144.5,
+  "variantB_passCount": 141,
+  "variantB_perLevel": {
+    "L1": {
+      "pass": 3,
+      "n": 3
+    },
+    "L2": {
+      "pass": 3,
+      "n": 4
+    },
+    "L3": {
+      "pass": 0,
+      "n": 1
+    },
+    "L4": {
+      "pass": 0,
+      "n": 4
+    },
+    "L5": {
+      "pass": 2,
+      "n": 4
+    },
+    "L6": {
+      "pass": 3,
+      "n": 3
+    },
+    "L7": {
+      "pass": 2,
+      "n": 4
+    },
+    "L8": {
+      "pass": 9,
+      "n": 9
+    },
+    "L9": {
+      "pass": 62,
+      "n": 68
+    },
+    "L10": {
+      "pass": 56,
+      "n": 63
+    },
+    "L11": {
+      "pass": 1,
+      "n": 12
+    }
+  },
+  "baselineReconciled": {
+    "base_passCount": 143,
+    "sft_passCount": 131,
+    "handoffSaid131": "was SFT v2, mislabeled as the baseline in the handoff",
+    "delta_vs_base": -2,
+    "delta_vs_sft": 10,
+    "h001_prediction": "+3 to +6 on L9/L10",
+    "verdict": "FALSIFIED on single run vs base baseline (correct comparator). +10 vs SFT is real but SFT was rejected. Within-noise candidate (175-gate SEM never measured)."
+  }
+}

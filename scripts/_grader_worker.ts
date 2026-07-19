@@ -32,10 +32,9 @@ rl.on('line', (line) => {
       const result = gradeSchemaResponse(raw, q, rubric);
       return {
         id: row.id,
-        score: result.pass ? 1.0 : 0.0,
+        score: result.score,
         pass: result.pass,
         detail: result.pass ? 'pass' : (result.reason || 'fail'),
-        raw_score: result.score,
       };
     } catch (e) {
       return { id: row.id || '?', score: 0.0, pass: false, detail: 'error: '+e.message };
