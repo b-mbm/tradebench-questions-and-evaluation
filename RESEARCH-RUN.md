@@ -389,3 +389,34 @@ Re-scan not required: A2 produced no new in-repo artifacts (all E0 code is in `/
 ---
 
 *Conductor stopped. Founder reviews F8 (E5 bar) and F9 (E0 harness disposition). Everything else remains as before: no GPU, no training, no promotion, no PR, no push.*
+
+---
+
+## Amendment A3 (2026-07-18): F8 decision (option i + iv) and F9 (commit harness)
+
+### F8 decision — keep E5 strict at λ=0.25, plus a reporting label
+
+**Two independent opinions, same verdict.** Lead (GLM) and codex (gpt-5.6-sol, dispatched in exec mode with a scoped brief) both picked option (i).
+
+- **Lead reasoning:** the tournament proved λ=0.25 is load-bearing (loosening broke 3 RED proofs). A fitness function's job is to be honest, not nice. Loosening to admit honest traders in hard markets makes it a luck-amplifier — the exact trap the memo warns against.
+- **Codex reasoning (sharper framing, folded in):** *"λ is the declared risk preference, not a market-tuning knob."* Lowering λ when vol rises rewards precisely the tail risk E5 measures. The mean/CVaR ratio is already scale-normalized; the right adaptation is position sizing, not λ.
+- **Codex's option (iv), folded in as a reporting label:** retain strict E5; add a separate label `SKILLED_BUT_NOT_UTILITY_ELIGIBLE` for honest traders that clear E1–E4, E6, E7 but fail E5. This is NOT an acceptance bypass — it's a way to record "this candidate is skilled; this market doesn't reward them." Acceptance-qualification of a market uses a pre-registered, non-leaking oracle witness on fixed holdout seeds; if the witness can't clear λ=0.25, the market is valid for RED stress tests but cannot supply a GREEN acceptance proof.
+
+**Decision locked:**
+- E5 pass bar stays at λ=0.25. **Not negotiable without a versioned amendment and a fresh construct-validity test.**
+- Add the `SKILLED_BUT_NOT_UTILITY_ELIGIBLE` reporting label to the plan (§7) as a non-acceptance annotation. Codex's exact words preserved: "Honesty and skill are necessary—not sufficient—for utility eligibility."
+- Options (ii) market-conditioned λ and (iii) second acceptance signal are REJECTED for v0. Both create bypass surfaces. (iii)'s regret-based signal was specifically flagged by codex as a hindsight-cheat surface (F2/F11 achieve near-zero regret).
+
+**Why both opinions converging matters:** this is the kind of decision where a single author's bias could tilt the bar. Two independent reasoners, one a different vendor, both looking at the same tournament evidence and arriving at the same verdict is the strongest evidence available that λ=0.25 is the right call.
+
+### F9 decision — commit the harness
+
+The E0 harness (`/tmp/seta-e0/`) was the receipts behind Amendment A2's RED 17/17 + GREEN construct-validity findings. Letting it die on reboot would orphan those receipts. **Committed to `Internal_docs/seta-e0-harness/` with a README that explicitly labels it research scratch, not production code.** The hard rails in the README make clear this is not authorization to wire it into anything real.
+
+### Spend Meter (unchanged)
+
+$0 throughout. No GPU, no training, no broker, no credentials, no production code modified, no PR, no push.
+
+---
+
+*Conductor stopped. F8 locked (option i + iv). F9 executed (harness committed). Remaining queue items: F2 (specimen scope freeze), F3 (two-instrument question), F4 (markets-side validation path) — all still $0 and all still founder decisions.*
