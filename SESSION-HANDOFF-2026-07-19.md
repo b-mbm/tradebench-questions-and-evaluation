@@ -5,6 +5,8 @@
 **Author session:** the one that deployed pod `crpo2po5lv18m3`, monitored it, and discovered the baseline confound.
 **Purpose:** Codex (or any new session) reads this FIRST. It contains everything: what ran, what the result was, a baseline confound that changes the project's history, and the open decisions.
 
+> **Status update:** the open decisions and the $20-30 replication estimate below are superseded by the `Codex takeover addendum` at the end of this file. Variant B is closed without replication; no further inference spend is authorized.
+
 ---
 
 ## TL;DR — read this paragraph first
@@ -235,3 +237,26 @@ The AGI intent-label A/B (~$1) remains parked on the Q4 benchmark-legitimacy dec
 ---
 
 *Session ended with variant B falsified on single run, baseline confound surfaced and documented, all receipts hash-chained in the guard store, pod stopped and verified EXITED, balance $10.81. Three founder decisions open.*
+
+---
+
+## Codex takeover addendum (2026-07-19)
+
+The three founder decisions above are now closed:
+
+1. Adopt **143/175 as a canonical historical reference, not a statistical baseline**.
+2. Complete the item-level analysis, then close Variant B as **benchmark-level improvement not supported at n=1**. Do not replicate.
+3. Spend **$0 on inference**. The evidence was recovered through RunPod S3 for $0; no pod was resumed.
+
+The earlier paired-replication estimate of $20-30 was incorrect. At the observed 123 minutes and $2.99/hour, n=5 per arm means 10 runs and approximately **$61**, or approximately **$92 available** under the 1.5x reserve rule.
+
+The item analysis is recorded in:
+
+- `Internal_docs/VARIANT-B-ITEM-LEVEL-ANALYSIS-2026-07-19.md`
+- `Internal_docs/variant-b-item-diff-2026-07-19.json`
+- `scripts/analyze-variant-b-item-diff.ts`
+- `Internal_docs/GLM-5.2-VARIANT-B-INDEPENDENT-REVIEW-2026-07-19.md`
+
+Final interpretation: the schema-conflict mechanism is confirmed in the observed sample (four base L9/L10 field-name failures reduced to zero), but the preregistered benchmark-level gain is not supported. The raw -2 is not a defensible causal degradation claim because the comparison was unseeded and the flips include grader defects, ambiguous items, numeric-scale mistakes, and unrelated answer variance.
+
+Independent GLM 5.2 verdict: **PASS WITH NON-BLOCKING CORRECTIONS**. Its three requested corrections were applied: L4-004 field-location wording, L10-014 emitted-unit wording, and source hashes for the grader, rubric loader, question source, and all gate rubrics.

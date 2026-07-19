@@ -526,3 +526,53 @@ The 17-question A/B (2026-07-11) showed variant B schema class 4/7→7/7 on flip
 ---
 
 *Conductor stopped at R5 with h-001 FALSIFIED on single run (variant B 141 vs base 143, delta −2). Baseline confound surfaced: handoff's 131/175 was SFT v2 (rejected), not base. Founder decision required on (1) canonical baseline, (2) replicate-vs-accept, (3) L1-L8 regression investigation.*
+
+---
+
+## R6 Amendment: item-level interpretation and founder disposition (2026-07-19)
+
+This amendment supersedes the open recommendations above without altering the historical R4/R5 record.
+
+### Founder decisions
+
+1. **143/175 is adopted as the canonical historical base reference, not a statistical baseline.** It is the June 29 base-model output regraded on the exact 175 gate IDs under the same grader. The comparison remains unseeded and has incomplete historical serving provenance.
+2. **Variant B is closed without replication.** Verdict: `benchmark-level improvement not supported at n=1`. Do not describe the observed -2 as a causal degradation.
+3. **No additional inference spend.** The paired n=5-per-arm design would require 10 runs, approximately $61 at the observed runtime and rate, or approximately $92 under the project's 1.5x reserve rule. The earlier $20-30 estimate was wrong and is not executable from the available balance.
+4. **Evidence retrieval was completed for $0 through RunPod S3.** No pod was resumed and no inference was rerun.
+
+### Item-level result
+
+Reproducible artifacts:
+
+- `scripts/analyze-variant-b-item-diff.ts`
+- `Internal_docs/variant-b-item-diff-2026-07-19.json`
+- `Internal_docs/VARIANT-B-ITEM-LEVEL-ANALYSIS-2026-07-19.md`
+
+The deterministic replay reproduced base 143/175 and Variant B 141/175. There were 12 pass/fail flips: five Variant B-only and seven base-only.
+
+The direct prompt mechanism was confirmed in the observed sample:
+
+- Base L9/L10 `mismatch_fieldname` failures: L10-011, L10-014, L10-046, L10-050.
+- Variant B L9/L10 `mismatch_fieldname` failures: none.
+- L10-046 and L10-050 became clean passes.
+- L10-011 and L10-014 moved from schema failures to numeric-unit failures because their output requirements do not state whether `expected_value` is percent, USD, or asset units.
+
+The aggregate flips are not a clean capability comparison. They include two unchanged-prompt grader defects (L4-002, L4-004), an ambiguous borrow-principal question (L9-021), a contradictory governance question/key (L9-027), two percentage-scale regressions after correct reasoning (L9-042, L10-044), one arithmetic regression plus flawed canonical note (L9-043), two unrelated genuine math/input improvements (L9-031, L10-055), and one unrelated AGI allocation regression (AGI-004).
+
+### Final interpretation
+
+**h-001's benchmark-level prediction remains unsupported.** The narrow schema-conflict mechanism is confirmed, but the intervention did not produce the preregistered +3 to +6 L9/L10 gain and did not improve the frozen-grader total in this exploratory sample. Variant A remains the release prompt while the discovered unit, grader, and item defects move into the CoinBench lock audit.
+
+### Spend meter correction
+
+| Proposed work | Correct observed-cost estimate | Decision |
+|---|---:|---|
+| Paired Variant A/B, n=5 per arm | ~$61 | Do not run |
+| Same design with 1.5x reserve | ~$92 available required | Do not fund |
+| Item-level analysis and closure | $0 | Completed |
+
+### Independent GLM 5.2 review
+
+GLM 5.2 completed a read-only independent audit and returned **PASS WITH NON-BLOCKING CORRECTIONS**. It confirmed the 143/141 replay, all four schema-failure removals, the arithmetic, the causal limitations, and the decision not to replicate. It corrected the L4-004 field-location explanation, softened the L10-014 unit wording, and requested grader/rubric source pinning; all three corrections were applied. Receipt: `Internal_docs/GLM-5.2-VARIANT-B-INDEPENDENT-REVIEW-2026-07-19.md`.
+
+*R6 closed with no RunPod or new benchmark inference spend. The local analysis and independent review gates pass. The worktree is ready for founder review and the subsequent CoinBench-lock worktree transition.*
