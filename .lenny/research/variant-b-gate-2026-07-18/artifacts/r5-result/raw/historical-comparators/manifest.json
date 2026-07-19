@@ -1,0 +1,34 @@
+{
+  "purpose": "Preserve the local-only historical raw outputs used to reconcile the Variant B comparison",
+  "preservedAt": "2026-07-19",
+  "files": [
+    {
+      "path": "base-results.jsonl",
+      "source": "results/community/300/run300-base-thinkon-2026-06-29/results.jsonl",
+      "bytes": 435597,
+      "sha256": "7e52ee9f85395e96e80cf94a24bba2505e6b0a7ab62288bd64b163b8aa7df263",
+      "gateRegrade": {"scoreSum": 145.5, "passCount": 143, "questionCount": 175}
+    },
+    {
+      "path": "sft-results.jsonl",
+      "source": "results/community/300/run300-sft-thinkon-2026-06-29/results.jsonl",
+      "bytes": 433601,
+      "sha256": "ff6d583d7952f5f2a902a861861d10e83b858ba990097f027c6f26e60c31e57e",
+      "gateRegrade": {"scoreSum": 136.3, "passCount": 131, "questionCount": 175}
+    }
+  ],
+  "gateIds": {
+    "path": "results/grpo-preconditions/gate-eval-ids.txt",
+    "sha256": "c05eaf49b247cb00562d93a902de80c7ff8484c1fb177c595fbbf02179041dbf"
+  },
+  "graderAtPreservationCommit": {
+    "entrypointGitBlob": "2081138897b6fff8a5226bfd5a31bf247ba97020",
+    "schemaGraderGitBlob": "0f8a51eb1b5ddf4ea3af40c43de47d898648b651",
+    "questionsGitBlob": "f32b898ba4fd2f790a85ad5282cc4d0478ecb7f6",
+    "rubricsGitTree": "1cd0b8272d1afc4cf49b2ff5773e771a34e56508"
+  },
+  "knownProvenanceGaps": [
+    "The June 29 model checkpoint, SGLang, CUDA, driver, GPU, serving command, and sampling seed were not recorded",
+    "The current variant-A prompt hash can be reconstructed but was not recorded by the June 29 run"
+  ]
+}

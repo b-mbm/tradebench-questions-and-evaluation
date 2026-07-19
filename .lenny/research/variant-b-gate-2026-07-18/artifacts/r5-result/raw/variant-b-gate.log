@@ -1,0 +1,95 @@
+═══════════════════════════════════════════════════════════════
+  VARIANT B FULL 175-GATE — Sun Jul 19 03:28:55 UTC 2026
+═══════════════════════════════════════════════════════════════
+Starting log server on port 8000...
+Log server started
+── installing Node.js ──
+[1;32m2026-07-19 03:29:09 - To install N|solid Runtime, run: apt install nsolid -y 
+[0m
+Unpacking nodejs (20.20.2-1nodesource1) ...
+Setting up nodejs (20.20.2-1nodesource1) ...
+── updating repo ──
+From https://github.com/b-mbm/tradebench-questions-and-evaluation
+   13fb291..0d156b3  phase0-grpo-preconditions -> origin/phase0-grpo-preconditions
+HEAD is now at 0d156b3 Session handoff: variant B gate run staged, all context for new session
+repo + npm OK
+── installing SGLang ──
+SGLang OK
+── starting SGLang on GPU 0 (port 30000) ──
+── waiting for SGLang (up to 10 min) ──
+SGLang ready after 35x5s
+
+═══════════════════════════════════════════════════════════════
+  RUNNING VARIANT B ON 175-GATE
+═══════════════════════════════════════════════════════════════
+[158/175] base L10-065: ok fin=stop 192s think=10276c budget=8000
+[159/175] base L10-068: ok fin=stop 102s think=7092c budget=8000
+[160/175] base L10-066: ok fin=stop 198s think=12295c budget=8000
+[161/175] base L10-067: ok fin=stop 222s think=13082c budget=8000
+[162/175] base AGI-006: ok fin=stop 132s think=11116c budget=8000
+[163/175] base AGI-004: ok fin=stop 222s think=14689c budget=8000
+[164/175] base L10-069: ok fin=stop 278s think=14780c budget=8000
+[165/175] base L10-061: ok fin=stop 525s think=30041c budget=16000
+[166/175] base AGI-008: ok fin=stop 128s think=8620c budget=8000
+[167/175] base AGI-010: ok fin=stop 209s think=15290c budget=8000
+[168/175] base AGI-042: ok fin=stop 122s think=9274c budget=8000
+[169/175] base AGI-015: ok fin=stop 240s think=12860c budget=8000
+[170/175] base AGI-048: ok fin=stop 168s think=12739c budget=8000
+[171/175] base AGI-049: ok fin=stop 132s think=10032c budget=8000
+[172/175] base AGI-100: ok fin=stop 111s think=8870c budget=8000
+[173/175] base AGI-050: ok fin=stop 149s think=12782c budget=8000
+[174/175] base AGI-104: ok fin=stop 148s think=12205c budget=8000
+[175/175] base AGI-112: ok fin=stop 182s think=13994c budget=8000
+
+RUN COMPLETE: 175/175
+Eval exit code: 0
+
+── grading variant B results ──
+Built outputs.json with 175 responses
+graded 175/300 | parsed 175/175 | scoreSum 144.5 | passCount 141
+projected full-300 (if rate holds): score 248, pass 242
+per-level:
+  L1: 3/3 pass | score 2.7/3 | parsed-rate 0.88
+  L2: 3/4 pass | score 3.0/4 | parsed-rate 0.75
+  L3: 0/1 pass | score 0.5/1 | parsed-rate 0.55
+  L4: 0/4 pass | score 0.6/4 | parsed-rate 0.14
+  L5: 2/4 pass | score 2.4/4 | parsed-rate 0.59
+  L6: 3/3 pass | score 2.4/3 | parsed-rate 0.80
+  L7: 2/4 pass | score 2.1/4 | parsed-rate 0.53
+  L8: 9/9 pass | score 8.3/9 | parsed-rate 0.92
+  L9: 62/68 pass | score 62.0/68 | parsed-rate 0.91
+  L10: 56/63 pass | score 55.7/63 | parsed-rate 0.88
+  L11: 1/12 pass | score 4.9/12 | parsed-rate 0.41
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 12.0.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.1
+npm notice To update run: npm install -g npm@12.0.1
+npm notice
+
+═══════════════════════════════════════════════════════════════
+  RESULTS COMPARISON
+═══════════════════════════════════════════════════════════════
+
+Baseline (variant A, de22a08 grader): 131/175
+Variant B result:
+  L2: 3/4 pass | score 3.0/4 | parsed-rate 0.75
+  L3: 0/1 pass | score 0.5/1 | parsed-rate 0.55
+  L4: 0/4 pass | score 0.6/4 | parsed-rate 0.14
+  L5: 2/4 pass | score 2.4/4 | parsed-rate 0.59
+  L6: 3/3 pass | score 2.4/3 | parsed-rate 0.80
+  L7: 2/4 pass | score 2.1/4 | parsed-rate 0.53
+  L8: 9/9 pass | score 8.3/9 | parsed-rate 0.92
+  L9: 62/68 pass | score 62.0/68 | parsed-rate 0.91
+  L10: 56/63 pass | score 55.7/63 | parsed-rate 0.88
+  L11: 1/12 pass | score 4.9/12 | parsed-rate 0.41
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 12.0.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.1
+npm notice To update run: npm install -g npm@12.0.1
+npm notice
+SUCCESS — results in /workspace/results/variant-b-gate
+Check: https://<podId>-8000.proxy.runpod.net/results/variant-b-gate/grade-output.txt
+═══════════════════════════════════════════════════════════════
+  FINISHED — Sun Jul 19 05:31:52 UTC 2026
+═══════════════════════════════════════════════════════════════
+Container staying alive 10 min for log access, then will stop.
