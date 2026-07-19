@@ -420,3 +420,93 @@ $0 throughout. No GPU, no training, no broker, no credentials, no production cod
 ---
 
 *Conductor stopped. F8 locked (option i + iv). F9 executed (harness committed). Remaining queue items: F2 (specimen scope freeze), F3 (two-instrument question), F4 (markets-side validation path) — all still $0 and all still founder decisions.*
+
+---
+
+## Amendment A4 (2026-07-18): F2 + F3 locked. F4 dropped. Parallel-tracks structure adopted.
+
+### Founder decisions received (in chat)
+- **F2 + F3: do together now.** Founder vote: "Do F2." Then: "Why don't you lock F2, F3?"
+- **F4: drop, not defer.** Founder: "I don't know if F4 is necessary. The near-immediate goal is state-of-the-art on CoinBench. That's the only thing that matters." After cost-benefit analysis, F4 dropped from the queue (not deferred) because it tests breeder-market correlation, which is a different project from CoinBench SOTA.
+- **Parallel tracks: accepted.** Codex leads CoinBench Lock Sprint; GLM leads fitness-function research; both report to founder; cross-review stays. The autonomous codex instance leading CoinBench is separate from the `codex exec` sub-agent calls GLM makes on its own track. Same model family (gpt-5.6-sol); both included in each other's domain via cross-review.
+
+### F2 decision — v0 decision-specimen schema, MANDATORY vs OPTIONAL split
+
+**Two independent votes (lead + codex exec), converged with one amendment.**
+
+- **Lead proposal:** freeze IDENTITY block (specimen_id, decision_ts_utc, as_of_ts_utc, observation_hash, provenance{all 7 fields}) + action + abstain + available_actions as mandatory. Everything else optional-mutable.
+- **Codex amendment (accepted):** *"Add asset, venue, and horizon to MANDATORY-FROZEN. An action cannot be interpreted or compared without its target market and time horizon."* Correct — I missed this. An action is meaningless without its target.
+
+**Frozen v0 specimen schema (MANDATORY — parse-reject specimen if missing):**
+```
+specimen_id, decision_ts_utc, as_of_ts_utc,
+observation_hash, provenance{model_revision, prompt_hash, rubric_hash,
+                            code_commit_sha, serving_config_hash, seed, generation_id},
+asset, venue, horizon,
+available_actions, action, abstain
+```
+
+**Mutable v0 fields (OPTIONAL — gates degrade to N/A if absent):**
+```
+observation_ref, size_requested, active_constraints{...},
+forecast{distribution_type, parameters, method}, expected_return_net,
+cost_breakdown, downside, invalidation_condition, confidence (model-emitted),
+reason_codes, prose_reasoning (diagnostic only, never load-bearing)
+```
+
+**Reasoning:** identity + (action, asset, venue, horizon) is the irreducible interpretive core — without it, a specimen is uncomparable to any other. Everything else can grow because the v0 gates degrade gracefully on missing fields (each gate returns N/A rather than failing silently). This split also folds in codex's earlier "freeze only mandatory fields, leave the rest mutable" guardrail.
+
+### F3 decision — two different instruments (confirmed)
+
+**Two independent votes, both YES.** The current CoinBench grader (`src/grading/schema-grader-300q.ts`, exact/fuzzy/range matching against pre-baked answer keys) and the canonical-spec regret oracle (ensemble-optimal action under info-at-t; not implemented in code) are **two different instruments**.
+
+- **Implication for CoinBench track (codex):** locking CoinBench v1.0 with the current grader is fine *for a benchmark*. The locked benchmark is NOT simultaneously a validated fitness function. Any training step that treats benchmark-score improvement as proof of decision-utility improvement is conflating the two.
+- **Implication for fitness track (GLM):** E5 (utility gate) is marked SURROGATE — cohort counterfactual — until the regret oracle is built. Building the oracle is a real engineering project (canonical spec calls for NautilusTrader); it is a future, founder-gated build, not part of v0.
+
+### F4 decision — DROPPED (not deferred)
+
+F4 asked "do the gates correlate with real trading edge in live markets?" Cost analysis:
+- Cheap version (~$50-80): historical-replay correlation. Tests breeder-market correlation; does not move CoinBench SOTA.
+- Full version (months + real capital): live-market validation. Months of calendar time.
+
+**Founder call:** the near-immediate goal is SOTA on CoinBench, which F4 does not serve. **F4 is dropped from the queue** (not deferred). If the breeder thesis ever becomes priority, F4 returns at that time. Recorded as a closed item so it's not lost — it's a documented "decided not to do now, with reason."
+
+### Parallel-tracks structure (founder-approved)
+
+```
+Founder (adjudicator: question meaning, gold answers, grader semantics, training spend, SOTA claims)
+├── CoinBench Lock Track — LED BY CODEX (autonomous instance)
+│   ├── 25-q audit pilot (codex integrates, GLM challenges independently)
+│   ├── Scale to 300, repair defects, lock v1.0
+│   ├── [GATE] Prompt-fix-first before any training (codex's proposed steps 6-8)
+│   └── Train only if prompt fix exhausted + council approves
+│
+├── Fitness Function Track — LED BY GLM
+│   ├── v0 paper judge: DONE (RED 17/17, committed in A2)
+│   ├── F2 + F3: locked in this amendment
+│   └── Future: resume if/when breeder becomes priority
+│
+└── Cross-review: codex challenges fitness work; GLM challenges CoinBench work
+```
+
+**GLM uses `codex exec` as a sub-agent on its own track** (e.g., this amendment's F2 vote). That sub-agent is the same model family (gpt-5.6-sol) as the autonomous codex leading CoinBench; both are included in each other's domain via the cross-review rule. Neither is excluded.
+
+### Scientific-validity gates GLM asked founder to enforce on codex's CoinBench track
+
+These are recorded here so they're auditable; founder enforces.
+
+1. **Prompt-fix-first gate** before any training step. Verified history: SFT plateaued 4×; GRPO on hold by council; dominant correctable error is $0 prompt conflict (7/13 flippers); variant-B fix staged but untested.
+2. **25-q audit must include prompt-conflict items.** Codex's selection criteria missed this cluster.
+3. **Null-reward control + contamination probe** before scaling to training. Pilot success criteria are process-completeness; statistical guards are separate.
+4. **"Not the present critical path" is the founder's call**, not either agent's.
+
+### Hard rails still in force on both tracks
+No GPU without founder OK. No paid inference without founder OK. No post-training without council OK. No broker/production calls. No credentials. No change to fixed risk cage. CoinBench modifications touch gold answers or grader semantics only with founder adjudication. No PR, no merge, no push without explicit founder authorization.
+
+### Spend Meter (unchanged)
+
+$0 throughout this amendment. No GPU, no training, no broker, no credentials, no PR, no push.
+
+---
+
+*Conductor stopped. F2+F3 locked. F4 dropped. Parallel tracks adopted. CoinBench track handed off to codex (via founder relay, see `/tmp/codex-handoff-message.md`). Fitness track: v0 done, F2+F3 done, remaining work paused pending founder priority shift to breeder thesis.*
