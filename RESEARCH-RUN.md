@@ -575,4 +575,8 @@ The aggregate flips are not a clean capability comparison. They include two unch
 
 GLM 5.2 completed a read-only independent audit and returned **PASS WITH NON-BLOCKING CORRECTIONS**. It confirmed the 143/141 replay, all four schema-failure removals, the arithmetic, the causal limitations, and the decision not to replicate. It corrected the L4-004 field-location explanation, softened the L10-014 unit wording, and requested grader/rubric source pinning; all three corrections were applied. Receipt: `Internal_docs/GLM-5.2-VARIANT-B-INDEPENDENT-REVIEW-2026-07-19.md`.
 
+### Independent Claude Code review
+
+Claude Code (`opus`, high effort, read-only) returned **APPROVE CLOSURE** with no blocking correction. Its useful addition was that the two flips among 32 byte-identical prompts are already the same magnitude as the aggregate -2, reinforcing that the headline is not a clean causal Variant B effect. Two proposed caveats were rejected after source verification: the replay script does regrade all 175 responses before asserting its totals, and the L9-027 rubric does contain the defective `$243,000` bribe note. Receipt: `Internal_docs/CLAUDE-CODE-VARIANT-B-INDEPENDENT-REVIEW-2026-07-20.md`.
+
 *R6 closed with no RunPod or new benchmark inference spend. The local analysis and independent review gates pass. The worktree is ready for founder review and the subsequent CoinBench-lock worktree transition.*
