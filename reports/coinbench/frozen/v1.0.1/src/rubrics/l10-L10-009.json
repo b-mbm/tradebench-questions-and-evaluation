@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-009",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "bundle_selection": 0.35,
+    "ev_calculation": 0.3,
+    "ethics_compliance": 0.2,
+    "gas_optimization": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-009",
+    "level": 10,
+    "intent": "mev_bundle_optimization",
+    "expected_value": 145500,
+    "range": [
+      120000,
+      150000
+    ],
+    "unit": "USD_builder_profit",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "bundle_selection",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Optimal ethical bundle within 30M gas limit",
+          "pass_threshold": 25
+        },
+        {
+          "name": "ev_calculation",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Correct EV with success probabilities and 90% proposer share",
+          "pass_threshold": 21
+        },
+        {
+          "name": "ethics_compliance",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Excludes unethical frontrun, includes only ethical MEV",
+          "pass_threshold": 14
+        },
+        {
+          "name": "gas_optimization",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Maximizes profit per gas unit within constraints",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 120000 AND value <= 150000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            130000,
+            150000
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            120000,
+            150000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            110000,
+            160000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            110000,
+            160000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            100000,
+            170000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

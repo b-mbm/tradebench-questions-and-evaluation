@@ -1,0 +1,94 @@
+{
+  "id": "agi-AGI-005",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_allocation_usd.Alpha",
+    "route_allocation_usd.Delta",
+    "observable_largest_clip_usd",
+    "expected_loss_usd",
+    "expected_arrival_minutes",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "route_allocation_usd.Alpha",
+    "route_allocation_usd.Delta",
+    "observable_largest_clip_usd",
+    "expected_loss_usd",
+    "expected_arrival_minutes",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.125,
+    "chosen_strategy": 0.125,
+    "route_allocation_usd.Alpha": 0.125,
+    "route_allocation_usd.Delta": 0.125,
+    "observable_largest_clip_usd": 0.125,
+    "expected_loss_usd": 0.125,
+    "expected_arrival_minutes": 0.125,
+    "self_check": 0.125
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-005",
+    "title": "The Bridge Risk Matrix",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_bridge_risk"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "private_alpha_delta_auction_repair"
+      },
+      "route_allocation_usd.Alpha": {
+        "type": "number",
+        "range": [
+          299000,
+          301000
+        ]
+      },
+      "route_allocation_usd.Delta": {
+        "type": "number",
+        "range": [
+          199000,
+          201000
+        ]
+      },
+      "observable_largest_clip_usd": {
+        "type": "number",
+        "range": [
+          199000,
+          201000
+        ]
+      },
+      "expected_loss_usd": {
+        "type": "number",
+        "range": [
+          2250,
+          2330
+        ]
+      },
+      "expected_arrival_minutes": {
+        "type": "number",
+        "range": [
+          69,
+          71
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "auction_deadline_met",
+          "largest_observable_clip_not_focal",
+          "loss_reconciles_to_route_primitives"
+        ]
+      }
+    },
+    "derivation": "Gamma cannot repair the account before the 100-minute auction. Beta's fast settlement is dominated by its larger non-arrival risk and public challenge dynamics for this size. Alpha should be filled to its private $300,000 capacity because its expected toll plus non-arrival loss is 0.05% + 0.3% = 0.35%, or $1,050 on $300,000. Delta carries the remaining $200,000 within its relayer balance, arrives in 45 minutes, and costs 0.02% + 0.6% = 0.62%, or $1,240. Total expected deadweight loss is $2,290 and the slowest selected route arrives in 70 minutes. Alpha's private attestation hides the $300,000 clip before settlement, so the largest observable clip is Delta's $200,000. The self-check verifies auction timing, adversarial observability, and loss reconciliation.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

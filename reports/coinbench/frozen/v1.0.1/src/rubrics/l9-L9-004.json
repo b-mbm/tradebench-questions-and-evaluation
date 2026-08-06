@@ -1,0 +1,24 @@
+{
+  "id": "l9-L9-004",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "expected_value": 1
+  },
+  "pass_threshold": 0.7,
+  "_l9_canonical": {
+    "question_id": "L9-004",
+    "expected_value": 9.78,
+    "acceptable_range": [
+      9.5,
+      10
+    ],
+    "unit": "leverage_multiplier",
+    "grading_logic": "numeric_within_range",
+    "grading_notes": "Safe leverage L is the maximum total exposure factor where post-shock LTV remains within the 95% E-mode max LTV after a combined 5.5% collateral value reduction. Solve (L - 1) / (0.945 * L) <= 0.95, so 0.10225L <= 1 and L <= 9.78x. Carry and gas do not alter the leverage answer."
+  }
+}

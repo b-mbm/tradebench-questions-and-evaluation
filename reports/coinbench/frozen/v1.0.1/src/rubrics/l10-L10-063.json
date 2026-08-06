@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-063",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "capacity_schedule": 0.3,
+    "impact_costs": 0.3,
+    "dark_pool_residual": 0.25,
+    "proceeds_reporting": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-063",
+    "level": 10,
+    "intent": "volume_curve_twap_impact",
+    "expected_value": 7621325,
+    "range": [
+      7570000,
+      7670000
+    ],
+    "unit": "USD_proceeds",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "capacity_schedule",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes hourly lit capacity at 12% participation",
+          "pass_threshold": 21
+        },
+        {
+          "name": "impact_costs",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Applies the quadratic participation impact to lit notional",
+          "pass_threshold": 21
+        },
+        {
+          "name": "dark_pool_residual",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Routes only the residual through the 2.10% dark haircut",
+          "pass_threshold": 18
+        },
+        {
+          "name": "proceeds_reporting",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Reports net sale proceeds",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 7570000 AND value <= 7670000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            7595000,
+            7645000
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            7570000,
+            7670000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            7520000,
+            7720000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            7470000,
+            7770000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            7320000,
+            7920000
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "volume_curve_twap_impact",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Sell 1.104M lit with 0.648% impact and 96K dark at 2.10% haircut for about $7,621,325 proceeds."
+    }
+  }
+}

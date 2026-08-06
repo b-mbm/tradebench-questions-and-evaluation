@@ -1,0 +1,35 @@
+{
+  "id": "market_buy",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "risk_controls",
+    "follow_up",
+    "reasoning"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "size", "venue"],
+  "field_weights": {
+    "intent": 0.2,
+    "order_type": 0.2,
+    "asset": 0.2,
+    "size": 0.15,
+    "venue": 0.15,
+    "risk_controls": 0.05,
+    "follow_up": 0.025,
+    "reasoning": 0.025
+  },
+  "synonyms": {
+    "intent": ["action", "purchase", "acquire", "execute", "perform", "do"],
+    "order_type": ["execution_type", "market", "market_order", "instant", "immediate"],
+    "asset": ["token", "coin", "crypto"],
+    "venue": ["exchange", "platform", "protocol", "network", "blockchain"],
+    "risk_controls": ["safety_measures", "protections", "risk", "controls", "limits", "parameters"],
+    "follow_up": ["next_steps", "post_trade", "additional_steps", "further_actions"],
+    "reasoning": ["justification", "rationale", "explanation", "why"]
+  },
+  "pass_threshold": 0.78
+}
+

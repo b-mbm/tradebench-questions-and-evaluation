@@ -1,0 +1,19 @@
+{
+  "id": "coinbench-l5-001",
+  "expected_fields": ["range_usd", "stress_il_pct", "rebalance_or_exit_trigger", "mandate_met"],
+  "required_fields": ["range_usd", "stress_il_pct", "rebalance_or_exit_trigger", "mandate_met"],
+  "field_weights": {"range_usd": 0.3, "stress_il_pct": 0.3, "rebalance_or_exit_trigger": 0.1, "mandate_met": 0.3},
+  "pass_threshold": 0.9,
+  "metadata": {"critical_fields": ["range_usd", "stress_il_pct", "mandate_met"]},
+  "_agi_canonical": {
+    "id": "L5-001",
+    "validation": {
+      "range_usd": {"type": "array", "expected_order": [2700, 2900]},
+      "stress_il_pct": {"type": "number", "expected": -0.016530291872585146, "tolerance": 0.0001},
+      "rebalance_or_exit_trigger": {"type": "string"},
+      "mandate_met": {"type": "boolean", "expected": true}
+    },
+    "derivation": "At the stated stress boundary r=2700/2800. IL=2*sqrt(r)/(1+r)-1=-0.0165302919%, which clears the -8% mandate. The operational trigger is deliberately open but must be supplied.",
+    "pass_condition": "The stated range, stress IL, and mandate decision must be correct; a plain-language operational trigger is accepted."
+  }
+}

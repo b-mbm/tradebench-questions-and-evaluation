@@ -1,0 +1,21 @@
+{
+  "id": "coinbench-l5-002",
+  "expected_fields": ["collateral_usd", "usdc_debt", "total_eth_exposure_usd", "total_eth", "health_factor", "monitoring_repayment_trigger"],
+  "required_fields": ["collateral_usd", "usdc_debt", "total_eth_exposure_usd", "total_eth", "health_factor", "monitoring_repayment_trigger"],
+  "field_weights": {"collateral_usd": 0.2, "usdc_debt": 0.2, "total_eth_exposure_usd": 0.2, "total_eth": 0.1, "health_factor": 0.2, "monitoring_repayment_trigger": 0.1},
+  "pass_threshold": 0.9,
+  "metadata": {"critical_fields": ["collateral_usd", "usdc_debt", "total_eth_exposure_usd", "total_eth", "health_factor"]},
+  "_agi_canonical": {
+    "id": "L5-002",
+    "validation": {
+      "collateral_usd": {"type": "number", "expected": 9000, "tolerance": 0.01},
+      "usdc_debt": {"type": "number", "expected": 6000, "tolerance": 0.01},
+      "total_eth_exposure_usd": {"type": "number", "expected": 9000, "tolerance": 0.01},
+      "total_eth": {"type": "number", "expected": 3, "tolerance": 0.0001},
+      "health_factor": {"type": "number", "expected": 1.2375, "tolerance": 0.0001},
+      "monitoring_repayment_trigger": {"type": "string"}
+    },
+    "derivation": "Supply $3,000 ETH, borrow $6,000 USDC, buy and resupply $6,000 ETH. Collateral is $9,000; HF=$9,000*0.825/$6,000=1.2375.",
+    "pass_condition": "The public leverage accounting and health factor must reconcile; the earlier-than-1.10 monitoring trigger may be expressed in ordinary language."
+  }
+}

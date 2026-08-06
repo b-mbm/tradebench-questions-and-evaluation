@@ -1,0 +1,42 @@
+{
+  "id": "futures_trade",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "unit",
+    "venue",
+    "risk_controls",
+    "follow_up",
+    "reasoning",
+    "requires_follow_up",
+    "follow_up_description"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "size", "venue"],
+  "field_weights": {
+    "intent": 0.18,
+    "order_type": 0.16,
+    "asset": 0.14,
+    "size": 0.12,
+    "unit": 0.08,
+    "venue": 0.12,
+    "risk_controls": 0.08,
+    "follow_up": 0,
+    "reasoning": 0,
+    "requires_follow_up": 0,
+    "follow_up_description": 0.12
+  },
+  "synonyms": {
+    "intent": ["action", "execute", "perform", "do", "buy", "dca_setup", "dollar_cost_average", "setup_dca", "set_up_dca", "schedule_dca", "dca"],
+    "order_type": ["position_type", "contract_type", "perpetual", "perp", "future", "futures_contract", "dca", "recurring_buy", "recurring", "scheduled_buy", "buy", "market", "ladder", "ladder_limit", "limit_ladder", "ladder limit", "limit-ladder"],
+    "asset": ["contract", "pair", "instrument"],
+    "unit": ["usd", "dollars", "dollar", "usdc", "currency", "denomination"],
+    "venue": ["exchange", "platform", "derivatives_exchange", "perp_dex", "futures_platform", "protocol", "network", "blockchain", "cex", "centralized_exchange", "spot_market", "mainnet"],
+    "risk_controls": ["risk_measures", "risk_management", "risk", "controls", "limits", "parameters"],
+    "follow_up": ["next_steps", "additional_steps", "further_actions"],
+    "reasoning": ["justification", "explanation", "why", "rationale"]
+  },
+  "pass_threshold": 0.7
+}
+

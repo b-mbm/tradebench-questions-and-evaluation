@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-004",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "ev_calculation": 0.35,
+    "decision_tree": 0.3,
+    "risk_assessment": 0.2,
+    "execution_speed": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-004",
+    "level": 10,
+    "intent": "oracle_manipulation_defense",
+    "expected_value": 12000,
+    "range": [
+      10000,
+      15000
+    ],
+    "unit": "USD_cost",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "ev_calculation",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Correctly computes EV of hedge vs no-hedge under manipulation",
+          "pass_threshold": 25
+        },
+        {
+          "name": "decision_tree",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Deterministic decision logic with 5-second constraint",
+          "pass_threshold": 21
+        },
+        {
+          "name": "risk_assessment",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Quantifies unhedged loss vs hedge cost trade-off",
+          "pass_threshold": 14
+        },
+        {
+          "name": "execution_speed",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Acknowledges time constraint and latency requirements",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 10000 AND value <= 15000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            11000,
+            14000
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            10000,
+            15000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            9000,
+            16000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            9000,
+            16000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            8000,
+            18000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

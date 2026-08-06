@@ -1,0 +1,110 @@
+{
+  "id": "lending_borrow",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "risk_controls",
+    "follow_up",
+    "reasoning"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "size", "venue"],
+  "field_weights": {
+    "intent": 0.2,
+    "order_type": 0.17,
+    "asset": 0.15,
+    "size": 0.14,
+    "venue": 0.12,
+    "risk_controls": 0.12,
+    "follow_up": 0.05,
+    "reasoning": 0.05
+  },
+  "synonyms": {
+    "intent": [
+      "action",
+      "leverage",
+      "leverage_long",
+      "leveraged_long",
+      "create_leveraged_position",
+      "open_position",
+      "execute",
+      "perform",
+      "do",
+      "deleverage",
+      "unwind_position",
+      "unwind",
+      "repay",
+      "repay_debt",
+      "close_position",
+      "liquidate_position"
+    ],
+    "order_type": [
+      "loan_type",
+      "borrow",
+      "collateralized_borrow",
+      "collateralized_loan",
+      "recursive_borrow",
+      "deposit_collateral",
+      "supply_collateral",
+      "leveraged_borrow",
+      "loan",
+      "margin_borrow",
+      "margin_debt",
+      "borrow_against_collateral",
+      "secured_loan",
+      "repay",
+      "repayment",
+      "repay_and_withdraw",
+      "close_position"
+    ],
+    "venue": [
+      "platform",
+      "protocol",
+      "defi",
+      "lending",
+      "lending_protocol",
+      "lending_platform",
+      "aave",
+      "aave_v2",
+      "aave_v3",
+      "aave_mainnet",
+      "compound",
+      "network",
+      "blockchain"
+    ],
+    "venue_name": [
+      "aave",
+      "aave_v2",
+      "aave_v3",
+      "aave_mainnet",
+      "compound"
+    ],
+    "risk_controls": [
+      "safety_measures",
+      "risk_parameters",
+      "risk",
+      "controls",
+      "limits",
+      "parameters"
+    ],
+    "follow_up": [
+      "next_steps",
+      "additional_steps",
+      "further_actions"
+    ],
+    "reasoning": [
+      "justification",
+      "explanation",
+      "why",
+      "rationale"
+    ],
+    "size": [
+      "3x",
+      "3",
+      "1"
+    ]
+  },
+  "pass_threshold": 0.72
+}

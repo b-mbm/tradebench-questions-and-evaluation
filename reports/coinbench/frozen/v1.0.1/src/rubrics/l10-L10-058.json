@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-058",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "expected_revenue": 0.3,
+    "allocation_constraints": 0.3,
+    "roi_calculation": 0.25,
+    "strategy_explanation": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-058",
+    "level": 10,
+    "intent": "dao_bribe_roi_allocation",
+    "expected_value": 40.52,
+    "range": [
+      39.5,
+      41.5
+    ],
+    "unit": "ROI_percentage",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "expected_revenue",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Adjusts Pool D revenue for governance failure probability",
+          "pass_threshold": 21
+        },
+        {
+          "name": "allocation_constraints",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Spends the full budget across at least three pools while respecting the 40% cap",
+          "pass_threshold": 21
+        },
+        {
+          "name": "roi_calculation",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Computes expected revenue, profit, and ROI percentage",
+          "pass_threshold": 18
+        },
+        {
+          "name": "strategy_explanation",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Explains why Pool D is inferior on expected value",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 39.5 AND value <= 41.5"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            40,
+            41
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            39.5,
+            41.5
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            38.5,
+            42.5
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            37.5,
+            43.5
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            34.5,
+            46.5
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "dao_bribe_roi_allocation",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Allocate $340K to B, $250K to A, and $260K to C for $1.1944M expected revenue and 40.52% ROI."
+    }
+  }
+}

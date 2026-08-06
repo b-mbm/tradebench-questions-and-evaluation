@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-051",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "net_return_math": 0.35,
+    "capital_allocation": 0.3,
+    "stress_budgeting": 0.2,
+    "portfolio_reporting": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-051",
+    "level": 10,
+    "intent": "funding_basis_rotation",
+    "expected_value": 600010,
+    "range": [
+      590000,
+      610000
+    ],
+    "unit": "USD_profit",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "net_return_math",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Calculates 90-day funding, borrow, fee, and idle yields correctly",
+          "pass_threshold": 25
+        },
+        {
+          "name": "capital_allocation",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Allocates to the highest net-return trades subject to caps and idle minimum",
+          "pass_threshold": 21
+        },
+        {
+          "name": "stress_budgeting",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Verifies stress haircut consumption remains below 6%",
+          "pass_threshold": 14
+        },
+        {
+          "name": "portfolio_reporting",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Reports allocation and expected profit cleanly",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 590000 AND value <= 610000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            595000,
+            605000
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            590000,
+            610000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            580000,
+            620000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            570000,
+            630000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            540000,
+            660000
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "funding_basis_rotation",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Use $4M SOL, $6M ETH, $4M BTC, and $6M idle USDC for about $600,010 profit."
+    }
+  }
+}

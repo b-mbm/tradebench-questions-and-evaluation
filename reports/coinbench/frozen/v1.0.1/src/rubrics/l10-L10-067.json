@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-067",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "baseline_data_cost": 0.3,
+    "upgrade_model": 0.3,
+    "revenue_loss": 0.25,
+    "plan_selection": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-067",
+    "level": 10,
+    "intent": "rollup_data_cost_optimization",
+    "expected_value": 350459,
+    "range": [
+      343000,
+      358000
+    ],
+    "unit": "USD_monthly_profit",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "baseline_data_cost",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes calldata gas and USD cost from bytes, gas, base fee, and ETH price",
+          "pass_threshold": 21
+        },
+        {
+          "name": "upgrade_model",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Applies compression and blob reductions multiplicatively and excludes infeasible batch delay",
+          "pass_threshold": 21
+        },
+        {
+          "name": "revenue_loss",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Accounts for blob-posting revenue loss and upgrade costs",
+          "pass_threshold": 18
+        },
+        {
+          "name": "plan_selection",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Selects the highest net-profit feasible plan",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 343000 AND value <= 358000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            346750,
+            354250
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            343000,
+            358000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            335500,
+            365500
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            328000,
+            373000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            305500,
+            395500
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "rollup_data_cost_optimization",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Brotli plus blobs leaves about $300,941 data cost, $806,400 revenue, and $155,000 upgrade cost for $350,459 profit."
+    }
+  }
+}

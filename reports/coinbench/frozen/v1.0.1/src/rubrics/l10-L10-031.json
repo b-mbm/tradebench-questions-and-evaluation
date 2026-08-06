@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-031",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "constraint_solving": 0.35,
+    "execution_costs": 0.3,
+    "schedule_design": 0.2,
+    "interpretability": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-031",
+    "level": 10,
+    "intent": "treasury_rebalance",
+    "expected_value": 29260485,
+    "range": [
+      28900000,
+      29600000
+    ],
+    "unit": "USD_final_value",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "constraint_solving",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Solves final exposure boundary with strict GOV and stable requirements",
+          "pass_threshold": 25
+        },
+        {
+          "name": "execution_costs",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Correctly models LP exit loss and sale slippage only on GOV sold",
+          "pass_threshold": 21
+        },
+        {
+          "name": "schedule_design",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Spreads sales evenly over the stated execution window",
+          "pass_threshold": 14
+        },
+        {
+          "name": "interpretability",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Explains final treasury composition and limiting value",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 28900000 AND value <= 29600000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            29100000,
+            29400000
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            28900000,
+            29600000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            28600000,
+            29900000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            28200000,
+            30200000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            27000000,
+            31000000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

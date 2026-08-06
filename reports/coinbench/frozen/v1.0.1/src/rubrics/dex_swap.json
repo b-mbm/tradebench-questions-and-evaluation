@@ -1,0 +1,38 @@
+{
+  "id": "dex_swap",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "venue_name",
+    "risk_controls",
+    "follow_up",
+    "reasoning"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "size", "venue"],
+  "field_weights": {
+    "intent": 0.2,
+    "order_type": 0.18,
+    "asset": 0.16,
+    "size": 0.16,
+    "venue": 0.14,
+    "venue_name": 0.08,
+    "risk_controls": 0.04,
+    "follow_up": 0.02,
+    "reasoning": 0.02
+  },
+  "synonyms": {
+    "intent": ["action", "swap", "exchange", "trade", "convert", "execute", "perform", "do"],
+    "order_type": ["execution_type", "swap_type", "market", "instant", "exact_input", "exact_output", "trade"],
+    "asset": ["token", "coin", "crypto"],
+    "venue": ["platform", "exchange", "dex", "decentralized_exchange", "uniswap", "sushiswap", "curve", "balancer", "defi", "protocol", "network", "blockchain"],
+    "venue_name": ["protocol"],
+    "risk_controls": ["safety_measures", "protections", "risk", "controls", "limits", "parameters"],
+    "follow_up": ["next_steps", "post_trade", "additional_steps", "further_actions"],
+    "reasoning": ["justification", "rationale", "explanation", "why"]
+  },
+  "pass_threshold": 0.72
+}
+

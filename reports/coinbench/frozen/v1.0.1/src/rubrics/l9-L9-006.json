@@ -1,0 +1,24 @@
+{
+  "id": "l9-L9-006",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "expected_value": 1
+  },
+  "pass_threshold": 0.7,
+  "_l9_canonical": {
+    "question_id": "L9-006",
+    "expected_value": 739228,
+    "acceptable_range": [
+      735000,
+      745000
+    ],
+    "unit": "USD_loss",
+    "grading_logic": "numeric_within_range",
+    "grading_notes": "Compare feasible exit plans. Plan A loss = 4% * $50,000,000 = $2,000,000. Plan C is infeasible while Coinbase withdrawals are halted. Plan B loss = option premium ($50,000,000 * 13% * 8% = $520,000) + funding paid by short ($50,000,000 * 80% * 2/365 = $219,178) + one transfer fee (0.0005 BTC * $100,000 = $50), totaling about $739,228. Pick Plan B as the lowest feasible USD loss; exclude basis PnL, option payoff, and foregone pre-crisis funding."
+  }
+}

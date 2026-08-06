@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-029",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "governance_analysis": 0.35,
+    "expected_value": 0.3,
+    "strategy_selection": 0.2,
+    "timing_execution": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-029",
+    "level": 10,
+    "intent": "governance_arbitrage",
+    "expected_value": 1260000,
+    "range": [
+      1200000,
+      1320000
+    ],
+    "unit": "USD_profit",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "governance_analysis",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Correctly models vote outcome probability and token price effects",
+          "pass_threshold": 25
+        },
+        {
+          "name": "expected_value",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes bribe compounding and probability-weighted token rotation payoff",
+          "pass_threshold": 21
+        },
+        {
+          "name": "strategy_selection",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Chooses the optimal strategy among stay, wrapper, and conversion",
+          "pass_threshold": 14
+        },
+        {
+          "name": "timing_execution",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Accounts for conversion timing and forfeited bribes",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 1200000 AND value <= 1320000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            1230000,
+            1290000
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            1200000,
+            1320000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            1150000,
+            1370000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            1100000,
+            1420000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            900000,
+            1600000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

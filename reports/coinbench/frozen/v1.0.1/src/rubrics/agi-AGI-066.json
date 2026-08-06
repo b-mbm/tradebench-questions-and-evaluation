@@ -1,0 +1,104 @@
+{
+  "id": "agi-AGI-066",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_notional_usd.TIA",
+    "hedge_notional_usd.NEAR",
+    "hedge_notional_usd.ARB",
+    "crisis_beta_reduction_pct",
+    "worst_case_residual_pnl_usd",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "execution_sequence",
+    "hedge_notional_usd.TIA",
+    "hedge_notional_usd.NEAR",
+    "hedge_notional_usd.ARB",
+    "crisis_beta_reduction_pct",
+    "worst_case_residual_pnl_usd",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.111111,
+    "chosen_strategy": 0.111111,
+    "execution_sequence": 0.111111,
+    "hedge_notional_usd.TIA": 0.111111,
+    "hedge_notional_usd.NEAR": 0.111111,
+    "hedge_notional_usd.ARB": 0.111111,
+    "crisis_beta_reduction_pct": 0.111111,
+    "worst_case_residual_pnl_usd": 0.111111,
+    "self_check": 0.111112
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-066",
+    "title": "Korea Basis Ban Hedge",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "adversarial_beta_minimax"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "ordered_minimax_beta_hedge"
+      },
+      "execution_sequence": {
+        "type": "array",
+        "expected_order": [
+          "NEAR_short",
+          "TIA_short"
+        ]
+      },
+      "crisis_beta_reduction_pct": {
+        "type": "number",
+        "range": [
+          38.11241,
+          38.418534
+        ]
+      },
+      "worst_case_residual_pnl_usd": {
+        "type": "number",
+        "range": [
+          -135747.03,
+          -133058.97
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "beta_cut_met",
+          "gross_cap_respected",
+          "stress_pnl_reconciles"
+        ]
+      },
+      "hedge_notional_usd.TIA": {
+        "type": "number",
+        "range": [
+          209580,
+          210420
+        ]
+      },
+      "hedge_notional_usd.NEAR": {
+        "type": "number",
+        "range": [
+          259480,
+          260520
+        ]
+      },
+      "hedge_notional_usd.ARB": {
+        "type": "number",
+        "range": [
+          -1,
+          1
+        ]
+      }
+    },
+    "derivation": "Brute-force eligible hedge subsets and execution orders under the gross cap. The selected NEAR_short -> TIA_short order gives beta reduction 38.265472% and worst residual PnL -134403 after impact 649.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

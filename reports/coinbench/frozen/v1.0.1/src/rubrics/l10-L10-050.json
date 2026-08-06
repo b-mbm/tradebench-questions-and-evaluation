@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-050",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "stress_loss_model": 0.35,
+    "hedge_selection": 0.25,
+    "funding_cost_calculation": 0.25,
+    "risk_policy_check": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-050",
+    "level": 10,
+    "intent": "options_delta_hedge",
+    "expected_value": 35510,
+    "range": [
+      34500,
+      36500
+    ],
+    "unit": "USD_cost",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "stress_loss_model",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Computes the unhedged -18% ETH loss and applies hedge payoff conventions",
+          "pass_threshold": 25
+        },
+        {
+          "name": "hedge_selection",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Rejects call and put structures that fail or cost more than the perp hedge",
+          "pass_threshold": 18
+        },
+        {
+          "name": "funding_cost_calculation",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Computes minimum short notional and 30-day funding cost",
+          "pass_threshold": 18
+        },
+        {
+          "name": "risk_policy_check",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Verifies the final stress loss is within the stated cap",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 34500 AND value <= 36500"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            35000,
+            36000
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            34500,
+            36500
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            33500,
+            37500
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            32500,
+            38500
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            29500,
+            41500
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "options_delta_hedge",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "The unhedged loss is $2.16M; short about 3,288 ETH, leaving $420K stress loss after about $35.5K funding cost."
+    }
+  }
+}

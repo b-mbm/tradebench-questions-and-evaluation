@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-052",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "health_factor_formula": 0.35,
+    "repayment_math": 0.3,
+    "portfolio_triage": 0.2,
+    "clarity": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-052",
+    "level": 10,
+    "intent": "lending_health_factor_triage",
+    "expected_value": 1561481,
+    "range": [
+      1530000,
+      1595000
+    ],
+    "unit": "USD_repayment",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "health_factor_formula",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Applies stressed collateral, liquidation thresholds, and target health factor correctly",
+          "pass_threshold": 25
+        },
+        {
+          "name": "repayment_math",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes allowed debt and required repayment for each vault",
+          "pass_threshold": 21
+        },
+        {
+          "name": "portfolio_triage",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Aggregates only the necessary repayments and respects available liquidity",
+          "pass_threshold": 14
+        },
+        {
+          "name": "clarity",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Shows a defensible vault-by-vault repayment plan",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 1530000 AND value <= 1595000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            1546250,
+            1578750
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            1530000,
+            1595000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            1497500,
+            1627500
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            1465000,
+            1660000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            1367500,
+            1757500
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "lending_health_factor_triage",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Repay about $902,222 WBTC debt, $37,037 ETH debt, and $622,222 stSOL debt, totaling $1,561,481."
+    }
+  }
+}

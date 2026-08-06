@@ -1,0 +1,108 @@
+{
+  "id": "agi-AGI-058",
+  "expected_fields": [
+    "intent",
+    "chosen_strategy",
+    "assets_to_sell",
+    "sale_sequence",
+    "replacement_assets.DOGE",
+    "replacement_assets.OP",
+    "replacement_assets.AVAX",
+    "net_tax_benefit",
+    "remaining_unoffset_gains",
+    "self_check"
+  ],
+  "required_fields": [
+    "intent",
+    "chosen_strategy",
+    "assets_to_sell",
+    "sale_sequence",
+    "replacement_assets.DOGE",
+    "replacement_assets.OP",
+    "replacement_assets.AVAX",
+    "net_tax_benefit",
+    "remaining_unoffset_gains",
+    "self_check"
+  ],
+  "field_weights": {
+    "intent": 0.1,
+    "chosen_strategy": 0.1,
+    "assets_to_sell": 0.1,
+    "sale_sequence": 0.1,
+    "replacement_assets.DOGE": 0.1,
+    "replacement_assets.OP": 0.1,
+    "replacement_assets.AVAX": 0.1,
+    "net_tax_benefit": 0.1,
+    "remaining_unoffset_gains": 0.1,
+    "self_check": 0.1
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "AGI-058",
+    "title": "December Harvest B Rebuild",
+    "bar": "Autonomous Strategy Synthesis with self-verifying reasoning; strategy is not disclosed in prompt",
+    "validation": {
+      "intent": {
+        "type": "string",
+        "expected": "tax_loss_harvest_strategy"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "thin_first_full_loss_harvest"
+      },
+      "assets_to_sell": {
+        "type": "array",
+        "expected_set": [
+          "DOGE",
+          "OP",
+          "AVAX"
+        ],
+        "match_type": "exact_set"
+      },
+      "sale_sequence": {
+        "type": "array",
+        "expected_order": [
+          "DOGE",
+          "OP",
+          "AVAX"
+        ]
+      },
+      "net_tax_benefit": {
+        "type": "number",
+        "range": [
+          16000,
+          16160
+        ]
+      },
+      "remaining_unoffset_gains": {
+        "type": "number",
+        "range": [
+          11900,
+          12100
+        ]
+      },
+      "self_check": {
+        "type": "array",
+        "expected_order": [
+          "all_loss_lots_reconciled",
+          "thin_first_sequence_preserved",
+          "tax_benefit_net_of_costs"
+        ]
+      },
+      "replacement_assets.DOGE": {
+        "type": "string",
+        "expected": "MEME_largecap_basket"
+      },
+      "replacement_assets.OP": {
+        "type": "string",
+        "expected": "ARB_IMX_basket"
+      },
+      "replacement_assets.AVAX": {
+        "type": "string",
+        "expected": "TIA_ATOM_basket"
+      }
+    },
+    "derivation": "All listed loss lots are below realized gains in aggregate, so harvesting them preserves tax value while replacements maintain exposure. Thin-first sequence is DOGE -> OP -> AVAX. Net benefit is 48000*37% - 280000*0.60% = 16080, with 12000 remaining unoffset gains. Self-check verifies lot selection, sequence, and tax arithmetic.",
+    "pass_condition": "All required strategy fields must match and all numeric fields must fall inside tolerance/range."
+  }
+}

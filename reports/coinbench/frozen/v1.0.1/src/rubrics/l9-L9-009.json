@@ -1,0 +1,25 @@
+{
+  "id": "l9-L9-009",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "expected_value": 1
+  },
+  "pass_threshold": 0.7,
+  "_l9_canonical": {
+    "question_id": "L9-009",
+    "expected_value": [
+      "A1",
+      "A2",
+      "A5"
+    ],
+    "acceptable_range": null,
+    "unit": "selected_avs",
+    "grading_logic": "unordered_array_set_equality",
+    "grading_notes": "Net scores: A1 = 8 - 2*0.5 = 7%, A2 = 12 - 3*1 = 9%, A3 = 6 - 0.5*0.2 = 5.9%, A4 = 15 - 5*2 = 5%, A5 = 10 - 2.5*0.8 = 8%. Eligibility requires net >=6%, multiplier <=3, delay <=7 days, and oracle age <=30 minutes. A1, A2, and A5 pass; A3 fails net score; A4 fails net score, multiplier, and delay. Grade as unordered set equality."
+  }
+}

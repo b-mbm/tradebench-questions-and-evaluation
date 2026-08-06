@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-060",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "points_ev": 0.35,
+    "allocation_ordering": 0.3,
+    "capital_use": 0.2,
+    "summary": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-060",
+    "level": 10,
+    "intent": "airdrop_points_capital_allocation",
+    "expected_value": 57820,
+    "range": [
+      56000,
+      60000
+    ],
+    "unit": "USD_profit",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "points_ev",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Computes points, token value, and costs for each strategy",
+          "pass_threshold": 25
+        },
+        {
+          "name": "allocation_ordering",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Allocates capital by net return while respecting caps",
+          "pass_threshold": 21
+        },
+        {
+          "name": "capital_use",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Uses the full budget and includes lower-return positive-EV capacity as needed",
+          "pass_threshold": 14
+        },
+        {
+          "name": "summary",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Reports allocation and total profit",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 56000 AND value <= 60000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            57000,
+            59000
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            56000,
+            60000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            54000,
+            62000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            52000,
+            64000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            46000,
+            70000
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "airdrop_points_capital_allocation",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Net returns are 17.8% lending, 16.5% NFT bids, 2.46% bridge, and 0.8% perps; total profit is $57,820."
+    }
+  }
+}

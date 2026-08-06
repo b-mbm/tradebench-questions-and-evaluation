@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-068",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "cash_need": 0.3,
+    "liquidity_ordering": 0.3,
+    "haircut_cost": 0.25,
+    "buffer_check": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-068",
+    "level": 10,
+    "intent": "cefi_withdrawal_liquidity_run",
+    "expected_value": 173800,
+    "range": [
+      168000,
+      180000
+    ],
+    "unit": "USD_cost",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "cash_need",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes withdrawals plus required ending buffer minus starting cash",
+          "pass_threshold": 21
+        },
+        {
+          "name": "liquidity_ordering",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Uses lowest-haircut liquid assets first",
+          "pass_threshold": 21
+        },
+        {
+          "name": "haircut_cost",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Calculates T-bill and ETH liquidation haircuts correctly",
+          "pass_threshold": 18
+        },
+        {
+          "name": "buffer_check",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Verifies the plan preserves the $10M cash buffer",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 168000 AND value <= 180000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            171000,
+            177000
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            168000,
+            180000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            162000,
+            186000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            156000,
+            192000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            138000,
+            210000
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "cefi_withdrawal_liquidity_run",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Raise $37M by liquidating all $22M T-bills and $15M ETH, costing $8,800 plus $165,000."
+    }
+  }
+}

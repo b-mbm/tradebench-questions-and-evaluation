@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-017",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "optimization_strategy": 0.35,
+    "roi_calculation": 0.3,
+    "performance_targeting": 0.2,
+    "staker_apy": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-017",
+    "level": 10,
+    "intent": "validator_economics",
+    "expected_value": 15,
+    "range": [
+      12,
+      18
+    ],
+    "unit": "ROI_percentage",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "optimization_strategy",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Multi-dimensional optimization (hardware + commission + performance)",
+          "pass_threshold": 25
+        },
+        {
+          "name": "roi_calculation",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Accurate 15% ROI with $65K cost under $200K budget",
+          "pass_threshold": 21
+        },
+        {
+          "name": "performance_targeting",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Achieves 95% performance target through infrastructure",
+          "pass_threshold": 14
+        },
+        {
+          "name": "staker_apy",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Maintains 4.9-5.1% staker APY with optimal commission",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 12 AND value <= 18"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            13,
+            17
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            12,
+            18
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            11,
+            19
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            10,
+            20
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            8,
+            22
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

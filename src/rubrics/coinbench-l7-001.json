@@ -1,0 +1,25 @@
+{
+  "id": "coinbench-l7-001",
+  "expected_fields": ["borrowed_usdc", "dex_a_input_fee_usd", "eth_received", "gross_sale_proceeds_usd", "dex_b_sale_fee_usd", "flash_loan_fee_usd", "gas_and_priority_fees_usd", "net_profit_usd", "decision", "failure_condition"],
+  "required_fields": ["borrowed_usdc", "dex_a_input_fee_usd", "eth_received", "gross_sale_proceeds_usd", "dex_b_sale_fee_usd", "flash_loan_fee_usd", "gas_and_priority_fees_usd", "net_profit_usd", "decision", "failure_condition"],
+  "field_weights": {"borrowed_usdc": 0.08, "dex_a_input_fee_usd": 0.08, "eth_received": 0.12, "gross_sale_proceeds_usd": 0.12, "dex_b_sale_fee_usd": 0.08, "flash_loan_fee_usd": 0.08, "gas_and_priority_fees_usd": 0.08, "net_profit_usd": 0.18, "decision": 0.1, "failure_condition": 0.08},
+  "pass_threshold": 0.9,
+  "metadata": {"critical_fields": ["eth_received","gross_sale_proceeds_usd","net_profit_usd","decision","borrowed_usdc","dex_a_input_fee_usd","dex_b_sale_fee_usd","flash_loan_fee_usd","gas_and_priority_fees_usd"]},
+  "_agi_canonical": {
+    "id": "L7-001",
+    "validation": {
+      "borrowed_usdc": {"type": "number", "expected": 1000000, "tolerance": 0.01},
+      "dex_a_input_fee_usd": {"type": "number", "expected": 500, "tolerance": 0.01},
+      "eth_received": {"type": "number", "expected": 333.1666666666667, "tolerance": 0.0001},
+      "gross_sale_proceeds_usd": {"type": "number", "expected": 1004497.5, "tolerance": 0.01},
+      "dex_b_sale_fee_usd": {"type": "number", "expected": 502.24875, "tolerance": 0.01},
+      "flash_loan_fee_usd": {"type": "number", "expected": 900, "tolerance": 0.01},
+      "gas_and_priority_fees_usd": {"type": "number", "expected": 1200, "tolerance": 0.01},
+      "net_profit_usd": {"type": "number", "expected": 1895.25125, "tolerance": 0.01},
+      "decision": {"type": "string", "required_terms": ["run", "atomic", "arbitrage"]},
+      "failure_condition": {"type": "string", "required_terms": ["net", "profit", "1000"]}
+    },
+    "derivation": "DEX-A input fee is already embedded in ETH received. Net=$1,004,497.50*(1-.0005)-$1,000,000*(1+.0009)-$1,200=$1,895.25125.",
+    "pass_condition": "Every disclosed cost and the atomic run decision must reconcile."
+  }
+}

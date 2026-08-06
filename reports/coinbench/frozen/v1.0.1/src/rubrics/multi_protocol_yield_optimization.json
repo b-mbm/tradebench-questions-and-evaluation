@@ -1,0 +1,174 @@
+{
+  "id": "multi_protocol_yield_optimization",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "venue_name",
+    "expected_value",
+    "unit",
+    "allocation"
+  ],
+  "required_fields": [
+    "intent",
+    "expected_value",
+    "allocation"
+  ],
+  "field_weights": {
+    "intent": 0.08,
+    "order_type": 0.05,
+    "asset": 0.03,
+    "size": 0.03,
+    "venue": 0.03,
+    "venue_name": 0.03,
+    "expected_value": 0.4,
+    "unit": 0.02,
+    "allocation": 0.33
+  },
+  "synonyms": {
+    "intent": [
+      "multi_protocol_yield_stack",
+      "yield_optimization",
+      "portfolio_allocation",
+      "defi_yield_strategy",
+      "cross_protocol_staking",
+      "yield_maximization"
+    ],
+    "order_type": [
+      "pendle_pt_convex_boost",
+      "pendle_convex_strategy",
+      "pt_lp_optimization",
+      "yield_stack",
+      "multi_protocol_deployment",
+      "defi_allocation"
+    ],
+    "asset": [
+      "USDC",
+      "usdc",
+      "stablecoin",
+      "USD"
+    ],
+    "venue": [
+      "defi_multi",
+      "defi",
+      "multi_protocol",
+      "pendle_and_convex",
+      "multiple_venues"
+    ],
+    "venue_name": [
+      "pendle+convex",
+      "pendle_convex",
+      "pendle and convex",
+      "convex+pendle"
+    ],
+    "unit": [
+      "annualized_net_yield_percentage",
+      "apr",
+      "apy",
+      "net_yield_pct",
+      "percentage",
+      "percent"
+    ]
+  },
+  "validation_rules": {
+    "expected_value": {
+      "type": "range",
+      "min": 11.3,
+      "max": 12.0,
+      "unit": "percentage",
+      "weight": 0.4,
+      "description": "Net annualized portfolio yield after all costs"
+    },
+    "allocation.pendle_pt_steth": {
+      "type": "range",
+      "min": 3100000,
+      "max": 3400000,
+      "description": "Pendle PT allocation (62-68%)",
+      "weight": 0.165,
+      "synonyms": [
+        "pendle_pt",
+        "pt_steth",
+        "pendle",
+        "pendle_allocation",
+        "pt_allocation"
+      ]
+    },
+    "allocation.convex_curve_3pool": {
+      "type": "range",
+      "min": 1600000,
+      "max": 1900000,
+      "description": "Convex Curve 3pool allocation (32-38%)",
+      "weight": 0.165,
+      "synonyms": [
+        "convex",
+        "curve_3pool",
+        "convex_curve",
+        "curve",
+        "convex_allocation",
+        "curve_allocation"
+      ]
+    }
+  },
+  "constraint_checks": [
+    {
+      "name": "liquidity_minimum",
+      "rule": "convex_allocation >= 1750000",
+      "points": -0.2,
+      "description": "Must maintain ≥35% in 24h-liquid Curve pool"
+    },
+    {
+      "name": "protocol_maximum",
+      "rule": "pendle_allocation <= 3500000",
+      "points": -0.2,
+      "description": "No single protocol >70%"
+    },
+    {
+      "name": "total_allocation",
+      "rule": "sum(allocations) = 5000000 ±75000",
+      "points": -0.15,
+      "description": "Allocations must sum to total capital"
+    }
+  ],
+  "grading_notes": {
+    "expected_calculation": {
+      "pt_component": {
+        "allocation": 3250000,
+        "discount": "0.970 stETH per PT",
+        "redemption": "1.000 stETH per PT",
+        "90day_return": "3.09%",
+        "annualized_gross": "12.54%",
+        "slippage": "0.08%",
+        "gas_proportional": "~$98",
+        "net_apr": "12.40-12.50%"
+      },
+      "convex_component": {
+        "allocation": 1750000,
+        "base_apr": "4.2%",
+        "boost_multiplier": "2.5x",
+        "vlcvx_cost": "~$2,888",
+        "opportunity_cost": "~$27",
+        "slippage": "0.05%",
+        "gas_proportional": "~$52",
+        "total_costs": "~$2,967",
+        "net_apr": "9.50-9.70%"
+      },
+      "blended_calculation": "0.65 × 12.45% + 0.35 × 9.60% ≈ 11.55%",
+      "acceptable_range": "11.30-12.00%"
+    },
+    "key_mechanics": [
+      "PT is zero-coupon: buy at discount (0.970), redeem at par (1.000)",
+      "Convex boost requires vlCVX lock (opportunity cost matters)",
+      "Costs must be annualized for the 90-day horizon",
+      "Respect Curve liquidity minimum and Pendle exposure maximum"
+    ],
+    "common_errors": [
+      "Forgetting to annualize 90-day return",
+      "Ignoring vlCVX lock opportunity cost",
+      "Violating minimum Curve allocation",
+      "Missing gas/slippage adjustments"
+    ]
+  },
+  "pass_threshold": 0.7
+}

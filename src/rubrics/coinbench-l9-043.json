@@ -1,0 +1,22 @@
+{
+  "id": "coinbench-l9-043",
+  "expected_fields": ["missing_votes", "bribe_cost_usd", "borrow_interest_usd", "bridge_gas_delegation_solver_cost_usd", "expected_delay_loss_usd", "expected_value_usd", "decision"],
+  "required_fields": ["missing_votes", "bribe_cost_usd", "borrow_interest_usd", "bridge_gas_delegation_solver_cost_usd", "expected_delay_loss_usd", "expected_value_usd", "decision"],
+  "field_weights": {"missing_votes": 0.12, "bribe_cost_usd": 0.12, "borrow_interest_usd": 0.12, "bridge_gas_delegation_solver_cost_usd": 0.12, "expected_delay_loss_usd": 0.12, "expected_value_usd": 0.25, "decision": 0.15},
+  "pass_threshold": 0.9,
+  "metadata": {"critical_fields": ["missing_votes", "expected_value_usd", "decision"]},
+  "_agi_canonical": {
+    "id": "L9-043",
+    "validation": {
+      "missing_votes": {"type": "number", "expected": 950000, "tolerance": 0},
+      "bribe_cost_usd": {"type": "number", "expected": 52250, "tolerance": 0.01},
+      "borrow_interest_usd": {"type": "number", "expected": 1561.6438356164383, "tolerance": 0.01},
+      "bridge_gas_delegation_solver_cost_usd": {"type": "number", "expected": 22000, "tolerance": 0.01},
+      "expected_delay_loss_usd": {"type": "number", "expected": 22800, "tolerance": 0.01},
+      "expected_value_usd": {"type": "number", "expected": 450788.3561643836, "tolerance": 0.01},
+      "decision": {"type": "string", "required_terms": ["execute", "governance", "incentive"]}
+    },
+    "derivation": "EV=.67*$820,000-$52,250-$1,561.6438356-$22,000-.06*$380,000=$450,788.3561644; 950,000 votes fit the 965,000 liquidity cap.",
+    "pass_condition": "The public governance economics and positive-EV execution decision must reconcile."
+  }
+}

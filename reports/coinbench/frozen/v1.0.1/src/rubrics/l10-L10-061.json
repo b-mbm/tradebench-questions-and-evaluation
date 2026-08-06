@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-061",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "route_costs": 0.3,
+    "time_constraint": 0.25,
+    "risk_constraint": 0.25,
+    "allocation_reporting": 0.2
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-061",
+    "level": 10,
+    "intent": "bridge_insurance_route",
+    "expected_value": 11625,
+    "range": [
+      11200,
+      12050
+    ],
+    "unit": "USD_cost",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "route_costs",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes fee, insurance, and uncovered-loss cost by route",
+          "pass_threshold": 21
+        },
+        {
+          "name": "time_constraint",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Uses the maximum cheap CCTP allocation allowed by the 90-minute average",
+          "pass_threshold": 18
+        },
+        {
+          "name": "risk_constraint",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Keeps expected uncovered principal loss below $4,000",
+          "pass_threshold": 18
+        },
+        {
+          "name": "allocation_reporting",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Reports the two-route allocation and total cost",
+          "pass_threshold": 14
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 11200 AND value <= 12050"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            11412.5,
+            11837.5
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            11200,
+            12050
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            10775,
+            12475
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            10350,
+            12900
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            9075,
+            14175
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "bridge_insurance_route",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Use about $2.2609M CCTP and $1.7391M insured Wormhole for 90 minutes average and about $11,625 expected cost."
+    }
+  }
+}

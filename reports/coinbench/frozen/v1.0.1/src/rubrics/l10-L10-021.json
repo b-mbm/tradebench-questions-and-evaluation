@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-021",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "scenario_analysis": 0.3,
+    "quantitative_defense": 0.3,
+    "decision_optimization": 0.25,
+    "interpretability": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-021",
+    "level": 10,
+    "intent": "oracle_anomaly_defense",
+    "expected_value": 5550000,
+    "range": [
+      5400000,
+      5700000
+    ],
+    "unit": "USD_loss_avoided",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "scenario_analysis",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Recognizes oracle lag versus market price mechanics and liquidation risk",
+          "pass_threshold": 21
+        },
+        {
+          "name": "quantitative_defense",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Correctly identifies oracle-sensitive exposure and computes avoided loss",
+          "pass_threshold": 21
+        },
+        {
+          "name": "decision_optimization",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Chooses timely defense actions under the liquidation deadline",
+          "pass_threshold": 18
+        },
+        {
+          "name": "interpretability",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Clear reasoning and JSON compliance with timing constraints",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 5400000 AND value <= 5700000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            5480000,
+            5620000
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            5400000,
+            5700000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            5300000,
+            5800000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            5200000,
+            5900000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            4800000,
+            6200000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

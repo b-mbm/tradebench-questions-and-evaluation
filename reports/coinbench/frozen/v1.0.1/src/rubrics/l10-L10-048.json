@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-048",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "optimization_strategy": 0.35,
+    "roi_calculation": 0.3,
+    "performance_targeting": 0.2,
+    "delegation_economics": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-048",
+    "level": 10,
+    "intent": "validator_economics",
+    "expected_value": 15,
+    "range": [
+      13,
+      17
+    ],
+    "unit": "ROI_percentage",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "optimization_strategy",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Selects infrastructure and MEV upgrades within budget",
+          "pass_threshold": 25
+        },
+        {
+          "name": "roi_calculation",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes six-month ROI from incremental net profit divided by selected spend",
+          "pass_threshold": 21
+        },
+        {
+          "name": "performance_targeting",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Achieves the stated uptime/performance target",
+          "pass_threshold": 14
+        },
+        {
+          "name": "delegation_economics",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Separates delegation-stabilizing actions from direct ROI numerator",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 13 AND value <= 17"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            14,
+            16
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            13,
+            17
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            12,
+            18
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            10,
+            20
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            8,
+            24
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

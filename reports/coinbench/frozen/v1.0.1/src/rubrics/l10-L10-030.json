@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-030",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "path_optimization": 0.35,
+    "breakeven_analysis": 0.3,
+    "execution_mechanics": 0.2,
+    "profitability": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-030",
+    "level": 10,
+    "intent": "cross_chain_arbitrage",
+    "expected_value": 11700,
+    "range": [
+      10000,
+      13000
+    ],
+    "unit": "USD_profit",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "path_optimization",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Optimal multi-bridge allocation respecting capacity and EV ranking",
+          "pass_threshold": 25
+        },
+        {
+          "name": "breakeven_analysis",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Correctly computes spread decay, fees, and bridge failure principal risk",
+          "pass_threshold": 21
+        },
+        {
+          "name": "execution_mechanics",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Allocates only to positive-EV bridges under settlement constraints",
+          "pass_threshold": 14
+        },
+        {
+          "name": "profitability",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Reports net positive expected USD profit after all modeled costs",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 10000 AND value <= 13000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            11000,
+            12300
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            10000,
+            13000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            9000,
+            14000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            8000,
+            15000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            5000,
+            18000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

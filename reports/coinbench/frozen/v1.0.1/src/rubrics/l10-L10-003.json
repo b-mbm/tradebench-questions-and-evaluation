@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-003",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "scenario_modeling": 0.3,
+    "quantitative_optimization": 0.3,
+    "execution_design": 0.25,
+    "regulatory_reasoning": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-003",
+    "level": 10,
+    "intent": "censorship_resistance",
+    "expected_value": 0.17,
+    "range": [
+      0.15,
+      0.2
+    ],
+    "unit": "percentage_cost",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "scenario_modeling",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Understands OFAC censorship risk and validator control dynamics",
+          "pass_threshold": 21
+        },
+        {
+          "name": "quantitative_optimization",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes sequential probabilities correctly for multi-route strategy",
+          "pass_threshold": 21
+        },
+        {
+          "name": "execution_design",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Chooses minimal-cost route meeting 97% success threshold",
+          "pass_threshold": 18
+        },
+        {
+          "name": "regulatory_reasoning",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Addresses on-chain vs private-relay regulatory trade-offs",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 0.15 AND value <= 0.20"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            0.16,
+            0.19
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            0.15,
+            0.2
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            0.14,
+            0.21
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            0.14,
+            0.22
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            0.12,
+            0.25
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-036",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "probability_tree": 0.35,
+    "execution_timing": 0.3,
+    "partial_fill_handling": 0.2,
+    "cost_minimization": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-036",
+    "level": 10,
+    "intent": "gas_forecasting",
+    "expected_value": 215,
+    "range": [
+      205,
+      225
+    ],
+    "unit": "USD_cost",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "probability_tree",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Uses the provided execution scenarios without double-counting event context",
+          "pass_threshold": 25
+        },
+        {
+          "name": "execution_timing",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Selects the only scenario that fills all required transactions",
+          "pass_threshold": 21
+        },
+        {
+          "name": "partial_fill_handling",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Rejects partial-fill scenarios as infeasible",
+          "pass_threshold": 14
+        },
+        {
+          "name": "cost_minimization",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Computes gas * gwei * ETH price correctly",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 205 AND value <= 225"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            211,
+            219
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            205,
+            225
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            195,
+            235
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            185,
+            250
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            150,
+            300
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

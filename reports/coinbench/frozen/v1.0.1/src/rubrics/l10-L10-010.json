@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-010",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "probability_tree": 0.35,
+    "execution_timing": 0.3,
+    "partial_fill_handling": 0.2,
+    "cost_minimization": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-010",
+    "level": 10,
+    "intent": "gas_forecasting",
+    "expected_value": 149,
+    "range": [
+      140,
+      160
+    ],
+    "unit": "USD_cost",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "probability_tree",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Correct probability calculations for all gas price scenarios",
+          "pass_threshold": 25
+        },
+        {
+          "name": "execution_timing",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Optimal timing strategy using maintenance window (-30% gas)",
+          "pass_threshold": 21
+        },
+        {
+          "name": "partial_fill_handling",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Accounts for partial fills at different gas price levels",
+          "pass_threshold": 14
+        },
+        {
+          "name": "cost_minimization",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Expected cost calculation minimizes total USD spent",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 140 AND value <= 160"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            145,
+            155
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            140,
+            160
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            135,
+            165
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            130,
+            170
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            120,
+            180
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-022",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "scenario_modeling": 0.3,
+    "quantitative_optimization": 0.3,
+    "execution_design": 0.25,
+    "regulatory_reasoning": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-022",
+    "level": 10,
+    "intent": "censorship_resistance",
+    "expected_value": 0.142,
+    "range": [
+      0.13,
+      0.16
+    ],
+    "unit": "percentage_cost",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "scenario_modeling",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Understands censorship risk and validator control dynamics",
+          "pass_threshold": 21
+        },
+        {
+          "name": "quantitative_optimization",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes sequential success probabilities and expected route costs correctly",
+          "pass_threshold": 21
+        },
+        {
+          "name": "execution_design",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Chooses minimal-cost route meeting the success threshold",
+          "pass_threshold": 18
+        },
+        {
+          "name": "regulatory_reasoning",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Addresses non-custodial on-chain routing constraints",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 0.13 AND value <= 0.16"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            0.135,
+            0.15
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            0.13,
+            0.16
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            0.12,
+            0.17
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            0.11,
+            0.18
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            0.09,
+            0.22
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

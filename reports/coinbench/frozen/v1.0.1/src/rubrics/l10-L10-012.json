@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-012",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "channel_optimization": 0.35,
+    "success_rate_improvement": 0.3,
+    "revenue_doubling": 0.2,
+    "topology_design": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-012",
+    "level": 10,
+    "intent": "liquidity_routing",
+    "expected_value": 54000,
+    "range": [
+      48000,
+      60000
+    ],
+    "unit": "USD_monthly_revenue",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "channel_optimization",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Optimal channel rebalancing within 60-channel and $5K cost limits",
+          "pass_threshold": 25
+        },
+        {
+          "name": "success_rate_improvement",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Achieves 95% success rate from 87% baseline",
+          "pass_threshold": 21
+        },
+        {
+          "name": "revenue_doubling",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "2x revenue increase through better routing and success rate",
+          "pass_threshold": 14
+        },
+        {
+          "name": "topology_design",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Strategic institutional channels for high-value flow",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 48000 AND value <= 60000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            50000,
+            58000
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            48000,
+            60000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            45000,
+            63000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            43000,
+            65000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            38000,
+            70000
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

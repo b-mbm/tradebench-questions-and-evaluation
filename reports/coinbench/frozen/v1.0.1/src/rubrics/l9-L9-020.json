@@ -1,0 +1,24 @@
+{
+  "id": "l9-L9-020",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "expected_value": 1
+  },
+  "pass_threshold": 0.7,
+  "_l9_canonical": {
+    "question_id": "L9-020",
+    "expected_value": 0,
+    "acceptable_range": [
+      0,
+      0
+    ],
+    "unit": "USD_profit",
+    "grading_logic": "numeric_within_range",
+    "grading_notes": "A net=$-2,100; constraint violation; reject; B net=$-5,900; constraint violation; reject; C net=$-3,800; constraint violation; reject. No option is both positive-EV and feasible, so top-level expected_value uses the no_action sentinel 0."
+  }
+}

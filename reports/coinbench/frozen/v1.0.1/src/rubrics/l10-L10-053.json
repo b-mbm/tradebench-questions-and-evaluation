@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-053",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "route_ev": 0.35,
+    "settlement_constraint": 0.25,
+    "capacity_allocation": 0.25,
+    "answer_completeness": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-053",
+    "level": 10,
+    "intent": "lst_withdrawal_queue_arbitrage",
+    "expected_value": 71711,
+    "range": [
+      70000,
+      73500
+    ],
+    "unit": "USD_profit",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "route_ev",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Calculates route-level discount, hedge carry, and failure-risk EV",
+          "pass_threshold": 25
+        },
+        {
+          "name": "settlement_constraint",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Respects the weighted-average withdrawal-time limit",
+          "pass_threshold": 18
+        },
+        {
+          "name": "capacity_allocation",
+          "weight": 0.25,
+          "points": 25,
+          "criteria": "Fills routes in expected-value order subject to capacities",
+          "pass_threshold": 18
+        },
+        {
+          "name": "answer_completeness",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Reports allocation and expected profit",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 70000 AND value <= 73500"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            70875,
+            72625
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            70000,
+            73500
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            68250,
+            75250
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            66500,
+            77000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            61250,
+            82250
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "lst_withdrawal_queue_arbitrage",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Allocate $2M cbETH, $3M rETH, and $2M stETH for a 13.7-day average settlement and about $71,711 profit."
+    }
+  }
+}

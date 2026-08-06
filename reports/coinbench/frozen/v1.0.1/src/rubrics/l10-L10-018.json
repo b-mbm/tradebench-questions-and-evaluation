@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-018",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "portfolio_construction": 0.4,
+    "expected_value_computation": 0.3,
+    "risk_modeling": 0.2,
+    "interpretability": 0.1
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-018",
+    "level": 10,
+    "intent": "yield_optimization",
+    "expected_value": 8.99,
+    "range": [
+      8.8,
+      9.2
+    ],
+    "unit": "APR_percentage",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "portfolio_construction",
+          "weight": 0.4,
+          "points": 40,
+          "criteria": "Allocations respect per-protocol caps, liquidity floor, APR target, and catastrophic-loss limit",
+          "pass_threshold": 28
+        },
+        {
+          "name": "expected_value_computation",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Scenario-weighted APR and tail-loss deductions are computed correctly",
+          "pass_threshold": 21
+        },
+        {
+          "name": "risk_modeling",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Downside and liquidity constraints are checked against the selected allocation",
+          "pass_threshold": 14
+        },
+        {
+          "name": "interpretability",
+          "weight": 0.1,
+          "points": 10,
+          "criteria": "Clear reasoning and proper JSON format with all required fields",
+          "pass_threshold": 7
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 8.8 AND value <= 9.2"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            8.9,
+            9.1
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            8.8,
+            9.2
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            8.7,
+            9.3
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            8.5,
+            9.5
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            8,
+            10
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

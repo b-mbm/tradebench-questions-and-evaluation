@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-059",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "target_rebalance": 0.3,
+    "execution_costs": 0.35,
+    "final_value": 0.2,
+    "risk_policy": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-059",
+    "level": 10,
+    "intent": "stablecoin_basket_depeg_unwind",
+    "expected_value": 31884320,
+    "range": [
+      31750000,
+      32000000
+    ],
+    "unit": "USD_final_value",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "target_rebalance",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Computes target dollar amounts from starting notional",
+          "pass_threshold": 21
+        },
+        {
+          "name": "execution_costs",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Applies correct costs to each sale, purchase, and mint",
+          "pass_threshold": 25
+        },
+        {
+          "name": "final_value",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Subtracts aggregate execution cost from initial basket value",
+          "pass_threshold": 14
+        },
+        {
+          "name": "risk_policy",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Shows the resulting basket satisfies the target policy",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 31750000 AND value <= 32000000"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            31812500,
+            31937500
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            31750000,
+            32000000
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            31625000,
+            32125000
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            31500000,
+            32250000
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            31125000,
+            32625000
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "stablecoin_basket_depeg_unwind",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Costs are $1,600 USDC, $1,280 DAI, $5,600 FRAX, $105,600 TUSD, and $1,600 T-bills, leaving $31,884,320."
+    }
+  }
+}

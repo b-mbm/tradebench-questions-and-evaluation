@@ -1,0 +1,111 @@
+{
+  "id": "l10-L10-049",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "allocation_optimization": 0.35,
+    "tail_loss_math": 0.3,
+    "constraint_verification": 0.2,
+    "answer_format": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-049",
+    "level": 10,
+    "intent": "stablecoin_liquidity_ladder",
+    "expected_value": 11.5,
+    "range": [
+      11.3,
+      11.7
+    ],
+    "unit": "APR_percentage",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "allocation_optimization",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Selects the highest risk-adjusted allocations under venue caps and liquidity limits",
+          "pass_threshold": 25
+        },
+        {
+          "name": "tail_loss_math",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Subtracts each probability times severity correctly without annualizing tail losses",
+          "pass_threshold": 21
+        },
+        {
+          "name": "constraint_verification",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Checks nominal APR, liquidity, illiquid exposure, and expected tail-loss constraints",
+          "pass_threshold": 14
+        },
+        {
+          "name": "answer_format",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Reports allocation and APR in a clear structured response",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 11.3 AND value <= 11.7"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            11.4,
+            11.6
+          ],
+          "percentile": "middle 50%"
+        },
+        "medium": {
+          "range": [
+            11.3,
+            11.7
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            11.1,
+            11.9
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            10.9,
+            12.1
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            10.3,
+            12.7
+          ],
+          "score": 0.4
+        }
+      }
+    },
+    "metadata": {
+      "archetype_family": "stablecoin_liquidity_ladder",
+      "generated_tranche": "L10-049..L10-069",
+      "solution_summary": "Allocate 30% Ethena, 25% Maple, 30% FraxBP, and 15% repo for 11.497% risk-adjusted APR."
+    }
+  }
+}

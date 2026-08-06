@@ -1,0 +1,32 @@
+{
+  "id": "twap_order",
+  "expected_fields": [
+    "intent",
+    "order_type",
+    "asset",
+    "size",
+    "venue",
+    "duration",
+    "risk_controls",
+    "follow_up_description"
+  ],
+  "required_fields": ["intent", "order_type", "asset", "size", "venue", "duration"],
+  "field_weights": {
+    "intent": 0.15,
+    "order_type": 0.15,
+    "asset": 0.15,
+    "size": 0.12,
+    "venue": 0.10,
+    "duration": 0.20,
+    "risk_controls": 0.08,
+    "follow_up_description": 0.05
+  },
+  "synonyms": {
+    "intent": ["sell", "execute", "trade"],
+    "order_type": ["twap", "time_weighted_average_price", "time_weighted", "twa"],
+    "asset": ["eth", "ethereum"],
+    "venue": ["exchange", "dex", "cex", "mainnet", "onchain", "on_chain", "spot_market", "dex_aggregator"],
+    "duration": ["time", "timeframe", "window", "period", "interval", "execution_time"]
+  },
+  "pass_threshold": 0.75
+}

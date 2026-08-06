@@ -1,0 +1,89 @@
+{
+  "id": "risk_adjusted_leverage",
+  "expected_fields": [
+    "action",
+    "action_name",
+    "liquidation_probabilities",
+    "expected_values",
+    "reasoning",
+    "calculation_method"
+  ],
+  "required_fields": [
+    "action",
+    "liquidation_probabilities",
+    "expected_values",
+    "reasoning"
+  ],
+  "field_weights": {
+    "action": 0.4,
+    "liquidation_probabilities": 0.3,
+    "expected_values": 0.2,
+    "reasoning": 0.1,
+    "action_name": 0,
+    "calculation_method": 0
+  },
+  "synonyms": {
+    "action": [
+      "selected_action",
+      "decision",
+      "choice"
+    ],
+    "action_name": [
+      "decision_name",
+      "action_label",
+      "choice_name"
+    ],
+    "liquidation_probabilities": [
+      "liquidation_probs",
+      "liq_probabilities",
+      "liquidation_risk"
+    ],
+    "expected_values": [
+      "expected_returns",
+      "ev",
+      "expected_payouts"
+    ],
+    "reasoning": [
+      "rationale",
+      "explanation",
+      "analysis"
+    ],
+    "calculation_method": [
+      "probability_method",
+      "methodology",
+      "model_type"
+    ]
+  },
+  "metadata": {
+    "action_partial_credit": {
+      "A": 0.6
+    },
+    "probability_ranges": {
+      "maintain_3x": {
+        "barrier": { "min": 0.0075, "max": 0.0085, "exact": 0.00809 },
+        "endpoint": { "min": 0.0030, "max": 0.0040, "exact": 0.00339 }
+      },
+      "deleverage_2x": {
+        "barrier": { "min": 0.00012, "max": 0.00016, "exact": 0.000136 },
+        "endpoint": { "min": 0.00004, "max": 0.00007, "exact": 0.0000528 }
+      },
+      "deleverage_1_5x": {
+        "barrier": { "min": 0.0000001, "max": 0.0000003, "exact": 0.000000202 },
+        "endpoint": { "min": 0.000000005, "max": 0.000000010, "exact": 0.00000000715 }
+      }
+    },
+    "expected_value_ranges": {
+      "maintain_3x": { "min": 44.0, "max": 48.0, "exact": 45.76 },
+      "deleverage_2x": { "min": 40.0, "max": 44.0, "exact": 42.17 },
+      "deleverage_1_5x": { "min": 35.0, "max": 38.0, "exact": 36.54 },
+      "close": { "min": -0.01, "max": 0.01, "exact": 0 }
+    },
+    "weekly_carry": {
+      "maintain_3x": { "min": 52.0, "max": 56.0, "exact": 53.85 },
+      "deleverage_2x": { "min": 40.0, "max": 44.0, "exact": 42.31 },
+      "deleverage_1_5x": { "min": 35.0, "max": 38.0, "exact": 36.54 }
+    },
+    "institutional_threshold": 0.005
+  },
+  "pass_threshold": 0.7
+}

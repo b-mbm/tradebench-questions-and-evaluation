@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-013",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "consolidation_strategy": 0.35,
+    "cost_optimization": 0.3,
+    "liquidity_preservation": 0.2,
+    "privacy_protection": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-013",
+    "level": 10,
+    "intent": "utxo_optimization",
+    "expected_value": 0.0154,
+    "range": [
+      0.012,
+      0.018
+    ],
+    "unit": "BTC_cost",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "consolidation_strategy",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Optimal 3-phase consolidation plan within 90 days",
+          "pass_threshold": 25
+        },
+        {
+          "name": "cost_optimization",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Total cost <0.05 BTC through fee optimization timing",
+          "pass_threshold": 21
+        },
+        {
+          "name": "liquidity_preservation",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Maintains ≥20 BTC liquid throughout process",
+          "pass_threshold": 14
+        },
+        {
+          "name": "privacy_protection",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Consolidation patterns preserve transaction privacy",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 0.012 AND value <= 0.018"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            0.013,
+            0.017
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            0.012,
+            0.018
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            0.011,
+            0.019
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            0.01,
+            0.02
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            0.008,
+            0.025
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

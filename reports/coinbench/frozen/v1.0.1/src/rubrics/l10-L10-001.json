@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-001",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "portfolio_construction": 0.4,
+    "expected_value_computation": 0.3,
+    "risk_modeling": 0.2,
+    "interpretability": 0.1
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-001",
+    "level": 10,
+    "intent": "yield_optimization",
+    "expected_value": 5.9,
+    "range": [
+      5.7,
+      6.2
+    ],
+    "unit": "APR_percentage",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "portfolio_construction",
+          "weight": 0.4,
+          "points": 40,
+          "criteria": "Allocations respect all constraints (≤30% per protocol, ≥50% liquid, downside <2%)",
+          "pass_threshold": 28
+        },
+        {
+          "name": "expected_value_computation",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Probabilistic APR calculation correct with risk-weighted returns",
+          "pass_threshold": 21
+        },
+        {
+          "name": "risk_modeling",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Downside + liquidity constraints properly checked and satisfied",
+          "pass_threshold": 14
+        },
+        {
+          "name": "interpretability",
+          "weight": 0.1,
+          "points": 10,
+          "criteria": "Clear reasoning and proper JSON format with all required fields",
+          "pass_threshold": 7
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 5.7 AND value <= 6.2"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            5.75,
+            6.15
+          ],
+          "percentile": "middle 80%"
+        },
+        "medium": {
+          "range": [
+            5.7,
+            6.2
+          ],
+          "percentile": "middle 95%"
+        },
+        "low": {
+          "range": [
+            5.65,
+            6.25
+          ],
+          "percentile": "edges"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            5.5,
+            6.4
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            5,
+            7
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}

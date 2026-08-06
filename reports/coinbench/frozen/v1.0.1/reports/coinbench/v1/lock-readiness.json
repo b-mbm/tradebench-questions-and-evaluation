@@ -1,0 +1,54 @@
+{
+  "benchmark": "CoinBench",
+  "candidate_version": "v1",
+  "source": {
+    "questions_sha256": "4406ab7f151ff3ab41e54c026180f70dc29ab2dd10bccf911608f23252672309",
+    "rubrics_sha256": "c965fdd60d1859c0c9955425699a2fc7c2c09a35f4e80065413a6fbc48865085",
+    "grader_sha256": "b8f9052df3dcd11fad6db47e6e2b2d7e51425bbf3adba6c9b1d4f08b96d98dc3"
+  },
+  "counts": {
+    "source_questions": 300,
+    "executable_candidate_questions": 300,
+    "quarantined_exact_duplicate_rows": 0,
+    "quarantined_repair_rows": 0,
+    "unique_ids": 300,
+    "referenced_rubrics": 288,
+    "missing_rubrics": 0,
+    "exact_duplicate_groups": 0,
+    "exact_duplicate_rows": 0,
+    "executable_exact_duplicate_groups": 0,
+    "masked_similarity_groups": 2,
+    "old_training_split_contamination_rows": 0
+  },
+  "historical_mutation_evidence": {
+    "status": "current",
+    "covered": 300,
+    "rows_with_true_leaks": 0,
+    "rows_with_threshold_leaks": 34
+  },
+  "independent_prompt_proofs": {
+    "status": "current_all_pass",
+    "expected": 300,
+    "received": 399,
+    "status_counts": {
+      "PASS": 300
+    }
+  },
+  "content_addressed_bundle": {
+    "status": "current_hashes_intact",
+    "version": "v1.0.1",
+    "files": 320
+  },
+  "gates": {
+    "source_cardinality": "PASS",
+    "rubric_join": "PASS",
+    "exact_duplicates": "PASS",
+    "training_contamination": "PASS",
+    "all_row_solvability": "PASS",
+    "all_row_uniqueness": "PASS",
+    "current_grader_mutation_robustness": "PASS",
+    "difficulty_calibration": "UNKNOWN",
+    "immutable_bundle": "PASS"
+  },
+  "lock_ready": false
+}

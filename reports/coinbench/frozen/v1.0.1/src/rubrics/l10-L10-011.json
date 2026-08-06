@@ -1,0 +1,106 @@
+{
+  "id": "l10-L10-011",
+  "expected_fields": [
+    "expected_value"
+  ],
+  "required_fields": [
+    "expected_value"
+  ],
+  "field_weights": {
+    "strategy_design": 0.35,
+    "return_calculation": 0.3,
+    "risk_management": 0.2,
+    "market_timing": 0.15
+  },
+  "pass_threshold": 0.7,
+  "_l10_canonical": {
+    "id": "L10-011",
+    "level": 10,
+    "intent": "multi_leg_strategy",
+    "expected_value": 25,
+    "range": [
+      22,
+      30
+    ],
+    "unit": "percent_return",
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "strategy_design",
+          "weight": 0.35,
+          "points": 35,
+          "criteria": "Multi-leg strategy (spot + perps + futures + options) for halving",
+          "pass_threshold": 25
+        },
+        {
+          "name": "return_calculation",
+          "weight": 0.3,
+          "points": 30,
+          "criteria": "Accurate 45-day ROI from funding + basis + volatility capture",
+          "pass_threshold": 21
+        },
+        {
+          "name": "risk_management",
+          "weight": 0.2,
+          "points": 20,
+          "criteria": "Drawdown capped at <15% through hedging",
+          "pass_threshold": 14
+        },
+        {
+          "name": "market_timing",
+          "weight": 0.15,
+          "points": 15,
+          "criteria": "Optimal positioning for halving event catalysts",
+          "pass_threshold": 11
+        }
+      ],
+      "overall_pass_threshold": 0.7,
+      "total_points": 100
+    },
+    "grading": {
+      "primary": {
+        "method": "range_check",
+        "pass_if": "value >= 22 AND value <= 30"
+      },
+      "confidence_bands": {
+        "high": {
+          "range": [
+            23,
+            28
+          ],
+          "percentile": "middle 75%"
+        },
+        "medium": {
+          "range": [
+            22,
+            30
+          ],
+          "percentile": "full range"
+        },
+        "low": {
+          "range": [
+            20,
+            32
+          ],
+          "percentile": "extended"
+        }
+      },
+      "partial_credit": {
+        "close_match": {
+          "range": [
+            20,
+            33
+          ],
+          "score": 0.7
+        },
+        "directionally_correct": {
+          "range": [
+            18,
+            35
+          ],
+          "score": 0.4
+        }
+      }
+    }
+  }
+}
