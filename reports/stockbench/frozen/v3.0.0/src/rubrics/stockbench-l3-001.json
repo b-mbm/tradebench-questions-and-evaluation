@@ -1,0 +1,76 @@
+{
+  "id": "stockbench-l3-001",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "eur_notional",
+    "gross_pnl_usd",
+    "fee_usd",
+    "net_pnl_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "eur_notional",
+    "gross_pnl_usd",
+    "fee_usd",
+    "net_pnl_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "calculate"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "EURUSD"
+      },
+      "eur_notional": {
+        "type": "number",
+        "expected": 200000,
+        "tolerance": 0
+      },
+      "gross_pnl_usd": {
+        "type": "number",
+        "expected": 900,
+        "tolerance": 1
+      },
+      "fee_usd": {
+        "type": "number",
+        "expected": 25,
+        "tolerance": 0
+      },
+      "net_pnl_usd": {
+        "type": "number",
+        "expected": 875,
+        "tolerance": 1
+      }
+    },
+    "derivation": "200,000 * (1.0865 - 1.0820) = 900 gross USD PnL; net after 25 fee = 875."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot FX / CFDs / multi-currency",
+    "tier": "L3",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "fx_pnl_conversion",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "wrong quote convention",
+      "omits fee"
+    ],
+    "must_not": [
+      "must_not_use_live_fx_rate"
+    ],
+    "critical_fields": [
+      "instrument",
+      "eur_notional",
+      "gross_pnl_usd",
+      "fee_usd",
+      "net_pnl_usd"
+    ]
+  }
+}

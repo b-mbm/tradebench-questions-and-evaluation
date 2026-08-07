@@ -1,0 +1,96 @@
+{
+  "id": "stockbench-l9-002",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "short_shares",
+    "put_contracts",
+    "premium_paid",
+    "bearish_delta_shares",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "short_shares",
+    "put_contracts",
+    "premium_paid",
+    "bearish_delta_shares",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "short_locate_plus_puts"
+      },
+      "short_shares": {
+        "type": "number",
+        "expected": 400,
+        "tolerance": 0
+      },
+      "put_contracts": {
+        "type": "number",
+        "expected": 7,
+        "tolerance": 0
+      },
+      "premium_paid": {
+        "type": "number",
+        "expected": 5600,
+        "tolerance": 0
+      },
+      "bearish_delta_shares": {
+        "type": "number",
+        "expected": 645,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "short_1000_no_locate",
+          "buy_8_puts_cash_exceeded"
+        ],
+        "min_items": 2
+      }
+    },
+    "derivation": "Short 400 located shares plus 7 puts. Each put adds 35 delta shares; 400 + 245 = 645. Eight puts would cost 6,400 > 6,000."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Shorting / borrow / margin / locates",
+    "tier": "L9",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "short_locate_failure",
+    "feasibility_trap": true,
+    "objective_function": "maximize bearish delta-share exposure subject to locate and cash constraints",
+    "failure_modes": [
+      "shorts without locate",
+      "exceeds option cash",
+      "misses put multiplier/delta"
+    ],
+    "must_not": [
+      "must_not_short_more_than_locate",
+      "must_not_exceed_cash"
+    ],
+    "critical_fields": [
+      "decision",
+      "short_shares",
+      "put_contracts",
+      "premium_paid",
+      "bearish_delta_shares",
+      "feasibility"
+    ]
+  }
+}

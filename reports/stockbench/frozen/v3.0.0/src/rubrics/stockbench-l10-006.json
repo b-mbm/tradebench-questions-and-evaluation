@@ -1,0 +1,100 @@
+{
+  "id": "stockbench-l10-006",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_to_close_contracts",
+    "sell_to_open_contracts",
+    "new_call_strike",
+    "net_debit_usd",
+    "assignment_risk_removed",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "buy_to_close_contracts",
+    "sell_to_open_contracts",
+    "new_call_strike",
+    "net_debit_usd",
+    "assignment_risk_removed",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "roll"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "buy_close_420_sell_open_435"
+      },
+      "buy_to_close_contracts": {
+        "type": "number",
+        "expected": 10,
+        "tolerance": 0
+      },
+      "sell_to_open_contracts": {
+        "type": "number",
+        "expected": 10,
+        "tolerance": 0
+      },
+      "new_call_strike": {
+        "type": "number",
+        "expected": 435,
+        "tolerance": 0
+      },
+      "net_debit_usd": {
+        "type": "number",
+        "expected": 4100,
+        "tolerance": 0
+      },
+      "assignment_risk_removed": {
+        "type": "boolean",
+        "expected": true
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "hold_short_420_calls_through_ex_div",
+          "exercise_not_applicable_short_call"
+        ],
+        "min_items": 2
+      }
+    },
+    "derivation": "Dividend 0.80 exceeds 0.30 extrinsic. Roll debit = (5.30 - 1.20) * 100 * 10 = 4,100."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "L10",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "early_assignment_dividend_risk",
+    "feasibility_trap": true,
+    "objective_function": "remove assignment risk and preserve short-call exposure at stated executable roll prices",
+    "failure_modes": [
+      "holds through ex-dividend",
+      "confuses short-call exercise rights"
+    ],
+    "must_not": [
+      "must_not_hold_short_call_when_dividend_exceeds_extrinsic"
+    ],
+    "critical_fields": [
+      "buy_to_close_contracts",
+      "sell_to_open_contracts",
+      "new_call_strike",
+      "net_debit_usd",
+      "assignment_risk_removed",
+      "feasibility"
+    ]
+  }
+}

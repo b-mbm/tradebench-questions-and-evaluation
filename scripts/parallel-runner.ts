@@ -9,12 +9,14 @@ import path from "path";
 import OpenAI from "openai";
 
 import { SCHEMA_QUESTIONS_300Q } from "../src/questions/schema-questions-300q";
+import { STOCKBENCH_QUESTIONS_300Q } from "../src/questions/stockbench-questions-300q";
 import { loadRubric300q } from "../src/rubrics/loader-300q";
 import { gradeSchemaResponse } from "../src/grading/schema-grader-300q";
-import { buildExecuteOnePrompts } from "../src/prompts/schema-prompts-300q";
+import { buildExecuteOnePrompts, buildStockBenchPrompts } from "../src/prompts/schema-prompts-300q";
 import type { GradeResult, SchemaQuestion } from "../src/types/schema";
 
 type CliArgs = {
+  suite: "coinbench" | "stockbench";
   concurrency: number;
   generate: boolean;
   score: boolean;
@@ -83,13 +85,15 @@ type SummaryRow = {
 };
 
 type RunManifest = {
-  suite: "coinbench-v1-repair-candidate";
+  suite: "coinbench-v1-repair-candidate" | "stockbench-300q";
   models: string[];
   questionIds: string[];
   source: {
     questions_sha256: string;
     rubrics_sha256: string;
     grader_sha256: string;
+    prompt_builder_sha256: string;
+    runner_sha256: string;
   };
   options: Pick<CliArgs, "temperature" | "maxTokens" | "concurrency" | "maxRetries">;
 };
@@ -112,6 +116,7 @@ function parseList(value: string): string[] {
 function parseArgs(argv: string[]): CliArgs {
   const explicitPhases = new Set<string>();
   const args: CliArgs = {
+    suite: "coinbench",
     concurrency: 50,
     generate: false,
     score: false,
@@ -128,7 +133,13 @@ function parseArgs(argv: string[]): CliArgs {
 
   for (let i = 2; i < argv.length; i += 1) {
     const token = argv[i];
-    if (token === "--concurrency") {
+    if (token === "--suite") {
+      const suite = argv[++i];
+      if (suite !== "coinbench" && suite !== "stockbench") {
+        throw new Error(`Unknown suite: ${suite}. Expected coinbench or stockbench.`);
+      }
+      args.suite = suite;
+    } else if (token === "--concurrency") {
       args.concurrency = Math.max(1, Number(argv[++i] || args.concurrency));
     } else if (token === "--generate") {
       args.generate = true;
@@ -186,6 +197,7 @@ function printHelp(): void {
   npx tsx scripts/parallel-runner.ts --score
 
 Options:
+  --suite NAME           coinbench (default) or stockbench
   --generate              Run generation phase
   --score                 Run scoring phase
   --concurrency N         Global in-flight request limit, default 50
@@ -361,7 +373,7 @@ function loadModels(args: CliArgs): ModelSelection[] {
 }
 
 function selectQuestions(args: CliArgs): SchemaQuestion[] {
-  let questions = SCHEMA_QUESTIONS_300Q;
+  let questions = args.suite === "stockbench" ? STOCKBENCH_QUESTIONS_300Q : SCHEMA_QUESTIONS_300Q;
 
   if (args.levels?.length) {
     const levels = new Set(args.levels);
@@ -390,20 +402,22 @@ function sha256File(file: string): string {
 
 function writeRunManifest(args: CliArgs, models: ModelSelection[], questions: SchemaQuestion[]): void {
   const root = process.cwd();
-  const rubricIds = [...new Set(SCHEMA_QUESTIONS_300Q.map(question => question.rubric_id))].sort();
+  const rubricIds = [...new Set(questions.map(question => question.rubric_id))].sort();
   const rubricBytes = rubricIds.flatMap((id, index) =>
     index
       ? [Buffer.from("\n"), fs.readFileSync(path.join(root, "src", "rubrics", `${id}.json`))]
       : [fs.readFileSync(path.join(root, "src", "rubrics", `${id}.json`))]
   );
   const manifest: RunManifest = {
-    suite: "coinbench-v1-repair-candidate",
+    suite: args.suite === "stockbench" ? "stockbench-300q" : "coinbench-v1-repair-candidate",
     models: models.map(model => model.id),
     questionIds: questions.map(question => question.id),
     source: {
-      questions_sha256: sha256File(path.join(root, "src", "questions", "schema-questions-300q.ts")),
+      questions_sha256: sha256File(path.join(root, "src", "questions", args.suite === "stockbench" ? "stockbench-questions-300q.ts" : "schema-questions-300q.ts")),
       rubrics_sha256: createHash("sha256").update(Buffer.concat(rubricBytes)).digest("hex"),
       grader_sha256: sha256File(path.join(root, "src", "grading", "schema-grader-300q.ts")),
+      prompt_builder_sha256: sha256File(path.join(root, "src", "prompts", "schema-prompts-300q.ts")),
+      runner_sha256: sha256File(path.join(root, "scripts", "parallel-runner.ts")),
     },
     options: {
       temperature: args.temperature,
@@ -619,7 +633,9 @@ async function generateOne(
   freeModelGate?: RateGate
 ): Promise<GenerationRow> {
   const rubric = loadRubric300q(question.rubric_id);
-  const prompts = buildExecuteOnePrompts(question, rubric);
+  const prompts = args.suite === "stockbench"
+    ? buildStockBenchPrompts(question, rubric)
+    : buildExecuteOnePrompts(question, rubric);
   const started = Date.now();
   let lastError: unknown = null;
   let attempts = 0;

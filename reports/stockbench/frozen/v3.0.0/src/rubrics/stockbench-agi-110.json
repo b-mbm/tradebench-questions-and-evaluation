@@ -1,0 +1,119 @@
+{
+  "id": "stockbench-agi-110",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "requested_shares",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
+    "worst_case_pnl",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "requested_shares",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.rate_shock",
+    "scenario_pnl.vol_spike",
+    "scenario_pnl.credit_widening",
+    "worst_case_pnl",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-110",
+    "title": "SB-AGI-110 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "no_trade"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "none"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "XLK"
+      },
+      "requested_shares": {
+        "type": "number",
+        "expected": 400,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "infeasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_a",
+          "route_b",
+          "route_c"
+        ],
+        "min_items": 3,
+        "match_type": "exact_set"
+      },
+      "scenario_pnl.rate_shock": {
+        "type": "number",
+        "expected": -125000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.vol_spike": {
+        "type": "number",
+        "expected": 48000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.credit_widening": {
+        "type": "number",
+        "expected": -73000,
+        "tolerance": 0.01
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "expected": -125000,
+        "tolerance": 0.01
+      },
+      "self_check": {}
+    },
+    "derivation": "CFD unavailable, cash-account short not allowed, futures not approved, session closed -> every route infeasible -> no_trade.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Feasibility / rejection / no-trade traps",
+    "tier": "AGI",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "unsupported_product_permission",
+    "feasibility_trap": true,
+    "objective_function": "objective for unsupported_product_permission",
+    "failure_modes": [
+      "forces a trade on an invalid route"
+    ],
+    "must_not": [
+      "must_not_use_unavailable_route",
+      "must_not_short_in_cash_account"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "instrument",
+      "requested_shares",
+      "feasibility",
+      "scenario_pnl.rate_shock",
+      "scenario_pnl.vol_spike",
+      "scenario_pnl.credit_widening",
+      "worst_case_pnl"
+    ],
+    "needs_review": false
+  }
+}

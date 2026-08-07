@@ -1,0 +1,132 @@
+{
+  "id": "stockbench-agi-034",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "call_strike",
+    "dividend_per_share",
+    "call_time_value",
+    "early_assignment_risk",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "worst_case_pnl",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "call_strike",
+    "dividend_per_share",
+    "call_time_value",
+    "early_assignment_risk",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.risk_off",
+    "scenario_pnl.squeeze",
+    "worst_case_pnl",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-034",
+    "title": "SB-AGI-034 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "manage_assignment"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_a"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "QQQ"
+      },
+      "call_strike": {
+        "type": "number",
+        "expected": 200,
+        "tolerance": 0.01
+      },
+      "dividend_per_share": {
+        "type": "number",
+        "expected": 0.9,
+        "tolerance": 0.01
+      },
+      "call_time_value": {
+        "type": "number",
+        "expected": 0.8,
+        "tolerance": 0.01
+      },
+      "early_assignment_risk": {
+        "type": "boolean",
+        "expected": true
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      },
+      "scenario_pnl.risk_off": {
+        "type": "number",
+        "expected": -133500,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.squeeze": {
+        "type": "number",
+        "expected": 43500,
+        "tolerance": 0.01
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "expected": -133500,
+        "tolerance": 0.01
+      },
+      "self_check": {}
+    },
+    "derivation": "Spot 205, strike 200 -> intrinsic 5 (in-the-money); time value 0.8; dividend 0.9. Early assignment rational only if ITM AND dividend>time value -> true -> route_a (roll/close).",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "early_assignment_dividend_risk",
+    "feasibility_trap": false,
+    "objective_function": "objective for early_assignment_dividend_risk",
+    "failure_modes": [
+      "ignores dividend vs time value test",
+      "mishandles assignment"
+    ],
+    "must_not": [
+      "must_not_ignore_dividend_vs_time_value"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "instrument",
+      "call_strike",
+      "dividend_per_share",
+      "call_time_value",
+      "early_assignment_risk",
+      "feasibility",
+      "scenario_pnl.risk_off",
+      "scenario_pnl.squeeze",
+      "worst_case_pnl"
+    ],
+    "needs_review": false
+  }
+}

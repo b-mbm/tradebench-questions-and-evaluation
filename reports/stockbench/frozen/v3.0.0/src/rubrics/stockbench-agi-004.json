@@ -1,0 +1,96 @@
+{
+  "id": "stockbench-agi-004",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "spread_count",
+    "expected_carry_usd",
+    "margin_used",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "spread_count",
+    "expected_carry_usd",
+    "margin_used",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "CL_June_July_calendar_spread"
+      },
+      "spread_count": {
+        "type": "number",
+        "expected": 6,
+        "tolerance": 0
+      },
+      "expected_carry_usd": {
+        "type": "number",
+        "expected": 1200,
+        "tolerance": 0
+      },
+      "margin_used": {
+        "type": "number",
+        "expected": 9000,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "strategy_A_margin_exceeded",
+          "strategy_C_margin_exceeded"
+        ],
+        "min_items": 2
+      },
+      "self_check": {
+        "type": "array",
+        "expected_set": [
+          "span_margin_within_limit",
+          "highest_feasible_carry_selected"
+        ],
+        "min_items": 2
+      }
+    },
+    "derivation": "Only strategy B is within the 10,000 margin cap and it has expected carry 1,200 with margin 9,000."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Futures / commodities / spreads / rolls",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "span_margin_calendar_spread",
+    "feasibility_trap": true,
+    "objective_function": "maximize expected carry subject to frozen SPAN margin constraint",
+    "failure_modes": [
+      "chooses higher carry but margin-infeasible outright",
+      "ignores SPAN margin"
+    ],
+    "must_not": [
+      "must_not_exceed_span_margin"
+    ],
+    "critical_fields": [
+      "decision",
+      "spread_count",
+      "expected_carry_usd",
+      "margin_used",
+      "feasibility"
+    ]
+  }
+}

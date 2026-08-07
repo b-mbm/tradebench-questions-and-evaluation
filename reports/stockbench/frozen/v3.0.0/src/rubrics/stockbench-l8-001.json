@@ -1,0 +1,78 @@
+{
+  "id": "stockbench-l8-001",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "action",
+    "contracts",
+    "premium_paid",
+    "assignment_risk",
+    "reason_code"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "action",
+    "contracts",
+    "premium_paid",
+    "assignment_risk",
+    "reason_code"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "reduce_assignment_risk"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "AAPL 175 call"
+      },
+      "action": {
+        "type": "string",
+        "expected": "buy_to_close"
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 1,
+        "tolerance": 0
+      },
+      "premium_paid": {
+        "type": "number",
+        "expected": 650,
+        "tolerance": 0
+      },
+      "assignment_risk": {
+        "type": "string",
+        "expected": "material"
+      },
+      "reason_code": {
+        "type": "string",
+        "expected": "dividend_exceeds_extrinsic"
+      }
+    },
+    "derivation": "Dividend 1.20 exceeds 0.50 extrinsic, so buy to close; premium = 6.50 * 100 = 650."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "L8",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "covered_call_assignment",
+    "feasibility_trap": true,
+    "failure_modes": [
+      "ignores ex-dividend assignment risk",
+      "computes premium without multiplier"
+    ],
+    "must_not": [
+      "must_not_hold_short_call_when_dividend_exceeds_extrinsic"
+    ],
+    "critical_fields": [
+      "contracts",
+      "premium_paid",
+      "instrument"
+    ]
+  }
+}

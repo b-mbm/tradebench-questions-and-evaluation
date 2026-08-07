@@ -1,0 +1,140 @@
+{
+  "id": "stockbench-agi-015",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "dividend_per_share",
+    "call_time_value",
+    "exercise_early",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
+    "worst_case_pnl",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "instrument",
+    "dividend_per_share",
+    "call_time_value",
+    "exercise_early",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
+    "worst_case_pnl",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-015",
+    "title": "SB-AGI-015 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "exercise_decision"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_a"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "IWM"
+      },
+      "dividend_per_share": {
+        "type": "number",
+        "expected": 3.6,
+        "tolerance": 0.01
+      },
+      "call_time_value": {
+        "type": "number",
+        "expected": 3,
+        "tolerance": 0.01
+      },
+      "exercise_early": {
+        "type": "boolean",
+        "expected": true
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b"
+        ],
+        "min_items": 1,
+        "match_type": "exact_set"
+      },
+      "scenario_pnl.gap_down": {
+        "type": "number",
+        "expected": -128800,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.melt_up": {
+        "type": "number",
+        "expected": 47600,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.range_chop": {
+        "type": "number",
+        "expected": -75100,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.sector_rotation": {
+        "type": "number",
+        "expected": -60950,
+        "tolerance": 0.01
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "expected": -128800,
+        "tolerance": 0.01
+      },
+      "self_check": {}
+    },
+    "derivation": "Time value = 13 - 10.00 = 3. Dividend 3.6 > time value -> exercise early.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "exercise_assignment_roll_decision",
+    "feasibility_trap": false,
+    "objective_function": "objective for exercise_assignment_roll_decision",
+    "failure_modes": [
+      "exercises when time value exceeds dividend",
+      "ignores exercise economics"
+    ],
+    "must_not": [
+      "must_not_ignore_dividend_vs_time_value"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "instrument",
+      "dividend_per_share",
+      "call_time_value",
+      "exercise_early",
+      "feasibility",
+      "scenario_pnl.gap_down",
+      "scenario_pnl.melt_up",
+      "scenario_pnl.range_chop",
+      "scenario_pnl.sector_rotation",
+      "worst_case_pnl"
+    ],
+    "needs_review": false
+  }
+}

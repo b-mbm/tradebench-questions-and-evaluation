@@ -1,0 +1,86 @@
+{
+  "id": "stockbench-l9-007",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "adjusted_stop_price",
+    "option_strike_adjusted",
+    "option_strike_after",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "adjusted_stop_price",
+    "option_strike_adjusted",
+    "option_strike_after",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "adjust_order_for_ex_dividend"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "KO"
+      },
+      "adjusted_stop_price": {
+        "type": "number",
+        "expected": 59.56,
+        "tolerance": 0
+      },
+      "option_strike_adjusted": {
+        "type": "boolean",
+        "expected": false
+      },
+      "option_strike_after": {
+        "type": "number",
+        "expected": 62.5,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "leave_stop_at_60",
+          "adjust_option_strike_for_ordinary_dividend",
+          "treat_dividend_drop_as_stop_trigger"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "Broker rule reduces the GTC stop by 0.44 to 59.56. Ordinary cash dividend does not adjust listed option strike in the packet."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Corporate actions / settlement / calendar / jurisdiction",
+    "tier": "L9",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "ex_dividend_adjustment",
+    "feasibility_trap": true,
+    "objective_function": "apply frozen corporate-action adjustment rules exactly",
+    "failure_modes": [
+      "fails to adjust stop",
+      "incorrectly adjusts option strike"
+    ],
+    "must_not": [
+      "must_not_treat_ordinary_dividend_as_option_strike_adjustment"
+    ],
+    "critical_fields": [
+      "instrument",
+      "adjusted_stop_price",
+      "option_strike_adjusted",
+      "option_strike_after",
+      "feasibility"
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "id": "stockbench-l9-004",
+  "expected_fields": [
+    "decision",
+    "chosen_route",
+    "eur_amount",
+    "usd_cost",
+    "settlement_date",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_route",
+    "eur_amount",
+    "usd_cost",
+    "settlement_date",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "convert_fx"
+      },
+      "chosen_route": {
+        "type": "string",
+        "expected": "same_day_EURUSD"
+      },
+      "eur_amount": {
+        "type": "number",
+        "expected": 1000000,
+        "tolerance": 0
+      },
+      "usd_cost": {
+        "type": "number",
+        "expected": 1101000,
+        "tolerance": 0
+      },
+      "settlement_date": {
+        "type": "string",
+        "expected": "2026-05-05"
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "standard_spot_T_plus_2_late",
+          "one_day_forward_late",
+          "cfd_unavailable_for_payment"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "Only same-day EUR settles by the payment deadline; cost = 1,000,000 * 1.1010 = 1,101,000."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot FX / CFDs / multi-currency",
+    "tier": "L9",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "fx_settlement_mismatch",
+    "feasibility_trap": true,
+    "objective_function": "minimize USD cost subject to same-day settled EUR availability",
+    "failure_modes": [
+      "chooses cheaper late settlement",
+      "uses CFD for payment"
+    ],
+    "must_not": [
+      "must_not_miss_settlement_deadline",
+      "must_not_use_cfd_for_payment"
+    ],
+    "critical_fields": [
+      "eur_amount",
+      "usd_cost",
+      "settlement_date",
+      "feasibility"
+    ]
+  }
+}

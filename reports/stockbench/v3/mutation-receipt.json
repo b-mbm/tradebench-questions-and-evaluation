@@ -1,0 +1,68 @@
+{
+  "benchmark": "StockBench",
+  "candidate_version": "v3",
+  "date": "2026-08-03",
+  "command": "./node_modules/.bin/tsx scripts/mutation-test-stockbench.ts",
+  "exit_code": 0,
+  "source": {
+    "grader_sha256": "8a7c7f744e9a27f68567c69ba49eb425d45fae5f9928d060dd0eeb1e105744ab",
+    "harness_sha256": "2cc0889b617fda91532572e5eb786f76e51df79fd163bbeb22e2269919b128c4",
+    "anchor_questions_sha256": "586eb28266e72aee0aeb82e9c22203f8f54fa119ee6c2c11229deca96bb3b3ed",
+    "generated_questions_sha256": "7ba0a4f5fdbe3e0c20cf888e5c9eb6f809ac93ebd3b76219dac8d295d58f60e9",
+    "ordered_stockbench_rubric_hashes_sha256": "cb0343c357ab907ad05dc8ab0854f12b16b562ea13f15bd34f96ad6c93aaa45e"
+  },
+  "result": {
+    "rows": 300,
+    "canonical_passes": 300,
+    "mutation_robust_rows": 300,
+    "rows_with_leaks": 0,
+    "gate": "PASS"
+  },
+  "decision_categorical_canary": {
+    "command": "./node_modules/.bin/tsx scripts/verify-stockbench-decision-categorical.ts",
+    "exit_code": 0,
+    "harness_sha256": "859014f897a51070f325c85ccd6ef33324a96e13243cc1a429295c3e8b050ca6",
+    "gate": "PASS",
+    "rows": [
+      {
+        "id": "SB-AGI-001",
+        "expected": "trade",
+        "received": "no_trade",
+        "decision_field_score": 0,
+        "failure_reasons": [
+          "agi_validation_failed:decision",
+          "agi_validation_failed:feasibility",
+          "critical_field_failed:decision"
+        ]
+      },
+      {
+        "id": "SB-L9-035",
+        "expected": "no_trade",
+        "received": "trade",
+        "decision_field_score": 0,
+        "failure_reasons": [
+          "agi_validation_failed:decision",
+          "agi_validation_failed:feasibility",
+          "critical_field_failed:decision"
+        ]
+      }
+    ],
+    "consistency_guard_failures": 0,
+    "conclusion": "Both coherent bidirectional mutants fail through exact categorical decision grading, not the decision/feasibility consistency guard."
+  },
+  "scope": [
+    "wrong strategy",
+    "wrong instrument",
+    "wrong critical/deterministic number",
+    "missing critical field",
+    "selected route also rejected",
+    "feasibility flip",
+    "trade/no_trade decision flip"
+  ],
+  "limitations": [
+    "This receipt is not a StockBench v3 freeze bundle.",
+    "The main 300-row harness does not yet persist row-level mutation output; the decision canary above does.",
+    "A StockBench-specific model runner and difficulty calibration remain outstanding.",
+    "Market-state impossibility mutants are not yet comprehensive."
+  ]
+}

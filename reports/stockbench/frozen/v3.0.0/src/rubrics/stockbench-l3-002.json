@@ -1,0 +1,80 @@
+{
+  "id": "stockbench-l3-002",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "contracts",
+    "margin_per_contract",
+    "fees_usd",
+    "total_cash_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "contracts",
+    "margin_per_contract",
+    "fees_usd",
+    "total_cash_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L3-002",
+    "title": "SB-L3-002 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "calculate_initial_margin"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "ES futures"
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 2,
+        "tolerance": 0.01
+      },
+      "margin_per_contract": {
+        "type": "number",
+        "expected": 13000,
+        "tolerance": 0.01
+      },
+      "fees_usd": {
+        "type": "number",
+        "expected": 8,
+        "tolerance": 0.01
+      },
+      "total_cash_usd": {
+        "type": "number",
+        "expected": 26008,
+        "tolerance": 0.01
+      }
+    },
+    "derivation": "2*13000 + 8 = 26008.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Futures / commodities / spreads / rolls",
+    "tier": "L3",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "futures_margin_calc",
+    "feasibility_trap": true,
+    "failure_modes": [
+      "confuses notional with margin"
+    ],
+    "must_not": [
+      "must_not_post_full_notional_for_futures"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "contracts",
+      "margin_per_contract",
+      "fees_usd",
+      "total_cash_usd"
+    ],
+    "needs_review": false
+  }
+}

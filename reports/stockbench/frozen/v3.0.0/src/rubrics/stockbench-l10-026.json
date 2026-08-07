@@ -1,0 +1,116 @@
+{
+  "id": "stockbench-l10-026",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "buy_put_strike",
+    "sell_put_strike",
+    "contracts",
+    "net_premium_paid",
+    "scenario_pnl_usd",
+    "feasibility",
+    "rejected_routes",
+    "residual_check"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "buy_put_strike",
+    "sell_put_strike",
+    "contracts",
+    "net_premium_paid",
+    "scenario_pnl_usd",
+    "feasibility",
+    "rejected_routes",
+    "residual_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L10-026",
+    "title": "SB-L10-026 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "hedge"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_b"
+      },
+      "buy_put_strike": {
+        "type": "number",
+        "expected": 485,
+        "tolerance": 0.01
+      },
+      "sell_put_strike": {
+        "type": "number",
+        "expected": 465,
+        "tolerance": 0.01
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 10,
+        "tolerance": 0.01
+      },
+      "net_premium_paid": {
+        "type": "number",
+        "expected": 7000,
+        "tolerance": 0.01
+      },
+      "scenario_pnl_usd": {
+        "type": "number",
+        "expected": -37000,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_a",
+          "route_c"
+        ],
+        "min_items": 2,
+        "match_type": "exact_set"
+      },
+      "residual_check": {
+        "type": "string",
+        "expected": "recomputed"
+      }
+    },
+    "derivation": "For each spread: net premium = (long-short)*100*10; scenario PnL = stock loss + spread payoff - net premium. Feasible if PnL >= -38000. Lowest-premium feasible = route_b (sell 465), net 7000, PnL -37000.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "L10",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "put_spread_downside_floor",
+    "feasibility_trap": false,
+    "objective_function": "objective for put_spread_downside_floor",
+    "failure_modes": [
+      "omits option multiplier",
+      "chooses cheaper spread that breaches floor",
+      "ignores premium in PnL"
+    ],
+    "must_not": [
+      "must_not_ignore_downside_floor",
+      "must_not_ignore_option_multiplier"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "buy_put_strike",
+      "sell_put_strike",
+      "contracts",
+      "net_premium_paid",
+      "scenario_pnl_usd",
+      "feasibility"
+    ],
+    "needs_review": false
+  }
+}

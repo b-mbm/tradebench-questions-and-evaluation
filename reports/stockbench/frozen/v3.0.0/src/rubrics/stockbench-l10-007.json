@@ -1,0 +1,85 @@
+{
+  "id": "stockbench-l10-007",
+  "expected_fields": [
+    "decision",
+    "chosen_route",
+    "eur_amount",
+    "usd_cost",
+    "settlement_date_rule",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_route",
+    "eur_amount",
+    "usd_cost",
+    "settlement_date_rule",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "convert_fx"
+      },
+      "chosen_route": {
+        "type": "string",
+        "expected": "spot_EURUSD_T_plus_2"
+      },
+      "eur_amount": {
+        "type": "number",
+        "expected": 200000,
+        "tolerance": 0
+      },
+      "usd_cost": {
+        "type": "number",
+        "expected": 218040,
+        "tolerance": 0
+      },
+      "settlement_date_rule": {
+        "type": "string",
+        "expected": "T+2"
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "cfd_unavailable_US_retail",
+          "EUR_futures_margin_exceeded"
+        ],
+        "min_items": 2
+      }
+    },
+    "derivation": "Spot EURUSD is valid for T+2 payment and costs 200,000 * 1.0902 = 218,040. CFDs are unavailable and one 6E exceeds margin capacity."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Spot FX / CFDs / multi-currency",
+    "tier": "L10",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "cfd_margin_regional_constraint",
+    "feasibility_trap": true,
+    "objective_function": "satisfy EUR exposure need with lowest valid cash cost under regional and margin constraints",
+    "failure_modes": [
+      "uses unavailable CFD",
+      "uses futures despite margin shortfall"
+    ],
+    "must_not": [
+      "must_not_use_cfd_when_unavailable",
+      "must_not_exceed_margin_capacity"
+    ],
+    "critical_fields": [
+      "eur_amount",
+      "usd_cost",
+      "settlement_date_rule",
+      "feasibility"
+    ]
+  }
+}

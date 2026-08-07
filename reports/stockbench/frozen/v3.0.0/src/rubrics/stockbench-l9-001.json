@@ -1,0 +1,128 @@
+{
+  "id": "stockbench-l9-001",
+  "expected_fields": [
+    "decision",
+    "selected_instrument",
+    "es_contracts",
+    "hedge_notional_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
+    "feasibility",
+    "rejected_routes",
+    "reasoning"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_instrument",
+    "es_contracts",
+    "hedge_notional_usd",
+    "beta_reduction_pct",
+    "margin_used",
+    "expected_cost",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {
+    "decision": 1,
+    "selected_instrument": 1,
+    "es_contracts": 1,
+    "hedge_notional_usd": 1,
+    "beta_reduction_pct": 1,
+    "margin_used": 1,
+    "expected_cost": 1,
+    "feasibility": 1,
+    "rejected_routes": 1,
+    "reasoning": 0.2
+  },
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L9-001",
+    "title": "Lowest-Cost ES Beta Hedge",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "hedge"
+      },
+      "selected_instrument": {
+        "type": "string",
+        "expected": "ES"
+      },
+      "es_contracts": {
+        "type": "number",
+        "expected": 7,
+        "tolerance": 0
+      },
+      "hedge_notional_usd": {
+        "type": "number",
+        "range": [
+          1749999,
+          1750001
+        ]
+      },
+      "beta_reduction_pct": {
+        "type": "number",
+        "range": [
+          63.4,
+          63.42
+        ]
+      },
+      "margin_used": {
+        "type": "number",
+        "expected": 91000,
+        "tolerance": 0
+      },
+      "expected_cost": {
+        "type": "number",
+        "expected": 175,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "spy_puts_liquidity_fail",
+          "mixed_puts_es_higher_cost",
+          "cfds_unavailable"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "Portfolio beta dollars = 2400000 * 1.15 = 2760000. Required cut = 1656000. Each ES hedges 5000 * 50 = 250000, so 7 contracts hedge 1750000 and cut beta by 63.41%. Margin = 7 * 13000 = 91000, cost = 7 * 25 = 175. SPY puts are capped at 60 * 22500 = 1350000 beta hedge and fail the 60% target; CFD is unavailable.",
+    "pass_condition": "Required strategy, feasibility, rejection, and numeric fields must match the frozen packet."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Futures / commodities / spreads / rolls",
+    "tier": "L9",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "futures_beta_hedge",
+    "feasibility_trap": true,
+    "objective_function": "minimize upfront hedge cost subject to beta_reduction_pct >= 60, cash cost <= 75000, and margin_used <= 100000",
+    "failure_modes": [
+      "uses SPY puts despite liquidity cap making them insufficient",
+      "sells too few ES contracts and misses beta target",
+      "sells too many ES contracts and violates margin capacity",
+      "uses unavailable CFD route",
+      "uses live market data instead of frozen packet"
+    ],
+    "must_not": [
+      "must_not_use_cfds_when_unavailable",
+      "must_not_ignore_margin_capacity",
+      "must_not_ignore_spy_put_liquidity_cap",
+      "must_not_return_generic_financial_advice_without_answer"
+    ],
+    "critical_fields": [
+      "selected_instrument",
+      "es_contracts",
+      "hedge_notional_usd",
+      "beta_reduction_pct",
+      "margin_used",
+      "expected_cost",
+      "feasibility"
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": "stockbench-l2-004",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "contracts",
+    "premium_per_share",
+    "multiplier",
+    "total_premium_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "contracts",
+    "premium_per_share",
+    "multiplier",
+    "total_premium_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L2-004",
+    "title": "SB-L2-004 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "calculate_option_premium"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "GLD 500 call"
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 6,
+        "tolerance": 0.01
+      },
+      "premium_per_share": {
+        "type": "number",
+        "expected": 6,
+        "tolerance": 0.01
+      },
+      "multiplier": {
+        "type": "number",
+        "expected": 100,
+        "tolerance": 0.01
+      },
+      "total_premium_usd": {
+        "type": "number",
+        "expected": 3600,
+        "tolerance": 0.01
+      }
+    },
+    "derivation": "6*6*100=3600.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "L2",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "option_premium_calc",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "omits option multiplier"
+    ],
+    "must_not": [
+      "must_not_ignore_option_multiplier"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "contracts",
+      "premium_per_share",
+      "multiplier",
+      "total_premium_usd"
+    ],
+    "needs_review": false
+  }
+}

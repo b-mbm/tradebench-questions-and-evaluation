@@ -1,0 +1,102 @@
+{
+  "id": "stockbench-l10-001",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "put_strike",
+    "call_strike",
+    "contracts",
+    "net_premium_paid",
+    "shock_pnl_usd",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "put_strike",
+    "call_strike",
+    "contracts",
+    "net_premium_paid",
+    "shock_pnl_usd",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "hedge"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "SPY_480_530_collar"
+      },
+      "put_strike": {
+        "type": "number",
+        "expected": 480,
+        "tolerance": 0
+      },
+      "call_strike": {
+        "type": "number",
+        "expected": 530,
+        "tolerance": 0
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 10,
+        "tolerance": 0
+      },
+      "net_premium_paid": {
+        "type": "number",
+        "expected": 3000,
+        "tolerance": 0
+      },
+      "shock_pnl_usd": {
+        "type": "number",
+        "expected": -23000,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "SPY_470_530_collar_floor_fail",
+          "short_ES_margin_exceeded"
+        ],
+        "min_items": 2
+      }
+    },
+    "derivation": "A collar costs (6-3)*100*10 = 3,000. At SPY 460, stock loses 40,000 and 480 puts pay 20,000, so shock PnL is -23,000."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "L10",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "collar_plus_futures_overlay",
+    "feasibility_trap": false,
+    "objective_function": "minimize upfront hedge cost subject to downside floor and cash/margin constraints",
+    "failure_modes": [
+      "chooses failing lower put",
+      "uses ES despite margin cap"
+    ],
+    "must_not": [
+      "must_not_ignore_futures_margin",
+      "must_not_miss_downside_floor"
+    ],
+    "critical_fields": [
+      "put_strike",
+      "call_strike",
+      "contracts",
+      "net_premium_paid",
+      "shock_pnl_usd",
+      "feasibility"
+    ]
+  }
+}

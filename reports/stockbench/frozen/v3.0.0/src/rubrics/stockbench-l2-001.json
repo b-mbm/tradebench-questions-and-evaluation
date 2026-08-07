@@ -1,0 +1,77 @@
+{
+  "id": "stockbench-l2-001",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "contracts",
+    "multiplier",
+    "price",
+    "notional_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "contracts",
+    "multiplier",
+    "price",
+    "notional_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "calculate"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "CL"
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 2,
+        "tolerance": 0
+      },
+      "multiplier": {
+        "type": "number",
+        "expected": 1000,
+        "tolerance": 0
+      },
+      "price": {
+        "type": "number",
+        "expected": 78.4,
+        "tolerance": 0
+      },
+      "notional_usd": {
+        "type": "number",
+        "expected": 156800,
+        "tolerance": 0
+      }
+    },
+    "derivation": "2 contracts * 1,000 barrels * 78.40 = 156,800 USD."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Futures / commodities / spreads / rolls",
+    "tier": "L2",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "futures_notional_math",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "misses futures multiplier",
+      "uses unstated current CL price"
+    ],
+    "must_not": [
+      "must_not_use_live_market_data",
+      "must_not_ignore_contract_multiplier"
+    ],
+    "critical_fields": [
+      "instrument",
+      "contracts",
+      "multiplier",
+      "price",
+      "notional_usd"
+    ]
+  }
+}

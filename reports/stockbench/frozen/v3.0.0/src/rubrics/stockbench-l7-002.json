@@ -1,0 +1,96 @@
+{
+  "id": "stockbench-l7-002",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "target_notional_usd",
+    "price",
+    "multiplier",
+    "contracts",
+    "used_notional_usd",
+    "residual_cash_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "target_notional_usd",
+    "price",
+    "multiplier",
+    "contracts",
+    "used_notional_usd",
+    "residual_cash_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L7-002",
+    "title": "SB-L7-002 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "rebalance"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "ES futures"
+      },
+      "target_notional_usd": {
+        "type": "number",
+        "expected": 650000,
+        "tolerance": 0.01
+      },
+      "price": {
+        "type": "number",
+        "expected": 5075,
+        "tolerance": 0.01
+      },
+      "multiplier": {
+        "type": "number",
+        "expected": 50,
+        "tolerance": 0.01
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 2,
+        "tolerance": 0.01
+      },
+      "used_notional_usd": {
+        "type": "number",
+        "expected": 507500,
+        "tolerance": 0.01
+      },
+      "residual_cash_usd": {
+        "type": "number",
+        "expected": 142500,
+        "tolerance": 0.01
+      }
+    },
+    "derivation": "notional/contract=253750; floor(650000/253750)=2; used=507500; residual=142500.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Futures / commodities / spreads / rolls",
+    "tier": "L7",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "futures_whole_unit_sizing",
+    "feasibility_trap": true,
+    "failure_modes": [
+      "ignores futures multiplier"
+    ],
+    "must_not": [
+      "must_not_ignore_futures_multiplier"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "target_notional_usd",
+      "price",
+      "multiplier",
+      "contracts",
+      "used_notional_usd",
+      "residual_cash_usd"
+    ],
+    "needs_review": false
+  }
+}

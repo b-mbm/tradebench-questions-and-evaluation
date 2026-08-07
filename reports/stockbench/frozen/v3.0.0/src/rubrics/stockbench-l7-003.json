@@ -1,0 +1,97 @@
+{
+  "id": "stockbench-l7-003",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "target_short_notional_usd",
+    "price",
+    "locate_shares",
+    "short_shares",
+    "used_notional_usd",
+    "residual_unfilled_usd"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "target_short_notional_usd",
+    "price",
+    "locate_shares",
+    "short_shares",
+    "used_notional_usd",
+    "residual_unfilled_usd"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L7-003",
+    "title": "SB-L7-003 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "rebalance"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "SPY ETF"
+      },
+      "target_short_notional_usd": {
+        "type": "number",
+        "expected": 50000,
+        "tolerance": 0.01
+      },
+      "price": {
+        "type": "number",
+        "expected": 100,
+        "tolerance": 0.01
+      },
+      "locate_shares": {
+        "type": "number",
+        "expected": 300,
+        "tolerance": 0.01
+      },
+      "short_shares": {
+        "type": "number",
+        "expected": 300,
+        "tolerance": 0.01
+      },
+      "used_notional_usd": {
+        "type": "number",
+        "expected": 30000,
+        "tolerance": 0.01
+      },
+      "residual_unfilled_usd": {
+        "type": "number",
+        "expected": 20000,
+        "tolerance": 0.01
+      }
+    },
+    "derivation": "min(floor(50000/100)=500, locate 300) = 300; used=30000; residual=20000.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Shorting / borrow / margin / locates",
+    "tier": "L7",
+    "capability_tag": "judgment_risk_augmentation",
+    "scenario_family": "short_notional_sizing",
+    "feasibility_trap": true,
+    "failure_modes": [
+      "shorts beyond locate",
+      "uses fractional shares"
+    ],
+    "must_not": [
+      "must_not_short_more_than_locate"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "target_short_notional_usd",
+      "price",
+      "locate_shares",
+      "short_shares",
+      "used_notional_usd",
+      "residual_unfilled_usd"
+    ],
+    "needs_review": false
+  }
+}

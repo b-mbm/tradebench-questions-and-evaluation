@@ -1,0 +1,145 @@
+{
+  "id": "stockbench-agi-021",
+  "expected_fields": [
+    "decision",
+    "selected_route",
+    "contracts",
+    "roll_cost_usd",
+    "fees_usd",
+    "total_cost_usd",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
+    "worst_case_pnl",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "selected_route",
+    "contracts",
+    "roll_cost_usd",
+    "fees_usd",
+    "total_cost_usd",
+    "feasibility",
+    "rejected_routes",
+    "scenario_pnl.gap_down",
+    "scenario_pnl.melt_up",
+    "scenario_pnl.range_chop",
+    "scenario_pnl.sector_rotation",
+    "worst_case_pnl",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-AGI-021",
+    "title": "SB-AGI-021 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "roll"
+      },
+      "selected_route": {
+        "type": "string",
+        "expected": "route_a"
+      },
+      "contracts": {
+        "type": "number",
+        "expected": 6,
+        "tolerance": 0.01
+      },
+      "roll_cost_usd": {
+        "type": "number",
+        "expected": 4500,
+        "tolerance": 0.01
+      },
+      "fees_usd": {
+        "type": "number",
+        "expected": 48,
+        "tolerance": 0.01
+      },
+      "total_cost_usd": {
+        "type": "number",
+        "expected": 4548,
+        "tolerance": 0.01
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "route_b",
+          "route_c"
+        ],
+        "min_items": 2,
+        "match_type": "exact_set"
+      },
+      "scenario_pnl.gap_down": {
+        "type": "number",
+        "expected": -131548,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.melt_up": {
+        "type": "number",
+        "expected": 46452,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.range_chop": {
+        "type": "number",
+        "expected": -72548,
+        "tolerance": 0.01
+      },
+      "scenario_pnl.sector_rotation": {
+        "type": "number",
+        "expected": -64048,
+        "tolerance": 0.01
+      },
+      "worst_case_pnl": {
+        "type": "number",
+        "expected": -131548,
+        "tolerance": 0.01
+      },
+      "self_check": {}
+    },
+    "derivation": "Roll cost = (81.75 - 81) * 1000 * 6 = 4500; fees = 48; total = 4548. Mid-price route not executable; holding into first notice violates policy.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Futures / commodities / spreads / rolls",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "futures_roll_calendar",
+    "feasibility_trap": false,
+    "objective_function": "objective for futures_roll_calendar",
+    "failure_modes": [
+      "uses mid prices",
+      "holds into first notice",
+      "omits fees"
+    ],
+    "must_not": [
+      "must_not_use_mid_when_bid_ask_given",
+      "must_not_hold_deliverable_into_first_notice"
+    ],
+    "critical_fields": [
+      "decision",
+      "selected_route",
+      "contracts",
+      "roll_cost_usd",
+      "fees_usd",
+      "total_cost_usd",
+      "feasibility",
+      "scenario_pnl.gap_down",
+      "scenario_pnl.melt_up",
+      "scenario_pnl.range_chop",
+      "scenario_pnl.sector_rotation",
+      "worst_case_pnl"
+    ],
+    "needs_review": false
+  }
+}

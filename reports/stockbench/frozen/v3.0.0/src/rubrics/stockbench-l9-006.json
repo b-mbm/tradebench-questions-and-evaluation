@@ -1,0 +1,93 @@
+{
+  "id": "stockbench-l9-006",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "side",
+    "filled_shares",
+    "average_price",
+    "limit_price",
+    "feasibility",
+    "rejected_routes"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "trade"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "AMD"
+      },
+      "side": {
+        "type": "string",
+        "expected": "buy"
+      },
+      "filled_shares": {
+        "type": "number",
+        "expected": 47500,
+        "tolerance": 0
+      },
+      "average_price": {
+        "type": "number",
+        "expected": 100.2,
+        "tolerance": 0
+      },
+      "limit_price": {
+        "type": "number",
+        "expected": 100.6,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "buy_50000_exceeds_slippage_limit"
+        ],
+        "min_items": 1
+      }
+    },
+    "derivation": "First 45,000 shares cost 4,508,000. At 100.60, only 2,500 more keep average at 100.20, so max fill is 47,500."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Execution / liquidity / microstructure",
+    "tier": "L9",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "order_book_liquidity_limit",
+    "feasibility_trap": true,
+    "objective_function": "maximize fill quantity subject to average execution price cap",
+    "failure_modes": [
+      "takes full size despite slippage cap",
+      "uses last price instead of average price"
+    ],
+    "must_not": [
+      "must_not_exceed_average_price_cap"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "side",
+      "filled_shares",
+      "average_price",
+      "limit_price",
+      "feasibility"
+    ]
+  }
+}

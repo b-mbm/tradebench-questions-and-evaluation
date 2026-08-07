@@ -1,0 +1,105 @@
+{
+  "id": "stockbench-agi-003",
+  "expected_fields": [
+    "decision",
+    "chosen_strategy",
+    "sell_to_close_long_calls",
+    "buy_to_close_short_calls",
+    "net_credit_usd",
+    "exercise_required_cash_usd",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "required_fields": [
+    "decision",
+    "chosen_strategy",
+    "sell_to_close_long_calls",
+    "buy_to_close_short_calls",
+    "net_credit_usd",
+    "exercise_required_cash_usd",
+    "feasibility",
+    "rejected_routes",
+    "self_check"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "close_spread"
+      },
+      "chosen_strategy": {
+        "type": "string",
+        "expected": "sell_long_calls_buy_short_calls"
+      },
+      "sell_to_close_long_calls": {
+        "type": "number",
+        "expected": 5,
+        "tolerance": 0
+      },
+      "buy_to_close_short_calls": {
+        "type": "number",
+        "expected": 5,
+        "tolerance": 0
+      },
+      "net_credit_usd": {
+        "type": "number",
+        "expected": 4950,
+        "tolerance": 0
+      },
+      "exercise_required_cash_usd": {
+        "type": "number",
+        "expected": 250000,
+        "tolerance": 0
+      },
+      "feasibility": {
+        "type": "string",
+        "expected": "feasible"
+      },
+      "rejected_routes": {
+        "type": "array",
+        "expected_set": [
+          "exercise_long_calls_cash_unavailable",
+          "let_expire_assignment_risk"
+        ],
+        "min_items": 2
+      },
+      "self_check": {
+        "type": "array",
+        "expected_set": [
+          "cash_constraint_checked",
+          "assignment_risk_removed",
+          "spread_closed"
+        ],
+        "min_items": 3
+      }
+    },
+    "derivation": "Closing spread credit = (12.20 - 2.30) * 100 * 5 = 4,950. Exercising long calls would require 500 shares * 500 = 250,000 cash, unavailable."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "AGI",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "exercise_assignment_roll_decision",
+    "feasibility_trap": true,
+    "objective_function": "maximize executable proceeds while removing expiration exercise/assignment risk under cash constraint",
+    "failure_modes": [
+      "chooses exercise despite insufficient cash",
+      "lets spread expire with assignment risk"
+    ],
+    "must_not": [
+      "must_not_exercise_when_cash_unavailable",
+      "must_not_leave_expiration_assignment_risk"
+    ],
+    "critical_fields": [
+      "sell_to_close_long_calls",
+      "buy_to_close_short_calls",
+      "net_credit_usd",
+      "exercise_required_cash_usd",
+      "feasibility"
+    ]
+  }
+}

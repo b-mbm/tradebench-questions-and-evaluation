@@ -1,0 +1,62 @@
+{
+  "id": "stockbench-l1-003",
+  "expected_fields": [
+    "decision",
+    "instrument",
+    "quote",
+    "unit"
+  ],
+  "required_fields": [
+    "decision",
+    "instrument",
+    "quote",
+    "unit"
+  ],
+  "field_weights": {},
+  "pass_threshold": 0.7,
+  "_agi_canonical": {
+    "id": "SB-L1-003",
+    "title": "SB-L1-003 canonical",
+    "validation": {
+      "decision": {
+        "type": "string",
+        "expected": "extract"
+      },
+      "instrument": {
+        "type": "string",
+        "expected": "GLD 500 call"
+      },
+      "quote": {
+        "type": "string",
+        "expected": "7.00 USD/share premium"
+      },
+      "unit": {
+        "type": "string",
+        "expected": "option_contract"
+      }
+    },
+    "derivation": "Literal extraction from the frozen packet.",
+    "pass_condition": "All required deterministic fields must match the frozen packet canonical answer; feasibility must be derived, not read from a label."
+  },
+  "metadata": {
+    "benchmark": "StockBench",
+    "primary_domain": "Listed options strategy / Greeks",
+    "tier": "L1",
+    "capability_tag": "execution_action_quality",
+    "scenario_family": "instrument_quote_extraction",
+    "feasibility_trap": false,
+    "failure_modes": [
+      "uses live data",
+      "changes a field"
+    ],
+    "must_not": [
+      "must_not_use_live_market_data"
+    ],
+    "critical_fields": [
+      "decision",
+      "instrument",
+      "unit"
+    ],
+    "needs_review": false
+  }
+}
