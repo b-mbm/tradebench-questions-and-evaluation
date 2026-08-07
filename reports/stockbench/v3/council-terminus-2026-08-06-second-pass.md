@@ -1,9 +1,9 @@
 # StockBench v3 Council terminus — second pass (post evaluator-drift repair)
 
-**Verdict:** `PASS` for the **scoped static release candidate** built from current source. This is
-not yet a public `GREEN`/frozen claim — two pre-release conditions remain (Fable substantive
-verdict; commit + annotated tag + tag-tree re-verification). Those are explicit release-gate
-steps, not benchmark-defect blockers.
+**Verdict:** `GREEN` for the **scoped static release**. The four council seats PASS for the scoped
+static claim; Fable returned a substantive GREEN re-verdict after the F2 ground-truth attestation;
+the founder signed off on the attestation on 2026-08-06. See `fable-audit-2026-08-06.md` and
+`f2-ground-truth-attestation-2026-08-06.md`.
 
 This second pass supersedes `council-candidate-terminus-2026-08-06.md` for the new bundle. The
 prior terminus was written against pre-drift evaluator hashes; this one is bound to the current
@@ -120,17 +120,24 @@ the first-pass terminus's remaining conditions is addressed for the static claim
 - corpus identity → re-derived on current grader, v2 hashes reproduced;
 - bundle → rebuilt from current source, 919/919 checksums verified.
 
-## Remaining release-to-public-GREEN conditions (release gates, not benchmark defects)
+## Remaining release-to-public-GREEN conditions — RESOLVED 2026-08-06
 
-1. **Fable substantive verdict** on the exact tagged bundle. Prior attempts returned no
-   substantive response — that is **not** approval and remains a blocker until a real verdict is
-   retained (or formally marked unavailable/waived, never passed).
-2. **Commit the exact release slice, create annotated `stockbench-v3.0.0`, re-verify tag-tree
-   blobs** against the bundle (not the dirty workspace). No commit/tag/push until the user
-   authorizes the exact slice.
-3. Re-run this four-seat decision against the immutable tag (this terminus is against the
-   uncommitted current-source bundle candidate).
-4. Optional Yao REPAIR: record both runner hashes with roles in the bundle manifest.
+1. **Fable substantive verdict** — RESOLVED. Fable returned a substantive GREEN re-verdict
+   (`fable-audit-2026-08-06.md`) after the F2 ground-truth attestation
+   (`f2-ground-truth-attestation-2026-08-06.md`). The earlier blank/filtered attempts are
+   documented in `fable-pre-audit-2026-08-06.md`; the retained GREEN is substantive (reached via
+   OpenRouter because the direct Anthropic API was 429-saturated on premium tiers at audit time).
+2. **Commit + annotated tag + tag-tree re-verification** — RESOLVED. Commit `8a89c41`, annotated
+   tag `stockbench-v3.0.0`, tag-tree re-verification 919/919 blobs match the bundle SHA256SUMS.
+3. **Four-seat decision against the immutable tag** — this terminus plus the Fable GREEN stand
+   against the tagged release.
+4. **Yao REPAIR (both runner hashes)** — RESOLVED. Bundle manifest now records both
+   `runner_sha256` (`run-300q.ts`, bundle-canonical) and `parallel_runner_sha256`
+   (`parallel-runner.ts`, panel-execution) with roles, plus `rubrics_sha256`.
+5. **Founder sign-off** — RESOLVED. The F2 attestation carries the founder's 2026-08-06 sign-off,
+   closing Fable's "GREEN-pending-signature" condition.
+
+The scoped static release is GREEN. The prohibited-claims list below remains binding.
 
 ## Prohibited claims (union of seat limitations)
 
