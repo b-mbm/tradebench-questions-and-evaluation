@@ -1,0 +1,130 @@
+{
+  "model": "qwen/qwen3.6-27b",
+  "binary_score": {
+    "expected": 100,
+    "received": 100,
+    "scored": 100,
+    "transportUnscored": 0,
+    "passed": 82,
+    "failed": 18,
+    "passRate": 0.82
+  },
+  "benchmark_repairs": {
+    "semantic_alternates": "accepted only when materially equivalent",
+    "provider_corruptions_retried": 5,
+    "clarified_items_retried": [
+      "AVB-D07",
+      "AVB-D10"
+    ]
+  },
+  "genuine_failures": [
+    {
+      "id": "AVB-A10",
+      "category": "stateful_edit",
+      "diagnosis": "Returned a tool identifier as the action instead of applying a version patch.",
+      "target": "Apply only the requested edit and preserve the complete incumbent mandate."
+    },
+    {
+      "id": "AVB-B04",
+      "category": "source_authority",
+      "diagnosis": "Used a source identifier as the catalyst label.",
+      "target": "Separate the confirmed event from the evidence that confirms it."
+    },
+    {
+      "id": "AVB-B05",
+      "category": "safe_recovery",
+      "diagnosis": "Stopped instead of pausing and refreshing contradictory execution evidence.",
+      "target": "Preserve the venue reference and request fresh evidence before execution."
+    },
+    {
+      "id": "AVB-B10",
+      "category": "numeric_value",
+      "diagnosis": "Applied signed perpetual funding incorrectly.",
+      "target": "Compute each funding cash flow at its stated mark with long-side sign."
+    },
+    {
+      "id": "AVB-B13",
+      "category": "unit_error",
+      "diagnosis": "Reported portfolio percentages as decimal fractions.",
+      "target": "Keep percentage-point units explicit through post-trade concentration arithmetic."
+    },
+    {
+      "id": "AVB-C01",
+      "category": "mode_preservation",
+      "diagnosis": "Confused recurring cadence with execution mode.",
+      "target": "Keep paper/live mode independent of scheduling cadence."
+    },
+    {
+      "id": "AVB-C05",
+      "category": "constraint_state",
+      "diagnosis": "Marked an asset already at the cap as capped.",
+      "target": "Cap only weights strictly above policy and move only excess to cash."
+    },
+    {
+      "id": "AVB-C09",
+      "category": "options_sizing",
+      "diagnosis": "Sized the defined-risk spread to one contract instead of the greatest eligible count.",
+      "target": "Compute per-contract debit and payoff before applying all integer size limits."
+    },
+    {
+      "id": "AVB-C12",
+      "category": "rule_consistency",
+      "diagnosis": "Detected conflicting rules but still compiled the strategy.",
+      "target": "Reject compilation until opposing same-state actions are resolved."
+    },
+    {
+      "id": "AVB-E04",
+      "category": "execution_realism",
+      "diagnosis": "Invalidated an impossible fill but still changed the position.",
+      "target": "Impossible fills have zero portfolio effect."
+    },
+    {
+      "id": "AVB-E06",
+      "category": "holdout_governance",
+      "diagnosis": "Recognized contamination but chose an unrelated recovery action.",
+      "target": "Freeze a new future holdout after adaptive use of the original window."
+    },
+    {
+      "id": "AVB-E13",
+      "category": "evidence_sufficiency",
+      "diagnosis": "Omitted operational failures from missing live-validity evidence.",
+      "target": "Require execution realism, operational failure coverage, regime transfer, and prospective evidence."
+    },
+    {
+      "id": "AVB-E15",
+      "category": "benchmark_governance",
+      "diagnosis": "Refused hidden-set tuning but mislabeled the untouched bundle as unknown.",
+      "target": "Preserve the unconsumed status of an evaluation bundle that was not queried."
+    },
+    {
+      "id": "AVB-G03",
+      "category": "fee_inclusive_sizing",
+      "diagnosis": "Rounded size without keeping fee-inclusive cost under the cap.",
+      "target": "Solve the all-in cap first, round down, then recompute every cash field."
+    },
+    {
+      "id": "AVB-G07",
+      "category": "terminal_reconciliation",
+      "diagnosis": "Applied the terminal fill but left the local order pending.",
+      "target": "Terminal venue truth must clear pending local state."
+    },
+    {
+      "id": "AVB-G09",
+      "category": "realized_pnl",
+      "diagnosis": "Computed partial-sale PnL from proceeds instead of profit over cost basis.",
+      "target": "Apply cost basis only to filled quantity and subtract fees."
+    },
+    {
+      "id": "AVB-G13",
+      "category": "collateral_accounting",
+      "diagnosis": "Subtracted the reserve requirement from the requested reserve-after-margin field.",
+      "target": "Report remaining collateral, then compare it separately with the required reserve."
+    },
+    {
+      "id": "AVB-H06",
+      "category": "long_horizon_constraints",
+      "diagnosis": "Lost paper/no-leverage state and treated remaining daily loss capacity as the order-size cap.",
+      "target": "Recover original constraints and keep position capacity distinct from the drawdown halt."
+    }
+  ]
+}

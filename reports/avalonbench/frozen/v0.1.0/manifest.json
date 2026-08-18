@@ -1,0 +1,118 @@
+{
+  "benchmark": "AvalonBench",
+  "version": "v0.1.0",
+  "frozen_at": "2026-08-18",
+  "status": "content_addressed_frozen_static_release_independent_implementation_audit_pending",
+  "scope": "synthetic_product_contract_development_and_cross_model_suite",
+  "scoring": {
+    "primary": "strict_binary_pass_at_1",
+    "tasks": 100,
+    "partial_credit": false
+  },
+  "purposes": [
+    "Avalon champion-versus-candidate regression under an identical harness",
+    "Avalon-versus-other-model comparison under an identical Avalon scaffold"
+  ],
+  "cross_model_rule": "Use byte-identical prompts, system scaffold, runner settings, and grader. Require 100 scoreable responses before ranking. Report exact model, provider, endpoint, cost, latency, and transport completeness.",
+  "limitations": [
+    "Not a complete live Avalon product journey benchmark",
+    "Not evidence of profitable trading or general trading intelligence",
+    "Inspected during failure mapping, so post-training gains are not untouched generalization evidence"
+  ],
+  "source": {
+    "questions_sha256": "a21abe6c6766fcce15db46b50fd2d9b0d321ffa9fad08c0b9db1f5b5456769bc",
+    "grader_sha256": "d8bbf62c7db23daa09065e45d60dff87a91c5f0dead5ffe7a1959360f60ba5ed",
+    "verifier_sha256": "d2d4c7d5a9d1d76a8117cfd7ff5f29f39ca691dc391ffd2c10eaa931d0b08f2d",
+    "grade_runner_sha256": "1c018552d67eb8ff4afdf950c63d4bd4c1031b0bb5a34a6fabe9bf97f3d5dfd6",
+    "hosted_runner_sha256": "947df7b200c7105dbaddafcb0b4e65a3e7f351fb17b402f7b57046617c4d47b2"
+  },
+  "prompt_sha256": "8744d3c2e4121240e04768f0f9a253b24e93e1d04766066ba9886c28827deabd",
+  "difficulty": {
+    "distribution": {
+      "L7": 11,
+      "L8": 27,
+      "L9": 35,
+      "L10": 23,
+      "AGI": 4
+    },
+    "claim": "Frozen author labels only; not a psychometric calibration claim."
+  },
+  "source_contracts": {
+    "count": 15,
+    "manifest_sha256": "871e513b19e2f16811d038b7210e6a12e88820beee932815bae91c3ac446b680"
+  },
+  "reference_run": {
+    "model": "qwen/qwen3.6-27b",
+    "serving": "OpenRouter hosted base-model reference; not the complete Avalon product",
+    "passed": 82,
+    "total": 100,
+    "report_sha256": "cbc76c2a9f2f6e9cc46bffa4e3a48d128df428ba05dcfb8bab471caaaca85d84"
+  },
+  "audit": {
+    "deterministic_gate": "PASS",
+    "specification_review": "Claude Code CLEAN ACCEPT retained in the specification",
+    "independent_executable_implementation_review": "PENDING"
+  },
+  "files": [
+    {
+      "path": "difficulty-distribution.json",
+      "sha256": "cae1d9f03b6e7d87864d42bdb7e3fea1a15f2c677e778e3e38a7b27de48eabaf"
+    },
+    {
+      "path": "docs/avalonbench-v0.1-FREEZE.md",
+      "sha256": "8fce072ee4241d2d4f5296c6960f819e2171ee7a7de281f72ef99e270bc70adf"
+    },
+    {
+      "path": "Internal_docs/AVALONBENCH-AND-LEARNING-LOOP-SPEC-v0.1.md",
+      "sha256": "60adfb4b4f2df58ec9273cf9d281759265003b2d7a81bf376532f7ee80a18411"
+    },
+    {
+      "path": "prompts.json",
+      "sha256": "8744d3c2e4121240e04768f0f9a253b24e93e1d04766066ba9886c28827deabd"
+    },
+    {
+      "path": "reports/avalonbench/v0.1.0-verification.txt",
+      "sha256": "c13da9a0695823f0c670e62eca0f1f6d10119d2f00646bbb865664c99857b0bf"
+    },
+    {
+      "path": "results/avalonbench/v0.1-qwen36-27b-20260818/canonical/failure-map.json",
+      "sha256": "29993d4cc46f90a87b9c74d03a4dd2e8b06813cb893a0d5b685e873d631a67a6"
+    },
+    {
+      "path": "results/avalonbench/v0.1-qwen36-27b-20260818/canonical/generations.jsonl",
+      "sha256": "9f1bef382d46b6cad8d112ceba47885207e0b153ccc644fba86fa154dc9d2afd"
+    },
+    {
+      "path": "results/avalonbench/v0.1-qwen36-27b-20260818/canonical/report.json",
+      "sha256": "cbc76c2a9f2f6e9cc46bffa4e3a48d128df428ba05dcfb8bab471caaaca85d84"
+    },
+    {
+      "path": "scripts/build-avalonbench-freeze-bundle.ts",
+      "sha256": "ca3c1934dbd730a5989e4e15283ac521f311ebd4311751e3bdf8b962b597350e"
+    },
+    {
+      "path": "scripts/grade-avalonbench-run.ts",
+      "sha256": "1c018552d67eb8ff4afdf950c63d4bd4c1031b0bb5a34a6fabe9bf97f3d5dfd6"
+    },
+    {
+      "path": "scripts/openrouter-runner.py",
+      "sha256": "947df7b200c7105dbaddafcb0b4e65a3e7f351fb17b402f7b57046617c4d47b2"
+    },
+    {
+      "path": "scripts/verify-avalonbench.ts",
+      "sha256": "d2d4c7d5a9d1d76a8117cfd7ff5f29f39ca691dc391ffd2c10eaa931d0b08f2d"
+    },
+    {
+      "path": "source-contract-hashes.json",
+      "sha256": "871e513b19e2f16811d038b7210e6a12e88820beee932815bae91c3ac446b680"
+    },
+    {
+      "path": "src/grading/avalonbench-grader.ts",
+      "sha256": "d8bbf62c7db23daa09065e45d60dff87a91c5f0dead5ffe7a1959360f60ba5ed"
+    },
+    {
+      "path": "src/questions/avalonbench-questions-100q.ts",
+      "sha256": "a21abe6c6766fcce15db46b50fd2d9b0d321ffa9fad08c0b9db1f5b5456769bc"
+    }
+  ]
+}
