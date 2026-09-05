@@ -11,7 +11,7 @@ Slice 1 is an executable benchmark contract. It does not call a model or the Ava
 
 Every oracle declares its material fields. Pre-provider validation rejects an oracle unless every declared material field is covered by a deterministic structured predicate. Extraction and normalized-request predicates separately expose dropped or silently changed values.
 
-Every episode is bound to its case id, exact prompt, system-scaffold digest, capability-snapshot digest, tool manifest, and capability/venue/account fixture references. Cross-case or cross-fixture evidence is classified as `INCOMPLETE`. Permitted outcomes, typed forbidden claims, authority boundaries, allowed artifact types, and the empty-financial-mutation rule are all linked to active predicates; declaration drift is invalid before provider execution.
+Every episode is bound to its case id, exact prompt, system-scaffold digest, capability-snapshot digest, tool manifest, and capability/venue/account fixture references. All nine binding predicates and every material extraction-to-normalization dependency are mandatory before execution. Cross-case or cross-fixture evidence is classified as `INCOMPLETE`. Permitted outcomes, typed forbidden claims, machine-readable authority outcomes, allowed artifact types, and the empty-financial-mutation rule are all linked to exact active predicates; deletion, repointing, or declaration drift is `INVALID` before provider execution.
 
 ## Deterministic grading
 
@@ -29,7 +29,7 @@ No regex interprets user language. Slice 1 begins with typed requests and valida
 
 The deterministic contract run uses content-addressed SHA-256 identities in `scorerCommit` and `runnerCommit`. This gives the pre-commit report an exact, non-circular source identity: a Git commit cannot contain its own eventual hash.
 
-Runtime validators check required exposure and run fields rather than relying on TypeScript alone. Exposure to an implementation-capable role at either boundary of a reserve or active-blind transition forces consumption, and stability membership is permanent. Expected capability and external sources each require exact deterministic grading predicates. The Slice 1 tests exercise these rules with in-memory metadata only; they do not create, allocate, or expose a blind case body.
+Runtime validators check required exposure and run fields rather than relying on TypeScript alone. Initial reserve provenance is restricted to a blind author with no mechanism exposure, reserve-to-active-blind requires an explicit allocation event, exposure to an implementation-capable role at either blind boundary forces consumption, and stability membership is permanent. Expected capability and external sources each require deterministic grading predicates; external research accepts one or more calls. The Slice 1 tests exercise these rules with in-memory metadata only; they do not create, allocate, or expose a blind case body.
 
 ## Verification
 

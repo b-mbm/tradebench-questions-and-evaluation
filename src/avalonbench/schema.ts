@@ -32,6 +32,7 @@ export type Comparison =
   | 'set_equals'
   | 'empty'
   | 'length_equals'
+  | 'length_at_least'
   | 'item_field_set_subset';
 
 export interface CapabilityStratum {
@@ -111,6 +112,7 @@ export interface TypedOracle {
   authorityBoundary: {
     description: string;
     predicateId: string;
+    expectedOutcome: string;
   };
   finalStateConstraints: {
     allowedCreatedArtifactTypes: string[];

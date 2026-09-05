@@ -23,6 +23,7 @@ export function combinedSourceIdentity(identities: SourceIdentity[]): string {
 export const SCORER_SOURCE_PATHS = [
   'src/avalonbench/canonical.ts',
   'src/avalonbench/grader.ts',
+  'src/avalonbench/harness-contract.ts',
   'src/avalonbench/schema.ts',
   'src/avalonbench/validator.ts',
 ] as const;
@@ -36,6 +37,7 @@ export const RUNNER_SOURCE_PATHS = [
   'src/avalonbench/contract.ts',
   'src/avalonbench/fixtures.ts',
   'src/avalonbench/grader.ts',
+  'src/avalonbench/harness-contract.ts',
   'src/avalonbench/ledger.ts',
   'src/avalonbench/provider-runner.ts',
   'src/avalonbench/proofs.ts',

@@ -38,7 +38,7 @@ function episode(
     },
     trace: {
       typedExtraction,
-      normalizedRequest: typedExtraction,
+      normalizedRequest: { ...typedExtraction },
       consultedCapabilitySource: true,
       capabilityResolution: null,
       instrumentResolution: null,

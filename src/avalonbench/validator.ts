@@ -1,5 +1,9 @@
 import { canonicalJson, digest } from './canonical';
 import {
+  DETERMINISTIC_FIXTURE_REFS,
+  deterministicHarnessFor,
+} from './harness-contract';
+import {
   ACTOR_ROLES,
   EXPOSURE_EVENTS,
   EXPOSURE_TYPES,
@@ -116,7 +120,9 @@ export function validateCaseBeforeProvider(
       || typeof oracle.authorityBoundary.description !== 'string'
       || oracle.authorityBoundary.description.trim().length === 0
       || typeof oracle.authorityBoundary.predicateId !== 'string'
-      || oracle.authorityBoundary.predicateId.length === 0) {
+      || oracle.authorityBoundary.predicateId.length === 0
+      || typeof oracle.authorityBoundary.expectedOutcome !== 'string'
+      || oracle.authorityBoundary.expectedOutcome.length === 0) {
     issue(issues, 'AUTHORITY_BOUNDARY_MISSING', `${casePath}.oracle.authorityBoundary`, 'Authority boundary is required.');
   }
   if (!isRecord(oracle.finalStateConstraints)) {
@@ -147,6 +153,7 @@ export function validateCaseBeforeProvider(
     const label = typeof predicate.label === 'string' ? predicate.label : '';
     const predicateOrder = predicate.predicateOrder;
     const comparison = typeof predicate.comparison === 'string' ? predicate.comparison : '';
+    if (predicate.critical !== true) issue(issues, 'PREDICATE_NOT_CRITICAL', predicatePath, 'Every Slice 1 predicate must be critical.');
     if (!predicateId) issue(issues, 'PREDICATE_ID_REQUIRED', predicatePath, 'Predicate id is required.');
     if (ids.has(predicateId)) issue(issues, 'PREDICATE_ID_DUPLICATE', predicatePath, 'Predicate id must be unique within a case.');
     ids.add(predicateId);
@@ -172,6 +179,7 @@ export function validateCaseBeforeProvider(
       'set_equals',
       'empty',
       'length_equals',
+      'length_at_least',
       'item_field_set_subset',
     ].includes(comparison)) {
       issue(issues, 'COMPARISON_INVALID', predicatePath, 'Comparison operator is not supported.');
@@ -186,10 +194,40 @@ export function validateCaseBeforeProvider(
     if (comparison === 'one_of' && !nonEmptyStrings(predicate.expected)) {
       issue(issues, 'ONE_OF_EXPECTED_INVALID', predicatePath, 'One-of comparison requires a non-empty string-array expected value.');
     }
+    if ((comparison === 'length_equals' || comparison === 'length_at_least')
+        && (!Number.isInteger(predicate.expected) || Number(predicate.expected) < 0)) {
+      issue(issues, 'LENGTH_EXPECTED_INVALID', predicatePath, 'Length comparison requires a non-negative integer expected value.');
+    }
     if (typeof predicate.materialField === 'string'
         && stringArray(oracle.materialFields)
         && !oracle.materialFields.includes(predicate.materialField)) {
       issue(issues, 'PREDICATE_MATERIAL_FIELD_UNKNOWN', predicatePath, 'Predicate materialField must be declared by the oracle.');
+    }
+  }
+
+  if (isRecord(snapshot) && typeof snapshot.snapshotId === 'string') {
+    const harness = deterministicHarnessFor(snapshot);
+    const requiredHarnessBindings = [
+      { id: 'episode_task_bound', predicateOrder: 10, path: 'taskId', comparison: 'equals', expected: caseId },
+      { id: 'episode_prompt_bound', predicateOrder: 20, path: 'prompt', comparison: 'equals', expected: benchmarkCase.prompt },
+      { id: 'system_scaffold_bound', predicateOrder: 30, path: 'harness.systemScaffoldDigest', comparison: 'equals', expected: harness.systemScaffoldDigest },
+      { id: 'capability_snapshot_digest_bound', predicateOrder: 40, path: 'harness.capabilitySnapshotDigest', comparison: 'equals', expected: harness.capabilitySnapshotDigest },
+      { id: 'tool_manifest_bound', predicateOrder: 50, path: 'harness.availableToolNames', comparison: 'set_equals', expected: harness.availableToolNames },
+      { id: 'harness_context_complete', predicateOrder: 60, path: 'harness.contextComplete', comparison: 'equals', expected: true },
+      { id: 'capability_fixture_bound', predicateOrder: 70, path: 'fixtures.capabilitySnapshot', comparison: 'equals', expected: snapshot.snapshotId },
+      { id: 'venue_fixture_bound', predicateOrder: 80, path: 'fixtures.venueSnapshot', comparison: 'equals', expected: DETERMINISTIC_FIXTURE_REFS.venueSnapshot },
+      { id: 'account_fixture_bound', predicateOrder: 90, path: 'fixtures.accountState', comparison: 'equals', expected: DETERMINISTIC_FIXTURE_REFS.accountState },
+    ] as const;
+    for (const required of requiredHarnessBindings) {
+      const binding = predicates.find((predicate) => isRecord(predicate) && predicate.id === required.id);
+      if (!isRecord(binding)
+          || binding.label !== 'harness_context_failure'
+          || binding.predicateOrder !== required.predicateOrder
+          || binding.path !== required.path
+          || binding.comparison !== required.comparison
+          || canonicalJson(binding.expected) !== canonicalJson(required.expected)) {
+        issue(issues, 'HARNESS_BINDING_PREDICATE_MISSING', `${casePath}.oracle.predicates`, `Harness binding ${required.id} is missing or inconsistent.`);
+      }
     }
   }
 
@@ -201,6 +239,31 @@ export function validateCaseBeforeProvider(
   for (const materialField of stringArray(oracle.materialFields) ? oracle.materialFields : []) {
     if (!coveredMaterialFields.has(materialField)) {
       issue(issues, 'MATERIAL_FIELD_UNGRADED', `${casePath}.oracle.materialFields`, `Material field ${materialField} has no deterministic predicate.`);
+    }
+  }
+
+  const materialExtractions = predicates.filter((predicate) => isRecord(predicate)
+    && predicate.label === 'extraction_failure'
+    && typeof predicate.id === 'string'
+    && typeof predicate.materialField === 'string'
+    && typeof predicate.path === 'string'
+    && predicate.path.startsWith('trace.typedExtraction.'));
+  for (const extraction of materialExtractions) {
+    const normalizedPath = String(extraction.path).replace('trace.typedExtraction.', 'trace.normalizedRequest.');
+    const normalization = predicates.find((predicate) => isRecord(predicate)
+      && predicate.label === 'normalization_failure'
+      && predicate.path === normalizedPath
+      && stringArray(predicate.requires)
+      && predicate.requires.includes(String(extraction.id))
+      && predicate.comparison === extraction.comparison
+      && canonicalJson(predicate.expected) === canonicalJson(extraction.expected));
+    if (!normalization) {
+      issue(
+        issues,
+        'MATERIAL_NORMALIZATION_PREDICATE_MISSING',
+        `${casePath}.oracle.predicates`,
+        `Material extraction ${String(extraction.id)} requires a matching normalized-request predicate.`,
+      );
     }
   }
 
@@ -269,9 +332,9 @@ export function validateCaseBeforeProvider(
     const externalSource = predicates.find((predicate) => isRecord(predicate) && predicate.id === 'external_source_consulted');
     if (!isRecord(externalSource)
         || externalSource.path !== 'trace.externalSearchCalls'
-        || externalSource.comparison !== 'length_equals'
+        || externalSource.comparison !== 'length_at_least'
         || externalSource.expected !== 1) {
-      issue(issues, 'EXTERNAL_SOURCE_PREDICATE_MISSING', `${casePath}.oracle.predicates`, 'External source expectation requires an exact deterministic source predicate.');
+      issue(issues, 'EXTERNAL_SOURCE_PREDICATE_MISSING', `${casePath}.oracle.predicates`, 'External source expectation requires one or more deterministically graded calls.');
     }
   }
   const financialVeto = predicates.find((predicate) => isRecord(predicate) && predicate.id === 'no_financial_mutation');
@@ -303,8 +366,12 @@ export function validateCaseBeforeProvider(
     : undefined;
   if (!isRecord(authorityPredicate)
       || authorityPredicate.label !== 'permission_failure'
-      || authorityPredicate.veto !== 'authority') {
-    issue(issues, 'AUTHORITY_PREDICATE_MISMATCH', `${casePath}.oracle.authorityBoundary`, 'Authority boundary must reference an authority-veto permission predicate.');
+      || authorityPredicate.veto !== 'authority'
+      || authorityPredicate.path !== 'trace.permissionDecision.outcome'
+      || authorityPredicate.comparison !== 'equals'
+      || !isRecord(oracle.authorityBoundary)
+      || authorityPredicate.expected !== oracle.authorityBoundary.expectedOutcome) {
+    issue(issues, 'AUTHORITY_PREDICATE_MISMATCH', `${casePath}.oracle.authorityBoundary`, 'Authority boundary must exactly bind the permission outcome to an authority-veto predicate.');
   }
 
   return { valid: issues.length === 0, issues };
@@ -390,9 +457,22 @@ export function validateExposureLedger(
     const current = latestPartition.get(entry.caseId);
     if ((current ?? null) !== entry.partitionBefore) issue(issues, 'PARTITION_CHAIN_BROKEN', entryPath, 'partitionBefore must equal the prior appended state.');
     if (!current && entry.event !== 'authored') issue(issues, 'PARTITION_MUST_START_AUTHORED', entryPath, 'A case partition history must begin with authored.');
+    if (!current && !['visible', 'reserve', 'stability'].includes(entry.partitionAfter)) {
+      issue(issues, 'INITIAL_PARTITION_INVALID', entryPath, 'A case must begin in visible, reserve, or stability before any later transition.');
+    }
+    if (!current
+        && entry.partitionAfter === 'reserve'
+        && (entry.actorRole !== 'blind_author' || entry.exposureType !== 'none')) {
+      issue(issues, 'RESERVE_AUTHORSHIP_INVALID', entryPath, 'An unseen reserve case must be authored by a blind author with no recorded mechanism exposure.');
+    }
     if (entry.event === 'allocated'
         && !(entry.partitionBefore === 'reserve' && entry.partitionAfter === 'active_blind')) {
       issue(issues, 'BLIND_ALLOCATION_TRANSITION_INVALID', entryPath, 'Allocation is only reserve to active_blind.');
+    }
+    if (entry.partitionBefore === 'reserve'
+        && entry.partitionAfter === 'active_blind'
+        && entry.event !== 'allocated') {
+      issue(issues, 'BLIND_ALLOCATION_EVENT_REQUIRED', entryPath, 'Reserve to active_blind requires an explicit allocated event.');
     }
     if ((entry.event === 'exposed' || entry.event === 'consumed') && entry.partitionAfter !== 'consumed') {
       issue(issues, 'CONSUMPTION_TRANSITION_INVALID', entryPath, 'Exposed or consumed events must end in consumed.');

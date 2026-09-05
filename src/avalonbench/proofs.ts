@@ -128,7 +128,7 @@ export function runContractProofs(): ProofReceipt[] {
     label: 'routing_failure',
     predicateOrder: 5,
     path: 'trace.externalSearchCalls',
-    comparison: 'length_equals',
+    comparison: 'length_at_least',
     expected: 1,
     critical: true,
   };

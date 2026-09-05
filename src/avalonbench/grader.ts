@@ -52,6 +52,10 @@ function compare(actual: unknown, predicate: PredicateSpec): boolean {
     case 'length_equals':
       return (Array.isArray(actual) || typeof actual === 'string')
         && actual.length === predicate.expected;
+    case 'length_at_least':
+      return (Array.isArray(actual) || typeof actual === 'string')
+        && typeof predicate.expected === 'number'
+        && actual.length >= predicate.expected;
     case 'set_equals': {
       if (!Array.isArray(actual) || !Array.isArray(predicate.expected)) return false;
       const actualSet = [...new Set(actual.map(canonicalJson))].sort();

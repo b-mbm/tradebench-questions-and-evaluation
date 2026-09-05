@@ -11,7 +11,14 @@ import { assertAppendOnlyPrefix } from '../src/avalonbench/ledger';
 import { runContractProofs } from '../src/avalonbench/proofs';
 import { runCaseWithPreProviderValidation } from '../src/avalonbench/provider-runner';
 import { RUNTIME_INVENTORY } from '../src/avalonbench/runtime-inventory';
-import type { AvalonBenchCase, ExposureLedgerEntry, RunRecord, StabilityPanelContract } from '../src/avalonbench/schema';
+import type {
+  AvalonBenchCase,
+  ExposureLedgerEntry,
+  PredicateSpec,
+  RunRecord,
+  StabilityPanelContract,
+  TypedCapabilityRequest,
+} from '../src/avalonbench/schema';
 import { PARTITIONS, STAGE_ORDER } from '../src/avalonbench/schema';
 import {
   parseJsonLines,
@@ -50,6 +57,9 @@ assert.deepEqual(STAGE_ORDER, [
 ]);
 assert.equal(RUNTIME_INVENTORY.sanctionedEntrypoints.avalonBenchAdapterPresent, false);
 assert.deepEqual(stability, STABILITY_PANEL);
+for (const episode of Object.values(PASSING_EPISODES)) {
+  assert.notEqual(episode.trace.typedExtraction, episode.trace.normalizedRequest);
+}
 assert.equal(contractValidation.valid, true, JSON.stringify(contractValidation.issues));
 assert.equal(exposureValidation.valid, true, JSON.stringify(exposureValidation.issues));
 assert.equal(runValidation.valid, true, JSON.stringify(runValidation.issues));
@@ -57,6 +67,8 @@ assert.equal(stabilityValidation.valid, true, JSON.stringify(stabilityValidation
 
 assert.throws(() => assertAppendOnlyPrefix(exposureRaw, exposureRaw.slice(1)), /APPEND_ONLY_PREFIX_VIOLATION/);
 assert.doesNotThrow(() => assertAppendOnlyPrefix(exposureRaw, `${exposureRaw}{"append":"proof"}\n`));
+assert.throws(() => assertAppendOnlyPrefix(runRaw, runRaw.slice(1)), /APPEND_ONLY_PREFIX_VIOLATION/);
+assert.doesNotThrow(() => assertAppendOnlyPrefix(runRaw, `${runRaw}{"append":"proof"}\n`));
 
 const historicalExposurePrefix = [
   ['exposure-001', '921a8e11b09ded8717fc9d869f23575c45ce2d822728ac201ee5e9078d77861a'],
@@ -72,10 +84,13 @@ assert.deepEqual(
   exposureEntries.slice(0, historicalExposurePrefix.length).map((entry) => [entry.entryId, entry.artifactDigest]),
   historicalExposurePrefix,
 );
-assert.deepEqual(runEntries.slice(0, 3).map((entry) => entry.entryId), [
+assert.deepEqual(runEntries.slice(0, 6).map((entry) => entry.entryId), [
   'run-001-planned',
   'run-001-launched',
   'run-001-completed',
+  'run-002-planned',
+  'run-002-launched',
+  'run-002-completed',
 ]);
 const rawLinePrefix = (raw: string, lineCount: number): string => `${raw.split('\n').slice(0, lineCount).join('\n')}\n`;
 assert.equal(
@@ -83,8 +98,16 @@ assert.equal(
   'f275958880c239669938ec6b5330f7e13e0a1d16c4c5dc0fae9c56ee2c3a98c6',
 );
 assert.equal(
+  createHash('sha256').update(rawLinePrefix(exposureRaw, 12)).digest('hex'),
+  'd9628cca04c1efe4fafd2bfc4ad941680ae726a6018d824a66262edecb916129',
+);
+assert.equal(
   createHash('sha256').update(rawLinePrefix(runRaw, 3)).digest('hex'),
   '3c4b32ae0325a4689f61ca3b3d65f81cb31dcd81542492d9811bb689935f092a',
+);
+assert.equal(
+  createHash('sha256').update(rawLinePrefix(runRaw, 6)).digest('hex'),
+  '08051fccd81cd7e8f963776cc0fa2dbf2ab78e6443984fe945f422dc6de32856',
 );
 
 const consumedMutation = structuredClone(exposureEntries);
@@ -164,6 +187,13 @@ assert.equal(validateExposureLedger(initialBlindExposure, []).issues.some(
   (entry) => entry.code === 'BLIND_EXPOSURE_MUST_CONSUME',
 ), true);
 
+const launderedReserveAuthorship = structuredClone(metadataOnlyBlindExposure).slice(0, 1);
+launderedReserveAuthorship[0].actorRole = 'implementer';
+launderedReserveAuthorship[0].exposureType = 'none';
+assert.equal(validateExposureLedger(launderedReserveAuthorship, []).issues.some(
+  (entry) => entry.code === 'RESERVE_AUTHORSHIP_INVALID',
+), true);
+
 const blindLaundering = structuredClone(metadataOnlyBlindExposure);
 blindLaundering[1].actorRole = 'custodian';
 blindLaundering[1].exposureType = 'none';
@@ -171,6 +201,27 @@ blindLaundering[1].partitionAfter = 'visible';
 assert.equal(validateExposureLedger(blindLaundering, []).issues.some(
   (entry) => entry.code === 'PARTITION_TRANSITION_FORBIDDEN',
 ), true);
+
+const missingAllocationEvent = structuredClone(metadataOnlyBlindExposure);
+missingAllocationEvent[1].partitionAfter = 'active_blind';
+missingAllocationEvent[1].actorRole = 'custodian';
+missingAllocationEvent[1].exposureType = 'none';
+assert.equal(validateExposureLedger(missingAllocationEvent, []).issues.some(
+  (entry) => entry.code === 'BLIND_ALLOCATION_EVENT_REQUIRED',
+), true);
+
+const directActiveBlindAuthorship = structuredClone(metadataOnlyBlindExposure).slice(0, 1);
+directActiveBlindAuthorship[0].partitionAfter = 'active_blind';
+assert.equal(validateExposureLedger(directActiveBlindAuthorship, []).issues.some(
+  (entry) => entry.code === 'INITIAL_PARTITION_INVALID',
+), true);
+
+const validBlindAllocation = structuredClone(metadataOnlyBlindExposure);
+validBlindAllocation[1].partitionAfter = 'active_blind';
+validBlindAllocation[1].event = 'allocated';
+validBlindAllocation[1].actorRole = 'custodian';
+validBlindAllocation[1].exposureType = 'none';
+assert.equal(validateExposureLedger(validBlindAllocation, []).valid, true);
 
 const stabilityReassignment = structuredClone(metadataOnlyBlindExposure);
 stabilityReassignment[0].partitionAfter = 'stability';
@@ -264,6 +315,112 @@ assert.equal(missingExternalValidation.issues.some(
   (entry) => entry.code === 'EXTERNAL_SOURCE_PREDICATE_MISSING',
 ), true);
 
+const externalSourcePredicate = {
+  id: 'external_source_consulted',
+  label: 'routing_failure',
+  predicateOrder: 5,
+  path: 'trace.externalSearchCalls',
+  comparison: 'length_at_least',
+  expected: 1,
+  critical: true,
+} satisfies PredicateSpec;
+const multipleExternalCallsCase = structuredClone(missingExternalPredicate);
+multipleExternalCallsCase.oracle.predicates.push(externalSourcePredicate);
+const multipleExternalCallsEpisode = structuredClone(PASSING_EPISODES[multipleExternalCallsCase.id]);
+multipleExternalCallsEpisode.trace.externalSearchCalls = [
+  { query: 'Hyperliquid source one' },
+  { query: 'Hyperliquid source two' },
+];
+const multipleExternalCallsResult = gradeEpisode(
+  multipleExternalCallsCase,
+  externalStratum,
+  CAPABILITY_SNAPSHOT,
+  multipleExternalCallsEpisode,
+);
+assert.equal(multipleExternalCallsResult.result, 'PASS');
+
+const requiredHarnessBindingIds = [
+  'episode_task_bound',
+  'episode_prompt_bound',
+  'system_scaffold_bound',
+  'capability_snapshot_digest_bound',
+  'tool_manifest_bound',
+  'harness_context_complete',
+  'capability_fixture_bound',
+  'venue_fixture_bound',
+  'account_fixture_bound',
+];
+for (const bindingId of requiredHarnessBindingIds) {
+  const missingBindingCase = structuredClone(VISIBLE_CASES[0]);
+  missingBindingCase.oracle.predicates = missingBindingCase.oracle.predicates.filter(
+    (predicate) => predicate.id !== bindingId,
+  );
+  const validation = validateCaseBeforeProvider(missingBindingCase, STRATA[0], CAPABILITY_SNAPSHOT);
+  assert.equal(validation.valid, false, `${bindingId} deletion must invalidate the case`);
+  assert.equal(validation.issues.some((entry) => entry.code === 'HARNESS_BINDING_PREDICATE_MISSING'), true);
+}
+
+for (const benchmarkCase of VISIBLE_CASES) {
+  const normalizationIds = benchmarkCase.oracle.predicates
+    .filter((predicate) => predicate.label === 'normalization_failure')
+    .map((predicate) => predicate.id);
+  for (const normalizationId of normalizationIds) {
+    const missingNormalizationCase = structuredClone(benchmarkCase);
+    missingNormalizationCase.oracle.predicates = missingNormalizationCase.oracle.predicates.filter(
+      (predicate) => predicate.id !== normalizationId,
+    );
+    const validation = validateCaseBeforeProvider(
+      missingNormalizationCase,
+      STRATA.find((stratum) => stratum.id === benchmarkCase.stratumId),
+      CAPABILITY_SNAPSHOT,
+    );
+    assert.equal(validation.valid, false, `${normalizationId} deletion must invalidate the case`);
+    assert.equal(validation.issues.some(
+      (entry) => entry.code === 'MATERIAL_NORMALIZATION_PREDICATE_MISSING',
+    ), true);
+  }
+}
+
+const droppedNormalizationCase = structuredClone(VISIBLE_CASES[0]);
+droppedNormalizationCase.oracle.predicates = droppedNormalizationCase.oracle.predicates.filter(
+  (predicate) => predicate.id !== 'discovery_intent_normalized',
+);
+const droppedNormalizationEpisode = structuredClone(PASSING_EPISODES[droppedNormalizationCase.id]);
+droppedNormalizationEpisode.trace.normalizedRequest = { intent: 'capability_discovery', venue: 'hyperliquid' };
+delete (droppedNormalizationEpisode.trace.normalizedRequest as Partial<TypedCapabilityRequest>).intent;
+const droppedNormalizationResult = gradeEpisode(
+  droppedNormalizationCase,
+  STRATA[0],
+  CAPABILITY_SNAPSHOT,
+  droppedNormalizationEpisode,
+);
+assert.equal(droppedNormalizationResult.result, 'INVALID');
+
+const repointedAuthorityCase = structuredClone(VISIBLE_CASES[0]);
+const repointedAuthorityPredicate = repointedAuthorityCase.oracle.predicates.find(
+  (predicate) => predicate.id === repointedAuthorityCase.oracle.authorityBoundary.predicateId,
+);
+assert(repointedAuthorityPredicate);
+repointedAuthorityPredicate.path = 'response.structuredClaims.outcome';
+repointedAuthorityPredicate.expected = 'accurate_capability_summary';
+const repointedAuthorityValidation = validateCaseBeforeProvider(
+  repointedAuthorityCase,
+  STRATA[0],
+  CAPABILITY_SNAPSHOT,
+);
+assert.equal(repointedAuthorityValidation.valid, false);
+assert.equal(repointedAuthorityValidation.issues.some(
+  (entry) => entry.code === 'AUTHORITY_PREDICATE_MISMATCH',
+), true);
+const repointedAuthorityEpisode = structuredClone(PASSING_EPISODES[repointedAuthorityCase.id]);
+repointedAuthorityEpisode.trace.permissionDecision = { outcome: 'write_authority' };
+assert.equal(gradeEpisode(
+  repointedAuthorityCase,
+  STRATA[0],
+  CAPABILITY_SNAPSHOT,
+  repointedAuthorityEpisode,
+).result, 'INVALID');
+
 const mismatchedEpisode = structuredClone(PASSING_EPISODES[VISIBLE_CASES[0].id]);
 mismatchedEpisode.taskId = VISIBLE_CASES[1].id;
 mismatchedEpisode.prompt = VISIBLE_CASES[1].prompt;
@@ -317,6 +474,7 @@ const output = {
     runRegistry: runValidation.valid,
     stabilityPanel: stabilityValidation.valid,
     appendOnlyRewriteRejected: true,
+    runAppendOnlyRewriteRejected: true,
     historicalAppendOnlyPrefixesRetained: true,
     consumedReversalRejected: true,
     runTupleMutationRejected: true,
@@ -324,7 +482,11 @@ const output = {
     missingRunFieldsRejected: true,
     blindExposureRequiresConsumption: true,
     initialBlindExposureRejected: true,
+    reserveRequiresBlindAuthor: true,
     blindPartitionLaunderingRejected: true,
+    blindAllocationEventRequired: true,
+    directActiveBlindAuthorshipRejected: true,
+    validBlindAllocationAccepted: true,
     stabilityPartitionPermanent: true,
     invalidCaseRejectedBeforeProvider: invalidCaseProviderCalls === 0,
     malformedCaseRejectedBeforeProvider: missingOracleResult.score.result === 'INVALID',
@@ -332,6 +494,10 @@ const output = {
     malformedContractRejectedWithoutThrow: malformedContract.valid === false,
     oracleDeclarationDriftRejected: true,
     externalSourceDeclarationLinked: missingExternalValidation.valid === false,
+    multipleExternalCallsAccepted: multipleExternalCallsResult.result === 'PASS',
+    harnessBindingsRequired: true,
+    materialNormalizationPredicatesRequired: droppedNormalizationResult.result === 'INVALID',
+    authorityPredicateRepointingRejected: repointedAuthorityValidation.valid === false,
     episodeIdentityMismatchRejected: mismatchedEpisodeResult.result === 'INCOMPLETE',
     forbiddenClaimsAndArtifactsRejected: forbiddenOutcomeResult.result === 'FAIL',
     providerFailureClassifiedIncomplete: incompleteResult.score.result === 'INCOMPLETE',
