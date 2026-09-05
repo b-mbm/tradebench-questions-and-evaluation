@@ -33,6 +33,7 @@ export const RUNNER_SOURCE_PATHS = [
   'package.json',
   'scripts/avalonbench-contract-report.ts',
   'scripts/avalonbench-contract-test.ts',
+  'scripts/avalonbench-runtime-preflight.ts',
   'scripts/avalonbench-runtime-run.ts',
   'data/avalonbench/v1/runtime-contract.json',
   'src/avalonbench/canonical.ts',

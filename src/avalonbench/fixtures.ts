@@ -26,6 +26,7 @@ function episode(
 
   return {
     episodeId: `fixture:${taskId}`,
+    executionMode: 'deterministic_contract',
     taskId,
     prompt,
     harness: {
@@ -61,6 +62,16 @@ function episode(
       latencyMs: 0,
       modelCalls: 0,
       tokenUsage: {},
+    },
+    provenance: {
+      taskId: { category: 'oracle_or_expected_copy', source: 'deterministic scorer fixture input' },
+      prompt: { category: 'oracle_or_expected_copy', source: 'deterministic scorer fixture input' },
+      harness: { category: 'external_fixture', source: 'deterministic scorer fixture' },
+      fixtures: { category: 'external_fixture', source: 'deterministic scorer fixture' },
+      trace: { category: 'external_fixture', source: 'deterministic scorer fixture; never runtime evidence' },
+      response: { category: 'external_fixture', source: 'deterministic scorer fixture; never runtime evidence' },
+      state: { category: 'external_fixture', source: 'deterministic scorer fixture; never runtime evidence' },
+      diagnostics: { category: 'external_fixture', source: 'deterministic scorer fixture; never runtime evidence' },
     },
   };
 }

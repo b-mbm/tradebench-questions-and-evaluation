@@ -33,9 +33,44 @@ const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const exposureRaw = readFileSync(resolve(root, 'data/avalonbench/v1/exposure-ledger.jsonl'), 'utf8');
 const runRaw = readFileSync(resolve(root, 'data/avalonbench/v1/run-registry.jsonl'), 'utf8');
 const stabilityRaw = readFileSync(resolve(root, 'data/avalonbench/v1/stability-panel.json'), 'utf8');
+const runtimeContract = JSON.parse(
+  readFileSync(resolve(root, 'data/avalonbench/v1/runtime-contract.json'), 'utf8'),
+) as Record<string, any>;
 const exposureEntries = parseJsonLines<ExposureLedgerEntry>(exposureRaw);
 const runEntries = parseJsonLines<RunRecord>(runRaw);
 const stability = JSON.parse(stabilityRaw) as StabilityPanelContract;
+
+assert.deepEqual(runtimeContract.modelRoute, {
+  publicModel: 'Avalon 1',
+  mode: 'fast',
+  label: 'Avalon 1 Fast',
+  provider: 'openrouter',
+  modelId: 'qwen/qwen3.6-27b',
+  providerSlug: 'deepinfra',
+});
+assert.equal(runtimeContract.sourceBindings.entrypoint, 'apps/aix-frontend/app/api/chat/route.ts#POST');
+assert.deepEqual(runtimeContract.harness.availableToolNames, ['commission_observer']);
+assert.equal(runtimeContract.toolManifest.some((item: { id?: string }) => item.id === 'build_transaction'), true);
+assert.deepEqual(runtimeContract.safety.executionToolAllowlist, ['commission_observer']);
+assert.equal(runtimeContract.safety.financialMutationAuthorityAvailable, false);
+for (const authorityField of [
+  'orderAuthorityAvailable',
+  'fillAuthorityAvailable',
+  'positionAuthorityAvailable',
+  'signingAuthorityAvailable',
+  'transfers',
+  'walletActions',
+]) {
+  assert.equal(runtimeContract.safety[authorityField], false);
+}
+assert.deepEqual(runtimeContract.experiment, {
+  mode: 'incumbent_baseline',
+  capabilityContextInjected: false,
+  benchmarkAnswerSchemaInjected: false,
+});
+assert.equal(runtimeContract.visibleCases.every(
+  (item: Record<string, unknown>) => JSON.stringify(Object.keys(item).sort()) === JSON.stringify(['id', 'prompt']),
+), true);
 
 const contractValidation = validateContract(STRATA, VISIBLE_CASES, CAPABILITY_SNAPSHOT);
 const exposureValidation = validateExposureLedger(exposureEntries, VISIBLE_CASES);
@@ -445,6 +480,72 @@ assert.equal(forbiddenOutcomeResult.primaryFailure?.id, 'agent_installed_without
 assert.equal(forbiddenOutcomeResult.secondaryFailures.some((entry) => entry.id === 'financial_execution_forbidden'), true);
 assert.equal(forbiddenOutcomeResult.secondaryFailures.some((entry) => entry.id === 'created_artifact_types_allowed'), true);
 
+function asIncumbentEpisode(caseIndex: number) {
+  const episode = structuredClone(PASSING_EPISODES[VISIBLE_CASES[caseIndex].id]);
+  episode.executionMode = 'incumbent_baseline' as const;
+  episode.provenance = {
+    taskId: { category: 'oracle_or_expected_copy', source: 'validated request binding' },
+    prompt: { category: 'oracle_or_expected_copy', source: 'validated request binding' },
+    harness: { category: 'production_observation', source: 'assembled runtime manifest' },
+    fixtures: { category: 'external_fixture', source: 'deterministic external fixture' },
+    trace: { category: 'production_observation', source: 'runtime trace' },
+    response: { category: 'post_execution_derivation', source: 'independent neutral extractor' },
+    state: { category: 'production_observation', source: 'runtime final state' },
+    diagnostics: { category: 'production_observation', source: 'runtime diagnostics' },
+  };
+  return episode;
+}
+
+const copiedExpectedEpisode = asIncumbentEpisode(0);
+copiedExpectedEpisode.provenance['trace.typedExtraction'] = {
+  category: 'oracle_or_expected_copy',
+  source: 'benchmark expected typed request',
+};
+const copiedExpectedResult = gradeEpisode(
+  VISIBLE_CASES[0],
+  STRATA[0],
+  CAPABILITY_SNAPSHOT,
+  copiedExpectedEpisode,
+);
+assert.equal(copiedExpectedResult.result, 'INCOMPLETE');
+assert.equal(copiedExpectedResult.primaryFailure?.id, 'provenance_contract_invalid');
+assert.equal(copiedExpectedResult.notEvaluable.some((entry) => entry.id === 'discovery_intent_extracted'), true);
+
+const unobservableEpisode = asIncumbentEpisode(0);
+unobservableEpisode.trace.typedExtraction = null;
+unobservableEpisode.provenance['trace.typedExtraction'] = {
+  category: 'unobservable',
+  source: 'assembled Chat run',
+  reason: 'current runtime emitted no typed capability extraction',
+};
+const unobservableResult = gradeEpisode(
+  VISIBLE_CASES[0],
+  STRATA[0],
+  CAPABILITY_SNAPSHOT,
+  unobservableEpisode,
+);
+assert.equal(unobservableResult.result, 'INCOMPLETE');
+assert.equal(unobservableResult.primaryFailure?.id, 'required_runtime_observation_unavailable');
+assert.equal(
+  unobservableResult.notEvaluable.find((entry) => entry.id === 'discovery_intent_extracted')?.reason,
+  'current runtime emitted no typed capability extraction',
+);
+
+const fixtureMasqueradeEpisode = asIncumbentEpisode(0);
+fixtureMasqueradeEpisode.provenance['trace.capabilityResolution'] = {
+  category: 'external_fixture',
+  source: 'frozen capability snapshot',
+};
+const fixtureMasqueradeResult = gradeEpisode(
+  VISIBLE_CASES[0],
+  STRATA[0],
+  CAPABILITY_SNAPSHOT,
+  fixtureMasqueradeEpisode,
+);
+assert.equal(fixtureMasqueradeResult.result, 'INCOMPLETE');
+assert.equal(fixtureMasqueradeResult.primaryFailure?.id, 'provenance_contract_invalid');
+assert.equal(fixtureMasqueradeResult.notEvaluable.some((entry) => entry.id === 'supported_agent_types_resolved'), true);
+
 const incompleteResult = await runCaseWithPreProviderValidation(
   VISIBLE_CASES[0],
   STRATA[0],
@@ -470,6 +571,10 @@ const output = {
   contractDigest: digest({ strata: STRATA, cases: VISIBLE_CASES, capabilitySnapshot: CAPABILITY_SNAPSHOT }),
   validations: {
     contract: contractValidation.valid,
+    assembledEntrypointBound: true,
+    exactAvalonOneFastRouteBound: true,
+    incumbentPromptInjectionRejected: true,
+    expectedDataAbsentFromAdapterTransport: true,
     exposureLedger: exposureValidation.valid,
     runRegistry: runValidation.valid,
     stabilityPanel: stabilityValidation.valid,
@@ -500,6 +605,9 @@ const output = {
     authorityPredicateRepointingRejected: repointedAuthorityValidation.valid === false,
     episodeIdentityMismatchRejected: mismatchedEpisodeResult.result === 'INCOMPLETE',
     forbiddenClaimsAndArtifactsRejected: forbiddenOutcomeResult.result === 'FAIL',
+    expectedInputCannotMasqueradeAsObservation: copiedExpectedResult.primaryFailure?.id === 'provenance_contract_invalid',
+    unobservableStagesBecomeNotEvaluable: unobservableResult.notEvaluable.length > 0,
+    fixtureFactsCannotMasqueradeAsRuntime: fixtureMasqueradeResult.primaryFailure?.id === 'provenance_contract_invalid',
     providerFailureClassifiedIncomplete: incompleteResult.score.result === 'INCOMPLETE',
   },
   proofs: proofReceipts,

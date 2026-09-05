@@ -3,11 +3,15 @@ import { fileURLToPath } from 'node:url';
 import { runVisibleRuntimeCases } from '../src/avalonbench/runtime';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const baseUrl = process.env.AVALONBENCH_BASE_URL?.trim() || 'http://127.0.0.1:3417';
+const baseUrl = process.env.AVALONBENCH_BASE_URL?.trim() || 'http://127.0.0.1:3437';
 const secret = process.env.AVALONBENCH_SECRET?.trim();
 if (!secret || secret.length < 24) throw new Error('AVALONBENCH_SECRET must contain at least 24 characters.');
+const runtimeCommit = process.env.AVALONBENCH_RUNTIME_COMMIT?.trim();
+if (!runtimeCommit || !/^[0-9a-f]{40}$/.test(runtimeCommit)) {
+  throw new Error('AVALONBENCH_RUNTIME_COMMIT must be the exact 40-character runtime commit.');
+}
 
-const { receipt, outputPath } = await runVisibleRuntimeCases({ root, baseUrl, secret });
+const { receipt, outputPath } = await runVisibleRuntimeCases({ root, baseUrl, secret, runtimeCommit });
 process.stdout.write(`${JSON.stringify({
   runId: receipt.runId,
   modelRoute: receipt.contract.modelRoute,

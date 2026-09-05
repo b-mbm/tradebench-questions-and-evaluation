@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { resolve } from 'node:path';
 import runtimeContractFixture from '../../data/avalonbench/v1/runtime-contract.json';
 import { canonicalJson, digest } from './canonical';
-import { CAPABILITY_SNAPSHOT, DETERMINISTIC_HARNESS, DETERMINISTIC_TOOL_MANIFEST, STRATA, VISIBLE_CASES } from './contract';
+import { CAPABILITY_SNAPSHOT, DETERMINISTIC_HARNESS, STRATA, VISIBLE_CASES } from './contract';
 import { appendRunRecord } from './ledger';
 import { runCaseWithPreProviderValidation } from './provider-runner';
 import type { EpisodeEnvelope, RunRecord, RunTuple, ScoredResult } from './schema';
@@ -19,18 +19,20 @@ interface AdapterEpisodeResponse extends EpisodeEnvelope {
   ok: true;
   runId: string;
   requestId: string;
-  response: EpisodeEnvelope['response'] & { claimsContractValid: boolean };
   state: EpisodeEnvelope['state'] & { financialMutationAttempts: Array<Record<string, unknown>> };
   diagnostics: EpisodeEnvelope['diagnostics'] & {
     provider: string;
     modelId: string;
+    providerSlug: string;
     responsePipeline: string;
+    responsePath: string;
+    sourceRouting: Record<string, unknown>;
     persistence: string;
   };
 }
 
 export interface RuntimeRunReceipt {
-  receiptVersion: 'avalonbench-runtime-receipt-v1';
+  receiptVersion: 'avalonbench-runtime-receipt-v2';
   runId: string;
   startedAt: string;
   completedAt: string;
@@ -67,34 +69,57 @@ function assertRuntimeContract(actual: typeof runtimeContractFixture): void {
     throw new Error(`MODEL_ROUTE_NOT_AVALON_1_FAST:${canonicalJson(actual.modelRoute)}`);
   }
   if (
-    actual.safety.financialMutationToolsExposed.length !== 0
+    actual.safety.financialMutationAuthorityAvailable !== false
+    || canonicalJson(actual.safety.executionToolAllowlist) !== canonicalJson(['commission_observer'])
     || actual.safety.wallet !== null
     || actual.safety.signer !== null
+    || actual.safety.orderAuthorityAvailable !== false
+    || actual.safety.fillAuthorityAvailable !== false
+    || actual.safety.positionAuthorityAvailable !== false
+    || actual.safety.signingAuthorityAvailable !== false
+    || actual.safety.transfers !== false
+    || actual.safety.walletActions !== false
     || actual.safety.schedulerEnabled !== false
     || actual.safety.persistence !== 'ephemeral_read_only'
   ) {
     throw new Error('RUNTIME_SAFETY_CONTRACT_INVALID');
+  }
+  if (
+    actual.experiment.mode !== 'incumbent_baseline'
+    || actual.experiment.capabilityContextInjected !== false
+    || actual.experiment.benchmarkAnswerSchemaInjected !== false
+  ) {
+    throw new Error('RUNTIME_INCUMBENT_CONTRACT_INVALID');
+  }
+  if (actual.sourceBindings.entrypoint !== 'apps/aix-frontend/app/api/chat/route.ts#POST') {
+    throw new Error('RUNTIME_ASSEMBLED_ENTRYPOINT_INVALID');
   }
   if (canonicalJson(actual.harness) !== canonicalJson(DETERMINISTIC_HARNESS)) {
     throw new Error('RUNTIME_HARNESS_BINDING_MISMATCH');
   }
 }
 
-function buildRuntimeTuple(root: string, baseUrl: string): RunTuple {
+function buildRuntimeTuple(root: string, baseUrl: string, runtimeCommit: string): RunTuple {
   return {
-    candidateCommit: runtimeContractFixture.capabilitySnapshot.observedProductCommit,
+    candidateCommit: runtimeCommit,
     caseBatchDigest: digest(VISIBLE_CASES),
     scorerCommit: `content-sha256:${combinedSourceIdentity(identifySources(root, SCORER_SOURCE_PATHS))}`,
     runnerCommit: `content-sha256:${combinedSourceIdentity(identifySources(root, RUNNER_SOURCE_PATHS))}`,
     modelId: runtimeContractFixture.modelRoute.modelId,
-    inferenceParameters: { mode: 'fast', temperature: 0, maxSteps: 4 },
+    inferenceParameters: {
+      mode: 'fast',
+      frontendTemperature: 0.7,
+      typedRunTemperature: 0,
+      typedRunMaxSteps: 8,
+    },
     capabilitySnapshotDigest: runtimeContractFixture.harness.capabilitySnapshotDigest,
     systemScaffoldDigest: runtimeContractFixture.harness.systemScaffoldDigest,
-    toolManifestDigest: digest(DETERMINISTIC_TOOL_MANIFEST),
+    toolManifestDigest: digest(runtimeContractFixture.toolManifest),
     providerConfiguration: {
-      adapter: `${baseUrl}/api/v1/avalonbench/run`,
+      adapter: `${baseUrl}/api/avalonbench/run`,
       provider: runtimeContractFixture.modelRoute.provider,
-      route: runtimeContractFixture.sourceBindings.responsePipeline,
+      providerSlug: runtimeContractFixture.modelRoute.providerSlug,
+      route: runtimeContractFixture.sourceBindings.entrypoint,
     },
   };
 }
@@ -134,12 +159,13 @@ export async function runVisibleRuntimeCases(params: {
   root: string;
   baseUrl: string;
   secret: string;
+  runtimeCommit: string;
 }): Promise<{ receipt: RuntimeRunReceipt; outputPath: string }> {
   const baseUrl = params.baseUrl.replace(/\/$/, '');
-  const endpoint = `${baseUrl}/api/v1/avalonbench/run`;
+  const endpoint = `${baseUrl}/api/avalonbench/run`;
   const registryPath = resolve(params.root, 'data/avalonbench/v1/run-registry.jsonl');
   const runId = `avalonbench-runtime-${new Date().toISOString().replace(/[:.]/g, '-')}-${randomUUID().slice(0, 8)}`;
-  const tuple = buildRuntimeTuple(params.root, baseUrl);
+  const tuple = buildRuntimeTuple(params.root, baseUrl, params.runtimeCommit);
   const startedAt = new Date().toISOString();
   record(registryPath, runId, tuple, 'planned', 'planned', null, [], null);
 
@@ -175,7 +201,6 @@ export async function runVisibleRuntimeCases(params: {
             body: JSON.stringify({
               taskId: benchmarkCase.id,
               prompt: benchmarkCase.prompt,
-              typedRequest: runtimeContractFixture.visibleCases.find((item) => item.id === benchmarkCase.id)?.typedRequest,
               fixtureId: benchmarkCase.fixtureId,
             }),
           });
@@ -206,7 +231,7 @@ export async function runVisibleRuntimeCases(params: {
     };
     const completedAt = new Date().toISOString();
     const receipt: RuntimeRunReceipt = {
-      receiptVersion: 'avalonbench-runtime-receipt-v1',
+      receiptVersion: 'avalonbench-runtime-receipt-v2',
       runId,
       startedAt,
       completedAt,

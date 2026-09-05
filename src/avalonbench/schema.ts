@@ -23,6 +23,13 @@ export const STAGE_ORDER = [
 
 export type FailureLabel = (typeof STAGE_ORDER)[number];
 export type EpisodeResult = 'PASS' | 'FAIL' | 'INCOMPLETE' | 'INVALID';
+export type ExecutionMode = 'deterministic_contract' | 'incumbent_baseline' | 'controlled_context_experiment';
+export type ProvenanceCategory =
+  | 'production_observation'
+  | 'post_execution_derivation'
+  | 'external_fixture'
+  | 'oracle_or_expected_copy'
+  | 'unobservable';
 export type Availability = 'supported' | 'unsupported' | 'available' | 'unavailable' | 'unknown';
 export type Comparison =
   | 'equals'
@@ -132,6 +139,7 @@ export interface AvalonBenchCase {
 
 export interface EpisodeEnvelope {
   episodeId: string;
+  executionMode: ExecutionMode;
   taskId: string;
   prompt: string;
   harness: {
@@ -148,28 +156,44 @@ export interface EpisodeEnvelope {
   trace: {
     typedExtraction: TypedCapabilityRequest | null;
     normalizedRequest: TypedCapabilityRequest | null;
-    consultedCapabilitySource: boolean;
+    consultedCapabilitySource: boolean | null;
     capabilityResolution: Record<string, unknown> | null;
     instrumentResolution: Record<string, unknown> | null;
     availabilityResolution: Record<string, unknown> | null;
     permissionDecision: Record<string, unknown> | null;
     selectedRoute: Record<string, unknown> | null;
-    toolCalls: Array<{ name: string; args: Record<string, unknown> }>;
+    toolCalls: Array<{
+      name: string;
+      args: Record<string, unknown>;
+      status?: unknown;
+      toolCallId?: string | null;
+      result?: unknown;
+    }>;
     externalSearchCalls: Array<{ query: string }>;
   };
   response: {
     text: string;
+    originalText?: string;
     structuredClaims: Record<string, unknown>;
   };
   state: {
     createdArtifacts: Array<{ type: string; id: string }>;
     financialMutations: Array<{ type: string; id: string }>;
+    financialMutationAttempts?: Array<Record<string, unknown>>;
+    persistence?: string;
   };
   diagnostics: {
     latencyMs: number;
     modelCalls: number;
     tokenUsage: Record<string, number>;
   };
+  provenance: Record<string, ProvenanceRecord>;
+}
+
+export interface ProvenanceRecord {
+  category: ProvenanceCategory;
+  source: string;
+  reason?: string;
 }
 
 export interface PredicateResult {
@@ -181,6 +205,8 @@ export interface PredicateResult {
   expected?: unknown;
   actual?: unknown;
   blockedBy?: string;
+  reason?: string;
+  provenance?: ProvenanceRecord;
   veto?: 'authority' | 'financial_mutation';
 }
 
@@ -267,7 +293,7 @@ export const RUN_TUPLE_FIELDS = [
 export interface RunRecord {
   entryId: string;
   runId: string;
-  state: 'planned' | 'launched' | 'completed' | 'incomplete' | 'invalid' | 'aborted';
+  state: 'planned' | 'launched' | 'completed' | 'incomplete' | 'invalid' | 'aborted' | 'superseded';
   occurredAt: string;
   tuple: RunTuple;
   aggregate: Record<string, number> | null;
@@ -283,6 +309,7 @@ export const RUN_STATES = [
   'incomplete',
   'invalid',
   'aborted',
+  'superseded',
 ] as const satisfies readonly RunRecord['state'][];
 
 export interface StabilityPanelContract {

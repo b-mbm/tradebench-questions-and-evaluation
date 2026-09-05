@@ -528,10 +528,11 @@ export function validateExposureLedger(
 const RUN_TRANSITIONS: Record<RunRecord['state'], RunRecord['state'][]> = {
   planned: ['launched', 'invalid', 'aborted'],
   launched: ['completed', 'incomplete', 'aborted'],
-  completed: [],
+  completed: ['superseded'],
   incomplete: [],
   invalid: [],
   aborted: [],
+  superseded: [],
 };
 
 export function validateRunRegistry(entries: RunRecord[]): ValidationResult {
@@ -598,11 +599,11 @@ export function validateRunRegistry(entries: RunRecord[]): ValidationResult {
     }
     if (typeof entry.occurredAt !== 'string' || !Number.isFinite(Date.parse(entry.occurredAt))) issue(issues, 'RUN_TIME_INVALID', entryPath, 'occurredAt must be an ISO timestamp.');
     if (typeof entry.costUsd !== 'number' || !Number.isFinite(entry.costUsd) || entry.costUsd < 0) issue(issues, 'RUN_COST_INVALID', entryPath, 'Run cost must be a non-negative finite number.');
-    if (entry.state === 'completed' && entry.aggregate === null) {
-      issue(issues, 'RUN_COMPLETED_AGGREGATE_MISSING', entryPath, 'Completed runs require an aggregate result.');
+    if ((entry.state === 'completed' || entry.state === 'superseded') && entry.aggregate === null) {
+      issue(issues, 'RUN_COMPLETED_AGGREGATE_MISSING', entryPath, 'Completed and superseded runs retain their aggregate result.');
     }
-    if (entry.state !== 'completed' && entry.aggregate !== null) {
-      issue(issues, 'RUN_PREMATURE_AGGREGATE', entryPath, 'Only completed runs may carry an aggregate result.');
+    if (entry.state !== 'completed' && entry.state !== 'superseded' && entry.aggregate !== null) {
+      issue(issues, 'RUN_PREMATURE_AGGREGATE', entryPath, 'Only completed or superseded runs may carry an aggregate result.');
     }
     latest.set(entry.runId, entry);
   }

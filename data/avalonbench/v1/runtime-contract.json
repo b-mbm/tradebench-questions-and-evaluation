@@ -1,27 +1,259 @@
 {
   "contractVersion": "avalonbench-runtime-v1",
   "sourceBindings": {
-    "systemPrompt": "apps/api/src/lib/agent-execution/orchestrator-system-prompt.ts",
-    "observerPolicy": "apps/api/src/lib/agent-execution/hyperliquid-observer-policy.ts",
-    "toolRegistry": "apps/api/src/lib/agent-execution/tools/registry.ts",
+    "entrypoint": "apps/aix-frontend/app/api/chat/route.ts#POST",
+    "requestValidation": "apps/aix-frontend/lib/chat/requestValidation.ts#validateChatRequest",
+    "systemPrompt": "apps/aix-frontend/lib/prompt.ts#buildSystemPrompt",
+    "frontendRouting": "apps/aix-frontend/app/api/chat/unifiedRoutingOutcome.ts#resolveUnifiedRoutingOutcome",
+    "frontendTools": "apps/aix-frontend/lib/orchestrationTools.ts#createOrchestrationTools",
+    "typedRunBridge": "apps/api/src/app/api/v1/avalonbench/run/route.ts#POST",
+    "typedRunExecution": "apps/api/src/app/api/v1/agents/typed-run/route.ts#buildAgentStream",
     "permissions": "apps/api/src/lib/agent-execution/permissions.ts",
+    "responsePipeline": "apps/aix-frontend/app/api/chat/route.ts#respond",
     "instrumentCatalog": "packages/protocol-adapter/src/hl-equity-catalog.ts",
-    "strategyCatalog": "packages/execution-domain/src/strategy.ts",
-    "responsePipeline": "apps/api/src/app/api/v1/agents/typed-run/route.ts#buildAgentStream"
+    "strategyCatalog": "packages/execution-domain/src/strategy.ts"
   },
   "modelRoute": {
     "publicModel": "Avalon 1",
     "mode": "fast",
     "label": "Avalon 1 Fast",
     "provider": "openrouter",
-    "modelId": "qwen/qwen3.6-27b"
+    "modelId": "qwen/qwen3.6-27b",
+    "providerSlug": "deepinfra"
   },
   "harness": {
-    "systemScaffoldDigest": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+    "systemScaffoldDigest": "d39a4245f8328b67f08ea216bfc1a3905e59710652ce9422a6468f53ac3106ef",
     "capabilitySnapshotDigest": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
-    "availableToolNames": ["commission_observer"],
+    "availableToolNames": [
+      "commission_observer"
+    ],
     "contextComplete": true
   },
+  "toolManifest": [
+    {
+      "id": "getMarketData",
+      "description": "Fetch live price, 24h change, and market cap for a cryptocurrency. Use this when you need current market data for an asset (e.g., Bitcoin, Ethereum, Solana). Preserve the returned independent source and available time beside every price in the visible answer. Never reconcile this chat-oracle observation with a bound agent DEX-router quote.",
+      "surface": "frontend_orchestration"
+    },
+    {
+      "id": "webSearch",
+      "description": "Search the web for recent crypto news, analysis, or information. Use this when you need up-to-date information that is not in your training data.",
+      "surface": "frontend_orchestration"
+    },
+    {
+      "id": "getPoolData",
+      "description": "Fetch DEX pool data including price, liquidity, and 24h volume. Use this for smaller/newer tokens not on major exchanges, or when the user asks about a specific pool or token on a DEX. Preserve the returned independent source and available time beside every price in the visible answer. Never reconcile this chat-oracle observation with a bound agent DEX-router quote.",
+      "surface": "frontend_orchestration"
+    },
+    {
+      "id": "compile_strategy_spec",
+      "description": "Compile a structured AIX strategy spec-v0 candidate for a requested backtest. Use this after producing the spec JSON for strategy or backtest requests.",
+      "surface": "frontend_orchestration"
+    },
+    {
+      "id": "submit_backtest",
+      "description": "Submit a compiled AIX strategy spec-v0 for backtesting once the run API is available. This T2 tool exposes the final typed contract but does not create runs yet.",
+      "surface": "frontend_orchestration"
+    },
+    {
+      "id": "get_price",
+      "description": "Fetch the current price and 24h change for a cryptocurrency by symbol or CoinGecko ID.",
+      "schemaDigest": "737be9b37c0ceb5174ad43930c37dbdeece2a266e4591aa8a5ea34d74d35b4d5",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "get_market_data",
+      "description": "Fetch detailed market data (price, 24h change, market cap, volume) for a cryptocurrency.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "web_search",
+      "description": "Search the web for recent crypto news, analysis, or information via Perplexity.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "web_fetch",
+      "description": "Fetch and extract text content from a public HTTPS URL. Returns markdown-formatted text.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "get_portfolio_summary",
+      "description": "Get a privacy-scoped portfolio summary for the agent owner. Returns total value and positions.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "get_portfolio",
+      "description": "Get the full portfolio for the agent owner via Zerion, including token balances and valuations.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "get_transaction_history",
+      "description": "Get the owner wallet transaction history from Zerion with pagination support.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "create_report",
+      "description": "Create and store a structured report (market analysis, portfolio review, etc.) as an agent artifact.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "create_trade_plan",
+      "description": "Create a trade plan with policy pre-check. Stored as an artifact with 15-minute TTL, pending user approval.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "log_run",
+      "description": "Append text to the current run output log. Truncated at 50,000 characters.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "get_own_config",
+      "description": "Read the agent's own configuration: type, policy, display name, and active status.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "agent_state_read",
+      "description": "Read agent state (JSONB). Optionally read a single key. Returns state and version number.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "agent_state_write",
+      "description": "Write agent state (JSONB) with 10KB limit and optional optimistic locking via expectedVersion.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "verify_kill_switch",
+      "description": "Self-check whether the agent is blocked by a kill switch. Returns blocked status and reason.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "validate_agent_state",
+      "description": "Validate a state object against size limits and an optional schema before writing.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "spawn_agent",
+      "description": "Spawn a child agent of the specified type. Returns the child run ID for tracking.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "wait_for_agent",
+      "description": "Poll a child agent run until it completes, fails, or is cancelled, with configurable timeout.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "get_agent_output",
+      "description": "Read the output text and artifacts from a completed child agent run.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "send_agent_input",
+      "description": "Send a message to a running child agent run for mid-run instruction delivery.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "stop_agent",
+      "description": "Stop a running child agent. Marks it as cancelled with AGENT_STOPPED_BY_PARENT.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "commission_observer",
+      "description": "Preview or install one structurally WATCH-only Hyperliquid Chart or Funding Observer on the fixed three-minute cadence. Preview first, then install only after the user explicitly confirms the shown metering.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "send_alert",
+      "description": "Create a notification for the user with a title, body, and severity level.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "set_trigger",
+      "description": "Create a condition-based trigger that monitors an asset price. Max 10 per user.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "remove_trigger",
+      "description": "Delete a condition-based trigger by its ID.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "schedule_run",
+      "description": "Create a cron-based schedule for recurring agent runs. Max 10 active schedules per user.",
+      "schemaDigest": "737be9b37c0ceb5174ad43930c37dbdeece2a266e4591aa8a5ea34d74d35b4d5",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "pause_schedule",
+      "description": "Pause an active schedule trigger.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "resume_schedule",
+      "description": "Resume a paused schedule trigger.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "get_onchain_data",
+      "description": "Query on-chain data (stub — not yet connected to a data source).",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "build_transaction",
+      "description": "Build and simulate a transaction from a trade plan artifact. Returns tx request, quote, and simulation.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "resimulate_trade",
+      "description": "Re-validate a trade plan with price drift and plan age checks before execution.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "create_execution_output",
+      "description": "Store an execution output (receipt, refusal, diff, or simulation result) as an artifact.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "cancel_order",
+      "description": "Cancel a pending trade plan by artifact ID before execution. This does not cancel an external venue order.",
+      "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+      "surface": "typed_run_general_purpose"
+    },
+    {
+      "id": "manage_trading_agent_setup",
+      "description": "Narrow tool: use manage_trading_agent_setup only for a persistent autonomous Hyperliquid momentum agent, on Mainnet by default or Testnet when explicitly requested. Omitted network means Mainnet and real-money intent for this persistent trading-agent product. The user may omit a product fact, but an explicitly conflicting venue or strategy disqualifies this tool; never substitute momentum for mean reversion or another named strategy. Persistent means the agent evaluates and may trade across multiple future ticks or runs. Venue, network, asset, direction, amount, a capability-discovery question, or a statement that the user is a momentum trader are not by themselves a request to start setup. For discovery, identity, informational, or educational turns, answer normally and you may offer the supported momentum setup, but do not call this tool. A short acceptance such as yes, proceed, go ahead, or let us do it starts setup only when the immediately preceding assistant turn explicitly offered to start or create this persistent Hyperliquid momentum setup; acceptance of analysis, monitoring, or generic help does not. Never use this tool for one trade or order, including a request to place, execute, or prepare one now; that belongs to the normal trade-planning or execution owner even when it names Hyperliquid, a market, a direction, or an amount. A generic simulated, practice, fake-money, or risk-free request belongs to Paper; an explicit persistent Hyperliquid Testnet ETH momentum agent remains this tool. When trusted active setup context exists and the user continues it, answers its pending choice, asks to go back, or explicitly cancels or discards it, always call this tool with the exact trusted setupId and revision; use operation go_back or discard for those requests. Pausing or deferring a setup while asking a normal question is not a discard: answer the question and leave the draft unchanged. Do not require the user to repeat the venue, market, strategy, or objective. Call it even when every choice is supplied because it owns verified preview and confirmation. Pass only facts the user supplied. Do not use it for Base, Observer, informational or educational questions, one-off analysis, explicit backtests, delta-neutral, support/resistance, or execution the user already owns. It is terminal structured foreground: call it alone, never in parallel with another tool. Put one short, plain-English, non-authoritative explanation in assistantNarrative; omit changing numbers because the setup surface is the source of truth. Do not emit separate prose after the tool call.",
+      "schemaDigest": "ea471bc5faad86ea268bfef7c4494fd1363d2bced1d8fcc82d290d3c53d4c3a6",
+      "surface": "typed_run_general_purpose"
+    }
+  ],
   "fixtureRefs": {
     "capabilitySnapshot": "avalon-main-605ed8f-hyperliquid-slice2",
     "venueSnapshot": "avalonbench-hyperliquid-catalog-605ed8f",
@@ -35,21 +267,45 @@
     "capabilities": [
       {
         "agentType": "observer",
-        "supportedActions": ["preview_observer"],
-        "supportedModes": ["watch_only"],
-        "instrumentScope": ["crypto_perpetual", "equity_reference_perpetual"],
-        "prerequisites": ["authenticated_session"],
+        "supportedActions": [
+          "preview_observer"
+        ],
+        "supportedModes": [
+          "watch_only"
+        ],
+        "instrumentScope": [
+          "crypto_perpetual",
+          "equity_reference_perpetual"
+        ],
+        "prerequisites": [
+          "authenticated_session"
+        ],
         "authorityRequired": [],
         "productAvailability": "supported",
         "description": "Preview a watch-only Hyperliquid Chart or Funding Observer."
       },
       {
         "agentType": "momentum",
-        "supportedActions": ["preview_setup", "install_after_confirmation"],
-        "supportedModes": ["mainnet", "testnet"],
-        "instrumentScope": ["crypto_perpetual", "equity_reference_perpetual"],
-        "prerequisites": ["authenticated_session", "venue_connection", "explicit_confirmation"],
-        "authorityRequired": ["managed_delegated_signer_for_live_execution"],
+        "supportedActions": [
+          "preview_setup",
+          "install_after_confirmation"
+        ],
+        "supportedModes": [
+          "mainnet",
+          "testnet"
+        ],
+        "instrumentScope": [
+          "crypto_perpetual",
+          "equity_reference_perpetual"
+        ],
+        "prerequisites": [
+          "authenticated_session",
+          "venue_connection",
+          "explicit_confirmation"
+        ],
+        "authorityRequired": [
+          "managed_delegated_signer_for_live_execution"
+        ],
         "productAvailability": "supported",
         "description": "Configure a persistent Hyperliquid momentum strategy through reviewed setup."
       }
@@ -72,30 +328,41 @@
   "visibleCases": [
     {
       "id": "avb-v1-visible-discovery-001",
-      "prompt": "What can I do on Hyperliquid?",
-      "typedRequest": {"intent": "capability_discovery", "venue": "hyperliquid"}
+      "prompt": "What can I do on Hyperliquid?"
     },
     {
       "id": "avb-v1-visible-instrument-001",
-      "prompt": "Can I buy actual NVIDIA shares on Hyperliquid?",
-      "typedRequest": {"intent": "instrument_truth", "venue": "hyperliquid", "company": "NVIDIA", "instrument": "NVDA"}
+      "prompt": "Can I buy actual NVIDIA shares on Hyperliquid?"
     },
     {
       "id": "avb-v1-visible-availability-001",
-      "prompt": "Can my account trade the NVIDIA market right now?",
-      "typedRequest": {"intent": "availability", "venue": "hyperliquid", "company": "NVIDIA", "instrument": "NVDA"}
+      "prompt": "Can my account trade the NVIDIA market right now?"
     },
     {
       "id": "avb-v1-visible-routing-001",
-      "prompt": "Create a Hyperliquid NVIDIA observer agent.",
-      "typedRequest": {"intent": "create_agent", "venue": "hyperliquid", "company": "NVIDIA", "instrument": "NVDA", "agentType": "observer", "requestedAction": "preview_observer"}
+      "prompt": "Create a Hyperliquid NVIDIA observer agent."
     }
   ],
   "safety": {
     "persistence": "ephemeral_read_only",
-    "financialMutationToolsExposed": [],
+    "policy": "avalonBenchReadOnly",
+    "executionToolAllowlist": [
+      "commission_observer"
+    ],
+    "financialMutationAuthorityAvailable": false,
     "wallet": null,
     "signer": null,
+    "orderAuthorityAvailable": false,
+    "fillAuthorityAvailable": false,
+    "positionAuthorityAvailable": false,
+    "signingAuthorityAvailable": false,
+    "transfers": false,
+    "walletActions": false,
     "schedulerEnabled": false
+  },
+  "experiment": {
+    "mode": "incumbent_baseline",
+    "capabilityContextInjected": false,
+    "benchmarkAnswerSchemaInjected": false
   }
 }

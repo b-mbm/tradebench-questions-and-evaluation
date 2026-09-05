@@ -7,6 +7,7 @@ import type {
   EpisodeEnvelope,
   PredicateResult,
   PredicateSpec,
+  ProvenanceRecord,
   ScoredResult,
 } from './schema';
 import { validateCaseBeforeProvider } from './validator';
@@ -81,6 +82,36 @@ function sortResults(left: PredicateResult, right: PredicateResult): number {
   return left.stageOrder - right.stageOrder || left.predicateOrder - right.predicateOrder || left.id.localeCompare(right.id);
 }
 
+function findProvenance(episode: EpisodeEnvelope, dottedPath: string): ProvenanceRecord | null {
+  const segments = dottedPath.split('.');
+  while (segments.length > 0) {
+    const candidate = segments.join('.');
+    const provenance = episode.provenance[candidate];
+    if (provenance) return provenance;
+    segments.pop();
+  }
+  return null;
+}
+
+function provenanceContractIssue(
+  episode: EpisodeEnvelope,
+  predicatePath: string,
+  provenance: ProvenanceRecord | null,
+): string | null {
+  if (!provenance) return `missing provenance for ${predicatePath}`;
+  if (episode.executionMode !== 'incumbent_baseline') return null;
+  const claimsRuntimeBehavior = predicatePath.startsWith('trace.')
+    || predicatePath.startsWith('response.')
+    || predicatePath.startsWith('state.');
+  if (
+    claimsRuntimeBehavior
+    && (provenance.category === 'external_fixture' || provenance.category === 'oracle_or_expected_copy')
+  ) {
+    return `${provenance.category} cannot substantiate incumbent runtime field ${predicatePath}`;
+  }
+  return null;
+}
+
 export function gradeEpisode(
   benchmarkCase: AvalonBenchCase,
   stratum: CapabilityStratum | undefined,
@@ -116,8 +147,14 @@ export function gradeEpisode(
   );
   const results: PredicateResult[] = [];
   const byId = new Map<string, PredicateResult>();
+  const provenanceIssues: string[] = [];
+  const unobservablePaths = new Set<string>();
 
   for (const predicate of orderedPredicates) {
+    const provenance = findProvenance(episode, predicate.path);
+    const provenanceIssue = provenanceContractIssue(episode, predicate.path, provenance);
+    if (provenanceIssue) provenanceIssues.push(provenanceIssue);
+
     const blocking = (predicate.requires ?? [])
       .map((id) => byId.get(id))
       .find((result) => result?.status !== 'PASS');
@@ -130,6 +167,30 @@ export function gradeEpisode(
         status: 'NOT_EVALUABLE',
         expected: predicate.expected,
         blockedBy: blocking.blockedBy ?? blocking.id,
+        reason: blocking.reason ?? `blocked by ${blocking.id}`,
+        ...(provenance ? { provenance } : {}),
+        ...(predicate.veto ? { veto: predicate.veto } : {}),
+      };
+      results.push(result);
+      byId.set(predicate.id, result);
+      continue;
+    }
+
+    if (!provenance || provenanceIssue || provenance.category === 'unobservable') {
+      const reason = provenanceIssue
+        ?? provenance?.reason
+        ?? `current runtime did not provide provenance for ${predicate.path}`;
+      unobservablePaths.add(predicate.path);
+      const result: PredicateResult = {
+        id: predicate.id,
+        label: predicate.label,
+        stageOrder: stageOrder(predicate.label),
+        predicateOrder: predicate.predicateOrder,
+        status: 'NOT_EVALUABLE',
+        expected: predicate.expected,
+        blockedBy: provenanceIssue ? 'provenance_contract_invalid' : 'required_runtime_observation_unavailable',
+        reason,
+        ...(provenance ? { provenance } : {}),
         ...(predicate.veto ? { veto: predicate.veto } : {}),
       };
       results.push(result);
@@ -149,10 +210,30 @@ export function gradeEpisode(
       status: passed ? 'PASS' : 'FAIL',
       expected: predicate.comparison === 'empty' ? [] : predicate.expected,
       actual: observed.value,
+      provenance,
       ...(predicate.veto ? { veto: predicate.veto } : {}),
     };
     results.push(result);
     byId.set(predicate.id, result);
+  }
+
+  if (provenanceIssues.length > 0 || unobservablePaths.size > 0) {
+    results.push({
+      id: provenanceIssues.length > 0
+        ? 'provenance_contract_invalid'
+        : 'required_runtime_observation_unavailable',
+      label: 'harness_context_failure',
+      stageOrder: 2,
+      predicateOrder: provenanceIssues.length > 0 ? 1 : 2,
+      status: 'FAIL',
+      expected: 'complete valid provenance for every scored predicate',
+      actual: provenanceIssues.length > 0
+        ? [...new Set(provenanceIssues)].sort()
+        : [...unobservablePaths].sort(),
+      reason: provenanceIssues.length > 0
+        ? 'one or more runtime fields used forbidden or missing provenance'
+        : 'one or more required predicates are not observable in the current runtime',
+    });
   }
 
   const failures = results.filter((result) => result.status === 'FAIL').sort(sortResults);
