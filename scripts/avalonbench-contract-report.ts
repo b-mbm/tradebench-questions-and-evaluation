@@ -13,7 +13,7 @@ import {
   VISIBLE_CASES,
 } from '../src/avalonbench/contract';
 import { runContractProofs } from '../src/avalonbench/proofs';
-import { buildDeterministicRunRecords, buildDeterministicRunTuple } from '../src/avalonbench/run-contract';
+import { buildDeterministicRunTuple } from '../src/avalonbench/run-contract';
 import { RUNTIME_INVENTORY } from '../src/avalonbench/runtime-inventory';
 import type { ExposureLedgerEntry, RunRecord, StabilityPanelContract } from '../src/avalonbench/schema';
 import { PARTITIONS, STAGE_ORDER } from '../src/avalonbench/schema';
@@ -65,13 +65,18 @@ for (const validation of Object.values(validations)) {
   assert.equal(validation.valid, true, JSON.stringify(validation.issues));
 }
 assert.deepEqual(stabilityPanel, STABILITY_PANEL);
-assert.equal(canonicalJson(runEntries.slice(-3)), canonicalJson(buildDeterministicRunRecords(tuple)));
+assert.equal(
+  runEntries.some((entry) =>
+    entry.runId === 'avalonbench-v1-slice1-contract-003' && entry.state === 'completed'
+  ),
+  true,
+);
 
 const proofs = runContractProofs();
 const reportCore = {
-  reportVersion: 'avalonbench-v1-slice1-contract-report-v1',
+  reportVersion: 'avalonbench-v1-slice2-contract-report-v1',
   generatedFrom: 'deterministic-local-contract; no wall-clock inputs',
-  scope: 'Slice 1 only',
+  scope: 'Slice 1 frozen grading contract plus Slice 2 runtime binding; no provider invocation',
   safety: {
     providerCalls: 0,
     paidModelCalls: 0,

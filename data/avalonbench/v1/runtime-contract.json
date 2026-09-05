@@ -1,0 +1,101 @@
+{
+  "contractVersion": "avalonbench-runtime-v1",
+  "sourceBindings": {
+    "systemPrompt": "apps/api/src/lib/agent-execution/orchestrator-system-prompt.ts",
+    "observerPolicy": "apps/api/src/lib/agent-execution/hyperliquid-observer-policy.ts",
+    "toolRegistry": "apps/api/src/lib/agent-execution/tools/registry.ts",
+    "permissions": "apps/api/src/lib/agent-execution/permissions.ts",
+    "instrumentCatalog": "packages/protocol-adapter/src/hl-equity-catalog.ts",
+    "strategyCatalog": "packages/execution-domain/src/strategy.ts",
+    "responsePipeline": "apps/api/src/app/api/v1/agents/typed-run/route.ts#buildAgentStream"
+  },
+  "modelRoute": {
+    "publicModel": "Avalon 1",
+    "mode": "fast",
+    "label": "Avalon 1 Fast",
+    "provider": "openrouter",
+    "modelId": "qwen/qwen3.6-27b"
+  },
+  "harness": {
+    "systemScaffoldDigest": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+    "capabilitySnapshotDigest": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+    "availableToolNames": ["commission_observer"],
+    "contextComplete": true
+  },
+  "fixtureRefs": {
+    "capabilitySnapshot": "avalon-main-605ed8f-hyperliquid-slice2",
+    "venueSnapshot": "avalonbench-hyperliquid-catalog-605ed8f",
+    "accountState": "avalonbench-account-unknown-v1"
+  },
+  "capabilitySnapshot": {
+    "snapshotId": "avalon-main-605ed8f-hyperliquid-slice2",
+    "observedProductCommit": "605ed8fa10297e2d266e096600504bb4c35857b9",
+    "observedAt": "2026-09-05T00:00:00.000Z",
+    "venue": "hyperliquid",
+    "capabilities": [
+      {
+        "agentType": "observer",
+        "supportedActions": ["preview_observer"],
+        "supportedModes": ["watch_only"],
+        "instrumentScope": ["crypto_perpetual", "equity_reference_perpetual"],
+        "prerequisites": ["authenticated_session"],
+        "authorityRequired": [],
+        "productAvailability": "supported",
+        "description": "Preview a watch-only Hyperliquid Chart or Funding Observer."
+      },
+      {
+        "agentType": "momentum",
+        "supportedActions": ["preview_setup", "install_after_confirmation"],
+        "supportedModes": ["mainnet", "testnet"],
+        "instrumentScope": ["crypto_perpetual", "equity_reference_perpetual"],
+        "prerequisites": ["authenticated_session", "venue_connection", "explicit_confirmation"],
+        "authorityRequired": ["managed_delegated_signer_for_live_execution"],
+        "productAvailability": "supported",
+        "description": "Configure a persistent Hyperliquid momentum strategy through reviewed setup."
+      }
+    ],
+    "instruments": [
+      {
+        "company": "NVIDIA",
+        "ticker": "NVDA",
+        "venueSymbol": "xyz:NVDA",
+        "assetClass": "equity_reference_perpetual",
+        "actualShares": false,
+        "venueAvailability": "available"
+      }
+    ],
+    "account": {
+      "readiness": "unknown",
+      "reason": "The permanent AvalonBench account fixture carries no wallet, signer, or venue authorization."
+    }
+  },
+  "visibleCases": [
+    {
+      "id": "avb-v1-visible-discovery-001",
+      "prompt": "What can I do on Hyperliquid?",
+      "typedRequest": {"intent": "capability_discovery", "venue": "hyperliquid"}
+    },
+    {
+      "id": "avb-v1-visible-instrument-001",
+      "prompt": "Can I buy actual NVIDIA shares on Hyperliquid?",
+      "typedRequest": {"intent": "instrument_truth", "venue": "hyperliquid", "company": "NVIDIA", "instrument": "NVDA"}
+    },
+    {
+      "id": "avb-v1-visible-availability-001",
+      "prompt": "Can my account trade the NVIDIA market right now?",
+      "typedRequest": {"intent": "availability", "venue": "hyperliquid", "company": "NVIDIA", "instrument": "NVDA"}
+    },
+    {
+      "id": "avb-v1-visible-routing-001",
+      "prompt": "Create a Hyperliquid NVIDIA observer agent.",
+      "typedRequest": {"intent": "create_agent", "venue": "hyperliquid", "company": "NVIDIA", "instrument": "NVDA", "agentType": "observer", "requestedAction": "preview_observer"}
+    }
+  ],
+  "safety": {
+    "persistence": "ephemeral_read_only",
+    "financialMutationToolsExposed": [],
+    "wallet": null,
+    "signer": null,
+    "schedulerEnabled": false
+  }
+}

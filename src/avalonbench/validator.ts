@@ -1,7 +1,7 @@
 import { canonicalJson, digest } from './canonical';
+import runtimeContract from '../../data/avalonbench/v1/runtime-contract.json';
 import {
   DETERMINISTIC_FIXTURE_REFS,
-  deterministicHarnessFor,
 } from './harness-contract';
 import {
   ACTOR_ROLES,
@@ -206,7 +206,7 @@ export function validateCaseBeforeProvider(
   }
 
   if (isRecord(snapshot) && typeof snapshot.snapshotId === 'string') {
-    const harness = deterministicHarnessFor(snapshot);
+    const harness = runtimeContract.harness;
     const requiredHarnessBindings = [
       { id: 'episode_task_bound', predicateOrder: 10, path: 'taskId', comparison: 'equals', expected: caseId },
       { id: 'episode_prompt_bound', predicateOrder: 20, path: 'prompt', comparison: 'equals', expected: benchmarkCase.prompt },

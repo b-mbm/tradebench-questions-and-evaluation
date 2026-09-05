@@ -1,9 +1,8 @@
-import { digest } from './canonical';
+import runtimeContract from '../../data/avalonbench/v1/runtime-contract.json';
 import {
   DETERMINISTIC_FIXTURE_REFS,
   DETERMINISTIC_SYSTEM_SCAFFOLD,
   DETERMINISTIC_TOOL_MANIFEST,
-  deterministicHarnessFor,
 } from './harness-contract';
 import { RUN_TUPLE_FIELDS } from './schema';
 import type {
@@ -15,58 +14,15 @@ import type {
   TypedOracle,
 } from './schema';
 
-const OBSERVED_PRODUCT_COMMIT = '605ed8fa10297e2d266e096600504bb4c35857b9';
-
 export {
   DETERMINISTIC_FIXTURE_REFS,
   DETERMINISTIC_SYSTEM_SCAFFOLD,
   DETERMINISTIC_TOOL_MANIFEST,
 } from './harness-contract';
 
-export const CAPABILITY_SNAPSHOT: CapabilitySnapshot = {
-  snapshotId: 'avalon-main-605ed8f-hyperliquid-slice1',
-  observedProductCommit: OBSERVED_PRODUCT_COMMIT,
-  observedAt: '2026-09-05T00:00:00.000Z',
-  venue: 'hyperliquid',
-  capabilities: [
-    {
-      agentType: 'observer',
-      supportedActions: ['preview_observer'],
-      supportedModes: ['watch_only'],
-      instrumentScope: ['crypto_perpetual', 'equity_reference_perpetual'],
-      prerequisites: ['authenticated_session'],
-      authorityRequired: [],
-      productAvailability: 'supported',
-      description: 'Preview a watch-only Hyperliquid Chart or Funding Observer.',
-    },
-    {
-      agentType: 'momentum',
-      supportedActions: ['preview_setup', 'install_after_confirmation'],
-      supportedModes: ['mainnet', 'testnet'],
-      instrumentScope: ['crypto_perpetual', 'equity_reference_perpetual'],
-      prerequisites: ['authenticated_session', 'venue_connection', 'explicit_confirmation'],
-      authorityRequired: ['managed_delegated_signer_for_live_execution'],
-      productAvailability: 'supported',
-      description: 'Configure a persistent Hyperliquid momentum strategy through reviewed setup.',
-    },
-  ],
-  instruments: [
-    {
-      company: 'NVIDIA',
-      ticker: 'NVDA',
-      venueSymbol: 'xyz:NVDA',
-      assetClass: 'equity_reference_perpetual',
-      actualShares: false,
-      venueAvailability: 'available',
-    },
-  ],
-  account: {
-    readiness: 'unknown',
-    reason: 'Slice 1 has no authenticated account fixture or runtime bridge.',
-  },
-};
+export const CAPABILITY_SNAPSHOT = runtimeContract.capabilitySnapshot as CapabilitySnapshot;
 
-export const DETERMINISTIC_HARNESS = deterministicHarnessFor(CAPABILITY_SNAPSHOT);
+export const DETERMINISTIC_HARNESS = runtimeContract.harness;
 
 export const STRATA: CapabilityStratum[] = [
   {

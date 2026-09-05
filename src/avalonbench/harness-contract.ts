@@ -2,21 +2,19 @@ import { digest } from './canonical';
 import type { CapabilitySnapshot } from './schema';
 
 export const DETERMINISTIC_SYSTEM_SCAFFOLD = {
-  kind: 'avalonbench-v1-slice1-deterministic-fixture',
-  providerCalls: 0,
-  productRuntimeCalls: 0,
+  kind: 'avalonbench-v1-slice2-product-runtime',
+  productPath: 'apps/api/src/app/api/v1/avalonbench/run/route.ts',
+  modelRoute: 'Avalon 1 Fast',
   contextComplete: true,
 } as const;
 
 export const DETERMINISTIC_TOOL_MANIFEST = [
   'commission_observer',
-  'manage_trading_agent_setup',
-  'web_search',
 ] as const;
 
 export const DETERMINISTIC_FIXTURE_REFS = {
-  venueSnapshot: 'slice1-hyperliquid-static-observation',
-  accountState: 'slice1-account-unknown',
+  venueSnapshot: 'avalonbench-hyperliquid-catalog-605ed8f',
+  accountState: 'avalonbench-account-unknown-v1',
 } as const;
 
 export function deterministicHarnessFor(snapshot: CapabilitySnapshot) {

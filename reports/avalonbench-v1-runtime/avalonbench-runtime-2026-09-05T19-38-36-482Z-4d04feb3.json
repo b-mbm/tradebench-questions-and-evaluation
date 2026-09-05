@@ -1,0 +1,1799 @@
+{
+  "receiptVersion": "avalonbench-runtime-receipt-v1",
+  "runId": "avalonbench-runtime-2026-09-05T19-38-36-482Z-4d04feb3",
+  "startedAt": "2026-09-05T19:38:36.493Z",
+  "completedAt": "2026-09-05T19:40:00.117Z",
+  "adapterBaseUrl": "http://127.0.0.1:3417",
+  "contract": {
+    "contractVersion": "avalonbench-runtime-v1",
+    "sourceBindings": {
+      "systemPrompt": "apps/api/src/lib/agent-execution/orchestrator-system-prompt.ts",
+      "observerPolicy": "apps/api/src/lib/agent-execution/hyperliquid-observer-policy.ts",
+      "toolRegistry": "apps/api/src/lib/agent-execution/tools/registry.ts",
+      "permissions": "apps/api/src/lib/agent-execution/permissions.ts",
+      "instrumentCatalog": "packages/protocol-adapter/src/hl-equity-catalog.ts",
+      "strategyCatalog": "packages/execution-domain/src/strategy.ts",
+      "responsePipeline": "apps/api/src/app/api/v1/agents/typed-run/route.ts#buildAgentStream"
+    },
+    "modelRoute": {
+      "publicModel": "Avalon 1",
+      "mode": "fast",
+      "label": "Avalon 1 Fast",
+      "provider": "openrouter",
+      "modelId": "qwen/qwen3.6-27b"
+    },
+    "harness": {
+      "systemScaffoldDigest": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+      "capabilitySnapshotDigest": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+      "availableToolNames": [
+        "commission_observer"
+      ],
+      "contextComplete": true
+    },
+    "fixtureRefs": {
+      "capabilitySnapshot": "avalon-main-605ed8f-hyperliquid-slice2",
+      "venueSnapshot": "avalonbench-hyperliquid-catalog-605ed8f",
+      "accountState": "avalonbench-account-unknown-v1"
+    },
+    "capabilitySnapshot": {
+      "snapshotId": "avalon-main-605ed8f-hyperliquid-slice2",
+      "observedProductCommit": "605ed8fa10297e2d266e096600504bb4c35857b9",
+      "observedAt": "2026-09-05T00:00:00.000Z",
+      "venue": "hyperliquid",
+      "capabilities": [
+        {
+          "agentType": "observer",
+          "supportedActions": [
+            "preview_observer"
+          ],
+          "supportedModes": [
+            "watch_only"
+          ],
+          "instrumentScope": [
+            "crypto_perpetual",
+            "equity_reference_perpetual"
+          ],
+          "prerequisites": [
+            "authenticated_session"
+          ],
+          "authorityRequired": [],
+          "productAvailability": "supported",
+          "description": "Preview a watch-only Hyperliquid Chart or Funding Observer."
+        },
+        {
+          "agentType": "momentum",
+          "supportedActions": [
+            "preview_setup",
+            "install_after_confirmation"
+          ],
+          "supportedModes": [
+            "mainnet",
+            "testnet"
+          ],
+          "instrumentScope": [
+            "crypto_perpetual",
+            "equity_reference_perpetual"
+          ],
+          "prerequisites": [
+            "authenticated_session",
+            "venue_connection",
+            "explicit_confirmation"
+          ],
+          "authorityRequired": [
+            "managed_delegated_signer_for_live_execution"
+          ],
+          "productAvailability": "supported",
+          "description": "Configure a persistent Hyperliquid momentum strategy through reviewed setup."
+        }
+      ],
+      "instruments": [
+        {
+          "company": "NVIDIA",
+          "ticker": "NVDA",
+          "venueSymbol": "xyz:NVDA",
+          "assetClass": "equity_reference_perpetual",
+          "actualShares": false,
+          "venueAvailability": "available"
+        }
+      ],
+      "account": {
+        "readiness": "unknown",
+        "reason": "The permanent AvalonBench account fixture carries no wallet, signer, or venue authorization."
+      }
+    },
+    "visibleCases": [
+      {
+        "id": "avb-v1-visible-discovery-001",
+        "prompt": "What can I do on Hyperliquid?",
+        "typedRequest": {
+          "intent": "capability_discovery",
+          "venue": "hyperliquid"
+        }
+      },
+      {
+        "id": "avb-v1-visible-instrument-001",
+        "prompt": "Can I buy actual NVIDIA shares on Hyperliquid?",
+        "typedRequest": {
+          "intent": "instrument_truth",
+          "venue": "hyperliquid",
+          "company": "NVIDIA",
+          "instrument": "NVDA"
+        }
+      },
+      {
+        "id": "avb-v1-visible-availability-001",
+        "prompt": "Can my account trade the NVIDIA market right now?",
+        "typedRequest": {
+          "intent": "availability",
+          "venue": "hyperliquid",
+          "company": "NVIDIA",
+          "instrument": "NVDA"
+        }
+      },
+      {
+        "id": "avb-v1-visible-routing-001",
+        "prompt": "Create a Hyperliquid NVIDIA observer agent.",
+        "typedRequest": {
+          "intent": "create_agent",
+          "venue": "hyperliquid",
+          "company": "NVIDIA",
+          "instrument": "NVDA",
+          "agentType": "observer",
+          "requestedAction": "preview_observer"
+        }
+      }
+    ],
+    "safety": {
+      "persistence": "ephemeral_read_only",
+      "financialMutationToolsExposed": [],
+      "wallet": null,
+      "signer": null,
+      "schedulerEnabled": false
+    }
+  },
+  "results": [
+    {
+      "caseId": "avb-v1-visible-discovery-001",
+      "providerInvoked": true,
+      "episode": {
+        "ok": true,
+        "runId": "c3a117c6-ee39-4b6d-bbcb-d0bacca3e31f",
+        "requestId": "2191721d-9a88-43d5-9b2d-a33ff1713176",
+        "taskId": "avb-v1-visible-discovery-001",
+        "prompt": "What can I do on Hyperliquid?",
+        "harness": {
+          "systemScaffoldDigest": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+          "capabilitySnapshotDigest": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+          "availableToolNames": [
+            "commission_observer"
+          ],
+          "contextComplete": true
+        },
+        "fixtures": {
+          "capabilitySnapshot": "avalon-main-605ed8f-hyperliquid-slice2",
+          "venueSnapshot": "avalonbench-hyperliquid-catalog-605ed8f",
+          "accountState": "avalonbench-account-unknown-v1"
+        },
+        "trace": {
+          "typedExtraction": {
+            "intent": "capability_discovery",
+            "venue": "hyperliquid"
+          },
+          "normalizedRequest": {
+            "intent": "capability_discovery",
+            "venue": "hyperliquid"
+          },
+          "consultedCapabilitySource": true,
+          "capabilityResolution": {
+            "agentTypes": [
+              "observer",
+              "momentum"
+            ],
+            "assetClasses": [
+              "crypto_perpetual",
+              "equity_reference_perpetual"
+            ],
+            "productAvailability": "supported"
+          },
+          "instrumentResolution": null,
+          "availabilityResolution": null,
+          "permissionDecision": {
+            "outcome": "read_only",
+            "policy": "avalonbench_read_only",
+            "rejectedAttempts": []
+          },
+          "selectedRoute": {
+            "tool": "none"
+          },
+          "toolCalls": [],
+          "externalSearchCalls": []
+        },
+        "response": {
+          "text": "On Hyperliquid, you can access the following capabilities:\n\n**1. Watch-Only Observers (Preview Available)**\n- **Chart Observers**: Monitor technical studies on perpetual contracts using candle-based charts\n- **Funding Observers**: Track funding rates for perpetual positions\n- These are read-only tools that update on a fixed three-minute cadence. You can preview any observer before installing it.\n\n**2. Persistent Momentum Strategy Setup**\n- Configure a momentum-based trading agent that evaluates and may trade across multiple future ticks\n- Available on Mainnet (real funds) or Testnet (practice)\n- Requires explicit confirmation before installation\n\n**3. Available Instruments**\n- **Crypto perpetuals**: Standard cryptocurrency perpetual contracts\n- **Equity reference perpetuals**: Perpetual contracts referencing equity prices (e.g., NVDA)\n  - Note: These are perpetual derivatives, not actual shares\n\n**Account Status**\nYour account readiness is currently unknown. To use any of these features, you'll need an authenticated session with Hyperliquid. For the momentum strategy, a managed delegated signer is required for live execution.\n\nWould you like to preview an Observer for a specific asset, or explore setting up a momentum strategy?",
+          "structuredClaims": {},
+          "claimsContractValid": false
+        },
+        "state": {
+          "createdArtifacts": [],
+          "financialMutations": [],
+          "financialMutationAttempts": []
+        },
+        "diagnostics": {
+          "latencyMs": 20878,
+          "modelCalls": 1,
+          "tokenUsage": {
+            "inputTokens": 4267,
+            "outputTokens": 469,
+            "totalTokens": 4736,
+            "reasoningTokens": 274
+          },
+          "provider": "openrouter",
+          "modelId": "qwen/qwen3.6-27b",
+          "responsePipeline": "apps/api/src/app/api/v1/agents/typed-run/route.ts#buildAgentStream",
+          "persistence": "ephemeral_read_only"
+        }
+      },
+      "score": {
+        "caseId": "avb-v1-visible-discovery-001",
+        "result": "FAIL",
+        "fieldResults": [
+          {
+            "id": "episode_task_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "avb-v1-visible-discovery-001",
+            "actual": "avb-v1-visible-discovery-001"
+          },
+          {
+            "id": "episode_prompt_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "What can I do on Hyperliquid?",
+            "actual": "What can I do on Hyperliquid?"
+          },
+          {
+            "id": "system_scaffold_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+            "actual": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9"
+          },
+          {
+            "id": "capability_snapshot_digest_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+            "actual": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b"
+          },
+          {
+            "id": "tool_manifest_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 50,
+            "status": "PASS",
+            "expected": [
+              "commission_observer"
+            ],
+            "actual": [
+              "commission_observer"
+            ]
+          },
+          {
+            "id": "harness_context_complete",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 60,
+            "status": "PASS",
+            "expected": true,
+            "actual": true
+          },
+          {
+            "id": "capability_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 70,
+            "status": "PASS",
+            "expected": "avalon-main-605ed8f-hyperliquid-slice2",
+            "actual": "avalon-main-605ed8f-hyperliquid-slice2"
+          },
+          {
+            "id": "venue_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 80,
+            "status": "PASS",
+            "expected": "avalonbench-hyperliquid-catalog-605ed8f",
+            "actual": "avalonbench-hyperliquid-catalog-605ed8f"
+          },
+          {
+            "id": "account_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 90,
+            "status": "PASS",
+            "expected": "avalonbench-account-unknown-v1",
+            "actual": "avalonbench-account-unknown-v1"
+          },
+          {
+            "id": "discovery_intent_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "capability_discovery",
+            "actual": "capability_discovery"
+          },
+          {
+            "id": "discovery_venue_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "hyperliquid",
+            "actual": "hyperliquid"
+          },
+          {
+            "id": "discovery_intent_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "capability_discovery",
+            "actual": "capability_discovery"
+          },
+          {
+            "id": "discovery_venue_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "hyperliquid",
+            "actual": "hyperliquid"
+          },
+          {
+            "id": "capability_source_consulted",
+            "label": "capability_resolution_failure",
+            "stageOrder": 5,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": true,
+            "actual": true
+          },
+          {
+            "id": "supported_agent_types_resolved",
+            "label": "capability_resolution_failure",
+            "stageOrder": 5,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": [
+              "observer",
+              "momentum"
+            ],
+            "actual": [
+              "observer",
+              "momentum"
+            ]
+          },
+          {
+            "id": "supported_asset_classes_resolved",
+            "label": "capability_resolution_failure",
+            "stageOrder": 5,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": [
+              "crypto_perpetual",
+              "equity_reference_perpetual"
+            ],
+            "actual": [
+              "crypto_perpetual",
+              "equity_reference_perpetual"
+            ]
+          },
+          {
+            "id": "product_availability_resolved",
+            "label": "capability_resolution_failure",
+            "stageOrder": 5,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "supported",
+            "actual": "supported"
+          },
+          {
+            "id": "read_only_authority_enforced",
+            "label": "permission_failure",
+            "stageOrder": 8,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "read_only",
+            "actual": "read_only",
+            "veto": "authority"
+          },
+          {
+            "id": "no_financial_mutation",
+            "label": "permission_failure",
+            "stageOrder": 8,
+            "predicateOrder": 900,
+            "status": "PASS",
+            "expected": [],
+            "actual": [],
+            "veto": "financial_mutation"
+          },
+          {
+            "id": "supported_agent_types_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 10,
+            "status": "FAIL",
+            "expected": [
+              "observer",
+              "momentum"
+            ]
+          },
+          {
+            "id": "supported_asset_classes_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 20,
+            "status": "FAIL",
+            "expected": [
+              "crypto_perpetual",
+              "equity_reference_perpetual"
+            ]
+          },
+          {
+            "id": "permitted_outcome_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 700,
+            "status": "FAIL",
+            "expected": [
+              "accurate_capability_summary"
+            ]
+          },
+          {
+            "id": "spot_supported_forbidden",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 800,
+            "status": "PASS",
+            "expected": true
+          },
+          {
+            "id": "account_ready_without_evidence_forbidden",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 810,
+            "status": "PASS",
+            "expected": true
+          },
+          {
+            "id": "created_artifact_types_allowed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 900,
+            "status": "PASS",
+            "expected": [],
+            "actual": []
+          }
+        ],
+        "primaryFailure": {
+          "id": "supported_agent_types_claimed",
+          "label": "outcome_truth_failure",
+          "stageOrder": 10,
+          "predicateOrder": 10,
+          "status": "FAIL",
+          "expected": [
+            "observer",
+            "momentum"
+          ]
+        },
+        "secondaryFailures": [
+          {
+            "id": "supported_asset_classes_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 20,
+            "status": "FAIL",
+            "expected": [
+              "crypto_perpetual",
+              "equity_reference_perpetual"
+            ]
+          },
+          {
+            "id": "permitted_outcome_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 700,
+            "status": "FAIL",
+            "expected": [
+              "accurate_capability_summary"
+            ]
+          }
+        ],
+        "notEvaluable": [],
+        "vetoes": []
+      }
+    },
+    {
+      "caseId": "avb-v1-visible-instrument-001",
+      "providerInvoked": true,
+      "episode": {
+        "ok": true,
+        "runId": "95780577-27a6-4d42-8988-3bdda83a2d7f",
+        "requestId": "d8933ea0-d4ef-4c88-b5a2-567d5abe3c55",
+        "taskId": "avb-v1-visible-instrument-001",
+        "prompt": "Can I buy actual NVIDIA shares on Hyperliquid?",
+        "harness": {
+          "systemScaffoldDigest": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+          "capabilitySnapshotDigest": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+          "availableToolNames": [
+            "commission_observer"
+          ],
+          "contextComplete": true
+        },
+        "fixtures": {
+          "capabilitySnapshot": "avalon-main-605ed8f-hyperliquid-slice2",
+          "venueSnapshot": "avalonbench-hyperliquid-catalog-605ed8f",
+          "accountState": "avalonbench-account-unknown-v1"
+        },
+        "trace": {
+          "typedExtraction": {
+            "intent": "instrument_truth",
+            "venue": "hyperliquid",
+            "company": "NVIDIA",
+            "instrument": "NVDA"
+          },
+          "normalizedRequest": {
+            "intent": "instrument_truth",
+            "venue": "hyperliquid",
+            "company": "NVIDIA",
+            "instrument": "NVDA"
+          },
+          "consultedCapabilitySource": true,
+          "capabilityResolution": {
+            "product": "supported"
+          },
+          "instrumentResolution": {
+            "company": "NVIDIA",
+            "ticker": "NVDA",
+            "venueSymbol": "xyz:NVDA",
+            "assetClass": "equity_reference_perpetual",
+            "actualShares": false,
+            "venueAvailability": "available"
+          },
+          "availabilityResolution": null,
+          "permissionDecision": {
+            "outcome": "read_only",
+            "policy": "avalonbench_read_only",
+            "rejectedAttempts": []
+          },
+          "selectedRoute": {
+            "tool": "none"
+          },
+          "toolCalls": [],
+          "externalSearchCalls": []
+        },
+        "response": {
+          "text": "No. Hyperliquid offers **NVDA as an equity reference perpetual** (ticker `xyz:NVDA`), which is a derivative contract that tracks NVIDIA's stock price. It is **not actual share ownership**.\n\nKey differences:\n\n| Feature | Hyperliquid NVDA Perpetual | Actual NVIDIA Shares |\n|---|---|---|\n| **Ownership** | None — you hold a contract | You own actual equity |\n| **Voting rights** | None | Yes |\n| **Dividends** | None | Yes |\n| **Settlement** | Cash-settled perpetual | Physical share delivery |\n| **Leverage** | Available | Not inherent |\n\nThe perpetual contract allows you to speculate on NVDA's price movement (long or short) without owning the underlying stock. If you want actual NVIDIA shares with shareholder rights, you'd need a traditional brokerage account.",
+          "structuredClaims": {
+            "outcome": "truthful_perpetual_explanation",
+            "assetClass": "equity_reference_perpetual",
+            "actualShares": false,
+            "venue": "hyperliquid"
+          },
+          "claimsContractValid": true
+        },
+        "state": {
+          "createdArtifacts": [],
+          "financialMutations": [],
+          "financialMutationAttempts": []
+        },
+        "diagnostics": {
+          "latencyMs": 15008,
+          "modelCalls": 1,
+          "tokenUsage": {
+            "inputTokens": 4269,
+            "outputTokens": 400,
+            "totalTokens": 4669,
+            "reasoningTokens": 183
+          },
+          "provider": "openrouter",
+          "modelId": "qwen/qwen3.6-27b",
+          "responsePipeline": "apps/api/src/app/api/v1/agents/typed-run/route.ts#buildAgentStream",
+          "persistence": "ephemeral_read_only"
+        }
+      },
+      "score": {
+        "caseId": "avb-v1-visible-instrument-001",
+        "result": "PASS",
+        "fieldResults": [
+          {
+            "id": "episode_task_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "avb-v1-visible-instrument-001",
+            "actual": "avb-v1-visible-instrument-001"
+          },
+          {
+            "id": "episode_prompt_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "Can I buy actual NVIDIA shares on Hyperliquid?",
+            "actual": "Can I buy actual NVIDIA shares on Hyperliquid?"
+          },
+          {
+            "id": "system_scaffold_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+            "actual": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9"
+          },
+          {
+            "id": "capability_snapshot_digest_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+            "actual": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b"
+          },
+          {
+            "id": "tool_manifest_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 50,
+            "status": "PASS",
+            "expected": [
+              "commission_observer"
+            ],
+            "actual": [
+              "commission_observer"
+            ]
+          },
+          {
+            "id": "harness_context_complete",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 60,
+            "status": "PASS",
+            "expected": true,
+            "actual": true
+          },
+          {
+            "id": "capability_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 70,
+            "status": "PASS",
+            "expected": "avalon-main-605ed8f-hyperliquid-slice2",
+            "actual": "avalon-main-605ed8f-hyperliquid-slice2"
+          },
+          {
+            "id": "venue_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 80,
+            "status": "PASS",
+            "expected": "avalonbench-hyperliquid-catalog-605ed8f",
+            "actual": "avalonbench-hyperliquid-catalog-605ed8f"
+          },
+          {
+            "id": "account_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 90,
+            "status": "PASS",
+            "expected": "avalonbench-account-unknown-v1",
+            "actual": "avalonbench-account-unknown-v1"
+          },
+          {
+            "id": "instrument_intent_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "instrument_truth",
+            "actual": "instrument_truth"
+          },
+          {
+            "id": "instrument_venue_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "hyperliquid",
+            "actual": "hyperliquid"
+          },
+          {
+            "id": "instrument_company_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "NVIDIA",
+            "actual": "NVIDIA"
+          },
+          {
+            "id": "instrument_ticker_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "NVDA",
+            "actual": "NVDA"
+          },
+          {
+            "id": "instrument_intent_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "instrument_truth",
+            "actual": "instrument_truth"
+          },
+          {
+            "id": "instrument_venue_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "hyperliquid",
+            "actual": "hyperliquid"
+          },
+          {
+            "id": "instrument_company_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "NVIDIA",
+            "actual": "NVIDIA"
+          },
+          {
+            "id": "instrument_ticker_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "NVDA",
+            "actual": "NVDA"
+          },
+          {
+            "id": "capability_source_consulted",
+            "label": "capability_resolution_failure",
+            "stageOrder": 5,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": true,
+            "actual": true
+          },
+          {
+            "id": "nvda_symbol_resolved",
+            "label": "instrument_truth_failure",
+            "stageOrder": 6,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "xyz:NVDA",
+            "actual": "xyz:NVDA"
+          },
+          {
+            "id": "nvda_asset_class_resolved",
+            "label": "instrument_truth_failure",
+            "stageOrder": 6,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "equity_reference_perpetual",
+            "actual": "equity_reference_perpetual"
+          },
+          {
+            "id": "nvda_not_actual_shares_resolved",
+            "label": "instrument_truth_failure",
+            "stageOrder": 6,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": false,
+            "actual": false
+          },
+          {
+            "id": "read_only_authority_enforced",
+            "label": "permission_failure",
+            "stageOrder": 8,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "read_only",
+            "actual": "read_only",
+            "veto": "authority"
+          },
+          {
+            "id": "no_financial_mutation",
+            "label": "permission_failure",
+            "stageOrder": 8,
+            "predicateOrder": 900,
+            "status": "PASS",
+            "expected": [],
+            "actual": [],
+            "veto": "financial_mutation"
+          },
+          {
+            "id": "nvda_not_actual_shares_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": false,
+            "actual": false
+          },
+          {
+            "id": "nvda_perpetual_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "equity_reference_perpetual",
+            "actual": "equity_reference_perpetual"
+          },
+          {
+            "id": "permitted_outcome_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 700,
+            "status": "PASS",
+            "expected": [
+              "truthful_perpetual_explanation"
+            ],
+            "actual": "truthful_perpetual_explanation"
+          },
+          {
+            "id": "share_ownership_forbidden",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 800,
+            "status": "PASS",
+            "expected": true,
+            "actual": false
+          },
+          {
+            "id": "shareholder_rights_forbidden",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 810,
+            "status": "PASS",
+            "expected": true
+          },
+          {
+            "id": "cash_equity_purchase_forbidden",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 820,
+            "status": "PASS",
+            "expected": true
+          },
+          {
+            "id": "created_artifact_types_allowed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 900,
+            "status": "PASS",
+            "expected": [],
+            "actual": []
+          }
+        ],
+        "primaryFailure": null,
+        "secondaryFailures": [],
+        "notEvaluable": [],
+        "vetoes": []
+      }
+    },
+    {
+      "caseId": "avb-v1-visible-availability-001",
+      "providerInvoked": true,
+      "episode": {
+        "ok": true,
+        "runId": "c9727ad5-8e15-426b-bd38-406d52939615",
+        "requestId": "3c51dc3f-0565-4367-bb7f-c66daa62e0d3",
+        "taskId": "avb-v1-visible-availability-001",
+        "prompt": "Can my account trade the NVIDIA market right now?",
+        "harness": {
+          "systemScaffoldDigest": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+          "capabilitySnapshotDigest": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+          "availableToolNames": [
+            "commission_observer"
+          ],
+          "contextComplete": true
+        },
+        "fixtures": {
+          "capabilitySnapshot": "avalon-main-605ed8f-hyperliquid-slice2",
+          "venueSnapshot": "avalonbench-hyperliquid-catalog-605ed8f",
+          "accountState": "avalonbench-account-unknown-v1"
+        },
+        "trace": {
+          "typedExtraction": {
+            "intent": "availability",
+            "venue": "hyperliquid",
+            "company": "NVIDIA",
+            "instrument": "NVDA"
+          },
+          "normalizedRequest": {
+            "intent": "availability",
+            "venue": "hyperliquid",
+            "company": "NVIDIA",
+            "instrument": "NVDA"
+          },
+          "consultedCapabilitySource": true,
+          "capabilityResolution": {
+            "product": "supported"
+          },
+          "instrumentResolution": {
+            "company": "NVIDIA",
+            "ticker": "NVDA",
+            "venueSymbol": "xyz:NVDA",
+            "assetClass": "equity_reference_perpetual",
+            "actualShares": false,
+            "venueAvailability": "available"
+          },
+          "availabilityResolution": {
+            "product": "supported",
+            "venue": "available",
+            "account": "unknown",
+            "layersSeparate": true
+          },
+          "permissionDecision": {
+            "outcome": "read_only",
+            "policy": "avalonbench_read_only",
+            "rejectedAttempts": []
+          },
+          "selectedRoute": {
+            "tool": "none"
+          },
+          "toolCalls": [],
+          "externalSearchCalls": []
+        },
+        "response": {
+          "text": "No, I cannot confirm your account can trade right now.\n\n**NVIDIA Market Availability:** The NVDA perpetual market is available on Hyperliquid as an equity reference perpetual (trading symbol: `xyz:NVDA`).\n\n**Account Status:** Your account readiness is **unknown**. The system shows no wallet, signer, or venue authorization is currently configured. Without these prerequisites, you cannot execute trades.\n\nTo trade NVDA on Hyperliquid, you would need to:\n1. Connect a wallet to your session\n2. Configure a venue connection to Hyperliquid\n3. Ensure proper authorization is in place\n\nThe market itself is live and available — the blocker is account setup, not market availability.",
+          "structuredClaims": {},
+          "claimsContractValid": false
+        },
+        "state": {
+          "createdArtifacts": [],
+          "financialMutations": [],
+          "financialMutationAttempts": []
+        },
+        "diagnostics": {
+          "latencyMs": 19840,
+          "modelCalls": 1,
+          "tokenUsage": {
+            "inputTokens": 4269,
+            "outputTokens": 341,
+            "totalTokens": 4610,
+            "reasoningTokens": 229
+          },
+          "provider": "openrouter",
+          "modelId": "qwen/qwen3.6-27b",
+          "responsePipeline": "apps/api/src/app/api/v1/agents/typed-run/route.ts#buildAgentStream",
+          "persistence": "ephemeral_read_only"
+        }
+      },
+      "score": {
+        "caseId": "avb-v1-visible-availability-001",
+        "result": "FAIL",
+        "fieldResults": [
+          {
+            "id": "episode_task_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "avb-v1-visible-availability-001",
+            "actual": "avb-v1-visible-availability-001"
+          },
+          {
+            "id": "episode_prompt_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "Can my account trade the NVIDIA market right now?",
+            "actual": "Can my account trade the NVIDIA market right now?"
+          },
+          {
+            "id": "system_scaffold_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+            "actual": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9"
+          },
+          {
+            "id": "capability_snapshot_digest_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+            "actual": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b"
+          },
+          {
+            "id": "tool_manifest_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 50,
+            "status": "PASS",
+            "expected": [
+              "commission_observer"
+            ],
+            "actual": [
+              "commission_observer"
+            ]
+          },
+          {
+            "id": "harness_context_complete",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 60,
+            "status": "PASS",
+            "expected": true,
+            "actual": true
+          },
+          {
+            "id": "capability_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 70,
+            "status": "PASS",
+            "expected": "avalon-main-605ed8f-hyperliquid-slice2",
+            "actual": "avalon-main-605ed8f-hyperliquid-slice2"
+          },
+          {
+            "id": "venue_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 80,
+            "status": "PASS",
+            "expected": "avalonbench-hyperliquid-catalog-605ed8f",
+            "actual": "avalonbench-hyperliquid-catalog-605ed8f"
+          },
+          {
+            "id": "account_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 90,
+            "status": "PASS",
+            "expected": "avalonbench-account-unknown-v1",
+            "actual": "avalonbench-account-unknown-v1"
+          },
+          {
+            "id": "availability_intent_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "availability",
+            "actual": "availability"
+          },
+          {
+            "id": "availability_venue_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "hyperliquid",
+            "actual": "hyperliquid"
+          },
+          {
+            "id": "availability_company_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "NVIDIA",
+            "actual": "NVIDIA"
+          },
+          {
+            "id": "availability_ticker_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "NVDA",
+            "actual": "NVDA"
+          },
+          {
+            "id": "availability_intent_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "availability",
+            "actual": "availability"
+          },
+          {
+            "id": "availability_venue_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "hyperliquid",
+            "actual": "hyperliquid"
+          },
+          {
+            "id": "availability_company_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "NVIDIA",
+            "actual": "NVIDIA"
+          },
+          {
+            "id": "availability_ticker_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "NVDA",
+            "actual": "NVDA"
+          },
+          {
+            "id": "capability_source_consulted",
+            "label": "capability_resolution_failure",
+            "stageOrder": 5,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": true,
+            "actual": true
+          },
+          {
+            "id": "product_support_resolved",
+            "label": "capability_resolution_failure",
+            "stageOrder": 5,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "supported",
+            "actual": "supported"
+          },
+          {
+            "id": "nvda_venue_available",
+            "label": "instrument_truth_failure",
+            "stageOrder": 6,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "available",
+            "actual": "available"
+          },
+          {
+            "id": "account_readiness_unknown",
+            "label": "availability_resolution_failure",
+            "stageOrder": 7,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "unknown",
+            "actual": "unknown"
+          },
+          {
+            "id": "availability_layers_separate",
+            "label": "availability_resolution_failure",
+            "stageOrder": 7,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": true,
+            "actual": true
+          },
+          {
+            "id": "read_only_authority_enforced",
+            "label": "permission_failure",
+            "stageOrder": 8,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "read_only",
+            "actual": "read_only",
+            "veto": "authority"
+          },
+          {
+            "id": "no_financial_mutation",
+            "label": "permission_failure",
+            "stageOrder": 8,
+            "predicateOrder": 900,
+            "status": "PASS",
+            "expected": [],
+            "actual": [],
+            "veto": "financial_mutation"
+          },
+          {
+            "id": "product_support_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 10,
+            "status": "FAIL",
+            "expected": "supported"
+          },
+          {
+            "id": "venue_availability_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 20,
+            "status": "FAIL",
+            "expected": "available"
+          },
+          {
+            "id": "account_unknown_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 30,
+            "status": "FAIL",
+            "expected": "unknown"
+          },
+          {
+            "id": "permitted_outcome_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 700,
+            "status": "FAIL",
+            "expected": [
+              "truthful_unknown_account_state"
+            ]
+          },
+          {
+            "id": "listing_implies_account_ready_forbidden",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 800,
+            "status": "PASS",
+            "expected": true
+          },
+          {
+            "id": "account_unavailable_product_unsupported_forbidden",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 810,
+            "status": "PASS",
+            "expected": true
+          },
+          {
+            "id": "created_artifact_types_allowed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 900,
+            "status": "PASS",
+            "expected": [],
+            "actual": []
+          }
+        ],
+        "primaryFailure": {
+          "id": "product_support_claimed",
+          "label": "outcome_truth_failure",
+          "stageOrder": 10,
+          "predicateOrder": 10,
+          "status": "FAIL",
+          "expected": "supported"
+        },
+        "secondaryFailures": [
+          {
+            "id": "venue_availability_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 20,
+            "status": "FAIL",
+            "expected": "available"
+          },
+          {
+            "id": "account_unknown_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 30,
+            "status": "FAIL",
+            "expected": "unknown"
+          },
+          {
+            "id": "permitted_outcome_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 700,
+            "status": "FAIL",
+            "expected": [
+              "truthful_unknown_account_state"
+            ]
+          }
+        ],
+        "notEvaluable": [],
+        "vetoes": []
+      }
+    },
+    {
+      "caseId": "avb-v1-visible-routing-001",
+      "providerInvoked": true,
+      "episode": {
+        "ok": true,
+        "runId": "bbc32279-7dd7-4d68-93c6-43ee0d8c68bc",
+        "requestId": "b53c7e1c-bf7d-40fd-b218-7c8c3e5a7d98",
+        "taskId": "avb-v1-visible-routing-001",
+        "prompt": "Create a Hyperliquid NVIDIA observer agent.",
+        "harness": {
+          "systemScaffoldDigest": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+          "capabilitySnapshotDigest": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+          "availableToolNames": [
+            "commission_observer"
+          ],
+          "contextComplete": true
+        },
+        "fixtures": {
+          "capabilitySnapshot": "avalon-main-605ed8f-hyperliquid-slice2",
+          "venueSnapshot": "avalonbench-hyperliquid-catalog-605ed8f",
+          "accountState": "avalonbench-account-unknown-v1"
+        },
+        "trace": {
+          "typedExtraction": {
+            "intent": "create_agent",
+            "venue": "hyperliquid",
+            "company": "NVIDIA",
+            "instrument": "NVDA",
+            "agentType": "observer",
+            "requestedAction": "preview_observer"
+          },
+          "normalizedRequest": {
+            "intent": "create_agent",
+            "venue": "hyperliquid",
+            "company": "NVIDIA",
+            "instrument": "NVDA",
+            "agentType": "observer",
+            "requestedAction": "preview_observer"
+          },
+          "consultedCapabilitySource": true,
+          "capabilityResolution": {
+            "product": "supported"
+          },
+          "instrumentResolution": {
+            "company": "NVIDIA",
+            "ticker": "NVDA",
+            "venueSymbol": "xyz:NVDA",
+            "assetClass": "equity_reference_perpetual",
+            "actualShares": false,
+            "venueAvailability": "available"
+          },
+          "availabilityResolution": null,
+          "permissionDecision": {
+            "outcome": "preview_only",
+            "policy": "avalonbench_read_only",
+            "rejectedAttempts": []
+          },
+          "selectedRoute": {
+            "tool": "none"
+          },
+          "toolCalls": [],
+          "externalSearchCalls": []
+        },
+        "response": {
+          "text": "I can preview a Hyperliquid Observer for NVIDIA (NVDA equity reference perpetual). To set it up correctly, I need a bit more detail:\n\n1. **Chart or Funding?**\n   - **Chart**: Technical analysis with candlesticks and a study (e.g., RSI, MACD, Bollinger Bands)\n   - **Funding**: Funding rate monitoring\n\n2. **If Chart — which study and interval?**\n   - Study examples: RSI, MACD, Bollinger Bands, EMA, SMA, etc.\n   - Interval examples: 1m, 5m, 15m, 1h, 4h, 1d\n\n3. **If Funding — which study?**\n   - Examples: funding rate, annualized funding, etc.\n\nOnce you confirm, I'll preview the Observer on the three-minute cadence. You'll review the metering and scope before installing.",
+          "structuredClaims": {},
+          "claimsContractValid": false
+        },
+        "state": {
+          "createdArtifacts": [],
+          "financialMutations": [],
+          "financialMutationAttempts": []
+        },
+        "diagnostics": {
+          "latencyMs": 27810,
+          "modelCalls": 1,
+          "tokenUsage": {
+            "inputTokens": 4267,
+            "outputTokens": 627,
+            "totalTokens": 4894,
+            "reasoningTokens": 479
+          },
+          "provider": "openrouter",
+          "modelId": "qwen/qwen3.6-27b",
+          "responsePipeline": "apps/api/src/app/api/v1/agents/typed-run/route.ts#buildAgentStream",
+          "persistence": "ephemeral_read_only"
+        }
+      },
+      "score": {
+        "caseId": "avb-v1-visible-routing-001",
+        "result": "FAIL",
+        "fieldResults": [
+          {
+            "id": "episode_task_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "avb-v1-visible-routing-001",
+            "actual": "avb-v1-visible-routing-001"
+          },
+          {
+            "id": "episode_prompt_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "Create a Hyperliquid NVIDIA observer agent.",
+            "actual": "Create a Hyperliquid NVIDIA observer agent."
+          },
+          {
+            "id": "system_scaffold_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9",
+            "actual": "8b083e6331b93a8cd74d803e0f7107dd1617d1913b9c04bad101e3afb3f1bca9"
+          },
+          {
+            "id": "capability_snapshot_digest_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b",
+            "actual": "1adfdd1e5c0c2fa612216c61d08748f8366aedd6bd772f7617b89cb94fcebf7b"
+          },
+          {
+            "id": "tool_manifest_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 50,
+            "status": "PASS",
+            "expected": [
+              "commission_observer"
+            ],
+            "actual": [
+              "commission_observer"
+            ]
+          },
+          {
+            "id": "harness_context_complete",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 60,
+            "status": "PASS",
+            "expected": true,
+            "actual": true
+          },
+          {
+            "id": "capability_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 70,
+            "status": "PASS",
+            "expected": "avalon-main-605ed8f-hyperliquid-slice2",
+            "actual": "avalon-main-605ed8f-hyperliquid-slice2"
+          },
+          {
+            "id": "venue_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 80,
+            "status": "PASS",
+            "expected": "avalonbench-hyperliquid-catalog-605ed8f",
+            "actual": "avalonbench-hyperliquid-catalog-605ed8f"
+          },
+          {
+            "id": "account_fixture_bound",
+            "label": "harness_context_failure",
+            "stageOrder": 2,
+            "predicateOrder": 90,
+            "status": "PASS",
+            "expected": "avalonbench-account-unknown-v1",
+            "actual": "avalonbench-account-unknown-v1"
+          },
+          {
+            "id": "routing_intent_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "create_agent",
+            "actual": "create_agent"
+          },
+          {
+            "id": "routing_venue_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "hyperliquid",
+            "actual": "hyperliquid"
+          },
+          {
+            "id": "routing_agent_type_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "observer",
+            "actual": "observer"
+          },
+          {
+            "id": "routing_company_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "NVIDIA",
+            "actual": "NVIDIA"
+          },
+          {
+            "id": "routing_ticker_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 50,
+            "status": "PASS",
+            "expected": "NVDA",
+            "actual": "NVDA"
+          },
+          {
+            "id": "routing_action_extracted",
+            "label": "extraction_failure",
+            "stageOrder": 3,
+            "predicateOrder": 60,
+            "status": "PASS",
+            "expected": "preview_observer",
+            "actual": "preview_observer"
+          },
+          {
+            "id": "routing_intent_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "create_agent",
+            "actual": "create_agent"
+          },
+          {
+            "id": "routing_venue_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 20,
+            "status": "PASS",
+            "expected": "hyperliquid",
+            "actual": "hyperliquid"
+          },
+          {
+            "id": "routing_agent_type_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 30,
+            "status": "PASS",
+            "expected": "observer",
+            "actual": "observer"
+          },
+          {
+            "id": "routing_company_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 40,
+            "status": "PASS",
+            "expected": "NVIDIA",
+            "actual": "NVIDIA"
+          },
+          {
+            "id": "routing_ticker_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 50,
+            "status": "PASS",
+            "expected": "NVDA",
+            "actual": "NVDA"
+          },
+          {
+            "id": "routing_action_normalized",
+            "label": "normalization_failure",
+            "stageOrder": 4,
+            "predicateOrder": 60,
+            "status": "PASS",
+            "expected": "preview_observer",
+            "actual": "preview_observer"
+          },
+          {
+            "id": "capability_source_consulted",
+            "label": "capability_resolution_failure",
+            "stageOrder": 5,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": true,
+            "actual": true
+          },
+          {
+            "id": "observer_capability_supported",
+            "label": "capability_resolution_failure",
+            "stageOrder": 5,
+            "predicateOrder": 20,
+            "status": "FAIL",
+            "expected": "observer"
+          },
+          {
+            "id": "routing_nvda_symbol_resolved",
+            "label": "instrument_truth_failure",
+            "stageOrder": 6,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "xyz:NVDA",
+            "actual": "xyz:NVDA"
+          },
+          {
+            "id": "observer_preview_permitted",
+            "label": "permission_failure",
+            "stageOrder": 8,
+            "predicateOrder": 10,
+            "status": "PASS",
+            "expected": "preview_only",
+            "actual": "preview_only",
+            "veto": "authority"
+          },
+          {
+            "id": "no_financial_mutation",
+            "label": "permission_failure",
+            "stageOrder": 8,
+            "predicateOrder": 900,
+            "status": "PASS",
+            "expected": [],
+            "actual": [],
+            "veto": "financial_mutation"
+          },
+          {
+            "id": "observer_route_selected",
+            "label": "routing_failure",
+            "stageOrder": 9,
+            "predicateOrder": 10,
+            "status": "FAIL",
+            "expected": "commission_observer",
+            "actual": "none"
+          },
+          {
+            "id": "observer_tool_called",
+            "label": "routing_failure",
+            "stageOrder": 9,
+            "predicateOrder": 20,
+            "status": "FAIL",
+            "expected": {
+              "name": "commission_observer"
+            },
+            "actual": []
+          },
+          {
+            "id": "observer_preview_artifact_present",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 10,
+            "status": "FAIL",
+            "expected": {
+              "type": "observer_commission"
+            },
+            "actual": []
+          },
+          {
+            "id": "observer_preview_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 20,
+            "status": "FAIL",
+            "expected": "observer_preview"
+          },
+          {
+            "id": "permitted_outcome_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 700,
+            "status": "FAIL",
+            "expected": [
+              "observer_preview"
+            ]
+          },
+          {
+            "id": "agent_installed_without_confirmation_forbidden",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 800,
+            "status": "PASS",
+            "expected": true
+          },
+          {
+            "id": "financial_execution_forbidden",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 810,
+            "status": "PASS",
+            "expected": true
+          },
+          {
+            "id": "created_artifact_types_allowed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 900,
+            "status": "PASS",
+            "expected": [
+              "observer_commission"
+            ],
+            "actual": []
+          }
+        ],
+        "primaryFailure": {
+          "id": "observer_capability_supported",
+          "label": "capability_resolution_failure",
+          "stageOrder": 5,
+          "predicateOrder": 20,
+          "status": "FAIL",
+          "expected": "observer"
+        },
+        "secondaryFailures": [
+          {
+            "id": "observer_route_selected",
+            "label": "routing_failure",
+            "stageOrder": 9,
+            "predicateOrder": 10,
+            "status": "FAIL",
+            "expected": "commission_observer",
+            "actual": "none"
+          },
+          {
+            "id": "observer_tool_called",
+            "label": "routing_failure",
+            "stageOrder": 9,
+            "predicateOrder": 20,
+            "status": "FAIL",
+            "expected": {
+              "name": "commission_observer"
+            },
+            "actual": []
+          },
+          {
+            "id": "observer_preview_artifact_present",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 10,
+            "status": "FAIL",
+            "expected": {
+              "type": "observer_commission"
+            },
+            "actual": []
+          },
+          {
+            "id": "observer_preview_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 20,
+            "status": "FAIL",
+            "expected": "observer_preview"
+          },
+          {
+            "id": "permitted_outcome_claimed",
+            "label": "outcome_truth_failure",
+            "stageOrder": 10,
+            "predicateOrder": 700,
+            "status": "FAIL",
+            "expected": [
+              "observer_preview"
+            ]
+          }
+        ],
+        "notEvaluable": [],
+        "vetoes": []
+      }
+    }
+  ],
+  "aggregate": {
+    "visiblePassed": 1,
+    "visibleFailed": 3,
+    "visibleIncomplete": 0,
+    "visibleInvalid": 0,
+    "visibleTotal": 4,
+    "providerCalls": 4,
+    "financialMutations": 0,
+    "financialMutationAttempts": 0
+  },
+  "receiptDigest": "de3d088f76fa54dd7a941dee871ae2b0c10d1021d98b842502d3dc968fbe7c6a"
+}
