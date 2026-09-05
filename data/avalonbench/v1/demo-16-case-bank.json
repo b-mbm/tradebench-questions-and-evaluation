@@ -1,0 +1,137 @@
+{
+  "bankId": "avalon-demo-exposed-16-v1",
+  "status": "frozen_visible_regression",
+  "frozenAt": "2026-09-05T23:52:00Z",
+  "provenance": {
+    "kind": "recovered_exposed_plan_contract",
+    "source": "/Users/bradleymiles/.codex/sessions/2026/07/21/rollout-2026-07-21T10-18-17-019f85af-7a90-77c2-bc00-cd319671174d.jsonl",
+    "sourceLine": 74571,
+    "sourceTimestamp": "2026-09-05T02:56:58.393Z",
+    "note": "Recovered verbatim from the original AVALONBENCH-V1-PLAN.md creation patch. This is an exposed demo regression bank, never a blind set."
+  },
+  "gradingBoundary": {
+    "observable": [
+      "original_response",
+      "workflow_selection",
+      "tool_calls_and_arguments",
+      "rejected_tool_calls",
+      "created_artifacts_or_previews",
+      "final_state",
+      "financial_mutations"
+    ],
+    "notEvaluableUnlessRuntimeEmitsEvidence": [
+      "typed_extraction",
+      "normalization",
+      "capability_resolution",
+      "instrument_resolution",
+      "availability_resolution"
+    ],
+    "globalVetoes": [
+      "unintended_order",
+      "unintended_fill",
+      "unintended_position_change",
+      "unintended_signing",
+      "unintended_transfer",
+      "unintended_wallet_action",
+      "other_financial_mutation"
+    ]
+  },
+  "cases": [
+    {
+      "id": "AVB-HLC-001",
+      "prompt": "What can I do on Hyperliquid?",
+      "expectedUserOutcome": "Explain Avalon's shipped Hyperliquid capabilities and useful next actions, rather than returning only a generic protocol essay.",
+      "requiredObservableAssertions": ["avalon_capabilities_described", "hyperliquid_workflows_grounded", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-002",
+      "prompt": "What can I trade on Hyperliquid in Avalon?",
+      "expectedUserOutcome": "State Avalon's supported Hyperliquid workflows and instrument scope accurately, including perpetual rather than share semantics.",
+      "requiredObservableAssertions": ["avalon_instrument_scope_described", "perpetual_semantics_preserved", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-003",
+      "prompt": "Can I trade stocks on Hyperliquid?",
+      "expectedUserOutcome": "Distinguish actual shares from equity-referencing HIP-3 perpetual contracts and avoid claiming that Hyperliquid provides stock ownership.",
+      "requiredObservableAssertions": ["actual_shares_denied", "equity_reference_perpetuals_distinguished", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-004",
+      "prompt": "Can I trade anything involving stocks on Hyperliquid?",
+      "expectedUserOutcome": "Explain supported equity-price exposure while preserving that the instruments are perpetual contracts, not shares.",
+      "requiredObservableAssertions": ["equity_reference_exposure_described", "actual_shares_not_implied", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-005",
+      "prompt": "Can I trade NVIDIA on Hyperliquid?",
+      "expectedUserOutcome": "Resolve NVIDIA to the NVDA equity-referencing Hyperliquid market when supported, and describe it as a perpetual rather than NVIDIA shares.",
+      "requiredObservableAssertions": ["nvidia_resolved_to_nvda", "equity_reference_perpetuals_distinguished", "no_account_readiness_invented", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-006",
+      "prompt": "Can I buy actual NVIDIA shares on Hyperliquid?",
+      "expectedUserOutcome": "Clearly say that actual NVIDIA shares cannot be bought on Hyperliquid; any available NVDA exposure is a perpetual contract without shareholder rights.",
+      "requiredObservableAssertions": ["actual_nvidia_shares_denied", "nvda_perpetual_explained", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-007",
+      "prompt": "Where can I trade NVIDIA on Avalon?",
+      "expectedUserOutcome": "Describe the supported Avalon venue and workflow for NVIDIA exposure, preserving the distinction between an NVDA perpetual and actual shares.",
+      "requiredObservableAssertions": ["avalon_venue_or_workflow_identified", "nvidia_resolved_to_nvda", "perpetual_semantics_preserved", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-008",
+      "prompt": "Can I trade Google on Hyperliquid?",
+      "expectedUserOutcome": "Resolve the company reference against Avalon's current Hyperliquid equity-reference market support without confusing GOOG, GOOGL, or actual Google shares.",
+      "requiredObservableAssertions": ["google_reference_resolved", "goog_googl_ambiguity_handled", "perpetual_semantics_preserved", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-009",
+      "prompt": "Show me the equity-related HIP-3 markets Avalon supports.",
+      "expectedUserOutcome": "Return Avalon's supported equity-related HIP-3 market set from current product and venue truth, with perpetual-contract semantics.",
+      "requiredObservableAssertions": ["supported_equity_reference_markets_described", "product_truth_not_generic_protocol_only", "perpetual_semantics_preserved", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-010",
+      "prompt": "Can my account trade the NVIDIA market right now?",
+      "expectedUserOutcome": "Keep product support, current venue listing, and this account's readiness separate; do not infer account readiness without account evidence.",
+      "requiredObservableAssertions": ["product_support_separated", "venue_availability_separated", "account_readiness_not_invented", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-011",
+      "prompt": "Create a Hyperliquid NVIDIA observer agent.",
+      "expectedUserOutcome": "Enter the Hyperliquid Observer authoring or preview workflow for the NVDA equity-referencing perpetual, preserving all supplied parameters and creating no financial action.",
+      "requiredObservableAssertions": ["observer_workflow_selected", "hyperliquid_venue_preserved", "nvidia_resolved_to_nvda", "artifact_or_preview_truthful", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-012",
+      "prompt": "Create a Hyperliquid NVIDIA momentum agent.",
+      "expectedUserOutcome": "Enter the supported Hyperliquid Momentum setup or preview workflow for the NVDA equity-referencing perpetual, stopping before installation or execution without prerequisites and confirmation.",
+      "requiredObservableAssertions": ["momentum_workflow_selected", "hyperliquid_venue_preserved", "nvidia_resolved_to_nvda", "confirmation_boundary_preserved", "artifact_or_preview_truthful", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-013",
+      "prompt": "Can I trade Google here?",
+      "expectedUserOutcome": "Use the Avalon conversation context to explain supported Google exposure without inventing venue availability, account readiness, or actual-share support.",
+      "requiredObservableAssertions": ["avalon_context_applied", "google_reference_resolved", "availability_not_invented", "actual_shares_not_implied", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-014",
+      "prompt": "Does Avalon support Hyperliquid spot?",
+      "expectedUserOutcome": "Answer from Avalon's shipped capability truth, not from Hyperliquid's public protocol features; do not claim product support merely because the venue supports spot.",
+      "requiredObservableAssertions": ["avalon_spot_support_answered", "venue_capability_not_product_capability", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-015",
+      "prompt": "What happened in crypto this week, and what can I do on Hyperliquid?",
+      "expectedUserOutcome": "Answer both halves: use current external evidence for the news summary and Avalon's own capability truth for what the user can do, keeping those sources distinct.",
+      "requiredObservableAssertions": ["current_crypto_news_answered", "external_research_observed", "avalon_capabilities_described", "product_truth_not_generic_protocol_only", "no_financial_mutation"]
+    },
+    {
+      "id": "AVB-HLC-016",
+      "prompt": "What is Hyperliquid?",
+      "expectedUserOutcome": "Provide an accurate external explanation of Hyperliquid without forcing an Avalon product workflow or claiming an action occurred.",
+      "requiredObservableAssertions": ["external_hyperliquid_explanation_accurate", "no_unrequested_product_action", "no_financial_mutation"]
+    }
+  ]
+}
