@@ -6,7 +6,10 @@
   "scripts": {
     "run:60q": "tsx scripts/run-60q.ts",
     "combine": "tsx scripts/combine-results.ts results/60q-*.json --label combined-all --out results/combined-60q-all.json",
-    "report": "tsx scripts/report-combined.ts results/combined-60q-all.json"
+    "report": "tsx scripts/report-combined.ts results/combined-60q-all.json",
+    "typecheck:avalonbench": "tsc -p tsconfig.avalonbench.json",
+    "test:avalonbench:contract": "tsx scripts/avalonbench-contract-test.ts",
+    "report:avalonbench:contract": "tsx scripts/avalonbench-contract-report.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.23.0",
