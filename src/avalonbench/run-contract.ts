@@ -26,7 +26,7 @@ export function buildDeterministicRunTuple(identities: DeterministicRunIdentitie
 
 export function buildDeterministicRunRecords(tuple: RunTuple): RunRecord[] {
   const base = {
-    runId: 'avalonbench-v1-slice1-contract-001',
+    runId: 'avalonbench-v1-slice1-contract-002',
     tuple,
     costUsd: 0,
     failureReason: null,
@@ -34,25 +34,25 @@ export function buildDeterministicRunRecords(tuple: RunTuple): RunRecord[] {
   return [
     {
       ...base,
-      entryId: 'run-001-planned',
+      entryId: 'run-002-planned',
       state: 'planned',
-      occurredAt: '2026-09-05T01:00:00.000Z',
+      occurredAt: '2026-09-05T03:00:00.000Z',
       aggregate: null,
       caseResultRefs: [],
     },
     {
       ...base,
-      entryId: 'run-001-launched',
+      entryId: 'run-002-launched',
       state: 'launched',
-      occurredAt: '2026-09-05T01:00:01.000Z',
+      occurredAt: '2026-09-05T03:00:01.000Z',
       aggregate: null,
       caseResultRefs: [],
     },
     {
       ...base,
-      entryId: 'run-001-completed',
+      entryId: 'run-002-completed',
       state: 'completed',
-      occurredAt: '2026-09-05T01:00:02.000Z',
+      occurredAt: '2026-09-05T03:00:02.000Z',
       aggregate: { visiblePassed: 4, visibleTotal: 4, redPassed: 13, redTotal: 13, providerCalls: 0 },
       caseResultRefs: [
         'green:avb-v1-visible-discovery-001',

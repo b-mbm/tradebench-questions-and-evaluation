@@ -23,13 +23,13 @@ No regex interprets user language. Slice 1 begins with typed requests and valida
 
 ## Append-only artifacts
 
-- `data/avalonbench/v1/exposure-ledger.jsonl` records authorship and oracle validation for the four visible cases. Each entry binds the complete case-and-oracle digest. Partition chains are validated, and `consumed` is irreversible.
+- `data/avalonbench/v1/exposure-ledger.jsonl` records authorship and oracle validation for the four visible cases. Each entry binds the complete case-and-oracle version seen at that event; the latest entry binds the current version while the original entry prefix remains byte-for-byte represented by its retained digest proof. Partition chains use an explicit transition table, blind/reserve cases cannot be laundered into visible, and `consumed` is irreversible.
 - `data/avalonbench/v1/run-registry.jsonl` records planned, launched, and completed states for the zero-provider deterministic contract run. The exact ten-field run tuple is immutable across entries.
 - `data/avalonbench/v1/stability-panel.json` permanently marks the panel non-blind and excluded from blind scoring. Slice 1 defines no stability case bodies.
 
 The deterministic contract run uses content-addressed SHA-256 identities in `scorerCommit` and `runnerCommit`. This gives the pre-commit report an exact, non-circular source identity: a Git commit cannot contain its own eventual hash.
 
-Runtime validators check required exposure and run fields rather than relying on TypeScript alone. Exposure to an implementation-capable role forces reserve or active-blind metadata into `consumed`, and stability membership is permanent. The Slice 1 tests exercise these rules with in-memory metadata only; they do not create, allocate, or expose a blind case body.
+Runtime validators check required exposure and run fields rather than relying on TypeScript alone. Exposure to an implementation-capable role at either boundary of a reserve or active-blind transition forces consumption, and stability membership is permanent. Expected capability and external sources each require exact deterministic grading predicates. The Slice 1 tests exercise these rules with in-memory metadata only; they do not create, allocate, or expose a blind case body.
 
 ## Verification
 

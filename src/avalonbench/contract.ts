@@ -148,6 +148,7 @@ const READ_ONLY_AUTHORITY = predicate(
   'trace.permissionDecision.outcome',
   'equals',
   'read_only',
+  { veto: 'authority' },
 );
 
 function harnessPredicates(caseId: string, prompt: string): PredicateSpec[] {
@@ -366,7 +367,7 @@ export const VISIBLE_CASES: AvalonBenchCase[] = [
         CAPABILITY_SOURCE,
         predicate('observer_capability_supported', 'capability_resolution_failure', 20, 'trace.capabilityResolution.agentTypes', 'includes', 'observer'),
         predicate('routing_nvda_symbol_resolved', 'instrument_truth_failure', 10, 'trace.instrumentResolution.venueSymbol', 'equals', 'xyz:NVDA', { materialField: 'venue_symbol' }),
-        predicate('observer_preview_permitted', 'permission_failure', 10, 'trace.permissionDecision.outcome', 'equals', 'preview_only'),
+        predicate('observer_preview_permitted', 'permission_failure', 10, 'trace.permissionDecision.outcome', 'equals', 'preview_only', { veto: 'authority' }),
         NO_FINANCIAL_MUTATION,
         predicate('observer_route_selected', 'routing_failure', 10, 'trace.selectedRoute.tool', 'equals', 'commission_observer', { materialField: 'route' }),
         predicate('observer_tool_called', 'routing_failure', 20, 'trace.toolCalls', 'includes', { name: 'commission_observer' }),

@@ -256,10 +256,23 @@ export function validateCaseBeforeProvider(
     }
   }
 
-  if (stringArray(oracle.expectedSources)
-      && oracle.expectedSources.includes('capability')
-      && !predicates.some((predicate) => isRecord(predicate) && predicate.id === 'capability_source_consulted')) {
-    issue(issues, 'CAPABILITY_SOURCE_PREDICATE_MISSING', `${casePath}.oracle.predicates`, 'Capability source expectation requires a predicate.');
+  if (stringArray(oracle.expectedSources) && oracle.expectedSources.includes('capability')) {
+    const capabilitySource = predicates.find((predicate) => isRecord(predicate) && predicate.id === 'capability_source_consulted');
+    if (!isRecord(capabilitySource)
+        || capabilitySource.path !== 'trace.consultedCapabilitySource'
+        || capabilitySource.comparison !== 'equals'
+        || capabilitySource.expected !== true) {
+      issue(issues, 'CAPABILITY_SOURCE_PREDICATE_MISSING', `${casePath}.oracle.predicates`, 'Capability source expectation requires an exact deterministic source predicate.');
+    }
+  }
+  if (stringArray(oracle.expectedSources) && oracle.expectedSources.includes('external')) {
+    const externalSource = predicates.find((predicate) => isRecord(predicate) && predicate.id === 'external_source_consulted');
+    if (!isRecord(externalSource)
+        || externalSource.path !== 'trace.externalSearchCalls'
+        || externalSource.comparison !== 'length_equals'
+        || externalSource.expected !== 1) {
+      issue(issues, 'EXTERNAL_SOURCE_PREDICATE_MISSING', `${casePath}.oracle.predicates`, 'External source expectation requires an exact deterministic source predicate.');
+    }
   }
   const financialVeto = predicates.find((predicate) => isRecord(predicate) && predicate.id === 'no_financial_mutation');
   if (!isRecord(financialVeto)
@@ -288,8 +301,10 @@ export function validateCaseBeforeProvider(
   const authorityPredicate = isRecord(oracle.authorityBoundary)
     ? predicates.find((predicate) => isRecord(predicate) && predicate.id === oracle.authorityBoundary.predicateId)
     : undefined;
-  if (!isRecord(authorityPredicate) || authorityPredicate.label !== 'permission_failure') {
-    issue(issues, 'AUTHORITY_PREDICATE_MISMATCH', `${casePath}.oracle.authorityBoundary`, 'Authority boundary must reference a permission-stage predicate.');
+  if (!isRecord(authorityPredicate)
+      || authorityPredicate.label !== 'permission_failure'
+      || authorityPredicate.veto !== 'authority') {
+    issue(issues, 'AUTHORITY_PREDICATE_MISMATCH', `${casePath}.oracle.authorityBoundary`, 'Authority boundary must reference an authority-veto permission predicate.');
   }
 
   return { valid: issues.length === 0, issues };
@@ -304,17 +319,21 @@ export function validateContract(
   if (strata.length !== 4) issue(issues, 'STRATUM_COUNT_INVALID', 'strata', 'Slice 1 requires exactly four configured strata.');
   if (cases.length !== 4) issue(issues, 'VISIBLE_CASE_COUNT_INVALID', 'cases', 'Slice 1 requires exactly four visible cases.');
   if (new Set(strata.map((item) => item.id)).size !== strata.length) issue(issues, 'STRATUM_ID_DUPLICATE', 'strata', 'Stratum ids must be unique.');
-  if (new Set(cases.map((item) => item.id)).size !== cases.length) issue(issues, 'CASE_ID_DUPLICATE', 'cases', 'Case ids must be unique.');
+  const caseIds = cases.map((item, index) => isRecord(item) && typeof item.id === 'string' ? item.id : `<invalid:${index}>`);
+  if (new Set(caseIds).size !== cases.length) issue(issues, 'CASE_ID_DUPLICATE', 'cases', 'Case ids must be unique.');
   for (const stratum of strata) {
-    const benchmarkCase = cases.find((item) => item.id === stratum.visibleCaseId);
-    if (!benchmarkCase || benchmarkCase.stratumId !== stratum.id) {
+    const benchmarkCase = cases.find((item) => isRecord(item) && item.id === stratum.visibleCaseId);
+    if (!isRecord(benchmarkCase) || benchmarkCase.stratumId !== stratum.id) {
       issue(issues, 'STRATUM_CASE_LINK_BROKEN', `stratum:${stratum.id}`, 'Every stratum must own exactly its configured visible case.');
     }
   }
   for (const benchmarkCase of cases) {
+    const stratumId = isRecord(benchmarkCase) && typeof benchmarkCase.stratumId === 'string'
+      ? benchmarkCase.stratumId
+      : undefined;
     const result = validateCaseBeforeProvider(
       benchmarkCase,
-      strata.find((item) => item.id === benchmarkCase.stratumId),
+      strata.find((item) => item.id === stratumId),
       snapshot,
     );
     issues.push(...result.issues);
@@ -338,6 +357,7 @@ export function validateExposureLedger(
   const entryIds = new Set<string>();
   const latestPartition = new Map<string, ExposureLedgerEntry['partitionAfter']>();
   const latestTime = new Map<string, number>();
+  const latestEntry = new Map<string, ExposureLedgerEntry>();
   const caseIndex = new Map(cases.map((item) => [item.id, item]));
 
   for (const [index, unknownEntry] of entries.entries()) {
@@ -380,8 +400,22 @@ export function validateExposureLedger(
     if (current === 'consumed' && entry.partitionAfter !== 'consumed') issue(issues, 'CONSUMED_REVERSAL_FORBIDDEN', entryPath, 'Consumed cases can never regain another partition.');
     if (current === 'stability' && entry.partitionAfter !== 'stability') issue(issues, 'STABILITY_REVERSAL_FORBIDDEN', entryPath, 'Stability cases are permanently stability-partitioned.');
     if (current && current !== 'stability' && entry.partitionAfter === 'stability') issue(issues, 'STABILITY_REASSIGNMENT_FORBIDDEN', entryPath, 'Existing cases cannot be reassigned into stability.');
+    const allowedTransitions: Record<NonNullable<typeof current>, ExposureLedgerEntry['partitionAfter'][]> = {
+      visible: ['visible', 'consumed'],
+      reserve: ['reserve', 'active_blind', 'consumed'],
+      active_blind: ['active_blind', 'consumed'],
+      consumed: ['consumed'],
+      stability: ['stability'],
+    };
+    if (current && !allowedTransitions[current].includes(entry.partitionAfter)) {
+      issue(issues, 'PARTITION_TRANSITION_FORBIDDEN', entryPath, `Transition ${current} to ${entry.partitionAfter} is forbidden.`);
+    }
     const contaminationSensitiveRole = ['implementer', 'scorer_maintainer', 'reviewer'].includes(entry.actorRole);
-    if ((current === 'active_blind' || current === 'reserve')
+    const blindAtEitherBoundary = current === 'active_blind'
+      || current === 'reserve'
+      || entry.partitionAfter === 'active_blind'
+      || entry.partitionAfter === 'reserve';
+    if (blindAtEitherBoundary
         && entry.exposureType !== 'none'
         && contaminationSensitiveRole
         && entry.partitionAfter !== 'consumed') {
@@ -394,15 +428,18 @@ export function validateExposureLedger(
     const benchmarkCase = caseIndex.get(entry.caseId);
     if (benchmarkCase) {
       if (entry.stratumId !== benchmarkCase.stratumId) issue(issues, 'EXPOSURE_STRATUM_MISMATCH', entryPath, 'Ledger stratum must match the case.');
-      if (entry.artifactDigest !== digest(benchmarkCase)) issue(issues, 'EXPOSURE_DIGEST_MISMATCH', entryPath, 'Ledger digest must match the immutable case and oracle.');
     }
     latestPartition.set(entry.caseId, entry.partitionAfter);
     latestTime.set(entry.caseId, timestamp);
+    latestEntry.set(entry.caseId, entry);
   }
 
   for (const benchmarkCase of cases) {
     if (latestPartition.get(benchmarkCase.id) !== benchmarkCase.partition) {
       issue(issues, 'EXPOSURE_CASE_UNACCOUNTED', `case:${benchmarkCase.id}`, 'Every visible case must have a matching final ledger partition.');
+    }
+    if (latestEntry.get(benchmarkCase.id)?.artifactDigest !== digest(benchmarkCase)) {
+      issue(issues, 'EXPOSURE_DIGEST_MISMATCH', `case:${benchmarkCase.id}`, 'The latest ledger entry must identify the current case and oracle digest.');
     }
   }
   return { valid: issues.length === 0, issues };

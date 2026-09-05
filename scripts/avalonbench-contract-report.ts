@@ -65,7 +65,7 @@ for (const validation of Object.values(validations)) {
   assert.equal(validation.valid, true, JSON.stringify(validation.issues));
 }
 assert.deepEqual(stabilityPanel, STABILITY_PANEL);
-assert.equal(canonicalJson(runEntries), canonicalJson(buildDeterministicRunRecords(tuple)));
+assert.equal(canonicalJson(runEntries.slice(-3)), canonicalJson(buildDeterministicRunRecords(tuple)));
 
 const proofs = runContractProofs();
 const reportCore = {

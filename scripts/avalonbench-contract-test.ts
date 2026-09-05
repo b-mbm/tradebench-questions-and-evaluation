@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -14,6 +15,7 @@ import type { AvalonBenchCase, ExposureLedgerEntry, RunRecord, StabilityPanelCon
 import { PARTITIONS, STAGE_ORDER } from '../src/avalonbench/schema';
 import {
   parseJsonLines,
+  validateCaseBeforeProvider,
   validateContract,
   validateExposureLedger,
   validateRunRegistry,
@@ -55,6 +57,35 @@ assert.equal(stabilityValidation.valid, true, JSON.stringify(stabilityValidation
 
 assert.throws(() => assertAppendOnlyPrefix(exposureRaw, exposureRaw.slice(1)), /APPEND_ONLY_PREFIX_VIOLATION/);
 assert.doesNotThrow(() => assertAppendOnlyPrefix(exposureRaw, `${exposureRaw}{"append":"proof"}\n`));
+
+const historicalExposurePrefix = [
+  ['exposure-001', '921a8e11b09ded8717fc9d869f23575c45ce2d822728ac201ee5e9078d77861a'],
+  ['exposure-002', '921a8e11b09ded8717fc9d869f23575c45ce2d822728ac201ee5e9078d77861a'],
+  ['exposure-003', 'e19550e7e3becdbe4148abb5c42aa164a62680237e34ec75046014e30fef3c5a'],
+  ['exposure-004', 'e19550e7e3becdbe4148abb5c42aa164a62680237e34ec75046014e30fef3c5a'],
+  ['exposure-005', 'ee5d6afc994a11d8d4e49052490681f7e10a5ecdad6c5fc1a72fd5cea2b63fa9'],
+  ['exposure-006', 'ee5d6afc994a11d8d4e49052490681f7e10a5ecdad6c5fc1a72fd5cea2b63fa9'],
+  ['exposure-007', 'be6d137d5f63d1493553042861c7e05f68deb608e49dabb73dbc1712f273ac9a'],
+  ['exposure-008', 'be6d137d5f63d1493553042861c7e05f68deb608e49dabb73dbc1712f273ac9a'],
+];
+assert.deepEqual(
+  exposureEntries.slice(0, historicalExposurePrefix.length).map((entry) => [entry.entryId, entry.artifactDigest]),
+  historicalExposurePrefix,
+);
+assert.deepEqual(runEntries.slice(0, 3).map((entry) => entry.entryId), [
+  'run-001-planned',
+  'run-001-launched',
+  'run-001-completed',
+]);
+const rawLinePrefix = (raw: string, lineCount: number): string => `${raw.split('\n').slice(0, lineCount).join('\n')}\n`;
+assert.equal(
+  createHash('sha256').update(rawLinePrefix(exposureRaw, 8)).digest('hex'),
+  'f275958880c239669938ec6b5330f7e13e0a1d16c4c5dc0fae9c56ee2c3a98c6',
+);
+assert.equal(
+  createHash('sha256').update(rawLinePrefix(runRaw, 3)).digest('hex'),
+  '3c4b32ae0325a4689f61ca3b3d65f81cb31dcd81542492d9811bb689935f092a',
+);
 
 const consumedMutation = structuredClone(exposureEntries);
 consumedMutation.push({
@@ -126,6 +157,21 @@ assert.equal(validateExposureLedger(metadataOnlyBlindExposure, []).issues.some(
   (entry) => entry.code === 'BLIND_EXPOSURE_MUST_CONSUME',
 ), true);
 
+const initialBlindExposure = structuredClone(metadataOnlyBlindExposure).slice(0, 1);
+initialBlindExposure[0].actorRole = 'implementer';
+initialBlindExposure[0].exposureType = 'prompt';
+assert.equal(validateExposureLedger(initialBlindExposure, []).issues.some(
+  (entry) => entry.code === 'BLIND_EXPOSURE_MUST_CONSUME',
+), true);
+
+const blindLaundering = structuredClone(metadataOnlyBlindExposure);
+blindLaundering[1].actorRole = 'custodian';
+blindLaundering[1].exposureType = 'none';
+blindLaundering[1].partitionAfter = 'visible';
+assert.equal(validateExposureLedger(blindLaundering, []).issues.some(
+  (entry) => entry.code === 'PARTITION_TRANSITION_FORBIDDEN',
+), true);
+
 const stabilityReassignment = structuredClone(metadataOnlyBlindExposure);
 stabilityReassignment[0].partitionAfter = 'stability';
 stabilityReassignment[1].partitionBefore = 'stability';
@@ -167,6 +213,28 @@ assert.equal(missingOracleResult.providerInvoked, false);
 assert.equal(missingOracleResult.score.result, 'INVALID');
 assert.equal(invalidCaseProviderCalls, 0);
 
+const nullCaseResult = await runCaseWithPreProviderValidation(
+  null as unknown as AvalonBenchCase,
+  undefined,
+  CAPABILITY_SNAPSHOT,
+  async () => {
+    invalidCaseProviderCalls += 1;
+    throw new Error('Provider callback must not run for a null case.');
+  },
+);
+assert.equal(nullCaseResult.providerInvoked, false);
+assert.equal(nullCaseResult.score.result, 'INVALID');
+assert.equal(nullCaseResult.score.caseId, '<invalid-case>');
+assert.equal(invalidCaseProviderCalls, 0);
+
+const malformedContract = validateContract(
+  STRATA,
+  [null as unknown as AvalonBenchCase, ...VISIBLE_CASES.slice(1)],
+  CAPABILITY_SNAPSHOT,
+);
+assert.equal(malformedContract.valid, false);
+assert.equal(malformedContract.issues.some((entry) => entry.code === 'CASE_OBJECT_REQUIRED'), true);
+
 const oracleDrift = structuredClone(VISIBLE_CASES[3]);
 oracleDrift.oracle.expectedSources = [];
 oracleDrift.oracle.forbiddenClaims = [];
@@ -181,6 +249,20 @@ assert.equal(oracleDriftValidation.valid, false);
 assert.equal(oracleDriftValidation.issues.some((entry) => entry.code === 'EXPECTED_SOURCES_MISSING'), true);
 assert.equal(oracleDriftValidation.issues.some((entry) => entry.code === 'FORBIDDEN_CLAIMS_INVALID'), true);
 assert.equal(oracleDriftValidation.issues.some((entry) => entry.code === 'ARTIFACT_CONSTRAINT_PREDICATE_MISMATCH'), true);
+
+const missingExternalPredicate = structuredClone(VISIBLE_CASES[0]);
+const externalStratum = structuredClone(STRATA[0]);
+externalStratum.requiredSources = ['capability', 'external'];
+missingExternalPredicate.oracle.expectedSources = ['capability', 'external'];
+const missingExternalValidation = validateCaseBeforeProvider(
+  missingExternalPredicate,
+  externalStratum,
+  CAPABILITY_SNAPSHOT,
+);
+assert.equal(missingExternalValidation.valid, false);
+assert.equal(missingExternalValidation.issues.some(
+  (entry) => entry.code === 'EXTERNAL_SOURCE_PREDICATE_MISSING',
+), true);
 
 const mismatchedEpisode = structuredClone(PASSING_EPISODES[VISIBLE_CASES[0].id]);
 mismatchedEpisode.taskId = VISIBLE_CASES[1].id;
@@ -235,15 +317,21 @@ const output = {
     runRegistry: runValidation.valid,
     stabilityPanel: stabilityValidation.valid,
     appendOnlyRewriteRejected: true,
+    historicalAppendOnlyPrefixesRetained: true,
     consumedReversalRejected: true,
     runTupleMutationRejected: true,
     missingExposureFieldsRejected: true,
     missingRunFieldsRejected: true,
     blindExposureRequiresConsumption: true,
+    initialBlindExposureRejected: true,
+    blindPartitionLaunderingRejected: true,
     stabilityPartitionPermanent: true,
     invalidCaseRejectedBeforeProvider: invalidCaseProviderCalls === 0,
     malformedCaseRejectedBeforeProvider: missingOracleResult.score.result === 'INVALID',
+    nullCaseRejectedBeforeProvider: nullCaseResult.score.result === 'INVALID',
+    malformedContractRejectedWithoutThrow: malformedContract.valid === false,
     oracleDeclarationDriftRejected: true,
+    externalSourceDeclarationLinked: missingExternalValidation.valid === false,
     episodeIdentityMismatchRejected: mismatchedEpisodeResult.result === 'INCOMPLETE',
     forbiddenClaimsAndArtifactsRejected: forbiddenOutcomeResult.result === 'FAIL',
     providerFailureClassifiedIncomplete: incompleteResult.score.result === 'INCOMPLETE',

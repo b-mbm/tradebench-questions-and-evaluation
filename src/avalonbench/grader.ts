@@ -85,7 +85,12 @@ export function gradeEpisode(
 ): ScoredResult {
   const validation = validateCaseBeforeProvider(benchmarkCase, stratum, snapshot);
   if (!validation.valid) {
-    return invalidCaseResult(benchmarkCase.id, validation.issues);
+    const caseId = benchmarkCase !== null
+      && typeof benchmarkCase === 'object'
+      && typeof (benchmarkCase as Partial<AvalonBenchCase>).id === 'string'
+      ? (benchmarkCase as Partial<AvalonBenchCase>).id!
+      : '<invalid-case>';
+    return invalidCaseResult(caseId, validation.issues);
   }
 
   const forbiddenClaimPredicates: PredicateSpec[] = benchmarkCase.oracle.forbiddenClaims.map((claim) => ({

@@ -21,9 +21,14 @@ export async function runCaseWithPreProviderValidation(
 ): Promise<ValidatedRunResult> {
   const validation = validateCaseBeforeProvider(benchmarkCase, stratum, snapshot);
   if (!validation.valid) {
+    const caseId = benchmarkCase !== null
+      && typeof benchmarkCase === 'object'
+      && typeof (benchmarkCase as Partial<AvalonBenchCase>).id === 'string'
+      ? (benchmarkCase as Partial<AvalonBenchCase>).id!
+      : '<invalid-case>';
     return {
       providerInvoked: false,
-      score: invalidCaseResult(benchmarkCase.id, validation.issues),
+      score: invalidCaseResult(caseId, validation.issues),
     };
   }
 
