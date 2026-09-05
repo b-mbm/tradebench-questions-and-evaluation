@@ -42,6 +42,11 @@ function compare(actual: unknown, predicate: PredicateSpec): boolean {
   switch (predicate.comparison) {
     case 'equals':
       return canonicalJson(actual) === canonicalJson(predicate.expected);
+    case 'not_equals':
+      return canonicalJson(actual) !== canonicalJson(predicate.expected);
+    case 'one_of':
+      return Array.isArray(predicate.expected)
+        && predicate.expected.some((candidate) => canonicalJson(actual) === canonicalJson(candidate));
     case 'empty':
       return Array.isArray(actual) && actual.length === 0;
     case 'length_equals':
@@ -57,6 +62,14 @@ function compare(actual: unknown, predicate: PredicateSpec): boolean {
       if (Array.isArray(actual)) return actual.some((item) => partialObjectMatch(item, predicate.expected));
       if (typeof actual === 'string' && typeof predicate.expected === 'string') return actual.includes(predicate.expected);
       return false;
+    case 'item_field_set_subset': {
+      if (!Array.isArray(actual) || !Array.isArray(predicate.expected) || !predicate.itemField) return false;
+      const allowed = new Set(predicate.expected.map(canonicalJson));
+      return actual.every((item) => {
+        if (!item || typeof item !== 'object' || !(predicate.itemField! in item)) return false;
+        return allowed.has(canonicalJson((item as Record<string, unknown>)[predicate.itemField!]));
+      });
+    }
   }
 }
 
@@ -75,7 +88,19 @@ export function gradeEpisode(
     return invalidCaseResult(benchmarkCase.id, validation.issues);
   }
 
-  const orderedPredicates = [...benchmarkCase.oracle.predicates].sort(
+  const forbiddenClaimPredicates: PredicateSpec[] = benchmarkCase.oracle.forbiddenClaims.map((claim) => ({
+    id: claim.id,
+    label: 'outcome_truth_failure',
+    predicateOrder: claim.predicateOrder,
+    path: claim.path,
+    comparison: 'not_equals',
+    expected: claim.forbidden,
+    critical: true,
+  }));
+  const orderedPredicates = [
+    ...benchmarkCase.oracle.predicates,
+    ...forbiddenClaimPredicates,
+  ].sort(
     (left, right) => stageOrder(left.label) - stageOrder(right.label)
       || left.predicateOrder - right.predicateOrder
       || left.id.localeCompare(right.id),
@@ -104,7 +129,9 @@ export function gradeEpisode(
     }
 
     const observed = getPath(episode, predicate.path);
-    const passed = observed.found && compare(observed.value, predicate);
+    const passed = predicate.comparison === 'not_equals' && !observed.found
+      ? true
+      : observed.found && compare(observed.value, predicate);
     const result: PredicateResult = {
       id: predicate.id,
       label: predicate.label,

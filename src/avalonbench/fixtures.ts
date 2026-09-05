@@ -1,6 +1,9 @@
+import {
+  CAPABILITY_SNAPSHOT,
+  DETERMINISTIC_FIXTURE_REFS,
+  DETERMINISTIC_HARNESS,
+} from './contract';
 import type { EpisodeEnvelope, TypedCapabilityRequest } from './schema';
-
-const DIGEST = '0000000000000000000000000000000000000000000000000000000000000000';
 
 function request(
   intent: TypedCapabilityRequest['intent'],
@@ -26,15 +29,12 @@ function episode(
     taskId,
     prompt,
     harness: {
-      systemScaffoldDigest: DIGEST,
-      capabilitySnapshotDigest: DIGEST,
-      availableToolNames: ['commission_observer', 'manage_trading_agent_setup', 'web_search'],
-      contextComplete: true,
+      ...DETERMINISTIC_HARNESS,
+      availableToolNames: [...DETERMINISTIC_HARNESS.availableToolNames],
     },
     fixtures: {
-      capabilitySnapshot: 'avalon-main-605ed8f-hyperliquid-slice1',
-      venueSnapshot: 'slice1-hyperliquid-static-observation',
-      accountState: 'slice1-account-unknown',
+      capabilitySnapshot: CAPABILITY_SNAPSHOT.snapshotId,
+      ...DETERMINISTIC_FIXTURE_REFS,
     },
     trace: {
       typedExtraction,
@@ -78,6 +78,7 @@ export const PASSING_EPISODES: Record<string, EpisodeEnvelope> = {
       },
       responseText: 'Avalon can preview watch-only Observers and configure persistent Momentum agents for supported Hyperliquid perpetual markets.',
       structuredClaims: {
+        outcome: 'accurate_capability_summary',
         agentTypes: ['observer', 'momentum'],
         assetClasses: ['crypto_perpetual', 'equity_reference_perpetual'],
       },
@@ -98,6 +99,7 @@ export const PASSING_EPISODES: Record<string, EpisodeEnvelope> = {
       },
       responseText: 'No. The listed NVDA market is an equity-referencing perpetual contract, not NVIDIA stock or shareholder ownership.',
       structuredClaims: {
+        outcome: 'truthful_perpetual_explanation',
         actualShares: false,
         assetClass: 'equity_reference_perpetual',
       },
@@ -121,6 +123,7 @@ export const PASSING_EPISODES: Record<string, EpisodeEnvelope> = {
       },
       responseText: 'Avalon supports this workflow and the venue snapshot lists NVDA, but this fixture cannot establish whether your account is ready.',
       structuredClaims: {
+        outcome: 'truthful_unknown_account_state',
         product: 'supported',
         venue: 'available',
         account: 'unknown',

@@ -24,10 +24,14 @@ function findCase(id: string): AvalonBenchCase {
   return result;
 }
 
-function score(benchmarkCase: AvalonBenchCase, episode: EpisodeEnvelope): ScoredResult {
+function score(
+  benchmarkCase: AvalonBenchCase,
+  episode: EpisodeEnvelope,
+  stratum = STRATA.find((item) => item.id === benchmarkCase.stratumId),
+): ScoredResult {
   return gradeEpisode(
     benchmarkCase,
-    STRATA.find((item) => item.id === benchmarkCase.stratumId),
+    stratum,
     CAPABILITY_SNAPSHOT,
     episode,
   );
@@ -131,7 +135,12 @@ export function runContractProofs(): ProofReceipt[] {
 
   {
     const benchmarkCase = clone(findCase('avb-v1-visible-discovery-001'));
+    const stratum = clone(STRATA[0]);
+    stratum.requiredSources = ['capability', 'external'];
     benchmarkCase.prompt = 'What happened on Hyperliquid today, and what can Avalon do there?';
+    const promptBinding = benchmarkCase.oracle.predicates.find((item) => item.id === 'episode_prompt_bound');
+    assert(promptBinding);
+    promptBinding.expected = benchmarkCase.prompt;
     benchmarkCase.oracle.expectedSources = ['capability', 'external'];
     benchmarkCase.oracle.predicates.push(externalPredicate);
     const episode = clone(PASSING_EPISODES[benchmarkCase.id]);
@@ -140,19 +149,30 @@ export function runContractProofs(): ProofReceipt[] {
     episode.trace.consultedCapabilitySource = false;
     episode.trace.capabilityResolution = { agentTypes: [], assetClasses: [] };
     episode.response.structuredClaims = { agentTypes: [], assetClasses: [], news: 'researched' };
-    proofs.push(expectFailure('red:06-compound-omits-capabilities', benchmarkCase, episode, 'capability_source_consulted'));
+    const result = score(benchmarkCase, episode, stratum);
+    assert.equal(result.result, 'FAIL', 'red:06-compound-omits-capabilities must be RED');
+    assert.equal(result.primaryFailure?.id, 'capability_source_consulted');
+    proofs.push(receipt('red:06-compound-omits-capabilities', 'FAIL', result));
   }
 
   {
     const benchmarkCase = clone(findCase('avb-v1-visible-discovery-001'));
+    const stratum = clone(STRATA[0]);
+    stratum.requiredSources = ['capability', 'external'];
     benchmarkCase.prompt = 'What happened on Hyperliquid today, and what can Avalon do there?';
+    const promptBinding = benchmarkCase.oracle.predicates.find((item) => item.id === 'episode_prompt_bound');
+    assert(promptBinding);
+    promptBinding.expected = benchmarkCase.prompt;
     benchmarkCase.oracle.expectedSources = ['capability', 'external'];
     benchmarkCase.oracle.predicates.push(externalPredicate);
     const episode = clone(PASSING_EPISODES[benchmarkCase.id]);
     episode.prompt = benchmarkCase.prompt;
     episode.trace.externalSearchCalls = [];
     episode.response.structuredClaims.news = 'invented without research';
-    proofs.push(expectFailure('red:07-compound-invents-news', benchmarkCase, episode, 'compound_external_source_consulted'));
+    const result = score(benchmarkCase, episode, stratum);
+    assert.equal(result.result, 'FAIL', 'red:07-compound-invents-news must be RED');
+    assert.equal(result.primaryFailure?.id, 'compound_external_source_consulted');
+    proofs.push(receipt('red:07-compound-invents-news', 'FAIL', result));
   }
 
   {

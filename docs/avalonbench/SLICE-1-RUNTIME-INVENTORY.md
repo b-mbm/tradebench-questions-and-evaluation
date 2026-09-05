@@ -29,7 +29,7 @@ This inventory records the runtime facts observed on 2026-09-05 before Slice 1 w
 
 ## Sanctioned test entrypoints and the exact gap
 
-The product repository has workspace test/build scripts, Playwright suites, Hyperliquid concierge live QA, and deterministic smoke scripts. A code-only search across `apps`, `packages`, `scripts`, and the root package manifest found no `AvalonBench` adapter and no single authoritative product-capability registry or lookup surface (search exit 1, zero matches).
+The product repository exposes `npm run test:hyperliquid-strategy-demo-smoke`, `npm run e2e` (Playwright), and `npm run qa:hyperliquid:concierge:live`. A code-only search across `apps`, `packages`, `scripts`, and the root package manifest found no `AvalonBench` adapter and no single authoritative product-capability registry or lookup surface (search exit 1, zero matches).
 
 That gap is intentionally not fabricated in Slice 1. The benchmark capability snapshot is a committed, immutable fixture independently derived from the runtime sources above. A production adapter or authoritative capability service is Slice 2 work.
 

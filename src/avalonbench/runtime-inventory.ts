@@ -88,9 +88,9 @@ export const RUNTIME_INVENTORY = {
   ] satisfies RuntimeSurfaceEvidence[],
   sanctionedEntrypoints: {
     existing: [
-      'npm workspace scripts for API/frontend tests and builds',
-      'Playwright end-to-end suites',
-      'Hyperliquid concierge live QA and deterministic smoke scripts',
+      'npm run test:hyperliquid-strategy-demo-smoke',
+      'npm run e2e (Playwright)',
+      'npm run qa:hyperliquid:concierge:live',
     ],
     avalonBenchAdapterPresent: false,
   },

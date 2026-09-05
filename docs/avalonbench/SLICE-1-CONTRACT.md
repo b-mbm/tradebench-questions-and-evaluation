@@ -11,6 +11,8 @@ Slice 1 is an executable benchmark contract. It does not call a model or the Ava
 
 Every oracle declares its material fields. Pre-provider validation rejects an oracle unless every declared material field is covered by a deterministic structured predicate. Extraction and normalized-request predicates separately expose dropped or silently changed values.
 
+Every episode is bound to its case id, exact prompt, system-scaffold digest, capability-snapshot digest, tool manifest, and capability/venue/account fixture references. Cross-case or cross-fixture evidence is classified as `INCOMPLETE`. Permitted outcomes, typed forbidden claims, authority boundaries, allowed artifact types, and the empty-financial-mutation rule are all linked to active predicates; declaration drift is invalid before provider execution.
+
 ## Deterministic grading
 
 `src/avalonbench/grader.ts` evaluates structured paths only. Exact response prose is forbidden as an authoritative predicate surface. Predicates are sorted by frozen stage, frozen within-stage order, and stable predicate id. The first failed predicate is primary; all later observable failures are ordered secondary failures; dependency-blocked checks are `NOT_EVALUABLE`; authority and financial vetoes remain in causal order and are also copied into the veto list.
@@ -26,6 +28,8 @@ No regex interprets user language. Slice 1 begins with typed requests and valida
 - `data/avalonbench/v1/stability-panel.json` permanently marks the panel non-blind and excluded from blind scoring. Slice 1 defines no stability case bodies.
 
 The deterministic contract run uses content-addressed SHA-256 identities in `scorerCommit` and `runnerCommit`. This gives the pre-commit report an exact, non-circular source identity: a Git commit cannot contain its own eventual hash.
+
+Runtime validators check required exposure and run fields rather than relying on TypeScript alone. Exposure to an implementation-capable role forces reserve or active-blind metadata into `consumed`, and stability membership is permanent. The Slice 1 tests exercise these rules with in-memory metadata only; they do not create, allocate, or expose a blind case body.
 
 ## Verification
 

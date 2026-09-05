@@ -3,7 +3,15 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { canonicalJson, digest } from '../src/avalonbench/canonical';
-import { CAPABILITY_SNAPSHOT, STABILITY_PANEL, STRATA, VISIBLE_CASES } from '../src/avalonbench/contract';
+import {
+  CAPABILITY_SNAPSHOT,
+  DETERMINISTIC_HARNESS,
+  DETERMINISTIC_SYSTEM_SCAFFOLD,
+  DETERMINISTIC_TOOL_MANIFEST,
+  STABILITY_PANEL,
+  STRATA,
+  VISIBLE_CASES,
+} from '../src/avalonbench/contract';
 import { runContractProofs } from '../src/avalonbench/proofs';
 import { buildDeterministicRunRecords, buildDeterministicRunTuple } from '../src/avalonbench/run-contract';
 import { RUNTIME_INVENTORY } from '../src/avalonbench/runtime-inventory';
@@ -28,18 +36,11 @@ const scorerSources = identifySources(root, SCORER_SOURCE_PATHS);
 const runnerSources = identifySources(root, RUNNER_SOURCE_PATHS);
 const capabilitySnapshotDigest = digest(CAPABILITY_SNAPSHOT);
 const caseBatchDigest = digest(VISIBLE_CASES);
-const systemScaffold = {
-  kind: 'avalonbench-v1-slice1-deterministic-fixture',
-  providerCalls: 0,
-  productRuntimeCalls: 0,
-  contextComplete: true,
-};
-const toolManifest = ['commission_observer', 'manage_trading_agent_setup', 'web_search'];
 const tuple = buildDeterministicRunTuple({
   caseBatchDigest,
   capabilitySnapshotDigest,
-  systemScaffoldDigest: digest(systemScaffold),
-  toolManifestDigest: digest(toolManifest),
+  systemScaffoldDigest: DETERMINISTIC_HARNESS.systemScaffoldDigest,
+  toolManifestDigest: digest(DETERMINISTIC_TOOL_MANIFEST),
   scorerIdentity: combinedSourceIdentity(scorerSources),
   runnerIdentity: combinedSourceIdentity(runnerSources),
 });
@@ -93,6 +94,7 @@ const reportCore = {
     stageOrder: STAGE_ORDER,
     strata: STRATA,
     capabilitySnapshot: CAPABILITY_SNAPSHOT,
+    deterministicSystemScaffold: DETERMINISTIC_SYSTEM_SCAFFOLD,
     capabilitySnapshotDigest,
     visibleCases: VISIBLE_CASES.map((benchmarkCase) => ({
       ...benchmarkCase,

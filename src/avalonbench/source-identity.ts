@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { digest } from './canonical';
 
@@ -9,7 +10,10 @@ export interface SourceIdentity {
 export function identifySources(root: string, paths: readonly string[]): SourceIdentity[] {
   return [...paths]
     .sort((left, right) => left.localeCompare(right))
-    .map((path) => ({ path, sha256: digest(readFileSync(`${root}/${path}`, 'utf8')) }));
+    .map((path) => ({
+      path,
+      sha256: createHash('sha256').update(readFileSync(`${root}/${path}`)).digest('hex'),
+    }));
 }
 
 export function combinedSourceIdentity(identities: SourceIdentity[]): string {
@@ -24,10 +28,21 @@ export const SCORER_SOURCE_PATHS = [
 ] as const;
 
 export const RUNNER_SOURCE_PATHS = [
+  'package-lock.json',
+  'package.json',
   'scripts/avalonbench-contract-report.ts',
   'scripts/avalonbench-contract-test.ts',
+  'src/avalonbench/canonical.ts',
+  'src/avalonbench/contract.ts',
   'src/avalonbench/fixtures.ts',
+  'src/avalonbench/grader.ts',
+  'src/avalonbench/ledger.ts',
   'src/avalonbench/provider-runner.ts',
   'src/avalonbench/proofs.ts',
   'src/avalonbench/run-contract.ts',
+  'src/avalonbench/runtime-inventory.ts',
+  'src/avalonbench/schema.ts',
+  'src/avalonbench/source-identity.ts',
+  'src/avalonbench/validator.ts',
+  'tsconfig.avalonbench.json',
 ] as const;

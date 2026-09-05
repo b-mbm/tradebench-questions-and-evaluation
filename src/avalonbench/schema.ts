@@ -24,7 +24,15 @@ export const STAGE_ORDER = [
 export type FailureLabel = (typeof STAGE_ORDER)[number];
 export type EpisodeResult = 'PASS' | 'FAIL' | 'INCOMPLETE' | 'INVALID';
 export type Availability = 'supported' | 'unsupported' | 'available' | 'unavailable' | 'unknown';
-export type Comparison = 'equals' | 'includes' | 'set_equals' | 'empty' | 'length_equals';
+export type Comparison =
+  | 'equals'
+  | 'not_equals'
+  | 'one_of'
+  | 'includes'
+  | 'set_equals'
+  | 'empty'
+  | 'length_equals'
+  | 'item_field_set_subset';
 
 export interface CapabilityStratum {
   id: string;
@@ -80,9 +88,17 @@ export interface PredicateSpec {
   path: string;
   comparison: Comparison;
   expected?: unknown;
+  itemField?: string;
   critical: true;
   veto?: 'authority' | 'financial_mutation';
   requires?: string[];
+}
+
+export interface ForbiddenClaimSpec {
+  id: string;
+  predicateOrder: number;
+  path: string;
+  forbidden: unknown;
 }
 
 export interface TypedOracle {
@@ -90,9 +106,12 @@ export interface TypedOracle {
   requiredInputs: string[];
   materialFields: string[];
   permittedOutcomes: string[];
-  forbiddenClaims: string[];
+  forbiddenClaims: ForbiddenClaimSpec[];
   expectedSources: Array<'capability' | 'external'>;
-  authorityBoundary: string;
+  authorityBoundary: {
+    description: string;
+    predicateId: string;
+  };
   finalStateConstraints: {
     allowedCreatedArtifactTypes: string[];
     financialMutationsMustBeEmpty: true;
@@ -188,6 +207,35 @@ export interface ExposureLedgerEntry {
   reason: string;
 }
 
+export const EXPOSURE_EVENTS = [
+  'authored',
+  'validated',
+  'allocated',
+  'executed',
+  'exposed',
+  'consumed',
+  'retired',
+] as const satisfies readonly ExposureLedgerEntry['event'][];
+
+export const ACTOR_ROLES = [
+  'blind_author',
+  'custodian',
+  'runner',
+  'implementer',
+  'scorer_maintainer',
+  'reviewer',
+] as const satisfies readonly ExposureLedgerEntry['actorRole'][];
+
+export const EXPOSURE_TYPES = [
+  'none',
+  'prompt',
+  'oracle',
+  'output',
+  'failure_label',
+  'root_cause',
+  'scorer_diff',
+] as const satisfies readonly ExposureLedgerEntry['exposureType'][];
+
 export interface RunTuple {
   candidateCommit: string;
   caseBatchDigest: string;
@@ -225,6 +273,15 @@ export interface RunRecord {
   costUsd: number;
   failureReason: string | null;
 }
+
+export const RUN_STATES = [
+  'planned',
+  'launched',
+  'completed',
+  'incomplete',
+  'invalid',
+  'aborted',
+] as const satisfies readonly RunRecord['state'][];
 
 export interface StabilityPanelContract {
   contractVersion: 'avalonbench-stability-v1';
