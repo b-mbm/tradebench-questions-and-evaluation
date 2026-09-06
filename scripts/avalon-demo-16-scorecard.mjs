@@ -121,6 +121,12 @@ assert(judgments.cases?.length === 16, 'EXACTLY_16_JUDGMENT_CASES_REQUIRED');
 
 const preRowsDigest = digest(preFinancial.rows);
 const postRowsDigest = digest(postFinancial.rows);
+for (const snapshot of [preFinancial, postFinancial]) {
+  assert(snapshot.rows?.length === snapshot.tableCount, 'FINANCIAL_SNAPSHOT_TABLE_COUNT_MISMATCH');
+  for (const row of snapshot.rows) {
+    assert(/^[0-9a-f]{64}$/.test(row.contentSha256 ?? ''), `FINANCIAL_CONTENT_DIGEST_MISSING_${row.table}`);
+  }
+}
 const financialIdentical = preRowsDigest === postRowsDigest
   && canonicalJson(preFinancial.rows) === canonicalJson(postFinancial.rows)
   && preFinancial.tableCount === postFinancial.tableCount

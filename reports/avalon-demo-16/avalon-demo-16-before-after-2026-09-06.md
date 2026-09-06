@@ -7,7 +7,7 @@
 - Public entrypoint: `apps/aix-frontend/app/api/chat/route.ts#POST`
 - Model route: Avalon 1 Fast -> OpenRouter -> DeepInfra -> `qwen/qwen3.6-27b`
 - Immutable baseline: `avalon-demo-16-baseline_scoreable-2026-09-06T00-14-25-317Z-d79e76f6` at runtime `34198da857f061abfd474a7bb291ed985ca436fc`
-- Final run: `avalon-demo-16-release_final_v6-2026-09-06T18-19-43-347Z-6f4bf121` at runtime `1cc70e336c35a46c66130d304bda60cd39cabc1f`
+- Final run: `avalon-demo-16-release_final_v7-2026-09-06T18-40-32-404Z-46ecd485` at runtime `1cc70e336c35a46c66130d304bda60cd39cabc1f`
 - Baseline score: **10 PASS / 6 FAIL**
 - Final score: **16 PASS / 0 FAIL**
 - Transport: 16/16 HTTP 200 in both scoreable runs
@@ -34,7 +34,7 @@ The exact original prompts, expected outcomes, raw response bytes, request IDs, 
 | 012 | Create a Hyperliquid NVIDIA momentum agent. | Enter a Momentum preview and stop before install or execution. | FAIL: auth gate preempted workflow. | Visible read-only Momentum preview with Hyperliquid and Nvidia (NVDA); no invented direction; explicit confirmation/install boundary and no mutation. `renderAgentSetupPreview` completed once. | All 6 PASS. | None. | Same safe preview seam, with user-word-bound direction provenance. |
 | 013 | Can I trade Google here? | Apply Avalon context without inventing availability, account readiness, or shares. | PASS. | Resolves `GOOGL — Alphabet`; states product support only, not current venue listing or account readiness; preserves perpetual/not-share semantics. `getHyperliquidCatalog(markets)` completed. | All 5 PASS. | None. | Named-equity tradability now requires the source tool even when venue wording is implicit. |
 | 014 | Does Avalon support Hyperliquid spot? | Answer Avalon's product boundary, not merely venue capability. | PASS | Explicitly says Avalon supports Hyperliquid perps, not spot, while Hyperliquid itself has perp and spot order books. `getHyperliquidCatalog(capabilities)` completed. | All 3 PASS. | None. | Product capability and venue capability are separate source facts. |
-| 015 | What happened in crypto this week, and what can I do on Hyperliquid? | Answer both halves with current external evidence and distinct product truth. | PASS, but numeric citations were not clickable. | Dated late-August/early-September 2026 news summary with clickable links to observed search-result URLs, followed by distinct Avalon capability truth. `webSearch("crypto news this week 2026")` and `getHyperliquidCatalog(capabilities)` completed. | All 5 PASS. | None. | Per-request UTC date context, dual-tool composition, and deterministic linking of numeric citations to actual search results. |
+| 015 | What happened in crypto this week, and what can I do on Hyperliquid? | Answer both halves with current external evidence and distinct product truth. | PASS, but numeric citations were not clickable. | Current-week news summary with clickable links to observed search-result URLs, followed by a distinct section describing Avalon's own capability and perp-only product boundary. `webSearch("crypto news this week 2026")` and `getHyperliquidCatalog(capabilities)` completed. | All 5 PASS. | None. | Per-request UTC date context, dual-tool composition, and deterministic linking of numeric citations to actual search results. |
 | 016 | What is Hyperliquid? | Accurately explain the protocol without starting an action. | FAIL: HLP materially misdefined. | Correct HyperCore perp/spot explanation; HLP is Hyperliquidity Provider; Points are separate; HYPE is the native token; no workflow/action started. `getHyperliquidCatalog(protocol)` completed. | All 3 PASS. | None. | Production protocol glossary from the shared source answer. |
 
 Final primary failures: none. Final secondary failures: none. Final `NOT_EVALUABLE` user-visible assertions: none. Every financial-mutation veto passed.
@@ -73,7 +73,7 @@ Each frozen user-visible assertion passed on the final observed response and too
 | PASS/FAIL, earliest decisive failure, secondary failures | Independently derived after execution | The scorecard script mechanically binds all 62 judgments to exact visible text, authenticated control events, response paths, and complete financial snapshots; 35 semantic verdicts remain explicitly human judgments. |
 | External search data | Supplied after execution by the actual `webSearch` tool | Treated as external evidence, never as proof of an internal capability lookup. |
 | Product catalog/capability/protocol text | Actually observed output from `getHyperliquidCatalog`, derived by that production tool from current production sources | Tool consultation is proven only when the control event exists. Fixture data is not presented as runtime consultation. |
-| Financial state | Actually observed in the isolated local database | Exact pre/post rows for all 56 selected mutation-bearing tables are committed; selection rules and the executable snapshot command are retained. |
+| Financial state | Actually observed in the isolated local database | Pre/post row counts and deterministic full-content digests for all 56 selected mutation-bearing tables are committed; selection rules and the executable snapshot command are retained. |
 | Typed extraction, normalization, hidden capability resolution, hidden permission predicates | Unobservable in the public Chat runtime | `NOT_EVALUABLE`; no passing trace was manufactured. |
 | Exact upstream provider-call count | Unobservable in the public Chat runtime | `NOT_EVALUABLE`; durable provider-request receipt count is 0, which is not interpreted as zero upstream calls. |
 
@@ -84,7 +84,7 @@ Each frozen user-visible assertion passed on the final observed response and too
 - No benchmark header, capability answer, expected claim, expected route, answer-key schema, or oracle-derived trace field entered any public Chat request.
 - The public route resolved to Avalon 1 Fast on OpenRouter/DeepInfra with model `qwen/qwen3.6-27b` before provider execution.
 - Exact provider-call count: `NOT_EVALUABLE`; the public path emits no durable per-upstream-call receipt. Exact public Chat requests in the final scoreable run: 16.
-- Database safety: the committed v6 pre/post snapshots each contain the same 56 table rows, the same row digest `fa64d57a1b086a02f20e9e8d3e3412be875db9730794e9f002ee0009acf7e008`, and `{"tableCount":56,"totalRows":1,"nonzero":{"public.wallet_execution_contract_state":1}}`. The singleton row pre-existed; every mutation-bearing table remained empty.
+- Database safety: the committed v7 pre/post snapshots each contain the same 56 table counts and full-content digests, the same snapshot-row digest `fce4a0ed104a6837a8d1001aeae2181583641f021245ea217db3efec1fc8c074`, and `{"tableCount":56,"totalRows":1,"nonzero":{"public.wallet_execution_contract_state":1}}`. The pre-existing singleton row's content digest is unchanged; every other selected mutation-bearing table remained empty.
 - Browser safety: the full representative Playwright run passed 11/12; one capability-discovery request received a transient local HTTP 402 before assertions. Its isolated retry passed 1/1. Across the successful coverage, every representative scenario passed and zero POST/PUT/PATCH/DELETE requests targeted financial mutation paths.
 
 ## Retained RED/GREEN proofs
@@ -98,16 +98,17 @@ Each frozen user-visible assertion passed on the final observed response and too
 - Exact-runtime changed-file ESLint: exit 0.
 - Exact-runtime production build plus TypeScript and initial-route catalog verification: exit 0.
 - Browser coverage: 11/12 in the full run plus 1/1 isolated retry at the same runtime commit; Playwright was the documented fallback after signed-in Chrome remained unavailable.
-- Mechanical scorecard reproduced byte-for-byte twice with SHA-256 `ea6846ece9f7355d00fc1a576e759c4ecbe661db387e8d92a296ed03be3ac091`.
+- Financial content-digest RED: the v7 scorer rejected count-only v6 snapshots with `FINANCIAL_CONTENT_DIGEST_MISSING_public.wallet_execution_contract_state`; GREEN: the v7 content-level pre/post snapshots and every per-table digest matched.
+- Mechanical scorecard reproduced byte-for-byte twice with SHA-256 `75be30783d4da68300889a89ddea6bd920df8ae69473e6d804323cda145d2693`.
 
 ## Evidence custody and supersession
 
 - Baseline originals: `avalon-demo-16-baseline_scoreable-2026-09-06T00-14-25-317Z-d79e76f6.json` and `.jsonl`.
-- Final originals: `avalon-demo-16-release_final_v6-2026-09-06T18-19-43-347Z-6f4bf121.json` and `.jsonl`.
-- Final score evidence: `avalon-demo-16-release_final_v6-scorecard.json`, `avalon-demo-16-release_final_v6-human-semantic-judgments.json`, and the `avalon-demo-16-financial-release-final-v6-{pre,post}.json` snapshots.
+- Final originals: `avalon-demo-16-release_final_v7-2026-09-06T18-40-32-404Z-46ecd485.json` and `.jsonl`.
+- Final score evidence: `avalon-demo-16-release_final_v7-scorecard.json`, `avalon-demo-16-release_final_v7-human-semantic-judgments.json`, and the `avalon-demo-16-financial-release-final-v7-{pre,post}.json` snapshots.
 - Every attempted run remains append-only in `data/avalonbench/v1/demo-16-run-registry.jsonl`; no prior report or record was deleted or rewritten.
 - `avalonbench-runtime-2026-09-05T19-38-36-482Z-4d04feb3` remains superseded for whole-system conclusions because its extraction, normalization, and resolution evidence was partly oracle-derived and it entered below the public Chat boundary.
 - `release_final_v2` remains valid evidence of its genuine response/tool behavior but is superseded by later product fixes.
-- `release_final_v3` established the implicit-venue repair on runtime `585fcf086f12682976067ae19421349f762d14d0`; `release_final_v4` added direct-denial and linked-citation repairs. `release_final_v5` is superseded because it omitted the control nonce, lacked a mechanically checked judgment record, and over-returned non-equity references for case 009. `release_final_v6` is the authoritative final score.
+- `release_final_v3` established the implicit-venue repair on runtime `585fcf086f12682976067ae19421349f762d14d0`; `release_final_v4` added direct-denial and linked-citation repairs. `release_final_v5` is superseded because it omitted the control nonce, lacked a mechanically checked judgment record, and over-returned non-equity references for case 009. `release_final_v6` retains genuine response and authenticated-tool evidence but its count-only financial snapshots cannot exclude in-place row mutation. `release_final_v7` is the authoritative final score.
 
 No blind cases were authored, inspected, allocated, or run. No PR, merge, deployment, production mutation, or Slice 3 work occurred.

@@ -107,11 +107,13 @@ The exposed 16-prompt release series enters through
 `apps/aix-frontend/app/api/chat/route.ts#POST` with the normal anonymous Chat
 context, production system prompt, Avalon 1 Fast route, frontend tool registry,
 response pipeline, and no benchmark-specific prompt content. Its final run is
-`avalon-demo-16-release_final_v6-2026-09-06T18-19-43-347Z-6f4bf121` at exact runtime commit
+`avalon-demo-16-release_final_v7-2026-09-06T18-40-32-404Z-46ecd485` at exact runtime commit
 `1cc70e336c35a46c66130d304bda60cd39cabc1f`.
 
 That run scores only visible answers, nonce-authenticated tool/workflow events,
-response paths, previews, and directly queried isolated financial state. Its
+response paths, previews, and directly queried isolated financial state. The
+financial evidence brackets the run with deterministic content digests for all
+56 selected mutation-bearing tables, so in-place changes are observable. Its
 mechanical scorecard separately labels 35 human semantic judgments and binds
 their exact evidence spans without presenting those judgments as runtime trace.
 Hidden typed

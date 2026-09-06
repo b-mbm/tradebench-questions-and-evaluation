@@ -324,7 +324,7 @@ async function main() {
     })}\n`);
     return;
   }
-  if (!['baseline', 'baseline_scoreable', 'remediated', 'remediated_v2', 'remediated_final', 'release_candidate', 'catalog_grounded', 'catalog_grounded_v2', 'release_final_v2', 'release_final_v3', 'release_final_v4', 'release_final_v5', 'release_final_v6'].includes(phase ?? '')) {
+  if (!['baseline', 'baseline_scoreable', 'remediated', 'remediated_v2', 'remediated_final', 'release_candidate', 'catalog_grounded', 'catalog_grounded_v2', 'release_final_v2', 'release_final_v3', 'release_final_v4', 'release_final_v5', 'release_final_v6', 'release_final_v7'].includes(phase ?? '')) {
     throw new Error('PHASE_MUST_BE_AN_EXPLICIT_DEMO_16_RUN_PHASE');
   }
 

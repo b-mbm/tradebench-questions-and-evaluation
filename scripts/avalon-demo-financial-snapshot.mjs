@@ -57,6 +57,14 @@ const observedRows = JSON.parse(psql(
   `SELECT json_agg(row_to_json(counts) ORDER BY table_name) FROM (${rowsSql}) counts;`
 )).map((row) => ({ table: `public.${row.table_name}`, rowCount: Number(row.row_count) }));
 
+for (const row of observedRows) {
+  const table = row.table.slice('public.'.length);
+  const canonicalTableRows = psql(
+    `SELECT COALESCE(jsonb_agg(to_jsonb(source_row) ORDER BY to_jsonb(source_row)::text), '[]'::jsonb)::text FROM public.${table} AS source_row;`
+  );
+  row.contentSha256 = createHash('sha256').update(`${canonicalTableRows}\n`).digest('hex');
+}
+
 const canonicalRows = JSON.stringify(observedRows);
 const receipt = {
   receiptVersion: 'avalon-demo-financial-snapshot-v1',
