@@ -1,0 +1,149 @@
+{
+  "judgmentVersion": "avalon-demo-16-human-semantic-judgments-v1",
+  "runId": "avalon-demo-16-release_final_v6-2026-09-06T18-19-43-347Z-6f4bf121",
+  "scope": "Post-execution judgments over visible response text only; expected outcomes and labels were not sent to Avalon.",
+  "cases": [
+    {
+      "caseId": "AVB-HLC-001",
+      "assertions": [
+        {"id":"avalon_capabilities_described","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer describes Avalon's shipped capability surface rather than only the venue.","evidence":[{"kind":"visible_text","exact":"Avalon Hyperliquid capability summary:"}]},
+        {"id":"hyperliquid_workflows_grounded","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer names live perpetual, Observer, and backtest workflows with boundaries.","evidence":[{"kind":"visible_text","exact":"Watch-only Observer agents: watch a market or an asset with a read-only agent, nothing at risk."},{"kind":"visible_text","exact":"Strategy workflow: Avalon can backtest a Hyperliquid strategy"}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-002",
+      "assertions": [
+        {"id":"avalon_instrument_scope_described","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response distinguishes crypto and HIP-3 reference-perpetual scope and provides the current catalog.","evidence":[{"kind":"visible_text","exact":"Instrument scope: crypto perpetuals plus the supported HIP-3 equity-, index-, and commodity-reference perpetual markets"},{"kind":"market_line_count","exact":103}]},
+        {"id":"perpetual_semantics_preserved","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response states that catalog instruments are perpetual contracts and do not confer ownership.","evidence":[{"kind":"visible_text","exact":"These are perpetual contracts that provide price exposure only; they do not confer ownership of actual shares, dividends, or voting rights."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-003",
+      "assertions": [
+        {"id":"actual_shares_denied","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer explicitly says the instruments provide exposure and not share ownership.","evidence":[{"kind":"visible_text","exact":"these provide price exposure only and do not confer ownership of shares or other underlying assets."}]},
+        {"id":"equity_reference_perpetuals_distinguished","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer calls the supported stock-linked instruments equity-reference perpetual markets.","evidence":[{"kind":"visible_text","exact":"HIP-3 equity-, index-, and commodity-reference perpetual markets"}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-004",
+      "assertions": [
+        {"id":"equity_reference_exposure_described","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer describes supported equity-reference perpetual price exposure.","evidence":[{"kind":"visible_text","exact":"HIP-3 equity-, index-, and commodity-reference perpetual markets; these provide price exposure only"}]},
+        {"id":"actual_shares_not_implied","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response expressly disclaims ownership of shares and underlying assets.","evidence":[{"kind":"visible_text","exact":"do not confer ownership of shares or other underlying assets."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-005",
+      "assertions": [
+        {"id":"nvidia_resolved_to_nvda","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The authenticated catalog result visibly resolves Nvidia to NVDA.","evidence":[{"kind":"visible_text","exact":"- NVDA — Nvidia"},{"kind":"control_event","match":{"type":"trace","tool":"getHyperliquidCatalog","status":"completed","query":"markets"}}]},
+        {"id":"equity_reference_perpetuals_distinguished","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer describes the match as a perpetual contract and denies shareholder rights.","evidence":[{"kind":"visible_text","exact":"This is a perpetual contract that provides price exposure only; it does not confer ownership of actual shares"}]},
+        {"id":"no_account_readiness_invented","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer explicitly says account readiness cannot be confirmed from product support.","evidence":[{"kind":"visible_text","exact":"Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this match alone."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-006",
+      "assertions": [
+        {"id":"actual_nvidia_shares_denied","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The first sentence directly answers no to buying actual Nvidia shares.","evidence":[{"kind":"visible_text","exact":"No, you cannot buy actual Nvidia shares through this Hyperliquid market."}]},
+        {"id":"nvda_perpetual_explained","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response identifies NVDA and explains price exposure without shareholder rights.","evidence":[{"kind":"visible_text","exact":"- NVDA — Nvidia"},{"kind":"visible_text","exact":"This is a perpetual contract that provides price exposure only"}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-007",
+      "assertions": [
+        {"id":"avalon_venue_or_workflow_identified","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The product answer identifies the Avalon Hyperliquid market path.","evidence":[{"kind":"visible_text","exact":"Avalon Hyperliquid market match:"}]},
+        {"id":"nvidia_resolved_to_nvda","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The authenticated catalog result visibly resolves Nvidia to NVDA.","evidence":[{"kind":"visible_text","exact":"- NVDA — Nvidia"},{"kind":"control_event","match":{"type":"trace","tool":"getHyperliquidCatalog","status":"completed","query":"markets"}}]},
+        {"id":"perpetual_semantics_preserved","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The result is described as perpetual price exposure, not shares.","evidence":[{"kind":"visible_text","exact":"This is a perpetual contract that provides price exposure only"}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-008",
+      "assertions": [
+        {"id":"google_reference_resolved","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The visible authenticated catalog result resolves the company name to Alphabet's GOOGL reference.","evidence":[{"kind":"visible_text","exact":"- GOOGL — Alphabet"},{"kind":"control_event","match":{"type":"trace","tool":"getHyperliquidCatalog","status":"completed","query":"markets"}}]},
+        {"id":"goog_googl_ambiguity_handled","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer selects GOOGL and does not invent a GOOG market match.","evidence":[{"kind":"visible_text","exact":"- GOOGL — Alphabet"},{"kind":"visible_text_absent","exact":"- GOOG —"}]},
+        {"id":"perpetual_semantics_preserved","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer states this is perpetual exposure without share ownership.","evidence":[{"kind":"visible_text","exact":"This is a perpetual contract that provides price exposure only"}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-009",
+      "assertions": [
+        {"id":"supported_equity_reference_markets_described","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response returns the 88 classified equity and equity-fund references and excludes classified FX, commodity, and index references.","evidence":[{"kind":"visible_text","exact":"Avalon's current Hyperliquid HIP-3 equity-reference market catalog is:"},{"kind":"market_line_count","exact":88},{"kind":"visible_text_absent","exact":"- JPY — Japanese Yen"},{"kind":"visible_text_absent","exact":"- GOLD — Gold"},{"kind":"visible_text_absent","exact":"- SP500 — S&P 500"}]},
+        {"id":"product_truth_not_generic_protocol_only","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response labels the set as Avalon's current product catalog and states what that proves.","evidence":[{"kind":"visible_text","exact":"This catalog proves Avalon product support."}]},
+        {"id":"perpetual_semantics_preserved","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The catalog explicitly describes perpetual contracts and denies share ownership rights.","evidence":[{"kind":"visible_text","exact":"These are perpetual contracts that provide price exposure only; they do not confer ownership of actual shares, dividends, or voting rights."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-010",
+      "assertions": [
+        {"id":"product_support_separated","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer treats the catalog match as product support only.","evidence":[{"kind":"visible_text","exact":"This match proves Avalon product support."}]},
+        {"id":"venue_availability_separated","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer says the match does not confirm current venue listing.","evidence":[{"kind":"visible_text","exact":"Avalon cannot confirm current venue listing"}]},
+        {"id":"account_readiness_not_invented","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer does not infer connection, funding, permission, or readiness.","evidence":[{"kind":"visible_text","exact":"or that a specific account is connected, funded, permitted, or ready to trade from this match alone."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-011",
+      "assertions": [
+        {"id":"observer_workflow_selected","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The response path and authenticated preview event select Observer setup preview.","evidence":[{"kind":"response_path","exact":"agent_setup_unauthenticated_preview"},{"kind":"visible_text","exact":"- Workflow: Observer"},{"kind":"control_event","match":{"type":"trace","tool":"renderAgentSetupPreview","status":"completed"}}]},
+        {"id":"hyperliquid_venue_preserved","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The preview visibly preserves Hyperliquid.","evidence":[{"kind":"visible_text","exact":"- Venue: Hyperliquid"}]},
+        {"id":"nvidia_resolved_to_nvda","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The preview visibly preserves Nvidia and resolves NVDA.","evidence":[{"kind":"visible_text","exact":"- Instrument: Nvidia (NVDA)"}]},
+        {"id":"artifact_or_preview_truthful","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response truthfully labels a read-only descriptive preview and denies creation or execution.","evidence":[{"kind":"visible_text","exact":"This is a read-only preview. No agent is installed or running, and no financial action occurred."},{"kind":"visible_text","exact":"nothing was created, saved, installed, armed, or run."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-012",
+      "assertions": [
+        {"id":"momentum_workflow_selected","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The response path and authenticated preview event select Momentum setup preview.","evidence":[{"kind":"response_path","exact":"agent_setup_unauthenticated_preview"},{"kind":"visible_text","exact":"- Workflow: Momentum"},{"kind":"control_event","match":{"type":"trace","tool":"renderAgentSetupPreview","status":"completed"}}]},
+        {"id":"hyperliquid_venue_preserved","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The preview visibly preserves Hyperliquid.","evidence":[{"kind":"visible_text","exact":"- Venue: Hyperliquid"}]},
+        {"id":"nvidia_resolved_to_nvda","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The preview visibly preserves Nvidia and resolves NVDA.","evidence":[{"kind":"visible_text","exact":"- Instrument: Nvidia (NVDA)"}]},
+        {"id":"confirmation_boundary_preserved","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response stops before save/install and says sign-in is required for those later actions.","evidence":[{"kind":"visible_text","exact":"Sign-in is required only to save or install it."},{"kind":"visible_text","exact":"nothing was created, saved, installed, armed, or run."}]},
+        {"id":"artifact_or_preview_truthful","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response truthfully labels a read-only descriptive preview and denies creation or execution.","evidence":[{"kind":"visible_text","exact":"This is a read-only preview. No agent is installed or running, and no financial action occurred."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-013",
+      "assertions": [
+        {"id":"avalon_context_applied","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The implicit venue question receives Avalon's Hyperliquid product answer.","evidence":[{"kind":"visible_text","exact":"Avalon Hyperliquid market match:"}]},
+        {"id":"google_reference_resolved","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The authenticated catalog result resolves Google to GOOGL/Alphabet.","evidence":[{"kind":"visible_text","exact":"- GOOGL — Alphabet"},{"kind":"control_event","match":{"type":"trace","tool":"getHyperliquidCatalog","status":"completed","query":"markets"}}]},
+        {"id":"availability_not_invented","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response explicitly declines to infer current venue or account availability.","evidence":[{"kind":"visible_text","exact":"Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this match alone."}]},
+        {"id":"actual_shares_not_implied","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response states the market is perpetual price exposure without ownership or shareholder rights.","evidence":[{"kind":"visible_text","exact":"it does not confer ownership of actual shares, dividends, voting rights, or other shareholder rights."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-014",
+      "assertions": [
+        {"id":"avalon_spot_support_answered","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer directly states that Avalon supports Hyperliquid perpetuals, not spot.","evidence":[{"kind":"visible_text","exact":"Avalon currently supports Hyperliquid perpetuals, not Hyperliquid spot."}]},
+        {"id":"venue_capability_not_product_capability","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer separates Hyperliquid's spot order book from Avalon's product support.","evidence":[{"kind":"visible_text","exact":"Hyperliquid itself has both perpetual-futures and spot order books, so venue support does not imply Avalon product support."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-015",
+      "assertions": [
+        {"id":"current_crypto_news_answered","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer provides a dated late-August/early-September 2026 weekly summary with linked sources.","evidence":[{"kind":"visible_text","exact":"### Crypto This Week (Late August–Early September 2026)"},{"kind":"visible_text","exact":"https://www.reuters.com/markets/cryptocurrency/"}]},
+        {"id":"external_research_observed","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"A nonce-authenticated webSearch completed with ten observed results.","evidence":[{"kind":"control_event","match":{"type":"trace","tool":"webSearch","status":"completed","resultCount":10}}]},
+        {"id":"avalon_capabilities_described","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The second half separately describes Avalon's trading, backtest, live-agent, and watch-only workflows.","evidence":[{"kind":"visible_text","exact":"### What You Can Do on Hyperliquid (via Avalon)"},{"kind":"visible_text","exact":"**4. Watch-Only Mode**"}]},
+        {"id":"product_truth_not_generic_protocol_only","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response states Avalon's perp-only boundary and account-readiness caveat.","evidence":[{"kind":"visible_text","exact":"Avalon currently supports Hyperliquid perpetuals (not spot), and product support doesn't guarantee your account is connected or funded yet"}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    },
+    {
+      "caseId": "AVB-HLC-016",
+      "assertions": [
+        {"id":"external_hyperliquid_explanation_accurate","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The answer accurately distinguishes HyperCore, HLP, Points, and HYPE.","evidence":[{"kind":"visible_text","exact":"Hyperliquid is a layer-one blockchain whose HyperCore includes fully onchain perpetual-futures and spot order books."},{"kind":"visible_text","exact":"HLP means Hyperliquidity Provider: a protocol vault that provides liquidity through multiple protocol strategies."},{"kind":"visible_text","exact":"Hyperliquid Points were a separate legacy rewards program. HYPE is the native token."}]},
+        {"id":"no_unrequested_product_action","verdict":"PASS","judgmentClass":"human_semantic_judgment","rationale":"The response explicitly states that no Avalon workflow or financial action started.","evidence":[{"kind":"visible_text","exact":"No Avalon workflow or financial action was started."}]},
+        {"id":"no_financial_mutation","verdict":"PASS","judgmentClass":"mechanical_observation","rationale":"The complete pre/post financial table rows are identical.","evidence":[{"kind":"financial_snapshot_identical"}]}
+      ]
+    }
+  ]
+}

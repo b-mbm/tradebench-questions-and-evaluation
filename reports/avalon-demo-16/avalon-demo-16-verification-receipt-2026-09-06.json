@@ -1,12 +1,12 @@
 {
-  "receiptVersion": "avalon-demo-16-release-verification-v2",
+  "receiptVersion": "avalon-demo-16-release-verification-v3",
   "bank": {
     "id": "avalon-demo-exposed-16-v1",
     "caseCount": 16,
     "canonicalDigest": "d0f71c14e411e491fc89becb61b7c4793f9a801e4f6dba2d56e5335308e2574a"
   },
   "runtime": {
-    "commit": "5e574faa7126ada39b767e9b83284744a5f3ca4c",
+    "commit": "1cc70e336c35a46c66130d304bda60cd39cabc1f",
     "entrypoint": "apps/aix-frontend/app/api/chat/route.ts#POST",
     "modelRoute": {
       "label": "Avalon 1 Fast",
@@ -19,7 +19,7 @@
     "toolManifestCount": 40
   },
   "finalRun": {
-    "runId": "avalon-demo-16-release_final_v5-2026-09-06T04-59-35-228Z-281d61cd",
+    "runId": "avalon-demo-16-release_final_v6-2026-09-06T18-19-43-347Z-6f4bf121",
     "http200Count": 16,
     "transportErrorCount": 0,
     "passCount": 16,
@@ -28,8 +28,19 @@
     "secondaryFailures": [],
     "notEvaluableUserVisibleAssertions": [],
     "safetyVetoPassCount": 16,
-    "reportSha256": "a20ae8754361b790a649780cce8feeeed65e5b0fc4041f93dd69febefcf77a28",
-    "evidenceJsonlSha256": "428b506c8617df99e566a6d409d1d7f1a257f4ccdbcbb2c2461e1cd1455e0842"
+    "reportSha256": "d65e6eb751c7e0fe2cef8ba76a104f7e408cf1e97b97a40c205f876c93797f4f",
+    "evidenceJsonlSha256": "a82890e9076578c02e0575d48d16831474250cbfbf6c1453e8d596e5cc09d769",
+    "controlNonceRetainedCount": 16,
+    "authenticatedTraceCount": 16
+  },
+  "scorecard": {
+    "sha256": "ea6846ece9f7355d00fc1a576e759c4ecbe661db387e8d92a296ed03be3ac091",
+    "reproductionSha256": "ea6846ece9f7355d00fc1a576e759c4ecbe661db387e8d92a296ed03be3ac091",
+    "assertionCount": 62,
+    "assertionPassCount": 62,
+    "mechanicalAssertionCount": 27,
+    "humanSemanticAssertionCount": 35,
+    "humanJudgmentInputSha256": "b4c0abbe83af38dfbeb3ca468036f3b13f3ffc1c4224a15c291b0447b0937bec"
   },
   "providerCalls": {
     "status": "NOT_EVALUABLE",
@@ -46,38 +57,43 @@
       "nonzero": {
         "public.wallet_execution_contract_state": 1
       },
-      "sha256": "f5c5b20881ca99ee4b18b63b018766b6ec56258c07742b9e5f717ff1ee176ae0"
+      "rowsSha256": "fa64d57a1b086a02f20e9e8d3e3412be875db9730794e9f002ee0009acf7e008",
+      "artifactSha256": "e1f50bad2707d64f8a9f547b9add625132e540d17b283b31f1b61ef190ac82ec"
     },
     "postRun": {
       "totalRows": 1,
       "nonzero": {
         "public.wallet_execution_contract_state": 1
       },
-      "sha256": "f5c5b20881ca99ee4b18b63b018766b6ec56258c07742b9e5f717ff1ee176ae0"
+      "rowsSha256": "fa64d57a1b086a02f20e9e8d3e3412be875db9730794e9f002ee0009acf7e008",
+      "artifactSha256": "a267348f71eaefd19a763c597060af4a807a097885532acce3fd64a887cf83f9"
     },
     "identical": true
   },
   "verification": {
     "focusedTests": {
       "files": 7,
-      "testsPassed": 104,
+      "testsPassed": 106,
       "testsFailed": 0,
       "command": "npm test -- --silent --reporter=dot lib/bridge/tradingSurfaces.test.ts lib/hyperliquidCapabilities.test.ts lib/sourceCitations.test.ts lib/avalonbenchRuntimeBridge.test.ts tests/orchestrationTools.test.ts app/api/chat/__tests__/primaryAgentSetupRouting.test.ts lib/avalonbenchContract.test.ts"
     },
     "lint": {
       "exitCode": 0,
-      "scope": "nine changed runtime files since the approved citation/control baseline"
+      "scope": "changed frontend files; the protocol-adapter source was compiled by the workspace package build and production build"
     },
     "productionBuild": {
       "exitCode": 0,
       "compiled": true,
       "initialRouteCatalogVerified": true,
-      "command": "BACKEND_URL=https://api.avalon.trade NEXT_PUBLIC_APP_URL=https://avalon.trade NEXT_DIST_DIR=.next-avalonbench-final-v15 npm run build"
+      "command": "BACKEND_URL=https://api.avalon.trade NEXT_PUBLIC_APP_URL=https://avalon.trade NEXT_DIST_DIR=.next-avalonbench-final-v16 npm run build"
     },
     "browserQa": {
       "transport": "playwright_fallback_after_chrome_unavailable",
-      "casesPassed": 12,
-      "casesFailed": 0,
+      "fullRunCasesPassed": 11,
+      "fullRunTransportFailures": 1,
+      "transportFailure": "HTTP 402 on capability discovery before assertions",
+      "isolatedRetryCasesPassed": 1,
+      "assertionFailuresAfterRetry": 0,
       "observedFinancialPathRequestCount": 0,
       "command": "PW_BASE_URL=http://127.0.0.1:3437 npm run test:e2e -- e2e/avalonbench-demo-browser-qa.spec.ts --reporter=line --workers=1"
     },

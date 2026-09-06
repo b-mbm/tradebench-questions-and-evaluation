@@ -70,6 +70,50 @@ async function readJson(response) {
   }
 }
 
+function parseAuthenticatedChatStream(raw, controlNonce) {
+  const controlEvents = [];
+  let responseText = '';
+  let cursor = 0;
+
+  while (cursor < raw.length) {
+    if (raw.slice(cursor, cursor + 6) === 'data: ') {
+      const lineEnd = raw.indexOf('\n', cursor);
+      if (lineEnd < 0) {
+        responseText += raw.slice(cursor);
+        break;
+      }
+      const serialized = raw.slice(cursor + 6, lineEnd);
+      try {
+        const parsed = JSON.parse(serialized);
+        const event = parsed?.__aixControl === true
+          && typeof parsed.__nonce === 'string'
+          && parsed.__nonce === controlNonce
+          && parsed.event
+          && typeof parsed.event === 'object'
+          ? parsed.event
+          : null;
+        if (event) {
+          controlEvents.push(event);
+          cursor = lineEnd + 1;
+          if (raw[cursor] === '\n') cursor += 1;
+          continue;
+        }
+      } catch {
+        // Non-control stream text remains byte-preserved for visible grading.
+      }
+    }
+    responseText += raw[cursor];
+    cursor += 1;
+  }
+
+  const metadataStart = responseText.startsWith('<SEARCH_METADATA>');
+  const metadataEnd = metadataStart ? responseText.indexOf('</SEARCH_METADATA>') : -1;
+  const visibleResponse = metadataEnd >= 0
+    ? responseText.slice(metadataEnd + '</SEARCH_METADATA>'.length).trim()
+    : responseText.trim();
+  return { responseText, visibleResponse, controlEvents };
+}
+
 async function verifyContract() {
   if (adapterSecret.length < 24) throw new Error('ADAPTER_SECRET_REQUIRED');
   const response = await fetch(contractUrl, {
@@ -220,6 +264,8 @@ async function runCase(item, runId) {
     messages: [],
     diagnosticError: error instanceof Error ? error.message : String(error),
   }));
+  const controlNonce = response?.headers.get('x-control-nonce') ?? null;
+  const observedResponse = parseAuthenticatedChatStream(rawResponse, controlNonce);
   const result = {
     runId,
     caseId: item.id,
@@ -236,8 +282,10 @@ async function runCase(item, runId) {
       routerClarify: response.headers.get('x-router-clarify'),
       adoptedSessionPublicId: response.headers.get('x-chat-session-public-id'),
       responseRequestId: response.headers.get('x-aix-request-id'),
+      controlNonce,
     } : null,
     rawResponse,
+    observedResponse,
     transportError,
     diagnostics,
   };
@@ -276,7 +324,7 @@ async function main() {
     })}\n`);
     return;
   }
-  if (!['baseline', 'baseline_scoreable', 'remediated', 'remediated_v2', 'remediated_final', 'release_candidate', 'catalog_grounded', 'catalog_grounded_v2', 'release_final_v2', 'release_final_v3', 'release_final_v4', 'release_final_v5'].includes(phase ?? '')) {
+  if (!['baseline', 'baseline_scoreable', 'remediated', 'remediated_v2', 'remediated_final', 'release_candidate', 'catalog_grounded', 'catalog_grounded_v2', 'release_final_v2', 'release_final_v3', 'release_final_v4', 'release_final_v5', 'release_final_v6'].includes(phase ?? '')) {
     throw new Error('PHASE_MUST_BE_AN_EXPLICIT_DEMO_16_RUN_PHASE');
   }
 

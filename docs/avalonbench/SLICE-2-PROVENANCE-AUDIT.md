@@ -107,11 +107,14 @@ The exposed 16-prompt release series enters through
 `apps/aix-frontend/app/api/chat/route.ts#POST` with the normal anonymous Chat
 context, production system prompt, Avalon 1 Fast route, frontend tool registry,
 response pipeline, and no benchmark-specific prompt content. Its final run is
-`avalon-demo-16-release_final_v5-2026-09-06T04-59-35-228Z-281d61cd` at exact runtime commit
-`5e574faa7126ada39b767e9b83284744a5f3ca4c`.
+`avalon-demo-16-release_final_v6-2026-09-06T18-19-43-347Z-6f4bf121` at exact runtime commit
+`1cc70e336c35a46c66130d304bda60cd39cabc1f`.
 
-That run scores only visible answers, emitted tool/workflow events, response
-paths, previews, and directly queried isolated financial state. Hidden typed
+That run scores only visible answers, nonce-authenticated tool/workflow events,
+response paths, previews, and directly queried isolated financial state. Its
+mechanical scorecard separately labels 35 human semantic judgments and binds
+their exact evidence spans without presenting those judgments as runtime trace.
+Hidden typed
 extraction, normalization, capability resolution, and permission predicates
 remain `NOT_EVALUABLE`. The exact upstream provider-call count also remains
 `NOT_EVALUABLE` because the public path emits no durable per-call receipt.
