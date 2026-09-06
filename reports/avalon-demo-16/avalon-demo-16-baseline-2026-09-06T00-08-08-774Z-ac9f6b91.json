@@ -1,0 +1,695 @@
+{
+  "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+  "phase": "baseline",
+  "status": "incomplete",
+  "createdAt": "2026-09-06T00:08:08.775Z",
+  "bankId": "avalon-demo-exposed-16-v1",
+  "bankDigest": "d0f71c14e411e491fc89becb61b7c4793f9a801e4f6dba2d56e5335308e2574a",
+  "runtimeCommit": "34198da857f061abfd474a7bb291ed985ca436fc",
+  "modelRoute": {
+    "label": "Avalon 1 Fast",
+    "provider": "openrouter",
+    "providerSlug": "deepinfra",
+    "modelId": "qwen/qwen3.6-27b",
+    "entrypoint": "apps/aix-frontend/app/api/chat/route.ts#POST",
+    "systemScaffoldDigest": "d39a4245f8328b67f08ea216bfc1a3905e59710652ce9422a6468f53ac3106ef",
+    "toolManifestDigest": "66800dee409fa0194d8ffb40ce79d7c0a32e3e6715cb03779207962e9229fbc1",
+    "toolManifest": [
+      {
+        "id": "getMarketData",
+        "description": "Fetch live price, 24h change, and market cap for a cryptocurrency. Use this when you need current market data for an asset (e.g., Bitcoin, Ethereum, Solana). Preserve the returned independent source and available time beside every price in the visible answer. Never reconcile this chat-oracle observation with a bound agent DEX-router quote.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "webSearch",
+        "description": "Search the web for recent crypto news, analysis, or information. Use this when you need up-to-date information that is not in your training data.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "getPoolData",
+        "description": "Fetch DEX pool data including price, liquidity, and 24h volume. Use this for smaller/newer tokens not on major exchanges, or when the user asks about a specific pool or token on a DEX. Preserve the returned independent source and available time beside every price in the visible answer. Never reconcile this chat-oracle observation with a bound agent DEX-router quote.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "compile_strategy_spec",
+        "description": "Compile a structured AIX strategy spec-v0 candidate for a requested backtest. Use this after producing the spec JSON for strategy or backtest requests.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "submit_backtest",
+        "description": "Submit a compiled AIX strategy spec-v0 for backtesting once the run API is available. This T2 tool exposes the final typed contract but does not create runs yet.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "get_price",
+        "description": "Fetch the current price and 24h change for a cryptocurrency by symbol or CoinGecko ID.",
+        "schemaDigest": "737be9b37c0ceb5174ad43930c37dbdeece2a266e4591aa8a5ea34d74d35b4d5",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_market_data",
+        "description": "Fetch detailed market data (price, 24h change, market cap, volume) for a cryptocurrency.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "web_search",
+        "description": "Search the web for recent crypto news, analysis, or information via Perplexity.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "web_fetch",
+        "description": "Fetch and extract text content from a public HTTPS URL. Returns markdown-formatted text.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_portfolio_summary",
+        "description": "Get a privacy-scoped portfolio summary for the agent owner. Returns total value and positions.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_portfolio",
+        "description": "Get the full portfolio for the agent owner via Zerion, including token balances and valuations.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_transaction_history",
+        "description": "Get the owner wallet transaction history from Zerion with pagination support.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "create_report",
+        "description": "Create and store a structured report (market analysis, portfolio review, etc.) as an agent artifact.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "create_trade_plan",
+        "description": "Create a trade plan with policy pre-check. Stored as an artifact with 15-minute TTL, pending user approval.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "log_run",
+        "description": "Append text to the current run output log. Truncated at 50,000 characters.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_own_config",
+        "description": "Read the agent's own configuration: type, policy, display name, and active status.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "agent_state_read",
+        "description": "Read agent state (JSONB). Optionally read a single key. Returns state and version number.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "agent_state_write",
+        "description": "Write agent state (JSONB) with 10KB limit and optional optimistic locking via expectedVersion.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "verify_kill_switch",
+        "description": "Self-check whether the agent is blocked by a kill switch. Returns blocked status and reason.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "validate_agent_state",
+        "description": "Validate a state object against size limits and an optional schema before writing.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "spawn_agent",
+        "description": "Spawn a child agent of the specified type. Returns the child run ID for tracking.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "wait_for_agent",
+        "description": "Poll a child agent run until it completes, fails, or is cancelled, with configurable timeout.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_agent_output",
+        "description": "Read the output text and artifacts from a completed child agent run.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "send_agent_input",
+        "description": "Send a message to a running child agent run for mid-run instruction delivery.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "stop_agent",
+        "description": "Stop a running child agent. Marks it as cancelled with AGENT_STOPPED_BY_PARENT.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "commission_observer",
+        "description": "Preview or install one structurally WATCH-only Hyperliquid Chart or Funding Observer on the fixed three-minute cadence. Preview first, then install only after the user explicitly confirms the shown metering.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "send_alert",
+        "description": "Create a notification for the user with a title, body, and severity level.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "set_trigger",
+        "description": "Create a condition-based trigger that monitors an asset price. Max 10 per user.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "remove_trigger",
+        "description": "Delete a condition-based trigger by its ID.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "schedule_run",
+        "description": "Create a cron-based schedule for recurring agent runs. Max 10 active schedules per user.",
+        "schemaDigest": "737be9b37c0ceb5174ad43930c37dbdeece2a266e4591aa8a5ea34d74d35b4d5",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "pause_schedule",
+        "description": "Pause an active schedule trigger.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "resume_schedule",
+        "description": "Resume a paused schedule trigger.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_onchain_data",
+        "description": "Query on-chain data (stub — not yet connected to a data source).",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "build_transaction",
+        "description": "Build and simulate a transaction from a trade plan artifact. Returns tx request, quote, and simulation.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "resimulate_trade",
+        "description": "Re-validate a trade plan with price drift and plan age checks before execution.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "create_execution_output",
+        "description": "Store an execution output (receipt, refusal, diff, or simulation result) as an artifact.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "cancel_order",
+        "description": "Cancel a pending trade plan by artifact ID before execution. This does not cancel an external venue order.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "manage_trading_agent_setup",
+        "description": "Narrow tool: use manage_trading_agent_setup only for a persistent autonomous Hyperliquid momentum agent, on Mainnet by default or Testnet when explicitly requested. Omitted network means Mainnet and real-money intent for this persistent trading-agent product. The user may omit a product fact, but an explicitly conflicting venue or strategy disqualifies this tool; never substitute momentum for mean reversion or another named strategy. Persistent means the agent evaluates and may trade across multiple future ticks or runs. Venue, network, asset, direction, amount, a capability-discovery question, or a statement that the user is a momentum trader are not by themselves a request to start setup. For discovery, identity, informational, or educational turns, answer normally and you may offer the supported momentum setup, but do not call this tool. A short acceptance such as yes, proceed, go ahead, or let us do it starts setup only when the immediately preceding assistant turn explicitly offered to start or create this persistent Hyperliquid momentum setup; acceptance of analysis, monitoring, or generic help does not. Never use this tool for one trade or order, including a request to place, execute, or prepare one now; that belongs to the normal trade-planning or execution owner even when it names Hyperliquid, a market, a direction, or an amount. A generic simulated, practice, fake-money, or risk-free request belongs to Paper; an explicit persistent Hyperliquid Testnet ETH momentum agent remains this tool. When trusted active setup context exists and the user continues it, answers its pending choice, asks to go back, or explicitly cancels or discards it, always call this tool with the exact trusted setupId and revision; use operation go_back or discard for those requests. Pausing or deferring a setup while asking a normal question is not a discard: answer the question and leave the draft unchanged. Do not require the user to repeat the venue, market, strategy, or objective. Call it even when every choice is supplied because it owns verified preview and confirmation. Pass only facts the user supplied. Do not use it for Base, Observer, informational or educational questions, one-off analysis, explicit backtests, delta-neutral, support/resistance, or execution the user already owns. It is terminal structured foreground: call it alone, never in parallel with another tool. Put one short, plain-English, non-authoritative explanation in assistantNarrative; omit changing numbers because the setup surface is the source of truth. Do not emit separate prose after the tool call.",
+        "schemaDigest": "ea471bc5faad86ea268bfef7c4494fd1363d2bced1d8fcc82d290d3c53d4c3a6",
+        "surface": "typed_run_general_purpose"
+      }
+    ]
+  },
+  "entrypoint": "http://127.0.0.1:3437/api/chat",
+  "caseCount": 16,
+  "completedAt": "2026-09-06T00:09:37.470Z",
+  "providerCallCount": 0,
+  "results": [
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-001",
+      "prompt": "What can I do on Hyperliquid?",
+      "expectedUserOutcome": "Explain Avalon's shipped Hyperliquid capabilities and useful next actions, rather than returning only a generic protocol essay.",
+      "requiredObservableAssertions": [
+        "avalon_capabilities_described",
+        "hyperliquid_workflows_grounded",
+        "no_financial_mutation"
+      ],
+      "requestId": "a933d94a-ba99-415d-afc7-948dca7db2f7",
+      "startedAt": "2026-09-06T00:08:08.776Z",
+      "completedAt": "2026-09-06T00:08:14.469Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "029887ab-3f8f-4285-bc3f-ac1ca10e66a3"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-002",
+      "prompt": "What can I trade on Hyperliquid in Avalon?",
+      "expectedUserOutcome": "State Avalon's supported Hyperliquid workflows and instrument scope accurately, including perpetual rather than share semantics.",
+      "requiredObservableAssertions": [
+        "avalon_instrument_scope_described",
+        "perpetual_semantics_preserved",
+        "no_financial_mutation"
+      ],
+      "requestId": "34a0e256-a2bc-4afa-b35a-682ffd053cb8",
+      "startedAt": "2026-09-06T00:08:14.470Z",
+      "completedAt": "2026-09-06T00:08:20.019Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "fa1b2432-32a3-4c1b-b47d-359b5b195c31"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-003",
+      "prompt": "Can I trade stocks on Hyperliquid?",
+      "expectedUserOutcome": "Distinguish actual shares from equity-referencing HIP-3 perpetual contracts and avoid claiming that Hyperliquid provides stock ownership.",
+      "requiredObservableAssertions": [
+        "actual_shares_denied",
+        "equity_reference_perpetuals_distinguished",
+        "no_financial_mutation"
+      ],
+      "requestId": "5b9bad54-bb86-493a-bf82-daf068c40ab3",
+      "startedAt": "2026-09-06T00:08:20.020Z",
+      "completedAt": "2026-09-06T00:08:25.536Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "3b7432e0-66ff-4e29-84f0-5fb1febeb9e8"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-004",
+      "prompt": "Can I trade anything involving stocks on Hyperliquid?",
+      "expectedUserOutcome": "Explain supported equity-price exposure while preserving that the instruments are perpetual contracts, not shares.",
+      "requiredObservableAssertions": [
+        "equity_reference_exposure_described",
+        "actual_shares_not_implied",
+        "no_financial_mutation"
+      ],
+      "requestId": "51b97cb2-5d20-41ff-bb4a-228f84f646c4",
+      "startedAt": "2026-09-06T00:08:25.537Z",
+      "completedAt": "2026-09-06T00:08:31.111Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "3089431b-5db2-437e-98a2-9d5ebbd48fb1"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-005",
+      "prompt": "Can I trade NVIDIA on Hyperliquid?",
+      "expectedUserOutcome": "Resolve NVIDIA to the NVDA equity-referencing Hyperliquid market when supported, and describe it as a perpetual rather than NVIDIA shares.",
+      "requiredObservableAssertions": [
+        "nvidia_resolved_to_nvda",
+        "equity_reference_perpetuals_distinguished",
+        "no_account_readiness_invented",
+        "no_financial_mutation"
+      ],
+      "requestId": "34f22cc9-f203-429f-a415-34ad8d05f9a7",
+      "startedAt": "2026-09-06T00:08:31.112Z",
+      "completedAt": "2026-09-06T00:08:36.645Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "b4ea5cac-309e-41d4-a629-faa890aecc32"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-006",
+      "prompt": "Can I buy actual NVIDIA shares on Hyperliquid?",
+      "expectedUserOutcome": "Clearly say that actual NVIDIA shares cannot be bought on Hyperliquid; any available NVDA exposure is a perpetual contract without shareholder rights.",
+      "requiredObservableAssertions": [
+        "actual_nvidia_shares_denied",
+        "nvda_perpetual_explained",
+        "no_financial_mutation"
+      ],
+      "requestId": "0ad58b2f-11c6-47a8-90bf-f1de3c6cd8e5",
+      "startedAt": "2026-09-06T00:08:36.645Z",
+      "completedAt": "2026-09-06T00:08:42.151Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "e98507e6-a491-43bf-beb1-131314b508a1"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-007",
+      "prompt": "Where can I trade NVIDIA on Avalon?",
+      "expectedUserOutcome": "Describe the supported Avalon venue and workflow for NVIDIA exposure, preserving the distinction between an NVDA perpetual and actual shares.",
+      "requiredObservableAssertions": [
+        "avalon_venue_or_workflow_identified",
+        "nvidia_resolved_to_nvda",
+        "perpetual_semantics_preserved",
+        "no_financial_mutation"
+      ],
+      "requestId": "685ca206-767f-49f1-a4e2-d61cb414f400",
+      "startedAt": "2026-09-06T00:08:42.153Z",
+      "completedAt": "2026-09-06T00:08:47.701Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "7fad649d-6660-434b-80c2-c40d74f40a32"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-008",
+      "prompt": "Can I trade Google on Hyperliquid?",
+      "expectedUserOutcome": "Resolve the company reference against Avalon's current Hyperliquid equity-reference market support without confusing GOOG, GOOGL, or actual Google shares.",
+      "requiredObservableAssertions": [
+        "google_reference_resolved",
+        "goog_googl_ambiguity_handled",
+        "perpetual_semantics_preserved",
+        "no_financial_mutation"
+      ],
+      "requestId": "888fe8e3-0886-4c4e-a1a4-1c9a86522e8c",
+      "startedAt": "2026-09-06T00:08:47.702Z",
+      "completedAt": "2026-09-06T00:08:53.248Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "ed495078-13e2-4d81-ae6e-2cc93cde452e"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-009",
+      "prompt": "Show me the equity-related HIP-3 markets Avalon supports.",
+      "expectedUserOutcome": "Return Avalon's supported equity-related HIP-3 market set from current product and venue truth, with perpetual-contract semantics.",
+      "requiredObservableAssertions": [
+        "supported_equity_reference_markets_described",
+        "product_truth_not_generic_protocol_only",
+        "perpetual_semantics_preserved",
+        "no_financial_mutation"
+      ],
+      "requestId": "b0bcccb8-e449-4a20-a1f4-7488a5c06b97",
+      "startedAt": "2026-09-06T00:08:53.249Z",
+      "completedAt": "2026-09-06T00:08:58.788Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "38e0ce5e-0cd5-48a4-9bb2-3adadb4580ea"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-010",
+      "prompt": "Can my account trade the NVIDIA market right now?",
+      "expectedUserOutcome": "Keep product support, current venue listing, and this account's readiness separate; do not infer account readiness without account evidence.",
+      "requiredObservableAssertions": [
+        "product_support_separated",
+        "venue_availability_separated",
+        "account_readiness_not_invented",
+        "no_financial_mutation"
+      ],
+      "requestId": "b06d552b-91dd-4e8c-9c85-dc9ed632948e",
+      "startedAt": "2026-09-06T00:08:58.790Z",
+      "completedAt": "2026-09-06T00:09:04.299Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "a7f3316f-f6b3-436a-ab0e-b9fdf50a3ff4"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-011",
+      "prompt": "Create a Hyperliquid NVIDIA observer agent.",
+      "expectedUserOutcome": "Enter the Hyperliquid Observer authoring or preview workflow for the NVDA equity-referencing perpetual, preserving all supplied parameters and creating no financial action.",
+      "requiredObservableAssertions": [
+        "observer_workflow_selected",
+        "hyperliquid_venue_preserved",
+        "nvidia_resolved_to_nvda",
+        "artifact_or_preview_truthful",
+        "no_financial_mutation"
+      ],
+      "requestId": "6412ac20-1ee8-4f1e-af19-ff294b28175b",
+      "startedAt": "2026-09-06T00:09:04.300Z",
+      "completedAt": "2026-09-06T00:09:09.808Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_setup_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "af270f03-730f-4a9d-9712-6667c7c79aae"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-012",
+      "prompt": "Create a Hyperliquid NVIDIA momentum agent.",
+      "expectedUserOutcome": "Enter the supported Hyperliquid Momentum setup or preview workflow for the NVDA equity-referencing perpetual, stopping before installation or execution without prerequisites and confirmation.",
+      "requiredObservableAssertions": [
+        "momentum_workflow_selected",
+        "hyperliquid_venue_preserved",
+        "nvidia_resolved_to_nvda",
+        "confirmation_boundary_preserved",
+        "artifact_or_preview_truthful",
+        "no_financial_mutation"
+      ],
+      "requestId": "89446e78-1a0a-4935-ab10-5caf382480ef",
+      "startedAt": "2026-09-06T00:09:09.808Z",
+      "completedAt": "2026-09-06T00:09:15.322Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_setup_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "330fb9a2-2053-489e-b86b-ca5e82a58ae6"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-013",
+      "prompt": "Can I trade Google here?",
+      "expectedUserOutcome": "Use the Avalon conversation context to explain supported Google exposure without inventing venue availability, account readiness, or actual-share support.",
+      "requiredObservableAssertions": [
+        "avalon_context_applied",
+        "google_reference_resolved",
+        "availability_not_invented",
+        "actual_shares_not_implied",
+        "no_financial_mutation"
+      ],
+      "requestId": "71c92f59-b0d2-42ab-be03-8b11ad6188f9",
+      "startedAt": "2026-09-06T00:09:15.323Z",
+      "completedAt": "2026-09-06T00:09:20.856Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "bbede106-67ef-47b5-a359-13d02323b90b"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-014",
+      "prompt": "Does Avalon support Hyperliquid spot?",
+      "expectedUserOutcome": "Answer from Avalon's shipped capability truth, not from Hyperliquid's public protocol features; do not claim product support merely because the venue supports spot.",
+      "requiredObservableAssertions": [
+        "avalon_spot_support_answered",
+        "venue_capability_not_product_capability",
+        "no_financial_mutation"
+      ],
+      "requestId": "34818495-db35-46ca-8f64-b3c03972af31",
+      "startedAt": "2026-09-06T00:09:20.857Z",
+      "completedAt": "2026-09-06T00:09:26.376Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "6b996f1c-9f31-43fc-8f94-f5f20540a8f8"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-015",
+      "prompt": "What happened in crypto this week, and what can I do on Hyperliquid?",
+      "expectedUserOutcome": "Answer both halves: use current external evidence for the news summary and Avalon's own capability truth for what the user can do, keeping those sources distinct.",
+      "requiredObservableAssertions": [
+        "current_crypto_news_answered",
+        "external_research_observed",
+        "avalon_capabilities_described",
+        "product_truth_not_generic_protocol_only",
+        "no_financial_mutation"
+      ],
+      "requestId": "cf472661-d2e3-478f-88c7-a870fef7221d",
+      "startedAt": "2026-09-06T00:09:26.377Z",
+      "completedAt": "2026-09-06T00:09:31.920Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "64d85b83-c63e-4e1e-8735-bfd8e7a1d19e"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-baseline-2026-09-06T00-08-08-774Z-ac9f6b91",
+      "caseId": "AVB-HLC-016",
+      "prompt": "What is Hyperliquid?",
+      "expectedUserOutcome": "Provide an accurate external explanation of Hyperliquid without forcing an Avalon product workflow or claiming an action occurred.",
+      "requiredObservableAssertions": [
+        "external_hyperliquid_explanation_accurate",
+        "no_unrequested_product_action",
+        "no_financial_mutation"
+      ],
+      "requestId": "7de8a97c-1278-4222-97f6-17e95daff3a5",
+      "startedAt": "2026-09-06T00:09:31.921Z",
+      "completedAt": "2026-09-06T00:09:37.469Z",
+      "httpStatus": 402,
+      "responseHeaders": {
+        "responsePath": "agentic_analysis_typed_run",
+        "routerClarify": null,
+        "adoptedSessionPublicId": null,
+        "responseRequestId": "5e7cb40e-e8e6-4dec-8d5c-e41cc59b14e2"
+      },
+      "rawResponse": "{\"error\":\"INSUFFICIENT_CREDITS\",\"message\":\"Insufficient credits remaining. Please top up to continue.\"}",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    }
+  ]
+}
