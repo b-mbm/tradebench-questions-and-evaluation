@@ -166,17 +166,48 @@ function outboundBody(prompt, anonSessionId, requestId) {
   return body;
 }
 
+async function bootstrapAnonymousIdentity(anonSessionId) {
+  const url = new URL('/api/v1/bootstrap?sessionsLimit=20', chatUrl.origin);
+  const response = await fetch(url, {
+    headers: { 'x-anon-session-id': anonSessionId },
+    cache: 'no-store',
+    signal: AbortSignal.timeout(15_000),
+  });
+  const body = await readJson(response);
+  if (
+    !response.ok
+    || body?.success !== true
+    || body?.anon?.sessionId !== anonSessionId
+    || typeof body?.credits !== 'number'
+    || body.credits < 1
+  ) {
+    throw new Error(`ANON_BOOTSTRAP_FAILED_${response.status}`);
+  }
+  return {
+    status: response.status,
+    degraded: body.degraded === true,
+    credits: body.credits,
+    anonIdentityMatched: true,
+    sessionCount: Array.isArray(body.sessions) ? body.sessions.length : null,
+  };
+}
+
 async function runCase(item, runId) {
   const requestId = randomUUID();
   const anonSessionId = `anon-${randomUUID()}`;
   const startedAt = new Date().toISOString();
+  let bootstrap = null;
   let response;
   let rawResponse = '';
   let transportError = null;
   try {
+    bootstrap = await bootstrapAnonymousIdentity(anonSessionId);
     response = await fetch(chatUrl, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: {
+        'content-type': 'application/json',
+        'x-credit-balance-hint': String(bootstrap.credits),
+      },
       body: JSON.stringify(outboundBody(item.prompt, anonSessionId, requestId)),
       signal: AbortSignal.timeout(295_000),
     });
@@ -198,6 +229,7 @@ async function runCase(item, runId) {
     requestId,
     startedAt,
     completedAt: new Date().toISOString(),
+    bootstrap,
     httpStatus: response?.status ?? null,
     responseHeaders: response ? {
       responsePath: response.headers.get('x-response-path'),
@@ -221,6 +253,7 @@ async function main() {
   const bankDigest = digest(bank);
   const modelRoute = await verifyContract();
   const publicRejection = await verifyPublicRejection();
+  const anonymousBootstrap = await bootstrapAnonymousIdentity(`anon-${randomUUID()}`);
   if (preflightOnly) {
     process.stdout.write(`${JSON.stringify({
       ok: true,
@@ -229,11 +262,14 @@ async function main() {
       runtimeCommit,
       modelRoute,
       publicRejection,
+      anonymousBootstrap,
       providerCalls: 0,
     })}\n`);
     return;
   }
-  if (!['baseline', 'remediated'].includes(phase ?? '')) throw new Error('PHASE_MUST_BE_BASELINE_OR_REMEDIATED');
+  if (!['baseline', 'baseline_scoreable', 'remediated'].includes(phase ?? '')) {
+    throw new Error('PHASE_MUST_BE_BASELINE_BASELINE_SCOREABLE_OR_REMEDIATED');
+  }
 
   const existingRegistry = await readFile(registryPath, 'utf8').catch((error) => {
     if (error?.code === 'ENOENT') return '';
