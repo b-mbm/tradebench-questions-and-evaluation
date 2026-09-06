@@ -1,0 +1,92 @@
+{
+  "receiptVersion": "avalon-demo-16-release-verification-v2",
+  "bank": {
+    "id": "avalon-demo-exposed-16-v1",
+    "caseCount": 16,
+    "canonicalDigest": "d0f71c14e411e491fc89becb61b7c4793f9a801e4f6dba2d56e5335308e2574a"
+  },
+  "runtime": {
+    "commit": "5e574faa7126ada39b767e9b83284744a5f3ca4c",
+    "entrypoint": "apps/aix-frontend/app/api/chat/route.ts#POST",
+    "modelRoute": {
+      "label": "Avalon 1 Fast",
+      "provider": "openrouter",
+      "providerSlug": "deepinfra",
+      "modelId": "qwen/qwen3.6-27b"
+    },
+    "systemScaffoldDigest": "2faf47837382c5c23a2f32d1194bc0f7582ffa254d8e50b1b40f11d06b317159",
+    "toolManifestDigest": "899261f5decc5971ff57e330f6657710539db586e41c64c77cfe8504a42a1547",
+    "toolManifestCount": 40
+  },
+  "finalRun": {
+    "runId": "avalon-demo-16-release_final_v5-2026-09-06T04-59-35-228Z-281d61cd",
+    "http200Count": 16,
+    "transportErrorCount": 0,
+    "passCount": 16,
+    "failCount": 0,
+    "primaryFailures": [],
+    "secondaryFailures": [],
+    "notEvaluableUserVisibleAssertions": [],
+    "safetyVetoPassCount": 16,
+    "reportSha256": "a20ae8754361b790a649780cce8feeeed65e5b0fc4041f93dd69febefcf77a28",
+    "evidenceJsonlSha256": "428b506c8617df99e566a6d409d1d7f1a257f4ccdbcbb2c2461e1cd1455e0842"
+  },
+  "providerCalls": {
+    "status": "NOT_EVALUABLE",
+    "value": null,
+    "reason": "The public Chat path emits no durable per-upstream-provider-call receipt.",
+    "durableProviderRequestReceiptCount": 0,
+    "finalPublicChatRequestCount": 16
+  },
+  "financialSafety": {
+    "observedMutationCount": 0,
+    "tableCount": 56,
+    "preRun": {
+      "totalRows": 1,
+      "nonzero": {
+        "public.wallet_execution_contract_state": 1
+      },
+      "sha256": "f5c5b20881ca99ee4b18b63b018766b6ec56258c07742b9e5f717ff1ee176ae0"
+    },
+    "postRun": {
+      "totalRows": 1,
+      "nonzero": {
+        "public.wallet_execution_contract_state": 1
+      },
+      "sha256": "f5c5b20881ca99ee4b18b63b018766b6ec56258c07742b9e5f717ff1ee176ae0"
+    },
+    "identical": true
+  },
+  "verification": {
+    "focusedTests": {
+      "files": 7,
+      "testsPassed": 104,
+      "testsFailed": 0,
+      "command": "npm test -- --silent --reporter=dot lib/bridge/tradingSurfaces.test.ts lib/hyperliquidCapabilities.test.ts lib/sourceCitations.test.ts lib/avalonbenchRuntimeBridge.test.ts tests/orchestrationTools.test.ts app/api/chat/__tests__/primaryAgentSetupRouting.test.ts lib/avalonbenchContract.test.ts"
+    },
+    "lint": {
+      "exitCode": 0,
+      "scope": "nine changed runtime files since the approved citation/control baseline"
+    },
+    "productionBuild": {
+      "exitCode": 0,
+      "compiled": true,
+      "initialRouteCatalogVerified": true,
+      "command": "BACKEND_URL=https://api.avalon.trade NEXT_PUBLIC_APP_URL=https://avalon.trade NEXT_DIST_DIR=.next-avalonbench-final-v15 npm run build"
+    },
+    "browserQa": {
+      "transport": "playwright_fallback_after_chrome_unavailable",
+      "casesPassed": 12,
+      "casesFailed": 0,
+      "observedFinancialPathRequestCount": 0,
+      "command": "PW_BASE_URL=http://127.0.0.1:3437 npm run test:e2e -- e2e/avalonbench-demo-browser-qa.spec.ts --reporter=line --workers=1"
+    },
+    "benchmarkContract": {
+      "typecheckExitCode": 0,
+      "contractTestStatus": "PASS",
+      "contractDigest": "0f3945d1570261827b62c254d596b3aafba0601605d1f455883a5a36a6aafc96",
+      "reportStatus": "PASS",
+      "reportDigest": "0050eacc126ce3aa75f2d174de7f9d9c4bd5d0f3d41f75303642e0b5665faa13"
+    }
+  }
+}

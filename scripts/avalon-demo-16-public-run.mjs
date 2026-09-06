@@ -260,15 +260,24 @@ async function main() {
       cases: bank.cases.length,
       bankDigest,
       runtimeCommit,
-      modelRoute,
+      modelRoute: {
+        label: modelRoute.label,
+        provider: modelRoute.provider,
+        providerSlug: modelRoute.providerSlug,
+        modelId: modelRoute.modelId,
+        entrypoint: modelRoute.entrypoint,
+        systemScaffoldDigest: modelRoute.systemScaffoldDigest,
+        toolManifestDigest: modelRoute.toolManifestDigest,
+        toolManifestCount: modelRoute.toolManifest.length,
+      },
       publicRejection,
       anonymousBootstrap,
       providerCalls: 0,
     })}\n`);
     return;
   }
-  if (!['baseline', 'baseline_scoreable', 'remediated'].includes(phase ?? '')) {
-    throw new Error('PHASE_MUST_BE_BASELINE_BASELINE_SCOREABLE_OR_REMEDIATED');
+  if (!['baseline', 'baseline_scoreable', 'remediated', 'remediated_v2', 'remediated_final', 'release_candidate', 'catalog_grounded', 'catalog_grounded_v2', 'release_final_v2', 'release_final_v3', 'release_final_v4', 'release_final_v5'].includes(phase ?? '')) {
+    throw new Error('PHASE_MUST_BE_AN_EXPLICIT_DEMO_16_RUN_PHASE');
   }
 
   const existingRegistry = await readFile(registryPath, 'utf8').catch((error) => {
@@ -318,10 +327,16 @@ async function main() {
     })}\n`);
   }
 
-  const providerCallCount = results.reduce((count, result) => count + result.diagnostics.requests.filter((request) =>
+  const durableProviderRequestReceiptCount = results.reduce((count, result) => count + result.diagnostics.requests.filter((request) =>
     typeof request.model === 'string' && request.model.length > 0
     && typeof request.provider === 'string' && request.provider.length > 0
   ).length, 0);
+  const providerCallCount = {
+    status: 'NOT_EVALUABLE',
+    value: null,
+    reason: 'The public Chat path does not emit a durable per-provider-call receipt. Chat-request persistence is diagnostic evidence only and cannot prove the number of upstream model invocations.',
+    durableProviderRequestReceiptCount,
+  };
   const report = {
     ...planned,
     status: results.every((result) => result.httpStatus === 200 && !result.transportError) ? 'captured' : 'incomplete',

@@ -1,0 +1,822 @@
+{
+  "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+  "phase": "release_final_v3",
+  "status": "captured",
+  "createdAt": "2026-09-06T03:18:49.512Z",
+  "bankId": "avalon-demo-exposed-16-v1",
+  "bankDigest": "d0f71c14e411e491fc89becb61b7c4793f9a801e4f6dba2d56e5335308e2574a",
+  "runtimeCommit": "585fcf086f12682976067ae19421349f762d14d0",
+  "modelRoute": {
+    "label": "Avalon 1 Fast",
+    "provider": "openrouter",
+    "providerSlug": "deepinfra",
+    "modelId": "qwen/qwen3.6-27b",
+    "entrypoint": "apps/aix-frontend/app/api/chat/route.ts#POST",
+    "systemScaffoldDigest": "2faf47837382c5c23a2f32d1194bc0f7582ffa254d8e50b1b40f11d06b317159",
+    "toolManifestDigest": "899261f5decc5971ff57e330f6657710539db586e41c64c77cfe8504a42a1547",
+    "toolManifest": [
+      {
+        "id": "getMarketData",
+        "description": "Fetch live price, 24h change, and market cap for a cryptocurrency. Use this when you need current market data for an asset (e.g., Bitcoin, Ethereum, Solana). Preserve the returned independent source and available time beside every price in the visible answer. Never reconcile this chat-oracle observation with a bound agent DEX-router quote.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "webSearch",
+        "description": "Search the web for recent crypto news, analysis, or information. Use this when you need up-to-date information that is not in your training data.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "getPoolData",
+        "description": "Fetch DEX pool data including price, liquidity, and 24h volume. Use this for smaller/newer tokens not on major exchanges, or when the user asks about a specific pool or token on a DEX. Preserve the returned independent source and available time beside every price in the visible answer. Never reconcile this chat-oracle observation with a bound agent DEX-router quote.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "getHyperliquidCatalog",
+        "description": "Return one requested section of Avalon's current Hyperliquid truth from production sources. Choose capabilities for Avalon workflows, instrument scope, account boundaries, or product spot support; markets for supported HIP-3/equity-reference markets, passing instrument for a specific company or ticker and omitting it only when the user requests a list; protocol for what Hyperliquid, HLP, Points, or HYPE means. You MUST use this for questions about what Avalon can do or trade on Hyperliquid, Hyperliquid spot support, what Hyperliquid/HLP/HYPE is, and supported HIP-3 or stock/equity-linked instruments. Always use it for a named stock, company, equity, or ticker tradability or product-support question in Avalon, even when the user does not name Hyperliquid. Do not reconstruct these facts yourself. For a compound current-news request, call this tool together with webSearch and answer both parts from their separate results. When a compound request uses focus markets, write only the non-catalog portion after the tools finish because the route appends the exact catalog result.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "compile_strategy_spec",
+        "description": "Compile a structured AIX strategy spec-v0 candidate for a requested backtest. Use this after producing the spec JSON for strategy or backtest requests.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "submit_backtest",
+        "description": "Submit a compiled AIX strategy spec-v0 for backtesting once the run API is available. This T2 tool exposes the final typed contract but does not create runs yet.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "renderAgentSetupPreview",
+        "description": "Render the signed-out read-only agent setup preview. Call this exactly once with the workflow, venue, instrument, and optional direction explicitly requested by the user. Do not write a prose answer before or after this tool call.",
+        "surface": "frontend_orchestration"
+      },
+      {
+        "id": "get_price",
+        "description": "Fetch the current price and 24h change for a cryptocurrency by symbol or CoinGecko ID.",
+        "schemaDigest": "737be9b37c0ceb5174ad43930c37dbdeece2a266e4591aa8a5ea34d74d35b4d5",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_market_data",
+        "description": "Fetch detailed market data (price, 24h change, market cap, volume) for a cryptocurrency.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "web_search",
+        "description": "Search the web for recent crypto news, analysis, or information via Perplexity.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "web_fetch",
+        "description": "Fetch and extract text content from a public HTTPS URL. Returns markdown-formatted text.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_portfolio_summary",
+        "description": "Get a privacy-scoped portfolio summary for the agent owner. Returns total value and positions.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_portfolio",
+        "description": "Get the full portfolio for the agent owner via Zerion, including token balances and valuations.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_transaction_history",
+        "description": "Get the owner wallet transaction history from Zerion with pagination support.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "create_report",
+        "description": "Create and store a structured report (market analysis, portfolio review, etc.) as an agent artifact.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "create_trade_plan",
+        "description": "Create a trade plan with policy pre-check. Stored as an artifact with 15-minute TTL, pending user approval.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "log_run",
+        "description": "Append text to the current run output log. Truncated at 50,000 characters.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_own_config",
+        "description": "Read the agent's own configuration: type, policy, display name, and active status.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "agent_state_read",
+        "description": "Read agent state (JSONB). Optionally read a single key. Returns state and version number.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "agent_state_write",
+        "description": "Write agent state (JSONB) with 10KB limit and optional optimistic locking via expectedVersion.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "verify_kill_switch",
+        "description": "Self-check whether the agent is blocked by a kill switch. Returns blocked status and reason.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "validate_agent_state",
+        "description": "Validate a state object against size limits and an optional schema before writing.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "spawn_agent",
+        "description": "Spawn a child agent of the specified type. Returns the child run ID for tracking.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "wait_for_agent",
+        "description": "Poll a child agent run until it completes, fails, or is cancelled, with configurable timeout.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_agent_output",
+        "description": "Read the output text and artifacts from a completed child agent run.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "send_agent_input",
+        "description": "Send a message to a running child agent run for mid-run instruction delivery.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "stop_agent",
+        "description": "Stop a running child agent. Marks it as cancelled with AGENT_STOPPED_BY_PARENT.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "commission_observer",
+        "description": "Preview or install one structurally WATCH-only Hyperliquid Chart or Funding Observer on the fixed three-minute cadence. Preview first, then install only after the user explicitly confirms the shown metering.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "send_alert",
+        "description": "Create a notification for the user with a title, body, and severity level.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "set_trigger",
+        "description": "Create a condition-based trigger that monitors an asset price. Max 10 per user.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "remove_trigger",
+        "description": "Delete a condition-based trigger by its ID.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "schedule_run",
+        "description": "Create a cron-based schedule for recurring agent runs. Max 10 active schedules per user.",
+        "schemaDigest": "737be9b37c0ceb5174ad43930c37dbdeece2a266e4591aa8a5ea34d74d35b4d5",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "pause_schedule",
+        "description": "Pause an active schedule trigger.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "resume_schedule",
+        "description": "Resume a paused schedule trigger.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "get_onchain_data",
+        "description": "Query on-chain data (stub — not yet connected to a data source).",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "build_transaction",
+        "description": "Build and simulate a transaction from a trade plan artifact. Returns tx request, quote, and simulation.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "resimulate_trade",
+        "description": "Re-validate a trade plan with price drift and plan age checks before execution.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "create_execution_output",
+        "description": "Store an execution output (receipt, refusal, diff, or simulation result) as an artifact.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "cancel_order",
+        "description": "Cancel a pending trade plan by artifact ID before execution. This does not cancel an external venue order.",
+        "schemaDigest": "80b82b1817fa6f3c839305c402f044a44ad703a0df3f905842fb611ac3c9ba3b",
+        "surface": "typed_run_general_purpose"
+      },
+      {
+        "id": "manage_trading_agent_setup",
+        "description": "Narrow tool: use manage_trading_agent_setup only for a persistent autonomous Hyperliquid momentum agent, on Mainnet by default or Testnet when explicitly requested. Omitted network means Mainnet and real-money intent for this persistent trading-agent product. The user may omit a product fact, but an explicitly conflicting venue or strategy disqualifies this tool; never substitute momentum for mean reversion or another named strategy. Persistent means the agent evaluates and may trade across multiple future ticks or runs. Venue, network, asset, direction, amount, a capability-discovery question, or a statement that the user is a momentum trader are not by themselves a request to start setup. For discovery, identity, informational, or educational turns, answer normally and you may offer the supported momentum setup, but do not call this tool. A short acceptance such as yes, proceed, go ahead, or let us do it starts setup only when the immediately preceding assistant turn explicitly offered to start or create this persistent Hyperliquid momentum setup; acceptance of analysis, monitoring, or generic help does not. Never use this tool for one trade or order, including a request to place, execute, or prepare one now; that belongs to the normal trade-planning or execution owner even when it names Hyperliquid, a market, a direction, or an amount. A generic simulated, practice, fake-money, or risk-free request belongs to Paper; an explicit persistent Hyperliquid Testnet ETH momentum agent remains this tool. When trusted active setup context exists and the user continues it, answers its pending choice, asks to go back, or explicitly cancels or discards it, always call this tool with the exact trusted setupId and revision; use operation go_back or discard for those requests. Pausing or deferring a setup while asking a normal question is not a discard: answer the question and leave the draft unchanged. Do not require the user to repeat the venue, market, strategy, or objective. Call it even when every choice is supplied because it owns verified preview and confirmation. Pass only facts the user supplied. Do not use it for Base, Observer, informational or educational questions, one-off analysis, explicit backtests, delta-neutral, support/resistance, or execution the user already owns. It is terminal structured foreground: call it alone, never in parallel with another tool. Put one short, plain-English, non-authoritative explanation in assistantNarrative; omit changing numbers because the setup surface is the source of truth. Do not emit separate prose after the tool call.",
+        "schemaDigest": "ea471bc5faad86ea268bfef7c4494fd1363d2bced1d8fcc82d290d3c53d4c3a6",
+        "surface": "typed_run_general_purpose"
+      }
+    ]
+  },
+  "entrypoint": "http://127.0.0.1:3437/api/chat",
+  "caseCount": 16,
+  "completedAt": "2026-09-06T03:21:54.912Z",
+  "providerCallCount": {
+    "status": "NOT_EVALUABLE",
+    "value": null,
+    "reason": "The public Chat path does not emit a durable per-provider-call receipt. Chat-request persistence is diagnostic evidence only and cannot prove the number of upstream model invocations.",
+    "durableProviderRequestReceiptCount": 0
+  },
+  "results": [
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-001",
+      "prompt": "What can I do on Hyperliquid?",
+      "expectedUserOutcome": "Explain Avalon's shipped Hyperliquid capabilities and useful next actions, rather than returning only a generic protocol essay.",
+      "requiredObservableAssertions": [
+        "avalon_capabilities_described",
+        "hyperliquid_workflows_grounded",
+        "no_financial_mutation"
+      ],
+      "requestId": "7c02e396-0fa1-405a-8709-660e8286fd2a",
+      "startedAt": "2026-09-06T03:18:49.513Z",
+      "completedAt": "2026-09-06T03:19:05.704Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "5Aum3WfDvAhSgU7J3",
+        "responseRequestId": "ff481508-51b4-43d7-ade7-9c6b37a7dd10"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"41e3ce33-d783-42e3-9822-9f9ef317993d\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"41e3ce33-d783-42e3-9822-9f9ef317993d\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_eb9d691c2e6741faa4dc9603\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"41e3ce33-d783-42e3-9822-9f9ef317993d\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"capabilities\",\"elapsedMs\":336,\"toolCallId\":\"call_eb9d691c2e6741faa4dc9603\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"41e3ce33-d783-42e3-9822-9f9ef317993d\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid capability summary:\nLive perpetual agents: trade a stock or crypto with leverage, long or short (Hyperliquid perps).\nWatch-only Observer agents: watch a market or an asset with a read-only agent, nothing at risk.\nStrategy workflow: Avalon can backtest a Hyperliquid strategy before the user chooses whether to set up a persistent live agent.\nInstrument scope: crypto perpetuals plus the supported HIP-3 equity-, index-, and commodity-reference perpetual markets; these provide price exposure, not ownership of shares or other underlying assets.\nLiquidity on these equity perps is thinner than on the major crypto perps.\nProduct boundary: Avalon currently supports Hyperliquid perpetuals, not Hyperliquid spot. Hyperliquid itself has both perpetual-futures and spot order books, so venue support does not imply Avalon product support.\nAccount boundary: product and catalog support do not prove that a specific account is connected, funded, permitted, or ready to trade.\n",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-002",
+      "prompt": "What can I trade on Hyperliquid in Avalon?",
+      "expectedUserOutcome": "State Avalon's supported Hyperliquid workflows and instrument scope accurately, including perpetual rather than share semantics.",
+      "requiredObservableAssertions": [
+        "avalon_instrument_scope_described",
+        "perpetual_semantics_preserved",
+        "no_financial_mutation"
+      ],
+      "requestId": "638ee58b-4bc7-4082-bad0-cd474010d8d7",
+      "startedAt": "2026-09-06T03:19:05.706Z",
+      "completedAt": "2026-09-06T03:19:27.211Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "2o574YrwQSDCpP57s",
+        "responseRequestId": "a2cfb7f5-56f8-4924-b1fb-3361fa96e5c5"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"4434b541-3f18-41c1-80fa-2180a540da70\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4434b541-3f18-41c1-80fa-2180a540da70\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_f1aae581544147a3869af8ad\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4434b541-3f18-41c1-80fa-2180a540da70\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"capabilities\",\"elapsedMs\":1437,\"toolCallId\":\"call_f1aae581544147a3869af8ad\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4434b541-3f18-41c1-80fa-2180a540da70\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_1271bdeef9f64d2592e5daf1\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4434b541-3f18-41c1-80fa-2180a540da70\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"markets\",\"elapsedMs\":490,\"toolCallId\":\"call_1271bdeef9f64d2592e5daf1\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4434b541-3f18-41c1-80fa-2180a540da70\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid capability summary:\nLive perpetual agents: trade a stock or crypto with leverage, long or short (Hyperliquid perps).\nWatch-only Observer agents: watch a market or an asset with a read-only agent, nothing at risk.\nStrategy workflow: Avalon can backtest a Hyperliquid strategy before the user chooses whether to set up a persistent live agent.\nInstrument scope: crypto perpetuals plus the supported HIP-3 equity-, index-, and commodity-reference perpetual markets; these provide price exposure, not ownership of shares or other underlying assets.\nLiquidity on these equity perps is thinner than on the major crypto perps.\nProduct boundary: Avalon currently supports Hyperliquid perpetuals, not Hyperliquid spot. Hyperliquid itself has both perpetual-futures and spot order books, so venue support does not imply Avalon product support.\nAccount boundary: product and catalog support do not prove that a specific account is connected, funded, permitted, or ready to trade.\n\nAvalon's current Hyperliquid HIP-3 equity-reference catalog is:\n\n- XYZ100 — XYZ100\n- TSLA — Tesla\n- NVDA — Nvidia\n- GOLD — Gold\n- HOOD — Robinhood\n- INTC — Intel\n- PLTR — Palantir\n- COIN — Coinbase\n- META — Meta\n- AAPL — Apple\n- MSFT — Microsoft\n- ORCL — Oracle\n- GOOGL — Alphabet\n- AMZN — Amazon\n- AMD — AMD\n- MU — Micron\n- SNDK — SNDK\n- MSTR — MSTR\n- CRCL — Circle\n- NFLX — Netflix\n- COST — Costco\n- LLY — Eli Lilly\n- SKHX — SK Hynix\n- TSM — Taiwan Semiconductor\n- JPY — Japanese Yen\n- EUR — Euro\n- SILVER — Silver\n- RIVN — Rivian\n- BABA — Alibaba\n- CL — Crude Oil\n- COPPER — Copper\n- NATGAS — Natural Gas\n- SMSN — Samsung\n- PLATINUM — Platinum\n- USAR — USA Rare Earth\n- CRWV — CoreWeave\n- URNM — Uranium Miners ETF\n- PALLADIUM — Palladium\n- GME — GameStop\n- KR200 — Korea 200\n- SOFTBANK — SoftBank\n- JP225 — Japan 225\n- HYUNDAI — Hyundai\n- KIOXIA — Kioxia\n- EWY — South Korea ETF\n- EWJ — Japan ETF\n- BRENTOIL — Brent Oil\n- HIMS — Hims & Hers\n- SP500 — S&P 500\n- DKNG — DraftKings\n- LITE — Lumentum\n- XLE — XLE\n- BX — Blackstone\n- PURRDAT — PURRDAT\n- MRVL — Marvell\n- RKLB — Rocket Lab\n- BIRD — BIRD\n- DRAM — DRAM\n- CBRS — CBRS\n- EWZ — Brazil ETF\n- ZM — Zoom\n- EBAY — eBay\n- ARM — Arm\n- EWT — Taiwan ETF\n- GBP — British Pound\n- SPCX — SpaceX\n- ASML — ASML\n- MINIMAX — MiniMax\n- BB — BlackBerry\n- QNT — QNT\n- DELL — Dell\n- IBM — IBM\n- AVGO — Broadcom\n- NOW — ServiceNow\n- NBIS — Nebius\n- WDC — Western Digital\n- NOK — Nokia\n- SMH — Semiconductor ETF\n- BE — Bloom Energy\n- ZHIPU — Zhipu AI\n- QCOM — Qualcomm\n- STRC — Strategy Preferred Stock\n- BOT — BOT\n- AMAT — Applied Materials\n- GIGADEV — GigaDevice\n- SHAZ — SHAZ\n- SKHY — SKHY\n- CXMT — CXMT\n- GEV — GE Vernova\n- KORU — Korea Bull 3X ETF\n- UNITREE — Unitree Robotics\n- LYTE — LYTE\n- NCLD — NCLD\n- SOXL — Semiconductor Bull 3X ETF\n- MAGS — Magnificent Seven ETF\n- IREN — IREN\n- NET — Cloudflare\n- CRWD — CrowdStrike\n- RDDT — Reddit\n- AAOI — Applied Optoelectronics\n- MRNA — Moderna\n- XBI — SPDR S&P Biotech ETF\n- SHEIN — Shein\n\nThese are perpetual contracts that provide price exposure only; they do not confer ownership of actual shares, dividends, or voting rights.\nLiquidity on these equity perps is thinner than on the major crypto perps.\nThis catalog proves Avalon product support. Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this catalog alone.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-003",
+      "prompt": "Can I trade stocks on Hyperliquid?",
+      "expectedUserOutcome": "Distinguish actual shares from equity-referencing HIP-3 perpetual contracts and avoid claiming that Hyperliquid provides stock ownership.",
+      "requiredObservableAssertions": [
+        "actual_shares_denied",
+        "equity_reference_perpetuals_distinguished",
+        "no_financial_mutation"
+      ],
+      "requestId": "cb99d7d5-d426-44cf-98a8-e1fcec700a19",
+      "startedAt": "2026-09-06T03:19:27.213Z",
+      "completedAt": "2026-09-06T03:19:40.068Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "cVLsHfsanWFWuAbF",
+        "responseRequestId": "b253ea70-a2cf-41a0-a376-23a8f0481912"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"4920b496-6bd9-4931-9dc7-87cd33f3dc5c\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4920b496-6bd9-4931-9dc7-87cd33f3dc5c\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_f583da0aaef941cc9cb8c731\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4920b496-6bd9-4931-9dc7-87cd33f3dc5c\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"capabilities\",\"elapsedMs\":445,\"toolCallId\":\"call_f583da0aaef941cc9cb8c731\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4920b496-6bd9-4931-9dc7-87cd33f3dc5c\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid capability summary:\nLive perpetual agents: trade a stock or crypto with leverage, long or short (Hyperliquid perps).\nWatch-only Observer agents: watch a market or an asset with a read-only agent, nothing at risk.\nStrategy workflow: Avalon can backtest a Hyperliquid strategy before the user chooses whether to set up a persistent live agent.\nInstrument scope: crypto perpetuals plus the supported HIP-3 equity-, index-, and commodity-reference perpetual markets; these provide price exposure, not ownership of shares or other underlying assets.\nLiquidity on these equity perps is thinner than on the major crypto perps.\nProduct boundary: Avalon currently supports Hyperliquid perpetuals, not Hyperliquid spot. Hyperliquid itself has both perpetual-futures and spot order books, so venue support does not imply Avalon product support.\nAccount boundary: product and catalog support do not prove that a specific account is connected, funded, permitted, or ready to trade.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-004",
+      "prompt": "Can I trade anything involving stocks on Hyperliquid?",
+      "expectedUserOutcome": "Explain supported equity-price exposure while preserving that the instruments are perpetual contracts, not shares.",
+      "requiredObservableAssertions": [
+        "equity_reference_exposure_described",
+        "actual_shares_not_implied",
+        "no_financial_mutation"
+      ],
+      "requestId": "bd132613-b692-46c8-b7fb-d75114e2cf69",
+      "startedAt": "2026-09-06T03:19:40.069Z",
+      "completedAt": "2026-09-06T03:19:51.366Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "3u4FLuzcbRUArkA1A",
+        "responseRequestId": "12d1ef41-22f7-490a-956b-10657454fbca"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"b1e7b798-ec6e-469f-a091-cc49c47d3404\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"b1e7b798-ec6e-469f-a091-cc49c47d3404\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_940991bd214d46d0a700f5e4\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"b1e7b798-ec6e-469f-a091-cc49c47d3404\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"capabilities\",\"elapsedMs\":872,\"toolCallId\":\"call_940991bd214d46d0a700f5e4\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"b1e7b798-ec6e-469f-a091-cc49c47d3404\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid capability summary:\nLive perpetual agents: trade a stock or crypto with leverage, long or short (Hyperliquid perps).\nWatch-only Observer agents: watch a market or an asset with a read-only agent, nothing at risk.\nStrategy workflow: Avalon can backtest a Hyperliquid strategy before the user chooses whether to set up a persistent live agent.\nInstrument scope: crypto perpetuals plus the supported HIP-3 equity-, index-, and commodity-reference perpetual markets; these provide price exposure, not ownership of shares or other underlying assets.\nLiquidity on these equity perps is thinner than on the major crypto perps.\nProduct boundary: Avalon currently supports Hyperliquid perpetuals, not Hyperliquid spot. Hyperliquid itself has both perpetual-futures and spot order books, so venue support does not imply Avalon product support.\nAccount boundary: product and catalog support do not prove that a specific account is connected, funded, permitted, or ready to trade.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-005",
+      "prompt": "Can I trade NVIDIA on Hyperliquid?",
+      "expectedUserOutcome": "Resolve NVIDIA to the NVDA equity-referencing Hyperliquid market when supported, and describe it as a perpetual rather than NVIDIA shares.",
+      "requiredObservableAssertions": [
+        "nvidia_resolved_to_nvda",
+        "equity_reference_perpetuals_distinguished",
+        "no_account_readiness_invented",
+        "no_financial_mutation"
+      ],
+      "requestId": "814fc477-e9e3-48c4-87ff-fa37f15870e5",
+      "startedAt": "2026-09-06T03:19:51.367Z",
+      "completedAt": "2026-09-06T03:20:00.235Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "2KWcZknyUL5VhtEWu",
+        "responseRequestId": "e341d654-1821-455d-83b8-2fa2c8467940"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"4214adff-f1c7-4692-a61e-d24d0fe0a23f\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4214adff-f1c7-4692-a61e-d24d0fe0a23f\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_c812375165ca4aac851c165e\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4214adff-f1c7-4692-a61e-d24d0fe0a23f\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"markets\",\"elapsedMs\":439,\"toolCallId\":\"call_c812375165ca4aac851c165e\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4214adff-f1c7-4692-a61e-d24d0fe0a23f\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid market match:\n- NVDA — Nvidia\nThis is a perpetual contract that provides price exposure only; it does not confer ownership of actual shares, dividends, or voting rights.\nLiquidity on this equity perp is thinner than on the major crypto perps.\nThis match proves Avalon product support. Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this match alone.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-006",
+      "prompt": "Can I buy actual NVIDIA shares on Hyperliquid?",
+      "expectedUserOutcome": "Clearly say that actual NVIDIA shares cannot be bought on Hyperliquid; any available NVDA exposure is a perpetual contract without shareholder rights.",
+      "requiredObservableAssertions": [
+        "actual_nvidia_shares_denied",
+        "nvda_perpetual_explained",
+        "no_financial_mutation"
+      ],
+      "requestId": "56811394-4690-414c-8a02-112985bb893c",
+      "startedAt": "2026-09-06T03:20:00.236Z",
+      "completedAt": "2026-09-06T03:20:10.541Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "31ok5de64JtTEUcEJ",
+        "responseRequestId": "7dca1a1e-0dc9-4125-9adc-bae009f4c9c6"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"07e9c62b-94ec-434c-8344-7017d23e0666\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"07e9c62b-94ec-434c-8344-7017d23e0666\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nNo, you cannot buy actual NVIDIA shares on Hyperliquid. Hyperliquid does not sell or confer ownership of actual shares, dividends, voting rights, or other shareholder rights.\n\nHowever, you can trade NVIDIA price edata: {\"__aixControl\":true,\"__nonce\":\"07e9c62b-94ec-434c-8344-7017d23e0666\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_deba4283bc80466bb22bf509\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"07e9c62b-94ec-434c-8344-7017d23e0666\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"markets\",\"elapsedMs\":403,\"toolCallId\":\"call_deba4283bc80466bb22bf509\"}}\n\nxposure through a perpetual futures contract (NVDA) on Hyperliquid. This is a derivative contract that tracks NVIDIA's stock price but doesn't give you ownership of the underlying shares.\n\nLet me check the current support details for NVDA on Hyperliquid:\n\nAvalon Hyperliquid market match:\n- NVDA — Nvidia\nThis is a perpetual contract that provides price exposure only; it does not confer ownership of actual shares, dividends, or voting rights.\nLiquidity on this equity perp is thinner than on the major crypto perps.\nThis match proves Avalon product support. Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this match alone.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-007",
+      "prompt": "Where can I trade NVIDIA on Avalon?",
+      "expectedUserOutcome": "Describe the supported Avalon venue and workflow for NVIDIA exposure, preserving the distinction between an NVDA perpetual and actual shares.",
+      "requiredObservableAssertions": [
+        "avalon_venue_or_workflow_identified",
+        "nvidia_resolved_to_nvda",
+        "perpetual_semantics_preserved",
+        "no_financial_mutation"
+      ],
+      "requestId": "4fbc9bf1-e7f3-49c5-9856-89210e2558bc",
+      "startedAt": "2026-09-06T03:20:10.543Z",
+      "completedAt": "2026-09-06T03:20:20.622Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "5Q5ZakbPmUFwiktvM",
+        "responseRequestId": "0a2fc2eb-81a7-49e8-bf9d-b23d92cef8f8"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"167c07ec-8c38-44a5-bb18-537f408666c5\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"167c07ec-8c38-44a5-bb18-537f408666c5\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_025a264155d6439b896994db\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"167c07ec-8c38-44a5-bb18-537f408666c5\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"markets\",\"elapsedMs\":397,\"toolCallId\":\"call_025a264155d6439b896994db\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"167c07ec-8c38-44a5-bb18-537f408666c5\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid market match:\n- NVDA — Nvidia\nThis is a perpetual contract that provides price exposure only; it does not confer ownership of actual shares, dividends, or voting rights.\nLiquidity on this equity perp is thinner than on the major crypto perps.\nThis match proves Avalon product support. Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this match alone.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-008",
+      "prompt": "Can I trade Google on Hyperliquid?",
+      "expectedUserOutcome": "Resolve the company reference against Avalon's current Hyperliquid equity-reference market support without confusing GOOG, GOOGL, or actual Google shares.",
+      "requiredObservableAssertions": [
+        "google_reference_resolved",
+        "goog_googl_ambiguity_handled",
+        "perpetual_semantics_preserved",
+        "no_financial_mutation"
+      ],
+      "requestId": "666d8ae0-7b27-4449-bc4c-4a16c2680876",
+      "startedAt": "2026-09-06T03:20:20.623Z",
+      "completedAt": "2026-09-06T03:20:30.550Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "xaK8Wbaib3WRDeoy",
+        "responseRequestId": "4dacdf1d-5d0e-43e4-9adc-5a90d5c62045"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"354f0b13-16b2-4586-a3e0-76e79b1d6629\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"354f0b13-16b2-4586-a3e0-76e79b1d6629\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_5ed51af50b9c45d9996f04bd\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"354f0b13-16b2-4586-a3e0-76e79b1d6629\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"markets\",\"elapsedMs\":560,\"toolCallId\":\"call_5ed51af50b9c45d9996f04bd\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"354f0b13-16b2-4586-a3e0-76e79b1d6629\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid market match:\n- GOOGL — Alphabet\nThis is a perpetual contract that provides price exposure only; it does not confer ownership of actual shares, dividends, or voting rights.\nLiquidity on this equity perp is thinner than on the major crypto perps.\nThis match proves Avalon product support. Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this match alone.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-009",
+      "prompt": "Show me the equity-related HIP-3 markets Avalon supports.",
+      "expectedUserOutcome": "Return Avalon's supported equity-related HIP-3 market set from current product and venue truth, with perpetual-contract semantics.",
+      "requiredObservableAssertions": [
+        "supported_equity_reference_markets_described",
+        "product_truth_not_generic_protocol_only",
+        "perpetual_semantics_preserved",
+        "no_financial_mutation"
+      ],
+      "requestId": "395d0250-abcd-4ac0-a7a7-f83f4c8ffbdd",
+      "startedAt": "2026-09-06T03:20:30.552Z",
+      "completedAt": "2026-09-06T03:20:48.965Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "3Lg595LxNkftE9smw",
+        "responseRequestId": "f9588e1e-a03b-40ad-8737-6a0f277290f2"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"1045b629-16f0-4df9-9313-72a93b48727d\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"1045b629-16f0-4df9-9313-72a93b48727d\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_03df171bb22e43fda46daec6\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"1045b629-16f0-4df9-9313-72a93b48727d\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"markets\",\"elapsedMs\":237,\"toolCallId\":\"call_03df171bb22e43fda46daec6\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"1045b629-16f0-4df9-9313-72a93b48727d\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon's current Hyperliquid HIP-3 equity-reference catalog is:\n\n- XYZ100 — XYZ100\n- TSLA — Tesla\n- NVDA — Nvidia\n- GOLD — Gold\n- HOOD — Robinhood\n- INTC — Intel\n- PLTR — Palantir\n- COIN — Coinbase\n- META — Meta\n- AAPL — Apple\n- MSFT — Microsoft\n- ORCL — Oracle\n- GOOGL — Alphabet\n- AMZN — Amazon\n- AMD — AMD\n- MU — Micron\n- SNDK — SNDK\n- MSTR — MSTR\n- CRCL — Circle\n- NFLX — Netflix\n- COST — Costco\n- LLY — Eli Lilly\n- SKHX — SK Hynix\n- TSM — Taiwan Semiconductor\n- JPY — Japanese Yen\n- EUR — Euro\n- SILVER — Silver\n- RIVN — Rivian\n- BABA — Alibaba\n- CL — Crude Oil\n- COPPER — Copper\n- NATGAS — Natural Gas\n- SMSN — Samsung\n- PLATINUM — Platinum\n- USAR — USA Rare Earth\n- CRWV — CoreWeave\n- URNM — Uranium Miners ETF\n- PALLADIUM — Palladium\n- GME — GameStop\n- KR200 — Korea 200\n- SOFTBANK — SoftBank\n- JP225 — Japan 225\n- HYUNDAI — Hyundai\n- KIOXIA — Kioxia\n- EWY — South Korea ETF\n- EWJ — Japan ETF\n- BRENTOIL — Brent Oil\n- HIMS — Hims & Hers\n- SP500 — S&P 500\n- DKNG — DraftKings\n- LITE — Lumentum\n- XLE — XLE\n- BX — Blackstone\n- PURRDAT — PURRDAT\n- MRVL — Marvell\n- RKLB — Rocket Lab\n- BIRD — BIRD\n- DRAM — DRAM\n- CBRS — CBRS\n- EWZ — Brazil ETF\n- ZM — Zoom\n- EBAY — eBay\n- ARM — Arm\n- EWT — Taiwan ETF\n- GBP — British Pound\n- SPCX — SpaceX\n- ASML — ASML\n- MINIMAX — MiniMax\n- BB — BlackBerry\n- QNT — QNT\n- DELL — Dell\n- IBM — IBM\n- AVGO — Broadcom\n- NOW — ServiceNow\n- NBIS — Nebius\n- WDC — Western Digital\n- NOK — Nokia\n- SMH — Semiconductor ETF\n- BE — Bloom Energy\n- ZHIPU — Zhipu AI\n- QCOM — Qualcomm\n- STRC — Strategy Preferred Stock\n- BOT — BOT\n- AMAT — Applied Materials\n- GIGADEV — GigaDevice\n- SHAZ — SHAZ\n- SKHY — SKHY\n- CXMT — CXMT\n- GEV — GE Vernova\n- KORU — Korea Bull 3X ETF\n- UNITREE — Unitree Robotics\n- LYTE — LYTE\n- NCLD — NCLD\n- SOXL — Semiconductor Bull 3X ETF\n- MAGS — Magnificent Seven ETF\n- IREN — IREN\n- NET — Cloudflare\n- CRWD — CrowdStrike\n- RDDT — Reddit\n- AAOI — Applied Optoelectronics\n- MRNA — Moderna\n- XBI — SPDR S&P Biotech ETF\n- SHEIN — Shein\n\nThese are perpetual contracts that provide price exposure only; they do not confer ownership of actual shares, dividends, or voting rights.\nLiquidity on these equity perps is thinner than on the major crypto perps.\nThis catalog proves Avalon product support. Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this catalog alone.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-010",
+      "prompt": "Can my account trade the NVIDIA market right now?",
+      "expectedUserOutcome": "Keep product support, current venue listing, and this account's readiness separate; do not infer account readiness without account evidence.",
+      "requiredObservableAssertions": [
+        "product_support_separated",
+        "venue_availability_separated",
+        "account_readiness_not_invented",
+        "no_financial_mutation"
+      ],
+      "requestId": "6ccaab93-1dae-40f7-a06f-f5cca79617f6",
+      "startedAt": "2026-09-06T03:20:48.966Z",
+      "completedAt": "2026-09-06T03:20:58.713Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "4NiWoJe7rZsxcpPyT",
+        "responseRequestId": "92f37d41-7b7d-4f16-824f-f96d52f7cfc4"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"4cf24c37-f3d0-47cd-b7f1-fb128f8bb81e\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4cf24c37-f3d0-47cd-b7f1-fb128f8bb81e\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_b9f311982f5d4c8688351535\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4cf24c37-f3d0-47cd-b7f1-fb128f8bb81e\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"markets\",\"elapsedMs\":381,\"toolCallId\":\"call_b9f311982f5d4c8688351535\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"4cf24c37-f3d0-47cd-b7f1-fb128f8bb81e\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid market match:\n- NVDA — Nvidia\nThis is a perpetual contract that provides price exposure only; it does not confer ownership of actual shares, dividends, or voting rights.\nLiquidity on this equity perp is thinner than on the major crypto perps.\nThis match proves Avalon product support. Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this match alone.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-011",
+      "prompt": "Create a Hyperliquid NVIDIA observer agent.",
+      "expectedUserOutcome": "Enter the Hyperliquid Observer authoring or preview workflow for the NVDA equity-referencing perpetual, preserving all supplied parameters and creating no financial action.",
+      "requiredObservableAssertions": [
+        "observer_workflow_selected",
+        "hyperliquid_venue_preserved",
+        "nvidia_resolved_to_nvda",
+        "artifact_or_preview_truthful",
+        "no_financial_mutation"
+      ],
+      "requestId": "2a0c6685-a096-4e12-830c-17deaee8407a",
+      "startedAt": "2026-09-06T03:20:58.714Z",
+      "completedAt": "2026-09-06T03:21:06.055Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "agent_setup_unauthenticated_preview",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "4JqPu2VzXiu6c1eYQ",
+        "responseRequestId": "5fe60482-7a45-4d8f-bde0-8fff12533f2d"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"bb757e38-2591-42a5-b85a-7b8751688a78\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"bb757e38-2591-42a5-b85a-7b8751688a78\",\"event\":{\"type\":\"trace\",\"tool\":\"renderAgentSetupPreview\",\"status\":\"started\",\"toolCallId\":\"chatcmpl-tool-aaade24c64bff241\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"bb757e38-2591-42a5-b85a-7b8751688a78\",\"event\":{\"type\":\"trace\",\"tool\":\"renderAgentSetupPreview\",\"status\":\"completed\",\"elapsedMs\":202,\"toolCallId\":\"chatcmpl-tool-aaade24c64bff241\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"bb757e38-2591-42a5-b85a-7b8751688a78\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nThis is a read-only preview. No agent is installed or running, and no financial action occurred. Sign-in is required only to save or install it.\n\nRequested setup:\n- Workflow: Observer\n- Venue: Hyperliquid\n- Instrument: Nvidia (NVDA)\n\nThis preview is descriptive only; nothing was created, saved, installed, armed, or run.\n",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-012",
+      "prompt": "Create a Hyperliquid NVIDIA momentum agent.",
+      "expectedUserOutcome": "Enter the supported Hyperliquid Momentum setup or preview workflow for the NVDA equity-referencing perpetual, stopping before installation or execution without prerequisites and confirmation.",
+      "requiredObservableAssertions": [
+        "momentum_workflow_selected",
+        "hyperliquid_venue_preserved",
+        "nvidia_resolved_to_nvda",
+        "confirmation_boundary_preserved",
+        "artifact_or_preview_truthful",
+        "no_financial_mutation"
+      ],
+      "requestId": "18df153a-f2b2-4921-874e-257ddbcaeb96",
+      "startedAt": "2026-09-06T03:21:06.056Z",
+      "completedAt": "2026-09-06T03:21:13.514Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "agent_setup_unauthenticated_preview",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "2QEfa8sjn6zMqCvfn",
+        "responseRequestId": "7fa41fdd-f07f-467b-9ba5-e7a04c772e51"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"b42072c8-2ad3-47af-be15-2f17662e6ea6\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"b42072c8-2ad3-47af-be15-2f17662e6ea6\",\"event\":{\"type\":\"trace\",\"tool\":\"renderAgentSetupPreview\",\"status\":\"started\",\"toolCallId\":\"chatcmpl-tool-8c490778cca91130\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"b42072c8-2ad3-47af-be15-2f17662e6ea6\",\"event\":{\"type\":\"trace\",\"tool\":\"renderAgentSetupPreview\",\"status\":\"completed\",\"elapsedMs\":248,\"toolCallId\":\"chatcmpl-tool-8c490778cca91130\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"b42072c8-2ad3-47af-be15-2f17662e6ea6\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nThis is a read-only preview. No agent is installed or running, and no financial action occurred. Sign-in is required only to save or install it.\n\nRequested setup:\n- Workflow: Momentum\n- Venue: Hyperliquid\n- Instrument: Nvidia (NVDA)\n\nThis preview is descriptive only; nothing was created, saved, installed, armed, or run.\n",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-013",
+      "prompt": "Can I trade Google here?",
+      "expectedUserOutcome": "Use the Avalon conversation context to explain supported Google exposure without inventing venue availability, account readiness, or actual-share support.",
+      "requiredObservableAssertions": [
+        "avalon_context_applied",
+        "google_reference_resolved",
+        "availability_not_invented",
+        "actual_shares_not_implied",
+        "no_financial_mutation"
+      ],
+      "requestId": "dd633a80-cdb8-4f2f-bd90-b362b11a84dd",
+      "startedAt": "2026-09-06T03:21:13.515Z",
+      "completedAt": "2026-09-06T03:21:22.648Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "Pi4hdBLM8JDS9Tiy",
+        "responseRequestId": "f313dde6-78df-4e23-b80b-e55deeb31adc"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"c1ac0421-84d9-46e6-87cf-5204ca111b45\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"c1ac0421-84d9-46e6-87cf-5204ca111b45\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_c3fad748db734f29b528ed63\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"c1ac0421-84d9-46e6-87cf-5204ca111b45\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"markets\",\"elapsedMs\":404,\"toolCallId\":\"call_c3fad748db734f29b528ed63\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"c1ac0421-84d9-46e6-87cf-5204ca111b45\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid market match:\n- GOOGL — Alphabet\nThis is a perpetual contract that provides price exposure only; it does not confer ownership of actual shares, dividends, or voting rights.\nLiquidity on this equity perp is thinner than on the major crypto perps.\nThis match proves Avalon product support. Avalon cannot confirm current venue listing or that a specific account is connected, funded, permitted, or ready to trade from this match alone.\n\n\nWant me to backtest this on Hyperliquid, or set it up as a live agent you confirm before it trades?",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-014",
+      "prompt": "Does Avalon support Hyperliquid spot?",
+      "expectedUserOutcome": "Answer from Avalon's shipped capability truth, not from Hyperliquid's public protocol features; do not claim product support merely because the venue supports spot.",
+      "requiredObservableAssertions": [
+        "avalon_spot_support_answered",
+        "venue_capability_not_product_capability",
+        "no_financial_mutation"
+      ],
+      "requestId": "7957febc-68d7-4d37-8b93-e23aa57940cb",
+      "startedAt": "2026-09-06T03:21:22.649Z",
+      "completedAt": "2026-09-06T03:21:30.831Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "4G6M45jmtunu1adrF",
+        "responseRequestId": "fc324da6-0a51-4b76-8ffb-1b03c658dc02"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"39c3332c-76bc-4561-9a97-b629fb291b5b\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"39c3332c-76bc-4561-9a97-b629fb291b5b\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_9536c8cac0bb4593bd4c50b8\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"39c3332c-76bc-4561-9a97-b629fb291b5b\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"capabilities\",\"elapsedMs\":366,\"toolCallId\":\"call_9536c8cac0bb4593bd4c50b8\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"39c3332c-76bc-4561-9a97-b629fb291b5b\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nAvalon Hyperliquid capability summary:\nLive perpetual agents: trade a stock or crypto with leverage, long or short (Hyperliquid perps).\nWatch-only Observer agents: watch a market or an asset with a read-only agent, nothing at risk.\nStrategy workflow: Avalon can backtest a Hyperliquid strategy before the user chooses whether to set up a persistent live agent.\nInstrument scope: crypto perpetuals plus the supported HIP-3 equity-, index-, and commodity-reference perpetual markets; these provide price exposure, not ownership of shares or other underlying assets.\nLiquidity on these equity perps is thinner than on the major crypto perps.\nProduct boundary: Avalon currently supports Hyperliquid perpetuals, not Hyperliquid spot. Hyperliquid itself has both perpetual-futures and spot order books, so venue support does not imply Avalon product support.\nAccount boundary: product and catalog support do not prove that a specific account is connected, funded, permitted, or ready to trade.\n",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-015",
+      "prompt": "What happened in crypto this week, and what can I do on Hyperliquid?",
+      "expectedUserOutcome": "Answer both halves: use current external evidence for the news summary and Avalon's own capability truth for what the user can do, keeping those sources distinct.",
+      "requiredObservableAssertions": [
+        "current_crypto_news_answered",
+        "external_research_observed",
+        "avalon_capabilities_described",
+        "product_truth_not_generic_protocol_only",
+        "no_financial_mutation"
+      ],
+      "requestId": "210b6e10-6a0d-4659-97c1-a965ee0107ac",
+      "startedAt": "2026-09-06T03:21:30.831Z",
+      "completedAt": "2026-09-06T03:21:46.525Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "PsGcgPvuiLEsjXSA",
+        "responseRequestId": "098f1796-8f60-4b38-8685-f9deb8f800cf"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"8f9be2b0-aca2-41f1-b308-ea2cc8c452bc\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"8f9be2b0-aca2-41f1-b308-ea2cc8c452bc\",\"event\":{\"type\":\"trace\",\"tool\":\"webSearch\",\"status\":\"started\",\"toolCallId\":\"call_0f9f6edafb274195893626b9\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"8f9be2b0-aca2-41f1-b308-ea2cc8c452bc\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_2362958eec6b4758b196c509\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"8f9be2b0-aca2-41f1-b308-ea2cc8c452bc\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"capabilities\",\"elapsedMs\":222,\"toolCallId\":\"call_2362958eec6b4758b196c509\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"8f9be2b0-aca2-41f1-b308-ea2cc8c452bc\",\"event\":{\"type\":\"trace\",\"tool\":\"webSearch\",\"status\":\"completed\",\"query\":\"crypto news this week 2026\",\"resultCount\":10,\"elapsedMs\":1627,\"toolCallId\":\"call_0f9f6edafb274195893626b9\",\"results\":[{\"title\":\"Crypto News This Week: SEC Moves, Saylor Sells & What's ...\",\"url\":\"https://crypto.com/en/market-updates/weekender-news-aug-15-2026\"},{\"title\":\"Cryptocurrency News | Today's Latest Stories\",\"url\":\"https://www.reuters.com/markets/cryptocurrency/\"},{\"title\":\"2026 News Archive\",\"url\":\"https://www.theblock.co/directory/archive/2026\"},{\"title\":\"Cryptocurrency News\",\"url\":\"https://www.investing.com/news/cryptocurrency-news\"},{\"title\":\"CRYPTO WEEKLY UPDATE — SUNDAY, 2 AUGUST 2026\",\"url\":\"https://x.com/MansaTesla/article/2083937073938215351\"},{\"title\":\"Crypto News - Barron's\",\"url\":\"https://www.barrons.com/topics/cryptocurrencies\"},{\"title\":\"Bitcoin at US$79027, Solana Jumps 5.76%: Crypto Wrap\",\"url\":\"https://www.riotimesonline.com/crypto-markets-bitcoin-majors-thursday-august-27-2026/\"},{\"title\":\"The Block: Bitcoin, Ethereum & Crypto News | Live Prices ...\",\"url\":\"https://www.theblock.co/\"},{\"title\":\"August 2026 News Archive\",\"url\":\"https://www.theblock.co/directory/archive/2026/8\"},{\"title\":\"This Week in Crypto, Full Written Summary: W2 February ...\",\"url\":\"https://app.santiment.net/insights/read/this-week-in-crypto-full-written-summary-w2-february-2026-10558\"}]}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"8f9be2b0-aca2-41f1-b308-ea2cc8c452bc\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nHere's what's been moving in crypto this week, and what you can do on Hyperliquid through Avalon:\n\n## This Week in Crypto (Early September 2026)\n\n**Hyperliquid in the spotlight** – President Trump publicly said he wants Hyperliquid to enter the US, sparking discussion about how that could happen structurally [3]. Institutional interest is growing: UBS and Jane Street are among firms holding a combined $75 million in Hyperliquid ETF holdings [8].\n\n**Bitcoin & ETF flows** – Bitcoin has been consolidating around $80K–$82K resistance [4]. US Bitcoin ETFs recorded their largest single-day inflow since January, worth $731 million [3]. Strategy (formerly MicroStrategy) has been actively selling Bitcoin [1], while also purchasing $369.7 million worth last week [6].\n\n**Altcoin action** – Zcash topped $1,000 amid ramping ETF inflows and miner accumulation [3]. Solana jumped 5.76% to $102 in the prior week [7]. EOS saw volatility, swinging from a 14% gain to a 10% selloff within days [4].\n\n**Regulatory & institutional** – The SEC abruptly canceled a scheduled crypto vote [1]. Standard Chartered launched institutional spot crypto trading in Bitcoin and Ether in the UAE, becoming the first global systemically important bank to offer the service in the Gulf [2]. South Korea announced plans to tokenize all types of securities in three stages starting 2027 [3].\n\n---\n\n## What You Can Do on Hyperliquid\n\nAvalon currently supports **Hyperliquid perpetuals** (not spot). Here's what's available:\n\n1. **Live perpetual agents** – Trade crypto or equity-linked perps with leverage, long or short. You fund an agent wallet once, authorize it, and the agent trades on its own within its cap.\n\n2. **Backtesting** – Run a real Hyperliquid backtest of any strategy before going live. This is the only path with backtesting support.\n\n3. **Watch-only agents** – Watch a market or asset with a read-only agent, nothing at risk.\n\n4. **Instrument scope** – Crypto perpetuals plus supported HIP-3 equity, index, and commodity reference perps (e.g., NVDA, TSLA, SP500, GOLD). Note: these provide price exposure only, not actual share ownership. Liquidity on equity perps is thinner than on major crypto perps.\n\nWant me to backtest a strategy on Hyperliquid, or set up a watch-only agent for something you're tracking?\n",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    },
+    {
+      "runId": "avalon-demo-16-release_final_v3-2026-09-06T03-18-49-511Z-d2c811ab",
+      "caseId": "AVB-HLC-016",
+      "prompt": "What is Hyperliquid?",
+      "expectedUserOutcome": "Provide an accurate external explanation of Hyperliquid without forcing an Avalon product workflow or claiming an action occurred.",
+      "requiredObservableAssertions": [
+        "external_hyperliquid_explanation_accurate",
+        "no_unrequested_product_action",
+        "no_financial_mutation"
+      ],
+      "requestId": "732dc41c-d819-418d-94ba-612918275eb2",
+      "startedAt": "2026-09-06T03:21:46.529Z",
+      "completedAt": "2026-09-06T03:21:54.911Z",
+      "bootstrap": {
+        "status": 200,
+        "degraded": false,
+        "credits": 500,
+        "anonIdentityMatched": true,
+        "sessionCount": 0
+      },
+      "httpStatus": 200,
+      "responseHeaders": {
+        "responsePath": "orchestration",
+        "routerClarify": null,
+        "adoptedSessionPublicId": "27GAgFPPnXFboUkrt",
+        "responseRequestId": "59537b1f-687d-4161-8bfb-d2ea809363f2"
+      },
+      "rawResponse": "<SEARCH_METADATA>{\"globeAllowed\":true,\"used\":false,\"status\":\"unavailable\",\"citations\":[]}</SEARCH_METADATA>data: {\"__aixControl\":true,\"__nonce\":\"c5146b6c-d3da-4702-b4a7-aa19328a4fa9\",\"event\":{\"type\":\"stage\",\"stage\":\"INTERPRETING_REQUEST\",\"actionType\":\"generic\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"c5146b6c-d3da-4702-b4a7-aa19328a4fa9\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"started\",\"toolCallId\":\"call_f93e099cd0ff4e318eeeb245\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"c5146b6c-d3da-4702-b4a7-aa19328a4fa9\",\"event\":{\"type\":\"trace\",\"tool\":\"getHyperliquidCatalog\",\"status\":\"completed\",\"query\":\"protocol\",\"elapsedMs\":188,\"toolCallId\":\"call_f93e099cd0ff4e318eeeb245\"}}\n\ndata: {\"__aixControl\":true,\"__nonce\":\"c5146b6c-d3da-4702-b4a7-aa19328a4fa9\",\"event\":{\"type\":\"stage\",\"stage\":\"DONE\",\"actionType\":\"generic\"}}\n\nHyperliquid protocol summary:\nHyperliquid is a layer-one blockchain whose HyperCore includes fully onchain perpetual-futures and spot order books.\nHLP means Hyperliquidity Provider: a protocol vault that provides liquidity through multiple protocol strategies.\nHyperliquid Points were a separate legacy rewards program. HYPE is the native token.\nNo Avalon workflow or financial action was started.\n",
+      "transportError": null,
+      "diagnostics": {
+        "requests": [],
+        "messages": []
+      }
+    }
+  ]
+}
